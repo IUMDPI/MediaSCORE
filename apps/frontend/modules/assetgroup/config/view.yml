@@ -1,0 +1,3 @@
+
+editSuccess:
+  javascripts: [jquery_evaluator_history,jquery_format_type]

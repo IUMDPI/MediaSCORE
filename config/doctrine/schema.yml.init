@@ -1,0 +1,624 @@
+User: # Abstract
+  actAs: { Timestampable: ~ }
+  columns:
+    first_name:   { type: string(255), notnull: true }
+    last_name:    { type: string(255), notnull: true }
+    password:     { type: string(255), notnull: true }
+    email:        { type: string(255) }
+    phone:        { type: string(255) }
+    role:         { type: string(255) }
+
+Evaluator:
+  inheritance:
+    extends: User
+    type: column_aggregation
+    keyField: type
+    keyValue: 1
+
+Person:
+  inheritance:
+    extends: User
+    type: column_aggregation
+    keyField: type
+    keyValue: 2
+  columns:
+    contact_info: { type: text }
+    unit_id: { type: integer }
+  relations:
+    Unit: { local: unit_id, foreign: id, foreignAlias: associatedUnits }
+
+
+Store: # Abstract
+  actAs: { Timestampable: ~ }
+  columns:
+    name:         { type: string(255), notnull: true }
+    inst_id:      { type: string(255) } # The institutional ID - can be modified from the UI
+    notes:        { type: text }
+    creator_id:      { type: integer } # NOTNULL
+    #last_updated: { type: datetime }
+    last_editor_id:  { type: integer }
+  relations:
+    User: { local: creator_id, foreign: id, foreignAlias: createdUnits } # Can't link to Evaluator, only User (?); Maybe because Evaluator table doesn't actually exist ?
+    User: { local: last_editor_id, foreign: id, foreignAlias: editedUnits }
+
+Unit:
+  inheritance:
+    extends: Store
+    type: column_aggregation
+    keyField: type
+    keyValue: 1
+  columns:
+    resident_structure_description: { type: text }
+    storage_location_id: { type: integer }
+    unit_personnel: { type: integer }
+  relations:
+    StorageLocation: { local: storage_location_id, foreign: id, foreignAlias: Units }
+    Person: { type: many, class: Person, local: id, foreign: unit_id }
+
+SubUnit: # Abstract
+  inheritance:
+    extends: Store
+    type: column_aggregation
+    keyField: type
+    keyValue: 2
+  columns:
+    parent_node_id: { type: integer }
+  relations:
+    Unit: { local: parent_node_id, foreign: id, foreignAlias: childNodes }
+
+Collection:
+  inheritance:
+    extends: SubUnit
+    type: column_aggregation
+    keyField: type
+    keyValue: 3 # column_aggregation does not permit nested hierarchies beyond 1 layer of abstraction
+  columns:
+    status: { type: string(255) }
+
+AssetGroup:
+  inheritance:
+    extends: SubUnit
+    type: column_aggregation
+    keyField: type
+    keyValue: 4 # column_aggregation does not permit nested hierarchies beyond 1 layer of abstraction
+  columns:
+    location: { type: string(255) }
+    format_id: { type: integer }
+    #evaluator_history: { type: integer }
+  relations:
+    FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups }
+    EvaluatorHistory: { class: EvaluatorHistory, type: many, local: id, foreign: asset_group_id }
+
+
+StorageLocation:
+  actAs: { Timestampable: ~ }
+  columns:
+    name: { type: string(255), notnull: true }
+    env_rating: { type: integer }
+
+EvaluatorHistory:
+  actAs: { Timestampable: ~ }
+  columns:
+    type: { type: integer }
+    # date_committed: { type: timestamp }
+    evaluator_id: { type: integer }
+    #personnel: { type: integer }
+    asset_group_id: { type: integer } # AssetGroup
+  relations:
+    Evaluator: { local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
+    Person: { class: Person, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }
+    Store: { local: asset_group_id, foreign: id, foreignAlias: EvaluatorActions } # Inheritance related problem
+
+EvaluatorHistoryPersonnel: # For the many-to-many relationship between EvaluatorHistory and Person entities
+  columns:
+    evaluator_history_id: { type: integer, primary: true }
+    person_id: { type: integer, primary: true }
+  relations:
+    EvaluatorHistory: { foreignAlias: Personnel }
+    Person: { foreignAlias: EvaluatorHistoryInstances }
+
+# The Media Format Types
+
+FormatType:
+  actAs: { Timestampable: ~ }
+  columns:
+    quantity: { type: integer }
+    generation: { type: integer }
+    year_recorded: { type: string(255) }
+    copies: { type: boolean }
+    stock_brand: { type: string(255) }
+    off_brand: { type: boolean }
+    fungus: { type: boolean }
+    other_contaminants: { type: boolean }
+    duration: { type: integer }
+    duration_type: { type: string(255) }
+
+# The Specific Format Types
+
+MetalDisc:
+  inheritance:
+    extends: FormatType
+    type: concrete
+    #type: column_aggregation
+    #keyField: type
+    #keyValue: 1 # All are aggregated within the FormatType table
+  columns:
+    material: { type: integer }
+    oxidationCorrosion: { type: boolean }
+
+ReelCassetteFormatType: # Abstract
+  inheritance:
+    extends: FormatType
+    type: concrete
+    #type: column_aggregation
+    #keyField: type
+    #keyValue: 2
+  columns:
+    pack_deformation: { type: integer }
+
+# All Format Types Derived from ReelCassetteFormatType
+
+AudiotapeFormatType: # Abstract
+  inheritance:
+    extends: ReelCassetteFormatType
+    type: concrete
+    #type: column_aggregation
+    #keyField: type
+    #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    noise_reduction: { type: boolean }
+
+AnalogAudiocassette:
+  inheritance:
+    extends: AudiotapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #keyField: type
+    #keyValue: 4 # All are aggregated within the FormatType table
+  columns:
+    tape_type: { type: integer }
+    thin_tape: { type: boolean }
+    slow_speed: { type: boolean }
+    sound_field: { type: integer }
+    soft_binder_syndrome: { type: boolean }
+
+Film:
+  inheritance:
+    extends: ReelCassetteFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #keyField: type
+    #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    gauge: { type: integer }
+    color: { type: boolean }
+    colorFade: { type: boolean }
+    soundtrackFormat: { type: integer }
+    substrate: { type: integer }
+    strongOdor: { type: boolean }
+    vinegarOdor: { type: boolean }
+    ADStripLevel: { type: integer }
+    shrinkage: { type: boolean }
+    levelOfShrinkage: { type: integer }
+    rust: { type: boolean }
+    discoloration: { type: boolean }
+    surfaceBlisteringBubbling: { type: boolean }
+
+DAT:
+  inheritance:
+    extends: ReelCassetteFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #keyField: type
+    #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    thinTape: { type: boolean }
+    1993OrEarlier: { type: boolean }
+    dataGradeTape: { type: boolean }
+    longPlay32K96K: { type: boolean }
+
+SoundWireReel:
+  inheritance:
+    extends: ReelCassetteFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #keyField: type
+    #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    corrosionRustOxidation: { type: boolean }
+    composition: { type: integer }
+    nonStandardBrand: { type: boolean }
+
+OpenReelAudioTapeFormatType: # Abstract
+  inheritance:
+    extends: AudiotapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #keyField: type
+    #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    trackConfiguration: { type: integer }
+    tapeThickness: { type: integer }
+    speed: { type: integer }
+    softBinderSyndrome: { type: integer }
+
+OpenReelAudiotapePolyster:
+  inheritance:
+    extends: OpenReelAudioTapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #keyField: type
+    #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #          columns:
+
+OpenReelAudiotapeAcetate:
+  inheritance:
+    extends: OpenReelAudioTapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #keyField: type
+    #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    vinegarOdor: { type: boolean }
+
+OpenReelAudiotapePaper:
+  inheritance:
+    extends: OpenReelAudioTapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #keyField: type
+    #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            #          columns:
+
+OpenReelAudiotapePVC:
+  inheritance:
+    extends: OpenReelAudioTapeFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #keyField: type
+    #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            #          columns:
+
+DiskFormatType: # Abstract
+  inheritance:
+    extends: FormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #keyField: type
+    #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    materialsBreakdown: { type: boolean }
+
+SoftDiskFormatType: # Abstract
+  inheritance:
+    extends: DiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    physicalDamage: { type: integer }
+
+LacquerDisc:
+  inheritance:
+    extends: SoftDiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    substrate: { type: integer }
+    delamination: { type: boolean }
+    plasticizerExudation: { type: boolean }
+
+MiniDisc:
+  inheritance:
+    extends: SoftDiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingLayer: { type: integer }
+    recordingSpeed: { type: integer }
+
+Cylinder:
+  inheritance:
+    extends: SoftDiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    cylinderType: { type: integer }
+
+OpticalDiscFormatType: # Abstract
+  inheritance:
+    extends: SoftDiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    reflectiveLayer: { type: integer }
+    dataLayer: { type: integer }
+    opticalDiscType: { type: integer }
+
+SoundOpticalDisk:
+  inheritance:
+    extends: OpticalDiscFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    # columns:
+
+OpticalVideo:
+  inheritance:
+    extends: OpticalDiscFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    format: { type: integer }
+
+PressedAudioDiscFormatType: # Abstract
+  inheritance:
+    extends: SoftDiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #columns:
+
+PressedSeventyEightRPMDisc:
+  inheritance:
+    extends: PressedAudioDiscFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            #columns:
+
+PressedLPDisc:
+  inheritance:
+    extends: PressedAudioDiscFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            #            #columns:
+
+PressedFortyFiveRPMDisc:
+  inheritance:
+    extends: PressedAudioDiscFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            #            #columns:
+
+StandardizedRecordingFormatType: # Abstract
+  inheritance:
+    extends: DiskFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingStandard: { type: integer }
+
+Laserdisc:
+  inheritance:
+    extends: StandardizedRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingSpeed: { type: integer }
+    publicationYear: { type: timestamp }
+
+XDCamOptical:
+  inheritance:
+    extends: StandardizedRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    format: { type: integer }
+    capacityLayers: { type: integer }
+    codec: { type: integer }
+    dataRate: { type: integer }
+
+VideoRecordingFormatType: # Abstract
+  inheritance:
+    extends: FormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingStandard: { type: integer }
+    sheddingSoftBinder: { type: boolean }
+
+Betamax:
+  inheritance:
+    extends: VideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    formatVersion: { type: integer }
+    oxide: { type: integer }
+
+ReelVideoRecordingFormatType: # Abstract
+  inheritance:
+    extends: VideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    format: { type: integer }
+
+EightMM:
+  inheritance:
+    extends: ReelVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingSpeed: { type: integer }
+    binderSystem: { type: boolean }
+
+OpenReelVideoFormatType: # Abstract
+  inheritance:
+    extends: ReelVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    reelSize: { type: integer }
+
+TwoInchOpenReelVideo:
+  inheritance:
+    extends: OpenReelVideoFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #columns:
+
+OneInchOpenReelVideo:
+  inheritance:
+    extends: OpenReelVideoFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    whiteResidue: { type: boolean }
+
+HalfInchOpenReelVideo:
+  inheritance:
+    extends: OpenReelVideoFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #            columns:
+
+SizedVideoRecordingFormatType: # Abstract
+  inheritance:
+    extends: VideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    size: { type: boolean }
+
+DV:
+  inheritance:
+    extends: SizedVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingSpeed: { type: integer }
+
+DVCam:
+  inheritance:
+    extends: SizedVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+#    columns:
+
+FormatTypedVideoRecording: # Abstract
+  inheritance:
+    extends: SizedVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    formatTypedVideoRecordingFormat: { type: integer }
+
+Betacam:
+  inheritance:
+    extends: FormatTypedVideoRecording
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+#    columns:
+
+VHS:
+  inheritance:
+    extends: FormatTypedVideoRecording
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingSpeed: { type: integer }
+
+DigitalBetacam:
+  inheritance:
+    extends: FormatTypedVideoRecording
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    bitrate: { type: integer }
+
+FormatVersionedVideoRecordingType: # Abstract
+  inheritance:
+    extends: SizedVideoRecordingFormatType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    formatVersion: { type: integer }
+
+Umatic:
+  inheritance:
+    extends: FormatVersionedVideoRecordingType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+    #columns:
+
+HDCam:
+  inheritance:
+    extends: FormatVersionedVideoRecordingType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    speed: { type: integer }
+    scanning: { type: integer }
+
+DVCPro:
+  inheritance:
+    extends: FormatVersionedVideoRecordingType
+    type: concrete
+    #type: column_aggregation
+    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #    #keyField: type
+    #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #        #keyValue: 3 # All are aggregated within the FormatType table
+  columns:
+    recordingSpeed: { type: integer }
+

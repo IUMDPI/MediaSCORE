@@ -1,0 +1,7 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=mediaSCORE1_0a'
+      username: symfony
+      password: sYmF0nYd3v
