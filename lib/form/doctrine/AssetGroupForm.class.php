@@ -15,8 +15,9 @@ class AssetGroupForm extends BaseAssetGroupForm
    */
   public function configure()
   {
-	  parent::configure();
-	  $this->setWidget('format_id',new sfWidgetFormInputHidden());
-	  $this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'add_empty' => false)));
+	parent::configure();
+	$this->setWidget('format_id',new sfWidgetFormInputHidden());
+	$this->setWidget('parent_node_id',new sfWidgetFormInputHidden());
+	//$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'add_empty' => false)));
   }
 }

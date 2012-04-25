@@ -10,12 +10,60 @@
  */
 class unitActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->units = Doctrine_Core::getTable('Unit')
-      ->createQuery('a')
-      ->execute();
-  }
+
+	public function executeGetUnitForAssetGroup(sfWebRequest $request) {
+
+		if($request->isXmlHttpRequest()) {
+			// assetgroup.parent_node_id -> collection
+			// collection.parent_node_id -> unit
+
+			$assetGroupID = $request->getParameter('id');
+
+			// Too many exceptions thrown - taking an overly complex approach
+			// (getFirst() and fetchOne() throw exceptions)
+			// Needs to be optimized
+			//$map = array('AssetGroup','Collection','Unit');
+
+			$assetGroups = Doctrine_Core::getTable('AssetGroup')
+				->createQuery('a')
+				->where('id =?',$assetGroupID)
+				->execute()
+				->toArray();
+			$assetGroup = array_pop($assetGroups);
+
+			$collections = Doctrine_Core::getTable('Collection')
+				->createQuery('c')
+				->where('id =?',$assetGroup['parent_node_id'])
+				->execute()
+				->toArray();
+			$collection = array_pop($collections);
+
+			$units = Doctrine_Core::getTable('Unit')
+				->createQuery('u')
+				->where('id =?',$collection['parent_node_id'])
+				->execute()
+				->toArray();
+
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->setLayout('json');
+			$this->setTemplate('index');
+			echo json_encode(array_pop($units));
+		}
+	}
+
+	public function executeIndex(sfWebRequest $request) {
+
+		$this->units = Doctrine_Core::getTable('Unit')
+			->createQuery('a')
+			->execute();
+		
+		// To be moved into a separate Action or Controller
+		if($request->isXmlHttpRequest()) {
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->setLayout('json');
+			echo json_encode($this->units->toArray());		
+		}
+	}
 
   public function executeShow(sfWebRequest $request)
   {

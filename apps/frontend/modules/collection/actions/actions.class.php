@@ -10,11 +10,50 @@
  */
 class collectionActions extends sfActions
 {
+
+	public function executeGetCollectionsForUnit(sfWebRequest $request) {
+
+		if($request->isXmlHttpRequest()) {
+
+			$unitID = $request->getParameter('id');
+
+			// Too many exceptions thrown - taking an overly complex approach
+			// (getFirst() and fetchOne() throw exceptions)
+			// Needs to be optimized
+
+			$collections = Doctrine_Core::getTable('Collection')
+				->createQuery('c')
+				->where('parent_node_id =?',$unitID)
+				->execute()
+				->toArray();
+
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->setLayout('json');
+			$this->setTemplate('index');
+			echo json_encode($collections);
+		}
+	}
+
   public function executeIndex(sfWebRequest $request)
   {
-    $this->collections = Doctrine_Core::getTable('Collection')
-      ->createQuery('a')
-      ->execute();
+	  $unitID=$request->getParameter('id');
+
+	  // Get collections for a specific Unit
+	  if($unitID and $request->isXmlHttpRequest()) {
+		$this->collections = Doctrine_Core::getTable('Collection')
+			->createQuery('a')
+			->where('parent_node_id',$unitID)
+			->execute();
+
+		$this->getResponse()->setHttpHeader('Content-type','application/json');
+		$this->setLayout('json');
+		echo json_encode($this->collections->toArray());
+		
+	  } else {
+		$this->collections = Doctrine_Core::getTable('Collection')
+			->createQuery('a')
+			->execute();
+	  }
   }
 
   public function executeShow(sfWebRequest $request)
