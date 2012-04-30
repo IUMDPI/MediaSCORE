@@ -74,6 +74,6 @@ class FormatTypeForm extends BaseFormatTypeForm
 				'scanning',
 				'created_at',
 				'updated_at' ) as $voidField)
-				unset($this->getWidgetSchema[$voidField]);
+				unset($this->widgetSchema[$voidField]);
   }
 }
