@@ -16,5 +16,8 @@ class SubUnitForm extends BaseSubUnitForm
   public function configure()
   {
 	  parent::configure();
+
+	  $this->getWidget('notes')->setLabel('Description:&nbsp;');
+
   }
 }

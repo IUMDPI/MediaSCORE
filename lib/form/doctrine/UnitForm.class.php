@@ -12,7 +12,12 @@ class UnitForm extends BaseUnitForm
 {
   public function configure()
   {
+	//$this->setWidget('notes',new sfWidgetFormTextarea());
 	$this->setWidget('resident_structure_description',new sfWidgetFormInputText());
-	$this->setWidget('unit_personnel',new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'add_empty' => false)));
+	$this->getWidget('resident_structure_description')->setLabel('Building Name and Room Number:&nbsp;');
+	$this->setWidget('unit_personnel',new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'add_empty' => false,'method' => 'getFullName','multiple' => true)));
+	$this->getWidget('inst_id')->setLabel('ID:&nbsp;');
+
+	$this->getWidget('type')->setAttribute('value',1);
   }
 }

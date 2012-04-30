@@ -25,7 +25,7 @@ Person:
     contact_info: { type: text }
     unit_id: { type: integer }
   relations:
-    Unit: { local: unit_id, foreign: id, foreignAlias: associatedUnits }
+    Units: { class: Unit, local: person_id, foreign: unit_id, refClass:UnitPerson }
 
 
 Store: # Abstract
@@ -38,8 +38,8 @@ Store: # Abstract
     #last_updated: { type: datetime }
     last_editor_id:  { type: integer }
   relations:
-    User: { local: creator_id, foreign: id, foreignAlias: createdUnits } # Can't link to Evaluator, only User (?); Maybe because Evaluator table doesn't actually exist ?
-    User: { local: last_editor_id, foreign: id, foreignAlias: editedUnits }
+    Creator: { class: User, local: creator_id, foreign: id, foreignAlias: createdUnits } # Can't link to Evaluator, only User (?); Maybe because Evaluator table doesn't actually exist ?
+    Editor: { class: User, local: last_editor_id, foreign: id, foreignAlias: editedUnits }
 
 Unit:
   inheritance:
@@ -53,7 +53,12 @@ Unit:
     unit_personnel: { type: integer }
   relations:
     StorageLocation: { local: storage_location_id, foreign: id, foreignAlias: Units }
-    Person: { type: many, class: Person, local: id, foreign: unit_id }
+    Personnel: { class: Person, local: unit_id, foreign: person_id, refClass: UnitPerson }
+
+UnitPerson:
+  columns:
+    unit_id: { type: integer }
+    person_id: { type: integer }
 
 SubUnit: # Abstract
   inheritance:
@@ -64,7 +69,7 @@ SubUnit: # Abstract
   columns:
     parent_node_id: { type: integer }
   relations:
-    Unit: { local: parent_node_id, foreign: id, foreignAlias: childNodes }
+    Unit: { type: many, local: parent_node_id, foreign: id, foreignAlias: childNodes }
 
 Collection:
   inheritance:
@@ -106,16 +111,16 @@ EvaluatorHistory:
     asset_group_id: { type: integer } # AssetGroup
   relations:
     Evaluator: { local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
-    Person: { class: Person, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }
+    consultedPersonnel: { class: Person, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }
     Store: { local: asset_group_id, foreign: id, foreignAlias: EvaluatorActions } # Inheritance related problem
 
 EvaluatorHistoryPersonnel: # For the many-to-many relationship between EvaluatorHistory and Person entities
   columns:
-    evaluator_history_id: { type: integer, primary: true }
-    person_id: { type: integer, primary: true }
-  relations:
-    EvaluatorHistory: { foreignAlias: Personnel }
-    Person: { foreignAlias: EvaluatorHistoryInstances }
+    evaluator_history_id: { type: integer }
+    person_id: { type: integer }
+#  relations:
+#    EvaluatorHistory: { foreignAlias: Personnel }
+#    Person: { foreignAlias: EvaluatorHistoryInstances }
 
 # The Media Format Types
 

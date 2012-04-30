@@ -7,17 +7,11 @@
  * 
  * @property integer $evaluator_history_id
  * @property integer $person_id
- * @property EvaluatorHistory $EvaluatorHistory
- * @property Person $Person
  * 
  * @method integer                   getEvaluatorHistoryId()   Returns the current record's "evaluator_history_id" value
  * @method integer                   getPersonId()             Returns the current record's "person_id" value
- * @method EvaluatorHistory          getEvaluatorHistory()     Returns the current record's "EvaluatorHistory" value
- * @method Person                    getPerson()               Returns the current record's "Person" value
  * @method EvaluatorHistoryPersonnel setEvaluatorHistoryId()   Sets the current record's "evaluator_history_id" value
  * @method EvaluatorHistoryPersonnel setPersonId()             Sets the current record's "person_id" value
- * @method EvaluatorHistoryPersonnel setEvaluatorHistory()     Sets the current record's "EvaluatorHistory" value
- * @method EvaluatorHistoryPersonnel setPerson()               Sets the current record's "Person" value
  * 
  * @package    mediaSCORE
  * @subpackage model
@@ -31,23 +25,15 @@ abstract class BaseEvaluatorHistoryPersonnel extends sfDoctrineRecord
         $this->setTableName('evaluator_history_personnel');
         $this->hasColumn('evaluator_history_id', 'integer', null, array(
              'type' => 'integer',
-             'primary' => true,
              ));
         $this->hasColumn('person_id', 'integer', null, array(
              'type' => 'integer',
-             'primary' => true,
              ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('EvaluatorHistory', array(
-             'local' => 'evaluator_history_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Person', array(
-             'local' => 'person_id',
-             'foreign' => 'id'));
+        
     }
 }

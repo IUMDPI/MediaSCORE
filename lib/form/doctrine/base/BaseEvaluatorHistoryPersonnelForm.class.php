@@ -15,13 +15,15 @@ abstract class BaseEvaluatorHistoryPersonnelForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'evaluator_history_id' => new sfWidgetFormInputHidden(),
-      'person_id'            => new sfWidgetFormInputHidden(),
+      'id'                   => new sfWidgetFormInputHidden(),
+      'evaluator_history_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EvaluatorHistory'), 'add_empty' => true)),
+      'person_id'            => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'evaluator_history_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('evaluator_history_id')), 'empty_value' => $this->getObject()->get('evaluator_history_id'), 'required' => false)),
-      'person_id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('person_id')), 'empty_value' => $this->getObject()->get('person_id'), 'required' => false)),
+      'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'evaluator_history_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('EvaluatorHistory'), 'required' => false)),
+      'person_id'            => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('evaluator_history_personnel[%s]');

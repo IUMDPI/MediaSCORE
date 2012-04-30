@@ -15,23 +15,23 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
-      'type'           => new sfWidgetFormInputText(),
-      'evaluator_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'add_empty' => true)),
-      'asset_group_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
-      'created_at'     => new sfWidgetFormDateTime(),
-      'updated_at'     => new sfWidgetFormDateTime(),
-      'person_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),
+      'id'                       => new sfWidgetFormInputHidden(),
+      'type'                     => new sfWidgetFormInputText(),
+      'evaluator_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'add_empty' => true)),
+      'asset_group_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
+      'created_at'               => new sfWidgetFormDateTime(),
+      'updated_at'               => new sfWidgetFormDateTime(),
+      'consulted_personnel_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),
     ));
 
     $this->setValidators(array(
-      'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'type'           => new sfValidatorInteger(array('required' => false)),
-      'evaluator_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'required' => false)),
-      'asset_group_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'required' => false)),
-      'created_at'     => new sfValidatorDateTime(),
-      'updated_at'     => new sfValidatorDateTime(),
-      'person_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false)),
+      'id'                       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'type'                     => new sfValidatorInteger(array('required' => false)),
+      'evaluator_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'required' => false)),
+      'asset_group_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'required' => false)),
+      'created_at'               => new sfValidatorDateTime(),
+      'updated_at'               => new sfValidatorDateTime(),
+      'consulted_personnel_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('evaluator_history[%s]');
@@ -52,28 +52,28 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['person_list']))
+    if (isset($this->widgetSchema['consulted_personnel_list']))
     {
-      $this->setDefault('person_list', $this->object->Person->getPrimaryKeys());
+      $this->setDefault('consulted_personnel_list', $this->object->consultedPersonnel->getPrimaryKeys());
     }
 
   }
 
   protected function doSave($con = null)
   {
-    $this->savePersonList($con);
+    $this->saveconsultedPersonnelList($con);
 
     parent::doSave($con);
   }
 
-  public function savePersonList($con = null)
+  public function saveconsultedPersonnelList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['person_list']))
+    if (!isset($this->widgetSchema['consulted_personnel_list']))
     {
       // somebody has unset this widget
       return;
@@ -84,8 +84,8 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->Person->getPrimaryKeys();
-    $values = $this->getValue('person_list');
+    $existing = $this->object->consultedPersonnel->getPrimaryKeys();
+    $values = $this->getValue('consulted_personnel_list');
     if (!is_array($values))
     {
       $values = array();
@@ -94,13 +94,13 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('Person', array_values($unlink));
+      $this->object->unlink('consultedPersonnel', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('Person', array_values($link));
+      $this->object->link('consultedPersonnel', array_values($link));
     }
   }
 

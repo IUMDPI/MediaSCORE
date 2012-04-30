@@ -12,9 +12,33 @@ class assetgroupActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
+    /*$this->asset_groups = Doctrine_Core::getTable('AssetGroup')
       ->createQuery('a')
-      ->execute();
+      ->execute();*/
+
+	$this->collectionID=$request->getParameter('c');
+	$this->forward404Unless($this->collectionID);
+
+	$collection = Doctrine_Core::getTable('Collection')
+						->find($this->collectionID);
+	$this->forward404Unless($collection);
+
+	$this->unitID=$collection->getParentNodeId();
+
+	$this->unitName=Doctrine_Core::getTable('Unit')
+						->find($this->unitID)
+						->getName();
+
+	$this->persons=Doctrine_Core::getTable('Evaluator')
+		->findAll();
+	//print_r($this->persons->toArray());
+	//print_r($this->persons->count());
+	//exit();
+
+	$this->collectionName=$collection->getName();
+	$this->asset_groups = Doctrine_Core::getTable('AssetGroup')
+		->findBy('parent_node_id',$this->collectionID);
+	//print_r($this->asset_groups->getPerson()->toArray());
   }
 
   public function executeShow(sfWebRequest $request)

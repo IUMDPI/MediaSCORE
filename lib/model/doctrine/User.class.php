@@ -12,4 +12,7 @@
  */
 class User extends BaseUser
 {
+	public function getFullName() {
+		return $this->_get('first_name').' '.$this->_get('last_name');
+	}
 }

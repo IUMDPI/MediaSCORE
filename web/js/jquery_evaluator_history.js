@@ -23,13 +23,14 @@ $('document').ready(function () {
 		}
 
 		appBaseURL = '/symfony/mediascore1.0a/frontend_dev.php/';
+		assetGroupID = $('#asset_group_id').val();
 
 		// Unit-Collection Multiple Selection
 		populateCollections = function (element,stores) {
 			element.empty();
 
 			for(i in stores) {
-				console.log(stores[i]);
+				//console.log(stores[i]);
 				element.append('<option class="collection-multiple-select" value="'+stores[i].id+'">'+stores[i].name+'</option>');
 				if(stores[i].id == serializedCollectionID)
 					$('#collection-multiple-select').prop('selectedIndex',i);
@@ -40,7 +41,7 @@ $('document').ready(function () {
 				});*/
 			$('.collection-multiple-select').click(function () {
 				$('#asset_group_parent_node_id').val( $(this).val() );
-				console.log( 'updated: '+$('#asset_group_parent_node_id').val() );
+				//console.log( 'updated: '+$('#asset_group_parent_node_id').val() );
 			});
 		}
 		//
@@ -88,7 +89,7 @@ $('document').ready(function () {
 				}
 				selectUnitForAssetGroupID( $('#asset_group_id').val() );
 				$('.unit-multiple-select').click(function () {
-					console.log('trace');
+					//console.log('trace');
 					getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
 				});
 
@@ -136,18 +137,18 @@ $('document').ready(function () {
 		);
 
 		$('#asset-group-save').click(function(event) {
-			console.log('trace');
+			//console.log('trace');
 			event.preventDefault();
 
 			actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
 
-			console.log( appBaseURL+$('#format-type-model-name').val()+'/'+actionName  );
-			console.log( $('#format-type-container').children('form').serialize() );
+			//console.log( appBaseURL+$('#format-type-model-name').val()+'/'+actionName  );
+			//console.log( $('#format-type-container').children('form').serialize() );
 
 			urlSuffix='';
 
 			if(actionName == 'update') {
-				console.log( $('#format-type-container input[id$="_id"]').val() );
+				//console.log( $('#format-type-container input[id$="_id"]').val() );
 				urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
 			}
 
@@ -192,7 +193,7 @@ $('document').ready(function () {
 				// Check for match
 				// Execute /new for mismatch
 				//
-				console.log('selected index: '+$('#format-type-model-name').prop('selectedIndex'));
+				//console.log('selected index: '+$('#format-type-model-name').prop('selectedIndex'));
 				if(serializedFormatTypeModelName != '' && serializedFormatTypeModelName != $('#format-type-model-name').val() ) {
 					getAddFormatTypeForm();
 				} else {
@@ -241,9 +242,32 @@ $('document').ready(function () {
 		getFormatTypeForm(); // When the DOM is loaded.
 
 		// For the EvaluatorHistory Models //
+		//
+
 
 
 		refreshElementHandlers = function () {
+
+		// Populate the EvaluatorHistory values
+		$.get(
+			appBaseURL+'person/getPersonsForAssetGroup',
+			{ag:assetGroupID},
+			function (persons) {
+				for(i in persons)
+					$('<option value="'+persons[i].id+'">'+persons[i].first_name+' '+persons[i].last_name+'</option>').appendTo('#evaluator_history_person_list');
+			});
+
+/*
+			$.get(
+				appBaseURL+'collection/getCollectionsForUnit',
+				{id:unitID},
+				function (collections) {
+				populateCollections( $('#collection-multiple-select'),collections );
+
+				}
+			);
+
+ */
 
 		// If a "delete" hyperlink is clicked...
 		$('.evaluator-history-delete').click(function (e) {
@@ -255,7 +279,6 @@ $('document').ready(function () {
 							location.reload();
 						});
 		});
-
 
 		// If an "edit" hyperlink is clicked...
 		$('.evaluator-history-edit').click(function (e) {
@@ -292,12 +315,15 @@ $('document').ready(function () {
 				saveURL='/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/update/id/' + $('#evaluator_history_id').val();
 			else
 				saveURL='/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/create';
+
 			$.post(
 				saveURL,
 				$('#evaluator-history-form').serialize(),
 					function(data,textStatus) {
-						//refreshElementHandlers;
-						location.reload();
+						console.log( $('#evaluator-history-form').serialize() );
+						//$('body').append(data);
+						refreshElementHandlers();
+						//location.reload();
 						//console.log('success');
 						//$('#evaluator-history-edit-container').empty();
 						//$('#evaluator-history-new').show();
@@ -311,6 +337,7 @@ $('document').ready(function () {
 		$('#evaluator-history-edit-container').load(
 			                        '/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/new',
 						function () {
+
 							refreshElementHandlers();
 							// Hide the "+ ADD NEW" input element
 							$('#evaluator-history-new').hide();
@@ -320,7 +347,8 @@ $('document').ready(function () {
 							now = new Date();
 
 							// Link this new EvaluatorHistory and AssetGroup objects
-							$('#evaluator_history_asset_group_id').val( $('input[name="asset_group[id]"]').val() );
+							//$('#evaluator_history_asset_group_id').val( $('input[name="asset_group[id]"]').val() );
+							$('#evaluator_history_asset_group_id').val( $('#asset_group_id').val() );
 							$('#evaluator_history_created_at_year').prop('selectedIndex',now.getFullYear() - 2006);
 							$('#evaluator_history_created_at_month').prop('selectedIndex',now.getMonth()+1);
 							$('#evaluator_history_created_at_day').prop('selectedIndex',now.getDate());

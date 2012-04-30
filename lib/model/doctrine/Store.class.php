@@ -12,4 +12,25 @@
  */
 class Store extends BaseStore
 {
+/*    public function setUp()
+    {
+	    parent::setUp();
+
+	    $this->hasOne('Evaluator', array(
+		    'alias' => 'creator',
+             'local' => 'creator_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('User', array(
+             'local' => 'last_editor_id',
+	     'foreign' => 'id'));
+
+        $this->hasMany('EvaluatorHistory as EvaluatorActions', array(
+             'local' => 'id',
+             'foreign' => 'asset_group_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
+    }*/
+
 }

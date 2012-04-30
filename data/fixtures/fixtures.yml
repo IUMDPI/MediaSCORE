@@ -66,41 +66,41 @@ Person:
 Unit:
   music_library:
     name: Music Library
-    creator_id: 0
+    creator_id: 1
 
   history_department:
     name: History Department
-    creator_id: 1
+    creator_id: 2
 
   economics_building:
     name: Economics Building
-    creator_id: 2
+    creator_id: 3
 
 Collection:
   johnson_collection:
     name: Johnson Collection
-    creator_id: 0
+    creator_id: 1
 
   richardson_collection:
     name: Richardson Collection
-    creator_id: 1
+    creator_id: 2
 
   mcally_collection:
     name: McAlly Collection
-    creator_id: 2
+    creator_id: 3
 
 AssetGroup:
   asset_group_one:
     name: Asset Group One
-    creator_id: 0
+    creator_id: 1
 
   asset_group_two:
     name: Asset Group Two
-    creator_id: 1
+    creator_id: 2
 
   asset_group_three:
     name: Asset Group Three
-    creator_id: 2
+    creator_id: 3
 
 StorageLocation:
   storage_location_one:

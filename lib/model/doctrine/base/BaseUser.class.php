@@ -14,6 +14,7 @@
  * @property string $type
  * @property text $contact_info
  * @property integer $unit_id
+ * @property Doctrine_Collection $createdUnits
  * @property Doctrine_Collection $editedUnits
  * 
  * @method string              getFirstName()    Returns the current record's "first_name" value
@@ -25,6 +26,7 @@
  * @method string              getType()         Returns the current record's "type" value
  * @method text                getContactInfo()  Returns the current record's "contact_info" value
  * @method integer             getUnitId()       Returns the current record's "unit_id" value
+ * @method Doctrine_Collection getCreatedUnits() Returns the current record's "createdUnits" collection
  * @method Doctrine_Collection getEditedUnits()  Returns the current record's "editedUnits" collection
  * @method User                setFirstName()    Sets the current record's "first_name" value
  * @method User                setLastName()     Sets the current record's "last_name" value
@@ -35,6 +37,7 @@
  * @method User                setType()         Sets the current record's "type" value
  * @method User                setContactInfo()  Sets the current record's "contact_info" value
  * @method User                setUnitId()       Sets the current record's "unit_id" value
+ * @method User                setCreatedUnits() Sets the current record's "createdUnits" collection
  * @method User                setEditedUnits()  Sets the current record's "editedUnits" collection
  * 
  * @package    mediaSCORE
@@ -100,6 +103,10 @@ abstract class BaseUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Store as createdUnits', array(
+             'local' => 'id',
+             'foreign' => 'creator_id'));
+
         $this->hasMany('Store as editedUnits', array(
              'local' => 'id',
              'foreign' => 'last_editor_id'));

@@ -12,5 +12,13 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 {
   public function setup()
   {
+	// 04/27/12
+	// the Validator throws an exception for fields specified in child classes, preventing these values from reaching the Controller layer and updating the serialized Model.
+	  $this->getValidatorSchema()->setOptions( array(
+		  'allow_extra_fields' => true,
+		  'filter_extra_fields' => false
+					));
+
+
   }
 }

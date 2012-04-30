@@ -10,28 +10,57 @@
  */
 class evaluatorhistoryActions extends sfActions
 {
+	public function executeGetConsultedPersons(sfWebRequest $request) {
+		if($request->isXmlHttpRequest()) {
 
-  public function executeIndex(sfWebRequest $request)
-  {
+			$consultationRecords=Doctrine_Core::getTable('EvaluatorHistoryPersonnel')
+				->findBy('evaluator_history_id',$request->getParameter('id'));
+
+			$persons=array();
+			foreach($consultationRecords as $consultationRecord) {
+				$persons[]=Doctrine_Core::getTable('Person')
+					->find($consultationRecord->getPersonId())->toArray();
+			}
+
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->setLayout('json');
+			$this->setTemplate('index');
+			echo json_encode($persons);
+		}
+	}
+
+
+
+  public function executeIndex(sfWebRequest $request) {
 	$this->evaluator_historys = Doctrine_Core::getTable('AssetGroup')
 					->find(array(
 						$request->getParameter('id')))
-					->getEvaluatorHistory();
-	  
-    /*$this->evaluator_historys = Doctrine_Core::getTable('EvaluatorHistory')
-      ->createQuery('a')
-      ->execute();*/
+						->getEvaluatorHistory();
+
+	$this->evaluators=array();
+	$this->consultedPersons = array();
+	foreach($this->evaluator_historys as $evaluatorHistory) {
+		$evaluatorHistoryID=$evaluatorHistory->getEvaluatorId();
+		if($evaluatorHistoryID)
+			$this->evaluators[$evaluatorHistoryID]=Doctrine_Core::getTable('Evaluator')
+										->find($evaluatorHistoryID);
+
+		foreach( Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->findBy('evaluator_history_id',$evaluatorHistory->getId()) as $consultationRecord) {
+			$this->consultedPersons[$evaluatorHistory->getId()][]=Doctrine_Core::getTable('Person')
+				->findOneBy('id',$consultationRecord->getPersonId());
+		}
+	}
   }
 
-  public function executeShow(sfWebRequest $request)
+/*  public function executeShow(sfWebRequest $request)
   {
     $this->evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id')));
     $this->forward404Unless($this->evaluator_history);
-  }
+  }*/
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new EvaluatorHistoryForm();
+	  $this->form = new EvaluatorHistoryForm();
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -83,16 +112,37 @@ class evaluatorhistoryActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
+	$formValues=$form->getValues();
+	// Doctrine does not bind values properly, and I cannot remove field values which are null and for which there exists no NOT NULL MySQL table constraint
+	if($form->getObject()->isNew()) {
+		echo 'trace';
+		$evaluatorHistory=Doctrine_Core::getTable('EvaluatorHistory')->create(array(
+			'updated_at' => $formValues['updated_at'])); // The only field with a NOT NULL constraint.
+		$evaluatorHistory->save();
+	} else {
+		$evaluatorHistory=$form->getObject();
+	}
 
-	    $evaluator_history = $form->save();
-	    //echo $evaluator_history->getAssetGroupId();
-	    //echo var_dump( $evaluator_history );
-	    //exit();
+	if(isset($formValues['person_list']))
+		foreach($formValues['person_list'] as $personID)
+			Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->create(array(
+				'evaluator_history_id' => $evaluatorHistory->getId(),
+				'person_id' => $personID))->save();
 
-      //$evaluator_history = $form->save();
+	unset($formValues['person_list']);
 
-      //$this->redirect('evaluatorhistory/edit?id='.$evaluator_history->getId());
-      $this->redirect('evaluatorhistory/index?id='.$evaluator_history->getAssetGroupId());
+	// 0 is stored as NULL
+	$evaluatorHistory->set('type',$formValues['type']);
+	$evaluatorHistory->save();
+	foreach(array_keys($formValues) as $formField) {
+		if($formValues[$formField] && !$evaluatorHistory->get($formField)) {
+			$evaluatorHistory->set($formField,$formValues[$formField]);
+			$evaluatorHistory->save();
+		}
+	}
+
+	//$evaluator_history = $form->save();
+	$this->redirect('evaluatorhistory/edit?id='.$evaluatorHistory->getId());
     }
   }
 }

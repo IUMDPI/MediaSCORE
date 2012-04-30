@@ -10,6 +10,24 @@
  */
 class personActions extends sfActions
 {
+	public function executeGetPersonsForAssetGroup(sfWebRequest $request) {
+
+		$assetGroupID=$request->getParameter('ag');
+    		$this->forward404Unless($request->isXmlHttpRequest() && $assetGroupID);
+
+		// Needs optimization
+		$persons = Doctrine_Core::getTable('Person')
+				->findBy('unit_id',Doctrine_Core::getTable('Unit')
+					->find(Doctrine_Core::getTable('Collection')
+						->find(	Doctrine_Core::getTable('AssetGroup')
+							->find($assetGroupID)->getParentNodeId()
+						)->getParentNodeId())->getId())->toArray();
+		$this->getResponse()->setHttpHeader('Content-type','application/json');
+		$this->setLayout('json');
+		$this->setTemplate('index');
+		echo json_encode($persons);
+	}
+
   public function executeIndex(sfWebRequest $request)
   {
     $this->persons = Doctrine_Core::getTable('Person')

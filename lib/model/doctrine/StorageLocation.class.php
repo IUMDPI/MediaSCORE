@@ -12,4 +12,23 @@
  */
 class StorageLocation extends BaseStorageLocation
 {
+	/*
+1. Frozen conditions
+ 
+2. Cold conditions
+ 
+3. Cool conditions
+ 
+4. Room conditions
+ 
+5. Above room conditions
+ 
+6. Extreme conditions
+	 */
+	public static $constants = array(	'Frozen Conditions',
+						'Cold Conditions',
+						'Cool Conditions',
+						'Room Conditions',
+						'Above Room Conditions',
+						'Extreme Conditions');
 }

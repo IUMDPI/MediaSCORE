@@ -14,14 +14,10 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
 {
   public function setup()
   {
-	  $typeIDs=array_flip(Doctrine_Core::getTable('FormatType')->getOption('subclasses'));
-	  //$typeIDs=array_flip(FormatType::$subclasses);
-
     $this->setWidgets(array(
-      'id'                              => new sfWidgetFormInputHidden(), // sfWidgetFormChoice
+      'id'                              => new sfWidgetFormInputHidden(),
       'quantity'                        => new sfWidgetFormInputText(),
-      'generation'                      => new sfWidgetFormChoice(array('choices' => FormatType::$constants)),
-
+      'generation'                      => new sfWidgetFormInputText(),
       'year_recorded'                   => new sfWidgetFormInputText(),
       'copies'                          => new sfWidgetFormInputCheckbox(),
       'stock_brand'                     => new sfWidgetFormInputText(),
@@ -30,94 +26,68 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
       'other_contaminants'              => new sfWidgetFormInputCheckbox(),
       'duration'                        => new sfWidgetFormInputText(),
       'duration_type'                   => new sfWidgetFormInputText(),
-      'type'                            => new sfWidgetFormInputHidden( array(),array('value' => ($typeIDs[$this->getModelName()] + 1) ) ),
-//      'material'                        => new sfWidgetFormInputText(),
-//      'oxidationCorrosion'              => new sfWidgetFormInputCheckbox(),
-//      'pack_deformation'                => new sfWidgetFormInputText(),
-//      'noise_reduction'                 => new sfWidgetFormInputCheckbox(),
-      //'tape_type'                       => new sfWidgetFormInputText(),
-      //'thin_tape'                       => new sfWidgetFormInputCheckbox(),
-      //'slow_speed'                      => new sfWidgetFormInputCheckbox(),
-      // AnalogAudiocassette
-      //'sound_field'                     => new sfWidgetFormInputText(),
-//      'soft_binder_syndrome'            => new sfWidgetFormInputCheckbox(),
-//      'gauge'                           => new sfWidgetFormInputText(),
-//      'color'                           => new sfWidgetFormInputCheckbox(),
-//      'colorFade'                       => new sfWidgetFormInputCheckbox(),
-//      'soundtrackFormat'                => new sfWidgetFormInputText(),
-//      'substrate'                       => new sfWidgetFormInputText(),
-//      'strongOdor'                      => new sfWidgetFormInputCheckbox(),
-      //'vinegarOdor'                     => new sfWidgetFormInputCheckbox(),
-//      'ADStripLevel'                    => new sfWidgetFormInputText(),
-//      'shrinkage'                       => new sfWidgetFormInputCheckbox(),
-//      'levelOfShrinkage'                => new sfWidgetFormInputText(),
-//      'rust'                            => new sfWidgetFormInputCheckbox(),
-//      'discoloration'                   => new sfWidgetFormInputCheckbox(),
-//      'surfaceBlisteringBubbling'       => new sfWidgetFormInputCheckbox(),
-      //'thinTape'                        => new sfWidgetFormInputCheckbox(),
-      //'1993OrEarlier'                   => new sfWidgetFormInputCheckbox(),
-      //'dataGradeTape'                   => new sfWidgetFormInputCheckbox(),
-      //'longPlay32K96K'                  => new sfWidgetFormInputCheckbox(),
-      // SoundWireReel
-      //'corrosionRustOxidation'          => new sfWidgetFormInputCheckbox(),
-      //'composition'                     => new sfWidgetFormInputText(),
-      //'nonStandardBrand'                => new sfWidgetFormInputCheckbox(),
-//      'trackConfiguration'              => new sfWidgetFormInputText(),
-//      'tapeThickness'                   => new sfWidgetFormInputText(),
-      // HDCam
-      //'speed'                           => new sfWidgetFormInputText(),
-//      'softBinderSyndrome'              => new sfWidgetFormInputText(),
-//      'materialsBreakdown'              => new sfWidgetFormInputCheckbox(),
-//      'physicalDamage'                  => new sfWidgetFormInputText(),
-//      'delamination'                    => new sfWidgetFormInputCheckbox(),
-//      'plasticizerExudation'            => new sfWidgetFormInputCheckbox(),
-//      'recordingLayer'                  => new sfWidgetFormInputText(),
-      // EightMM
-      // VHS
-      // DVCPro
-      //'recordingSpeed'                  => new sfWidgetFormInputText(),
-//      'cylinderType'                    => new sfWidgetFormInputText(),
-//      'reflectiveLayer'                 => new sfWidgetFormInputText(),
-//      'dataLayer'                       => new sfWidgetFormInputText(),
-//      'opticalDiscType'                 => new sfWidgetFormInputText(),
-      // XDCamOptical
-      // ...OpenReelVideo
-      // HalfInchOpenReelVideo
-      //'format'                          => new sfWidgetFormInputText(),
-//      'recordingStandard'               => new sfWidgetFormInputText(),
-//      'publicationYear'                 => new sfWidgetFormDateTime(),
-      // XDCamOptical
-      //'capacityLayers'                  => new sfWidgetFormInputText(),
-      // XDCamOptical
-      //'codec'                           => new sfWidgetFormInputText(),
-      // XDCamOptical
-      //'dataRate'                        => new sfWidgetFormInputText(),
-//      'sheddingSoftBinder'              => new sfWidgetFormInputCheckbox(),
-      // FormatVersionedVideoRecordingType
-      // Umatic
-      // HDCam
-      // DVCPro
-      //'formatVersion'                   => new sfWidgetFormInputText(),
-//      'oxide'                           => new sfWidgetFormInputText(),
-      // EightMM
-      //'binderSystem'                    => new sfWidgetFormInputCheckbox(),
-      // ...OpenReelVideo
-      // HalfInchOpenReelVideo
-      //'reelSize'                        => new sfWidgetFormInputText(),
-//      'whiteResidue'                    => new sfWidgetFormInputCheckbox(),
-      // SizedVideoRecordingType
-      // Betacam
-      // VHS
-      // DigitalBetacam
-      // Umatic
-      //'size'                            => new sfWidgetFormInputCheckbox(),
-//      'formatTypedVideoRecordingFormat' => new sfWidgetFormInputText(),
-      // DigitalBetacam
-      //'bitrate'                         => new sfWidgetFormInputText(),
-      // HDCam
-      //'scanning'                        => new sfWidgetFormInputText(),
-      //'created_at'                      => new sfWidgetFormDateTime(),
-      //'updated_at'                      => new sfWidgetFormDateTime(),
+      'type'                            => new sfWidgetFormInputText(),
+      'material'                        => new sfWidgetFormInputText(),
+      'oxidationCorrosion'              => new sfWidgetFormInputCheckbox(),
+      'pack_deformation'                => new sfWidgetFormInputText(),
+      'noise_reduction'                 => new sfWidgetFormInputCheckbox(),
+      'tape_type'                       => new sfWidgetFormInputText(),
+      'thin_tape'                       => new sfWidgetFormInputCheckbox(),
+      'slow_speed'                      => new sfWidgetFormInputCheckbox(),
+      'sound_field'                     => new sfWidgetFormInputText(),
+      'soft_binder_syndrome'            => new sfWidgetFormInputCheckbox(),
+      'gauge'                           => new sfWidgetFormInputText(),
+      'color'                           => new sfWidgetFormInputCheckbox(),
+      'colorFade'                       => new sfWidgetFormInputCheckbox(),
+      'soundtrackFormat'                => new sfWidgetFormInputText(),
+      'substrate'                       => new sfWidgetFormInputText(),
+      'strongOdor'                      => new sfWidgetFormInputCheckbox(),
+      'vinegarOdor'                     => new sfWidgetFormInputCheckbox(),
+      'ADStripLevel'                    => new sfWidgetFormInputText(),
+      'shrinkage'                       => new sfWidgetFormInputCheckbox(),
+      'levelOfShrinkage'                => new sfWidgetFormInputText(),
+      'rust'                            => new sfWidgetFormInputCheckbox(),
+      'discoloration'                   => new sfWidgetFormInputCheckbox(),
+      'surfaceBlisteringBubbling'       => new sfWidgetFormInputCheckbox(),
+      'thinTape'                        => new sfWidgetFormInputCheckbox(),
+      '1993OrEarlier'                   => new sfWidgetFormInputCheckbox(),
+      'dataGradeTape'                   => new sfWidgetFormInputCheckbox(),
+      'longPlay32K96K'                  => new sfWidgetFormInputCheckbox(),
+      'corrosionRustOxidation'          => new sfWidgetFormInputCheckbox(),
+      'composition'                     => new sfWidgetFormInputText(),
+      'nonStandardBrand'                => new sfWidgetFormInputCheckbox(),
+      'trackConfiguration'              => new sfWidgetFormInputText(),
+      'tapeThickness'                   => new sfWidgetFormInputText(),
+      'speed'                           => new sfWidgetFormInputText(),
+      'softBinderSyndrome'              => new sfWidgetFormInputText(),
+      'materialsBreakdown'              => new sfWidgetFormInputCheckbox(),
+      'physicalDamage'                  => new sfWidgetFormInputText(),
+      'delamination'                    => new sfWidgetFormInputCheckbox(),
+      'plasticizerExudation'            => new sfWidgetFormInputCheckbox(),
+      'recordingLayer'                  => new sfWidgetFormInputText(),
+      'recordingSpeed'                  => new sfWidgetFormInputText(),
+      'cylinderType'                    => new sfWidgetFormInputText(),
+      'reflectiveLayer'                 => new sfWidgetFormInputText(),
+      'dataLayer'                       => new sfWidgetFormInputText(),
+      'opticalDiscType'                 => new sfWidgetFormInputText(),
+      'format'                          => new sfWidgetFormInputText(),
+      'recordingStandard'               => new sfWidgetFormInputText(),
+      'publicationYear'                 => new sfWidgetFormDateTime(),
+      'capacityLayers'                  => new sfWidgetFormInputText(),
+      'codec'                           => new sfWidgetFormInputText(),
+      'dataRate'                        => new sfWidgetFormInputText(),
+      'sheddingSoftBinder'              => new sfWidgetFormInputCheckbox(),
+      'formatVersion'                   => new sfWidgetFormInputText(),
+      'oxide'                           => new sfWidgetFormInputText(),
+      'binderSystem'                    => new sfWidgetFormInputCheckbox(),
+      'reelSize'                        => new sfWidgetFormInputText(),
+      'whiteResidue'                    => new sfWidgetFormInputCheckbox(),
+      'size'                            => new sfWidgetFormInputCheckbox(),
+      'formatTypedVideoRecordingFormat' => new sfWidgetFormInputText(),
+      'bitrate'                         => new sfWidgetFormInputText(),
+      'scanning'                        => new sfWidgetFormInputText(),
+      'created_at'                      => new sfWidgetFormDateTime(),
+      'updated_at'                      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -132,7 +102,7 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
       'other_contaminants'              => new sfValidatorBoolean(array('required' => false)),
       'duration'                        => new sfValidatorInteger(array('required' => false)),
       'duration_type'                   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-/*      'type'                            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'type'                            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'material'                        => new sfValidatorInteger(array('required' => false)),
       'oxidationCorrosion'              => new sfValidatorBoolean(array('required' => false)),
       'pack_deformation'                => new sfValidatorInteger(array('required' => false)),
@@ -146,11 +116,9 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
       'color'                           => new sfValidatorBoolean(array('required' => false)),
       'colorFade'                       => new sfValidatorBoolean(array('required' => false)),
       'soundtrackFormat'                => new sfValidatorInteger(array('required' => false)),
-      // LacquerDisc
-      //'substrate'                       => new sfValidatorInteger(array('required' => false)),
+      'substrate'                       => new sfValidatorInteger(array('required' => false)),
       'strongOdor'                      => new sfValidatorBoolean(array('required' => false)),
-      // OpenReelAudiotapeAcetate
-      //'vinegarOdor'                     => new sfValidatorBoolean(array('required' => false)),
+      'vinegarOdor'                     => new sfValidatorBoolean(array('required' => false)),
       'ADStripLevel'                    => new sfValidatorInteger(array('required' => false)),
       'shrinkage'                       => new sfValidatorBoolean(array('required' => false)),
       'levelOfShrinkage'                => new sfValidatorInteger(array('required' => false)),
@@ -167,22 +135,17 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
       'trackConfiguration'              => new sfValidatorInteger(array('required' => false)),
       'tapeThickness'                   => new sfValidatorInteger(array('required' => false)),
       'speed'                           => new sfValidatorInteger(array('required' => false)),
-      // AnalogAudiocassette
-      //'softBinderSyndrome'              => new sfValidatorInteger(array('required' => false)),
+      'softBinderSyndrome'              => new sfValidatorInteger(array('required' => false)),
       'materialsBreakdown'              => new sfValidatorBoolean(array('required' => false)),
       'physicalDamage'                  => new sfValidatorInteger(array('required' => false)),
-      // LacquerDisc
-      //'delamination'                    => new sfValidatorBoolean(array('required' => false)),
-      // LacquerDisc
-      //'plasticizerExudation'            => new sfValidatorBoolean(array('required' => false)),
+      'delamination'                    => new sfValidatorBoolean(array('required' => false)),
+      'plasticizerExudation'            => new sfValidatorBoolean(array('required' => false)),
       'recordingLayer'                  => new sfValidatorInteger(array('required' => false)),
-      //'recordingSpeed'                  => new sfValidatorInteger(array('required' => false)),
-      // Cylinder
-      //'cylinderType'                    => new sfValidatorInteger(array('required' => false)),
+      'recordingSpeed'                  => new sfValidatorInteger(array('required' => false)),
+      'cylinderType'                    => new sfValidatorInteger(array('required' => false)),
       'reflectiveLayer'                 => new sfValidatorInteger(array('required' => false)),
       'dataLayer'                       => new sfValidatorInteger(array('required' => false)),
-      // OpticalVideo
-      //'opticalDiscType'                 => new sfValidatorInteger(array('required' => false)),
+      'opticalDiscType'                 => new sfValidatorInteger(array('required' => false)),
       'format'                          => new sfValidatorInteger(array('required' => false)),
       'recordingStandard'               => new sfValidatorInteger(array('required' => false)),
       'publicationYear'                 => new sfValidatorDateTime(array('required' => false)),
@@ -199,9 +162,8 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine
       'formatTypedVideoRecordingFormat' => new sfValidatorInteger(array('required' => false)),
       'bitrate'                         => new sfValidatorInteger(array('required' => false)),
       'scanning'                        => new sfValidatorInteger(array('required' => false)),
-      //'created_at'                      => new sfValidatorDateTime(),
-      //'updated_at'                      => new sfValidatorDateTime(),
-*/
+      'created_at'                      => new sfValidatorDateTime(),
+      'updated_at'                      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('format_type[%s]');

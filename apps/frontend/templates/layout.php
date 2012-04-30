@@ -9,6 +9,9 @@
     <?php include_javascripts() ?>
   </head>
   <body>
+<div>Tabs</div>
+
+
     <?php echo $sf_content ?>
   </body>
 </html>

@@ -9,27 +9,24 @@
  * @property integer $evaluator_id
  * @property integer $asset_group_id
  * @property Evaluator $Evaluator
- * @property Doctrine_Collection $Person
+ * @property Doctrine_Collection $consultedPersonnel
  * @property Store $Store
  * @property AssetGroup $AssetGroup
- * @property Doctrine_Collection $Personnel
  * 
- * @method integer             getType()           Returns the current record's "type" value
- * @method integer             getEvaluatorId()    Returns the current record's "evaluator_id" value
- * @method integer             getAssetGroupId()   Returns the current record's "asset_group_id" value
- * @method Evaluator           getEvaluator()      Returns the current record's "Evaluator" value
- * @method Doctrine_Collection getPerson()         Returns the current record's "Person" collection
- * @method Store               getStore()          Returns the current record's "Store" value
- * @method AssetGroup          getAssetGroup()     Returns the current record's "AssetGroup" value
- * @method Doctrine_Collection getPersonnel()      Returns the current record's "Personnel" collection
- * @method EvaluatorHistory    setType()           Sets the current record's "type" value
- * @method EvaluatorHistory    setEvaluatorId()    Sets the current record's "evaluator_id" value
- * @method EvaluatorHistory    setAssetGroupId()   Sets the current record's "asset_group_id" value
- * @method EvaluatorHistory    setEvaluator()      Sets the current record's "Evaluator" value
- * @method EvaluatorHistory    setPerson()         Sets the current record's "Person" collection
- * @method EvaluatorHistory    setStore()          Sets the current record's "Store" value
- * @method EvaluatorHistory    setAssetGroup()     Sets the current record's "AssetGroup" value
- * @method EvaluatorHistory    setPersonnel()      Sets the current record's "Personnel" collection
+ * @method integer             getType()               Returns the current record's "type" value
+ * @method integer             getEvaluatorId()        Returns the current record's "evaluator_id" value
+ * @method integer             getAssetGroupId()       Returns the current record's "asset_group_id" value
+ * @method Evaluator           getEvaluator()          Returns the current record's "Evaluator" value
+ * @method Doctrine_Collection getConsultedPersonnel() Returns the current record's "consultedPersonnel" collection
+ * @method Store               getStore()              Returns the current record's "Store" value
+ * @method AssetGroup          getAssetGroup()         Returns the current record's "AssetGroup" value
+ * @method EvaluatorHistory    setType()               Sets the current record's "type" value
+ * @method EvaluatorHistory    setEvaluatorId()        Sets the current record's "evaluator_id" value
+ * @method EvaluatorHistory    setAssetGroupId()       Sets the current record's "asset_group_id" value
+ * @method EvaluatorHistory    setEvaluator()          Sets the current record's "Evaluator" value
+ * @method EvaluatorHistory    setConsultedPersonnel() Sets the current record's "consultedPersonnel" collection
+ * @method EvaluatorHistory    setStore()              Sets the current record's "Store" value
+ * @method EvaluatorHistory    setAssetGroup()         Sets the current record's "AssetGroup" value
  * 
  * @package    mediaSCORE
  * @subpackage model
@@ -59,7 +56,7 @@ abstract class BaseEvaluatorHistory extends sfDoctrineRecord
              'local' => 'evaluator_id',
              'foreign' => 'id'));
 
-        $this->hasMany('Person', array(
+        $this->hasMany('Person as consultedPersonnel', array(
              'refClass' => 'EvaluatorHistoryPersonnel',
              'local' => 'evaluator_history_id',
              'foreign' => 'person_id'));
@@ -71,10 +68,6 @@ abstract class BaseEvaluatorHistory extends sfDoctrineRecord
         $this->hasOne('AssetGroup', array(
              'local' => 'asset_group_id',
              'foreign' => 'id'));
-
-        $this->hasMany('EvaluatorHistoryPersonnel as Personnel', array(
-             'local' => 'id',
-             'foreign' => 'evaluator_history_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

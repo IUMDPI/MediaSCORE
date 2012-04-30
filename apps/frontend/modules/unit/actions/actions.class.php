@@ -10,7 +10,6 @@
  */
 class unitActions extends sfActions
 {
-
 	public function executeGetUnitForAssetGroup(sfWebRequest $request) {
 
 		if($request->isXmlHttpRequest()) {
@@ -106,7 +105,7 @@ class unitActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
+    //$request->checkCSRFProtection();
 
     $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
     $unit->delete();
@@ -119,6 +118,7 @@ class unitActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
+
       $unit = $form->save();
 
       $this->redirect('unit/edit?id='.$unit->getId());

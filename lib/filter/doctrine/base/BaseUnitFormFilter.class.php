@@ -14,11 +14,39 @@ abstract class BaseUnitFormFilter extends StoreFormFilter
   {
     parent::setupInheritance();
 
+    $this->widgetSchema   ['personnel_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person'));
+    $this->validatorSchema['personnel_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false));
+
     $this->widgetSchema->setNameFormat('unit_filters[%s]');
+  }
+
+  public function addPersonnelListColumnQuery(Doctrine_Query $query, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $query
+      ->leftJoin($query->getRootAlias().'.UnitPerson UnitPerson')
+      ->andWhereIn('UnitPerson.person_id', $values)
+    ;
   }
 
   public function getModelName()
   {
     return 'Unit';
+  }
+
+  public function getFields()
+  {
+    return array_merge(parent::getFields(), array(
+      'personnel_list' => 'ManyKey',
+    ));
   }
 }

@@ -1,48 +1,42 @@
-<h1>Units List</h1>
-
+<div><span><a href="<?php echo url_for('storagelocation/index') ?>">Manage Storage Locations</a></span></div>
+<div id="create-unit">CREATE UNIT</div>
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Inst</th>
-      <th>Notes</th>
-      <th>Creator</th>
-      <th>Last editor</th>
-      <th>Type</th>
-      <th>Resident structure description</th>
-      <th>Storage location</th>
-      <th>Unit personnel</th>
-      <th>Parent node</th>
-      <th>Status</th>
-      <th>Location</th>
-      <th>Format</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th>Unit</th>
+      <th>Created</th>
+      <th>Created By</th>
+      <th>Updated On</th>
+      <th>Updated By</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($units as $unit): ?>
     <tr>
-      <td><a href="<?php echo url_for('unit/show?id='.$unit->getId()) ?>"><?php echo $unit->getId() ?></a></td>
-      <td><?php echo $unit->getName() ?></td>
-      <td><?php echo $unit->getInstId() ?></td>
-      <td><?php echo $unit->getNotes() ?></td>
-      <td><?php echo $unit->getCreatorId() ?></td>
-      <td><?php echo $unit->getLastEditorId() ?></td>
-      <td><?php echo $unit->getType() ?></td>
-      <td><?php echo $unit->getResidentStructureDescription() ?></td>
-      <td><?php echo $unit->getStorageLocationId() ?></td>
-      <td><?php echo $unit->getUnitPersonnel() ?></td>
-      <td><?php echo $unit->getParentNodeId() ?></td>
-      <td><?php echo $unit->getStatus() ?></td>
-      <td><?php echo $unit->getLocation() ?></td>
-      <td><?php echo $unit->getFormatId() ?></td>
+      <td><a href="<?php echo url_for('collection/index?u='.$unit->getId()) ?>"><?php echo $unit->getName() ?></a></td>
       <td><?php echo $unit->getCreatedAt() ?></td>
+      <td>
+<?php
+$evaluatorName = $unit->getCreator()->getFullName();
+if($evaluatorName == ' ')
+	echo 'Administrator';
+else
+	echo $evaluatorName;
+?>
+</td>
       <td><?php echo $unit->getUpdatedAt() ?></td>
+      <td>
+<?php
+$lastEditorName = $unit->getEditor()->getFullName();
+if($lastEditorName == ' ')
+	echo 'Administrator';
+else
+	echo $lastEditorName;
+?>
+</td>
+      <td><span><a href="<?php echo url_for('unit/edit?id='.$unit->getId()) ?>">edit</a></span>&nbsp;&#47;&nbsp;<span><a href="<?php echo url_for('unit/delete?id='.$unit->getId()) ?>">delete</a></span></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
-
-  <a href="<?php echo url_for('unit/new') ?>">New</a>

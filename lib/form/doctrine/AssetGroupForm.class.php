@@ -15,9 +15,15 @@ class AssetGroupForm extends BaseAssetGroupForm
    */
   public function configure()
   {
-	parent::configure();
-	$this->setWidget('format_id',new sfWidgetFormInputHidden());
-	$this->setWidget('parent_node_id',new sfWidgetFormInputHidden());
-	//$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'add_empty' => false)));
+	  parent::configure();
+
+	foreach( array( 'created_at','updated_at','last_editor_id','resident_structure_description','unit_personnel' ) as $voidField )
+		unset($this->widgetSchema[$voidField]);
+
+	foreach( array('creator_id','format_id','parent_node_id','type') as $hiddenField )
+		$this->setWidget($hiddenField,new sfWidgetFormInputHidden());
+
+	$this->setWidget('storage_location_id',new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,'method' => 'getName')));
+	$this->getWidget('type')->setAttribute('value',4);
   }
 }

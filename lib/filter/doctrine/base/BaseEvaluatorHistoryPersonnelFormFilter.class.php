@@ -13,9 +13,13 @@ abstract class BaseEvaluatorHistoryPersonnelFormFilter extends BaseFormFilterDoc
   public function setup()
   {
     $this->setWidgets(array(
+      'evaluator_history_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('EvaluatorHistory'), 'add_empty' => true)),
+      'person_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Person'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
+      'evaluator_history_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('EvaluatorHistory'), 'column' => 'id')),
+      'person_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Person'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('evaluator_history_personnel_filters[%s]');
@@ -35,8 +39,9 @@ abstract class BaseEvaluatorHistoryPersonnelFormFilter extends BaseFormFilterDoc
   public function getFields()
   {
     return array(
-      'evaluator_history_id' => 'Number',
-      'person_id'            => 'Number',
+      'id'                   => 'Number',
+      'evaluator_history_id' => 'ForeignKey',
+      'person_id'            => 'ForeignKey',
     );
   }
 }

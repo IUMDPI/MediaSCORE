@@ -18,7 +18,8 @@
  * @property string $status
  * @property string $location
  * @property integer $format_id
- * @property User $User
+ * @property User $Creator
+ * @property User $Editor
  * @property Doctrine_Collection $EvaluatorActions
  * 
  * @method string              getName()                           Returns the current record's "name" value
@@ -34,7 +35,8 @@
  * @method string              getStatus()                         Returns the current record's "status" value
  * @method string              getLocation()                       Returns the current record's "location" value
  * @method integer             getFormatId()                       Returns the current record's "format_id" value
- * @method User                getUser()                           Returns the current record's "User" value
+ * @method User                getCreator()                        Returns the current record's "Creator" value
+ * @method User                getEditor()                         Returns the current record's "Editor" value
  * @method Doctrine_Collection getEvaluatorActions()               Returns the current record's "EvaluatorActions" collection
  * @method Store               setName()                           Sets the current record's "name" value
  * @method Store               setInstId()                         Sets the current record's "inst_id" value
@@ -49,7 +51,8 @@
  * @method Store               setStatus()                         Sets the current record's "status" value
  * @method Store               setLocation()                       Sets the current record's "location" value
  * @method Store               setFormatId()                       Sets the current record's "format_id" value
- * @method Store               setUser()                           Sets the current record's "User" value
+ * @method Store               setCreator()                        Sets the current record's "Creator" value
+ * @method Store               setEditor()                         Sets the current record's "Editor" value
  * @method Store               setEvaluatorActions()               Sets the current record's "EvaluatorActions" collection
  * 
  * @package    mediaSCORE
@@ -131,7 +134,11 @@ abstract class BaseStore extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User', array(
+        $this->hasOne('User as Creator', array(
+             'local' => 'creator_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('User as Editor', array(
              'local' => 'last_editor_id',
              'foreign' => 'id'));
 

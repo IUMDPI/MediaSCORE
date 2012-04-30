@@ -14,7 +14,8 @@ abstract class BaseDVCProForm extends FormatVersionedVideoRecordingTypeForm
 {
   protected function setupInheritance()
   {
-	  parent::setupInheritance();
+    parent::setupInheritance();
+
     $this->widgetSchema->setNameFormat('dvc_pro[%s]');
   }
 
