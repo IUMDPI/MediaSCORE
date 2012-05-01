@@ -8,13 +8,16 @@
  * @property string $name
  * @property integer $env_rating
  * @property Doctrine_Collection $Units
+ * @property Doctrine_Collection $Collections
  * 
- * @method string              getName()       Returns the current record's "name" value
- * @method integer             getEnvRating()  Returns the current record's "env_rating" value
- * @method Doctrine_Collection getUnits()      Returns the current record's "Units" collection
- * @method StorageLocation     setName()       Sets the current record's "name" value
- * @method StorageLocation     setEnvRating()  Sets the current record's "env_rating" value
- * @method StorageLocation     setUnits()      Sets the current record's "Units" collection
+ * @method string              getName()        Returns the current record's "name" value
+ * @method integer             getEnvRating()   Returns the current record's "env_rating" value
+ * @method Doctrine_Collection getUnits()       Returns the current record's "Units" collection
+ * @method Doctrine_Collection getCollections() Returns the current record's "Collections" collection
+ * @method StorageLocation     setName()        Sets the current record's "name" value
+ * @method StorageLocation     setEnvRating()   Sets the current record's "env_rating" value
+ * @method StorageLocation     setUnits()       Sets the current record's "Units" collection
+ * @method StorageLocation     setCollections() Sets the current record's "Collections" collection
  * 
  * @package    mediaSCORE
  * @subpackage model
@@ -40,8 +43,14 @@ abstract class BaseStorageLocation extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('Unit as Units', array(
-             'local' => 'id',
-             'foreign' => 'storage_location_id'));
+             'refClass' => 'UnitStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'unit_id'));
+
+        $this->hasMany('Collection as Collections', array(
+             'refClass' => 'CollectionStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'collection_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

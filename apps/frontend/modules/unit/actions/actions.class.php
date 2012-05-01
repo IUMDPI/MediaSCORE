@@ -88,7 +88,8 @@ class unitActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
+	  $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
+
     $this->form = new UnitForm($unit);
   }
 
@@ -121,7 +122,7 @@ class unitActions extends sfActions
 
       $unit = $form->save();
 
-      $this->redirect('unit/edit?id='.$unit->getId());
+      $this->redirect('unit/index');
     }
   }
 }

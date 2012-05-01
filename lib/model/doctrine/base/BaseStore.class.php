@@ -12,8 +12,6 @@
  * @property integer $last_editor_id
  * @property string $type
  * @property text $resident_structure_description
- * @property integer $storage_location_id
- * @property integer $unit_personnel
  * @property integer $parent_node_id
  * @property string $status
  * @property string $location
@@ -29,8 +27,6 @@
  * @method integer             getLastEditorId()                   Returns the current record's "last_editor_id" value
  * @method string              getType()                           Returns the current record's "type" value
  * @method text                getResidentStructureDescription()   Returns the current record's "resident_structure_description" value
- * @method integer             getStorageLocationId()              Returns the current record's "storage_location_id" value
- * @method integer             getUnitPersonnel()                  Returns the current record's "unit_personnel" value
  * @method integer             getParentNodeId()                   Returns the current record's "parent_node_id" value
  * @method string              getStatus()                         Returns the current record's "status" value
  * @method string              getLocation()                       Returns the current record's "location" value
@@ -45,8 +41,6 @@
  * @method Store               setLastEditorId()                   Sets the current record's "last_editor_id" value
  * @method Store               setType()                           Sets the current record's "type" value
  * @method Store               setResidentStructureDescription()   Sets the current record's "resident_structure_description" value
- * @method Store               setStorageLocationId()              Sets the current record's "storage_location_id" value
- * @method Store               setUnitPersonnel()                  Sets the current record's "unit_personnel" value
  * @method Store               setParentNodeId()                   Sets the current record's "parent_node_id" value
  * @method Store               setStatus()                         Sets the current record's "status" value
  * @method Store               setLocation()                       Sets the current record's "location" value
@@ -89,12 +83,6 @@ abstract class BaseStore extends sfDoctrineRecord
              ));
         $this->hasColumn('resident_structure_description', 'text', null, array(
              'type' => 'text',
-             ));
-        $this->hasColumn('storage_location_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('unit_personnel', 'integer', null, array(
-             'type' => 'integer',
              ));
         $this->hasColumn('parent_node_id', 'integer', null, array(
              'type' => 'integer',

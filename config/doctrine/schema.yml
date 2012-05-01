@@ -49,16 +49,19 @@ Unit:
     keyValue: 1
   columns:
     resident_structure_description: { type: text }
-    storage_location_id: { type: integer }
-    unit_personnel: { type: integer }
   relations:
-    StorageLocation: { local: storage_location_id, foreign: id, foreignAlias: Units }
+    StorageLocations: { class: StorageLocation, local: unit_id, foreign: storage_location_id, refClass: UnitStorageLocation }
     Personnel: { class: Person, local: unit_id, foreign: person_id, refClass: UnitPerson }
+
+UnitStorageLocation:
+  columns:
+    unit_id: { type: integer, primary: true }
+    storage_location_id: { type: integer, primary: true }
 
 UnitPerson:
   columns:
-    unit_id: { type: integer }
-    person_id: { type: integer }
+    unit_id: { type: integer, primary: true }
+    person_id: { type: integer, primary: true }
 
 SubUnit: # Abstract
   inheritance:
@@ -79,6 +82,13 @@ Collection:
     keyValue: 3 # column_aggregation does not permit nested hierarchies beyond 1 layer of abstraction
   columns:
     status: { type: string(255) }
+  relations:
+    StorageLocations: { class: StorageLocation, local: collection_id, foreign: storage_location_id, refClass: CollectionStorageLocation }
+
+CollectionStorageLocation:
+  columns:
+    collection_id: { type: integer, primary: true }
+    storage_location_id: { type: integer, primary: true }
 
 AssetGroup:
   inheritance:
@@ -94,12 +104,14 @@ AssetGroup:
     FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups }
     EvaluatorHistory: { class: EvaluatorHistory, type: many, local: id, foreign: asset_group_id }
 
-
 StorageLocation:
   actAs: { Timestampable: ~ }
   columns:
     name: { type: string(255), notnull: true }
     env_rating: { type: integer }
+  relations:
+    Units: { class: Unit, local: storage_location_id, foreign: unit_id, refClass:UnitStorageLocation }
+    Collections: { class: Collection, local: storage_location_id, foreign: collection_id, refClass:CollectionStorageLocation }
 
 EvaluatorHistory:
   actAs: { Timestampable: ~ }

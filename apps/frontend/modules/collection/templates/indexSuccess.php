@@ -1,6 +1,6 @@
 <h1>Collections List</h1>
 
-<div id="create-collection">CREATE COLLECTION</div>
+<div id="create-collection"><a href="<?php echo url_for('collection/new') ?>">CREATE COLLECTION</a></div>
 
 <span><a href="<?php echo url_for('unit/index') ?>">All Units</a></span>&nbsp;&gt;&nbsp;<span><?php echo $unitName ?></span>
 <table>
