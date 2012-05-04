@@ -21,5 +21,6 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm
 	  $this->setWidget('codec',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2])));
 	  $this->setWidget('dataRate',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[3])));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

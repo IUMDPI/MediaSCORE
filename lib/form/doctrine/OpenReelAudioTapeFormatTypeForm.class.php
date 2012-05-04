@@ -21,5 +21,6 @@ class OpenReelAudioTapeFormatTypeForm extends BaseOpenReelAudioTapeFormatTypeFor
 //	  $this->setWidget('tapeThickness',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1])));
 //	  $this->setWidget('speed',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
 	  $this->setWidget('softBinderSyndrome',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1])));
+
   }
 }

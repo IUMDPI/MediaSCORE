@@ -23,5 +23,6 @@ class MetalDiscForm extends BaseMetalDiscForm
 	  $this->setWidget('material',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
 	  $this->setWidget('oxidationCorrosion',new sfWidgetFormInputCheckbox());
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

@@ -73,7 +73,9 @@ class FormatTypeForm extends BaseFormatTypeForm
 				'bitrate',
 				'scanning',
 				'created_at',
-				'updated_at' ) as $voidField)
-				unset($this->widgetSchema[$voidField]);
+				'updated_at' ) as $voidField) {
+					unset($this->widgetSchema[$voidField]);
+					unset($this->validatorSchema[$voidField]);
+				}
   }
 }

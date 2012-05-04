@@ -20,5 +20,6 @@ class EightMMForm extends BaseEightMMForm
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => EightMM::$constants[1])));
 	  $this->setWidget('binderSystem',new sfWidgetFormChoice(array('choices' => EightMM::$constants[2])));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

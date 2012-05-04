@@ -35,7 +35,7 @@
 		</td>
 	</tr>
       <tr>
-        <td colspan="2">&nbsp;<input id="asset-group-save" type="submit" value="Save" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c='.$form->getObject()->getParentNodeId()) ?>">cancel</a></td>
+        <td colspan="2">&nbsp;<input id="asset-group-save" type="submit" value="Save" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c='. $form->getOption('collectionID') ) ?>">cancel</a></td>
       </tr>
     </tfoot>
     <tbody>

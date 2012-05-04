@@ -19,5 +19,7 @@ class SoundWireReelForm extends BaseSoundWireReelForm
 	$this->setWidget('corrosionRustOxidation',new sfWidgetFormInputCheckbox());
 	$this->setWidget('composition',new sfWidgetFormChoice(array('choices' => SoundWireReel::$constants)));
 	$this->setWidget('nonStandardBrand',new sfWidgetFormInputCheckbox());
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

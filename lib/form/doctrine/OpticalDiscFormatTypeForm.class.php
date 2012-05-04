@@ -18,5 +18,6 @@ class OpticalDiscFormatTypeForm extends BaseOpticalDiscFormatTypeForm
 	  parent::configure();
 	  $this->setWidget('reflectiveLayer',new sfWidgetFormChoice(array('choices' => OpticalDiscFormatType::$constants[0])));
 	  $this->setWidget('dataLayer',new sfWidgetFormChoice(array('choices' => OpticalDiscFormatType::$constants[1])));
+
   }
 }

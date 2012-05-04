@@ -185,8 +185,7 @@ $('document').ready(function () {
 								{},
 								function () {
 									$('#asset_group_format_id').val('');
-								}
-							);
+								});
 			}
 
 			if(formatTypeID) {
@@ -320,9 +319,17 @@ $('document').ready(function () {
 				saveURL,
 				$('#evaluator-history-form').serialize(),
 					function(data,textStatus) {
-						console.log( $('#evaluator-history-form').serialize() );
+
+						//alert('trace');
+
+						$('#evaluator-history-container').load(
+							'/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory',
+							{ id : $('input[name="asset_group[id]"]').val() },
+							refreshElementHandlers);
+
+
 						//$('body').append(data);
-						refreshElementHandlers();
+						//refreshElementHandlers();
 						//location.reload();
 						//console.log('success');
 						//$('#evaluator-history-edit-container').empty();

@@ -30,5 +30,7 @@ class FilmForm extends BaseFilmForm
 	$this->setWidget('discoloration',new sfWidgetFormInputCheckbox());
 	$this->setWidget('surfaceBlisteringBubbling',new sfWidgetFormInputCheckbox());
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
+
   }
 }

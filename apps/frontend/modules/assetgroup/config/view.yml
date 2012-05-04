@@ -1,3 +1,6 @@
 
+newSuccess:
+  javascripts: [jquery_asset_group_form_new]
+
 editSuccess:
   javascripts: [jquery_evaluator_history,jquery_format_type]

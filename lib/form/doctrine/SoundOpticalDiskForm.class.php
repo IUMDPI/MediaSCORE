@@ -18,5 +18,6 @@ class SoundOpticalDiskForm extends BaseSoundOpticalDiskForm
 	  parent::configure();
 	  $this->setWidget('opticalDiscType',new sfWidgetFormChoice(array('choices' => SoundOpticalDisk::$constants)));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

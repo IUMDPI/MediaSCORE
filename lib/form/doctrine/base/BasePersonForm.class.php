@@ -19,8 +19,8 @@ abstract class BasePersonForm extends UserForm
     $this->widgetSchema   ['units_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Unit'));
     $this->validatorSchema['units_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Unit', 'required' => false));
 
-    $this->widgetSchema   ['consulted_for_asset_groups_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory'));
-    $this->validatorSchema['consulted_for_asset_groups_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory', 'required' => false));
+    $this->widgetSchema   ['consultation_records_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory'));
+    $this->validatorSchema['consultation_records_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory', 'required' => false));
 
     $this->widgetSchema->setNameFormat('person[%s]');
   }
@@ -39,9 +39,9 @@ abstract class BasePersonForm extends UserForm
       $this->setDefault('units_list', $this->object->Units->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['consulted_for_asset_groups_list']))
+    if (isset($this->widgetSchema['consultation_records_list']))
     {
-      $this->setDefault('consulted_for_asset_groups_list', $this->object->consultedForAssetGroups->getPrimaryKeys());
+      $this->setDefault('consultation_records_list', $this->object->consultationRecords->getPrimaryKeys());
     }
 
   }
@@ -49,7 +49,7 @@ abstract class BasePersonForm extends UserForm
   protected function doSave($con = null)
   {
     $this->saveUnitsList($con);
-    $this->saveconsultedForAssetGroupsList($con);
+    $this->saveconsultationRecordsList($con);
 
     parent::doSave($con);
   }
@@ -92,14 +92,14 @@ abstract class BasePersonForm extends UserForm
     }
   }
 
-  public function saveconsultedForAssetGroupsList($con = null)
+  public function saveconsultationRecordsList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['consulted_for_asset_groups_list']))
+    if (!isset($this->widgetSchema['consultation_records_list']))
     {
       // somebody has unset this widget
       return;
@@ -110,8 +110,8 @@ abstract class BasePersonForm extends UserForm
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->consultedForAssetGroups->getPrimaryKeys();
-    $values = $this->getValue('consulted_for_asset_groups_list');
+    $existing = $this->object->consultationRecords->getPrimaryKeys();
+    $values = $this->getValue('consultation_records_list');
     if (!is_array($values))
     {
       $values = array();
@@ -120,13 +120,13 @@ abstract class BasePersonForm extends UserForm
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('consultedForAssetGroups', array_values($unlink));
+      $this->object->unlink('consultationRecords', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('consultedForAssetGroups', array_values($link));
+      $this->object->link('consultationRecords', array_values($link));
     }
   }
 

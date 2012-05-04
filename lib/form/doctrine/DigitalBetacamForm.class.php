@@ -19,5 +19,8 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm
 	  $this->setWidget('size',new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[0])));
 	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1])));
 	  $this->setWidget('bitrate',new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2])));
+
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

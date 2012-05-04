@@ -60,6 +60,7 @@ class assetgroupActions extends sfActions
 	->execute();
 
 	$this->form = new AssetGroupForm();
+	$this->form->setOption('collectionID',$request->getParameter('c'));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,12 +74,12 @@ class assetgroupActions extends sfActions
     $this->setTemplate('new');
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-	  $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
+	public function executeEdit(sfWebRequest $request) {
 
-    $this->collections=Doctrine_Core::getTable('Collection')->findAll();
-    $this->form = new AssetGroupForm($asset_group);
+		$this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
+		$this->collections=Doctrine_Core::getTable('Collection')->findAll();
+		$this->form = new AssetGroupForm($asset_group);
+		$this->form->setOption('collectionID',$request->getParameter('c'));
 
     // Pass the related EvaluatorHistory objects to the View
     //$this->evaluatorHistoryInstances = $asset_group->getEvaluatorHistory();
@@ -89,7 +90,7 @@ class assetgroupActions extends sfActions
 				->where('ag.id = ?',7)
 				->fetchOne();*/
     
-  }
+	}
 
   public function executeUpdate(sfWebRequest $request)
   {

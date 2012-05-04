@@ -17,8 +17,8 @@ abstract class BasePersonFormFilter extends UserFormFilter
     $this->widgetSchema   ['units_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Unit'));
     $this->validatorSchema['units_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Unit', 'required' => false));
 
-    $this->widgetSchema   ['consulted_for_asset_groups_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory'));
-    $this->validatorSchema['consulted_for_asset_groups_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory', 'required' => false));
+    $this->widgetSchema   ['consultation_records_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory'));
+    $this->validatorSchema['consultation_records_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory', 'required' => false));
 
     $this->widgetSchema->setNameFormat('person_filters[%s]');
   }
@@ -41,7 +41,7 @@ abstract class BasePersonFormFilter extends UserFormFilter
     ;
   }
 
-  public function addConsultedForAssetGroupsListColumnQuery(Doctrine_Query $query, $field, $values)
+  public function addConsultationRecordsListColumnQuery(Doctrine_Query $query, $field, $values)
   {
     if (!is_array($values))
     {
@@ -68,7 +68,7 @@ abstract class BasePersonFormFilter extends UserFormFilter
   {
     return array_merge(parent::getFields(), array(
       'units_list' => 'ManyKey',
-      'consulted_for_asset_groups_list' => 'ManyKey',
+      'consultation_records_list' => 'ManyKey',
     ));
   }
 }

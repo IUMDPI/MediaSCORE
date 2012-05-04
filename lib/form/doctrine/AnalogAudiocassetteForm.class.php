@@ -17,5 +17,7 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm
 	$this->setWidget('slow_speed',new sfWidgetFormInputCheckbox());
 	$this->setWidget('sound_field',new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[1])));
 	$this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

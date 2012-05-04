@@ -18,5 +18,7 @@ class BetamaxForm extends BaseBetamaxForm
 	parent::configure();
 	$this->setWidget('formatVersion',new sfWidgetFormChoice(array('choices' => Betamax::$constants[0])));
 	$this->setWidget('oxide',new sfWidgetFormChoice(array('choices' => Betamax::$constants[1])));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

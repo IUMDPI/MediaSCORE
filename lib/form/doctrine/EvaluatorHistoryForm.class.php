@@ -18,8 +18,10 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 //      'asset_group_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
 //      'created_at'     => new sfWidgetFormDateTime(),
 
-	foreach( array('created_at') as $voidField )
+	foreach( array('created_at') as $voidField ) {
 		unset($this->widgetSchema[$voidField]);
+		unset($this->validatorSchema[$voidField]);
+	}
 
 
 	$this->setWidget('type', new sfWidgetFormChoice(array('choices' => EvaluatorHistory::$actions)));

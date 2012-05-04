@@ -17,5 +17,7 @@ class CylinderForm extends BaseCylinderForm
   {
 	  parent::configure();
 	  $this->setWidget('cylinderType',new sfWidgetFormChoice(array('choices' => Cylinder::$constants)));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

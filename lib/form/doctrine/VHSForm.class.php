@@ -19,5 +19,7 @@ class VHSForm extends BaseVHSForm
 	  $this->setWidget('size',new sfWidgetFormChoice(array('choices' => VHS::$constants[0])));
 	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => VHS::$constants[1])));
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => VHS::$constants[2])));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

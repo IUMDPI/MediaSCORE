@@ -20,5 +20,7 @@ class DATForm extends BaseDATForm
 	$this->setWidget('1993OrEarlier',new sfWidgetFormInputCheckbox());
 	$this->setWidget('dataGradeTape',new sfWidgetFormInputCheckbox());
 	$this->setWidget('longPlay32K96K',new sfWidgetFormInputCheckbox());
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

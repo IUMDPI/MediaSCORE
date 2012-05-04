@@ -1,3 +1,3 @@
-<h1>New Asset group</h1>
+<h1>Create an Asset Group</h1>
 
 <?php include_partial('form', array('form' => $form)) ?>

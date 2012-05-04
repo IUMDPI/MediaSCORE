@@ -14,6 +14,11 @@ class FormatType extends BaseFormatType
 {
 	public static $constants = array(0 => 'Original',1 => 'Copy',2 => 'Unknown');
 
+	public function getTypeValue() {
+		$inheritanceMap = $this->getTable()->getOption('inheritanceMap');
+		return isset($inheritanceMap['type']) ? $inheritanceMap['type'] : 0;
+	}
+
 	//public static $subclasses = Doctrine_Core::getTable('FormatType')->getOption('subclasses');
 
 	/*public static $typeIDs = array(

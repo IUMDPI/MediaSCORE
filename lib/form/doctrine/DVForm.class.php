@@ -17,5 +17,7 @@ class DVForm extends BaseDVForm
   {
 	  parent::configure();
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => DV::$constants)));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

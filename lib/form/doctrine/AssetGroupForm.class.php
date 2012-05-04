@@ -17,8 +17,10 @@ class AssetGroupForm extends BaseAssetGroupForm
   {
 	  parent::configure();
 
-	foreach( array( 'created_at','updated_at','last_editor_id','resident_structure_description','unit_personnel' ) as $voidField )
+	foreach( array( 'created_at','updated_at','last_editor_id','resident_structure_description','unit_personnel' ) as $voidField ) {
 		unset($this->widgetSchema[$voidField]);
+		unset($this->validatorSchema[$voidField]);
+	}
 
 	foreach( array('creator_id','format_id','parent_node_id','type') as $hiddenField )
 		$this->setWidget($hiddenField,new sfWidgetFormInputHidden());

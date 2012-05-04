@@ -18,5 +18,7 @@ class LaserdiscForm extends BaseLaserdiscForm
 	  parent::configure();
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => Laserdisc::$constants)));
 	  $this->setWidget('publicationYear',new sfWidgetFormDate());
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

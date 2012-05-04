@@ -18,5 +18,8 @@ class BetacamForm extends BaseBetacamForm
 	  parent::configure();
 	  $this->setWidget('size',new sfWidgetFormChoice(array('choices' => Betacam::$constants[0])));
 	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => Betacam::$constants[1])));
+
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

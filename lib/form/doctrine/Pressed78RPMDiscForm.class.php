@@ -15,6 +15,8 @@ class Pressed78RPMDiscForm extends BasePressed78RPMDiscForm
    */
   public function configure()
   {
-    parent::configure();
+	  parent::configure();
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

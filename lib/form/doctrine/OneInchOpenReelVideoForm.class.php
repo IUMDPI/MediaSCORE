@@ -20,5 +20,6 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm
 	  $this->setWidget('reelSize',new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1])));
 	  $this->setWidget('whiteResidue',new sfWidgetFormInputCheckbox());
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

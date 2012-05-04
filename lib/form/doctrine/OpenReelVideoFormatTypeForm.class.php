@@ -15,6 +15,8 @@ class OpenReelVideoFormatTypeForm extends BaseOpenReelVideoFormatTypeForm
    */
   public function configure()
   {
-    parent::configure();
+	  parent::configure();
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

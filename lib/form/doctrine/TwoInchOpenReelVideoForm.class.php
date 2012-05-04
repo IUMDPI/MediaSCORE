@@ -19,5 +19,6 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm
 	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[0])));
 	  $this->setWidget('reelSize',new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[1])));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

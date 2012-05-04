@@ -19,5 +19,6 @@ class MiniDiscForm extends BaseMiniDiscForm
 	  $this->setWidget('recordingLayer',new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[0])));
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[1])));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

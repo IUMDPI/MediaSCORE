@@ -19,5 +19,6 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm
 	$this->setWidget('format',new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[0])));
 	$this->setWidget('reelSize',new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[1])));
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

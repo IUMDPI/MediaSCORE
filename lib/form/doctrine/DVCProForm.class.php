@@ -18,5 +18,7 @@ class DVCProForm extends BaseDVCProForm
 	  parent::configure();
 	  $this->setWidget('formatVersion',new sfWidgetFormChoice(array('choices' => DVCPro::$constants[0])));
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => DVCPro::$constants[1])));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

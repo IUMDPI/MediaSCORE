@@ -18,5 +18,6 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm
 	  parent::configure();
 	  $this->setWidget('vinegarOdor',new sfWidgetFormInputCheckbox());
 
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

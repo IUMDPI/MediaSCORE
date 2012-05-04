@@ -19,5 +19,7 @@ class LacquerDiscForm extends BaseLacquerDiscForm
 	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => LacquerDisc::$constants)));
 	$this->setWidget('delamination',new sfWidgetFormInputCheckbox());
 	$this->setWidget('plasticizerExudation',new sfWidgetFormInputCheckbox());
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

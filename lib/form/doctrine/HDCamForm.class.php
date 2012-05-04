@@ -19,5 +19,7 @@ class HDCamForm extends BaseHDCamForm
 	  $this->setWidget('formatVersion',new sfWidgetFormChoice(array('choices' => HDCam::$constants[0])));
 	  $this->setWidget('speed',new sfWidgetFormChoice(array('choices' => HDCam::$constants[1])));
 	  $this->setWidget('scanning',new sfWidgetFormChoice(array('choices' => HDCam::$constants[2])));
+
+	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }
 }

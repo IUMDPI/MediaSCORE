@@ -112,6 +112,9 @@ class evaluatorhistoryActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
+
+	    /*
+
 	$formValues=$form->getValues();
 	// Doctrine does not bind values properly, and I cannot remove field values which are null and for which there exists no NOT NULL MySQL table constraint
 	if($form->getObject()->isNew()) {
@@ -140,6 +143,10 @@ class evaluatorhistoryActions extends sfActions
 			$evaluatorHistory->save();
 		}
 	}
+
+	     */
+	    $evaluatorHistory=$form->save();
+
 
 	//$evaluator_history = $form->save();
 	$this->redirect('evaluatorhistory/edit?id='.$evaluatorHistory->getId());
