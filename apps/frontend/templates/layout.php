@@ -9,9 +9,18 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-<div>Tabs</div>
-
-
-    <?php echo $sf_content ?>
+<span><a href="#">Log Out</a></span>
+<div id="content">
+	<div id="tabs">
+		<ul>
+			<li><a href="#content-container">Assess</a></li>
+			<li><a href="#">Report</a></li>
+			<li><a href="<?php echo url_for('storagelocation/index') ?>">Settings</a></li>
+		</ul>
+		<div id="content-container">
+			<?php echo $sf_content ?>
+		</div>
+	</div>
+</div>
   </body>
 </html>

@@ -19,6 +19,12 @@ class StorageLocationForm extends BaseStorageLocationForm
 		//
 	 */
 
+	  //unset($this->validatorSchema['id']);
+
 	  $this->setWidget('env_rating',new sfWidgetFormChoice(array('choices' => StorageLocation::$constants)));
+	  foreach(array('created_at','updated_at') as $voidField) {
+		  unset($this->widgetSchema[$voidField]);
+		  unset($this->validatorSchema[$voidField]);
+	  }
   }
 }
