@@ -1,5 +1,5 @@
 <div id="create-asset-group"><a href="<?php echo url_for('assetgroup/new?c='.$collectionID) ?>">CREATE ASSET GROUP</a></div>
-<span><a href="<?php echo url_for('unit') ?>">All Units</a></span>&nbsp;&gt;&nbsp;<span><a href="<?php echo url_for('collection/index?u='.$unitID) ?>"><?php echo $unitName ?></a></span>&nbsp;&gt;&nbsp;<span><?php echo $collectionName ?></span>
+<span><a href="<?php echo url_for('unit/index') ?>">All Units</a></span>&nbsp;&gt;&nbsp;<span><a href="<?php echo url_for('collection/index?u='.$unitID) ?>"><?php echo $unitName ?></a></span>&nbsp;&gt;&nbsp;<span><?php echo $collectionName ?></span>
 <table>
   <thead>
     <tr>
