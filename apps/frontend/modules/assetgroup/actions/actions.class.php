@@ -103,7 +103,8 @@ class assetgroupActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    //$this->setTemplate('edit');
+	$this->redirect('assetgroup/index');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -123,7 +124,7 @@ class assetgroupActions extends sfActions
     {
       $asset_group = $form->save();
 
-      $this->redirect('assetgroup/edit?id='.$asset_group->getId());
+      $this->redirect('assetgroup/edit?id='.$asset_group->getId().'&c='.$form->getOption('collectionID'));
     }
   }
 }
