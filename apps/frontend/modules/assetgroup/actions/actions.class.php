@@ -49,8 +49,6 @@ class assetgroupActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-	$this->trace = 'trace';
-
 	$this->units = Doctrine_Core::getTable('Unit')
 	->createQuery('a')
 	->execute();
@@ -65,6 +63,11 @@ class assetgroupActions extends sfActions
 
   public function executeCreate(sfWebRequest $request)
   {
+
+	// 05/08/12
+	//$this->getResponse()->setContent( print_r($request->getPostParameters()) );
+	//return sfView::NONE;
+
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
     $this->form = new AssetGroupForm();

@@ -25,6 +25,10 @@ class AssetGroupForm extends BaseAssetGroupForm
 	foreach( array('creator_id','format_id','parent_node_id','type') as $hiddenField )
 		$this->setWidget($hiddenField,new sfWidgetFormInputHidden());
 
+	// 05/08/12
+	// Temporary - Need user plug-in
+	$this->getWidget('creator_id')->setAttribute('value',1);
+
 	$this->setWidget('storage_location_id',new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,
 		/*'method' => 'getStorageLocations',
 		'query' => Doctrine_Query::create()

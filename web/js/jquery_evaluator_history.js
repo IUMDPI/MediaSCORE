@@ -22,7 +22,7 @@ $('document').ready(function () {
 			});
 		}
 
-		appBaseURL = 'frontend_dev.php/';
+		appBaseURL = '/frontend_dev.php';
 		assetGroupID = $('#asset_group_id').val();
 
 		// Unit-Collection Multiple Selection
@@ -47,7 +47,7 @@ $('document').ready(function () {
 		//
 		getCollectionsForUnitID = function (unitID) {
 			$.get(
-				appBaseURL+'collection/getCollectionsForUnit',
+				appBaseURL+'/collection/getCollectionsForUnit',
 				{id:unitID},
 				function (collections) {
 				populateCollections( $('#collection-multiple-select'),collections );
@@ -57,7 +57,7 @@ $('document').ready(function () {
 		}
 		selectUnitForAssetGroupID = function (assetGroupID) {
 			$.get(
-				appBaseURL+'unit/getUnitForAssetGroup',
+				appBaseURL+'/unit/getUnitForAssetGroup',
 				{id:assetGroupID},
 				function (unit) {
 					//console.log( unit );
@@ -76,7 +76,7 @@ $('document').ready(function () {
 		var relatedUnitID;
 		//
 		$.get(
-			appBaseURL+'unit',
+			appBaseURL+'/unit',
 			{},
 			function (units) {
 				//console.log(indexViewHTML);
@@ -87,6 +87,7 @@ $('document').ready(function () {
 					//console.log(units[i]);
 					$('#unit-multiple-select').append('<option class="unit-multiple-select" value="'+units[i].id+'">'+units[i].name+'</option>');
 				}
+
 				selectUnitForAssetGroupID( $('#asset_group_id').val() );
 				$('.unit-multiple-select').click(function () {
 					//console.log('trace');
@@ -199,7 +200,7 @@ $('document').ready(function () {
 
 				//
 					$.getJSON(
-						appBaseURL+'formattype/getModelName',
+						appBaseURL+'/formattype/getModelName',
 						{id:formatTypeID},
 						function (modelName) {
 							modelName = modelName.toLowerCase();
@@ -249,7 +250,7 @@ $('document').ready(function () {
 
 		// Populate the EvaluatorHistory values
 		$.get(
-			appBaseURL+'person/getPersonsForAssetGroup',
+			appBaseURL+'/person/getPersonsForAssetGroup',
 			{ag:assetGroupID},
 			function (persons) {
 				for(i in persons)
@@ -273,7 +274,7 @@ $('document').ready(function () {
 			e.preventDefault();
 			alert('Replace me with a warning modal');
 		$('#evaluator-history-edit-container').load(
-						'frontend_dev.php/evaluatorhistory/delete?id='+$(this).attr('id'),
+						'/frontend_dev.php/evaluatorhistory/delete?id='+$(this).attr('id'),
 						function (data) {
 							location.reload();
 						});
@@ -287,7 +288,7 @@ $('document').ready(function () {
 			//console.log( $(this).attr('href') );
 		// ...load the Evaluator History Edit View through an AJAX call...
 		$('#evaluator-history-edit-container').load(
-						'frontend_dev.php/evaluatorhistory/edit?id='+$(this).attr('id'),
+						'/frontend_dev.php/evaluatorhistory/edit?id='+$(this).attr('id'),
 						//'/symfony/mediascore1.0a/frontend_dev.php/'+$(this).attr('href'),
 						// ...specifying the Evaluator History ID as a parameter value in the GET request
 						//{ id : $(this).attr('target') },
@@ -311,9 +312,9 @@ $('document').ready(function () {
 			//console.log($('#evaluator_history_id').prop('tagName'));
 			//console.log($('#evaluator_history_id').val());
 			if($('#evaluator_history_id').val())
-				saveURL='frontend_dev.php/evaluatorhistory/update/id/' + $('#evaluator_history_id').val();
+				saveURL='/frontend_dev.php/evaluatorhistory/update/id/' + $('#evaluator_history_id').val();
 			else
-				saveURL='frontend_dev.php/evaluatorhistory/create';
+				saveURL='/frontend_dev.php/evaluatorhistory/create';
 
 			$.post(
 				saveURL,
@@ -323,7 +324,7 @@ $('document').ready(function () {
 						//alert('trace');
 
 						$('#evaluator-history-container').load(
-							'frontend_dev.php/evaluatorhistory',
+							'/frontend_dev.php/evaluatorhistory',
 							{ id : $('input[name="asset_group[id]"]').val() },
 							refreshElementHandlers);
 
@@ -342,7 +343,7 @@ $('document').ready(function () {
 		$('#evaluator-history-new').click(function () {
 		// ...load the Evaluator History New View through an AJAX call...
 		$('#evaluator-history-edit-container').load(
-			                        'frontend_dev.php/evaluatorhistory/new',
+			                        '/frontend_dev.php/evaluatorhistory/new',
 						function () {
 
 							refreshElementHandlers();
@@ -374,7 +375,7 @@ $('document').ready(function () {
 
 
 		$('#evaluator-history-container').load(
-			'frontend_dev.php/evaluatorhistory',
+			'/frontend_dev.php/evaluatorhistory',
 			// ...specifying the Asset Group's ID as a parameter value in the GET request.
 			{ id : $('input[name="asset_group[id]"]').val() },
 			refreshElementHandlers);
