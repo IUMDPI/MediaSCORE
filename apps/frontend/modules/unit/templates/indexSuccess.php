@@ -1,4 +1,4 @@
-<div><span><a href="<?php echo url_for('storagelocation/index') ?>">Manage Storage Locations</a></span></div>
+
 <div id="create-unit"><a href=" <?php echo url_for('unit/new') ?>">CREATE UNIT</a></div>
 <table>
   <thead>
