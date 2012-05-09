@@ -12,9 +12,32 @@ class formattypeActions extends sfActions // Abstract
 {
 
 	public function executeGetModelName(sfWebRequest $request) {
-		$this->forward404Unless($request->getParameter('id'));
+		$formatTypeID = $request->getParameter('id');
 
-		$this->formatTypeModel = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id')));
+		$this->forward404Unless($formatTypeID);
+
+		$this->getResponse()->setHttpHeader('Content-type','application/json');
+		$this->setLayout('json');
+		$this->setTemplate('index');
+
+		$formatTypeIDs = Doctrine_Core::getTable('FormatType')
+					->getOptions('subclasses');
+
+		//$this->getResponse()->setContent( print_r($formatTypeIDs['subclasses']) );
+		//return sfView::NONE;
+
+		$formatTypeModel = Doctrine_Core::getTable('FormatType')
+					->find( $formatTypeID )
+					->getType() - 1;
+
+		echo json_encode($formatTypeIDs['subclasses'][$formatTypeModel]);
+		//$formatTypeModels = Doctrine_Core::getTable('FormatType')->findAll();
+
+		//$this->getResponse()->setContent( print_r( $formatTypeModel->toArray() ) );
+		//$this->getResponse()->setContent( $this->formatTypeModel );
+		//return sfView::NONE;
+
+		//echo json_encode( $formatTypeModel->toArray() );
 	}
 
   public function executeIndex(sfWebRequest $request)

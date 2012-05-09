@@ -173,7 +173,8 @@ $('document').ready(function () {
 		});
 
 		// For the FormatType Models //
-		$('#format-type-model-name').prop('selectedIndex',1);
+		//if(!$('#asset_group_format_id').val())
+		$('#format-type-model-name').prop('selectedIndex',0);
 		serializedFormatTypeID=$('#asset_group_format_id').val();
 		serializedFormatTypeModelName='';
 
@@ -182,7 +183,7 @@ $('document').ready(function () {
 			formatTypeID=$('#asset_group_format_id').val();
 			getAddFormatTypeForm = function () {
 							$('#format-type-container').load(
-		                                        	appBaseURL+$('#format-type-model-name').val()+'/new',
+								appBaseURL+$('#format-type-model-name').val()+'/new',
 								{},
 								function () {
 									$('#asset_group_format_id').val('');
@@ -205,8 +206,8 @@ $('document').ready(function () {
 						function (modelName) {
 							modelName = modelName.toLowerCase();
 
-							if( $('#format-type-model-name').prop('selectedIndex') == -1 || modelName == serializedFormatTypeModelName ) {
-								if( $('#format-type-model-name').prop('selectedIndex') == -1 ) {
+							if( $('#format-type-model-name').prop('selectedIndex') == 0 || modelName == serializedFormatTypeModelName ) {
+								if( $('#format-type-model-name').prop('selectedIndex') == 0 ) {
 									$('#format-type-model-name').val(modelName);
 									serializedFormatTypeModelName=modelName;
 								}
