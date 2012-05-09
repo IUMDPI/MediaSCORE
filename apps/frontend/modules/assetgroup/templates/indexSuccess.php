@@ -1,5 +1,7 @@
-<div id="create-asset-group"><a href="<?php echo url_for('assetgroup/new?c='.$collectionID) ?>">CREATE ASSET GROUP</a></div>
-<span><a href="<?php echo url_for('unit/index') ?>">All Units</a></span>&nbsp;&gt;&nbsp;<span><a href="<?php echo url_for('collection/index?u='.$unitID) ?>"><?php echo $unitName ?></a></span>&nbsp;&gt;&nbsp;<span><?php echo $collectionName ?></span>
+<a class="button" href="<?php echo url_for('assetgroup/new?c='.$collectionID) ?>">Create Asset Group</a>
+
+<div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection/index?u='.$unitID) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
+
 <table>
   <thead>
     <tr>
@@ -20,7 +22,11 @@
       <td><?php echo $asset_group->getCreator()->getFullName() ?></td>
       <td><?php echo $asset_group->getUpdatedAt() ?></td>
       <td><?php echo $asset_group->getEditor()->getFullName() ?></td>
-      <td><span>delete</span></td>
+      <td class="invisible">
+	<div class="options">
+	<a href="<?php echo url_for('assetgroup/delete?id='.$asset_group->getId()) ?>"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+	</div>
+	</td>
     </tr>
     <?php endforeach; ?>
   </tbody>

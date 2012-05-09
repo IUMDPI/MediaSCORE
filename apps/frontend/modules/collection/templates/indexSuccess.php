@@ -1,7 +1,6 @@
-<h1>Collections List</h1>
+<a class="button" href="<?php echo url_for('collection/new?u='.$unitID) ?>">Create Collection</a>
+<div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
 
-<div id="create-collection"><a href="<?php echo url_for('collection/new?u='.$unitID) ?>">CREATE COLLECTION</a></div>
-<span><a href="<?php echo url_for('unit/index') ?>">All Units</a></span>&nbsp;&gt;&nbsp;<span><?php echo $unitName ?></span>
 <table>
   <thead>
     <tr>
@@ -21,7 +20,14 @@
       <td><?php echo $collection->getCreatorId() ?></td>
       <td><?php echo $collection->getUpdatedAt() ?></td>
       <td><?php echo $collection->getLastEditorId() ?></td>
-      <td><span><a href="<?php echo url_for('collection/edit?id='.$collection->getId()).'/u/'.$collection->getParentNodeId() ?>">edit</a></span>&nbsp;&#47;&nbsp;<span><a href="<?php echo url_for('collection/delete?id='.$collection->getId()).'/u/'.$collection->getParentNodeId() ?>">delete</a></span></td>
+      <td class="invisible">
+
+<div class="options">
+<a href="<?php echo url_for('collection/edit?id='.$collection->getId()).'/u/'.$collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a><a href="<?php echo url_for('collection/delete?id='.$collection->getId()).'/u/'.$collection->getParentNodeId() ?>"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+</div>
+
+</td>
+
     </tr>
     <?php endforeach; ?>
   </tbody>

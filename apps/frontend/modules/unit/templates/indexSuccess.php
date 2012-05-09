@@ -1,5 +1,6 @@
 
-<div id="create-unit"><a href=" <?php echo url_for('unit/new') ?>">CREATE UNIT</a></div>
+<a class="button" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
+
 <table>
   <thead>
     <tr>
@@ -35,7 +36,13 @@ else
 	echo $lastEditorName;
 ?>
 </td>
-      <td><span><a href="<?php echo url_for('unit/edit?id='.$unit->getId()) ?>">edit</a></span>&nbsp;&#47;&nbsp;<span><a href="<?php echo url_for('unit/delete?id='.$unit->getId()) ?>">delete</a></span></td>
+
+<td class="invisible">
+	<div class="options">
+	<a href="<?php echo url_for('unit/edit?id='.$unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+	<a href="<?php echo url_for('unit/delete?id='.$unit->getId()) ?>"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+	</div>
+</td>
     </tr>
     <?php endforeach; ?>
   </tbody>
