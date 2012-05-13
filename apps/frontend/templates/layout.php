@@ -12,7 +12,7 @@
 
 <header><div id="header" class="clearfix">
 <h1 class="ir"><a href="#">Indiana University MediaSCORE</a></h1>
-<div class="log-out"><a href="#">Log Out</a></div>
+<div class="log-out"><a href="<?php echo url_for('sfGuardAuth/signout') ?>">Log Out</a></div>
 </div></header>
 
 <nav>
