@@ -33,3 +33,12 @@ all:
 
     # Enable the database manager
     use_database:           true
+
+    # 05/13/12 - James
+  .actions:
+    login_module:           sfGuardAuth
+    login_action:           signin
+
+    secure_module:          sfGuardAuth
+    secure_action:          signin
+
