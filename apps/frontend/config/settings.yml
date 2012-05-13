@@ -35,6 +35,8 @@ all:
     use_database:           true
 
     # 05/13/12 - James
+    enabled_modules:        [sfGuardUser]
+
   .actions:
     login_module:           sfGuardAuth
     login_action:           signin
