@@ -1,40 +1,37 @@
-<h1>Persons List</h1>
 
+<?php echo get_slot('settingsMenu') ?>
+
+<div id="settings-container">
 <table>
   <thead>
     <tr>
-      <th>Id</th>
       <th>First name</th>
       <th>Last name</th>
-      <th>Password</th>
       <th>Email</th>
-      <th>Phone</th>
-      <th>Role</th>
-      <th>Type</th>
-      <th>Contact info</th>
-      <th>Unit</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th>Units</th>
+	<th></th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($persons as $person): ?>
     <tr>
-      <td><a href="<?php echo url_for('person/show?id='.$person->getId()) ?>"><?php echo $person->getId() ?></a></td>
       <td><?php echo $person->getFirstName() ?></td>
       <td><?php echo $person->getLastName() ?></td>
-      <td><?php echo $person->getPassword() ?></td>
       <td><?php echo $person->getEmail() ?></td>
-      <td><?php echo $person->getPhone() ?></td>
-      <td><?php echo $person->getRole() ?></td>
-      <td><?php echo $person->getType() ?></td>
-      <td><?php echo $person->getContactInfo() ?></td>
-      <td><?php echo $person->getUnitId() ?></td>
-      <td><?php echo $person->getCreatedAt() ?></td>
-      <td><?php echo $person->getUpdatedAt() ?></td>
-    </tr>
-    <?php endforeach; ?>
+	<td>
+	<?php foreach( $person->getUnits() as $unit ): ?>
+		<div><span><?php echo $unit->getName() ?></span></div>
+	<?php endforeach ?>
+	</td>
+<td class="invisible">
+	<div class="options">
+	<a href="<?php echo url_for('person/edit?id='.$person->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+	<a href="<?php echo url_for('person/delete?id='.$person->getId()) ?>"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+	</div>
+</td>
+	</tr>
+<?php endforeach ?>
   </tbody>
 </table>
+</div>
 
-  <a href="<?php echo url_for('person/new') ?>">New</a>
