@@ -57,8 +57,13 @@ class assetgroupActions extends sfActions
 	->createQuery('a')
 	->execute();
 
-	$this->form = new AssetGroupForm();
-	$this->form->setOption('collectionID',$request->getParameter('c'));
+	$this->form = new AssetGroupForm(
+					null,
+					array(
+						'creatorID' => $this->getUser()->getGuardUser()->getId(),
+						'collectionID' => $request->getParameter('c'))
+					);
+	//$this->form->setOption('collectionID',$request->getParameter('c'));
   }
 
   public function executeCreate(sfWebRequest $request)

@@ -22,10 +22,12 @@ class CollectionForm extends BaseCollectionForm
 	$this->setWidget('status',new sfWidgetFormChoice(array('choices' => Collection::$statusConstants,'label' => 'Collection Status:&nbsp;')));
 
 
-	foreach( array( 'creator_id','last_editor_id','resident_structure_description', 'created_at','updated_at') as $voidField) {
+	foreach( array('last_editor_id','resident_structure_description', 'created_at','updated_at') as $voidField) {
 		unset($this->widgetSchema[$voidField]);
 		unset($this->validatorSchema[$voidField]);
 	}
+
+	$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('creatorID'))));
 
 	$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
   }

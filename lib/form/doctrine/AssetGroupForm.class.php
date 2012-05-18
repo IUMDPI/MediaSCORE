@@ -22,12 +22,14 @@ class AssetGroupForm extends BaseAssetGroupForm
 		unset($this->validatorSchema[$voidField]);
 	}
 
-	foreach( array('creator_id','format_id','parent_node_id','type') as $hiddenField )
+	foreach( array('format_id','parent_node_id','type') as $hiddenField )
 		$this->setWidget($hiddenField,new sfWidgetFormInputHidden());
+
+	$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('creatorID'))));
 
 	// 05/08/12
 	// Temporary - Need user plug-in
-	$this->getWidget('creator_id')->setAttribute('value',1);
+	//$this->getWidget('creator_id')->setAttribute('value',1);
 
 	$this->setWidget('storage_location_id',new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,
 		/*'method' => 'getStorageLocations',

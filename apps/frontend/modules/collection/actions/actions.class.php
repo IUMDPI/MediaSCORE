@@ -80,8 +80,16 @@ class collectionActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
 	  //$this->unitID=$request->getParameter('u');
-	  $this->form = new CollectionForm();
-	  $this->form->setOption('unitID',$request->getParameter('u'));
+
+	$this->form = new AssetGroupForm(
+					null,
+					array(
+						'creatorID' => $this->getUser()->getGuardUser()->getId(),
+						'unitID' => $request->getParameter('u'))
+					);
+
+	  //$this->form = new CollectionForm();
+	  //$this->form->setOption('unitID',$request->getParameter('u'));
   }
 
   public function executeCreate(sfWebRequest $request)
