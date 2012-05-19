@@ -29,13 +29,14 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 	$this->setWidget('asset_group_id',new sfWidgetFormInputHidden());
 	//Debug
 	//$this->setWidget('asset_group_id',new sfWidgetFormInputText());
-	$this->setWidget('updated_at', new sfWidgetFormDateTime(array(),array('value' => array(
+	$this->setWidget('updated_at', new sfWidgetFormInputText());
+	/*$this->setWidget('updated_at', new sfWidgetFormDateTime(array(),array('value' => array(
 											'year' => date('Y'),
 											'month' => date('m'),
 											'day' => date('d'),
 											'hour' => date('H'),
 											'minute' => date('i'),
-											'second' => date('s')))));
+											'second' => date('s')))));*/
 	$this->getWidget('consulted_personnel_list')->setOption('method','getFullName');
 
 

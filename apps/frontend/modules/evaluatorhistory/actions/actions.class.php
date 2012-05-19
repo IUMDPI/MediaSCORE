@@ -32,22 +32,29 @@ class evaluatorhistoryActions extends sfActions
 
 
   public function executeIndex(sfWebRequest $request) {
-	$this->evaluator_historys = Doctrine_Core::getTable('AssetGroup')
+
+	$agID = $request->getParameter('id');
+	$this->evaluator_historys = array();
+
+	if( $agID ) {
+		$ag = Doctrine_Core::getTable('AssetGroup')
 					->find(array(
-						$request->getParameter('id')))
-						->getEvaluatorHistory();
+						$request->getParameter('id')));
 
-	$this->evaluators=array();
-	$this->consultedPersons = array();
-	foreach($this->evaluator_historys as $evaluatorHistory) {
-		$evaluatorHistoryID=$evaluatorHistory->getEvaluatorId();
-		if($evaluatorHistoryID)
-			$this->evaluators[$evaluatorHistoryID]=Doctrine_Core::getTable('Evaluator')
-										->find($evaluatorHistoryID);
+		$this->evaluator_historys = $ag->getEvaluatorHistory();
 
-		foreach( Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->findBy('evaluator_history_id',$evaluatorHistory->getId()) as $consultationRecord) {
-			$this->consultedPersons[$evaluatorHistory->getId()][]=Doctrine_Core::getTable('Person')
-				->findOneBy('id',$consultationRecord->getPersonId());
+		$this->evaluators=array();
+		$this->consultedPersons = array();
+		foreach($this->evaluator_historys as $evaluatorHistory) {
+			$evaluatorHistoryID=$evaluatorHistory->getEvaluatorId();
+			if($evaluatorHistoryID)
+				$this->evaluators[$evaluatorHistoryID]=Doctrine_Core::getTable('Evaluator')
+											->find($evaluatorHistoryID);
+
+			foreach( Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->findBy('evaluator_history_id',$evaluatorHistory->getId()) as $consultationRecord) {
+				$this->consultedPersons[$evaluatorHistory->getId()][]=Doctrine_Core::getTable('Person')
+					->findOneBy('id',$consultationRecord->getPersonId());
+			}
 		}
 	}
   }

@@ -115,13 +115,14 @@ StorageLocation:
     Collections: { class: Collection, local: storage_location_id, foreign: collection_id, refClass:CollectionStorageLocation }
 
 EvaluatorHistory:
-  actAs: { Timestampable: ~ }
+  #actAs: { Timestampable: ~ }
   columns:
     type: { type: integer }
     # date_committed: { type: timestamp }
     evaluator_id: { type: integer }
     #personnel: { type: integer }
     asset_group_id: { type: integer } # AssetGroup
+    updated_at: { type: date }
   relations:
     Evaluator: { local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
     consultedPersonnel: { class: Person, local: evaluator_history_id, foreign: person_id, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }

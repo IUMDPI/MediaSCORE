@@ -10,7 +10,7 @@
     <tfoot>
       <tr>
 	<td colspan="2">
-	<input type="submit" value="Save" />&nbsp;or&nbsp;<?php echo link_to('Back to List','collection/index?u='.$form->getOption('unitID')) ?>
+	<input type="submit" value="Save" />&nbsp;or&nbsp;<?php echo link_to('cancel','collection/index?u='.$form->getOption('unitID')) ?>
         </td>
       </tr>
     </tfoot>

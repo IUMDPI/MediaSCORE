@@ -62,12 +62,16 @@ $('document').ready(function () {
 				function (unit) {
 					//console.log( unit );
 					//relatedUnitID=unit.id
-					$('#unit-multiple-select').prop('selectedIndex',unit.id - 1);
+					//$('#unit-multiple-select').prop('selectedIndex',unit.id - 1);
+					$('#unit-multiple-select').val(unit.id);
 					getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
 					//console.log( $('#unit-multiple-select').val().shift() );
 				}
 			);
 		}
+		
+
+
 		setMultiSelectHandler = function () {
 
 		}
@@ -94,48 +98,7 @@ $('document').ready(function () {
 					getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
 				});
 
-				//getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
-				//console.log('serialized unit ID: '+relatedUnitID);
-				//$('#collection-multiple-select').prop('selectedIndex',serializedCollectionID - 1);
-				//getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
-				/*
-
-
-				//unitRowElement = $(indexViewHTML).find('tbody tr');
-				//unitCellElement=unitRowElement.find('td');
-				//console.log('found: '+unitCellElement.prop('tagName'));
-				$(indexViewHTML).find('tbody tr').each(function(i,unitRowElement) {
-					console.log('found: '+$(unitRowElement.innerHTML).find('td').innerHTML );
-					//console.log(unitRowElement.innerHTML);
-					//console.log('found: '+unitRowElement.prop('tagName'));
-				});
-
-
-				$(indexViewHTML).find('tbody tr').append('<option value="'+$(this).find('td:nth-child(1)').innerHTML+'">'+$(this).find('td:nth-child(2)').innerHTML+'</option>');
-				$(indexViewHTML).find('tbody tr').each(function(i,unitRowElement) {
-					console.log('i :'+i);
-
-					$('#unit-multiple-select').append('<option value="'+unitRowElement.find('td:nth-child(1)').innerHTML+'">'+unitRowElement.find('td:nth-child(2)').innerHTML+'</option>');
-					console.log( $('#unit-multiple-select').html()  );
-					//$('#unit-multiple-select').append('<option>'+unitRowElement.children('td:nth-child(1)').innerHTML+'</option>');
-				//$(indexViewHTML).find('tbody tr td:nth-child(2)').each(function(i,unitCellElement) {
-				//	$('#unit-multiple-select').append('<option>'+unitCellElement.innerHTML+'</option>');
-
-					console.log(unitRowElement.innerHTML);
-					//for(attrib in unitRowElement)
-					//	console.log(attrib+': '+unitCellElement[attrib]);
-				});
-				//$(indexViewHTML).find('tbody').children('tr').each( function(i,unitRowElement) {
-				//	unitRowElement.children('td').each( function(j,unitCellElement) {
-				//		console.log(unitCellElement.html())
-				//	});
-				//}
-				//		);
-				//$('#unit-multiple-select').load(function () {
-				//	console.log();
-				//}*/
-			}
-		);
+		});
 
 		$('#asset-group-save').click(function(event) {
 			//console.log('trace');
@@ -159,6 +122,7 @@ $('document').ready(function () {
 				url: appBaseURL+$('#format-type-model-name').val()+'/'+actionName+urlSuffix,
 				data: $('#format-type-container').children('form').serialize(),
 				success: function(data,textStatus) {
+
 					formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
 					if(formatTypeModelID)
 						$('#asset_group_format_id').val(formatTypeModelID);
@@ -182,12 +146,16 @@ $('document').ready(function () {
 
 			formatTypeID=$('#asset_group_format_id').val();
 			getAddFormatTypeForm = function () {
-							$('#format-type-container').load(
-								appBaseURL+$('#format-type-model-name').val()+'/new',
-								{},
-								function () {
-									$('#asset_group_format_id').val('');
-								});
+
+							formatTypeName = $('#format-type-model-name').val();
+							if( formatTypeName ) {
+								$('#format-type-container').load(
+									appBaseURL+formatTypeName+'/new',
+									{},
+									function () {
+										$('#asset_group_format_id').val('');
+									});
+							}
 			}
 
 			if(formatTypeID) {
@@ -270,6 +238,20 @@ $('document').ready(function () {
 
  */
 
+		//console.log( $('#evaluator_history_updated_at').prop('tagName') );
+		//$('<input id="evaluator-history-updated-datepicker"></div>')
+		//.insertBefore( '#evaluator_history_updated_at' )
+		$('#evaluator_history_updated_at')
+		//$('#evaluator_history_updated_at').datepicker({ 'dateFormat': 'yy-mm-dd',
+		.datepicker({	'dateFormat'		:	'yy-mm-dd',
+				'altField'		:	'#evaluator_history_updated_at',
+				'showButtonPanel'	:	true,
+				'onSelect'		:	function(dateText,inst) {
+									console.log( inst.input[0] );
+
+								}
+		});
+
 		// If a "delete" hyperlink is clicked...
 		$('.evaluator-history-delete').click(function (e) {
 			e.preventDefault();
@@ -284,9 +266,6 @@ $('document').ready(function () {
 		// If an "edit" hyperlink is clicked...
 		$('.evaluator-history-edit').click(function (e) {
 			e.preventDefault();
-			//alert('trace');
-			//console.log('trace');
-			//console.log( $(this).attr('href') );
 		// ...load the Evaluator History Edit View through an AJAX call...
 		$('#evaluator-history-edit-container').load(
 						appBaseURL+'evaluatorhistory/edit?id='+$(this).attr('id'),
@@ -310,8 +289,6 @@ $('document').ready(function () {
 		$('#evaluator-history-save').click(function (e) {
 			// ...load the Evaluator History Edit View through an AJAX call...
 			e.preventDefault();
-			//console.log($('#evaluator_history_id').prop('tagName'));
-			//console.log($('#evaluator_history_id').val());
 			if($('#evaluator_history_id').val())
 				saveURL=appBaseURL+'evaluatorhistory/update/id/' + $('#evaluator_history_id').val();
 			else
@@ -329,22 +306,14 @@ $('document').ready(function () {
 							{ id : $('input[name="asset_group[id]"]').val() },
 							refreshElementHandlers);
 
-
-						//$('body').append(data);
-						//refreshElementHandlers();
-						//location.reload();
-						//console.log('success');
-						//$('#evaluator-history-edit-container').empty();
-						//$('#evaluator-history-new').show();
-						//$('#evaluator-history-container').html(data);
-					});
+			});
 		});
 
 		// If the "+ ADD NEW" input element is clicked...
 		$('#evaluator-history-new').click(function () {
 		// ...load the Evaluator History New View through an AJAX call...
 		$('#evaluator-history-edit-container').load(
-			                        appBaseURL+'evaluatorhistory/new',
+						appBaseURL+'evaluatorhistory/new',
 						function () {
 
 							refreshElementHandlers();
@@ -380,97 +349,6 @@ $('document').ready(function () {
 			// ...specifying the Asset Group's ID as a parameter value in the GET request.
 			{ id : $('input[name="asset_group[id]"]').val() },
 			refreshElementHandlers);
-			// If successful...
-			//function () {
 
-		//});
 });
 
-		// ...load the Evaluator History Index View for the Asset Group through an AJAX call...
-
-		/*$('#evaluator-history-container').load(
-			'/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory',
-			// ...specifying the Asset Group's ID as a parameter value in the GET request.
-			{ id : $('input[name="asset_group[id]"]').val() },
-			// If successful...
-			function () {*/
-				// If the "+ ADD NEW" input element is clicked...
-				/*$('#evaluator-history-new').click(function () {
-				// ...load the Evaluator History New View through an AJAX call...
-				$('#evaluator-history-edit-container').load(
-					                        '/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/new',
-								function () {
-									// Hide the "+ ADD NEW" input element
-									$('#evaluator-history-new').hide();
-
-									// Load the current date and time
-									//console.log( $('#asset_group_created_at_month').prop('tagName') );
-									now = new Date();
-
-									// Link this new EvaluatorHistory and AssetGroup objects
-									$('#evaluator_history_asset_group_id').val( $('input[name="asset_group[id]"]').val() );
-									$('#evaluator_history_created_at_year').prop('selectedIndex',now.getFullYear() - 2006);
-									$('#evaluator_history_created_at_month').prop('selectedIndex',now.getMonth()+1);
-									$('#evaluator_history_created_at_day').prop('selectedIndex',now.getDate());
-									$('#evaluator_history_created_at_hour').prop('selectedIndex',now.getHours()+1);
-									$('#evaluator_history_created_at_minute').prop('selectedIndex',now.getMinutes()+1);*/
-									//console.log( $('#asset_group_created_at_month').prop('selectedIndex') );
-									// If the "cancel" hyperlink is clicked...
-									/*$('#evaluator-history-cancel').click(function () {
-										$('#evaluator-history-edit-container').empty();
-										$('#evaluator-history-new').show();
-									});*/
-
-									//alert('trace');
-									// If the "save" hyperlink is clicked...
-									/*$('#evaluator-history-save').click(function (e) {
-									// ...load the Evaluator History Edit View through an AJAX call...
-										console.log('trace');
-										e.preventDefault();
-
-										/*$.ajax('/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/create',
-											{
-												type: 'post',
-												data: $('#evaluator-history-form').serialize(),
-												error: function (data) {
-													for(attrib in data)
-														console.log(data[attrib]);
-												}
-											}
-											
-										      );*/
-
-									/*	$.post(
-											'/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/create',
-											$('#evaluator-history-form').serialize(),
-											function(data,textStatus) {
-												console.log('success');
-												$('#evaluator-history-edit-container').empty();
-												$('#evaluator-history-new').show();
-												$('#evaluator-history-container').html(data);
-
-											});
-									});*/
-
-
-								//});
-				//});
-				// If the "edit" hyperlink is clicked...
-				/*$('#evaluator-history-edit').click(function () {
-				// ...load the Evaluator History Edit View through an AJAX call...
-				$('#evaluator-history-edit-container').load(
-								'/symfony/mediascore1.0a/frontend_dev.php/evaluatorhistory/edit',
-								// ...specifying the Evaluator History ID as a parameter value in the GET request
-								{ id : 1 },
-								function () {
-									// Hide the "+ ADD NEW" input element
-									$('#evaluator-history-new').hide();
-									// If the "cancel" hyperlink is clicked...
-									$('#evaluator-history-cancel').click(function () {
-										$('#evaluator-history-edit-container').empty();
-										$('#evaluator-history-new').show();
-									});
-								});
-				});*/
-//			});
-//});

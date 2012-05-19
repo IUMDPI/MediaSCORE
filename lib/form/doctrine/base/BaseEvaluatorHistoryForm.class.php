@@ -19,8 +19,7 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
       'type'                     => new sfWidgetFormInputText(),
       'evaluator_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'add_empty' => true)),
       'asset_group_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
-      'created_at'               => new sfWidgetFormDateTime(),
-      'updated_at'               => new sfWidgetFormDateTime(),
+      'updated_at'               => new sfWidgetFormDate(),
       'consulted_personnel_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),
     ));
 
@@ -29,8 +28,7 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
       'type'                     => new sfValidatorInteger(array('required' => false)),
       'evaluator_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'required' => false)),
       'asset_group_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'required' => false)),
-      'created_at'               => new sfValidatorDateTime(),
-      'updated_at'               => new sfValidatorDateTime(),
+      'updated_at'               => new sfValidatorDate(array('required' => false)),
       'consulted_personnel_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false)),
     ));
 
