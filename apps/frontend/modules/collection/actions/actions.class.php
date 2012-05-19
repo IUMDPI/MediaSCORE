@@ -81,7 +81,7 @@ class collectionActions extends sfActions
   {
 	  //$this->unitID=$request->getParameter('u');
 
-	$this->form = new AssetGroupForm(
+	$this->form = new CollectionForm(
 					null,
 					array(
 						'creatorID' => $this->getUser()->getGuardUser()->getId(),

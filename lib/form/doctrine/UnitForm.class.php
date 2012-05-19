@@ -14,7 +14,8 @@ class UnitForm extends BaseUnitForm
   {
 	  //$this->setWidget('notes',new sfWidgetFormTextarea());
 	$this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
-	$this->setWidget('creator_id',new sfWidgetFormInputHidden);
+	$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('creatorID'))));
+
 	$this->setWidget('last_editor_id',new sfWidgetFormInputHidden);
 
 	$this->setWidget('resident_structure_description',new sfWidgetFormInputText(array('label' => 'Building Name and Room Number:&nbsp;')));

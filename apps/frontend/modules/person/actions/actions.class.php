@@ -35,11 +35,16 @@ class personActions extends sfActions
       ->execute();
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->person);
-  }
+	public function executeShow(sfWebRequest $request) {
+		$this->person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id')));
+
+		if( $request->isXmlHttpRequest() ) {
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->setLayout('json');
+			echo json_encode($this->person->toArray());
+		} else
+			$this->forward404Unless($this->person);
+	}
 
   public function executeNew(sfWebRequest $request)
   {

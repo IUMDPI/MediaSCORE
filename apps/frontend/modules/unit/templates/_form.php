@@ -21,3 +21,16 @@
     </tbody>
   </table>
 </form>
+
+<div id="selected-unit-persons">
+<table>
+<thead>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>

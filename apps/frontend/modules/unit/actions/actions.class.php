@@ -70,9 +70,15 @@ class unitActions extends sfActions
     $this->forward404Unless($this->unit);
   }
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new UnitForm();
+  public function executeNew(sfWebRequest $request) {
+    //$this->form = new UnitForm();
+
+	$this->form = new UnitForm(
+					null,
+					array(
+						'creatorID' => $this->getUser()->getGuardUser()->getId()
+					));
+
   }
 
   public function executeCreate(sfWebRequest $request)
