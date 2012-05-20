@@ -17,9 +17,9 @@
     <tr>
       <td><a href="<?php echo url_for('assetgroup/index?c='.$collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
       <td><?php echo $collection->getCreatedAt() ?></td>
-      <td><?php echo $collection->getCreatorId() ?></td>
+      <td><?php echo $collection->getCreator()->getName() ?></td>
       <td><?php echo $collection->getUpdatedAt() ?></td>
-      <td><?php echo $collection->getLastEditorId() ?></td>
+      <td><?php echo $collection->getEditor()->getName() ?></td>
       <td class="invisible">
 
 <div class="options">

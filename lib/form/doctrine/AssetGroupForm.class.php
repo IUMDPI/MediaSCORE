@@ -25,6 +25,8 @@ class AssetGroupForm extends BaseAssetGroupForm
 	foreach( array('format_id','parent_node_id','type') as $hiddenField )
 		$this->setWidget($hiddenField,new sfWidgetFormInputHidden());
 
+	$this->getWidget('parent_node_id')->setAttribute('value',$this->getOption('collectionID'));
+
 	$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('creatorID'))));
 
 	// 05/08/12

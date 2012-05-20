@@ -79,11 +79,22 @@ class unitActions extends sfActions
 		}
 	}
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->unit);
-  }
+	public function executeShow(sfWebRequest $request) {
+
+		if($request->isXmlHttpRequest()) {
+
+			$unit = Doctrine_Core::getTable('Unit')->find(
+					Doctrine_Core::getTable('Collection')->find( $request->getParameter('collectionID') )->getParentNodeId())->toArray();
+			$this->getResponse()->setHttpHeader('Content-type','application/json');
+			$this->getResponse()->setContent(json_encode($unit));
+			return sfView::NONE;
+
+		} else {
+
+			$this->unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id')));
+			$this->forward404Unless($this->unit);
+		}
+	}
 
   public function executeNew(sfWebRequest $request) {
     //$this->form = new UnitForm();
