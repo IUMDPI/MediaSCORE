@@ -16,4 +16,8 @@ class SubUnitTable extends UnitTable
     {
         return Doctrine_Core::getTable('SubUnit');
     }
+
+	public function getAvailableStorageLocations() {
+		return Doctrine_Core::getTable('SubUnit')->find($this->getParentNodeId())->getStorageLocations();
+	}
 }

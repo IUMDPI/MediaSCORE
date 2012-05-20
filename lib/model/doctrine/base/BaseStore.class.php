@@ -16,8 +16,8 @@
  * @property string $status
  * @property string $location
  * @property integer $format_id
- * @property User $Creator
- * @property User $Editor
+ * @property sfGuardUser $Creator
+ * @property sfGuardUser $Editor
  * @property Doctrine_Collection $EvaluatorActions
  * 
  * @method string              getName()                           Returns the current record's "name" value
@@ -31,8 +31,8 @@
  * @method string              getStatus()                         Returns the current record's "status" value
  * @method string              getLocation()                       Returns the current record's "location" value
  * @method integer             getFormatId()                       Returns the current record's "format_id" value
- * @method User                getCreator()                        Returns the current record's "Creator" value
- * @method User                getEditor()                         Returns the current record's "Editor" value
+ * @method sfGuardUser         getCreator()                        Returns the current record's "Creator" value
+ * @method sfGuardUser         getEditor()                         Returns the current record's "Editor" value
  * @method Doctrine_Collection getEvaluatorActions()               Returns the current record's "EvaluatorActions" collection
  * @method Store               setName()                           Sets the current record's "name" value
  * @method Store               setInstId()                         Sets the current record's "inst_id" value
@@ -122,11 +122,11 @@ abstract class BaseStore extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('User as Creator', array(
+        $this->hasOne('sfGuardUser as Creator', array(
              'local' => 'creator_id',
              'foreign' => 'id'));
 
-        $this->hasOne('User as Editor', array(
+        $this->hasOne('sfGuardUser as Editor', array(
              'local' => 'last_editor_id',
              'foreign' => 'id'));
 

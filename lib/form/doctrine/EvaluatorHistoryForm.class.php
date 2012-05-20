@@ -25,7 +25,8 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 
 
 	$this->setWidget('type', new sfWidgetFormChoice(array('choices' => EvaluatorHistory::$actions)));
-	$this->setWidget('evaluator_id',new sfWidgetFormInputHidden());
+
+	$this->setWidget('evaluator_id',new sfWidgetFormInputHidden(array(),array('value' => $this->getOption('creatorID'))));
 	$this->setWidget('asset_group_id',new sfWidgetFormInputHidden());
 	//Debug
 	//$this->setWidget('asset_group_id',new sfWidgetFormInputText());

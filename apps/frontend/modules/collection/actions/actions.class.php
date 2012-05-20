@@ -84,7 +84,7 @@ class collectionActions extends sfActions
 	$this->form = new CollectionForm(
 					null,
 					array(
-						'creatorID' => $this->getUser()->getGuardUser()->getId(),
+						'userID' => $this->getUser()->getGuardUser()->getId(),
 						'unitID' => $request->getParameter('u'))
 					);
 
@@ -103,14 +103,17 @@ class collectionActions extends sfActions
     $this->setTemplate('new');
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-
-    $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
-	  $this->form = new CollectionForm($collection);
-
-	  $this->form->setOption('unitID',$request->getParameter('u'));
-  }
+	public function executeEdit(sfWebRequest $request) {
+	
+		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
+		$this->form = new CollectionForm(
+						$collection,
+						array(
+							'userID' => $this->getUser()->getGuardUser()->getId(),
+							'unitID' => $request->getParameter('u'),
+							'action' => 'edit')
+					);
+	}
 
   public function executeUpdate(sfWebRequest $request)
   {

@@ -29,8 +29,34 @@ class Store extends BaseStore
              'local' => 'id',
              'foreign' => 'asset_group_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $timestampable = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }*/
 
+	/*public function setUp() {
+		parent::setUp();
+		$this->hasOne('sfGuardUser as Creator', array(
+			'local' => 'creator_id',
+			'foreign' => 'id'
+		));
+
+		$this->hasOne('sfGuardUser as Editor', array(
+			'local' => 'last_editor_id',
+			'foreign' => 'id'
+		));
+	}
+
+	public function getCreator() {
+		$creator = Doctrine_Core::getTable('sfGuardUser')->find( $this->getCreatorId() );
+		if($creator)
+			return $creator;
+	}
+
+	public function getEditor() {
+		$editor = Doctrine_Core::getTable('sfGuardUser')->find( $this->getLastEditorId() );
+		if($editor)
+			return $editor;
+	}*/
+
 }
+

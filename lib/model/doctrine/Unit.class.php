@@ -10,6 +10,14 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Unit extends BaseUnit
-{
+class Unit extends BaseUnit {
+	/*public function setUp() {
+
+		parent::setUp();
+		$this->hasMany('Phonenumber as Phonenumbers', array(
+			'local' => 'id',
+			'foreign' => 'user_id'
+		));
+
+	}*/
 }

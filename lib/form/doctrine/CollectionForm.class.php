@@ -15,16 +15,21 @@ class CollectionForm extends BaseCollectionForm {
 	public function configure() {
 		parent::configure(); // SubUnitForm invocation
 	
-		$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
+		$voidFields = array('last_editor_id','resident_structure_description', 'created_at','updated_at');
+		if( $this->getOption('action') == 'edit' )
+			$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
+		else
+			$this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
 	//$this->getWidget('parent_node_id')->setLabel('Unit:&nbsp;');
 		$this->setWidget('status',new sfWidgetFormChoice(array('choices' => Collection::$statusConstants,'label' => 'Collection Status:&nbsp;')));
 
-		foreach( array('last_editor_id','resident_structure_description', 'created_at','updated_at') as $voidField) {
+		foreach( $voidFields as $voidField) {
 			unset($this->widgetSchema[$voidField]);
 			unset($this->validatorSchema[$voidField]);
 		}
 
-		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('creatorID'))));
+		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
+		$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
 	}
 }

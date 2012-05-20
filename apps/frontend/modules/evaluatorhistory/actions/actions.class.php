@@ -65,10 +65,14 @@ class evaluatorhistoryActions extends sfActions
     $this->forward404Unless($this->evaluator_history);
   }*/
 
-  public function executeNew(sfWebRequest $request)
-  {
-	  $this->form = new EvaluatorHistoryForm();
-  }
+	public function executeNew(sfWebRequest $request) {
+
+		$this->form = new EvaluatorHistoryForm(
+							null,
+							array(	'creatorID' => $this->getUser()->getGuardUser()->getId()
+								)
+						);
+	}
 
   public function executeCreate(sfWebRequest $request)
   {
@@ -87,11 +91,15 @@ class evaluatorhistoryActions extends sfActions
     //$this->forward($this->getModuleName(),'new');
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id'))), sprintf('Object evaluator_history does not exist (%s).', $request->getParameter('id')));
-    $this->form = new EvaluatorHistoryForm($evaluator_history);
-  }
+	public function executeEdit(sfWebRequest $request) {
+
+		$this->forward404Unless($evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id'))), sprintf('Object evaluator_history does not exist (%s).', $request->getParameter('id')));
+
+
+
+
+		$this->form = new EvaluatorHistoryForm($evaluator_history);
+	}
 
   public function executeUpdate(sfWebRequest $request)
   {

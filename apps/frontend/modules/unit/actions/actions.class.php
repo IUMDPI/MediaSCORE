@@ -55,6 +55,21 @@ class unitActions extends sfActions
 		$this->units = Doctrine_Core::getTable('Unit')
 			->createQuery('a')
 			->execute();
+
+		// Cannot forge a one-to-one relationship with myUser class that provides a 
+		/*$this->creators = array();
+		foreach($this->units as $unit) {
+
+			//$unit->getCreator();
+
+			$this->creators[$unit->getId()] = Doctrine_Core::getTable('User')->find( $unit->getCreatorId() );
+		}
+
+		$this->editors = array();
+		foreach($this->units as $unit) {
+			$this->editors[$unit->getId()] = Doctrine_Core::getTable('User')->find( $unit->getLastEditorId() );
+		}*/
+
 		
 		// To be moved into a separate Action or Controller
 		if($request->isXmlHttpRequest()) {
@@ -76,7 +91,7 @@ class unitActions extends sfActions
 	$this->form = new UnitForm(
 					null,
 					array(
-						'creatorID' => $this->getUser()->getGuardUser()->getId()
+						'userID' => $this->getUser()->getGuardUser()->getId()
 					));
 
   }
@@ -92,12 +107,14 @@ class unitActions extends sfActions
     $this->setTemplate('new');
   }
 
-  public function executeEdit(sfWebRequest $request)
-  {
-	  $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
-
-    $this->form = new UnitForm($unit);
-  }
+	public function executeEdit(sfWebRequest $request) {
+		$this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
+		$this->form = new UnitForm(
+						$unit,
+						array(
+							'userID' => $this->getUser()->getGuardUser()->getId()
+						));
+	}
 
   public function executeUpdate(sfWebRequest $request)
   {

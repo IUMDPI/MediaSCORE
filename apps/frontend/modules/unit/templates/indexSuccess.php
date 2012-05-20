@@ -19,21 +19,26 @@
       <td><?php echo $unit->getCreatedAt() ?></td>
       <td>
 <?php
-$evaluatorName = $unit->getCreator()->getFullName();
+
+//print_r( Doctrine_Core::getTable('User')->find( $unit->getCreatorId() )->getFirstName() );
+echo $unit->getCreator()->getName();
+
+/*$evaluatorName = $creators[$unit->getId()];
 if($evaluatorName == ' ')
 	echo 'Administrator';
 else
-	echo $evaluatorName;
+	echo $evaluatorName;*/
 ?>
 </td>
       <td><?php echo $unit->getUpdatedAt() ?></td>
       <td>
 <?php
-$lastEditorName = $unit->getEditor()->getFullName();
+echo $unit->getEditor()->getName();
+/*$lastEditorName = $editors[$unit->getId()];
 if($lastEditorName == ' ')
 	echo 'Administrator';
 else
-	echo $lastEditorName;
+	echo $lastEditorName;*/
 ?>
 </td>
 

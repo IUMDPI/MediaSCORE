@@ -1,10 +1,15 @@
 User: # Abstract
-  actAs: { Timestampable: ~ }
+  #actAs: { Timestampable: ~ }
+  inheritance:
+    extends: sfGuardUser
+    type: column_aggregation
+    keyField: type
+    keyValue: 1
   columns:
-    first_name:   { type: string(255), notnull: true }
-    last_name:    { type: string(255), notnull: true }
-    password:     { type: string(255), notnull: true }
-    email:        { type: string(255) }
+    #first_name:   { type: string(255), notnull: true }
+    #last_name:    { type: string(255), notnull: true }
+    #password:     { type: string(255), notnull: true }
+    #email:        { type: string(255) }
     phone:        { type: string(255) }
     role:         { type: string(255) }
 
@@ -13,14 +18,14 @@ Evaluator:
     extends: User
     type: column_aggregation
     keyField: type
-    keyValue: 1
+    keyValue: 2
 
 Person:
   inheritance:
     extends: User
     type: column_aggregation
     keyField: type
-    keyValue: 2
+    keyValue: 3
   columns:
     contact_info: { type: text }
     unit_id: { type: integer }
@@ -39,8 +44,8 @@ Store: # Abstract
     #last_updated: { type: datetime }
     last_editor_id:  { type: integer }
   relations:
-    Creator: { class: User, local: creator_id, foreign: id, foreignAlias: createdUnits } # Can't link to Evaluator, only User (?); Maybe because Evaluator table doesn't actually exist ?
-    Editor: { class: User, local: last_editor_id, foreign: id, foreignAlias: editedUnits }
+    Creator: { class: sfGuardUser, local: creator_id, foreign: id, foreignAlias: createdUnits } # Can't link to Evaluator, only User (?); Maybe because Evaluator table doesn't actually exist ?
+    Editor: { class: sfGuardUser, local: last_editor_id, foreign: id, foreignAlias: editedUnits }
 
 Unit:
   inheritance:
@@ -124,7 +129,7 @@ EvaluatorHistory:
     asset_group_id: { type: integer } # AssetGroup
     updated_at: { type: date }
   relations:
-    Evaluator: { local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
+    Evaluator: { class: myUser, local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
     consultedPersonnel: { class: Person, local: evaluator_history_id, foreign: person_id, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }
     Store: { local: asset_group_id, foreign: id, foreignAlias: EvaluatorActions } # Inheritance related problem
 
