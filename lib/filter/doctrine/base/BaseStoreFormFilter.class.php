@@ -14,7 +14,7 @@ abstract class BaseStoreFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'                           => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'inst_id'                        => new sfWidgetFormFilterInput(),
+      'inst_id'                        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'notes'                          => new sfWidgetFormFilterInput(),
       'creator_id'                     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
       'last_editor_id'                 => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Editor'), 'add_empty' => true)),

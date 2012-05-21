@@ -61,7 +61,7 @@
  * @property integer $opticalDiscType
  * @property integer $format
  * @property integer $recordingStandard
- * @property timestamp $publicationYear
+ * @property date $publicationYear
  * @property integer $capacityLayers
  * @property integer $codec
  * @property integer $dataRate
@@ -133,7 +133,7 @@
  * @method integer             getOpticalDiscType()                 Returns the current record's "opticalDiscType" value
  * @method integer             getFormat()                          Returns the current record's "format" value
  * @method integer             getRecordingStandard()               Returns the current record's "recordingStandard" value
- * @method timestamp           getPublicationYear()                 Returns the current record's "publicationYear" value
+ * @method date                getPublicationYear()                 Returns the current record's "publicationYear" value
  * @method integer             getCapacityLayers()                  Returns the current record's "capacityLayers" value
  * @method integer             getCodec()                           Returns the current record's "codec" value
  * @method integer             getDataRate()                        Returns the current record's "dataRate" value
@@ -232,12 +232,15 @@ abstract class BaseFormatType extends sfDoctrineRecord
         $this->setTableName('format_type');
         $this->hasColumn('quantity', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('generation', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('year_recorded', 'string', 255, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('copies', 'boolean', null, array(
@@ -258,6 +261,7 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('duration', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('duration_type', 'string', 255, array(
              'type' => 'string',
@@ -269,18 +273,22 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('material', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('oxidationCorrosion', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
              ));
         $this->hasColumn('pack_deformation', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('noise_reduction', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
              ));
         $this->hasColumn('tape_type', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('thin_tape', 'boolean', null, array(
              'type' => 'boolean',
@@ -290,15 +298,18 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('sound_field', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('soft_binder_syndrome', 'boolean', null, array(
              'type' => 'boolean',
              ));
         $this->hasColumn('gauge', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('color', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
              ));
         $this->hasColumn('colorFade', 'boolean', null, array(
              'type' => 'boolean',
@@ -308,6 +319,7 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('substrate', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('strongOdor', 'boolean', null, array(
              'type' => 'boolean',
@@ -356,12 +368,14 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('trackConfiguration', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('tapeThickness', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('speed', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('softBinderSyndrome', 'integer', null, array(
              'type' => 'integer',
@@ -380,69 +394,88 @@ abstract class BaseFormatType extends sfDoctrineRecord
              ));
         $this->hasColumn('recordingLayer', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('recordingSpeed', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('cylinderType', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('reflectiveLayer', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('dataLayer', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('opticalDiscType', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('format', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('recordingStandard', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
-        $this->hasColumn('publicationYear', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('publicationYear', 'date', null, array(
+             'type' => 'date',
+             'notnull' => true,
              ));
         $this->hasColumn('capacityLayers', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('codec', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('dataRate', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('sheddingSoftBinder', 'boolean', null, array(
              'type' => 'boolean',
              ));
         $this->hasColumn('formatVersion', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('oxide', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('binderSystem', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
              ));
         $this->hasColumn('reelSize', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('whiteResidue', 'boolean', null, array(
              'type' => 'boolean',
              ));
         $this->hasColumn('size', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
              ));
         $this->hasColumn('formatTypedVideoRecordingFormat', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('bitrate', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('scanning', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
 
         $this->setSubClasses(array(
@@ -518,7 +551,7 @@ abstract class BaseFormatType extends sfDoctrineRecord
              array(
               'type' => 18,
              ),
-             'SoundOpticalDisk' => 
+             'SoundOpticalDisc' => 
              array(
               'type' => 19,
              ),

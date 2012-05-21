@@ -10,14 +10,13 @@
  */
 class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm
 {
-  public function configure()
-  {
-	$this->setWidget('tape_type',new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[0])));
-	$this->setWidget('thin_tape',new sfWidgetFormInputCheckbox());
-	$this->setWidget('slow_speed',new sfWidgetFormInputCheckbox());
-	$this->setWidget('sound_field',new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[1])));
-	$this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
-
-	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
-  }
+	public function configure() {
+		parent::configure();
+		$this->setWidget('tape_type',new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[0])));
+		$this->setWidget('thin_tape',new sfWidgetFormInputCheckbox());
+		$this->setWidget('slow_speed',new sfWidgetFormInputCheckbox());
+		$this->setWidget('sound_field',new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[1])));
+		$this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+		$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
+	}
 }

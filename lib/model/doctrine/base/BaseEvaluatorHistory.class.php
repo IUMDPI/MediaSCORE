@@ -40,9 +40,11 @@ abstract class BaseEvaluatorHistory extends sfDoctrineRecord
         $this->setTableName('evaluator_history');
         $this->hasColumn('type', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('evaluator_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('asset_group_id', 'integer', null, array(
              'type' => 'integer',

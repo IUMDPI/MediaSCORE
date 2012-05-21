@@ -11,7 +11,7 @@ User: # Abstract
     #password:     { type: string(255), notnull: true }
     #email:        { type: string(255) }
     phone:        { type: string(255) }
-    role:         { type: string(255) }
+    role:         { type: string(255), notnull: true }
 
 Evaluator:
   inheritance:
@@ -38,7 +38,7 @@ Store: # Abstract
   actAs: { Timestampable: ~ }
   columns:
     name:         { type: string(255), notnull: true }
-    inst_id:      { type: string(255) } # The institutional ID - can be modified from the UI
+    inst_id:      { type: string(255), notnull: true } # The institutional ID - can be modified from the UI
     notes:        { type: text }
     creator_id:      { type: integer } # NOTNULL
     #last_updated: { type: datetime }
@@ -114,6 +114,7 @@ StorageLocation:
   actAs: { Timestampable: ~ }
   columns:
     name: { type: string(255), notnull: true }
+    resident_structure_description: { type: text, notnull: true }
     env_rating: { type: integer }
   relations:
     Units: { class: Unit, local: storage_location_id, foreign: unit_id, refClass:UnitStorageLocation }
@@ -122,9 +123,9 @@ StorageLocation:
 EvaluatorHistory:
   #actAs: { Timestampable: ~ }
   columns:
-    type: { type: integer }
+    type: { type: integer, notnull: true }
     # date_committed: { type: timestamp }
-    evaluator_id: { type: integer }
+    evaluator_id: { type: integer, notnull: true }
     #personnel: { type: integer }
     asset_group_id: { type: integer } # AssetGroup
     updated_at: { type: date }
@@ -146,15 +147,15 @@ EvaluatorHistoryPersonnel: # For the many-to-many relationship between Evaluator
 FormatType:
   actAs: { Timestampable: ~ }
   columns:
-    quantity: { type: integer }
-    generation: { type: integer }
-    year_recorded: { type: string(255) }
+    quantity: { type: integer, notnull: true }
+    generation: { type: integer, notnull: true }
+    year_recorded: { type: string(255), notnull: true }
     copies: { type: boolean }
     stock_brand: { type: string(255) }
     off_brand: { type: boolean }
     fungus: { type: boolean }
     other_contaminants: { type: boolean }
-    duration: { type: integer }
+    duration: { type: integer, notnull: true }
     duration_type: { type: string(255) }
 
 # The Specific Format Types
@@ -167,8 +168,8 @@ MetalDisc:
     keyField: type
     keyValue: 1 # All are aggregated within the FormatType table
   columns:
-    material: { type: integer }
-    oxidationCorrosion: { type: boolean }
+    material: { type: integer, notnull: true }
+    oxidationCorrosion: { type: boolean, notnull: true }
 
 ReelCassetteFormatType: # Abstract
   inheritance:
@@ -190,7 +191,7 @@ AudiotapeFormatType: # Abstract
     keyField: type
     keyValue: 3 # All are aggregated within the FormatType table
   columns:
-    noise_reduction: { type: boolean }
+    noise_reduction: { type: boolean, notnull: true }
 
 AnalogAudiocassette:
   inheritance:
@@ -200,10 +201,10 @@ AnalogAudiocassette:
     keyField: type
     keyValue: 4 # All are aggregated within the FormatType table
   columns:
-    tape_type: { type: integer }
+    tape_type: { type: integer, notnull: true }
     thin_tape: { type: boolean }
     slow_speed: { type: boolean }
-    sound_field: { type: integer }
+    sound_field: { type: integer, notnull: true }
     soft_binder_syndrome: { type: boolean }
 
 Film:
@@ -214,11 +215,11 @@ Film:
     keyField: type
     keyValue: 5 # All are aggregated within the FormatType table
   columns:
-    gauge: { type: integer }
-    color: { type: boolean }
+    gauge: { type: integer, notnull: true }
+    color: { type: boolean, notnull: true }
     colorFade: { type: boolean }
     soundtrackFormat: { type: integer }
-    substrate: { type: integer }
+    substrate: { type: integer, notnull: true }
     strongOdor: { type: boolean }
     vinegarOdor: { type: boolean }
     ADStripLevel: { type: integer }
@@ -261,9 +262,9 @@ OpenReelAudioTapeFormatType: # Abstract
     keyField: type
     keyValue: 8 # All are aggregated within the FormatType table
   columns:
-    trackConfiguration: { type: integer }
+    trackConfiguration: { type: integer, notnull: true }
     tapeThickness: { type: integer }
-    speed: { type: integer }
+    speed: { type: integer, notnull: true }
     softBinderSyndrome: { type: integer }
 
 OpenReelAudiotapePolyster:
@@ -331,7 +332,7 @@ LacquerDisc:
     keyField: type
     keyValue: 15 # All are aggregated within the FormatType table
   columns:
-    substrate: { type: integer }
+    substrate: { type: integer, notnull: true }
     delamination: { type: boolean }
     plasticizerExudation: { type: boolean }
 
@@ -343,8 +344,8 @@ MiniDisc:
     keyField: type
     keyValue: 16 # All are aggregated within the FormatType table
   columns:
-    recordingLayer: { type: integer }
-    recordingSpeed: { type: integer }
+    recordingLayer: { type: integer, notnull: true }
+    recordingSpeed: { type: integer, notnull: true }
 
 Cylinder:
   inheritance:
@@ -354,7 +355,7 @@ Cylinder:
     keyField: type
     keyValue: 17 # All are aggregated within the FormatType table
   columns:
-    cylinderType: { type: integer }
+    cylinderType: { type: integer, notnull: true }
 
 OpticalDiscFormatType: # Abstract
   inheritance:
@@ -364,11 +365,11 @@ OpticalDiscFormatType: # Abstract
     keyField: type
     keyValue: 18 # All are aggregated within the FormatType table
   columns:
-    reflectiveLayer: { type: integer }
-    dataLayer: { type: integer }
-    opticalDiscType: { type: integer }
+    reflectiveLayer: { type: integer, notnull: true }
+    dataLayer: { type: integer, notnull: true }
+    opticalDiscType: { type: integer, notnull: true }
 
-SoundOpticalDisk:
+SoundOpticalDisc:
   inheritance:
     extends: OpticalDiscFormatType
     #type: concrete
@@ -385,7 +386,7 @@ OpticalVideo:
     keyField: type
     keyValue: 20 # All are aggregated within the FormatType table
   columns:
-    format: { type: integer }
+    format: { type: integer, notnull: true }
 
 PressedAudioDiscFormatType: # Abstract
   inheritance:
@@ -431,7 +432,7 @@ StandardizedRecordingFormatType: # Abstract
     keyField: type
     keyValue: 25 # All are aggregated within the FormatType table
   columns:
-    recordingStandard: { type: integer }
+    recordingStandard: { type: integer, notnull: true }
 
 Laserdisc:
   inheritance:
@@ -441,8 +442,8 @@ Laserdisc:
     keyField: type
     keyValue: 26 # All are aggregated within the FormatType table
   columns:
-    recordingSpeed: { type: integer }
-    publicationYear: { type: timestamp }
+    recordingSpeed: { type: integer, notnull: true }
+    publicationYear: { type: date, notnull: true }
 
 XDCamOptical:
   inheritance:
@@ -452,10 +453,10 @@ XDCamOptical:
     keyField: type
     keyValue: 27 # All are aggregated within the FormatType table
   columns:
-    format: { type: integer }
-    capacityLayers: { type: integer }
-    codec: { type: integer }
-    dataRate: { type: integer }
+    format: { type: integer, notnull: true }
+    capacityLayers: { type: integer, notnull: true }
+    codec: { type: integer, notnull: true }
+    dataRate: { type: integer, notnull: true }
 
 VideoRecordingFormatType: # Abstract
   inheritance:
@@ -465,7 +466,7 @@ VideoRecordingFormatType: # Abstract
     keyField: type
     keyValue: 28 # All are aggregated within the FormatType table
   columns:
-    recordingStandard: { type: integer }
+    recordingStandard: { type: integer, notnull: true }
     sheddingSoftBinder: { type: boolean }
 
 Betamax:
@@ -476,8 +477,8 @@ Betamax:
     keyField: type
     keyValue: 29 # All are aggregated within the FormatType table
   columns:
-    formatVersion: { type: integer }
-    oxide: { type: integer }
+    formatVersion: { type: integer, notnull: true }
+    oxide: { type: integer, notnull: true }
 
 ReelVideoRecordingFormatType: # Abstract
   inheritance:
@@ -487,7 +488,7 @@ ReelVideoRecordingFormatType: # Abstract
     keyField: type
     keyValue: 30 # All are aggregated within the FormatType table
   columns:
-    format: { type: integer }
+    format: { type: integer, notnull: true }
 
 EightMM:
   inheritance:
@@ -497,8 +498,8 @@ EightMM:
     keyField: type
     keyValue: 31 # All are aggregated within the FormatType table
   columns:
-    recordingSpeed: { type: integer }
-    binderSystem: { type: boolean }
+    recordingSpeed: { type: integer, notnull: true }
+    binderSystem: { type: boolean, notnull: true }
 
 OpenReelVideoFormatType: # Abstract
   inheritance:
@@ -508,7 +509,7 @@ OpenReelVideoFormatType: # Abstract
     keyField: type
     keyValue: 32 # All are aggregated within the FormatType table
   columns:
-    reelSize: { type: integer }
+    reelSize: { type: integer, notnull: true }
 
 TwoInchOpenReelVideo:
   inheritance:
@@ -546,7 +547,7 @@ SizedVideoRecordingFormatType: # Abstract
     keyField: type
     keyValue: 36 # All are aggregated within the FormatType table
   columns:
-    size: { type: boolean }
+    size: { type: boolean, notnull: true }
 
 DV:
   inheritance:
@@ -556,7 +557,7 @@ DV:
     keyField: type
     keyValue: 37 # All are aggregated within the FormatType table
   columns:
-    recordingSpeed: { type: integer }
+    recordingSpeed: { type: integer, notnull: true }
 
 DVCam:
   inheritance:
@@ -575,7 +576,7 @@ FormatTypedVideoRecording: # Abstract
     keyField: type
     keyValue: 39 # All are aggregated within the FormatType table
   columns:
-    formatTypedVideoRecordingFormat: { type: integer }
+    formatTypedVideoRecordingFormat: { type: integer, notnull: true }
 
 Betacam:
   inheritance:
@@ -594,7 +595,7 @@ VHS:
     keyField: type
     keyValue: 41 # All are aggregated within the FormatType table
   columns:
-    recordingSpeed: { type: integer }
+    recordingSpeed: { type: integer, notnull: true }
 
 DigitalBetacam:
   inheritance:
@@ -614,7 +615,7 @@ FormatVersionedVideoRecordingType: # Abstract
     keyField: type
     keyValue: 43 # All are aggregated within the FormatType table
   columns:
-    formatVersion: { type: integer }
+    formatVersion: { type: integer, notnull: true }
 
 Umatic:
   inheritance:
@@ -633,8 +634,8 @@ HDCam:
     keyField: type
     keyValue: 45 # All are aggregated within the FormatType table
   columns:
-    speed: { type: integer }
-    scanning: { type: integer }
+    speed: { type: integer, notnull: true }
+    scanning: { type: integer, notnull: true }
 
 DVCPro:
   inheritance:
@@ -644,5 +645,5 @@ DVCPro:
     keyField: type
     keyValue: 46 # All are aggregated within the FormatType table
   columns:
-    recordingSpeed: { type: integer }
+    recordingSpeed: { type: integer, notnull: true }
 

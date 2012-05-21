@@ -25,8 +25,8 @@ abstract class BaseEvaluatorHistoryForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'type'                     => new sfValidatorInteger(array('required' => false)),
-      'evaluator_id'             => new sfValidatorInteger(array('required' => false)),
+      'type'                     => new sfValidatorInteger(),
+      'evaluator_id'             => new sfValidatorInteger(),
       'asset_group_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'required' => false)),
       'updated_at'               => new sfValidatorDate(array('required' => false)),
       'consulted_personnel_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false)),

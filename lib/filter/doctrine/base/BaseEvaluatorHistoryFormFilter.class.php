@@ -13,8 +13,8 @@ abstract class BaseEvaluatorHistoryFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'type'                     => new sfWidgetFormFilterInput(),
-      'evaluator_id'             => new sfWidgetFormFilterInput(),
+      'type'                     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'evaluator_id'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'asset_group_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
       'updated_at'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'consulted_personnel_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),

@@ -16,6 +16,12 @@
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
 Evaluator:
+  admin:
+    first_name: Administrator
+    password: pass
+    email_address: james@avpreserve.edu
+    username: admin
+
   john_doe:
     first_name: John
     last_name: Doe
@@ -80,41 +86,56 @@ Person:
 Unit:
   music_library:
     name: Music Library
-    creator_id: 1
+    creator_id: 2
+    last_editor_id: 2
 
   history_department:
     name: History Department
-    creator_id: 2
+    creator_id: 3
+    last_editor_id: 3
 
   economics_building:
     name: Economics Building
-    creator_id: 3
+    creator_id: 4
+    last_editor_id: 4
 
 Collection:
   johnson_collection:
     name: Johnson Collection
-    creator_id: 1
+    creator_id: 2
+    last_editor_id: 2
+    parent_node_id: 1
 
   richardson_collection:
     name: Richardson Collection
-    creator_id: 2
+    creator_id: 3
+    last_editor_id: 3
+    parent_node_id: 1
 
   mcally_collection:
     name: McAlly Collection
-    creator_id: 3
+    creator_id: 4
+    last_editor_id: 4
+    parent_node_id: 1
 
 AssetGroup:
   asset_group_one:
     name: Asset Group One
-    creator_id: 1
+    creator_id: 2
+    last_editor_id: 2
+    parent_node_id: 4
 
   asset_group_two:
     name: Asset Group Two
-    creator_id: 2
+    creator_id: 3
+    last_editor_id: 3
+    parent_node_id: 4
 
   asset_group_three:
     name: Asset Group Three
-    creator_id: 3
+    creator_id: 4
+    last_editor_id: 4
+    parent_node_id: 4
 
 StorageLocation:
   storage_location_one:

@@ -66,6 +66,7 @@ abstract class BaseStore extends sfDoctrineRecord
              ));
         $this->hasColumn('inst_id', 'string', 255, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('notes', 'text', null, array(

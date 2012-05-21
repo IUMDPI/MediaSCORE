@@ -15,23 +15,25 @@ abstract class BaseStorageLocationForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'               => new sfWidgetFormInputHidden(),
-      'name'             => new sfWidgetFormInputText(),
-      'env_rating'       => new sfWidgetFormInputText(),
-      'created_at'       => new sfWidgetFormDateTime(),
-      'updated_at'       => new sfWidgetFormDateTime(),
-      'units_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Unit')),
-      'collections_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Collection')),
+      'id'                             => new sfWidgetFormInputHidden(),
+      'name'                           => new sfWidgetFormInputText(),
+      'resident_structure_description' => new sfWidgetFormInputText(),
+      'env_rating'                     => new sfWidgetFormInputText(),
+      'created_at'                     => new sfWidgetFormDateTime(),
+      'updated_at'                     => new sfWidgetFormDateTime(),
+      'units_list'                     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Unit')),
+      'collections_list'               => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Collection')),
     ));
 
     $this->setValidators(array(
-      'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'             => new sfValidatorString(array('max_length' => 255)),
-      'env_rating'       => new sfValidatorInteger(array('required' => false)),
-      'created_at'       => new sfValidatorDateTime(),
-      'updated_at'       => new sfValidatorDateTime(),
-      'units_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Unit', 'required' => false)),
-      'collections_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Collection', 'required' => false)),
+      'id'                             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'                           => new sfValidatorString(array('max_length' => 255)),
+      'resident_structure_description' => new sfValidatorPass(),
+      'env_rating'                     => new sfValidatorInteger(array('required' => false)),
+      'created_at'                     => new sfValidatorDateTime(),
+      'updated_at'                     => new sfValidatorDateTime(),
+      'units_list'                     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Unit', 'required' => false)),
+      'collections_list'               => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Collection', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('storage_location[%s]');

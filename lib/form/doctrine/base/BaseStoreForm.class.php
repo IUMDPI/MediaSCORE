@@ -34,7 +34,7 @@ abstract class BaseStoreForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'                           => new sfValidatorString(array('max_length' => 255)),
-      'inst_id'                        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'inst_id'                        => new sfValidatorString(array('max_length' => 255)),
       'notes'                          => new sfValidatorPass(array('required' => false)),
       'creator_id'                     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'last_editor_id'                 => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Editor'), 'required' => false)),
