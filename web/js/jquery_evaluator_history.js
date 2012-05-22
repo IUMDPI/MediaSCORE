@@ -115,9 +115,10 @@ $('document').ready(function () {
 			if(actionName == 'update') {
 				//console.log( $('#format-type-container input[id$="_id"]').val() );
 				urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
-			} else if (! $('#asset_group_format_id').val() ) {
+			} else if ( $('#asset_group_format_id').prop('selectedIndex') == -1 ) {
 				alert('(To be replaced with a Modal) Please choose a format type.');
 			} else {
+				alert('trace');
 
 				//$.post(
 				$.ajax({
@@ -126,7 +127,7 @@ $('document').ready(function () {
 					data: $('#format-type-container').children('form').serialize(),
 					success: function(data,textStatus) {
 
-						formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
+						//formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
 						if(formatTypeModelID)
 							$('#asset_group_format_id').val(formatTypeModelID);
 						//console.log(formatTypeModelID);

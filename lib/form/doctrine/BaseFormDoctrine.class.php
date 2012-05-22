@@ -10,6 +10,20 @@
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {
+	public function render($attributes = array()) {
+
+		foreach($this as $field) {
+
+			if( $this->getValidator($field->getName())->getOption('required') ) {
+				$field->getWidget()->setAttribute('class',
+									'required '.$field->getWidget()->getAttribute('class'));
+			}
+		}
+
+	return parent::render($attributes);
+	}
+
+
   public function setup()
   {
 	// 04/27/12
@@ -17,8 +31,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 	  $this->getValidatorSchema()->setOptions( array(
 		  'allow_extra_fields' => true,
 		  'filter_extra_fields' => false
-					));
-
+	  ));
 
   }
 }

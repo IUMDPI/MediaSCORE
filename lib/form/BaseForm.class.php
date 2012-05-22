@@ -10,4 +10,16 @@
  */
 class BaseForm extends sfFormSymfony
 {
+
+	/*public function configure() {
+
+		foreach( $this->widgetSchema as $fieldName => $widget ) {
+			echo $fieldName;
+			exit();
+			if( $this->getValidator($fieldName)->getOption('required') ) {
+				$widget->setAttribute('class','required');
+			}
+		}
+
+	}*/
 }

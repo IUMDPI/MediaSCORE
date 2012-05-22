@@ -11,6 +11,8 @@
 class UnitForm extends BaseUnitForm {
 
 	public function configure() {
+		parent::configure();
+
 		//$this->setWidget('notes',new sfWidgetFormTextarea());
 		$this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
 

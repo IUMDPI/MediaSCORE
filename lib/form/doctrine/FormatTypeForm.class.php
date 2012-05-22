@@ -11,6 +11,8 @@
 class FormatTypeForm extends BaseFormatTypeForm
 {
 
+
+
 	public function configure() {
 
 		foreach( array(	'material',
