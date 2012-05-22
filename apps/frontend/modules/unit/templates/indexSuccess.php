@@ -1,6 +1,36 @@
 
 <a class="button" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
-
+<div id="search-box">
+    <form>
+        <div class="search-input">
+<!--            <div class="token">Token One<span> <a href="#">X</a></span></div>
+          <div class="token">Token One<span> <a href="#">X</a></span></div>-->
+            <input type="search" placeholder="Search all records"/>
+            <div class="container">
+                <a class="search-triangle" href="#"></a>
+                <!--              <a class="search-close" href="#"></a>-->
+            </div>
+            <input class="button" type="submit" value="" />
+            <!--            <div class="dropdown-container">
+                          <div class="dropdown clearfix Xhidden">  toggle class "hidden" to show/hide 
+                            <ul class="left-column">
+                              <li><h1>Format</h1></li>
+                              <li><a href="#">Format One</a></li>
+                              <li><a href="#">Format Two</a></li>
+                              <li><a href="#">Format Three</a></li>
+                              <li><a href="#">Format Four</a></li>
+                            </ul>
+                            <ul class="right-column">
+                              <li><h1>Type</h1></li>
+                              <li><a href="#">Unit</a></li>
+                              <li><a href="#">Collection</a></li>
+                              <li><a href="#">Asset Group</a></li>
+                            </ul>
+                          </div>
+                        </div>-->
+        </div>
+    </form>
+</div>
 <table>
   <thead>
     <tr>

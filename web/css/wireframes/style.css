@@ -421,3 +421,5 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+.login-field{ margin-left: 10px;}
+.select_field{min-width: 145px;}
