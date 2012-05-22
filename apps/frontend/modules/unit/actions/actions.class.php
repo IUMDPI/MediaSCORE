@@ -123,7 +123,8 @@ class unitActions extends sfActions
 		$this->form = new UnitForm(
 						$unit,
 						array(
-							'userID' => $this->getUser()->getGuardUser()->getId()
+							'userID' => $this->getUser()->getGuardUser()->getId(),
+							'action' => 'edit'
 						));
 	}
 

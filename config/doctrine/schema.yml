@@ -63,11 +63,37 @@ UnitStorageLocation:
   columns:
     unit_id: { type: integer, primary: true }
     storage_location_id: { type: integer, primary: true }
+  relations:
+    Unit:
+      local: unit_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    StorageLocation:
+      local: storage_location_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
 
 UnitPerson:
   columns:
     unit_id: { type: integer, primary: true }
     person_id: { type: integer, primary: true }
+  relations:
+    Unit:
+      local: unit_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    Person:
+      local: person_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
 
 SubUnit: # Abstract
   inheritance:
@@ -95,6 +121,19 @@ CollectionStorageLocation:
   columns:
     collection_id: { type: integer, primary: true }
     storage_location_id: { type: integer, primary: true }
+  relations:
+    Collection:
+      local: collection_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    StorageLocation:
+      local: storage_location_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
 
 AssetGroup:
   inheritance:
@@ -130,7 +169,7 @@ EvaluatorHistory:
     asset_group_id: { type: integer } # AssetGroup
     updated_at: { type: date }
   relations:
-    Evaluator: { class: myUser, local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
+    Evaluator: { class: sfGuardUser, local: evaluator_id, foreign: id, foreignAlias: HistoryInstances }
     consultedPersonnel: { class: Person, local: evaluator_history_id, foreign: person_id, refClass: EvaluatorHistoryPersonnel, foreignAlias: consultedForAssetGroups }
     Store: { local: asset_group_id, foreign: id, foreignAlias: EvaluatorActions } # Inheritance related problem
 
@@ -138,6 +177,20 @@ EvaluatorHistoryPersonnel: # For the many-to-many relationship between Evaluator
   columns:
     evaluator_history_id: { type: integer }
     person_id: { type: integer }
+  relations:
+    EvaluatorHistory:
+      local: evaluator_history_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    Person:
+      local: person_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
+      onUpdate: CASCADE
+
 #  relations:
 #    EvaluatorHistory: { foreignAlias: Personnel }
 #    Person: { foreignAlias: EvaluatorHistoryInstances }

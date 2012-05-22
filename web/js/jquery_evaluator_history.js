@@ -101,6 +101,7 @@ $('document').ready(function () {
 		});
 
 		$('#asset-group-save').click(function(event) {
+
 			//console.log('trace');
 			event.preventDefault();
 
@@ -114,26 +115,29 @@ $('document').ready(function () {
 			if(actionName == 'update') {
 				//console.log( $('#format-type-container input[id$="_id"]').val() );
 				urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
+			} else if (! $('#asset_group_format_id').val() ) {
+				alert('(To be replaced with a Modal) Please choose a format type.');
+			} else {
+
+				//$.post(
+				$.ajax({
+					type: 'POST',
+					url: appBaseURL+$('#format-type-model-name').val()+'/'+actionName+urlSuffix,
+					data: $('#format-type-container').children('form').serialize(),
+					success: function(data,textStatus) {
+
+						formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
+						if(formatTypeModelID)
+							$('#asset_group_format_id').val(formatTypeModelID);
+						//console.log(formatTypeModelID);
+						$('#asset-group-form').submit();
+					},
+					error: function(data,textStatus,errorThrown) {
+						alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
+						$('body').html(data['responseText']);
+					}
+				});
 			}
-
-			//$.post(
-			$.ajax({
-				type: 'POST',
-				url: appBaseURL+$('#format-type-model-name').val()+'/'+actionName+urlSuffix,
-				data: $('#format-type-container').children('form').serialize(),
-				success: function(data,textStatus) {
-
-					formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
-					if(formatTypeModelID)
-						$('#asset_group_format_id').val(formatTypeModelID);
-					//console.log(formatTypeModelID);
-					$('#asset-group-form').submit();
-				},
-				error: function(data,textStatus,errorThrown) {
-					alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
-					$('body').html(data['responseText']);
-				}
-			});
 		});
 
 		// For the FormatType Models //

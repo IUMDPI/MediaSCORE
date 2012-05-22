@@ -8,13 +8,17 @@
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class UnitForm extends BaseUnitForm
-{
-  public function configure()
-  {
-	  //$this->setWidget('notes',new sfWidgetFormTextarea());
-	$this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
-	$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
+class UnitForm extends BaseUnitForm {
+
+	public function configure() {
+		//$this->setWidget('notes',new sfWidgetFormTextarea());
+		$this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
+
+		$voidFields = array( 'storage_location_id','parent_node_id','status','location','format_id','created_at','updated_at','unit_personnel'  );
+		if( $this->getOption('action') == 'edit' )
+			$voidFields[] = 'creator_id';
+		else
+			$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 
 	$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 
@@ -29,7 +33,7 @@ class UnitForm extends BaseUnitForm
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => 1)));
 
-	foreach( array('storage_location_id','parent_node_id','status','location','format_id','created_at','updated_at','unit_personnel') as $voidField) {
+	foreach( $voidFields as $voidField) {
 		unset($this->widgetSchema[$voidField]);
 		unset($this->validatorSchema[$voidField]);
 	}

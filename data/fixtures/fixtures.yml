@@ -99,6 +99,11 @@ Unit:
     creator_id: 4
     last_editor_id: 4
 
+UnitStorageLocation:
+  music_library:
+    unit_id: 1
+    storage_location_id: 1
+
 Collection:
   johnson_collection:
     name: Johnson Collection
@@ -117,6 +122,11 @@ Collection:
     creator_id: 4
     last_editor_id: 4
     parent_node_id: 1
+
+CollectionStorageLocation:
+  johnson_collection:
+    collection_id: 4
+    storage_location_id: 1
 
 AssetGroup:
   asset_group_one:

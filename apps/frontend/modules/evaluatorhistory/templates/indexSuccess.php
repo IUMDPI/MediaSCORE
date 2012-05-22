@@ -15,7 +15,7 @@
     <tr>
       <td><?php echo EvaluatorHistory::$actions[$evaluator_history->getType()] ?></td>
       <td><?php echo $evaluator_history->getUpdatedAt() ?></td>
-      <td><!--05/05/12: Not yet fully debugged.--><?php $evaluator_history->getEvaluator() ?>
+      <td><!--05/05/12: Not yet fully debugged.--><?php $evaluator_history->getEvaluator()->getName() ?>
 <?php
 /*if($evaluators[$evaluator_history->getEvaluatorId()]) {
 	$evaluator=$evaluators[$evaluator_history->getEvaluatorId()];

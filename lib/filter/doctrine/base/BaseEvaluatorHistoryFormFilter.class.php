@@ -14,7 +14,7 @@ abstract class BaseEvaluatorHistoryFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'type'                     => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'evaluator_id'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'evaluator_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Evaluator'), 'add_empty' => true)),
       'asset_group_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
       'updated_at'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'consulted_personnel_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),
@@ -22,7 +22,7 @@ abstract class BaseEvaluatorHistoryFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'type'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'evaluator_id'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'evaluator_id'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Evaluator'), 'column' => 'id')),
       'asset_group_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Store'), 'column' => 'id')),
       'updated_at'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'consulted_personnel_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Person', 'required' => false)),
@@ -65,7 +65,7 @@ abstract class BaseEvaluatorHistoryFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                       => 'Number',
       'type'                     => 'Number',
-      'evaluator_id'             => 'Number',
+      'evaluator_id'             => 'ForeignKey',
       'asset_group_id'           => 'ForeignKey',
       'updated_at'               => 'Date',
       'consulted_personnel_list' => 'ManyKey',

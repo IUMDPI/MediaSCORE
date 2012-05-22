@@ -28,6 +28,7 @@
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $createdUnits
  * @property Doctrine_Collection $editedUnits
+ * @property Doctrine_Collection $HistoryInstances
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -52,6 +53,7 @@
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCreatedUnits()          Returns the current record's "createdUnits" collection
  * @method Doctrine_Collection   getEditedUnits()           Returns the current record's "editedUnits" collection
+ * @method Doctrine_Collection   getHistoryInstances()      Returns the current record's "HistoryInstances" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -75,6 +77,7 @@
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCreatedUnits()          Sets the current record's "createdUnits" collection
  * @method sfGuardUser           setEditedUnits()           Sets the current record's "editedUnits" collection
+ * @method sfGuardUser           setHistoryInstances()      Sets the current record's "HistoryInstances" collection
  * 
  * @package    mediaSCORE
  * @subpackage model
@@ -210,6 +213,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('Store as editedUnits', array(
              'local' => 'id',
              'foreign' => 'last_editor_id'));
+
+        $this->hasMany('EvaluatorHistory as HistoryInstances', array(
+             'local' => 'id',
+             'foreign' => 'evaluator_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
