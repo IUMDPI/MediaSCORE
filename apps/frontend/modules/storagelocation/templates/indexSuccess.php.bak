@@ -1,0 +1,34 @@
+
+
+<!-- 05/05/12: include_javascripts() did not produce this in response to AJAX requests
+<script type="text/javascript" src="/symfony/mediascore1.0a/js/jquery_evaluator_history_index.js"></script>
+-->
+
+<?php echo include_javascripts() ?>
+
+<div>
+<span>Users</span>&nbsp;
+<span>Unit Personnel</span>&nbsp;
+<span><a href="">Storage Locations</a></span>&nbsp;
+<span>Edit Profile</span>
+</div>
+
+<div id="create-storage-location"><span><a id="new" class="modal" href ="<?php echo url_for('storagelocation/new') ?>">CREATE STORAGE LOCATION</a></span></div>
+<table>
+  <thead>
+    <tr>
+      <th>Storage Location</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($storage_locations as $storage_location): ?>
+    <tr>
+      <td><?php echo $storage_location->getName() ?></td>
+      <td><span><a id="modal-edit" class="edit" href="<?php echo url_for('storagelocation/edit?id='.$storage_location->getId()) ?>">edit</a>&nbsp;&#47;&nbsp;<a class="delete" href="<?php echo url_for('storagelocation/delete?id='.$storage_location->getId()) ?>
+">delete</a></span></td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+

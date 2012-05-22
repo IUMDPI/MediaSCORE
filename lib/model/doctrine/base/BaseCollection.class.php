@@ -23,6 +23,7 @@ abstract class BaseCollection extends SubUnit
         $this->hasMany('StorageLocation as StorageLocations', array(
              'refClass' => 'CollectionStorageLocation',
              'local' => 'collection_id',
-             'foreign' => 'storage_location_id'));
+             'foreign' => 'storage_location_id',
+             'onDelete' => 'CASCADE'));
     }
 }

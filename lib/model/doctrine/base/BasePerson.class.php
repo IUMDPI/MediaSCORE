@@ -26,11 +26,13 @@ abstract class BasePerson extends User
         $this->hasMany('Unit as Units', array(
              'refClass' => 'UnitPerson',
              'local' => 'person_id',
-             'foreign' => 'unit_id'));
+             'foreign' => 'unit_id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('EvaluatorHistory as consultationRecords', array(
              'refClass' => 'EvaluatorHistoryPersonnel',
              'local' => 'person_id',
-             'foreign' => 'evaluator_history_id'));
+             'foreign' => 'evaluator_history_id',
+             'onDelete' => 'CASCADE'));
     }
 }

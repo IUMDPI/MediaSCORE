@@ -29,12 +29,18 @@ abstract class BaseUnit extends Store
         $this->hasMany('StorageLocation as StorageLocations', array(
              'refClass' => 'UnitStorageLocation',
              'local' => 'unit_id',
-             'foreign' => 'storage_location_id'));
+             'foreign' => 'storage_location_id',
+             'cascade' => array(
+             0 => 'delete',
+             )));
 
         $this->hasMany('Person as Personnel', array(
              'refClass' => 'UnitPerson',
              'local' => 'unit_id',
-             'foreign' => 'person_id'));
+             'foreign' => 'person_id',
+             'cascade' => array(
+             0 => 'delete',
+             )));
 
         $this->hasOne('SubUnit as childNodes', array(
              'local' => 'id',

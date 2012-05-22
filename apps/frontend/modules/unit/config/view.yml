@@ -1,0 +1,5 @@
+
+newSuccess:
+  javascripts: [jquery_unit_form]
+editSuccess:
+  javascripts: [jquery_unit_form]

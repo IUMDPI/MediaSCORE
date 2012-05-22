@@ -1,0 +1,43 @@
+storage_location:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                StorageLocation
+    module:               storagelocation
+    prefix_path:          /storagelocation
+    column:               id
+    with_wildcard_routes: true
+
+person:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Person
+    module:               person
+    prefix_path:          /person
+    column:               id
+    with_wildcard_routes: true
+
+evaluator:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Evaluator
+    module:               evaluator
+    prefix_path:          /evaluator
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

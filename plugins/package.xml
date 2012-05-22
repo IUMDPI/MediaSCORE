@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.1" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfDoctrineGuardPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>Identity management plugin.</summary>
+ <description>Identity management plugin.</description>
+ <lead>
+  <name>Jonathan H. Wage</name>
+  <user>jwage</user>
+  <email>jonwage@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-07-19</date>
+ <time>14:53:29</time>
+ <version>
+  <release>5.0.0</release>
+  <api>5.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.org/license">MIT license</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="1e1e863cec0da68993bc532663c5638e" name="config/doctrine/schema.yml" role="data"/>
+   <file md5sum="81d92afa528553c3f38da3c60b9bf357" name="config/sfDoctrineGuardPluginConfiguration.class.php" role="data"/>
+   <file md5sum="d7bd75578a3f8ffb521796fadbc1ebb8" name="data/fixtures/fixtures.yml.sample" role="data"/>
+   <file md5sum="d41d8cd98f00b204e9800998ecf8427e" name="data/tasks/.sf" role="data"/>
+   <file md5sum="eae9165784c04bcdae72d5e74dd6b9b1" name="i18n/sf_guard.es.xml" role="data"/>
+   <file md5sum="39c685dbd7d1a9864d48db4245a69ddb" name="i18n/sf_guard.fr.xml" role="data"/>
+   <file md5sum="101f9bbcbaa267eafa15f02c4d50fc54" name="lib/filter/doctrine/PluginsfGuardGroupFormFilter.class.php" role="data"/>
+   <file md5sum="9810be787898c8f9e23420641eb1d91c" name="lib/filter/doctrine/PluginsfGuardPermissionFormFilter.class.php" role="data"/>
+   <file md5sum="43d9ab4ae113cb4b5b6737b5a2aae763" name="lib/filter/doctrine/PluginsfGuardUserFormFilter.class.php" role="data"/>
+   <file md5sum="3a10adde943bfeb3eb5bcb1cc145fe70" name="lib/form/base/BasesfGuardRequestForgotPasswordForm.class.php" role="data"/>
+   <file md5sum="e71a83f6ed37981097cc00401734b925" name="lib/form/doctrine/base/BasesfGuardChangeUserPasswordForm.class.php" role="data"/>
+   <file md5sum="d205d84240f6b2fc31378f1793f04298" name="lib/form/doctrine/base/BasesfGuardFormSignin.class.php" role="data"/>
+   <file md5sum="8b8f5788a0fbb0b457cfa326d0235ddf" name="lib/form/doctrine/base/BasesfGuardRegisterForm.class.php" role="data"/>
+   <file md5sum="a4f9bdda83e04edc0073a66491ab1ef8" name="lib/form/doctrine/base/BasesfGuardUserAdminForm.class.php" role="data"/>
+   <file md5sum="f83df81535416afbf4092de3a51fd4e9" name="lib/form/doctrine/PluginsfGuardGroupForm.class.php" role="data"/>
+   <file md5sum="b60af08f9d91c3b6199e9d09a0e084fc" name="lib/form/doctrine/PluginsfGuardPermissionForm.class.php" role="data"/>
+   <file md5sum="dec6cbe98b4758b5ba47e10136fc106f" name="lib/form/doctrine/PluginsfGuardUserForm.class.php" role="data"/>
+   <file md5sum="892f1fd6588784d3c38c135c4bd30116" name="lib/form/doctrine/sfGuardChangeUserPasswordForm.class.php" role="data"/>
+   <file md5sum="a1a2c0b155669573e6aed7ca6f6098dc" name="lib/form/doctrine/sfGuardFormSignin.class.php" role="data"/>
+   <file md5sum="43ebfe02b221f2759cc5ea7d416d4b8a" name="lib/form/doctrine/sfGuardRegisterForm.class.php" role="data"/>
+   <file md5sum="49e97a5348709571e3940f7ed36905fa" name="lib/form/doctrine/sfGuardUserAdminForm.class.php" role="data"/>
+   <file md5sum="3171d97a9ab8df439c35a235f67fca91" name="lib/form/sfGuardRequestForgotPasswordForm.class.php" role="data"/>
+   <file md5sum="3a724db11f5a98e1de7f40452d2284d4" name="lib/model/doctrine/PluginsfGuardForgotPassword.class.php" role="data"/>
+   <file md5sum="37a5a5fb5e51a0b7455e70d9dc73466f" name="lib/model/doctrine/PluginsfGuardForgotPasswordTable.class.php" role="data"/>
+   <file md5sum="64b14ecc66b82c50e60dbb9ff6866ea6" name="lib/model/doctrine/PluginsfGuardGroup.class.php" role="data"/>
+   <file md5sum="58656139612d55d1a9e9f01bcc210a93" name="lib/model/doctrine/PluginsfGuardGroupPermission.class.php" role="data"/>
+   <file md5sum="b067424d471a792d14a0736ad9b69267" name="lib/model/doctrine/PluginsfGuardGroupPermissionTable.class.php" role="data"/>
+   <file md5sum="faaf250974d45ae0a6746dd8fe39b41a" name="lib/model/doctrine/PluginsfGuardGroupTable.class.php" role="data"/>
+   <file md5sum="03227aa1ccc859bfac39282075c82b50" name="lib/model/doctrine/PluginsfGuardPermission.class.php" role="data"/>
+   <file md5sum="4aadf5fe3aac9833c152bc9e96b0d339" name="lib/model/doctrine/PluginsfGuardPermissionTable.class.php" role="data"/>
+   <file md5sum="640fc203c8776a8da9cc4649c6334e9e" name="lib/model/doctrine/PluginsfGuardRememberKey.class.php" role="data"/>
+   <file md5sum="08f4cfa0b834e4400b58a9bd87d7ef7a" name="lib/model/doctrine/PluginsfGuardRememberKeyTable.class.php" role="data"/>
+   <file md5sum="ba9d93d7149b1bdc2890a56a16f60293" name="lib/model/doctrine/PluginsfGuardUser.class.php" role="data"/>
+   <file md5sum="eb43e1094c9a78533d74023ecdc8bae8" name="lib/model/doctrine/PluginsfGuardUserGroup.class.php" role="data"/>
+   <file md5sum="3862105ec9ad46883643ce14c04f5975" name="lib/model/doctrine/PluginsfGuardUserGroupTable.class.php" role="data"/>
+   <file md5sum="66c6ef042084bc15a55b7c3dd4c9cded" name="lib/model/doctrine/PluginsfGuardUserPermission.class.php" role="data"/>
+   <file md5sum="05c72e44d7c24d8c727d0ffd1efa399c" name="lib/model/doctrine/PluginsfGuardUserPermissionTable.class.php" role="data"/>
+   <file md5sum="636dce921ed61e82275b4ab5f6480d82" name="lib/model/doctrine/PluginsfGuardUserTable.class.php" role="data"/>
+   <file md5sum="ec3b271c89d97aea3c884e01ce67da00" name="lib/routing/sfGuardRouting.class.php" role="data"/>
+   <file md5sum="8ac0f14217d6ea19583b70cc11345684" name="lib/task/sfGuardAddGroupTask.class.php" role="data"/>
+   <file md5sum="fce4cf0c40ca65cdddd628383833b4ff" name="lib/task/sfGuardAddPermissionTask.class.php" role="data"/>
+   <file md5sum="b84848068c92c6be432da37a9829abd7" name="lib/task/sfGuardChangePasswordTask.class.php" role="data"/>
+   <file md5sum="839473d3f405c32a6b62e0fef0878074" name="lib/task/sfGuardCreateUserTask.class.php" role="data"/>
+   <file md5sum="7370ac4b0754437f31be4cd795648fc4" name="lib/task/sfGuardPromoteSuperAdminTask.class.php" role="data"/>
+   <file md5sum="41af2bfc8019a765beebe6e71f917dcb" name="lib/user/sfGuardSecurityUser.class.php" role="data"/>
+   <file md5sum="53af4ec674e47854c1de2f79ed2af69b" name="lib/validator/sfGuardValidatorUser.class.php" role="data"/>
+   <file md5sum="02cfcd5083855bbfc0e3357d09b4df35" name="lib/sfGuardBasicSecurityFilter.class.php" role="data"/>
+   <file md5sum="0f1fb0b0a0b014e5f96ff5f3a2ac2412" name="lib/sfGuardRememberMeFilter.class.php" role="data"/>
+   <file md5sum="6767d8ae5de76c251ea19a6110b7de65" name="modules/sfGuardAuth/actions/actions.class.php" role="data"/>
+   <file md5sum="3fea9086bb4248adb377d3db342e3a35" name="modules/sfGuardAuth/actions/components.class.php" role="data"/>
+   <file md5sum="8c0ab1149735a8d00496a8b27893851e" name="modules/sfGuardAuth/config/security.yml" role="data"/>
+   <file md5sum="1c70f73287dc11ef189d18bd60387c6a" name="modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php" role="data"/>
+   <file md5sum="ca739f7e6ed78a85a714882b629b8406" name="modules/sfGuardAuth/lib/BasesfGuardAuthComponents.class.php" role="data"/>
+   <file md5sum="9323784112a0804b77871919d52bc0e4" name="modules/sfGuardAuth/templates/_signin_form.php" role="data"/>
+   <file md5sum="ec51f687facf22fa872a3931dd48a072" name="modules/sfGuardAuth/templates/secureSuccess.php" role="data"/>
+   <file md5sum="1b48abe9af3ec3baab033cd923287117" name="modules/sfGuardAuth/templates/signinSuccess.php" role="data"/>
+   <file md5sum="1f9d2555aa9a351e07af5164274a3749" name="modules/sfGuardForgotPassword/actions/actions.class.php" role="data"/>
+   <file md5sum="7efd7c997bb9f5479a9f2cfa9580bc90" name="modules/sfGuardForgotPassword/lib/BasesfGuardForgotPasswordActions.class.php" role="data"/>
+   <file md5sum="78132fe1bc18ae6099eb8e085f77ce9d" name="modules/sfGuardForgotPassword/templates/_new_password.php" role="data"/>
+   <file md5sum="b8b9ad164a9543fca4d40c3d83fbdf7a" name="modules/sfGuardForgotPassword/templates/_send_request.php" role="data"/>
+   <file md5sum="47b9a63ebceb052a694c880065d01a01" name="modules/sfGuardForgotPassword/templates/changeSuccess.php" role="data"/>
+   <file md5sum="2a2f9de843e803352d47916f0eba8fc8" name="modules/sfGuardForgotPassword/templates/indexSuccess.php" role="data"/>
+   <file md5sum="b171f3f79de6c421a0460d99f3c9b0db" name="modules/sfGuardGroup/actions/actions.class.php" role="data"/>
+   <file md5sum="6725392b1a39a49ad783babb103cae29" name="modules/sfGuardGroup/config/generator.yml" role="data"/>
+   <file md5sum="1767c775e59535c1a5de12861bc01c93" name="modules/sfGuardGroup/lib/sfGuardGroupGeneratorConfiguration.class.php" role="data"/>
+   <file md5sum="aabb03e32b750c57556a7765aafcb19f" name="modules/sfGuardGroup/lib/sfGuardGroupGeneratorHelper.class.php" role="data"/>
+   <file md5sum="c71c3e53cc2fc4082fdca8a81273041b" name="modules/sfGuardPermission/actions/actions.class.php" role="data"/>
+   <file md5sum="a650e8d6740b413d12be93e22c2133a2" name="modules/sfGuardPermission/config/generator.yml" role="data"/>
+   <file md5sum="35467b10c2d18e589d0a4fd88f53ddbd" name="modules/sfGuardPermission/lib/sfGuardPermissionGeneratorConfiguration.class.php" role="data"/>
+   <file md5sum="a1e2b8e7b9cddf9346910e47127a5ca3" name="modules/sfGuardPermission/lib/sfGuardPermissionGeneratorHelper.class.php" role="data"/>
+   <file md5sum="b2240cfa2a2c794f3c352a98c1f3e7b5" name="modules/sfGuardRegister/actions/actions.class.php" role="data"/>
+   <file md5sum="ef7ec011cad17d5418a137a7632197b1" name="modules/sfGuardRegister/actions/components.class.php" role="data"/>
+   <file md5sum="c7d11752dba2b4ab27d05b581e09f3a8" name="modules/sfGuardRegister/lib/BasesfGuardRegisterActions.class.php" role="data"/>
+   <file md5sum="f07711eda43f903d3e479a262365ade9" name="modules/sfGuardRegister/lib/BasesfGuardRegisterComponents.class.php" role="data"/>
+   <file md5sum="5877dd853d8dabf7cad587d485968c92" name="modules/sfGuardRegister/templates/_form.php" role="data"/>
+   <file md5sum="26836a9ade3a612e31ef90c876ea9282" name="modules/sfGuardRegister/templates/indexSuccess.php" role="data"/>
+   <file md5sum="579a6d952cc2d1fb0886fdc2c47dd68d" name="modules/sfGuardUser/actions/actions.class.php" role="data"/>
+   <file md5sum="a554c347acd82ff1eafab89f1cd550af" name="modules/sfGuardUser/config/generator.yml" role="data"/>
+   <file md5sum="86714dc18572a73f6c4b5e79a2af75a2" name="modules/sfGuardUser/lib/BasesfGuardUserActions.class.php" role="data"/>
+   <file md5sum="368e0a7898e83020de2d13abc64dea6f" name="modules/sfGuardUser/lib/sfGuardUserGeneratorConfiguration.class.php" role="data"/>
+   <file md5sum="8def28367455d5fb9f606c2e22b7330f" name="modules/sfGuardUser/lib/sfGuardUserGeneratorHelper.class.php" role="data"/>
+   <file md5sum="194577a7e20bdcc7afbb718f502c134c" name=".DS_Store" role="data"/>
+   <file md5sum="c0ab88a4687e9ff8e0fb6c95ca49ed74" name="LICENSE" role="data"/>
+   <file md5sum="e832ad7df536e4e23e58f9bb82fc624b" name="README" role="data"/>
+   <file md5sum="1ca890f6e4a90684c1e501d6913ac779" name="sfDoctrineGuardPlugin-5.0.0.tgz" role="data"/>
+   <file md5sum="c0879261b3ffe363f27a5d1a6bb5ffcd" name="VERSION" role="data"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   
+  </required>
+ </dependencies>
+ <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>5.0.0</release>
+    <api>5.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-07-19</date>
+   <notes>
+* jwage: packaged sfDoctrineGuardPlugin 5.0.0
+   </notes>
+  </release>
+ </changelog>
+</package>

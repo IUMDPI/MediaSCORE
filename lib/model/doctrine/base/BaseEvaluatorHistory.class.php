@@ -60,7 +60,8 @@ abstract class BaseEvaluatorHistory extends sfDoctrineRecord
         $this->hasMany('Person as consultedPersonnel', array(
              'refClass' => 'EvaluatorHistoryPersonnel',
              'local' => 'evaluator_history_id',
-             'foreign' => 'person_id'));
+             'foreign' => 'person_id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Store', array(
              'local' => 'asset_group_id',

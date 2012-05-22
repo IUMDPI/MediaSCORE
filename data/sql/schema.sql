@@ -28,7 +28,7 @@ ALTER TABLE collection_storage_location ADD CONSTRAINT collection_storage_locati
 ALTER TABLE evaluator_history ADD CONSTRAINT evaluator_history_asset_group_id_store_id FOREIGN KEY (asset_group_id) REFERENCES store(id);
 ALTER TABLE evaluator_history_personnel ADD CONSTRAINT evaluator_history_personnel_person_id_sf_guard_user_id FOREIGN KEY (person_id) REFERENCES sf_guard_user(id);
 ALTER TABLE evaluator_history_personnel ADD CONSTRAINT eeei FOREIGN KEY (evaluator_history_id) REFERENCES evaluator_history(id);
-ALTER TABLE unit_person ADD CONSTRAINT unit_person_unit_id_store_id FOREIGN KEY (unit_id) REFERENCES store(id);
+ALTER TABLE unit_person ADD CONSTRAINT unit_person_unit_id_store_id FOREIGN KEY (unit_id) REFERENCES store(id) ON DELETE CASCADE;
 ALTER TABLE unit_person ADD CONSTRAINT unit_person_person_id_sf_guard_user_id FOREIGN KEY (person_id) REFERENCES sf_guard_user(id);
 ALTER TABLE unit_storage_location ADD CONSTRAINT unit_storage_location_unit_id_store_id FOREIGN KEY (unit_id) REFERENCES store(id);
 ALTER TABLE unit_storage_location ADD CONSTRAINT unit_storage_location_storage_location_id_storage_location_id FOREIGN KEY (storage_location_id) REFERENCES storage_location(id);
