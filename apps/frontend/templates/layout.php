@@ -33,20 +33,20 @@
                     ?>
 
                     <div class="report"><a href="#"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></a></div>
-                    
+
                     <?php
                     if (($sf_context->getInstance()->getModuleName() == "storagelocation")) {
-                        echo '<div class="settings selected"><a href="'.url_for('storagelocation/index').'"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
+                        echo '<div class="settings selected"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
                     } else {
-                        echo '<div class="settings"><a href="'.url_for('storagelocation/index').'"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
+                        echo '<div class="settings"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
                     }
                     ?>
-                    
-<?php } else { ?>
+
+                <?php } else { ?>
                     <div class="assess"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>Assess</h2></div>
                     <div class="report"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></div>
                     <div class="settings"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></div>
-<?php } ?>
+                <?php } ?>
 
             </div>
         </nav>
@@ -55,7 +55,7 @@
 
         <div id="main-container">
             <div id="main" class="clearfix">
-<?php echo $sf_content ?>
+                <?php echo $sf_content ?>
             </div>
         </div>
 

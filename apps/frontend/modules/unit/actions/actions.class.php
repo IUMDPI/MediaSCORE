@@ -98,7 +98,7 @@ class unitActions extends sfActions
 
   public function executeNew(sfWebRequest $request) {
     //$this->form = new UnitForm();
-
+$this->setLayout('fancyLayout');
 	$this->form = new UnitForm(
 					null,
 					array(

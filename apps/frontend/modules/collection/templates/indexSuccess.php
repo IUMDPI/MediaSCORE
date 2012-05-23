@@ -79,7 +79,9 @@
                 <td class="invisible">
 
                     <div class="options">
-                        <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a><a href="<?php echo url_for('collection/delete?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                        <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                        <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                       
                     </div>
 
                 </td>
@@ -90,6 +92,20 @@
 </table>
 
 <script type="text/javascript">
+     $(document).ready(function() {
+       
+    
+        $(".delete_unit").fancybox({
+            'width': '100%',
+            'height': '100%',
+            'autoScale': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'type': 'inline',
+            'padding': 0
+           
+        });
+    });
     var filter=1;
     function filterToggle(){
         $('#filter').slideToggle();
@@ -106,3 +122,18 @@
             
     }
 </script>
+<div style="display: none;"> 
+    <div id="fancybox" style="background-color: #F4F4F4;width: 600px;" >
+        <header>
+            <h5  class="fancybox-heading">Warning!</h5>
+        </header>
+        <div style="margin: 10px;">
+            <h3>Careful!</h3>
+        </div>
+        <div style="margin: 10px;font-size: 0.8em;">
+            You are about to changes the format type which will erase any data you've entered.<br/>
+            Are you sureyou want to proceed and erase your entered data?
+        </div>
+        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('collection/delete?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>">YES</a></div>
+    </div>
+</div>

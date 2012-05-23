@@ -1,0 +1,10 @@
+.ui-widget{
+    font-size: 12px ! important;
+}
+.ui-multiselect-checkboxes{
+    min-height: 100px;
+}
+.fancybox-heading{
+
+    padding: 5px 10px;
+}
