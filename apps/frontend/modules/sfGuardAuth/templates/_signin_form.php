@@ -51,7 +51,8 @@
         $("#signin_unit").multiselect({
             'height':'auto',
             'minWidth':145,
-            'multiple':false
+            'multiple':false,
+            selectedList: 1 // 0-based index
             
         });
         $("#signin_storage_locations_list").multiselect({
@@ -61,7 +62,10 @@
         }).multiselectfilter();
         $('#signin_personnel_list').multiselect({
             'height':'auto',
-            'minWidth':145
+            'minWidth':145 // 0-based index
+
+   
+
         }).multiselectfilter();
         
     });

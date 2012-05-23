@@ -25,9 +25,9 @@ class mediaSCOREFormSignin extends sfGuardFormSignin {
         $this->getWidget('username')->setLabel('Email');
 
 
-        $this->setWidget('unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => 'Select'), array('class' => 'select_field')));
-        $this->setWidget('personnel_list', new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'method' => 'getFullName', 'add_empty' => 'Select'), array('class' => 'select_field')));
-        $this->setWidget('storage_locations_list', new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => 'Select'), array('class' => 'select_field')));
+        $this->setWidget('unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit'), array('class' => 'select_field')));
+        $this->setWidget('personnel_list', new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'method' => 'getFullName', 'multiple' => true), array('class' => 'select_field')));
+        $this->setWidget('storage_locations_list', new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'multiple' => true), array('class' => 'select_field')));
         $this->getWidget('personnel_list')->setLabel('Unit Personnel');
         $this->getWidget('storage_locations_list')->setLabel('Storage Location');
         foreach (array('remember') as $voidField) {
