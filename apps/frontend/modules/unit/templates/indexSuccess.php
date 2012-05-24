@@ -1,6 +1,6 @@
 
-<!--<a class="button" href="<?php // echo url_for('unit/new')        ?>">Create Unit</a>-->
-<a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
+<a class="button" href="<?php  echo url_for('unit/new')        ?>">Create Unit</a>
+<!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new') ?>">Create Unit</a>-->
 <div id="search-box">
     <form>
         <div class="search-input">
@@ -92,18 +92,19 @@
             'transitionIn': 'none',
             'transitionOut': 'none',
             'type': 'inline',
-            'padding': 0
+            'padding': 0,
+            'showCloseButton':false
            
         });
-        $(".create_new_unit").fancybox({
-            'width': '50%',
-            'height': '100%',
-            'autoScale': true,
-            'transitionIn': 'none',
-            'transitionOut': 'none',
-            'type': 'iframe',
-            'padding': 0
-        });
+//        $(".create_new_unit").fancybox({
+//            'width': '50%',
+//            'height': '100%',
+//            'autoScale': true,
+//            'transitionIn': 'none',
+//            'transitionOut': 'none',
+//            'type': 'iframe',
+//            'padding': 0
+//        });
     });
     
 </script>

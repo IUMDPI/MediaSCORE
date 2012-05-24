@@ -66,9 +66,9 @@ class collectionActions extends sfActions
 
 		$this->collections = Doctrine_Core::getTable('Collection')
 					->findBy('parent_node_id',$this->unitID);
-                                $this->filter=new CollectionFormFilter;
+//                                $this->filter=new CollectionFormFilter;
 					//->findAll();
-		//print_r($this->collections->toArray());
+//		print_r($this->collections->toArray());exit;
 	  }
   }
 
