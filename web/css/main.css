@@ -11,3 +11,6 @@
 .login-field{
     margin-left: 10px;
 } 
+.error_list{
+    float: right !important;
+}

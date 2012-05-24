@@ -69,7 +69,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($collections as $collection): ?>
+        <?php if(sizeof($collections)>0){foreach ($collections as $collection): ?>
             <tr>
                 <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
                 <td><?php echo $collection->getCreatedAt() ?></td>
@@ -87,7 +87,7 @@
                 </td>
 
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;} ?>
     </tbody>
 </table>
 
@@ -102,7 +102,8 @@
             'transitionIn': 'none',
             'transitionOut': 'none',
             'type': 'inline',
-            'padding': 0
+            'padding': 0,
+            'showCloseButton':false
            
         });
     });
@@ -122,6 +123,7 @@
             
     }
 </script>
+<?php if(sizeof($collections)>0){ ?>
 <div style="display: none;"> 
     <div id="fancybox" style="background-color: #F4F4F4;width: 600px;" >
         <header>
@@ -137,3 +139,4 @@
         <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('collection/delete?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>">YES</a></div>
     </div>
 </div>
+<?php } ?>

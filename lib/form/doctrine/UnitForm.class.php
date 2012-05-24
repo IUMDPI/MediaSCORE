@@ -10,34 +10,45 @@
  */
 class UnitForm extends BaseUnitForm {
 
-	public function configure() {
-		parent::configure();
+    public function configure() {
+        $this->setWidget('notes', new sfWidgetFormTextarea());
+        $this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
+//        $this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
 
-		//$this->setWidget('notes',new sfWidgetFormTextarea());
-		$this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
 
-		$voidFields = array( 'storage_location_id','parent_node_id','status','location','format_id','created_at','updated_at','unit_personnel'  );
-		if( $this->getOption('action') == 'edit' )
-			$voidFields[] = 'creator_id';
-		else
-			$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
+        $this->setWidget('notes', new sfWidgetFormTextarea());
+        $this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
 
-	$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
+        $voidFields = array('storage_location_id', 'parent_node_id', 'status', 'location', 'format_id', 'created_at', 'updated_at', 'unit_personnel');
+        if ($this->getOption('action') == 'edit')
+            $voidFields[] = 'creator_id';
+        else
+            $this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
 
-	$this->setWidget('resident_structure_description',new sfWidgetFormInputText(array('label' => 'Building Name and Room Number:&nbsp;')));
-	$this->setWidget('personnel_list',new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'add_empty' => false,'method' => 'getFullName','multiple' => true)));
-	
-	// Custom validators not developed yet
-	//unset($this->validatorSchema['storage_location']);
-	//unset($this->validatorSchema['personnel_list']);
+        $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
 
-	$this->getWidget('inst_id')->setLabel('ID:&nbsp;');
+        $this->setWidget('resident_structure_description', new sfWidgetFormInputText());
+        $this->setWidget('personnel_list', new sfWidgetFormDoctrineChoice(array('model' => 'Person', 'add_empty' => false, 'method' => 'getFullName', 'multiple' => true)));
 
-	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => 1)));
+        // Custom validators not developed yet
+        //unset($this->validatorSchema['storage_location']);
+        //unset($this->validatorSchema['personnel_list']);
 
-	foreach( $voidFields as $voidField) {
+        $this->getWidget('inst_id')->setLabel('ID:&nbsp;');
+        $this->getWidget('resident_structure_description')->setLabel('Building Name and Room Number:&nbsp;');
+        $this->getWidget('storage_locations_list')->setLabel('Storage Location:&nbsp;');
+        $this->getWidget('personnel_list')->setLabel('Unit Personnel:&nbsp;');
+
+        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
+        $this->getValidator('name')->setMessages(array('required' => 'Unit Name is required.',
+            'invalid' => 'Invalid Unit Name'));
+        $this->getValidator('inst_id')->setMessages(array('required' => 'ID is required.',
+            'inst_id' => 'Invalid ID'));
+        foreach( $voidFields as $voidField) {
 		unset($this->widgetSchema[$voidField]);
 		unset($this->validatorSchema[$voidField]);
 	}
-  }
+    }
+
 }
+
