@@ -19,3 +19,21 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+       
+        $("#collection_storage_locations_list").multiselect({
+            'height':'auto'
+            
+        }).multiselectfilter();
+        $('#collection_parent_node_id').multiselect({
+            'height':'auto',
+            'multiple':false
+        }).multiselectfilter();
+        $('#collection_status').multiselect({
+            'height':'auto',
+            'multiple':false
+        }).multiselectfilter();
+        
+    });
+</script>
