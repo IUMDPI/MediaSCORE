@@ -9,7 +9,7 @@
             <div class="container">
                 <a class="search-triangle" href="#"></a>
                 <!--              <a class="search-close" href="#"></a>-->
-            </div>
+            </div> 
             <input class="button" type="submit" value="" />
             <!--            <div class="dropdown-container">
                           <div class="dropdown clearfix Xhidden">  toggle class "hidden" to show/hide 

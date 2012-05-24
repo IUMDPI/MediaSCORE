@@ -265,7 +265,7 @@ abstract class sfRequest implements ArrayAccess
    * @return bool true, if the parameter exists otherwise false
    */
   public function hasParameter($name)
-  {
+  { 
     return $this->parameterHolder->has($name);
   }
 

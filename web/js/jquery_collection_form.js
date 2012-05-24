@@ -43,7 +43,7 @@ $(document).ready(function () {
                 selectSerializedValues();
                 storageLocationSelectElement.multiselect({
             'height':'auto'
-        }).multiselectfilter();
+        }).multiselectfilter(); 
             });
     }
 

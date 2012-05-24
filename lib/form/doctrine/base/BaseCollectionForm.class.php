@@ -77,7 +77,7 @@ abstract class BaseCollectionForm extends SubUnitForm
     }
 
     $link = array_diff($values, $existing);
-    if (count($link))
+    if (count($link)) 
     {
       $this->object->link('StorageLocations', array_values($link));
     }

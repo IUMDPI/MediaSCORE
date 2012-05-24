@@ -12,7 +12,7 @@ class CollectionForm extends BaseCollectionForm {
   /**
    * @see SubUnitForm
    */
-	public function configure() {
+	public function configure() { 
 		parent::configure(); // SubUnitForm invocation
 	
 		$voidFields = array('created_at','updated_at','resident_structure_description');
@@ -28,6 +28,7 @@ class CollectionForm extends BaseCollectionForm {
 			unset($this->validatorSchema[$voidField]);
 		}
 
+		
 		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
