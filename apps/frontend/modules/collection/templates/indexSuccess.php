@@ -137,8 +137,8 @@
             <h3>Careful!</h3>
         </div>
         <div style="margin: 10px;font-size: 0.8em;">
-            You are about to changes the format type which will erase any data you've entered.<br/>
-            Are you sureyou want to proceed and erase your entered data?
+            You are about to delete a Collection which will permanently erase all information associated with it.<br/>
+            Are you sure you want to proceed?
         </div>
         <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('collection/delete?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>">YES</a></div>
     </div>
