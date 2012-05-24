@@ -16,10 +16,13 @@ class CollectionForm extends BaseCollectionForm {
 		parent::configure(); // SubUnitForm invocation
 	
 		$voidFields = array('created_at','updated_at','resident_structure_description');
-		if( $this->getOption('action') == 'edit' )
-			$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
-		else
+		if( $this->getOption('action') == 'edit' ) {
+			//$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
+                    $this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
+                }
+		else {
 			$this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
+                }
 	//$this->getWidget('parent_node_id')->setLabel('Unit:&nbsp;');
 		$this->setWidget('status',new sfWidgetFormChoice(array('choices' => Collection::$statusConstants,'label' => 'Collection Status:&nbsp;')));
 

@@ -60,8 +60,7 @@ class unitActions extends sfActions {
                     ->whereIn('id ', $explodeId)
                     ->execute()
                     ->toArray();
-            echo json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user));
-            exit;
+            return $this->renderText(json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user)));
         }
         
     }

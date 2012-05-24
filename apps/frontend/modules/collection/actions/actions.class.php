@@ -45,7 +45,7 @@ class collectionActions extends sfActions {
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-            echo json_encode($this->collections->toArray());
+            return $this->renderText(json_encode($this->collections->toArray()));
         } else {
 
             $this->unitID = $request->getParameter('u');

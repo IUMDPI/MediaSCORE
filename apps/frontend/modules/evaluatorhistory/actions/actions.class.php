@@ -25,7 +25,7 @@ class evaluatorhistoryActions extends sfActions
 			$this->getResponse()->setHttpHeader('Content-type','application/json');
 			$this->setLayout('json');
 			$this->setTemplate('index');
-			echo json_encode($persons);
+			return $this->renderText(json_encode($persons));
 		}
 	}
 
