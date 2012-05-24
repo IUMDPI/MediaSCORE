@@ -15,7 +15,7 @@ class CollectionForm extends BaseCollectionForm {
 	public function configure() {
 		parent::configure(); // SubUnitForm invocation
 	
-		$voidFields = array('last_editor_id','resident_structure_description', 'created_at','updated_at');
+		$voidFields = array('created_at','updated_at','resident_structure_description');
 		if( $this->getOption('action') == 'edit' )
 			$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
 		else
@@ -31,5 +31,6 @@ class CollectionForm extends BaseCollectionForm {
 		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
+                
 	}
 }

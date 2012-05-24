@@ -1,6 +1,6 @@
 
-<a class="button" href="<?php  echo url_for('unit/new')        ?>">Create Unit</a>
-<!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new') ?>">Create Unit</a>-->
+<a class="button" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
+<!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new')  ?>">Create Unit</a>-->
 <div id="search-box">
     <form>
         <div class="search-input">
@@ -33,54 +33,60 @@
     </form>
 </div>
 <table>
-    <thead>
-        <tr>
-            <th>Unit</th>
-            <th>Created</th>
-            <th>Created By</th>
-            <th>Updated On</th>
-            <th>Updated By</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($units as $unit): ?>
+    <?php if (sizeof($units) > 0) { ?>
+        <thead>
             <tr>
-                <td><a href="<?php echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php echo $unit->getName() ?></a></td>
-                <td><?php echo $unit->getCreatedAt() ?></td>
-                <td>
-                    <?php
-//print_r( Doctrine_Core::getTable('User')->find( $unit->getCreatorId() )->getFirstName() );
-                    echo $unit->getCreator()->getName();
-
-                    /* $evaluatorName = $creators[$unit->getId()];
-                      if($evaluatorName == ' ')
-                      echo 'Administrator';
-                      else
-                      echo $evaluatorName; */
-                    ?>
-                </td>
-                <td><?php echo $unit->getUpdatedAt() ?></td>
-                <td>
-                    <?php
-                    echo $unit->getEditor()->getName();
-                    /* $lastEditorName = $editors[$unit->getId()];
-                      if($lastEditorName == ' ')
-                      echo 'Administrator';
-                      else
-                      echo $lastEditorName; */
-                    ?>
-                </td>
-
-                <td class="invisible">
-                    <div class="options">
-                        <a href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                        <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
-                    </div>
-                </td>
+                <th>Unit</th>
+                <th>Created</th>
+                <th>Created By</th>
+                <th>Updated On</th>
+                <th>Updated By</th>
+                <th></th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
+        </thead>
+        <tbody>
+            <?php foreach ($units as $unit): ?>
+                <tr>
+                    <td><a href="<?php echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php echo $unit->getName() ?></a></td>
+                    <td><?php echo $unit->getCreatedAt() ?></td>
+                    <td>
+                        <?php
+//print_r( Doctrine_Core::getTable('User')->find( $unit->getCreatorId() )->getFirstName() );
+                        echo $unit->getCreator()->getName();
+
+                        /* $evaluatorName = $creators[$unit->getId()];
+                          if($evaluatorName == ' ')
+                          echo 'Administrator';
+                          else
+                          echo $evaluatorName; */
+                        ?>
+                    </td>
+                    <td><?php echo $unit->getUpdatedAt() ?></td>
+                    <td>
+                        <?php
+                        echo $unit->getEditor()->getName();
+                        /* $lastEditorName = $editors[$unit->getId()];
+                          if($lastEditorName == ' ')
+                          echo 'Administrator';
+                          else
+                          echo $lastEditorName; */
+                        ?>
+                    </td>
+
+                    <td class="invisible">
+                        <div class="options">
+                            <a href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    <?php
+    } else {
+        echo '<tr><td>No Unit Available</td></tr>';
+    }
+    ?>
 </table>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -96,18 +102,19 @@
             'showCloseButton':false
            
         });
-//        $(".create_new_unit").fancybox({
-//            'width': '50%',
-//            'height': '100%',
-//            'autoScale': true,
-//            'transitionIn': 'none',
-//            'transitionOut': 'none',
-//            'type': 'iframe',
-//            'padding': 0
-//        });
+        //        $(".create_new_unit").fancybox({
+        //            'width': '50%',
+        //            'height': '100%',
+        //            'autoScale': true,
+        //            'transitionIn': 'none',
+        //            'transitionOut': 'none',
+        //            'type': 'iframe',
+        //            'padding': 0
+        //        });
     });
     
 </script>
+ <?php if (sizeof($units) > 0) { ?>
 <div style="display: none;"> 
     <div id="fancybox1" style="background-color: #F4F4F4;width: 600px;" >
         <header>
@@ -117,9 +124,10 @@
             <h3>Careful!</h3>
         </div>
         <div style="margin: 10px;font-size: 0.8em;">
-            You are about to changes the format type which will erase any data you've entered.<br/>
-            Are you sureyou want to proceed and erase your entered data?
+            You are about to delete a Unit which will permanently erase all information associated with it.<br/>
+            Are you sure you want to proceed?
         </div>
         <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('unit/delete?id=' . $unit->getId()) ?>">YES</a></div>
     </div>
 </div>
+<?php } ?>

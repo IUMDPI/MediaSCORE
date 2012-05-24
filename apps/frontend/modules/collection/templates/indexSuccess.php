@@ -58,6 +58,7 @@
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
 <table>
+    <?php if(sizeof($collections)>0){ ?>
     <thead>
         <tr>
             <th>Collection</th>
@@ -69,7 +70,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php if(sizeof($collections)>0){foreach ($collections as $collection): ?>
+        <?php foreach ($collections as $collection): ?>
             <tr>
                 <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
                 <td><?php echo $collection->getCreatedAt() ?></td>
@@ -87,8 +88,11 @@
                 </td>
 
             </tr>
-        <?php endforeach;} ?>
+        <?php endforeach; ?>
     </tbody>
+    <?php } else{
+        echo '<tr><td>No Collection Available</td></tr>';
+    }?>
 </table>
 
 <script type="text/javascript">

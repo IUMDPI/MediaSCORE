@@ -325,7 +325,7 @@ td { vertical-align: top; }
   .checkbox input {width:auto; margin-right:3px;}
   .help-text {display: inline; font-size: .6875rem; color:#666666;}
   .validation-error-text {margin: 3px 0 0 0; color:#7d110c; font-size:.625rem; font-weight:bold;}
-  .required {float:left; position:absolute; left:-.4375rem; top:2px; color:#7d110c; font-weight:bold;}
+  .required {float:left;  left:-.4375rem; top:2px; color:#7d110c; font-weight:bold;}
 
   .asset-group-table {margin-top:15px; border-top:1px solid #cecece;}
   .asset-group-table th {padding-top:15px;}
