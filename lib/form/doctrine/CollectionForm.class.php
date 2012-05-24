@@ -31,7 +31,7 @@ class CollectionForm extends BaseCollectionForm {
 			unset($this->validatorSchema[$voidField]);
 		}
 
-		
+		$this->getWidget('inst_id')->setLabel('Primary ID:&nbsp;');
 		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
