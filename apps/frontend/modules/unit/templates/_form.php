@@ -22,11 +22,12 @@
             <tbody>
                 <tr>
                     <th>
-                         <?php echo $form->renderHiddenFields(); ?>
+                        <?php echo $form->renderHiddenFields(); ?>
                         <?php echo $form['name']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['name']->render(); ?><?php echo $form['name']->renderError(); ?>
+                        <?php echo $form['name']->render(); ?> 
+                        <?php echo $form['name']->renderError(); ?>
                     </td>
 
                 </tr>
@@ -35,7 +36,8 @@
                         <?php echo $form['inst_id']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['inst_id']->render(); ?><?php echo $form['inst_id']->renderError(); ?>
+                        <?php echo $form['inst_id']->render(); ?> <div class="help-text">Unit Code assigned by MPI</div>
+                        <?php echo $form['inst_id']->renderError(); ?>
                     </td>
 
                 </tr>
@@ -44,7 +46,8 @@
                         <?php echo $form['resident_structure_description']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['resident_structure_description']->render(); ?><?php echo $form['resident_structure_description']->renderError(); ?>
+                        <?php echo $form['resident_structure_description']->render(); ?> <div class="help-text">Enter the Building name(s) or Room number(s) where the Unit is located</div>
+                        <?php echo $form['resident_structure_description']->renderError(); ?>
                     </td>
 
                 </tr>
@@ -74,9 +77,9 @@
                         <table id="user_info" style="width: 70%;">
 
                         </table>
-                        
-                            <?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
-                        
+
+                        <?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
+
 
                     </td>
 
@@ -99,6 +102,11 @@
         $('#unit_personnel_list').multiselect({
             'height':'auto'
         }).multiselectfilter();
+        var array_of_checked_values = $("#unit_personnel_list").multiselect("getChecked").map(function(){
+            return this.value;	
+        }).get();
+        
+        getDetail(array_of_checked_values);
         
     });
     $("#unit_personnel_list").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui){
@@ -107,11 +115,6 @@
         }).get();
         
         getDetail(array_of_checked_values);
-        
-        
-        
-    
-	
     });
     
     function getDetail(id){
@@ -129,10 +132,8 @@
                         email=result.records[cnt].email_address;
                         phone=result.records[cnt].phone;
                         role=result.records[cnt].role;
-                        
-
                         $('#user_info').append('<tr><td>'+name+'</td><td>'+email+'</td><td>'+phone+'</td><td>'+role+'</td></tr>');
-                        console.log(result.records[cnt]);
+                        
                     }
                 }
                         

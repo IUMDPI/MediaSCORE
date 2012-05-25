@@ -17,8 +17,8 @@ class CollectionForm extends BaseCollectionForm {
 	
 		$voidFields = array('created_at','updated_at','resident_structure_description');
 		if( $this->getOption('action') == 'edit' ) {
-			//$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
-                    $this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
+			$this->setWidget('parent_node_id',new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false,'label' => 'Unit:&nbsp;')));
+//                    $this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
                 }
 		else {
 			$this->setWidget('parent_node_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('unitID'))));
@@ -31,10 +31,16 @@ class CollectionForm extends BaseCollectionForm {
 			unset($this->validatorSchema[$voidField]);
 		}
 
-		$this->getWidget('inst_id')->setLabel('Primary ID:&nbsp;');
+		$this->getWidget('name')->setLabel('<span class="required">*</span> Name:&nbsp;');
+		$this->getWidget('inst_id')->setLabel('<span class="required">*</span> Primary ID:&nbsp;');
 		$this->setWidget('creator_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('last_editor_id',new sfWidgetFormInputHidden(array(),array( 'value' => $this->getOption('userID'))));
 		$this->setWidget('type', new sfWidgetFormInputHidden(array(),array('value' => 3)));
+                
+                $this->getValidator('name')->setMessages(array('required' => 'This is a required field..',
+            'invalid' => 'Invalid Unit Name'));
+        $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
+            'inst_id' => 'Invalid ID'));
                 
 	}
 }

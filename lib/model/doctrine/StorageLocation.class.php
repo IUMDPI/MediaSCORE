@@ -25,7 +25,8 @@ class StorageLocation extends BaseStorageLocation
  
 6. Extreme conditions
 	 */
-	public static $constants = array(	'Frozen Conditions',
+	public static $constants = array(	'Select',
+                                                'Frozen Conditions',
 						'Cold Conditions',
 						'Cool Conditions',
 						'Room Conditions',

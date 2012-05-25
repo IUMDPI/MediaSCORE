@@ -34,15 +34,16 @@ class UnitForm extends BaseUnitForm {
         //unset($this->validatorSchema['storage_location']);
         //unset($this->validatorSchema['personnel_list']);
 
-        $this->getWidget('inst_id')->setLabel('Primary ID:&nbsp;');
+        $this->getWidget('name')->setLabel('<span class="required">*</span>Name:&nbsp;');
+        $this->getWidget('inst_id')->setLabel('<span class="required">*</span>Primary ID:&nbsp;');
         $this->getWidget('resident_structure_description')->setLabel('Building Name/Room Number:&nbsp;');
         $this->getWidget('storage_locations_list')->setLabel('Storage Location:&nbsp;');
         $this->getWidget('personnel_list')->setLabel('Unit Personnel List:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
-        $this->getValidator('name')->setMessages(array('required' => 'Unit Name is required.',
+        $this->getValidator('name')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Invalid Unit Name'));
-        $this->getValidator('inst_id')->setMessages(array('required' => 'Primary ID is required.',
+        $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
             'inst_id' => 'Invalid ID'));
         foreach( $voidFields as $voidField) {
 		unset($this->widgetSchema[$voidField]);

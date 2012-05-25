@@ -11,9 +11,7 @@
 .login-field{
     margin-left: 10px;
 } 
-.error_list{
-    float: right !important;
-}
+
 .extended_form tr th {
     min-width:220px;
     vertical-align: top;

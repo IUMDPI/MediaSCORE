@@ -33,20 +33,20 @@
             <?php echo $form['unit']->render(); ?>
         </div>
 
-        <div class="row">
+        <div class="row" id="row_personnel_list" style="display: none;">
             <div class="left-column"><?php echo $form['personnel_list']->renderLabel(); ?>:</div>
             <?php echo $form['personnel_list']->render(); ?>
         </div>
 
-        <div class="row">
+        <div class="row" id="row_location" style="display: none;" >
             <div class="left-column"><?php echo $form['storage_locations_list']->renderLabel(); ?>:</div>
             <?php echo $form['storage_locations_list']->render(); ?>
         </div>
 
 
-    </div>
+    </div> 
 </form>
-<script type="text/javascript">
+<script type="text/javascript"> 
     $(document).ready(function() {
         $("#signin_unit").multiselect({
             'height':'auto',
@@ -55,20 +55,52 @@
             selectedList: 1 // 0-based index
             
         });
-        $("#signin_storage_locations_list").multiselect({
-            'height':'auto',
-            'minWidth':145
-            
-        }).multiselectfilter();
-        $('#signin_personnel_list').multiselect({
-            'height':'auto',
-            'minWidth':145 // 0-based index
-
-   
-
-        }).multiselectfilter();
+        $("#signin_unit").bind("multiselectclick", function(event, ui){
+            var array_of_checked_values = $("#signin_unit").multiselect("getChecked").map(function(){
+                return this.value;	
+            }).get();
+        
+            if(array_of_checked_values!='')
+                getUnitPersonnel(array_of_checked_values);
+            else{
+                $('#row_personnel_list').hide();
+                $('#row_location').hide();
+            }
+        });
         
     });
-
+    function getUnitPersonnel(id){
+        $.ajax({
+            method: 'POST', 
+            url: '/frontend_dev.php/unit/unitPersonnelLocation?u='+id,
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                $('#signin_personnel_list').html('');
+                $('#signin_storage_locations_list').html('');
+                if(result.unit!=undefined && result.unit.length>0){
+                    for(personnel in result.unit){
+                        $('#signin_personnel_list').append('<option value='+result.unit[personnel].id+'>'+result.unit[personnel].first_name+result.unit[personnel].last_name+'</option>');
+                    }
+                    $('#row_personnel_list').show();
+                    $('#signin_personnel_list').multiselect({
+                        'height':'auto',
+                        'minWidth':145 // 0-based index
+                    }).multiselectfilter();
+                }
+                if(result.location!=undefined && result.location.length>0){
+                    for(storage in result.location){
+                        $('#signin_storage_locations_list').append('<option value='+result.location[storage].id+'>'+result.location[storage].name+'</option>');
+                    }
+                    $('#row_location').show();
+                    $("#signin_storage_locations_list").multiselect({
+                        'height':'auto',
+                        'minWidth':145
+                    }).multiselectfilter();
+                }
+            }
+        });
+    }
 </script>
 

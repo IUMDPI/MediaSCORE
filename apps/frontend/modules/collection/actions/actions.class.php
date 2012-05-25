@@ -76,7 +76,7 @@ class collectionActions extends sfActions {
 
     public function executeNew(sfWebRequest $request) {
         //$this->unitID=$request->getParameter('u');
-        
+
         $this->form = new CollectionForm(null,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
@@ -89,18 +89,18 @@ class collectionActions extends sfActions {
 
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
-        $unitId=sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
+        $unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
         $this->form = new CollectionForm(null,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
                             'unitID' => $unitId)
-        );  
+        );
 
         $this->processForm($request, $this->form);
 
         $this->setTemplate('new');
     }
- 
+
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
@@ -116,7 +116,12 @@ class collectionActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
-        $this->form = new CollectionForm($collection);
+        $unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
+        $this->form = new CollectionForm($collection, array(
+                    'userID' => $this->getUser()->getGuardUser()->getId(),
+                    'unitID' => $unitId,
+                    'action' => 'edit'
+                ));
 
         $this->processForm($request, $this->form);
 
@@ -133,11 +138,11 @@ class collectionActions extends sfActions {
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
-        
+
 //        $unitId=sfToolkit::getArrayValueForPath($request->getParameter($form->getName()), 'parent_node_id');
 //        $form->setOption('unitID', $unitId);
 //        $form->setDefault('unitID',  $form->getObject()->getParentNodeId()); 
-        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName())); 
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $collection = $form->save();
 

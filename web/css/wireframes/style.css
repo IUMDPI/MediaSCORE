@@ -426,6 +426,9 @@ td { vertical-align: top; }
 .select_field{min-width: 145px;}
 
 .error_list{
-    float: right !important;
-    color: red;
+    margin-top:5px; 
+    color:#7d110c; 
+    font-weight:bold;
+    margin-left: 3px;
+    font-size: 0.625rem;
 }

@@ -39,11 +39,13 @@ $(document).ready(function () {
                 } else {
                     $( '<option value="-1">(None)</option>').appendTo(storageLocationSelectElement);
                 }
-						
+		 			
                 selectSerializedValues();
+        
                 storageLocationSelectElement.multiselect({
             'height':'auto'
         }).multiselectfilter(); 
+       
             });
     }
 

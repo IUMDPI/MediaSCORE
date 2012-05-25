@@ -50,6 +50,26 @@ class unitActions extends sfActions {
         }
     }
 
+    public function executeUnitPersonnelLocation(sfWebRequest $request) {
+        $unitId = $request->getParameter('u');
+        $this->forward404Unless($request->isXmlHttpRequest());
+        if ($request->isXmlHttpRequest()) {
+            $unit = Doctrine_Query::Create()
+                    ->from('Person p')
+                    ->select('p.*')
+                    ->innerJoin('p.UnitPerson up')
+                    ->where('up.unit_id =?', $unitId)
+                    ->fetchArray();
+            $location = Doctrine_Query::Create()
+                    ->from('StorageLocation sl')
+                    ->select('sl.*')
+                    ->innerJoin('sl.UnitStorageLocation usl')
+                    ->where('usl.unit_id =?', $unitId)
+                    ->fetchArray();
+            return $this->renderText(json_encode(array('success' => true, 'unit' => $unit, 'location' => $location)));
+        }
+    }
+
     public function executeGetUserDetail(sfWebRequest $request) {
 
         $this->forward404Unless($request->isXmlHttpRequest());
@@ -62,7 +82,6 @@ class unitActions extends sfActions {
                     ->toArray();
             return $this->renderText(json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user)));
         }
-        
     }
 
     public function executeIndex(sfWebRequest $request) {
@@ -112,7 +131,7 @@ class unitActions extends sfActions {
 
     public function executeNew(sfWebRequest $request) {
         //$this->form = new UnitForm();
-    //$this->setLayout('fancyLayout');
+        //$this->setLayout('fancyLayout');
         $this->form = new UnitForm(
                         null,
                         array(
@@ -153,7 +172,9 @@ class unitActions extends sfActions {
         //$request->checkCSRFProtection();
 
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
+        
         $unit->delete();
+        
 
         $this->redirect('unit/index');
     }
