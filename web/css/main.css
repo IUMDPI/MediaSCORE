@@ -14,3 +14,11 @@
 .error_list{
     float: right !important;
 }
+.extended_form tr th {
+    min-width:220px;
+    vertical-align: top;
+}
+
+.normal_form tr th {
+    vertical-align: top;
+}

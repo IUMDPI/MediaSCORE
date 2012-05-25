@@ -34,15 +34,15 @@ class UnitForm extends BaseUnitForm {
         //unset($this->validatorSchema['storage_location']);
         //unset($this->validatorSchema['personnel_list']);
 
-        $this->getWidget('inst_id')->setLabel('ID:&nbsp;');
-        $this->getWidget('resident_structure_description')->setLabel('Building Name and Room Number:&nbsp;');
+        $this->getWidget('inst_id')->setLabel('Primary ID:&nbsp;');
+        $this->getWidget('resident_structure_description')->setLabel('Building Name/Room Number:&nbsp;');
         $this->getWidget('storage_locations_list')->setLabel('Storage Location:&nbsp;');
-        $this->getWidget('personnel_list')->setLabel('Unit Personnel:&nbsp;');
+        $this->getWidget('personnel_list')->setLabel('Unit Personnel List:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
         $this->getValidator('name')->setMessages(array('required' => 'Unit Name is required.',
             'invalid' => 'Invalid Unit Name'));
-        $this->getValidator('inst_id')->setMessages(array('required' => 'ID is required.',
+        $this->getValidator('inst_id')->setMessages(array('required' => 'Primary ID is required.',
             'inst_id' => 'Invalid ID'));
         foreach( $voidFields as $voidField) {
 		unset($this->widgetSchema[$voidField]);

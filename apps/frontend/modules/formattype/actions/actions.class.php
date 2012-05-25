@@ -30,7 +30,7 @@ class formattypeActions extends sfActions // Abstract
 					->find( $formatTypeID )
 					->getType() - 1;
 
-		echo json_encode($formatTypeIDs['subclasses'][$formatTypeModel]);
+		return $this->renderText( json_encode($formatTypeIDs['subclasses'][$formatTypeModel]));
 		//$formatTypeModels = Doctrine_Core::getTable('FormatType')->findAll();
 
 		//$this->getResponse()->setContent( print_r( $formatTypeModel->toArray() ) );

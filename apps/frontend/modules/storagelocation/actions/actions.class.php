@@ -44,13 +44,13 @@ class storagelocationActions extends sfActions
 				->find($unitID)->getStorageLocations();
 			$this->getResponse()->setHttpHeader('Content-type','application/json');
 			$this->setLayout('json');
-			echo json_encode($storageLocations->toArray());
+			return $this->renderText(json_encode($storageLocations->toArray()));
 		} elseif($collectionID) {
 			$storageLocations = Doctrine_Core::getTable('Collection')
 				->find($collectionID)->getStorageLocations();
 			$this->getResponse()->setHttpHeader('Content-type','application/json');
 			$this->setLayout('json');
-			echo json_encode($storageLocations->toArray());
+			return $this->renderText(json_encode($storageLocations->toArray()));
 		} else {
 			$this->storage_locations = Doctrine_Core::getTable('StorageLocation')
 				->createQuery('a')

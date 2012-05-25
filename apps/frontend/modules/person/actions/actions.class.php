@@ -25,7 +25,7 @@ class personActions extends sfActions
 		$this->getResponse()->setHttpHeader('Content-type','application/json');
 		$this->setLayout('json');
 		$this->setTemplate('index');
-		echo json_encode($persons);
+		return $this->renderText(json_encode($persons));
 	}
 
   public function executeIndex(sfWebRequest $request)
@@ -41,7 +41,7 @@ class personActions extends sfActions
 		if( $request->isXmlHttpRequest() ) {
 			$this->getResponse()->setHttpHeader('Content-type','application/json');
 			$this->setLayout('json');
-			echo json_encode($this->person->toArray());
+			return $this->renderText( json_encode($this->person->toArray()));
 		} else
 			$this->forward404Unless($this->person);
 	}
