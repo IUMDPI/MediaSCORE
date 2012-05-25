@@ -41,7 +41,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
                         <td class="invisible">
                             <div class="options">
                                 <a href="<?php echo url_for('storagelocation/edit?id=' . $storage_location->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                                <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                                <a href="#fancybox1" class="delete_storage"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
                             </div>
                         </td>
                     </tr>
@@ -57,8 +57,9 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+       $.fancybox.init();
        
-  $(".delete_unit").fancybox({
+  $(".delete_storage").fancybox({
            'width': '100%',
            'height': '100%',
            'autoScale': false,
