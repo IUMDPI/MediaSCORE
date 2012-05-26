@@ -23,7 +23,7 @@ class StorageLocationForm extends BaseStorageLocationForm {
         $this->setWidget('env_rating', new sfWidgetFormChoice(array('choices' => StorageLocation::$constants)));
         $this->getWidget('env_rating')->setLabel('Location Environmental Rating:&nbsp;');
         $this->getWidget('name')->setLabel('<span class="required">*</span>Name:&nbsp;');
-        $this->getWidget('resident_structure_description')->setLabel('<span class="required">*</span>ID:&nbsp;');
+        $this->getWidget('resident_structure_description')->setLabel('<span class="required">*</span>Building/Room Number:&nbsp;');
 
         $this->setValidator('resident_structure_description', new sfValidatorString(array('required' => true)));
        
