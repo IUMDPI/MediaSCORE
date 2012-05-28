@@ -1,10 +1,15 @@
-<td>
+<td class="invisible">
   <ul class="sf_admin_td_actions">
 <?php foreach ($this->configuration->getValue('list.object_actions') as $name => $params): ?>
+      
+     
 <?php if ('_delete' == $name): ?>
+       <?php $params['label']='<img src="/images/wireframes/row-delete-icon.png" alt="Delete" /> '; ?>
     <?php echo $this->addCredentialCondition('[?php echo $helper->linkToDelete($'.$this->getSingularName().', '.$this->asPhp($params).') ?]', $params) ?>
 
 <?php elseif ('_edit' == $name): ?>
+      
+      <?php $params['label']='<img src="/images/wireframes/row-settings-icon.png" alt="Settings" /> '; ?>
     <?php echo $this->addCredentialCondition('[?php echo $helper->linkToEdit($'.$this->getSingularName().', '.$this->asPhp($params).') ?]', $params) ?>
 
 <?php else: ?>

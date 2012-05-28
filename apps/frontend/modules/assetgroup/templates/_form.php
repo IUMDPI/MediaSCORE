@@ -40,6 +40,7 @@
     </tfoot>
     <tbody>
 	<?php echo $form ?>
+        
     </tbody>
  </table>
 </form>

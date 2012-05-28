@@ -22,6 +22,12 @@ class MetalDiscForm extends BaseMetalDiscForm
 		));*/
 	  $this->setWidget('material',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
 	  $this->setWidget('oxidationCorrosion',new sfWidgetFormInputCheckbox());
+          $this->setValidator('material', new sfValidatorString(array('required' => false)));
+          $this->setValidator('oxidationCorrosion', new sfValidatorString(array('required' => false)));
+       
+        
+        $this->getValidator('material')->setMessages(array('required' => 'This is a required field.',
+            'invalid' => 'Invalid Unit Name'));
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }

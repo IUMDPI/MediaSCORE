@@ -432,3 +432,7 @@ td { vertical-align: top; }
     margin-left: 3px;
     font-size: 0.625rem;
 }
+.sf_admin_action_edit{
+    float: left;
+    margin-right: 5px;
+}

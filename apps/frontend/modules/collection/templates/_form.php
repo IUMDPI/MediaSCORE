@@ -48,42 +48,55 @@
                         </td>
 
                     </tr>
-                <?php } ?>
-                <tr>
-                    <th>
-                        <?php echo $form['storage_locations_list']->renderLabel(); ?>
-                    </th>
-                    <td>
-                        <?php echo $form['storage_locations_list']->render(); ?><?php echo $form['storage_locations_list']->renderError(); ?>
-                    </td>
+                <script type="text/javascript">
+                    $('#collection_parent_node_id').multiselect({
+                        'height':'auto',
+                        'multiple':false
+                    });
+                    $("#collection_parent_node_id").bind("multiselectclick", function(event, ui){
+                        var array_of_checked_values = $("#collection_parent_node_id").multiselect("getChecked").map(function(){
+                            return this.value;	
+                        }).get();
+            
+                        getStorage(array_of_checked_values);
+                    });
+                </script>
+            <?php } ?>
+            <tr>
+                <th>
+                    <?php echo $form['storage_locations_list']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['storage_locations_list']->render(); ?><?php echo $form['storage_locations_list']->renderError(); ?>
+                </td>
 
-                </tr>
-                <tr>
-                    <th>
-                        <?php echo $form['notes']->renderLabel(); ?>
-                    </th>
-                    <td>
-                        <?php echo $form['notes']->render(); ?><div class="help-text">Provide a description of the collection</div>
-                        <?php echo $form['notes']->renderError(); ?>
-                    </td>
+            </tr>
+            <tr>
+                <th>
+                    <?php echo $form['notes']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['notes']->render(); ?><div class="help-text">Provide a description of the collection</div>
+                    <?php echo $form['notes']->renderError(); ?>
+                </td>
 
-                </tr>
+            </tr>
 
-                <tr>
-                    <th>
-                        <?php echo $form['status']->renderLabel(); ?>
-                    </th>
-                    <td>
-
-
-                        <?php echo $form['status']->render(); ?><?php echo $form['status']->renderError(); ?>
+            <tr>
+                <th>
+                    <?php echo $form['status']->renderLabel(); ?>
+                </th>
+                <td>
 
 
-                    </td>
+                    <?php echo $form['status']->render(); ?><?php echo $form['status']->renderError(); ?>
 
-                </tr>
 
-                <?php //echo $form ?>
+                </td>
+
+            </tr>
+
+            <?php //echo $form ?>
             </tbody>
         </table>
     </form>
@@ -94,17 +107,7 @@
             'height':'auto',
             'multiple':false
         });
-        $('#collection_parent_node_id').multiselect({
-            'height':'auto',
-            'multiple':false
-        });
-        $("#collection_parent_node_id").bind("multiselectclick", function(event, ui){
-            var array_of_checked_values = $("#collection_parent_node_id").multiselect("getChecked").map(function(){
-                return this.value;	
-            }).get();
-        
-            getStorage(array_of_checked_values);
-        });
+       
         
         
         function getStorage(id){

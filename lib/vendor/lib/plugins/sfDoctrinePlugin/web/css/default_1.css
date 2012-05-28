@@ -19,7 +19,7 @@
 
 #sf_admin_container th
 {
-/*  background-color: #e7eef6;*/
+  background-color: #e7eef6;
   white-space: nowrap;
 }
 
@@ -34,7 +34,7 @@
 
 #sf_admin_container tr
 {
-/*  background-color: #fff;*/
+  background-color: #fff;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
@@ -196,7 +196,7 @@
 /*  background-color: #eee;*/
 }
 
-/*#sf_admin_container fieldset h2
+#sf_admin_container fieldset h2
 {
   padding: 3px;
   color: #333;
@@ -217,7 +217,7 @@
 #sf_admin_container fieldset.collapsed h2, #sf_admin_container fieldset.collapsed { display:block !important; }
 #sf_admin_container fieldset.collapsed .collapse-toggle { display: inline !important; }
 #sf_admin_container fieldset.collapse h2 a.collapse-toggle { color:#ffc; }
-#sf_admin_container fieldset.collapse h2 a.collapse-toggle:hover { text-decoration:underline; }*/
+#sf_admin_container fieldset.collapse h2 a.collapse-toggle:hover { text-decoration:underline; }
 
 #sf_admin_container label
 {
@@ -240,7 +240,7 @@
 {
   clear: both;
   padding: 10px;
-/*  border-bottom: 1px solid #ddd;*/
+  border-bottom: 1px solid #ddd;
 }
 
 #sf_admin_container .sf_admin_form_row .content

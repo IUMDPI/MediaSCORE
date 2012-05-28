@@ -22,7 +22,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
 
 <div id="settings-container">
 
-<?php echo get_slot('settingsMenu') ?>
+<?php //echo get_slot('settingsMenu') ?>
     <a class="button" href="<?php echo url_for('storagelocation/new') ?>">Create Storage Location</a>
 
     <table>
