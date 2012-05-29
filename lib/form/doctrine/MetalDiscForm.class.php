@@ -22,12 +22,88 @@ class MetalDiscForm extends BaseMetalDiscForm
 		));*/
 	  $this->setWidget('material',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
 	  $this->setWidget('oxidationCorrosion',new sfWidgetFormInputCheckbox());
+	  $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
+          
           $this->setValidator('material', new sfValidatorString(array('required' => false)));
           $this->setValidator('oxidationCorrosion', new sfValidatorString(array('required' => false)));
+          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
        
         
         $this->getValidator('material')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Invalid Unit Name'));
+        
+        
+        foreach (array('pack_deformation',
+    'noise_reduction',
+    'tape_type',
+    'thin_tape',
+    'slow_speed',
+    'sound_field',
+    'soft_binder_syndrome',
+    'gauge',
+    'color',
+    'colorFade',
+    'soundtrackFormat',
+    'substrate',
+    'strongOdor',
+    'vinegarOdor',
+    'ADStripLevel',
+    'shrinkage',
+    'levelOfShrinkage',
+    'rust',
+    'discoloration',
+    'surfaceBlisteringBubbling',
+    'thinTape',
+    '1993OrEarlier',
+    'dataGradeTape',
+    'longPlay32K96K',
+    'corrosionRustOxidation',
+    'composition',
+    'nonStandardBrand',
+    'trackConfiguration',
+    'tapeThickness',
+    'speed',
+    'softBinderSyndrome',
+    'materialsBreakdown',
+    'delamination',
+    'plasticizerExudation',
+    'recordingLayer',
+    'recordingSpeed',
+    'cylinderType',
+    'reflectiveLayer',
+    'dataLayer',
+    'opticalDiscType',
+    'format',
+    'recordingStandard',
+    'publicationYear',
+    'capacityLayers',
+    'codec',
+    'dataRate',
+    'sheddingSoftBinder',
+    'formatVersion',
+    'oxide',
+    'binderSystem',
+    'reelSize',
+    'whiteResidue',
+    'size',
+    'formatTypedVideoRecordingFormat',
+    'bitrate',
+    'scanning',
+    'created_at',
+    'updated_at',
+    'generation',
+    'year_recorded',
+    'copies',
+    'stock_brand',
+    'off_brand',
+    'fungus',
+    'other_contaminants',
+    'duration',
+    'duration_type',
+            'quantity') as $voidField) {
+            unset($this->widgetSchema[$voidField]);
+            unset($this->validatorSchema[$voidField]);
+        }
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
   }

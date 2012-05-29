@@ -1,3 +1,2 @@
-<h1>Edit Format type</h1>
-
+<h3>General</h3>
 <?php include_partial('form', array('form' => $form)) ?>

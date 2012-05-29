@@ -31,6 +31,20 @@ class FilmForm extends BaseFilmForm
 	$this->setWidget('surfaceBlisteringBubbling',new sfWidgetFormInputCheckbox());
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
+        
+        $this->setValidator('gauge', new sfValidatorString(array('required' => false)));
+        $this->setValidator('color', new sfValidatorString(array('required' => false)));
+        $this->setValidator('colorFade', new sfValidatorString(array('required' => false)));
+        $this->setValidator('soundtrackFormat', new sfValidatorString(array('required' => false)));
+        $this->setValidator('substrate', new sfValidatorString(array('required' => false)));
+        $this->setValidator('strongOdor', new sfValidatorString(array('required' => false)));
+        $this->setValidator('vinegarOdor', new sfValidatorString(array('required' => false)));
+        $this->setValidator('ADStripLevel', new sfValidatorString(array('required' => false)));
+        $this->setValidator('shrinkage', new sfValidatorString(array('required' => false)));
+        $this->setValidator('levelOfShrinkage', new sfValidatorString(array('required' => false)));
+        $this->setValidator('rust', new sfValidatorString(array('required' => false)));
+        $this->setValidator('discoloration', new sfValidatorString(array('required' => false)));
+        $this->setValidator('surfaceBlisteringBubbling', new sfValidatorString(array('required' => false)));
 
   }
 }

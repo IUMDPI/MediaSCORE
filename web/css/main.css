@@ -20,3 +20,16 @@
 .normal_form tr th {
     vertical-align: top;
 }
+#asset-group-form{
+    border: 1px solid black;
+    padding: 5px;
+}
+.general{
+    width: 50%;
+}
+.general th{
+    background-color: #DADADA;
+}
+form input[type="checkbox"]{
+    width: auto;
+}

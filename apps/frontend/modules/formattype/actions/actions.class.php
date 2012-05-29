@@ -28,9 +28,16 @@ class formattypeActions extends sfActions // Abstract
 
 		$formatTypeModel = Doctrine_Core::getTable('FormatType')
 					->find( $formatTypeID )
-					->getType() - 1;
-
-		return $this->renderText( json_encode($formatTypeIDs['subclasses'][$formatTypeModel]));
+					->getType();
+                if($formatTypeModel==0){
+                    return $this->renderText( json_encode('formattype'));
+                }
+                else{
+                    $formatTypeModel=$formatTypeModel-1;
+                    return $this->renderText( json_encode($formatTypeIDs['subclasses'][$formatTypeModel]));
+                }
+                
+		
 		//$formatTypeModels = Doctrine_Core::getTable('FormatType')->findAll();
 
 		//$this->getResponse()->setContent( print_r( $formatTypeModel->toArray() ) );
@@ -58,6 +65,12 @@ class formattypeActions extends sfActions // Abstract
 	  echo FormatType::getTypeModelNameForModuleName($this->getModuleName());
     //$this->form = new FormatTypeForm();
   }
+  public function executeNewform(sfWebRequest $request)
+  {
+	 
+    $this->form = new FormatTypeForm();
+    $this->setTemplate('new');
+  }
 
   public function executeCreate(sfWebRequest $request)
   {
@@ -65,9 +78,14 @@ class formattypeActions extends sfActions // Abstract
 
     $this->form = new FormatTypeForm();
 
-    $this->processForm($request, $this->form);
+    $validateForm=$this->processForm($request, $this->form);
+    if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
+            echo $validateForm['id'];    exit;        
+        } else {
+            $this->setTemplate('new');
+        }
 
-    $this->setTemplate('new');
+    
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -82,9 +100,12 @@ class formattypeActions extends sfActions // Abstract
     $this->forward404Unless($format_type = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object format_type does not exist (%s).', $request->getParameter('id')));
     $this->form = new FormatTypeForm($format_type);
 
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
+    $validateForm=$this->processForm($request, $this->form);
+    if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
+            echo $validateForm['id'];    exit;        
+        } else {
+            $this->setTemplate('edit');
+        }
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -103,8 +124,9 @@ class formattypeActions extends sfActions // Abstract
     if ($form->isValid())
     {
       $format_type = $form->save();
-
-      $this->redirect('formattype/edit?id='.$format_type->getId());
+      $saveReturnId = array('form' => true, 'id' => $format_type->getId());
+            return $saveReturnId;
+//      $this->redirect('formattype/edit?id='.$format_type->getId());
     }
   }
 }

@@ -17,5 +17,6 @@ class ReelCassetteFormatTypeForm extends BaseReelCassetteFormatTypeForm
   {
 	  parent::configure();
 	  $this->setWidget('packDeformation',new sfWidgetFormChoice(array('choices' => ReelCassetteFormatType::$constants)));
+          $this->setValidator('packDeformation', new sfValidatorString(array('required' => false)));
   }
 }

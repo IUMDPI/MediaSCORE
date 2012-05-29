@@ -1,4 +1,24 @@
-
+function getRelatedForm(){
+    if($('#format-type-model-name').val()!=''){
+        urlSuffix='/new';
+        if($('#asset_group_format_id').val()!='')
+//            urlSuffix='/edit/id/'+$('#asset_group_format_id').val();
+        $.ajax({
+                type: 'POST',
+                url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
+                success: function(data,textStatus) {
+                    console.log(data);
+                    
+                }
+                
+            });
+        $('#format_specific').append($('#format-type-model-name').val());
+        
+    }
+    else{
+        $('#format_specific').empty();
+    }
+}
 // Once the document object is loaded...
 $('document').ready(function () {
 
@@ -48,7 +68,7 @@ $('document').ready(function () {
             slected='';
             if(i==0)
                 slected='selected="selected"';
-            element.append('<option class="collection-multiple-select" value="'+stores[i].id+'" '+slected+'>'+stores[i].name+'</option>');
+            element.append('<option class="collection-multiple-select" value="'+stores[i].id+'" >'+stores[i].name+'</option>');
             if(stores[i].id == serializedCollectionID)
                 $('#collection-multiple-select').prop('selectedIndex',i);
         }
@@ -122,42 +142,53 @@ $('document').ready(function () {
         });
 
     $('#asset-group-save').click(function(event) {
-
-        //console.log('trace');
         event.preventDefault();
 
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
-
-        //console.log( appBaseURL+$('#format-type-model-name').val()+'/'+actionName  );
-        //console.log( $('#format-type-container').children('form').serialize() );
-
         urlSuffix='';
+        moduleName=$('#format-type-model-name').val();
         if($('#format-type-model-name').val()==''){
-            $('#asset-group-form').submit();
+            moduleName='formattype';
         }
-        else if(actionName == 'update') {
-            //console.log( $('#format-type-container input[id$="_id"]').val() );
+        if(actionName == 'update') {
             urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
+            $.ajax({
+                type: 'POST',
+                url: appBaseURL+moduleName+'/'+actionName+urlSuffix,
+                data: $('#format-type-container').children('form').serialize(),
+                success: function(data,textStatus) {
+                    var numericExpression = /^[0-9]+$/;
+                    if(data.match(numericExpression)){
+                        $('#asset-group-form').submit();
+                    }
+                    else{
+                        $('#format-type-container').html(data);
+                    }
+                    
+                },
+                error: function(data,textStatus,errorThrown) {
+                    alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
+                    $('body').html(data['responseText']);
+                }
+            });
+            
         } else if ( $('#asset_group_format_id').prop('selectedIndex') == -1 ) {
             alert('(To be replaced with a Modal) Please choose a format type.');
         } else {
-            alert('trace');
-
-            //$.post(
+            alert('Now Saving');
             $.ajax({
                 type: 'POST',
-                url: appBaseURL+$('#format-type-model-name').val()+'/'+actionName+urlSuffix,
+                url: appBaseURL+moduleName+'/'+actionName+urlSuffix,
                 data: $('#format-type-container').children('form').serialize(),
                 success: function(data,textStatus) {
-                    console.log(data);
-                    console.log(textStatus);
-                    formatTypeModelID=$('#asset_group_format_id').val();
-                    console.log(formatTypeModelID);
-                    //formatTypeModelID=$('<div id="format-type-add-response"></div>').appendTo($('body')).html(data).find('input[id$="_id"]').val();
-                    if(formatTypeModelID)
-                        $('#asset_group_format_id').val(formatTypeModelID);
-                    //console.log(formatTypeModelID);
-                    $('#asset-group-form').submit();
+                    var numericExpression = /^[0-9]+$/;
+                    if(data.match(numericExpression)){
+                        $('#asset_group_format_id').val(data);
+                        $('#asset-group-form').submit();
+                    }
+                    else{
+                        $('#format-type-container').html(data);
+                    }
                 },
                 error: function(data,textStatus,errorThrown) {
                     alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
@@ -182,6 +213,15 @@ $('document').ready(function () {
             if( formatTypeName ) {
                 $('#format-type-container').load(
                     appBaseURL+formatTypeName+'/new',
+                    {},
+                    function () {
+                        $('#asset_group_format_id').val('');
+                    });
+            }
+            else{
+                console.log('got you');
+                $('#format-type-container').load(
+                    appBaseURL+'formattype/newform',
                     {},
                     function () {
                         $('#asset_group_format_id').val('');
@@ -239,10 +279,10 @@ $('document').ready(function () {
 
     // Need to check if Format Type exists...
 
-    $('#format-type-model-name').click(function () {
-
-        getFormatTypeForm();
-    });
+//    $('#format-type-model-name').click(function () {
+//        alert(1);
+////        getFormatTypeForm();
+//    });
 
 
     getFormatTypeForm(); // When the DOM is loaded.

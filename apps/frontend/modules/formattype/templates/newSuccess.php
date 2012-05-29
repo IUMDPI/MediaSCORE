@@ -1,3 +1,3 @@
-<h1>New Format type</h1>
+<h3>General</h3>
 
 <?php include_partial('form', array('form' => $form)) ?>
