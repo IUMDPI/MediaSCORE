@@ -17,5 +17,7 @@ class DiskFormatTypeForm extends BaseDiskFormatTypeForm
   {
 	  parent::configure();
 	  $this->setWidget('materialsBreakdown',new sfWidgetFormInputCheckbox());
+          $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
+          $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
   }
 }

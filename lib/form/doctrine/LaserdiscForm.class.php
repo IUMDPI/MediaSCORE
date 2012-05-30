@@ -17,6 +17,9 @@ class LaserdiscForm extends BaseLaserdiscForm
   {
 	  parent::configure();
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => Laserdisc::$constants)));
+          $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
+          $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
+          
 	  $this->setWidget('publicationYear',new sfWidgetFormDate());
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
