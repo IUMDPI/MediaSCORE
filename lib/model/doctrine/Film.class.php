@@ -15,6 +15,7 @@ class Film extends BaseFilm
 	public static $constants = array(
 					0 => array(0 => '35 mm',1 => '16 mm',2 => '8 mm',3 => 'Super 8 mm'),
 					1 => array(false => 'Monochrome',true => 'Color'),
-					2 => array(0 => 'None',1 => 'Magnetic',2 => 'Optical'),
-					3 => array(0 => 'Polyster',1 => 'Acetate',2 => 'Nitrate'));
+					2 => array(0 => 'None',1 => 'Magnetic composite',2 => 'Magnetic Separate',3=>'Optical composite',4=>'Optical separate'),
+					3 => array(0 => 'Polyster',1 => 'Acetate',2 => 'Nitrate'),
+                                        4 => array(0 => 'Minor',1 => 'Moderate',2 => 'Severe'));
 }

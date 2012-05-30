@@ -5,7 +5,7 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
+  <table id="dat-table">
     <tfoot>
     </tfoot>
     <tbody>

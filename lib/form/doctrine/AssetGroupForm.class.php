@@ -16,10 +16,10 @@ class AssetGroupForm extends BaseAssetGroupForm {
     public function configure() {
         parent::configure();
         $this->setWidget('storage_location_id', new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,
-                    'method' => 'getStorageLocations',
-                    'query' => Doctrine_Query::create()
-                            ->from('Collection c')
-                            ->where('c.id = ?', $this->getObject()->getParentNodeId())
+//                    'method' => 'getStorageLocations',
+//                    'query' => Doctrine_Query::create()
+//                            ->from('Collection c')
+//                            ->where('c.id = ?', $this->getObject()->getParentNodeId())
                 )));
         $this->setWidget('location', new sfWidgetFormInputText());
         $this->setValidator('storage_location_id', new sfValidatorString(array('required' => true)));

@@ -34,7 +34,7 @@ class metaldiscActions extends sfActions {
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
             echo $validateForm['id'];    exit;        
         } else {
-            $this->setTemplate('new');
+            $this->setTemplate('new'); 
         }
     }
 
@@ -45,12 +45,20 @@ class metaldiscActions extends sfActions {
 
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-        $this->forward404Unless($metal_disc = Doctrine_Core::getTable('MetalDisc')->find(array($request->getParameter('id'))), sprintf('Object metal_disc does not exist (%s).', $request->getParameter('id')));
+        $this->forward404Unless($metal_disc = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object metal_disc does not exist (%s).', $request->getParameter('id')));
+        
+        $metal_disc->setType(1);
+        $metal_disc->save();
+        $metal_disc = Doctrine_Core::getTable('MetalDisc')->find(array($request->getParameter('id')));
         $this->form = new MetalDiscForm($metal_disc);
+        $this->form->disableLocalCSRFProtection();
+        $validateForm=$this->processForm($request, $this->form);
 
-        $this->processForm($request, $this->form);
-
-        $this->setTemplate('edit');
+        if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
+            echo $validateForm['id'];    exit;        
+        } else {
+            $this->setTemplate('edit');
+        }
     }
 
     public function executeDelete(sfWebRequest $request) {

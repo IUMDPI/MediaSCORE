@@ -18,5 +18,73 @@ class OpenReelAudiotapePVCForm extends BaseOpenReelAudiotapePVCForm
 	  parent::configure();
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
+        
+        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
+        $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
+        
+        $this->setValidator('speed', new sfValidatorString(array('required' => true)));
+        $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
+        $this->setValidator('noise_reduction', new sfValidatorBoolean());
+        
+        $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
+        $this->getWidget('tapethickness')->setLabel('Tape Thickness:&nbsp;');
+        $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
+        
+         foreach (array('tape_type',
+    'thin_tape',
+    'slow_speed',
+    'sound_field',
+    'soft_binder_syndrome',
+    'thinTape',
+    '1993OrEarlier',
+    'dataGradeTape',
+    'longPlay32K96K',
+    'corrosionRustOxidation',
+    'composition',
+    'nonStandardBrand',
+    'materialsBreakdown',
+    'delamination',
+    'plasticizerExudation',
+    'recordingLayer',
+    'recordingSpeed',
+    'cylinderType',
+    'reflectiveLayer',
+    'dataLayer',
+    'opticalDiscType',
+    'format',
+    'recordingStandard',
+    'publicationYear',
+    'capacityLayers',
+    'codec',
+    'dataRate',
+    'sheddingSoftBinder',
+    'formatVersion',
+    'oxide',
+    'binderSystem',
+    'reelSize',
+    'whiteResidue',
+    'size',
+    'formatTypedVideoRecordingFormat',
+    'bitrate',
+    'scanning',
+    'created_at',
+    'updated_at',
+    'generation',
+    'year_recorded',
+    'copies',
+    'stock_brand',
+    'off_brand',
+    'fungus',
+    'other_contaminants',
+    'duration',
+    'duration_type',
+    'material',
+    'oxidationCorrosion',
+    'physicalDamage',
+    'quantity') as $voidField) {
+            unset($this->widgetSchema[$voidField]);
+            unset($this->validatorSchema[$voidField]);
+        }
   }
 }

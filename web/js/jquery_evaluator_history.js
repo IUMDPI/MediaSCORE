@@ -2,18 +2,16 @@ function getRelatedForm(){
     if($('#format-type-model-name').val()!=''){
         urlSuffix='/new';
         if($('#asset_group_format_id').val()!='')
-//            urlSuffix='/edit/id/'+$('#asset_group_format_id').val();
+            //            urlSuffix='/edit/id/'+$('#asset_group_format_id').val();
+            $('#format_specific').empty();
         $.ajax({
-                type: 'POST',
-                url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
-                success: function(data,textStatus) {
-                    console.log(data);
-                    
-                }
+            type: 'POST',
+            url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
+            success: function(data,textStatus) {
+                $('#format_specific').append(data);
+            }
                 
-            });
-        $('#format_specific').append($('#format-type-model-name').val());
-        
+        });
     }
     else{
         $('#format_specific').empty();
@@ -154,12 +152,32 @@ $('document').ready(function () {
             urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
             $.ajax({
                 type: 'POST',
-                url: appBaseURL+moduleName+'/'+actionName+urlSuffix,
+                url: appBaseURL+'formattype'+'/'+actionName+urlSuffix,
                 data: $('#format-type-container').children('form').serialize(),
                 success: function(data,textStatus) {
                     var numericExpression = /^[0-9]+$/;
                     if(data.match(numericExpression)){
-                        $('#asset-group-form').submit();
+                        //                        
+                        if($('#format-type-model-name').val()!=''){
+                            $.ajax({
+                                type: 'POST',
+                                url: appBaseURL+moduleName+'/'+actionName+urlSuffix,
+                                data: $('#format_specific').children('form').serialize(),
+                                success: function(data,textStatus) {
+                                    if(data.match(numericExpression)){
+                                        $('#asset-group-form').submit(); 
+                                    }
+                                    else{
+                                        $('#format_specific').html(data);
+                                    }
+                                    
+                                }
+                            });
+                        }
+                        else{
+                            $('#asset-group-form').submit();
+                        }
+                        
                     }
                     else{
                         $('#format-type-container').html(data);
@@ -178,15 +196,29 @@ $('document').ready(function () {
             alert('Now Saving');
             $.ajax({
                 type: 'POST',
-                url: appBaseURL+moduleName+'/'+actionName+urlSuffix,
+                url: appBaseURL+'formattype'+'/'+actionName+urlSuffix,
                 data: $('#format-type-container').children('form').serialize(),
                 success: function(data,textStatus) {
                     var numericExpression = /^[0-9]+$/;
                     if(data.match(numericExpression)){
                         $('#asset_group_format_id').val(data);
-                        $('#asset-group-form').submit();
+                        
+                        if($('#format-type-model-name').val()!=''){
+                            $.ajax({
+                                type: 'POST',
+                                url: appBaseURL+moduleName+'/update/id/'+data,
+                                data: $('#format_specific').children('form').serialize(),
+                                success: function(data,textStatus) {
+                                    $('#asset-group-form').submit();
+                                }
+                            });
+                        }
+                        else{
+                            $('#asset-group-form').submit();
+                        }
                     }
                     else{
+                        console.log('in else portion');
                         $('#format-type-container').html(data);
                     }
                 },
@@ -238,7 +270,7 @@ $('document').ready(function () {
                 getAddFormatTypeForm();
             } else {
 
-                //
+               
                 $.getJSON(
                     appBaseURL+'formattype/getModelName',
                     {
@@ -246,20 +278,21 @@ $('document').ready(function () {
                     },
                     function (modelName) {
                         modelName = modelName.toLowerCase();
-
-                        if( $('#format-type-model-name').prop('selectedIndex') == 0 || modelName == serializedFormatTypeModelName ) {
-                            if( $('#format-type-model-name').prop('selectedIndex') == 0 ) {
-                                $('#format-type-model-name').val(modelName);
-                                serializedFormatTypeModelName=modelName;
-                            }
-                            $('#format-type-container').load(
-                                appBaseURL+modelName+'/edit',
-                                {
-                                    id:formatTypeID
+                        if(modelName!='formattype'){
+                            if( $('#format-type-model-name').prop('selectedIndex') == 0 || modelName == serializedFormatTypeModelName ) {
+                                if( $('#format-type-model-name').prop('selectedIndex') == 0 ) {
+                                    $('#format-type-model-name').val(modelName);
+                                    serializedFormatTypeModelName=modelName;
                                 }
-                                );
-                        } else
-                            getAddFormatTypeForm();
+                                $('#format_specific').load(
+                                    appBaseURL+modelName+'/edit',
+                                    {
+                                        id:formatTypeID
+                                    }
+                                    );
+                            } else
+                                getAddFormatTypeForm();
+                        }
                     });
             }
         } else if(serializedFormatTypeModelName) {
@@ -279,11 +312,23 @@ $('document').ready(function () {
 
     // Need to check if Format Type exists...
 
-//    $('#format-type-model-name').click(function () {
-//        alert(1);
-////        getFormatTypeForm();
-//    });
-
+    //    $('#format-type-model-name').click(function () {
+    //        alert(1);
+    ////        getFormatTypeForm();
+    //    });
+    if($('#asset_group_format_id').val()!=''){
+        $.ajax({
+            type: 'POST',
+            url: appBaseURL+'formattype/edit/id/'+$('#asset_group_format_id').val(),
+            success: function(data,textStatus) {
+                $('#format-type-container').html(data);
+            },
+            error: function(data,textStatus,errorThrown) {
+                alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
+                $('body').html(data['responseText']);
+            }
+        });
+    }
 
     getFormatTypeForm(); // When the DOM is loaded.
 

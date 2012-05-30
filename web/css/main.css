@@ -33,3 +33,12 @@
 form input[type="checkbox"]{
     width: auto;
 }
+form input[type="radio"]{
+    width: auto;
+}
+#format_specific th{
+    background-color: #DADADA;
+}
+#dat-table{
+    width: 65%;
+}

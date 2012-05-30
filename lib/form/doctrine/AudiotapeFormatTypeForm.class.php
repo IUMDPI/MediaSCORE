@@ -16,6 +16,7 @@ class AudiotapeFormatTypeForm extends BaseAudiotapeFormatTypeForm
   public function configure()
   {
 	  parent::configure();
-	  $this->setWidget('noiseReduction',new sfWidgetFormInputCheckbox());
+	  $this->setWidget('noise_reduction',new sfWidgetFormInputCheckbox());
+          $this->setValidator('noise_reduction', new sfValidatorString(array('required' => false)));
   }
 }
