@@ -226,7 +226,7 @@ $('document').ready(function () {
                         }
                     }
                     else{
-                        console.log('in else portion');
+                        
                         $('#format-type-container').html(data);
                     }
                 },
@@ -259,7 +259,7 @@ $('document').ready(function () {
                     });
             }
             else{
-                console.log('got you');
+                
                 $('#format-type-container').load(
                     appBaseURL+'formattype/newform',
                     {},
