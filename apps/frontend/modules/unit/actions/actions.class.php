@@ -156,7 +156,8 @@ class unitActions extends sfActions {
         $this->form = new UnitForm(
                         $unit,
                         array(
-                            'userID' => $this->getUser()->getGuardUser()->getId()
+                            'userID' => $this->getUser()->getGuardUser()->getId(),
+                            'action'=>'edit'
                 ));
     }
 
@@ -165,7 +166,9 @@ class unitActions extends sfActions {
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
         $this->form = new UnitForm($unit,
                         array(
-                            'userID' => $this->getUser()->getGuardUser()->getId()
+                            'userID' => $this->getUser()->getGuardUser()->getId(),
+                            'action'=>'edit'
+                            
                 ));
 
         $this->processForm($request, $this->form);
