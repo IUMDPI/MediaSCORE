@@ -210,6 +210,7 @@ FormatType:
     other_contaminants: { type: boolean }
     duration: { type: integer, notnull: true }
     duration_type: { type: string(255) }
+    duration_type_methodology: { type: string(255) }
 
 # The Specific Format Types
 
