@@ -74,12 +74,12 @@
                         <?php echo $form['personnel_list']->renderLabel(); ?>
                     </th>
                     <td style="padding: 8px 10px;">
+
+
+                        <?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
                         <table id="user_info" style="width: 70%;">
 
                         </table>
-
-                        <?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
-
 
                     </td>
 
