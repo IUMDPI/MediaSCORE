@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/symfony/mediascore1.0a/js/jquery_evaluator_history_index.js"></script>
 -->
 
-<?php echo include_javascripts() ?>
+<?php //echo include_javascripts() ?>
 
 <?php
 /*
@@ -41,7 +41,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
                         <td class="invisible">
                             <div class="options">
                                 <a href="<?php echo url_for('storagelocation/edit?id=' . $storage_location->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                                <a href="#fancybox1" class="delete_storage"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                                <a href="#fancyboxStorage" class="delete_storage"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getStorageId(<?php echo $storage_location->getId();?>);" /></a>
                             </div>
                         </td>
                     </tr>
@@ -57,7 +57,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-       $.fancybox.init();
+       
        
   $(".delete_storage").fancybox({
            'width': '100%',
@@ -71,12 +71,18 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
           
        });
     });
-    
+    var storageID=null;
+    function getStorageId(id){
+        storageID=id;
+    }
+    function deleteStorage(){
+        window.location.href='/storagelocation/delete?id='+storageID;
+    }
 </script>
 <?php if (sizeof($storage_locations) > 0) { ?>
 
 <div style="display: none;"> 
-    <div id="fancybox1" style="background-color: #F4F4F4;width: 600px;" >
+    <div id="fancyboxStorage" style="background-color: #F4F4F4;width: 600px;" >
         <header>
             <h5  class="fancybox-heading">Warning!</h5>
         </header>
@@ -87,7 +93,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
             You are about to delete a Storage Location which will permanently erase all information associated with it.<br/>
             Are you sure you want to proceed?
         </div>
-        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('storagelocation/delete?id=' . $storage_location->getId()) ?>">YES</a></div>
+        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteStorage();">YES</a></div>
     </div>
 </div>
 <?php } ?>

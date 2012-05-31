@@ -121,12 +121,12 @@ class assetgroupActions extends sfActions {
     }
 
     public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
+//        $request->checkCSRFProtection();
+        
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
         $asset_group->delete();
 
-        $this->redirect('assetgroup/index');
+        $this->redirect('assetgroup/index?c='.$request->getParameter('c'));
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

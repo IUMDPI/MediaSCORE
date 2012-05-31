@@ -1,6 +1,6 @@
 
 <a class="button" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
-<!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new')  ?>">Create Unit</a>-->
+<!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new')   ?>">Create Unit</a>-->
 <div id="search-box">
     <form>
         <div class="search-input">
@@ -76,13 +76,13 @@
                     <td class="invisible">
                         <div class="options">
                             <a href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $unit->getId(); ?>)"/></a>
                         </div>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
-    <?php
+        <?php
     } else {
         echo '<tr><td>No Unit Available</td></tr>';
     }
@@ -112,22 +112,30 @@
         //            'padding': 0
         //        });
     });
+    var unitId=null;
+    function getUnitID(id){
+        unitId=id;
+      
+    }
+    function deleteUnit(){
+        window.location.href='/unit/delete?id='+unitId;
+    }
     
 </script>
- <?php if (sizeof($units) > 0) { ?>
-<div style="display: none;"> 
-    <div id="fancybox1" style="background-color: #F4F4F4;width: 600px;" >
-        <header>
-            <h5  class="fancybox-heading">Warning!</h5>
-        </header>
-        <div style="margin: 10px;">
-            <h3>Careful!</h3>
+<?php if (sizeof($units) > 0) { ?>
+    <div style="display: none;"> 
+        <div id="fancybox1" style="background-color: #F4F4F4;width: 600px;" >
+            <header>
+                <h5  class="fancybox-heading">Warning!</h5>
+            </header>
+            <div style="margin: 10px;">
+                <h3>Careful!</h3>
+            </div>
+            <div style="margin: 10px;font-size: 0.8em;">
+                You are about to delete a Unit which will permanently erase all information associated with it.<br/>
+                Are you sure you want to proceed?
+            </div>
+            <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a  href="javascript:void(0);" onclick="deleteUnit();">YES</a></div>
         </div>
-        <div style="margin: 10px;font-size: 0.8em;">
-            You are about to delete a Unit which will permanently erase all information associated with it.<br/>
-            Are you sure you want to proceed?
-        </div>
-        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('unit/delete?id=' . $unit->getId()) ?>">YES</a></div>
     </div>
-</div>
 <?php } ?>

@@ -146,8 +146,8 @@ AssetGroup:
     format_id: { type: integer }
     #evaluator_history: { type: integer }
   relations:
-    FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups }
-    EvaluatorHistory: { class: EvaluatorHistory, type: many, local: id, foreign: asset_group_id }
+    FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups ,onDelete: CASCADE}
+    EvaluatorHistory: { class: EvaluatorHistory, type: many, local: id, foreign: asset_group_id,onDelete: CASCADE }
 
 StorageLocation:
   actAs: { Timestampable: ~ }

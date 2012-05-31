@@ -17,9 +17,11 @@ function getRelatedForm(){
         $('#format_specific').empty();
     }
 }
+var firstTimeLoad=0;
 // Once the document object is loaded...
 $('document').ready(function () {
-
+    
+    $.blockUI({ message: '<h3><img src="/images/ajax-loader.gif" /> Loading Please wait...</h3>' });  
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -55,6 +57,11 @@ $('document').ready(function () {
                     //$('body').append(storageLocations);
                     for(i in storageLocations)
                         $('#asset_group_storage_location_id').append('<option value="'+storageLocations[i].id+'">'+storageLocations[i].name+'</option>');
+                    
+                    if(firstTimeLoad==0){
+                        firstTimeLoad=1;
+                         $.unblockUI(); 
+                    }
                 });
         }
     }
@@ -73,6 +80,7 @@ $('document').ready(function () {
        
         $('.collection-multiple-select').click(function () {
             $('#asset_group_parent_node_id').val( $(this).val() );
+            populateStorageLocations();
         //console.log( 'updated: '+$('#asset_group_parent_node_id').val() );
         });
         setTimeout('populateStorageLocations();',1000);
@@ -191,9 +199,9 @@ $('document').ready(function () {
             });
             
         } else if ( $('#asset_group_format_id').prop('selectedIndex') == -1 ) {
-            alert('(To be replaced with a Modal) Please choose a format type.');
+            
         } else {
-            alert('Now Saving');
+            
             $.ajax({
                 type: 'POST',
                 url: appBaseURL+'formattype'+'/'+actionName+urlSuffix,
@@ -380,7 +388,7 @@ $('document').ready(function () {
         // If a "delete" hyperlink is clicked...
         $('.evaluator-history-delete').click(function (e) {
             e.preventDefault();
-            alert('Replace me with a warning modal');
+            
             $('#evaluator-history-edit-container').load(
                 appBaseURL+'evaluatorhistory/delete?id='+$(this).attr('id'),
                 function (data) {

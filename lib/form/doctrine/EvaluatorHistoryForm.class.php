@@ -39,7 +39,7 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 											'minute' => date('i'),
 											'second' => date('s')))));*/
 	$this->getWidget('consulted_personnel_list')->setOption('method','getFullName');
-
+        
 
 	/*$this->setWidget('person_list', new sfWidgetFormDoctrineChoice(array(
 									'multiple' => true,

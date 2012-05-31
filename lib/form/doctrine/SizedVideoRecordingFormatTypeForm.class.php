@@ -17,6 +17,8 @@ class SizedVideoRecordingFormatTypeForm extends BaseSizedVideoRecordingFormatTyp
   {
 	  parent::configure();
 	  $this->setWidget('size',new sfWidgetFormChoice(array('choices' => SizedVideoRecordingFormatType::$constants)));
+          $this->setValidator('size', new sfValidatorString(array('required' => false)));
+          $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
   }
 }

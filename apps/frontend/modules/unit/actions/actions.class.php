@@ -142,7 +142,9 @@ class unitActions extends sfActions {
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-        $this->form = new UnitForm();
+        $this->form = new UnitForm(null, array(
+                    'userID' => $this->getUser()->getGuardUser()->getId()
+                ));
 
         $this->processForm($request, $this->form);
 
@@ -161,7 +163,10 @@ class unitActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
-        $this->form = new UnitForm($unit);
+        $this->form = new UnitForm($unit,
+                        array(
+                            'userID' => $this->getUser()->getGuardUser()->getId()
+                ));
 
         $this->processForm($request, $this->form);
 
@@ -172,9 +177,9 @@ class unitActions extends sfActions {
         //$request->checkCSRFProtection();
 
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
-        
+
         $unit->delete();
-        
+
 
         $this->redirect('unit/index');
     }
@@ -182,7 +187,6 @@ class unitActions extends sfActions {
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
-
             $unit = $form->save();
 
             $this->redirect('unit/index');

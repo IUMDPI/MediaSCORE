@@ -13,4 +13,5 @@
 class DV extends BaseDV
 {
 	public static $constants = array(0 => 'Standard',1 => 'Long Play',2 => 'Unknown');
+	public static $constants1 = array(0 => 'Playback Experience',1 => 'Known Problematic Brand');
 }

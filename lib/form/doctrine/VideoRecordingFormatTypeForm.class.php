@@ -18,6 +18,12 @@ class VideoRecordingFormatTypeForm extends BaseVideoRecordingFormatTypeForm
 	  parent::configure();
 	  $this->setWidget('recordingStandard',new sfWidgetFormChoice(array('choices' => VideoRecordingFormatType::$constants)));
 	  $this->setWidget('sheddingSoftBinder',new sfWidgetFormInputCheckbox());
+          
+          $this->setValidator('recordingStandard', new sfValidatorString(array('required' => false)));
+         $this->setValidator('sheddingSoftBinder', new sfValidatorBoolean());
+         
+         $this->getWidget('recordingStandard')->setLabel('<span class="required">*</span>Recording Standard:&nbsp;');
+         $this->getWidget('sheddingSoftBinder')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
   }
 }

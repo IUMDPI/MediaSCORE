@@ -17,5 +17,6 @@ class Film extends BaseFilm
 					1 => array(false => 'Monochrome',true => 'Color'),
 					2 => array(0 => 'None',1 => 'Magnetic composite',2 => 'Magnetic Separate',3=>'Optical composite',4=>'Optical separate'),
 					3 => array(0 => 'Polyster',1 => 'Acetate',2 => 'Nitrate'),
-                                        4 => array(0 => 'Minor',1 => 'Moderate',2 => 'Severe'));
+                                        4 => array(0=>'None',1 => 'Minor',2 => 'Moderate',3 => 'Severe'),
+                                        5 => array(0 => 'Quad',1 => 'High Band',2 => 'Low Band',3=>'Unknown'));
 }

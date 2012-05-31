@@ -48,12 +48,21 @@ class xdcamopticalActions extends sfActions
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($xd_cam_optical = Doctrine_Core::getTable('XDCamOptical')->find(array($request->getParameter('id'))), sprintf('Object xd_cam_optical does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($xd_cam_optical = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object xd_cam_optical does not exist (%s).', $request->getParameter('id')));
+     $xd_cam_optical->setType(27);
+        $xd_cam_optical->save();
+        $xd_cam_optical = Doctrine_Core::getTable('XDCamOptical')->find(array($request->getParameter('id')));
     $this->form = new XDCamOpticalForm($xd_cam_optical);
 
-    $this->processForm($request, $this->form);
+    $this->form->disableLocalCSRFProtection();
+        $validateForm = $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+        if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
+            echo $validateForm['id'];
+            exit;
+        } else {
+            $this->setTemplate('edit');
+        }
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -72,8 +81,11 @@ class xdcamopticalActions extends sfActions
     if ($form->isValid())
     {
       $xd_cam_optical = $form->save();
+      $saveReturnId = array('form' => true, 'id' => $xd_cam_optical->getId());
+            return $saveReturnId;
 
-      $this->redirect('xdcamoptical/edit?id='.$xd_cam_optical->getId());
+//      $this->redirect('xdcamoptical/edit?id='.$xd_cam_optical->getId());
     }
+    return false;
   }
 }

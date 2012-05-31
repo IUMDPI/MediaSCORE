@@ -81,7 +81,7 @@
 
                     <div class="options">
                         <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                        <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" /></a>
+                        <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId();?>);"/></a>
                        
                     </div>
 
@@ -112,6 +112,7 @@
         });
     });
     var filter=1;
+    var collectionId=null;
     function filterToggle(){
         $('#filter').slideToggle();
         if(filter==0){
@@ -125,6 +126,12 @@
         }
             
             
+    }
+    function getCollectionId(id){
+        collectionId=id;
+    }
+    function deleteCollection(unit){
+        window.location.href='/collection/delete?id='+collectionId+'&u='+unit;
     }
 </script>
 <?php if(sizeof($collections)>0){ ?>
@@ -140,7 +147,7 @@
             You are about to delete a Collection which will permanently erase all information associated with it.<br/>
             Are you sure you want to proceed?
         </div>
-        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo url_for('collection/delete?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>">YES</a></div>
+        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteCollection(<?php echo $unitID; ?>);">YES</a></div>
     </div>
 </div>
 <?php } ?>

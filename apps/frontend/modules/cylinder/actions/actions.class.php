@@ -78,6 +78,7 @@ class cylinderActions extends sfActions {
 
 //            $this->redirect('cylinder/edit?id=' . $cylinder->getId());
         }
+        return false;
     }
 
 }
