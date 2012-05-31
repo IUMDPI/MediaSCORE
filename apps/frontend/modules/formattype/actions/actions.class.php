@@ -128,5 +128,6 @@ class formattypeActions extends sfActions // Abstract
             return $saveReturnId;
 //      $this->redirect('formattype/edit?id='.$format_type->getId());
     }
+    return false;
   }
 }
