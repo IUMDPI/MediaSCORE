@@ -60,13 +60,13 @@ class collectionActions extends sfActions {
 
             $this->forward404Unless($unit);
             $this->unitName = $unit->getName();
-            $this->collections = Doctrine_Core::getTable('Collection')
-                    ->createQuery('a')
-                    ->where('parent_node_id', $this->unitID)
-                    ->orderBy('name')
-                    ->execute();
 //            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->findBy('parent_node_id', $this->unitID);
+//                    ->createQuery('a')
+//                    ->where('parent_node_id', $this->unitID)
+//                    ->orderBy('name')
+//                    ->execute();
+            $this->collections = Doctrine_Core::getTable('Collection')
+                    ->findBy('parent_node_id', $this->unitID);
 //                                $this->filter=new CollectionFormFilter;
             //->findAll();
 //		print_r($this->collections->toArray());exit;
