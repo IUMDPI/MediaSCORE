@@ -88,6 +88,7 @@ class unitActions extends sfActions {
 
         $this->units = Doctrine_Core::getTable('Unit')
                 ->createQuery('a')
+                ->orderBy('name')
                 ->execute();
 
         // Cannot forge a one-to-one relationship with myUser class that provides a 

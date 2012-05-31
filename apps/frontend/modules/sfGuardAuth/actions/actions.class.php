@@ -117,7 +117,7 @@ class sfGuardAuthActions extends sfActions {
 
             foreach (array('unit', 'personnel_list', 'storage_locations_list') as $workSessionField)
                 $this->getUser()->setAttribute($workSessionField, $this->form[$workSessionField]->getValue());
-
+//            echo '<pre>';print_r($this->getUser()->getAttribute('personnel_list'));exit;
             //print_r( $this->getUser()->getAttribute('unit', $this->form['unit'])->getValue() );
             //$this->getResponse()->setContent( $this->getUser()->getAttribute('personnel_list') );
             //print_r( $this->getUser()->getAttribute('storage_locations_list') );

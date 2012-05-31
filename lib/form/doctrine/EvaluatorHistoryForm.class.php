@@ -40,6 +40,9 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 											'second' => date('s')))));*/
 	$this->getWidget('consulted_personnel_list')->setOption('method','getFullName');
         
+//        echo '<pre>';
+//                var_dump(sfContext::getInstance()->getUser()->getAttribute('personnel_list'));exit;
+//        sfContext::getInstance()->getUser()->getAttribute('personnel_list');
 
 	/*$this->setWidget('person_list', new sfWidgetFormDoctrineChoice(array(
 									'multiple' => true,
@@ -54,5 +57,9 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 //      'updated_at'     => new sfWidgetFormDateTime(),
 //      'person_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Person')),
 	//    ));
+  }
+  public function updateDefaultsFromObject() {
+      parent::updateDefaultsFromObject();
+      $this->setDefault('consulted_personnel_list', sfContext::getInstance()->getUser()->getAttribute('personnel_list'));
   }
 }
