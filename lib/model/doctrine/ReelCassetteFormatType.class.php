@@ -12,5 +12,5 @@
  */
 class ReelCassetteFormatType extends BaseReelCassetteFormatType
 {
-	public static $constants = array(0 => 'Minor',1 => 'Moderate',2 => 'Severe'); 
+	public static $constants = array(0=>'None',1 => 'Minor',2 => 'Moderate',3 => 'Severe'); 
 }
