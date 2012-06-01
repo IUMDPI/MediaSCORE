@@ -42,3 +42,9 @@ form input[type="radio"]{
 #dat-table{
     width: 65%;
 }
+#sf_admin_list_th_actions{
+    display: none;
+}
+#sf_admin_content{
+    margin-top: 10px;
+}

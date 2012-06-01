@@ -35,12 +35,18 @@ $('document').ready(function () {
             $.get(
                 appBaseURL + 'storagelocation/index',
                 {
-                    c:collectionID
+                    c:collectionID,
+                    n:1
                 },
                 function (storageLocations) {
+                    selected='';
                     $('#asset_group_storage_location_id').empty();
-                    for(i in storageLocations)
-                        $('#asset_group_storage_location_id').append('<option value="'+storageLocations[i].id+'">'+storageLocations[i].name+'</option>');
+                    for(i in storageLocations.s){
+                        if(storageLocations.n[i]==storageLocations.s[i].id)
+                            selected='selected="selected"';
+                         $('#asset_group_storage_location_id').append('<option value="'+storageLocations.s[i].id+'" '+selected+'>'+storageLocations.s[i].name+'</option>');
+                    }
+                       
                 });
         }
         else{

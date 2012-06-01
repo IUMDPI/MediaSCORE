@@ -35,7 +35,7 @@
                     <div class="report"><a href="#"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></a></div>
 
                     <?php
-                    if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "sfGuardUser")) {
+                    if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) {
                         
                         echo '<div class="settings selected"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
                     } else {
@@ -57,12 +57,15 @@
         <div id="main-container">
             
             <div id="main" class="clearfix">
-                <?php if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "sfGuardUser")) {?>
+                <?php if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) {?>
                 <ul id="settings-navigation">
-			<li class=""><a class="menu-link" href="<?php echo  url_for('sfGuardUser/index') ?>">Users</a></li>
+                     <?php if ($sf_user->isAuthenticated() && $sf_user->isSuperAdmin() ==1) { ?>
+			<li class=""><a class="menu-link" href="<?php echo  url_for('user/index') ?>">Users</a></li>
+                        <?php }?>
 			<li class=""><a class="menu-link" href="<?php echo  url_for('person/index') ?>">Unit Personnel</a></li>
 			<li class=""><a class="menu-link" href="<?php echo  url_for('storagelocation/index') ?>">Storage Locations</a></li>
-			<li class=""><?php echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link')) ?></li>
+			<li class=""><a class="menu-link" href="<?php echo  url_for('user/edit?id=').$sf_user->getGuardUser()->getId() ?>">Edit Profile </a></li>
+<!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link')) ?></li>-->
 			</ul>
                 <?php } ?>
                 <?php echo $sf_content ?>

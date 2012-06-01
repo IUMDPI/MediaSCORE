@@ -5,9 +5,10 @@
 
   <?php
 	// 05/13/12 - James
-	$voidFields = array('username');
+	$voidFields = array();
 
 	foreach ($fields as $name => $field): ?>
+    
     <?php if ((isset($form[$name]) && $form[$name]->isHidden()) || (!isset($form[$name]) && $field->isReal()) || in_array($name,$voidFields)) continue ?>
     <?php include_partial('sfGuardUser/form_field', array(
       'name'       => $name,

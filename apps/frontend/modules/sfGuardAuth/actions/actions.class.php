@@ -84,8 +84,6 @@
 
 class sfGuardAuthActions extends sfActions {
 
-    
-
     public function executeSignin($request) {
 
         $user = $this->getUser();
@@ -151,6 +149,34 @@ class sfGuardAuthActions extends sfActions {
         //$signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
         //$this->redirect('' != $signoutUrl ? $signoutUrl : '@homepage');
         $this->redirect('@homepage');
+    }
+
+    public function executeForgotpassword($request) {
+        if ($request->isMethod('post')) {
+            $this->email = $request->getParameter('email');
+            $validateEmail = Doctrine_Query::Create()
+                    ->from('sfGuardUser u')
+                    ->select("u.*")
+                    ->where('u.email_address  = ?', $this->email)
+                    ->fetchArray();
+            
+            if (sizeof($validateEmail) > 0) {
+                $password='nouman';
+                $message = Swift_Message::newInstance()
+                        ->setFrom('noumantayyab@gmail.com')
+                        ->setTo($validateEmail[0]['email_address'])
+                        ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
+                        ->setBody('Your New Password is '.$password)
+                        ->setContentType('text/html')
+                ;
+
+                $this->getMailer()->send($message);
+                echo 'mail Sent';
+            } else {
+                $this->error = 'The given email is not correct.';
+            }
+//            echo '<pre>';print_r($validateEmail);exit;
+        }
     }
 
     /*  public function executeSignin1($request)

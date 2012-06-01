@@ -21,7 +21,7 @@
                 <?php echo $form['password']->render(); ?>
             </div>
 
-            <div class="right-column small"><a href="#">Forgot password?</a></div>
+            <div class="right-column small"><a href="<?php echo url_for('sfGuardAuth/forgotpassword') ?>">Forgot password?</a></div>
             <div class="right-column"><input type="submit" value="Log In" class="button" /></div>
         </div>
     </div>

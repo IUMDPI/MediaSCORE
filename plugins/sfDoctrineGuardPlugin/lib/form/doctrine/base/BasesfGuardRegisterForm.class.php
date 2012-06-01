@@ -21,7 +21,8 @@ class BasesfGuardRegisterForm extends sfGuardUserAdminForm
       $this['groups_list'],
       $this['permissions_list']
     );
-
+    $this->setWidget('role',new sfWidgetFormInputHidden(array(),array('value' => 'Role' )));
+    $this->setValidator('role', new sfValidatorPass());
     $this->validatorSchema['password']->setOption('required', true);
   }
 }

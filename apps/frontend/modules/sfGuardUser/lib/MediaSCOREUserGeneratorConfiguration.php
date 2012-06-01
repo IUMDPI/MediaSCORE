@@ -24,7 +24,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
 
   public function getFormDisplay()
   {
-    return array(  'User' =>   array(    0 => 'first_name',    1 => 'last_name',    2 => 'email_address',    3 => 'username',    4 => 'password',    5 => 'password_again'));
+    return array(  'User' =>   array(    0 => 'first_name',    1 => 'last_name',    2 => 'email_address',    3 => 'username',    4 => 'password',    5 => 'password_again',6=>'role'));
   }
 
   public function getListDisplay()
@@ -51,6 +51,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
       'groups_list' => array(  'is_link' => false,  'is_real' => false,  'is_partial' => false,  'is_component' => false,  'type' => 'Text',),
       'permissions_list' => array(  'is_link' => false,  'is_real' => false,  'is_partial' => false,  'is_component' => false,  'type' => 'Text',),
       'password_again' => array(  'is_link' => false,  'is_real' => false,  'is_partial' => false,  'is_component' => false,  'type' => 'Text',  'label' => 'Password (again)',),
+      'role' => array(  'is_link' => false,  'is_real' => false,  'is_partial' => false,  'is_component' => false,  'type' => 'Text',),
     );
   }
 
@@ -72,6 +73,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
       'updated_at' => array(),
       'groups_list' => array(),
       'permissions_list' => array(),
+      'role' => array(),
     );
   }
 
@@ -93,6 +95,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
       'updated_at' => array(),
       'groups_list' => array(),
       'permissions_list' => array(),
+      'role' => array(),
     );
   }
 
@@ -114,6 +117,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
       'updated_at' => array(),
       'groups_list' => array(),
       'permissions_list' => array(),
+      'role' => array(),
     );
   }
 
@@ -135,6 +139,7 @@ abstract class MediaSCOREUserGeneratorConfiguration extends BaseSfGuardUserGener
       'updated_at' => array(),
       'groups_list' => array(),
       'permissions_list' => array(),
+      'role' => array(),
     );
   }
 

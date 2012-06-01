@@ -19,6 +19,7 @@ class analogaudiocassetteActions extends sfActions {
     public function executeShow(sfWebRequest $request) {
         $this->analog_audio_cassette = Doctrine_Core::getTable('AnalogAudioCassette')->find(array($request->getParameter('id')));
         $this->forward404Unless($this->analog_audio_cassette);
+        
     }
 
     public function executeNew(sfWebRequest $request) {
@@ -29,7 +30,7 @@ class analogaudiocassetteActions extends sfActions {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new AnalogAudioCassetteForm();
-
+        
         $this->processForm($request, $this->form);
 
         $this->setTemplate('new');

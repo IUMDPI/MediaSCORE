@@ -11,7 +11,7 @@ class ProjectConfiguration extends sfProjectConfiguration
 	  $this->enablePlugins(array(
 		  'sfDoctrinePlugin',
 		  // 04/29/12
-		  'sfDoctrineGuardPlugin'
+		  'sfDoctrineGuardPlugin',
 	  ));
   }
 }
