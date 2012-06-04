@@ -12,7 +12,7 @@
 	<?php
 	// 05/13/12 - James
 	$voidFieldSets = array(	'Permissions and groups' );
-	$voidFields = array();
+	$voidFields = array('username');
 
 	foreach ( $configuration->getFormFields($form, $form->isNew() ? 'new' : 'edit') as $fieldset => $fields): ?>
 	<?php

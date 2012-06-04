@@ -5,10 +5,10 @@
         <div class="search-input">
 <!--            <div class="token">Token One<span> <a href="#">X</a></span></div>
           <div class="token">Token One<span> <a href="#">X</a></span></div>-->
-            <input type="search" placeholder="Search all records"/>
+            <input type="search" placeholder="Search all records" onkeyup=""/>
             <div class="container">
-                <a class="search-triangle" href="#"></a>
-                <!--              <a class="search-close" href="#"></a>-->
+                <a class="search-triangle" href="javascript:void(0);" onclick="removeSearchText();"></a>
+                              <a class="search-close" href="#"></a>
             </div> 
             <input class="button" type="submit" value="" />
             <!--            <div class="dropdown-container">
@@ -31,73 +31,94 @@
         </div>
     </form>
 </div>
+
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
         <div class="title">Filter by:</div>
-        <form>
+        <form id="filterCollection" action="<?php echo url_for('collection/index')?>">
             <strong>Text:</strong> <input type="text" class="text" />
             <strong>Date:</strong>
             <div class="filter-date">
                 <select>
-                    <option value="date-type">Created On</option>
-                    <option value="date-type">Updated On</option>
+                    <option value="">Date Type</option>
+                    <option value="0">Created On</option>
+                    <option value="1">Updated On</option>
                 </select>
-                <input type="text" />
+                <input type="text" id="from"/>
                 to
-                <input type="text" />
+                <input type="text" id="to" />
             </div>
             <strong>Status:</strong>
             <select>
-                <option value="date-type">Created On</option>
-                <option value="date-type">Updated On</option>
+                <option value="">Any Status</option>
+                <option value="0">Incomplete</option>
+                <option value="1">In Progress</option>
+                <option value="2">Completed</option>
             </select>
         </form>
-        <div class="reset"><a href="#"><span>R</span> Reset</a></div>
+        <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterCollection');"><span>R</span> Reset</a></div>
     </div>
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
-<table>
-    <?php if(sizeof($collections)>0){ ?>
-    <thead>
-        <tr>
-            <th>Collection</th>
-            <th>Created</th>
-            <th>Created By</th>
-            <th>Updated On</th>
-            <th>Updated By</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($collections as $collection): ?>
+<table id="collectionTable" class="tablesorter">
+    <?php if (sizeof($collections) > 0) { ?>
+        <thead>
             <tr>
-                <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
-                <td><?php echo $collection->getCreatedAt() ?></td>
-                <td><?php echo $collection->getCreator()->getName() ?></td>
-                <td><?php echo $collection->getUpdatedAt() ?></td>
-                <td><?php echo $collection->getEditor()->getName() ?></td>
-                <td class="invisible">
-
-                    <div class="options">
-                        <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                        <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId();?>);"/></a>
-                       
-                    </div>
-
-                </td>
-
+                <th>Collection</th>
+                <th>Created</th>
+                <th>Created By</th>
+                <th>Updated On</th>
+                <th>Updated By</th>
+    <!--            <th></th>-->
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-    <?php } else{
+        </thead>
+        <tbody>
+            <?php foreach ($collections as $collection): ?>
+                <tr>
+                    <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
+                    <td><?php echo $collection->getCreatedAt() ?></td>
+                    <td><?php echo $collection->getCreator()->getName() ?></td>
+                    <td><?php echo $collection->getUpdatedAt() ?></td>
+                    <td><?php echo $collection->getEditor()->getName() ?></td>
+                    <td class="invisible">
+
+                        <div class="options">
+                            <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    <?php
+    } else {
         echo '<tr><td>No Collection Available</td></tr>';
-    }?>
+    }
+    ?>
 </table>
 
 <script type="text/javascript">
-     $(document).ready(function() {
-       
+    $(document).ready(function() {
+       var dates = $( "#from, #to" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			numberOfMonths: 2,
+                        'dateFormat':'yy-mm-dd',
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+        $("#collectionTable").tablesorter(); 
     
         $(".delete_unit").fancybox({
             'width': '100%',
@@ -133,21 +154,31 @@
     function deleteCollection(unit){
         window.location.href='/collection/delete?id='+collectionId+'&u='+unit;
     }
+    function resetFields(form){
+        form=$(form);
+        form.find('input:text, input:password, input:file, select').val('');
+        form.find('input:radio, input:checkbox')
+        .removeAttr('checked').removeAttr('selected');
+
+    }
+    function removeSearchText(){
+        
+    }
 </script>
-<?php if(sizeof($collections)>0){ ?>
-<div style="display: none;"> 
-    <div id="fancybox" style="background-color: #F4F4F4;width: 600px;" >
-        <header>
-            <h5  class="fancybox-heading">Warning!</h5>
-        </header>
-        <div style="margin: 10px;">
-            <h3>Careful!</h3>
+<?php if (sizeof($collections) > 0) { ?>
+    <div style="display: none;"> 
+        <div id="fancybox" style="background-color: #F4F4F4;width: 600px;" >
+            <header>
+                <h5  class="fancybox-heading">Warning!</h5>
+            </header>
+            <div style="margin: 10px;">
+                <h3>Careful!</h3>
+            </div>
+            <div style="margin: 10px;font-size: 0.8em;">
+                You are about to delete a Collection which will permanently erase all information associated with it.<br/>
+                Are you sure you want to proceed?
+            </div>
+            <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteCollection(<?php echo $unitID; ?>);">YES</a></div>
         </div>
-        <div style="margin: 10px;font-size: 0.8em;">
-            You are about to delete a Collection which will permanently erase all information associated with it.<br/>
-            Are you sure you want to proceed?
-        </div>
-        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteCollection(<?php echo $unitID; ?>);">YES</a></div>
     </div>
-</div>
 <?php } ?>

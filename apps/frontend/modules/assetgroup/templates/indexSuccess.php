@@ -58,7 +58,7 @@
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection/index?u=' . $unitID) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
 
-<table>
+<table id="assetGroupTable" class="tablesorter">
     <thead>
         <tr>
             <th>Asset Groups</th>
@@ -66,7 +66,7 @@
             <th>Created By</th>
             <th>Updated On</th>
             <th>Updated By</th>
-            <th></th>
+<!--            <th></th>-->
         </tr>
     </thead>
     <tbody>
@@ -91,7 +91,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-       
+       $("#assetGroupTable").tablesorter();
         $(".delete_unit").fancybox({
             'width': '100%',
             'height': '100%',

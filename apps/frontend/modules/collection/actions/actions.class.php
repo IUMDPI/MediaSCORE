@@ -47,26 +47,22 @@ class collectionActions extends sfActions {
             $this->setLayout('json');
             return $this->renderText(json_encode($this->collections->toArray()));
         } else {
-
+            $this->filter = new CollectionFormFilter();
             $this->unitID = $request->getParameter('u');
             $this->forward404Unless($this->unitID);
 
             $unit = Doctrine_Core::getTable('Unit')
                     ->find($this->unitID);
-
-            //print_r($this->unitID);
-            //print_r($unit->toArray());
-            //exit();
-
             $this->forward404Unless($unit);
             $this->unitName = $unit->getName();
+            $this->collections = Doctrine_Query::Create()
+                    ->from('Collection c')
+                    ->select('c.*')
+                    ->where('c.parent_node_id  = ?', $this->unitID)
+                    ->execute();
+
 //            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->createQuery('a')
-//                    ->where('parent_node_id', $this->unitID)
-//                    ->orderBy('name')
-//                    ->execute();
-            $this->collections = Doctrine_Core::getTable('Collection')
-                    ->findBy('parent_node_id', $this->unitID);
+//                    ->findBy('parent_node_id', $this->unitID);
 //                                $this->filter=new CollectionFormFilter;
             //->findAll();
 //		print_r($this->collections->toArray());exit;

@@ -5,7 +5,7 @@
 
   <?php
 	// 05/13/12 - James
-	$voidFields = array();
+	$voidFields = array('username');
 
 	foreach ($fields as $name => $field): ?>
     

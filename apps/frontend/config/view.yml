@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [jquery.multiselect.filter.css,fancybox/jquery.fancybox-1.3.4.css,main.css,smoothness/jquery-ui-1.8.20.custom.css,wireframes/style.css,jquery.multiselect.css,http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css,prettify.css]
+  stylesheets:    [jquery.multiselect.filter.css,fancybox/jquery.fancybox-1.3.4.css,main.css,smoothness/jquery-ui-1.8.20.custom.css,wireframes/style.css,jquery.multiselect.css,http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css,prettify.css,tableSorter.css]
 
-  javascripts:    [jquery-1.7.2.min.js,jquery-ui-1.8.20.smoothness.min.js,jquery_layout.js,jquery.multiselect.js,prettify.js,jquery.fancybox-1.3.4.js,jquery.easing-1.3.pack.js,jquery.mousewheel-3.0.4.pack.js,jquery.multiselect.filter.js,jquery.blockUI.js] 
+  javascripts:    [jquery-1.7.2.min.js,jquery-ui-1.8.20.smoothness.min.js,jquery_layout.js,jquery.multiselect.js,prettify.js,jquery.fancybox-1.3.4.js,jquery.easing-1.3.pack.js,jquery.mousewheel-3.0.4.pack.js,jquery.multiselect.filter.js,jquery.blockUI.js,jquery.tablesorter.js] 
 
   has_layout:     true
   layout:         layout

@@ -42,7 +42,7 @@ $('document').ready(function () {
                     selected='';
                     $('#asset_group_storage_location_id').empty();
                     for(i in storageLocations.s){
-                        if(storageLocations.n[i]==storageLocations.s[i].id)
+                        if(storageLocations.n!=undefined && storageLocations.n[i]==storageLocations.s[i].id)
                             selected='selected="selected"';
                          $('#asset_group_storage_location_id').append('<option value="'+storageLocations.s[i].id+'" '+selected+'>'+storageLocations.s[i].name+'</option>');
                     }

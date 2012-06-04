@@ -32,16 +32,16 @@
         </div>
     </form>
 </div>
-<table>
+<table id="unitTable" class="tablesorter">
     <?php if (sizeof($units) > 0) { ?>
         <thead>
             <tr>
-                <th>Unit</th>
-                <th>Created</th>
-                <th>Created By</th>
-                <th>Updated On</th>
-                <th>Updated By</th>
-                <th></th>
+                <th><span>Unit</span></th>
+                <th><span>Created</span></th>
+                <th><span>Created By</span></th>
+                <th><span>Updated On</span></th>
+                <th><span>Updated By</span></th>
+<!--                <th></th>-->
             </tr>
         </thead>
         <tbody>
@@ -102,15 +102,8 @@
             'showCloseButton':false
            
         });
-        //        $(".create_new_unit").fancybox({
-        //            'width': '50%',
-        //            'height': '100%',
-        //            'autoScale': true,
-        //            'transitionIn': 'none',
-        //            'transitionOut': 'none',
-        //            'type': 'iframe',
-        //            'padding': 0
-        //        });
+        $("#unitTable").tablesorter(); 
+        
     });
     var unitId=null;
     function getUnitID(id){

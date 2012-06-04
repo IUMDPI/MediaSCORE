@@ -2,14 +2,14 @@
 <?php //echo get_slot('settingsMenu')   ?>
 
 <div id="settings-container">
-    <table>
+    <table id="personTable" class="tablesorter">
         <thead>
             <tr>
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Email</th>
                 <th>Units</th>
-                <th></th>
+<!--                <th></th>-->
             </tr>
         </thead>
         <tbody>
@@ -54,7 +54,7 @@
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function() {
-       
+        $("#personTable").tablesorter();
         $(".delete_unit").fancybox({
             'width': '100%',
             'height': '100%',

@@ -40,13 +40,17 @@ class userActions extends sfActions {
 
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
-        $this->form = new sfGuardUserForm($user);
+        $this->form = new sfGuardUserForm($user,array(
+            'action'=>'edit'
+        ));
     }
 
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
-        $this->form = new sfGuardUserForm($user);
+        $this->form = new sfGuardUserForm($user,array(
+            'action'=>'edit'
+        ));
 
         $this->processForm($request, $this->form);
 

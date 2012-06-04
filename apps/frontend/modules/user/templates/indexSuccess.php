@@ -19,13 +19,13 @@
     </div>
 <?php }
 ?>
-<table>
+<table id="userTable" class="tablesorter">
     <thead>
         <tr>
             <th>Name</th>
             <th>Last name</th>
             <th>Email</th>
-            <th></th>
+<!--            <th></th>-->
         </tr>
     </thead>
     <tbody>
@@ -66,6 +66,7 @@
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#userTable").tablesorter();
        
         $(".delete_unit").fancybox({
             'width': '100%',
