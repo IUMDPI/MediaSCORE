@@ -7,3 +7,5 @@ unitPersonnelLocation:
   is_secure: false
 forgotpassword:
   is_secure: false
+passwordchange:
+  is_secure: false

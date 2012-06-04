@@ -72,6 +72,10 @@ sfGuardUser:
     is_active:
       type: boolean
       default: true
+    forgot_password:
+      type: boolean, 
+      default: false, 
+      notnull: true 
     is_super_admin:
       type: boolean
       default: false

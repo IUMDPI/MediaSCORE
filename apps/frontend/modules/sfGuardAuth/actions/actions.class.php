@@ -88,6 +88,9 @@ class sfGuardAuthActions extends sfActions {
 
         $user = $this->getUser();
         if ($user->isAuthenticated()) {
+            if ($this->getUser()->getGuardUser()->getForgot_password() == 1) {
+                return $this->redirect('/sfGuardAuth/changePassword');
+            }
             return $this->redirect('@homepage');
         }
 
@@ -128,8 +131,11 @@ class sfGuardAuthActions extends sfActions {
 
                 //$signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
                 //return $this->redirect('' != $signinUrl ? $signinUrl : '@homepage');
-                //
-				$unitID = $this->getUser()->getAttribute('unit');
+                if ($this->getUser()->getGuardUser()->getForgot_password() == 1) {
+                    return $this->redirect('/sfGuardAuth/changePassword');
+                }
+
+                $unitID = $this->getUser()->getAttribute('unit');
                 if ($unitID)
                     return $this->redirect('collection/index?u=' . $unitID);
                 else
@@ -146,10 +152,25 @@ class sfGuardAuthActions extends sfActions {
 
     public function executeSignout($request) {
         $this->getUser()->signOut();
-
+//TXQ9UbOV
         //$signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
         //$this->redirect('' != $signoutUrl ? $signoutUrl : '@homepage');
         $this->redirect('@homepage');
+    }
+
+    public function executeChangePassword($request) {
+        $this->user = $this->getUser()->getGuardUser();
+        $this->form = new sfGuardChangeUserPasswordForm($this->user);
+        if ($request->isMethod('post')) {
+            $this->form->bind($request->getParameter($this->form->getName()));
+            if ($this->form->isValid()) {
+                $this->form->save();
+                $this->user->setForgot_password(false);
+                $this->user->save();
+                $this->getUser()->setFlash('notice', 'Password updated successfully!');
+                $this->redirect('@homepage');
+            }
+        }
     }
 
     public function executeForgotpassword($request) {
@@ -164,26 +185,29 @@ class sfGuardAuthActions extends sfActions {
             if (sizeof($validateEmail) > 0) {
                 $user = Doctrine_Core::getTable('sfGuardUser')->find(array($validateEmail[0]['id']));
                 $password = $this->createRandomPassword();
+                $user->setForgot_password(true);
                 $user->setPassword($password);
                 $user->save();
+
                 $message = Swift_Message::newInstance()
                         ->setFrom('noumantayyab@gmail.com')
                         ->setTo($validateEmail[0]['email_address'])
                         ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
-                        ->setBody('Your temporary new password is '.$password)
+                        ->setBody('Your temporary new password is ' . $password)
                         ->setContentType('text/html');
 
                 $this->getMailer()->send($message);
-                $this->redirect('/guard/passwordchange');
+                $this->redirect('/sfGuardAuth/passwordchange');
             } else {
                 $this->error = 'The given email is not correct.';
             }
-//            echo '<pre>';print_r($validateEmail);exit;
         }
     }
-    function executePasswordchange($request){
+
+    function executePasswordchange($request) {
         
     }
+
     function createRandomPassword() {
         $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkmnopqrstuvwxyz";
         srand((double) microtime() * 1000000);

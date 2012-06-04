@@ -12,6 +12,7 @@ User: # Abstract
     #email:        { type: string(255) }
     phone:        { type: string(255) }
     role:         { type: string(255), notnull: true }
+    
 
 Evaluator:
   inheritance:

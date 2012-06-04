@@ -19,7 +19,7 @@
         </div>
        
         <div>
-            <input type="submit" value="Request Password"/>
+            <input type="submit" value="Request Password"/>  or  <a href="/"> Cancel</a>
         </div>
     </form>
 </div>
