@@ -122,7 +122,7 @@ class sfGuardAuthActions extends sfActions {
             //return sfView::NONE;
 
             if ($this->form->isValid()) {
-                
+
                 $values = $this->form->getValues();
                 $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
 
@@ -160,24 +160,42 @@ class sfGuardAuthActions extends sfActions {
                     ->select("u.*")
                     ->where('u.email_address  = ?', $this->email)
                     ->fetchArray();
-            
+
             if (sizeof($validateEmail) > 0) {
-                $password='nouman';
+                $user = Doctrine_Core::getTable('sfGuardUser')->find(array($validateEmail[0]['id']));
+                $password = $this->createRandomPassword();
+                $user->setPassword($password);
+                $user->save();
                 $message = Swift_Message::newInstance()
                         ->setFrom('noumantayyab@gmail.com')
                         ->setTo($validateEmail[0]['email_address'])
                         ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
-                        ->setBody('Your New Password is '.$password)
-                        ->setContentType('text/html')
-                ;
+                        ->setBody('Your temporary new password is '.$password)
+                        ->setContentType('text/html');
 
                 $this->getMailer()->send($message);
-                echo 'mail Sent';
+                $this->redirect('/guard/passwordchange');
             } else {
                 $this->error = 'The given email is not correct.';
             }
 //            echo '<pre>';print_r($validateEmail);exit;
         }
+    }
+    function executePasswordchange($request){
+        
+    }
+    function createRandomPassword() {
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkmnopqrstuvwxyz";
+        srand((double) microtime() * 1000000);
+        $i = 0;
+        $pass = '';
+        while ($i <= 10) {
+            $num = rand() % 70;
+            $tmp = substr($chars, $num, 1);
+            $pass = $pass . $tmp;
+            $i++;
+        }
+        return $pass;
     }
 
     /*  public function executeSignin1($request)
