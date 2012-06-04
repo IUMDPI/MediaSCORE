@@ -190,7 +190,7 @@ class sfGuardAuthActions extends sfActions {
                 $user->save();
 
                 $message = Swift_Message::newInstance()
-                        ->setFrom('noumantayyab@gmail.com')
+                        ->setFrom('support@indiana.edu')
                         ->setTo($validateEmail[0]['email_address'])
                         ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
                         ->setBody('Your temporary new password is ' . $password)
@@ -206,6 +206,20 @@ class sfGuardAuthActions extends sfActions {
 
     function executePasswordchange($request) {
         
+    }
+
+    function executeActivateAccount($request) {
+        $user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('activation_key', $request->getParameter('key'));
+        if (!$user) {
+            $this->message = 'Invalid Activation Key.';
+            $this->error = 1;
+        } else {
+            $user->setIsActive(true);
+            $user->setActivation_key('');
+            $user->save();
+            $this->error = 0;
+            $this->message = 'Account Successfully Activated.';
+        }
     }
 
     function createRandomPassword() {

@@ -72,6 +72,8 @@ sfGuardUser:
     is_active:
       type: boolean
       default: true
+    activation_key:
+      type: string(255)
     forgot_password:
       type: boolean, 
       default: false, 

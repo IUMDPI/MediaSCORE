@@ -9,3 +9,5 @@ forgotpassword:
   is_secure: false
 passwordchange:
   is_secure: false
+activateAccount:
+  is_secure: false

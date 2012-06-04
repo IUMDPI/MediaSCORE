@@ -11,9 +11,9 @@
 class userActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
-        $msg=$request->getParameter('n');
-        if($msg)
-            $this->popup=1;
+        $msg = $request->getParameter('n');
+        if ($msg)
+            $this->popup = 1;
         $this->users = Doctrine_Core::getTable('sfGuardUser')
                 ->createQuery('a')
                 ->execute();
@@ -40,17 +40,17 @@ class userActions extends sfActions {
 
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
-        $this->form = new sfGuardUserForm($user,array(
-            'action'=>'edit'
-        ));
+        $this->form = new sfGuardUserForm($user, array(
+                    'action' => 'edit'
+                ));
     }
 
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
-        $this->form = new sfGuardUserForm($user,array(
-            'action'=>'edit'
-        ));
+        $this->form = new sfGuardUserForm($user, array(
+                    'action' => 'edit'
+                ));
 
         $this->processForm($request, $this->form);
 
@@ -71,6 +71,18 @@ class userActions extends sfActions {
         if ($form->isValid()) {
             $user = $form->save();
             if ($new) {
+                $key = md5(rand() . microtime());
+                $user->setActivation_key($key);
+                $user->save();
+                echo $key;exit;
+                $message = Swift_Message::newInstance()
+                        ->setFrom('support@indiana.edu')
+                        ->setTo($user->getEmailAddress())
+                        ->setSubject('Active your account ' . $user->getUsername())
+                        ->setBody('To Active your accout click on the link.<br/> http://108.166.74.254/sfGuardAuth/activateAccount?key==' . $key)
+                        ->setContentType('text/html');
+
+                $this->getMailer()->send($message);
                 $this->redirect('user/index?n=1');
             } else {
                 $this->redirect('user/index');
