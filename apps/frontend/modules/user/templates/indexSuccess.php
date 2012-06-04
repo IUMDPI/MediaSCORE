@@ -1,20 +1,20 @@
 <a class="button" href="<?php echo url_for('user/new') ?>">Create User</a>
-<?php if(!(isset($popup)))
-    $popup=0;
-    
-    ?>
-<?php  if($popup==1){?>
+<?php
+if (!(isset($popup)))
+    $popup = 0;
+?>
+<?php if ($popup == 1) { ?>
     <div style="display: none;"> 
         <a id="newUserPopup" href="#newUser"></a>
         <div id="newUser" style="background-color: #F4F4F4;width: 600px;" >
             <header>
                 <h5  class="fancybox-heading">User Created</h5>
             </header>
-            
+
             <div style="margin: 10px;font-size: 0.8em;">
                 An email has been sent to this user with a link to activate their account.
             </div>
-            <div style="margin: 10px;"><a href="javascript://" onclick="$.fancybox.close();">Close window</a></div>
+            <div style="margin: 10px;"><a href="javascript://" onclick="hideNewUserBox();">Close window</a></div>
         </div>
     </div>
 <?php }
@@ -103,6 +103,13 @@
     }
     function deleteUser(){
         window.location.href='/user/delete?id='+userId;
+    }
+    function hideNewUserBox(){
+        if (location.href.match(/\?.*/)) {
+            location.href = location.href.replace(/\?.*/, '');
+        }
+        $.fancybox.close();
+
     }
     
 </script>
