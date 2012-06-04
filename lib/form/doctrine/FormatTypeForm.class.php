@@ -23,7 +23,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->getWidget('other_contaminants')->setLabel('Other Contaminants:&nbsp;');
         $this->getWidget('duration')->setLabel('<span class="required">*</span>Duration:&nbsp;');
         $this->getWidget('duration_type')->setLabel('<span class="required">*</span>Duration Type:&nbsp;');
-        $this->getWidget('duration_type_methodology')->setLabel('<span class="required">*</span>Duration type methodology:&nbsp;');
+        $this->getWidget('duration_type_methodology')->setLabel('Duration type methodology:&nbsp;');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 0)));
         
         $this->setValidator('quantity', new sfValidatorString(array('required' => true)));
@@ -31,7 +31,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setValidator('year_recorded', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration_type', new sfValidatorString(array('required' => true)));
-        $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => true)));
+        $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => false)));
         
         $this->setWidget('generation',new sfWidgetFormChoice(array('choices' => MetalDisc::$generation)));
 

@@ -77,6 +77,7 @@
             cache: false,
             success: function (result) { 
                 
+                
                 $('#signin_personnel_list').html('');
                 $('#signin_storage_locations_list').html('');
                 if(result.unit!=undefined && result.unit.length>0){
@@ -84,20 +85,34 @@
                         $('#signin_personnel_list').append('<option value='+result.unit[personnel].id+'>'+result.unit[personnel].first_name+result.unit[personnel].last_name+'</option>');
                     }
                     $('#row_personnel_list').show();
+                    $("#signin_personnel_list").multiselect("destroy");
+                    $("#signin_personnel_list").multiselect("refresh");
                     $('#signin_personnel_list').multiselect({
                         'height':'auto',
                         'minWidth':145 // 0-based index
                     }).multiselectfilter();
+                }
+                else{
+                    $("#signin_personnel_list").multiselect("destroy");
+                    $("#signin_personnel_list").multiselect("refresh");
+                    $('#row_personnel_list').hide();
                 }
                 if(result.location!=undefined && result.location.length>0){
                     for(storage in result.location){
                         $('#signin_storage_locations_list').append('<option value='+result.location[storage].id+'>'+result.location[storage].name+'</option>');
                     }
                     $('#row_location').show();
+                    $("#signin_storage_locations_list").multiselect("destroy");
+                    $("#signin_storage_locations_list").multiselect("refresh");
                     $("#signin_storage_locations_list").multiselect({
                         'height':'auto',
                         'minWidth':145
                     }).multiselectfilter();
+                }
+                else{
+                    $("#signin_storage_locations_list").multiselect("destroy");
+                    $("#signin_storage_locations_list").multiselect("refresh");
+                    $('#row_location').hide();
                 }
             }
         });
