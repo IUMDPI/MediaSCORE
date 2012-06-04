@@ -74,16 +74,15 @@ class userActions extends sfActions {
                 $key = md5(rand() . microtime());
                 $user->setActivation_key($key);
                 $user->save();
-                echo $key;exit;
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')
                         ->setTo($user->getEmailAddress())
                         ->setSubject('Active your account ' . $user->getUsername())
-                        ->setBody('To Active your accout click on the link.<br/> http://108.166.74.254/sfGuardAuth/activateAccount?key==' . $key)
+                        ->setBody('To Active your accout click on the link.<br/> http://108.166.74.254/sfGuardAuth/activateAccount?key=' . $key)
                         ->setContentType('text/html');
 
                 $this->getMailer()->send($message);
-                $this->redirect('user/index?n=1');
+                $this->redirect('user/index?n=1');  
             } else {
                 $this->redirect('user/index');
             }
