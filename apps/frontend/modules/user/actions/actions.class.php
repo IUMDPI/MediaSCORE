@@ -73,6 +73,7 @@ class userActions extends sfActions {
             if ($new) {
                 $key = md5(rand() . microtime());
                 $user->setActivation_key($key);
+                $user0>setIsActive(false);
                 $user->save();
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')

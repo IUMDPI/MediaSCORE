@@ -28,7 +28,7 @@ class sfGuardUserForm extends PluginsfGuardUserForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
 
         if ($this->getOption('action') == 'edit')
-            $this->setWidget('is_active', new sfWidgetFormInputHidden(array(), array('value' => 0)));
+            $this->setWidget('is_active', new sfWidgetFormInputHidden(array(), array('value' => 1)));
         $this->setWidget('role', new sfWidgetFormChoice(array('choices' => self::$role)));
 
         $this->setValidator('email_address', new sfValidatorEmail());
