@@ -37,11 +37,11 @@ Evaluator:
     username: jadoe
 
   tara_pauly:
-    first_name: Tara
-    last_name: Pauly
+    first_name: Anthony 
+    last_name: Guest-Scott
     password: password
-    email_address: tpauly@indiana.edu
-    username: tpauly
+    email_address: aguestsc@indiana.edu
+    username: anthony
 
   mike_casey:
     first_name: Mike
@@ -59,29 +59,29 @@ Evaluator:
 
 Person:
   jeff_brosseau:
-    first_name: Jeff
-    last_name: Brosseau
+    first_name: Jason Evans
+    last_name: Groth
     password: password
     email_address: jbrosseau@indiana.edu
     phone: 555-555-5555
-    role: Role
-    username: jbrosseau
+    role: 0
+    username: jgroth
     
   dwayne_wayne:
-    first_name: Dwayne
-    last_name: Wayne
+    first_name: Will 
+    last_name: Cowan
     password: password
-    email_address: dwayne@indiana.edu
+    email_address: wgcowan@indiana.edu
     phone: 555-555-5555
-    role: Role
-    username: dwayne
+    role: 1
+    username: will
 
   tina_mcguire:
-    first_name: Tina
-    last_name: McGuire
+    first_name: Alan
+    last_name: Burdette
     password: password
-    email_address: tmcguire@indiana.edu
-    username: tmcguire
+    email_address: aburdett@indiana.edu
+    username: alan
 
 Unit:
   music_library:
