@@ -69,6 +69,7 @@ class formattypeActions extends sfActions // Abstract
   {
 	 
     $this->form = new FormatTypeForm();
+    $this->form->disableLocalCSRFProtection();
     $this->setTemplate('new');
   }
 

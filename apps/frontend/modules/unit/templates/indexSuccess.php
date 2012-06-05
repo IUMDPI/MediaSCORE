@@ -80,7 +80,7 @@
                     <td>
                         <?php
 //print_r( Doctrine_Core::getTable('User')->find( $unit->getCreatorId() )->getFirstName() );
-                        echo $unit->getCreator()->getName();
+                        echo '<span>'.$unit->getCreator()->getName().'</span>';
 
                         /* $evaluatorName = $creators[$unit->getId()];
                           if($evaluatorName == ' ')
@@ -145,9 +145,17 @@
             'showCloseButton':false
            
         });
+//        $("#unitTable").tablesorter({textExtraction: myTextExtraction}); 
         $("#unitTable").tablesorter(); 
         
     });
+    
+    var myTextExtraction = function(node)  
+{  
+    console.log(node.childNodes[0].innerHTML);
+    // extract data from markup and return it  
+//    return node.childNodes[0].childNodes[0].innerHTML; 
+} 
     var filter=1;
     var unitId=null;
     function getUnitID(id){
