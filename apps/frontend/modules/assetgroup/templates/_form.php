@@ -1,6 +1,11 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-<div id="asset-group-div">
+<?php if (!$form->getObject()->isNew())
+        $id='asset-group-div';
+    else 
+        $id=''
+    ?>
+<div id="<?php echo $id;?>">
 <form id="asset-group-form" action="<?php echo url_for('assetgroup/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <?php if (!$form->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
@@ -182,6 +187,7 @@
 
 
 </form>
+    <?php if (!$form->getObject()->isNew()){?> 
 <div id="format-type-container" class="section edit-asset-group clearfix">
 
 </div>
@@ -210,6 +216,7 @@
     <div style="clear: both;"></div>
     <div id="format_specific"></div>
 </div>
+    <?php }?>
 <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a>
 <div style="clear: both;"></div>
 </div>
