@@ -8,6 +8,7 @@ function getRelatedForm(){
             type: 'POST',
             url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
             success: function(data,textStatus) {
+                $('#format_specific').html('');
                 $('#format_specific').append(data);
             }
                 
