@@ -30,8 +30,11 @@
                 <?php
                 if (!$form->getObject()->isNew())
                     $buttonValue = 'Save';
-                else
-                    $buttonValue = 'Continue';
+                else{
+                    $buttonValue = 'Continue';?>
+                    <td colspan="2"><input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a></td>
+                <?php }
+                    
                 ?>
                 
             </tr>
@@ -216,7 +219,8 @@
     <div style="clear: both;"></div>
     <div id="format_specific"></div>
 </div>
-    <?php }?>
+    
 <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a>
 <div style="clear: both;"></div>
 </div>
+<?php }?>
