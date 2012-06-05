@@ -439,3 +439,9 @@ td { vertical-align: top; }
 /*.assets-table th,td{
     background-color: #DADADA;
 }*/
+.custom_button{
+    border: 1px solid #C4C4C4;
+    clear: both;
+    padding: 5px;
+    width: 190px;
+}

@@ -13,6 +13,9 @@ class FormatTypeForm extends BaseFormatTypeForm {
 
     public function configure() {
         $this->setWidget('duration_type', new sfWidgetFormChoice(array('choices'=>  self::$durationtype)));
+        $this->setWidget('generation',new sfWidgetFormChoice(array('choices' => MetalDisc::$generation)));
+        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 0)));
+        
         $this->getWidget('quantity')->setLabel('<span class="required">*</span>Quantity:&nbsp;');
         $this->getWidget('generation')->setLabel('<span class="required">*</span>Generation:&nbsp;');
         $this->getWidget('year_recorded')->setLabel('<span class="required">*</span>Year Recorded:&nbsp;');
@@ -24,7 +27,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->getWidget('duration')->setLabel('<span class="required">*</span>Duration:&nbsp;');
         $this->getWidget('duration_type')->setLabel('<span class="required">*</span>Duration Type:&nbsp;');
         $this->getWidget('duration_type_methodology')->setLabel('Duration type methodology:&nbsp;');
-        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 0)));
+        
         
         $this->setValidator('quantity', new sfValidatorString(array('required' => true)));
         $this->setValidator('generation', new sfValidatorString(array('required' => true)));
@@ -33,7 +36,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setValidator('duration_type', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => false)));
         
-        $this->setWidget('generation',new sfWidgetFormChoice(array('choices' => MetalDisc::$generation)));
+        
 
         foreach (array('material',
     'oxidationCorrosion', 

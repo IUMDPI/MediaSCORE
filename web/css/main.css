@@ -20,10 +20,10 @@
 .normal_form tr th {
     vertical-align: top;
 }
-#asset-group-form{
+/*#asset-group-form{
     border: 1px solid black;
     padding: 5px;
-}
+}*/
 .general{
     width: 50%;
 }
@@ -48,4 +48,8 @@ form input[type="radio"]{
 }
 #sf_admin_content{
     margin-top: 10px;
+}
+#asset-group-div{
+   border: 1px solid black;
+    padding: 5px; 
 }

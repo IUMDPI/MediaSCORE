@@ -70,6 +70,7 @@ class formattypeActions extends sfActions // Abstract
 	 
     $this->form = new FormatTypeForm();
     
+    
     $this->setTemplate('new');
   }
 
@@ -78,6 +79,7 @@ class formattypeActions extends sfActions // Abstract
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
     $this->form = new FormatTypeForm();
+    
     
     $validateForm=$this->processForm($request, $this->form);
     if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -122,6 +124,8 @@ class formattypeActions extends sfActions // Abstract
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    $for=$request->getParameter('format_type');
+    
     if ($form->isValid())
     {
       $format_type = $form->save();

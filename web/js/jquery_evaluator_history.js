@@ -22,7 +22,9 @@ var firstTimeLoad=0;
 // Once the document object is loaded...
 $('document').ready(function () {
     
-    $.blockUI({ message: '<h3><img src="/images/ajax-loader.gif" /> Loading Please wait...</h3>' });  
+    $.blockUI({
+        message: '<h3><img src="/images/ajax-loader.gif" /> Loading Please wait...</h3>'
+    });  
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -61,7 +63,7 @@ $('document').ready(function () {
                     
                     if(firstTimeLoad==0){
                         firstTimeLoad=1;
-                         $.unblockUI(); 
+                        $.unblockUI(); 
                     }
                 });
         }
@@ -202,7 +204,10 @@ $('document').ready(function () {
         } else if ( $('#asset_group_format_id').prop('selectedIndex') == -1 ) {
             
         } else {
-            
+//            console.log( $('#format-type-container'));
+//            console.log( $('#format-type-container').children('form'));
+//            console.log( $('#format-type-container').children('form').serialize());
+//            return;
             $.ajax({
                 type: 'POST',
                 url: appBaseURL+'formattype'+'/'+actionName+urlSuffix,
@@ -227,7 +232,7 @@ $('document').ready(function () {
                         }
                     }
                     else{
-                        
+                        console.log(data);
                         $('#format-type-container').html(data);
                     }
                 },
@@ -260,13 +265,24 @@ $('document').ready(function () {
                     });
             }
             else{
+                $.ajax({
+                    type: 'POST',
+                    url: appBaseURL+'formattype/newform',
+                    dataType:'html',
+                    success: function(data,textStatus) {
+                        console.log(data);
+                        $('#format-type-container').append(data);
+//                        $('#format_specific').append(data);
+                    }
                 
-                $('#format-type-container').load(
-                    appBaseURL+'formattype/newform',
-                    {},
-                    function () {
-                        $('#asset_group_format_id').val('');
-                    });
+                });
+//                $('#format-type-container').load(
+//                    appBaseURL+'formattype/newform',
+//                    {},
+//                    function () {
+//                        console.log(this);
+//                        $('#asset_group_format_id').val('');
+//                    });
             }
         }
 

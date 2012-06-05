@@ -1,6 +1,6 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
+<div id="asset-group-div">
 <form id="asset-group-form" action="<?php echo url_for('assetgroup/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <?php if (!$form->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
@@ -10,31 +10,7 @@
             <!-- For the selection of the format type constants -->
             <?php if (!$form->getObject()->isNew()): ?>
                 <tr><td colspan="2">
-                        <div class="section edit-asset-group clearfix">
-                            <h3>Format</h3>
-                            <div class="left-column-container">
 
-                                <div class="row clearfix">
-                                    <div class="left-column" style="width: 215px;"><b>Format Type: </b></div>
-                                    <div class="right-column">
-                                        <select id="format-type-model-name" onchange="getRelatedForm()">
-                                            <option value ="" selected>Format</option>
-                                            <?php
-                                            foreach (FormatType::$typeNames as $formatTypeArray):
-                                                foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
-                                                    ?>
-                                                    <option value ="<?php echo strtolower($formatTypeModelName) ?>"><?php echo $formatTypeStr ?></option>
-                                                    <?php
-                                                endforeach;
-                                            endforeach
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="clear: both;"></div>
-                            <div id="format_specific"></div>
-                        </div>
                     </td>
 
 
@@ -52,7 +28,7 @@
                 else
                     $buttonValue = 'Continue';
                 ?>
-                <td colspan="2">&nbsp;<input id="asset-group-save" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a></td>
+                
             </tr>
         </tfoot>
         <tbody>
@@ -188,9 +164,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div id="format-type-container" class="section edit-asset-group clearfix">
 
-                        </div>
                     </td>
                 </tr>
 
@@ -208,3 +182,34 @@
 
 
 </form>
+<div id="format-type-container" class="section edit-asset-group clearfix">
+
+</div>
+<div class="section edit-asset-group clearfix">
+    <h3>Format</h3>
+    <div class="left-column-container">
+
+        <div class="row clearfix">
+            <div class="left-column" style="width: 215px;"><b>Format Type: </b></div>
+            <div class="right-column">
+                <select id="format-type-model-name" onchange="getRelatedForm()">
+                    <option value ="" selected>Format</option>
+                    <?php
+                    foreach (FormatType::$typeNames as $formatTypeArray):
+                        foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
+                            ?>
+                            <option value ="<?php echo strtolower($formatTypeModelName) ?>"><?php echo $formatTypeStr ?></option>
+                            <?php
+                        endforeach;
+                    endforeach
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div id="format_specific"></div>
+</div>
+<input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a>
+<div style="clear: both;"></div>
+</div>
