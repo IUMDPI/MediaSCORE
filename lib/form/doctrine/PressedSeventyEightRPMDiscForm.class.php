@@ -31,6 +31,7 @@ class PressedSeventyEightRPMDiscForm extends BasePressedSeventyEightRPMDiscForm 
         $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
 
         foreach (array('noise_reduction',
+            'duration_type_methodology',
     'tape_type',
     'slow_speed',
     'sound_field',

@@ -125,8 +125,9 @@ class sfGuardAuthActions extends sfActions {
             //return sfView::NONE;
 
             if ($this->form->isValid()) {
-
+      
                 $values = $this->form->getValues();
+                
                 $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
 
                 //$signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));

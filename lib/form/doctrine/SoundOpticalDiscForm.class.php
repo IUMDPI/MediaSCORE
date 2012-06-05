@@ -32,6 +32,7 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
         $this->getWidget('opticaldisctype')->setLabel('<span class="required">*</span>Type:&nbsp;');
 
         foreach (array('noise_reduction',
+            'duration_type_methodology',
     'tape_type',
     'slow_speed',
     'sound_field',

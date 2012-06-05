@@ -37,6 +37,7 @@ class LacquerDiscForm extends BaseLacquerDiscForm
         
         foreach (array('noise_reduction',
     'tape_type',
+            'duration_type_methodology',
     'slow_speed',
     'sound_field',
     'soft_binder_syndrome',

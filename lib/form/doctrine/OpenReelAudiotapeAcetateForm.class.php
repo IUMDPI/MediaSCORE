@@ -42,6 +42,7 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('tape_type',
+            'duration_type_methodology',
     'thin_tape',
     'slow_speed',
     'sound_field',

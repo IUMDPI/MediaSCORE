@@ -7,6 +7,7 @@
         <?php if (!$form->getObject()->isNew()): ?>
             <input type="hidden" name="sf_method" value="put" />
         <?php endif; ?>
+            
         <table class="normal_form">
             <tfoot>
                 <tr>
@@ -110,7 +111,10 @@
        
         
         
-        function getStorage(id){
+        
+        
+    });
+    function getStorage(id){
             $.ajax({
                 method: 'POST', 
                 url: '/frontend_dev.php/storagelocation/index?u='+id,
@@ -135,6 +139,4 @@
                 }
             });
         }
-        
-    });
 </script>

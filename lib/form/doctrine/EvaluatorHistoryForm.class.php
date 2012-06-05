@@ -18,13 +18,13 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
 //      'asset_group_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Store'), 'add_empty' => true)),
 //      'created_at'     => new sfWidgetFormDateTime(),
 
-	foreach( array('created_at') as $voidField ) {
+	foreach( array('created_at','type') as $voidField ) {
 		unset($this->widgetSchema[$voidField]);
 		unset($this->validatorSchema[$voidField]);
 	}
 
 
-	$this->setWidget('type', new sfWidgetFormChoice(array('choices' => EvaluatorHistory::$actions)));
+//	$this->setWidget('type', new sfWidgetFormChoice(array('choices' => EvaluatorHistory::$actions)));
 
 	$this->setWidget('evaluator_id',new sfWidgetFormInputHidden(array(),array('value' => $this->getOption('creatorID'))));
 	$this->setWidget('asset_group_id',new sfWidgetFormInputHidden());
@@ -60,6 +60,9 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
   }
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
-      $this->setDefault('consulted_personnel_list', sfContext::getInstance()->getUser()->getAttribute('personnel_list'));
+      if($this->getOption('action')=='new'){
+          $this->setDefault('consulted_personnel_list', sfContext::getInstance()->getUser()->getAttribute('personnel_list'));
+      }
+     
   }
 }

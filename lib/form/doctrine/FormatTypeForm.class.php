@@ -13,7 +13,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
 
     public function configure() {
         $this->setWidget('duration_type', new sfWidgetFormChoice(array('choices'=>  self::$durationtype)));
-        $this->getWidget('quantity')->setLabel('<span class="required">*</span>Quality:&nbsp;');
+        $this->getWidget('quantity')->setLabel('<span class="required">*</span>Quantity:&nbsp;');
         $this->getWidget('generation')->setLabel('<span class="required">*</span>Generation:&nbsp;');
         $this->getWidget('year_recorded')->setLabel('<span class="required">*</span>Year Recorded:&nbsp;');
         $this->getWidget('copies')->setLabel('Copies:&nbsp;');

@@ -23,7 +23,7 @@ class sfGuardValidatorUser extends sfValidatorBase
     $this->addOption('password_field', 'password');
     $this->addOption('throw_global_error', false);
 
-    $this->setMessage('invalid', 'The username and/or password is invalid.');
+    $this->setMessage('invalid', 'The email and/or password is invalid.');
   }
 
   protected function doClean($values)
@@ -41,7 +41,7 @@ class sfGuardValidatorUser extends sfValidatorBase
        {
            $user = call_user_func_array($callable, array($username));
        } else {
-           $user = $this->getTable()->retrieveByUsername($username);
+           $user = $this->getTable()->retrieveByEmail($username);
        }
         // user exists?
        if($user)

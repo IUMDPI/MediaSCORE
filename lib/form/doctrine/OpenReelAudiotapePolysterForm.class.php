@@ -34,6 +34,7 @@ class OpenReelAudiotapePolysterForm extends BaseOpenReelAudiotapePolysterForm
         
         
         foreach (array('tape_type',
+            'duration_type_methodology',
     'slow_speed',
     'sound_field',
     'soft_binder_syndrome',

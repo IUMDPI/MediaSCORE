@@ -36,6 +36,7 @@ class BetacamForm extends BaseBetacamForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
         
          foreach (array('noise_reduction',
+             'duration_type_methodology',
     'tape_type',
     'slow_speed',
     'sound_field',

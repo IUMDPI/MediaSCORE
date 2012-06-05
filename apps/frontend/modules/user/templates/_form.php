@@ -52,17 +52,7 @@
                 </td>
 
             </tr>
-            <tr>
-                <th>
-
-                    <?php echo $form['username']->renderLabel(); ?>
-                </th>
-                <td>
-                    <?php echo $form['username']->render(); ?> 
-                    <?php echo $form['username']->renderError(); ?>
-                </td>
-
-            </tr>
+            
             <?php if ($sf_user->isSuperAdmin() == 1) { ?>
                 <tr>
                     <th>

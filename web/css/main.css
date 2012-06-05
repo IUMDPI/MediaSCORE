@@ -38,10 +38,11 @@ form input[type="radio"]{
 }
 #format_specific th{
     background-color: #DADADA;
+    width: 215px;
 }
-#dat-table{
+/*#dat-table{
     width: 65%;
-}
+}*/
 #sf_admin_list_th_actions{
     display: none;
 }

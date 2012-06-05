@@ -31,6 +31,10 @@ class PersonForm extends BasePersonForm
                 $this['password'],
                 $this['password_again'],
                 $this['units_list'],
+                $this['username'],
+                $this['is_active'],
+                $this['activation_key'],
+                $this['forgot_password'],
                 $this['consultation_records_list']
     );
     $this->getWidget('first_name')->setLabel('<span class="required">*</span>Unit Personnel First Name:');

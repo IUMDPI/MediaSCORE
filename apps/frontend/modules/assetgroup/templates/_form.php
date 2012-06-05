@@ -15,7 +15,7 @@
                             <div class="left-column-container">
 
                                 <div class="row clearfix">
-                                    <div class="left-column"><b>Format Type: </b></div>
+                                    <div class="left-column" style="width: 215px;"><b>Format Type: </b></div>
                                     <div class="right-column">
                                         <select id="format-type-model-name" onchange="getRelatedForm()">
                                             <option value ="" selected>Format</option>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
-                            <div id="format_specific" class="left-column-container"></div>
+                            <div id="format_specific"></div>
                         </div>
                     </td>
 
@@ -140,7 +140,7 @@
 
                                 <div class="row clearfix">
                                     <div class="left-column"><?php echo $form->renderHiddenFields(); ?>
-                                        <?php echo $form['name']->renderLabel(); ?></div>
+                                        <b><?php echo $form['name']->renderLabel(); ?></b></div>
                                     <div class="right-column">
                                         <?php echo $form['name']->render(); ?> 
                                         <?php echo $form['name']->renderError(); ?>
@@ -148,7 +148,7 @@
                                 </div>
 
                                 <div class="row clearfix">
-                                    <div class="left-column"><?php echo $form['location']->renderLabel(); ?></div>
+                                    <div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
                                     <div class="right-column">
                                         <?php echo $form['location']->render(); ?>
                                         <?php echo $form['location']->renderError(); ?>
@@ -156,7 +156,7 @@
                                 </div>
 
                                 <div class="row clearfix">
-                                    <div class="left-column"> <?php echo $form['inst_id']->renderLabel(); ?></div>
+                                    <div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
                                     <div class="right-column">
                                         <div><?php echo $form['inst_id']->render(); ?>
                                             <?php echo $form['inst_id']->renderError(); ?></div>
@@ -164,7 +164,7 @@
                                 </div>
 
                                 <div class="row clearfix">
-                                    <div class="left-column"><?php echo $form['storage_location_id']->renderLabel(); ?></div>
+                                    <div class="left-column"><b><?php echo $form['storage_location_id']->renderLabel(); ?></b></div>
                                     <div class="right-column">
                                         <div>
                                             <?php echo $form['storage_location_id']->render(); ?>
@@ -177,7 +177,7 @@
 
                             <div class="right-column-container">
                                 <div class="row">
-                                    <div class="left-column"><?php echo $form['notes']->renderLabel(); ?></div>
+                                    <div class="left-column"><b><?php echo $form['notes']->renderLabel(); ?></b></div>
                                     <?php echo $form['notes']->render(array('style' => 'width:450px;')); ?>
                                     <?php echo $form['notes']->renderError(); ?>
                                 </div>

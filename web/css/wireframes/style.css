@@ -303,7 +303,7 @@ td { vertical-align: top; }
   table {width:100%;}
   table a, table a:visited {color:#333333;}
   table a:hover {color:#7d110c;}
-  th {text-align:left; text-transform:uppercase; padding-bottom:5px; background-color:#f4f4f4}
+  th {text-align:left;  padding-bottom:5px; background-color:#f4f4f4}
   th a {text-decoration:none;}
   td {padding:3px 0;}
   tr:hover {background-color:#ebebeb;}

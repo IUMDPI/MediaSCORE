@@ -32,6 +32,7 @@ class OpenReelAudiotapePVCForm extends BaseOpenReelAudiotapePVCForm
         $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
         
          foreach (array('tape_type',
+             'duration_type_methodology',
     'thin_tape',
     'slow_speed',
     'sound_field',

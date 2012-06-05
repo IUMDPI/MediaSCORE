@@ -46,8 +46,8 @@ class evaluatorhistoryActions extends sfActions {
             foreach ($this->evaluator_historys as $evaluatorHistory) {
                 $evaluatorHistoryID = $evaluatorHistory->getEvaluatorId();
                 if ($evaluatorHistoryID)
-                    $this->evaluators[$evaluatorHistoryID] = Doctrine_Core::getTable('Evaluator')
-                            ->find($evaluatorHistoryID);
+                    $this->evaluators[$evaluatorHistoryID] = Doctrine_Core::getTable('sfGuardUser')
+                            ->findOneBy('id', $evaluatorHistoryID);
 
                 foreach (Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->findBy('evaluator_history_id', $evaluatorHistory->getId()) as $consultationRecord) {
                     $this->consultedPersons[$evaluatorHistory->getId()][] = Doctrine_Core::getTable('Person')
@@ -67,7 +67,8 @@ class evaluatorhistoryActions extends sfActions {
 
         $this->form = new EvaluatorHistoryForm(
                         null,
-                        array('creatorID' => $this->getUser()->getGuardUser()->getId()
+                        array('creatorID' => $this->getUser()->getGuardUser()->getId(),
+                            'action' => 'new'
                         )
         );
     }
@@ -76,7 +77,8 @@ class evaluatorhistoryActions extends sfActions {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new EvaluatorHistoryForm(null,
-                        array('creatorID' => $this->getUser()->getGuardUser()->getId()
+                        array('creatorID' => $this->getUser()->getGuardUser()->getId(),
+                            'action' => 'new'
                 ));
 
         /* echo 'trace';
@@ -161,7 +163,7 @@ class evaluatorhistoryActions extends sfActions {
 
 
             //$evaluator_history = $form->save();
-            $this->redirect('evaluatorhistory/edit?id=' . $evaluatorHistory->getId());
+//            $this->redirect('evaluatorhistory/edit?id=' . $evaluatorHistory->getId());
         }
     }
 

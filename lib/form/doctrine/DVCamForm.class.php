@@ -29,6 +29,7 @@ class DVCamForm extends BaseDVCamForm
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
         
         foreach (array('noise_reduction',
+            'duration_type_methodology',
     'tape_type',
     'slow_speed',
     'sound_field',

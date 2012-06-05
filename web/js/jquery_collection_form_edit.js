@@ -46,7 +46,7 @@ $(document).ready(function () {
                 storageLocationSelectElement.multiselect({
             'height':'auto'
         }).multiselectfilter(); 
-        storageLocationSelectElement.multiselect("checkAll"); 
+        
        
             });
     }

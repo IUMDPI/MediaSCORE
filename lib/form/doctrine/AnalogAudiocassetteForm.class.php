@@ -37,6 +37,7 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm
                 
                 
                 foreach (array('corrosionRustOxidation',
+                    'duration_type_methodology',
     'composition',
     'nonStandardBrand',
     'trackConfiguration',

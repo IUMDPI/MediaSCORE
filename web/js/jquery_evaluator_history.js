@@ -406,6 +406,7 @@ $('document').ready(function () {
                 // ...specifying the Evaluator History ID as a parameter value in the GET request
                 //{ id : $(this).attr('target') },
                 function (data) {
+                    
                     refreshElementHandlers();
                     // Hide the "+ ADD NEW" input element
                     $('#evaluator-history-new').hide();
