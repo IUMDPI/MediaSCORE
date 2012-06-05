@@ -69,7 +69,7 @@ class formattypeActions extends sfActions // Abstract
   {
 	 
     $this->form = new FormatTypeForm();
-    $this->form->disableLocalCSRFProtection();
+    
     $this->setTemplate('new');
   }
 
@@ -78,7 +78,7 @@ class formattypeActions extends sfActions // Abstract
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
     $this->form = new FormatTypeForm();
-    $this->form->disableLocalCSRFProtection();
+    
     $validateForm=$this->processForm($request, $this->form);
     if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
             echo $validateForm['id'];    exit;        
