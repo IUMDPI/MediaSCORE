@@ -14,7 +14,67 @@ class assetgroupActions extends sfActions {
         /* $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
           ->createQuery('a')
           ->execute(); */
+        $collectionId = $request->getParameter('c');
+        $searchInpout = $request->getParameter('s');
+        $status = $request->getParameter('status');
+        $from = $request->getParameter('from');
+        $to = $request->getParameter('to');
+        $dateType = $request->getParameter('datetype');
 
+        // Get collections for a specific Unit
+        if ($request->isXmlHttpRequest()) {
+            $this->assets = Doctrine_Query::Create()
+                    ->from('AssetGroup c')
+                    ->select('c.*,cu.*,eu.*')
+                    ->innerJoin('c.Creator cu')
+                    ->innerJoin('c.Editor eu')
+                    ->where('c.parent_node_id  = ?', $collectionId);
+            if ($searchInpout && trim($searchInpout) != '') {
+                $this->assets = $this->assets->andWhere('name like "%' . $searchInpout . '%"');
+            }
+            if ($status && trim($status) != '') {
+                $this->assets = $this->assets->andWhere('status =?', $status);
+            }
+            if ($dateType != '') {
+                if ($dateType == 0) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->assets = $this->assets->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->assets = $this->assets->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->assets = $this->assets->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                } else if ($dateType == 1) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->assets = $this->assets->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->assets = $this->assets->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->assets = $this->assets->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                }
+            }
+
+
+            $this->assets = $this->assets->execute();
+//            $this->collections = Doctrine_Core::getTable('Collection')
+//                    ->createQuery('a')
+//                    ->where('parent_node_id =?', $unitID)
+//                    ->andWhere('name like "%'.$searchInpout.'%"')
+//                    ->execute();
+
+            $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+            $this->setLayout('json');
+            return $this->renderText(json_encode($this->assets->toArray()));
+        }
         $this->collectionID = $request->getParameter('c');
         $this->forward404Unless($this->collectionID);
 
@@ -90,7 +150,7 @@ class assetgroupActions extends sfActions {
                         array(
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $request->getParameter('c'),
-                            'action'=>'edit')
+                            'action' => 'edit')
         );
         $this->form->setOption('collectionID', $request->getParameter('c'));
 
@@ -113,7 +173,7 @@ class assetgroupActions extends sfActions {
                         array(
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $collectionId,
-                            'action'=>'edit'));
+                            'action' => 'edit'));
         $this->processEditForm($request, $this->form);
 
         //$this->setTemplate('edit');
@@ -122,11 +182,11 @@ class assetgroupActions extends sfActions {
 
     public function executeDelete(sfWebRequest $request) {
 //        $request->checkCSRFProtection();
-        
+
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
         $asset_group->delete();
 
-        $this->redirect('assetgroup/index?c='.$request->getParameter('c'));
+        $this->redirect('assetgroup/index?c=' . $request->getParameter('c'));
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

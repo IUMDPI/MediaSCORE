@@ -107,10 +107,64 @@ class unitActions extends sfActions {
 
 
         // To be moved into a separate Action or Controller
+        $searchInpout = $request->getParameter('s');
+        $status = $request->getParameter('status');
+        $from = $request->getParameter('from');
+        $to = $request->getParameter('to');
+        $dateType = $request->getParameter('datetype');
         if ($request->isXmlHttpRequest()) {
+             $this->unit = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.*,cu.*,eu.*')
+                     ->orderBy('u.name')
+                    ->innerJoin('u.Creator cu')
+                    ->innerJoin('u.Editor eu');
+                    
+            if ($searchInpout && trim($searchInpout) != '') {
+                $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+            }
+            if ($status && trim($status) != '') {
+                $this->unit = $this->unit->andWhere('status =?', $status);
+            }
+            if ($dateType != '') {
+                if ($dateType == 0) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                } else if ($dateType == 1) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                }
+            }
+
+
+            $this->unit = $this->unit->execute();
+//            $this->collections = Doctrine_Core::getTable('Collection')
+//                    ->createQuery('a')
+//                    ->where('parent_node_id =?', $unitID)
+//                    ->andWhere('name like "%'.$searchInpout.'%"')
+//                    ->execute();
+
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-            echo json_encode($this->units->toArray());
+            return $this->renderText(json_encode($this->unit->toArray()));
         }
     }
 
@@ -158,7 +212,7 @@ class unitActions extends sfActions {
                         $unit,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
-                            'action'=>'edit'
+                            'action' => 'edit'
                 ));
     }
 
@@ -168,8 +222,7 @@ class unitActions extends sfActions {
         $this->form = new UnitForm($unit,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
-                            'action'=>'edit'
-                            
+                            'action' => 'edit'
                 ));
 
         $this->processForm($request, $this->form);

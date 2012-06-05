@@ -35,13 +35,61 @@ class collectionActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
         $unitID = $request->getParameter('id');
+        $searchInpout = $request->getParameter('s');
+        $status = $request->getParameter('status');
+        $from = $request->getParameter('from');
+        $to = $request->getParameter('to');
+        $dateType = $request->getParameter('datetype');
 
         // Get collections for a specific Unit
         if ($request->isXmlHttpRequest()) {
-            $this->collections = Doctrine_Core::getTable('Collection')
-                    ->createQuery('a')
-                    ->where('parent_node_id', $unitID)
-                    ->execute();
+            $this->collections = Doctrine_Query::Create()
+                    ->from('Collection c')
+                    ->select('c.*,cu.*,eu.*')
+                    ->innerJoin('c.Creator cu')
+                    ->innerJoin('c.Editor eu')
+                    ->where('c.parent_node_id  = ?', $unitID);
+            if ($searchInpout && trim($searchInpout) != '') {
+                $this->collections = $this->collections->andWhere('name like "%' . $searchInpout . '%"');
+            }
+            if ($status && trim($status) != '') {
+                $this->collections = $this->collections->andWhere('status =?', $status);
+            }
+            if ($dateType != '') {
+                if ($dateType == 0) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                } else if ($dateType == 1) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                }
+            }
+
+
+            $this->collections = $this->collections->execute();
+//            $this->collections = Doctrine_Core::getTable('Collection')
+//                    ->createQuery('a')
+//                    ->where('parent_node_id =?', $unitID)
+//                    ->andWhere('name like "%'.$searchInpout.'%"')
+//                    ->execute();
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');

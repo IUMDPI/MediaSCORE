@@ -34,25 +34,28 @@
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
         <div class="title">Filter by:</div>
-        <form>
-            <strong>Text:</strong> <input type="text" class="text" />
+        <form id="filterAssets" action="">
+            <strong>Text:</strong> <input type="text" class="text" onkeyup="filterAssets();" id="searchText"/>
             <strong>Date:</strong>
             <div class="filter-date">
-                <select>
-                    <option value="date-type">Created On</option>
-                    <option value="date-type">Updated On</option>
+                <select id="date_type" onchange="filterAssets();">
+                    <option value="">Date Type</option>
+                    <option value="0">Created On</option>
+                    <option value="1">Updated On</option>
                 </select>
-                <input type="text" />
+                <input type="text" id="from" />
                 to
-                <input type="text" />
+                <input type="text" id="to" />
             </div>
             <strong>Status:</strong>
-            <select>
-                <option value="date-type">Created On</option>
-                <option value="date-type">Updated On</option>
+            <select id="filterStatus" onchange="filterAssets();">
+                <option value="">Any Status</option>
+                <option value="0">Incomplete</option>
+                <option value="1">In Progress</option>
+                <option value="2">Completed</option>
             </select>
         </form>
-        <div class="reset"><a href="#"><span>R</span> Reset</a></div>
+        <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
     </div>
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
@@ -69,7 +72,7 @@
 <!--            <th></th>-->
         </tr>
     </thead>
-    <tbody>
+    <tbody id="assetsResult">
         <?php /* print_r($persons)->toArray() */ ?>
         <?php foreach ($asset_groups as $asset_group): ?>
             <tr>
@@ -91,7 +94,23 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-       $("#assetGroupTable").tablesorter();
+        var dates = $( "#from, #to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            'dateFormat':'yy-mm-dd',
+            onSelect: function( selectedDate ) {
+                filterAssets();
+                var option = this.id == "from" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" ),
+                date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+                dates.not( this ).datepicker( "option", option, date );
+            }
+        });
+        $("#assetGroupTable").tablesorter();
         $(".delete_unit").fancybox({
             'width': '100%',
             'height': '100%',
@@ -127,6 +146,61 @@
     }
     function deleteAsset(collection){
         window.location.href='/assetgroup/delete?c='+collection+'&id='+assetId;
+    }
+    function resetFields(form){
+        form=$(form);
+        form.find('input:text, input:password, input:file, select').val('');
+        form.find('input:radio, input:checkbox')
+        .removeAttr('checked').removeAttr('selected');
+        filterAssets();
+    }
+    function removeSearchText(){
+        
+    }
+    function filterAssets(){
+        collectionID='<?php echo $collectionID; ?>';
+        $.ajax({
+            method: 'POST', 
+            url: '/frontend_dev.php/assetgroup/index',
+            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                if(result!=undefined && result.length>0){
+                    $('#assetsResult').html('');
+                    for(collection in result){
+                        
+                        $('#assetsResult').append('<tr><td><a href="assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td class="invisible">'+
+                            '<div class="options">'+
+                            ' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID('+result[collection].id+');"/></a>'+
+                            '</div>'+
+                            '</td>'+
+                            '</tr>');
+                    }
+                    $(".delete_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': false,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':false
+           
+                    });
+                }
+                else{
+                    $('#assetsResult').html('<tr><td colspan="6" style="text-align:center;">No Asset Group found</td></tr>');
+                }
+                    
+            }
+        });
     }
 </script>
 <?php if (sizeof($asset_groups) > 0) { ?>

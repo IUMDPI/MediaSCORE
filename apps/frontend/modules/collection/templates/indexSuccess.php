@@ -8,7 +8,7 @@
             <input type="search" placeholder="Search all records" onkeyup=""/>
             <div class="container">
                 <a class="search-triangle" href="javascript:void(0);" onclick="removeSearchText();"></a>
-                              <a class="search-close" href="#"></a>
+                <a class="search-close" href="#"></a>
             </div> 
             <input class="button" type="submit" value="" />
             <!--            <div class="dropdown-container">
@@ -35,21 +35,21 @@
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
         <div class="title">Filter by:</div>
-        <form id="filterCollection" action="<?php echo url_for('collection/index')?>">
-            <strong>Text:</strong> <input type="text" class="text" />
+        <form id="filterCollection" action="<?php echo url_for('collection/index') ?>">
+            <strong>Text:</strong> <input type="text" class="text" onkeyup="filterCollection();" id="searchText"/>
             <strong>Date:</strong>
             <div class="filter-date">
-                <select>
+                <select id="date_type" onchange="filterCollection();">
                     <option value="">Date Type</option>
                     <option value="0">Created On</option>
                     <option value="1">Updated On</option>
                 </select>
-                <input type="text" id="from"/>
+                <input type="text" id="from" />
                 to
                 <input type="text" id="to" />
             </div>
             <strong>Status:</strong>
-            <select>
+            <select id="filterStatus" onchange="filterCollection();">
                 <option value="">Any Status</option>
                 <option value="0">Incomplete</option>
                 <option value="1">In Progress</option>
@@ -73,7 +73,7 @@
     <!--            <th></th>-->
             </tr>
         </thead>
-        <tbody>
+        <tbody id="collectionResult">
             <?php foreach ($collections as $collection): ?>
                 <tr>
                     <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
@@ -94,7 +94,7 @@
                 </tr>
             <?php endforeach; ?>
         </tbody>
-    <?php
+        <?php
     } else {
         echo '<tr><td>No Collection Available</td></tr>';
     }
@@ -103,21 +103,22 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-       var dates = $( "#from, #to" ).datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 2,
-                        'dateFormat':'yy-mm-dd',
-			onSelect: function( selectedDate ) {
-				var option = this.id == "from" ? "minDate" : "maxDate",
-					instance = $( this ).data( "datepicker" ),
-					date = $.datepicker.parseDate(
-						instance.settings.dateFormat ||
-						$.datepicker._defaults.dateFormat,
-						selectedDate, instance.settings );
-				dates.not( this ).datepicker( "option", option, date );
-			}
-		});
+        var dates = $( "#from, #to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            'dateFormat':'yy-mm-dd',
+            onSelect: function( selectedDate ) {
+                filterCollection();
+                var option = this.id == "from" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" ),
+                date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+                dates.not( this ).datepicker( "option", option, date );
+            }
+        });
         $("#collectionTable").tablesorter(); 
     
         $(".delete_unit").fancybox({
@@ -159,10 +160,56 @@
         form.find('input:text, input:password, input:file, select').val('');
         form.find('input:radio, input:checkbox')
         .removeAttr('checked').removeAttr('selected');
-
+        filterCollection();
     }
     function removeSearchText(){
         
+    }
+    function filterCollection(){
+        unitId='<?php echo $unitID; ?>';
+        $.ajax({
+            method: 'POST', 
+            url: '/frontend_dev.php/collection/index',
+            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                if(result!=undefined && result.length>0){
+                    $('#collectionResult').html('');
+                    for(collection in result){
+                        
+                        $('#collectionResult').append('<tr><td><a href="assetgroup/index?c='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td class="invisible">'+
+                            '<div class="options">'+
+                            '<a href="collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
+                            '</div>'+
+                            '</td>'+
+                            '</tr>');
+                    }
+                    $(".delete_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': false,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':false
+           
+                    });
+                }
+                else{
+                    $('#collectionResult').html('<tr><td colspan="6" style="text-align:center;">No Collection found</td></tr>');
+                }
+                    
+            }
+        });
     }
 </script>
 <?php if (sizeof($collections) > 0) { ?>
