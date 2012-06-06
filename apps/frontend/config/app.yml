@@ -3,3 +3,17 @@
 
 # default values
 #all:
+prod:
+    .settings:
+        base:       http://mediascore.avpreserve.com
+        
+dev:
+    .settings:
+        base:     http://108.166.74.254/frontend_dev.php
+
+        
+        
+all:
+  .settings:
+      contactUs:     contactus@indiana.edu
+      

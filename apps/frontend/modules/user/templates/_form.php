@@ -17,7 +17,7 @@
         </tfoot>
         <tbody>
             <?php echo $form->renderHiddenFields(); ?>
-            <?php if ($sf_user->isSuperAdmin() == 1) { ?>
+            <?php if ($sf_user->getGuardUser()->getRole() == 1 || !$form->getObject()->isNew()) { ?>
                 <tr>
                     <th>
 
@@ -53,7 +53,7 @@
 
             </tr>
             
-            <?php if ($sf_user->isSuperAdmin() == 1) { ?>
+            <?php if ($sf_user->getGuardUser()->getRole() == 1 || !$form->getObject()->isNew()) { ?>
                 <tr>
                     <th>
 
@@ -99,7 +99,7 @@
                 </td>
 
             </tr>
-            <?php if ($sf_user->isSuperAdmin() == 1) { ?>
+            <?php if ($sf_user->getGuardUser()->getRole() == 1 || !$form->getObject()->isNew()) { ?>
                 <tr>
                     <th>
 

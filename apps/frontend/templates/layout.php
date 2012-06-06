@@ -59,7 +59,7 @@
             <div id="main" class="clearfix">
                 <?php if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) {?>
                 <ul id="settings-navigation">
-                     <?php if ($sf_user->isAuthenticated() && $sf_user->isSuperAdmin() ==1) { ?>
+                     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getRole() ==1 ) { ?>
 			<li class=""><a class="menu-link" href="<?php echo  url_for('user/index') ?>">Users</a></li>
                         <?php }?>
 			<li class=""><a class="menu-link" href="<?php echo  url_for('person/index') ?>">Unit Personnel</a></li>

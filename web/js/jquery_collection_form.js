@@ -30,23 +30,32 @@ $(document).ready(function () {
             '/frontend_dev.php/storagelocation/index',
             {
                 u:unitSelectElement.val()
-                },
+            },
             function (storageLocation) {
                 storageLocationSelectElement.empty();
                 if(storageLocation.length) {
                     for(i in storageLocation)
                         if(storageLocation[i])
                             $( '<option value="'+storageLocation[i].id+'">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
+                    storageLocationSelectElement.multiselect({
+                        'height':'auto'
+                    }).multiselectfilter(); 
+                    storageLocationSelectElement.multiselect("checkAll"); 
                 } else {
-                    $( '<option value="-1">(None)</option>').appendTo(storageLocationSelectElement);
+                    $( '<option value="-1">No Storage Location</option>').appendTo(storageLocationSelectElement);
+                    storageLocationSelectElement.multiselect({
+                        'height':'auto',
+                        header: "Storage Location!",
+                        multiple:false,
+                        selectedList: 1 // 0-based index
+                    }); 
+                    storageLocationSelectElement.multiselect("checkAll"); 
                 }
 		 			
                 selectSerializedValues();
         
-                storageLocationSelectElement.multiselect({
-            'height':'auto'
-        }).multiselectfilter(); 
-        storageLocationSelectElement.multiselect("checkAll"); 
+                
+                
        
             });
     }

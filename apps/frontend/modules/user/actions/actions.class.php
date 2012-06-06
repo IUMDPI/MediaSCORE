@@ -9,8 +9,10 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class userActions extends sfActions {
-
+    
     public function executeIndex(sfWebRequest $request) {
+        if($this->getUser()->getGuardUser()->getRole()!=1)
+            $this->redirect ('storagelocation/index');
         $msg = $request->getParameter('n');
         if ($msg)
             $this->popup = 1;
@@ -25,10 +27,14 @@ class userActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
+        if($this->getUser()->getGuardUser()->getRole()!=1)
+            $this->redirect ('storagelocation/index');
         $this->form = new sfGuardUserForm();
     }
 
     public function executeCreate(sfWebRequest $request) {
+        if($this->getUser()->getGuardUser()->getRole()!=1)
+            $this->redirect ('storagelocation/index');
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new sfGuardUserForm();
@@ -58,6 +64,8 @@ class userActions extends sfActions {
     }
 
     public function executeDelete(sfWebRequest $request) {
+        if($this->getUser()->getGuardUser()->getRole()!=1)
+            $this->redirect ('storagelocation/index');
 //    $request->checkCSRFProtection();
 
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
@@ -85,7 +93,10 @@ class userActions extends sfActions {
                 $this->getMailer()->send($message);
                 $this->redirect('user/index?n=1');  
             } else {
-                $this->redirect('user/index');
+                if($this->getUser()->getGuardUser()->getRole()==1)
+                    $this->redirect('user/index');
+                else 
+                    $this->redirect ('storagelocation/index');
             }
         }
     }

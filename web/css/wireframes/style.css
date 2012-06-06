@@ -202,7 +202,7 @@ td { vertical-align: top; }
   /*SEARCH*/
 
   #search-box {float:right; max-width:750px; margin-bottom:15px;}
-  .search-input {border:1px solid #c4c4c4; background-color:white; padding:1px 75px 3px 5px; float:right; position:relative; min-width:257px; z-index:999; min-height:24px;
+  .search-input {border:1px solid #c4c4c4; background-color:white; padding:1px 55px 3px 5px; float:right; position:relative; min-width:257px; z-index:999; min-height:24px;
 
     -webkit-border-top-right-radius: 2px;
     -webkit-border-bottom-right-radius: 2px;
@@ -444,4 +444,7 @@ td { vertical-align: top; }
     clear: both;
     padding: 5px;
     width: 190px;
+}
+.token-count{
+    line-height: 0.9;
 }

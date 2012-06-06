@@ -243,5 +243,39 @@ class FormatType extends BaseFormatType
 						array('HDCam' => 'HDCAM'),
 						array('DVCPro' => 'DVCPro')
 					);
+	public static $formatTypesValue = array(
+						array('1' => 'Metal Disc'),
+						array('5' => 'Film'),
+						array('6' => 'DAT'),
+						array('7' => 'Sound Wire Reel'),
+						array('4' => 'Analog Audio Cassette'),
+						array('9' => 'Polyster Open Reel Audio Tape'),
+						array('10' => 'Acetate Open Reel Audio Tape'),
+						array('11' => 'Paper Open Reel Audio Tape'),
+						array('12' => 'PVC Open Reel Audio Tape'),
+						array('15' => 'Lacquer Disc'),
+						array('16' => 'MiniDisc'),
+						array('17' => 'Cylinder'),
+						array('19' => 'Sound Optical Disc'),
+						array('20' => 'Optical Video'),
+						array('22' => 'Pressed 78RPM Disc'),
+						array('23' => 'Pressed LP Disc'),
+						array('24' => 'Pressed 45RPM Disc'),
+						array('26' => 'LaserDisc'),
+						array('27' => 'XDCAM Optical'),
+						array('29' => 'Betamax'),
+						array('31' => '8MM'),
+						array('33' => '2" Open Reel Video'),
+						array('34' => '1" Open Reel Video'),
+						array('35' => '½" Open Reel Video'),
+						array('37' => 'DV'),
+						array('38' => 'DVCAM'),
+						array('40' => 'Betacam'),
+						array('41' => 'VHS'),
+						array('42' => 'Digital Betacam'),
+						array('44' => 'U-matic'),
+						array('45' => 'HDCAM'),
+						array('46' => 'DVCPro')
+					);
 
 }
