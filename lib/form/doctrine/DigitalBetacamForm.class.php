@@ -20,12 +20,12 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
 
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1])));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1]),array('onchange'=>'checkFormat();')));
         $this->setValidator('format', new sfValidatorString(array('required' => false)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
 
 
-        $this->setWidget('bitrate', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2])));
+        $this->setWidget('bitrate', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2]),array('title'=>'Mbps. Only active if IMX is selected as format')));
         $this->setValidator('bitrate', new sfValidatorString(array('required' => false)));
         $this->getWidget('bitrate')->setLabel('<span class="required">*</span>Bitrate:&nbsp;');
         

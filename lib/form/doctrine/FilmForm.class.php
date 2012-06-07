@@ -18,7 +18,7 @@ class FilmForm extends BaseFilmForm
 	parent::configure();
 	$this->setWidget('gauge',new sfWidgetFormChoice(array('choices' => Film::$constants[0])));
 	$this->setWidget('color',new sfWidgetFormChoice(array('choices' => Film::$constants[1])));
-	$this->setWidget('colorFade',new sfWidgetFormInputCheckbox());
+	$this->setWidget('colorFade',new sfWidgetFormInputCheckbox(array(),array('title'=>'Will often give film a magenta appearance')));
 	$this->setWidget('soundtrackFormat',new sfWidgetFormChoice(array('choices' => Film::$constants[2])));
 	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => Film::$constants[3])));
 	$this->setWidget('strongOdor',new sfWidgetFormInputCheckbox());

@@ -19,7 +19,7 @@ class LacquerDiscForm extends BaseLacquerDiscForm
 	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => LacquerDisc::$constants)));
 	$this->setWidget('delamination',new sfWidgetFormInputCheckbox());
 	$this->setWidget('plasticizerExudation',new sfWidgetFormInputCheckbox());
-        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true))); 
+        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.'))); 
         
         $this->getWidget('substrate')->setLabel('<span class="required">*</span>Substrate:&nbsp;');
         $this->getWidget('delamination')->setLabel('Delamination:&nbsp;');

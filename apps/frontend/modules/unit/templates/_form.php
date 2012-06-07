@@ -36,7 +36,7 @@
                         <?php echo $form['inst_id']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['inst_id']->render(); ?> <div class="help-text">Unit Code assigned by MPI</div>
+                        <?php echo $form['inst_id']->render(array('title'=>'Unit Code assigned by MPI')); ?> <div class="help-text">Unit Code assigned by MPI</div>
                         <?php echo $form['inst_id']->renderError(); ?>
                     </td>
 
@@ -46,7 +46,7 @@
                         <?php echo $form['resident_structure_description']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['resident_structure_description']->render(); ?> <div class="help-text">Enter the Building name(s) or Room number(s) where the Unit is located</div>
+                        <?php echo $form['resident_structure_description']->render(array('title'=>'Enter the Building name(s) or Room number(s) where the Unit is located')); ?> <div class="help-text">Enter the Building name(s) or Room number(s) where the Unit is located</div>
                         <?php echo $form['resident_structure_description']->renderError(); ?>
                     </td>
 
@@ -102,11 +102,7 @@
         $('#unit_personnel_list').multiselect({
             'height':'auto'
         }).multiselectfilter();
-        var array_of_checked_values = $("#unit_personnel_list").multiselect("getChecked").map(function(){
-            return this.value;	
-        }).get();
         
-        getDetail(array_of_checked_values);
         
     });
     $("#unit_personnel_list").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui){

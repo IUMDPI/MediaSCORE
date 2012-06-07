@@ -5,10 +5,97 @@
  *
  * @package    mediaSCORE
  * @subpackage unit
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class unitActions extends sfActions {
+
+    public function executeSearch(sfWebRequest $request) {
+        $types = array('Metal Disc' => '1',
+            'Film' => '5',
+            'DAT' => '6',
+            'Sound Wire Reel' => '7',
+            'Analog Audio Cassette' => '4',
+            'Polyster Open Reel Audio Tape' => '9',
+            'Acetate Open Reel Audio Tape' => '10',
+            'Paper Open Reel Audio Tape' => '11',
+            'PVC Open Reel Audio Tape' => '12',
+            'Lacquer Disc' => '15',
+            'MiniDisc' => '16',
+            'Cylinder' => '17',
+            'Sound Optical Disc' => '19',
+            'Optical Video' => '20',
+            'Pressed 78RPM Disc' => '22',
+            'Pressed LP Disc' => '23',
+            'Pressed 45RPM Disc' => '24',
+            'LaserDisc' => '26',
+            'XDCAM Optical' => '27',
+            'Betamax' => '29',
+            '8MM' => '31',
+            '2" Open Reel Video' => '33',
+            '1" Open Reel Video' => '34',
+            '½" Open Reel Video' => '35',
+            'DV' => '37',
+            'DVCAM' => '38',
+            'Betacam' => '40',
+            'VHS' => '41',
+            'Digital Betacam' => '42',
+            'U-matic' => '44',
+            'HDCAM' => '45',
+            'DVCPro' => '46',
+        );
+
+        $store = array('Unit' => '1',
+            'Collection' => '3',
+            'Asset Group' => '4');
+        
+        $this->searchValues=$request->getParameter('search_values');
+        $this->searchString = explode(',', $this->searchValues);
+
+        $formatType = array();
+        $storeType = array();
+        $stringForName = '%';
+
+        foreach ($this->searchString as $value) {
+            if (isset($types[$value]))
+                $formatType[] = $types[$value];
+            else if (isset($store[$value]))
+                $storeType[] = $store[$value];
+            else
+                $stringForName.=$value . '%';
+        }
+//        echo strlen($stringForName);
+
+        if (count($formatType) > 0) {
+
+            $this->formatsResult = Doctrine_Query::Create()
+                    ->from('AssetGroup ag')
+                    ->select('ag.*')
+                    ->innerJoin('ag.FormatType f')
+                    ->whereIn('f.type', $formatType);
+            if (strlen($stringForName) > 1)
+                $this->formatsResult = $this->formatsResult->andWhere('name like "' . $stringForName . '"');
+            $this->formatsResult = $this->formatsResult->execute();
+        }
+        else if (count($storeType) > 0) {
+            $this->storeResult = Doctrine_Query::Create()
+                    ->from('Store s')
+                    ->select('s.*')
+                    ->whereIn('s.type', $storeType);
+            if (strlen($stringForName) > 1)
+                $this->storeResult = $this->storeResult->andWhere('name like "' . $stringForName . '"');
+            $this->storeResult = $this->storeResult->execute();
+        }
+        else {
+            if (strlen($stringForName) > 1) {
+                $this->randomSearch = Doctrine_Query::Create()
+                        ->from('Store s')
+                        ->select('s.*')
+                        ->where('name like "' . $stringForName . '"')
+                        ->execute();
+            }
+        }
+    }
 
     public function executeGetUnitForAssetGroup(sfWebRequest $request) {
 
@@ -71,7 +158,6 @@ class unitActions extends sfActions {
     }
 
     public function executeGetUserDetail(sfWebRequest $request) {
-
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
             $explodeId = explode(',', $request->getParameter('id'));
@@ -85,7 +171,8 @@ class unitActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
-
+        $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
+        $this->getUser()->getAttributeHolder()->remove('delMsg');
         $this->units = Doctrine_Core::getTable('Unit')
                 ->createQuery('a')
                 ->orderBy('name')
@@ -113,13 +200,13 @@ class unitActions extends sfActions {
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
         if ($request->isXmlHttpRequest()) {
-             $this->unit = Doctrine_Query::Create()
+            $this->unit = Doctrine_Query::Create()
                     ->from('Unit u')
                     ->select('u.*,cu.*,eu.*')
-                     ->orderBy('u.name')
+                    ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu');
-                    
+
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
             }
@@ -235,9 +322,16 @@ class unitActions extends sfActions {
 
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
 
-        $unit->delete();
-
-
+        $collections = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.parent_node_id  = ?', $request->getParameter('id'))
+                ->fetchArray();
+        if (sizeof($collections) > 0) {
+            $this->getUser()->setAttribute('delMsg', 'You have to delete collections first to remove this unit.');
+        } else {
+            $unit->delete();
+        }
         $this->redirect('unit/index');
     }
 

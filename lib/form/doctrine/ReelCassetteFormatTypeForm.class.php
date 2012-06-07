@@ -16,7 +16,7 @@ class ReelCassetteFormatTypeForm extends BaseReelCassetteFormatTypeForm
   public function configure()
   {
 	  parent::configure();
-	  $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => ReelCassetteFormatType::$constants,'expanded'=>true)));
+	  $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => ReelCassetteFormatType::$constants,'expanded'=>true),array('title'=>'Note presence of tangles, knots, and/or breaks')));
            $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
            $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack Deformation:&nbsp;');
 //          $this->setValidator('packDeformation', new sfValidatorChoice(array('choices' => ReelCassetteFormatType::$constants)));

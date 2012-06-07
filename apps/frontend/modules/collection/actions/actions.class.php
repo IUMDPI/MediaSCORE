@@ -34,6 +34,7 @@ class collectionActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
+        
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
@@ -95,7 +96,9 @@ class collectionActions extends sfActions {
             $this->setLayout('json');
             return $this->renderText(json_encode($this->collections->toArray()));
         } else {
-            $this->filter = new CollectionFormFilter();
+            $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
+        $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
+            
             $this->unitID = $request->getParameter('u');
             $this->forward404Unless($this->unitID);
 
@@ -180,9 +183,18 @@ class collectionActions extends sfActions {
         //$request->checkCSRFProtection();
 
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
-        $collection->delete();
-
+        $assets = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('ag.*')
+                ->where('ag.parent_node_id  = ?', $request->getParameter('id'))
+                ->fetchArray();
+        if (sizeof($assets) > 0) {
+            $this->getUser()->setAttribute('delCollectionMsg', 'You have to delete assets group first to remove this collection.');
+        } else {
+            $collection->delete();
+        }
         $this->redirect('collection/index?u=' . $request->getParameter('u'));
+        
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

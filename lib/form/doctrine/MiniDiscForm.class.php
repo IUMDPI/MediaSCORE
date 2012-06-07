@@ -18,7 +18,7 @@ class MiniDiscForm extends BaseMiniDiscForm {
         $this->setWidget('recordingLayer', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[0])));
         $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[1])));
         $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true))); 
-        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox());
+        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing, oxidation, discoloration or delamination')));
         $this->setDefault('physicalDamage', 0);
         
 

@@ -57,7 +57,7 @@
                         <?php echo $form['inst_id']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['inst_id']->render(); ?> <div class="help-text">IU's identifier if applicable</div>
+                        <?php echo $form['inst_id']->render(array('title'=>'IU\'s identifier if applicable')); ?> <div class="help-text">IU's identifier if applicable</div>
                         <?php echo $form['inst_id']->renderError(); ?>
                     </td>
 
@@ -67,7 +67,7 @@
                         <?php echo $form['location']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['location']->render(); ?> <div class="help-text">Provide a specific location within the storage location such as a shelf number or area of a room</div>
+                        <?php echo $form['location']->render(array('title'=>'Provide a specific location within the storage location such as a shelf number or area of a room')); ?> <div class="help-text">Provide a specific location within the storage location such as a shelf number or area of a room</div>
                         <?php echo $form['location']->renderError(); ?>
                     </td>
 
@@ -98,7 +98,7 @@
                         <?php echo $form['notes']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['notes']->render(); ?> <div class="help-text">Explain what is distinctive about this subcollection</div>
+                        <?php echo $form['notes']->render(array('title'=>'Explain what is distinctive about this subcollection')); ?> <div class="help-text">Explain what is distinctive about this subcollection</div>
                         <?php echo $form['notes']->renderError(); ?>
                     </td>
 
@@ -222,5 +222,6 @@
     
 <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup/index?c=' . $form->getOption('collectionID')) ?>">cancel</a>
 <div style="clear: both;"></div>
-</div>
+
 <?php }?>
+</div>

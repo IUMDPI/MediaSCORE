@@ -15,7 +15,9 @@ class DVCProForm extends BaseDVCProForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => DVCPro::$constants[0])));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => DVCPro::$constants[0]),array('title'=>'"DVCPRO25 has a yellow tape-door
+DVCPRO50 has a blue tape-door
+DVCPRO HD has a red tape-door"')));
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 

@@ -18,8 +18,8 @@ class PressedLPDiscForm extends BasePressedLPDiscForm
 	  parent::configure();
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
-        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox());
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.')));
+        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of exudation of any type')));
         $this->setDefault('physicalDamage', 0);
 
 

@@ -2,12 +2,12 @@
 <a class="button" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <!--<a class="button create_new_unit" href="<?php //echo url_for('unit/new')               ?>">Create Unit</a>-->
 <div id="search-box">
-
+    <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
     <div class="search-input">
         <div id="token_string" style="float: left;">
 
         </div>
-
+        <input type="hidden" id="search_values" name="search_values"/>
         <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
         <div class="container">
             <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();$('.dropdown-container').css('width',$('.search-input').width()+26);"></a><b class="token-count" style="display: none;"></b>
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-
+</form>
 </div>
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
@@ -68,7 +68,8 @@
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
     </div>
 </div> 
-<div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
+<div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div>
+<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage;?></div>
 <table id="unitTable" class="tablesorter">
     <?php if (sizeof($units) > 0) { ?>
         <thead>
@@ -324,7 +325,7 @@
             value='Collection';
         }
         else if(type==2){
-            value='Assest Group';
+            value='Asset Group';
         }
         else{
             value=type;
@@ -346,11 +347,18 @@
         }
     }
     function getRecords(){
+        var search=new Array();
+        count=1;;
         if(token>0){
-            for(i=1;i<=token;i++){
-                $('#search_string_'+i).text();
+            for(i=1;i<=token;){
+                if($('#search_string_'+count).length>0){
+                    search[i-1]=$('#search_string_'+count).text();
+                    i++;
+                }
+                count++;
             }
         }
+        $('#search_values').val(search);
     }
 </script>
 <?php if (sizeof($units) > 0) { ?>

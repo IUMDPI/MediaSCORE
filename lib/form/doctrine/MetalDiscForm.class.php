@@ -22,7 +22,7 @@ class MetalDiscForm extends BaseMetalDiscForm
 		));*/
 	  $this->setWidget('material',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
 	  $this->setWidget('oxidationCorrosion',new sfWidgetFormInputCheckbox());
-	  $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true))); 
+	  $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.'))); 
           
           $this->getWidget('material')->setLabel('<span class="required">*</span>Material:&nbsp;');
           $this->getWidget('oxidationCorrosion')->setLabel('Oxidation / Corrosion:&nbsp;');

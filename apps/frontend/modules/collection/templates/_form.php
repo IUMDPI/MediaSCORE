@@ -23,7 +23,7 @@
                         <?php echo $form['name']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['name']->render(); ?> <div class="help-text">The name commonly used to refer to the collection</div>
+                        <?php echo $form['name']->render(array('title'=>'The name commonly used to refer to the collection')); ?> <div class="help-text">The name commonly used to refer to the collection</div>
                         <?php echo $form['name']->renderError(); ?>
                     </td>
 
@@ -33,7 +33,7 @@
                         <?php echo $form['inst_id']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['inst_id']->render(); ?> <div class="help-text">IU's identifier if applicable</div>
+                        <?php echo $form['inst_id']->render(array('title'=>'IU\'s identifier if applicable')); ?> <div class="help-text">IU's identifier if applicable</div>
                         <?php echo $form['inst_id']->renderError(); ?>
                     </td>
 
@@ -77,7 +77,7 @@
                     <?php echo $form['notes']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['notes']->render(); ?><div class="help-text">Provide a description of the collection</div>
+                    <?php echo $form['notes']->render(array('title'=>'Provide a description of the collection')); ?><div class="help-text">Provide a description of the collection</div>
                     <?php echo $form['notes']->renderError(); ?>
                 </td>
 

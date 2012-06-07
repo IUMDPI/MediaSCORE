@@ -15,16 +15,16 @@ class CylinderForm extends BaseCylinderForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('cylinderType', new sfWidgetFormChoice(array('choices' => Cylinder::$constants)));
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
-        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox());
+        $this->setWidget('cylinderType', new sfWidgetFormChoice(array('choices' => Cylinder::$constants),array('title'=>'Cut wax is softer than molded wax; Amberol wax is notoriously brittle; celluloid is susceptible to shrinkage which can lead to cracking, warping, and other problems.')));
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('title'=>'Note presence of breakage, cracks, and splits in surface material or substrate')));
+        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing or efflorescence')));
         $this->setDefault('physicalDamage', 0);
         
         $this->setValidator('cylinderType', new sfValidatorString(array('required' => false)));
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
          $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
          
-         $this->getWidget('cylinderType')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
+         $this->getWidget('cylinderType')->setLabel('<span class="required">*</span>Type:&nbsp;');
          $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
         $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
 
