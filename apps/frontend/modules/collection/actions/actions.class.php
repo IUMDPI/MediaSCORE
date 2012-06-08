@@ -34,7 +34,7 @@ class collectionActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
-        
+
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
@@ -96,10 +96,16 @@ class collectionActions extends sfActions {
             $this->setLayout('json');
             return $this->renderText(json_encode($this->collections->toArray()));
         } else {
-            $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
-        $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
+//            $this->unitObject = $this->getRoute()->getObject();
             
+            
+            
+//            $this->forward404Unless($this->unitObject);
+            $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
+            $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
+
             $this->unitID = $request->getParameter('u');
+//            $this->unitID = $this->unitObject->getId();
             $this->forward404Unless($this->unitID);
 
             $unit = Doctrine_Core::getTable('Unit')
@@ -147,9 +153,13 @@ class collectionActions extends sfActions {
                             'unitID' => $unitId)
         );
 
-        $this->processForm($request, $this->form);
-
-        $this->setTemplate('new');
+        $success = $this->processForm($request, $this->form);
+        if ($success && isset($success['form']) && $success['form'] == true) {
+            echo $success['id'];
+            exit;
+        } else {
+            $this->setTemplate('new');
+        }
     }
 
     public function executeEdit(sfWebRequest $request) {
@@ -174,9 +184,13 @@ class collectionActions extends sfActions {
                     'action' => 'edit'
                 ));
 
-        $this->processForm($request, $this->form);
-
-        $this->setTemplate('edit');
+        $success = $this->processForm($request, $this->form);
+        if ($success && isset($success['form']) && $success['form'] == true) {
+            echo $success['id'];
+            exit;
+        } else {
+            $this->setTemplate('edit');
+        }
     }
 
     public function executeDelete(sfWebRequest $request) {
@@ -194,7 +208,6 @@ class collectionActions extends sfActions {
             $collection->delete();
         }
         $this->redirect('collection/index?u=' . $request->getParameter('u'));
-        
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
@@ -205,8 +218,9 @@ class collectionActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $collection = $form->save();
-
-            $this->redirect('collection/index?u=' . $form->getObject()->getParentNodeId());
+            $success = array('form' => true, 'id' => $collection->getId());
+            return $success;
+//            $this->redirect('collection/index?u=' . $form->getObject()->getParentNodeId());
         }
     }
 

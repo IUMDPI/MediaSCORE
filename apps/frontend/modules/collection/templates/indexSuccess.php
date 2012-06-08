@@ -1,4 +1,5 @@
-<a class="button" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
+<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>-->
+<a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -85,8 +86,12 @@
         </thead>
         <tbody id="collectionResult">
             <?php foreach ($collections as $collection): ?>
+            <?php 
+            
+            ?>
                 <tr>
                     <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
+<!--                    <td><a href="<?php //echo url_for('assetgroup',$unitObject,$collection) ?>"><?php echo $collection->getName() ?></a></td>-->
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
@@ -94,7 +99,7 @@
                     <td class="invisible">
 
                         <div class="options">
-                            <a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <a  class="new_edit_collection" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
 
                         </div>
@@ -140,6 +145,17 @@
             'type': 'inline',
             'padding': 0,
             'showCloseButton':false
+           
+        });
+        $(".new_edit_collection").fancybox({
+            'width': '100%',
+            'height': '100%',
+            'autoScale': true,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'type': 'inline',
+            'padding': 0,
+            'showCloseButton':true 
            
         });
     });

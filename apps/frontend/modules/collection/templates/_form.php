@@ -1,9 +1,10 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<h1>Create/Edit a Collection</h1>
+<!--<h1>Create/Edit a Collection</h1>-->
+<div style="background-color: #F4F4F4;padding-left: 5px;padding-right: 5px;" id="collectionMain">
 <div id="main" class="clearfix">
-    <form action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+    <form id="collection_form" action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
         <?php if (!$form->getObject()->isNew()): ?>
             <input type="hidden" name="sf_method" value="put" />
         <?php endif; ?>
@@ -12,7 +13,8 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" value="Save" />&nbsp;or&nbsp;<?php echo link_to('cancel', 'collection/index?u=' . $form->getOption('unitID')) ?>
+                        <input type="submit" value="Save" id="collection_save"/>
+                        &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>
                     </td>
                 </tr> 
             </tfoot>
@@ -65,7 +67,7 @@
             <?php } ?>
             <tr>
                 <th>
-                    <?php echo $form['storage_locations_list']->renderLabel(); ?>
+                    <?php echo $form['storage_locations_list']->renderLabel(); ?>:
                 </th>
                 <td>
                     <?php echo $form['storage_locations_list']->render(); ?><?php echo $form['storage_locations_list']->renderError(); ?>
@@ -77,7 +79,8 @@
                     <?php echo $form['notes']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['notes']->render(array('title'=>'Provide a description of the collection')); ?><div class="help-text">Provide a description of the collection</div>
+                    <?php echo $form['notes']->render(array('title'=>'Provide a description of the collection')); ?>
+                    <div style="clear: both;"></div><div class="help-text">Provide a description of the collection</div>
                     <?php echo $form['notes']->renderError(); ?>
                 </td>
 
@@ -102,41 +105,4 @@
         </table>
     </form>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#collection_status').multiselect({
-            'height':'auto',
-            'multiple':false
-        });
-       
-        
-        
-        
-        
-    });
-    function getStorage(id){
-            $.ajax({
-                method: 'POST', 
-                url: '/frontend_dev.php/storagelocation/index?u='+id,
-                dataType: 'json',
-                cache: false,
-                success: function (result) { 
-                    $("#collection_storage_locations_list").multiselect("destroy");
-                    $('#collection_storage_locations_list').html('');
-                    if(result!=undefined && result.length>0){
-                        for(storage in result){
-                            $('#collection_storage_locations_list').append('<option value="'+result[storage].id+'">'+result[storage].name+'</option>');
-                        }
-                    }
-                    else{
-                        $('#collection_storage_locations_list').html('<option value="-1">None</option>');
-                        
-                    }
-                    $("#collection_storage_locations_list").multiselect("refresh");
-                    $('#collection_storage_locations_list').multiselect({
-                        'height':'auto'
-                    }).multiselectfilter(); 
-                }
-            });
-        }
-</script>
+</div></div>

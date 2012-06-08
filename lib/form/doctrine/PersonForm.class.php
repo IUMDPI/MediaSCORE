@@ -44,14 +44,17 @@ class PersonForm extends BasePersonForm
     $this->setValidator('first_name', new sfValidatorString(array('required'=>true)));
     $this->setValidator('last_name', new sfValidatorString(array('required'=>true)));
     $this->setValidator('role', new sfValidatorString(array('required'=>false)));
+    $this->setValidator('phone', new sfValidatorInteger(array('required'=>false)));
     
     
     $this->getValidator('first_name')->setMessages(array('required' => 'This is a required field.',
-            'invalid' => 'Invalid Value.'));
+            'invalid' => 'Invalid First Name.'));
     $this->getValidator('last_name')->setMessages(array('required' => 'This is a required field.',
-            'invalid' => 'Invalid Value.'));
+            'invalid' => 'Invalid Last Name.'));
     $this->getValidator('email_address')->setMessages(array('required' => 'This is a required field.',
-            'invalid' => 'Please enter a valid email address.'));
+            'invalid' => 'Must be a valid email address'));
+    $this->getValidator('phone')->setMessages(array('required' => 'This is a required field.',
+            'invalid' => 'Phone # must be numeric only.'));
     
     $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => 3 )));
   }

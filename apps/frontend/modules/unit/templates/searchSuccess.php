@@ -47,7 +47,7 @@
     </form>
 </div>
 
-<table id="unitTable" class="tablesorter">
+<table id="searchTable" class="tablesorter">
     <thead>
         <tr>
             <th><span>Title</span></th>
@@ -171,8 +171,8 @@
 <script type="text/javascript">
     var token=0;
     $(document).ready(function() {
-        //        $("#unitTable").tablesorter(); 
-        //        setTimeout('getRecords();',500);
+         $("#searchTable").tablesorter(); 
+       
         
         
     });

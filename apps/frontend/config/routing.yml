@@ -6,6 +6,22 @@ homepage:
   url:   /
   param: { module: unit, action: index }
 
+#collection:
+#  url: /:name
+#  class:   sfDoctrineRoute
+#  options: { model: Unit, type: object }
+#  param: { module: collection, action: index }
+#assetgroup:
+#  url: /name/:name
+#  class:   sfDoctrineRoute
+#  options: { model: Collection, type: object  }
+#  param: { module: assetgroup, action: index }
+#storagelocation:
+#  url: /storagelocation
+#  param: { module: storagelocation, action: index }
+  
+#  requirements:
+#    sf_method: [get]
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
@@ -14,3 +30,6 @@ default_index:
 
 default:
   url:   /:module/:action/*
+  
+
+

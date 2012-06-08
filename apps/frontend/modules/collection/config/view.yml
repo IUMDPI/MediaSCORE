@@ -1,5 +1,5 @@
 
-newSuccess:
-  javascripts: [jquery_collection_form]
-editSuccess:
-  javascripts: [jquery_collection_form_edit]
+#newSuccess:
+#  javascripts: [jquery_collection_form]
+#editSuccess:
+#  javascripts: [jquery_collection_form_edit]

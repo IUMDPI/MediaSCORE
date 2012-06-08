@@ -75,6 +75,10 @@ class assetgroupActions extends sfActions {
             $this->setLayout('json');
             return $this->renderText(json_encode($this->assets->toArray()));
         }
+//        $unitObject = $this->getRoute()->getObject();
+//        echo '<pre>';
+//        print_r($unitObject);
+//        exit;
         $this->collectionID = $request->getParameter('c');
         $this->forward404Unless($this->collectionID);
 

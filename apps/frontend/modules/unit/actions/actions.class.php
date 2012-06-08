@@ -48,8 +48,8 @@ class unitActions extends sfActions {
         $store = array('Unit' => '1',
             'Collection' => '3',
             'Asset Group' => '4');
-        
-        $this->searchValues=$request->getParameter('search_values');
+
+        $this->searchValues = $request->getParameter('search_values');
         $this->searchString = explode(',', $this->searchValues);
 
         $formatType = array();
@@ -272,12 +272,8 @@ class unitActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
-        //$this->form = new UnitForm();
-        //$this->setLayout('fancyLayout');
-        $this->form = new UnitForm(
-                        null,
-                        array(
-                            'userID' => $this->getUser()->getGuardUser()->getId()
+        $this->form = new UnitForm(null,
+                        array('userID' => $this->getUser()->getGuardUser()->getId()
                 ));
     }
 
@@ -288,9 +284,13 @@ class unitActions extends sfActions {
                     'userID' => $this->getUser()->getGuardUser()->getId()
                 ));
 
-        $this->processForm($request, $this->form);
-
-        $this->setTemplate('new');
+        $success = $this->processForm($request, $this->form);
+        if ($success && isset($success['form']) && $success['form'] == true) {
+            echo $success['id'];
+            exit;
+        } else {
+            $this->setTemplate('new');
+        }
     }
 
     public function executeEdit(sfWebRequest $request) {
@@ -312,9 +312,13 @@ class unitActions extends sfActions {
                             'action' => 'edit'
                 ));
 
-        $this->processForm($request, $this->form);
-
-        $this->setTemplate('edit');
+        $success = $this->processForm($request, $this->form);
+        if ($success && isset($success['form']) && $success['form'] == true) {
+            echo $success['id'];
+            exit;
+        } else {
+            $this->setTemplate('edit');
+        }
     }
 
     public function executeDelete(sfWebRequest $request) {
@@ -339,8 +343,8 @@ class unitActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $unit = $form->save();
-
-            $this->redirect('unit/index');
+            $success = array('form' => true, 'id' => $unit->getId());
+            return $success;
         }
     }
 

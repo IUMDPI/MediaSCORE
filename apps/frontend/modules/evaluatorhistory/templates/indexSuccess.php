@@ -47,4 +47,4 @@
 
 <div id="evaluator-history-edit-container"></div>
 
-<input id="evaluator-history-new" type="submit" value="+ ADD NEW" />
+<input id="evaluator-history-new" type="submit" value="+ ADD NEW" class="custom_button" />
