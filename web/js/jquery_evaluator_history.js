@@ -86,7 +86,7 @@ $('document').ready(function () {
             populateStorageLocations();
         //console.log( 'updated: '+$('#asset_group_parent_node_id').val() );
         });
-        setTimeout('populateStorageLocations();',1000);
+        setTimeout('populateStorageLocations();',300);
     //         populateStorageLocations();
     }
     //
