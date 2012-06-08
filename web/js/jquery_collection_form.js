@@ -33,7 +33,7 @@ $(document).ready(function () {
                 if(storageLocation.length) {
                     for(i in storageLocation)
                         if(storageLocation[i]){
-                            if(selectedStorageUnit.val()!='')
+                            if(selectedStorageUnit!='')
                                 $( '<option value="'+storageLocation[i].id+'">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
                             else
                                 $( '<option value="'+storageLocation[i].id+'" selected="selected">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
