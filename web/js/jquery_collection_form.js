@@ -1,7 +1,4 @@
-
 $(document).ready(function () {
-    
-    //console.log( $('#collection_storage_locations_list').prop('tagName');
     unitSelectElement = $('#collection_parent_node_id');
     storageLocationSelectElement = $('#collection_storage_locations_list');
 
@@ -35,12 +32,17 @@ $(document).ready(function () {
                 storageLocationSelectElement.empty();
                 if(storageLocation.length) {
                     for(i in storageLocation)
-                        if(storageLocation[i])
-                            $( '<option value="'+storageLocation[i].id+'">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
+                        if(storageLocation[i]){
+                            if(selectedStorageUnit.val()!='')
+                                $( '<option value="'+storageLocation[i].id+'">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
+                            else
+                                $( '<option value="'+storageLocation[i].id+'" selected="selected">'+storageLocation[i].name+'</option>').appendTo(storageLocationSelectElement);
+                        }
+                            
                     storageLocationSelectElement.multiselect({
                         'height':'auto'
                     }).multiselectfilter(); 
-                    storageLocationSelectElement.multiselect("checkAll"); 
+//                    storageLocationSelectElement.multiselect("checkAll"); 
                 } else {
                     $( '<option value="-1">No Storage Location</option>').appendTo(storageLocationSelectElement);
                     storageLocationSelectElement.multiselect({
@@ -62,12 +64,12 @@ $(document).ready(function () {
 
     updateStorageLocationList();
     
-      $('#collection_status').multiselect({
-            'height':'auto',
-            'multiple':false
-        });
+    $('#collection_status').multiselect({
+        'height':'auto',
+        'multiple':false
+    });
         
-        $('#collection_save').click(function(event) {
+    $('#collection_save').click(function(event) {
         event.preventDefault();
         $.ajax({
             type: 'POST',
@@ -79,7 +81,9 @@ $(document).ready(function () {
                     $.ajax({
                         method: 'POST', 
                         url: '/frontend_dev.php/collection/index',
-                        data:{id:$('#collection_parent_node_id').val()},
+                        data:{
+                            id:$('#collection_parent_node_id').val()
+                            },
                         dataType: 'json',
                         cache: false,
                         success: function (result) { 
@@ -146,27 +150,27 @@ $(document).ready(function () {
 //selectSerializedValues();
 });
 function getStorage(id){
-            $.ajax({
-                method: 'POST', 
-                url: '/frontend_dev.php/storagelocation/index?u='+id,
-                dataType: 'json',
-                cache: false,
-                success: function (result) { 
-                    $("#collection_storage_locations_list").multiselect("destroy");
-                    $('#collection_storage_locations_list').html('');
-                    if(result!=undefined && result.length>0){
-                        for(storage in result){
-                            $('#collection_storage_locations_list').append('<option value="'+result[storage].id+'">'+result[storage].name+'</option>');
-                        }
-                    }
-                    else{
-                        $('#collection_storage_locations_list').html('<option value="-1">None</option>');
-                        
-                    }
-                    $("#collection_storage_locations_list").multiselect("refresh");
-                    $('#collection_storage_locations_list').multiselect({
-                        'height':'auto'
-                    }).multiselectfilter(); 
+    $.ajax({
+        method: 'POST', 
+        url: '/frontend_dev.php/storagelocation/index?u='+id,
+        dataType: 'json',
+        cache: false,
+        success: function (result) { 
+            $("#collection_storage_locations_list").multiselect("destroy");
+            $('#collection_storage_locations_list').html('');
+            if(result!=undefined && result.length>0){
+                for(storage in result){
+                    $('#collection_storage_locations_list').append('<option value="'+result[storage].id+'">'+result[storage].name+'</option>');
                 }
-            });
+            }
+            else{
+                $('#collection_storage_locations_list').html('<option value="-1">None</option>');
+                        
+            }
+            $("#collection_storage_locations_list").multiselect("refresh");
+            $('#collection_storage_locations_list').multiselect({
+                'height':'auto'
+            }).multiselectfilter(); 
         }
+    });
+}
