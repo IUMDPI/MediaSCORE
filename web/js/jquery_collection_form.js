@@ -57,14 +57,14 @@ $(document).ready(function () {
                                 $('#collectionResult').html('');
                                 for(collection in result){
                         
-                                    $('#collectionResult').append('<tr><td><a href="assetgroup/index?c='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                                    $('#collectionResult').append('<tr><td><a href="/assetgroup/index?c='+result[collection].id+'">'+result[collection].name+'</a></td>'+
                                         '<td>'+result[collection].created_at+'</td>'+
                                         '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                                         '<td>'+result[collection].updated_at+'</td>'+
                                         '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                                         '<td class="invisible">'+
                                         '<div class="options">'+
-                                        '<a class="new_edit_collection" href="collection/edit/id/' +result[collection].id+ '/u/'+result[collection].parent_node_id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                                        '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+result[collection].parent_node_id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                                         ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
                                         '</div>'+
                                         '</td>'+

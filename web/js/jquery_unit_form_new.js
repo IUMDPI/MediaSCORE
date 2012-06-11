@@ -68,14 +68,14 @@ $(document).ready(function () {
                                 $('#unitResult').html('');
                                 for(unit in result){
                         
-                                    $('#unitResult').append('<tr><td><a href="collection/index?u='+result[unit].id+'">'+result[unit].name+'</a></td>'+
+                                    $('#unitResult').append('<tr><td><a href="/collection/index?u='+result[unit].id+'">'+result[unit].name+'</a></td>'+
                                         '<td>'+result[unit].created_at+'</td>'+
                                         '<td>'+result[unit].Creator.first_name+' '+result[unit].Creator.last_name+'</td>'+
                                         '<td>'+result[unit].updated_at+'</td>'+
                                         '<td>'+result[unit].Editor.first_name+' '+result[unit].Editor.last_name+'</td>'+
                                         '<td class="invisible">'+
                                         '<div class="options">'+
-                                        '<a class="create_new_unit" href="unit/edit/id/' +result[unit].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                                        '<a class="create_new_unit" href="/unit/edit/id/' +result[unit].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                                         ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[unit].id+');"/></a>'+
                                         '</div>'+
                                         '</td>'+
