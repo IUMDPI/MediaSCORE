@@ -263,6 +263,7 @@
                 else{
                     $('#unitResult').html('<tr><td colspan="6" style="text-align:center;">No Unit found</td></tr>');
                 }
+                $("#unitTable").trigger("update");  
                     
             }
         });

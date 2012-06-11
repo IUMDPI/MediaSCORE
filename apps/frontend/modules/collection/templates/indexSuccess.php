@@ -245,6 +245,8 @@
                 else{
                     $('#collectionResult').html('<tr><td colspan="6" style="text-align:center;">No Collection found</td></tr>');
                 }
+                
+                $("#collectionTable").trigger("update");  
                     
             }
         });

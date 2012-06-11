@@ -205,10 +205,13 @@
                         'showCloseButton':false
            
                     });
+                    
                 }
                 else{
                     $('#assetsResult').html('<tr><td colspan="6" style="text-align:center;">No Asset Group found</td></tr>');
                 }
+                
+                $("#assetGroupTable").trigger("update");  
                     
             }
         });
