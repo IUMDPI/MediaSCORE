@@ -182,7 +182,7 @@
                     $('#assetsResult').html('');
                     for(collection in result){
                         
-                        $('#assetsResult').append('<tr><td><a href="assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
+                        $('#assetsResult').append('<tr><td><a href="/assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
                             '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+

@@ -224,7 +224,7 @@
                     $('#unitResult').html('');
                     for(collection in result){
                         
-                        $('#unitResult').append('<tr><td><a href="collection/index?u='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                        $('#unitResult').append('<tr><td><a href="/collection/index?u='+result[collection].id+'">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
                             '<td>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
