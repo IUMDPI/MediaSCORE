@@ -1,45 +1,45 @@
-<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>-->
+<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)  ?>">Create Collection</a>-->
 <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
-    <div class="search-input">
-        <div id="token_string" style="float: left;">
+        <div class="search-input">
+            <div id="token_string" style="float: left;">
 
-        </div>
-        <input type="hidden" id="search_values" name="search_values"/>
-        <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
-        <div class="container">
-            <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();$('.dropdown-container').css('width',$('.search-input').width()+26);"></a><b class="token-count" style="display: none;"></b>
-            <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();" style="display: none;"></a>
-        </div>
-        <input class="button" type="submit" value="" />
-        <div class="dropdown-container" style="height: 200px;overflow-y: scroll;display: none;">
-            <div class="dropdown clearfix Xhidden">
-                <ul class="left-column">
-                    <li><h1>Format</h1></li>
-                    <?php
-                    foreach (FormatType::$formatTypesValue as $formatTypeArray):
-                        foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
-                            ?>
-                    <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
+            </div>
+            <input type="hidden" id="search_values" name="search_values"/>
+            <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
+            <div class="container">
+                <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();$('.dropdown-container').css('width',$('.search-input').width()+26);"></a><b class="token-count" style="display: none;"></b>
+                <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();" style="display: none;"></a>
+            </div>
+            <input class="button" type="submit" value="" />
+            <div class="dropdown-container" style="height: 200px;overflow-y: scroll;display: none;">
+                <div class="dropdown clearfix Xhidden">
+                    <ul class="left-column">
+                        <li><h1>Format</h1></li>
+                        <?php
+                        foreach (FormatType::$formatTypesValue as $formatTypeArray):
+                            foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
+                                ?>
+                                <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
 
-                            <?php
-                        endforeach;
-                    endforeach
-                    ?>
+                                <?php
+                            endforeach;
+                        endforeach
+                        ?>
 
-                </ul>
-                <ul class="right-column">
-                    <li><h1>Type</h1></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(0);">Unit</a></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
-                </ul>
+                    </ul>
+                    <ul class="right-column">
+                        <li><h1>Type</h1></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(0);">Unit</a></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 
 <div id="filter-container">
@@ -71,7 +71,7 @@
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
-<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage;?></div>
+<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
 <table id="collectionTable" class="tablesorter">
     <?php if (sizeof($collections) > 0) { ?>
         <thead>
@@ -86,12 +86,11 @@
         </thead>
         <tbody id="collectionResult">
             <?php foreach ($collections as $collection): ?>
-            <?php 
-            
-            ?>
+                <?php
+                ?>
                 <tr>
                     <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
-<!--                    <td><a href="<?php //echo url_for('assetgroup',$unitObject,$collection) ?>"><?php echo $collection->getName() ?></a></td>-->
+        <!--                    <td><a href="<?php //echo url_for('assetgroup',$unitObject,$collection)  ?>"><?php echo $collection->getName() ?></a></td>-->
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
@@ -214,7 +213,7 @@
                             '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
-                            '<a href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
@@ -229,6 +228,17 @@
                         'type': 'inline',
                         'padding': 0,
                         'showCloseButton':false
+           
+                    });
+                    $(".new_edit_collection").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': true,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':true 
            
                     });
                 }

@@ -69,7 +69,7 @@ $(document).ready(function () {
                     $.ajax({
                         method: 'POST', 
                         url: '/frontend_dev.php/collection/index',
-                        data:{id:$('#collection_parent_node_id').val()},
+                        data:{id:$('#collection_parent_node_id').val(),s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datatype:$('#date_type').val()},
                         dataType: 'json',
                         cache: false,
                         success: function (result) { 

@@ -58,9 +58,11 @@ $(document).ready(function () {
             success: function(data,textStatus) {
                 var numericExpression = /^[0-9]+$/;
                 if(data.match(numericExpression)){
+                    
                     $.ajax({
                         method: 'POST', 
                         url: '/frontend_dev.php/unit/index',
+                        data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datatype:$('#date_type').val()},
                         dataType: 'json',
                         cache: false,
                         success: function (result) { 

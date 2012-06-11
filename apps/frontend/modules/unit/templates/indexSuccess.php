@@ -1,5 +1,5 @@
 
-<!--<a class="button" href="<?php //echo url_for('unit/new')  ?>">Create Unit</a>-->
+<!--<a class="button" href="<?php //echo url_for('unit/new')   ?>">Create Unit</a>-->
 <a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -85,7 +85,7 @@
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
                 <tr>
-<!--                     <td><a href="<?php //echo url_for('collection',$unit) ?>"><?php echo $unit->getName() ?></a></td>-->
+        <!--                     <td><a href="<?php //echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>-->
                     <td><a href="<?php echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php echo $unit->getName() ?></a></td>
                     <td><?php echo $unit->getCreatedAt() ?></td>
                     <td>
@@ -231,7 +231,7 @@
                             '<td>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
-                            '<a href="unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            '<a class="create_new_unit" href="unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
@@ -246,6 +246,17 @@
                         'type': 'inline',
                         'padding': 0,
                         'showCloseButton':false
+           
+                    });
+                    $(".create_new_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': true,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':true
            
                     });
                 }
