@@ -203,7 +203,7 @@ class collectionActions extends sfActions {
                 ->where('ag.parent_node_id  = ?', $request->getParameter('id'))
                 ->fetchArray();
         if (sizeof($assets) > 0) {
-            $this->getUser()->setAttribute('delCollectionMsg', 'You have to delete assets group first to remove this collection.');
+            $this->getUser()->setAttribute('delCollectionMsg', 'you must reassign the asset groups to another collection before you can delete this collection.');
         } else {
             $collection->delete();
         }

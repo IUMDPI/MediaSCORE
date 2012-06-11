@@ -343,7 +343,7 @@ class unitActions extends sfActions {
                 ->where('c.parent_node_id  = ?', $request->getParameter('id'))
                 ->fetchArray();
         if (sizeof($collections) > 0) {
-            $this->getUser()->setAttribute('delMsg', 'You have to delete collections first to remove this unit.');
+            $this->getUser()->setAttribute('delMsg', 'You must reassign the collections and asset groups to another unit before you can delete this unit.');
         } else {
             $unit->delete();
         }
