@@ -73,7 +73,7 @@
 
                     <td class="invisible">
                         <div class="options">
-                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $result->getId(); ?>)"/></a>
+                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
                         </div>
                     </td>
                 </tr>
@@ -88,15 +88,18 @@
                     $text = 'Unit';
                     $urlOnName = '/collection?u=' . $result->getId();
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
+                    $parentId=0;
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = '/assetgroup?c=' . $result->getId();
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+                    $parentId=$result->getParentNodeId();
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+                    $parentId=$result->getParentNodeId();
                 }
                 ?>
                 <tr>
@@ -115,7 +118,7 @@
                             <?php if ($result->getType() != 4) { ?>
                                 <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
-                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $result->getId(); ?>)"/></a>
+                           <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
                         </div>
                     </td>
                 </tr>
@@ -130,15 +133,18 @@
                     $text = 'Unit';
                     $urlOnName = '/collection?u=' . $result->getId();
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
+                    $parentId=0;
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = '/assetgroup?c=' . $result->getId();
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+                    $parentId=$result->getParentNodeId();
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+                    $parentId=$result->getParentNodeId();
                 }
                 ?>
                 <tr>
@@ -157,7 +163,7 @@
                             <?php if ($result->getType() != 4) { ?>
                                 <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
-                            <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $result->getId(); ?>)"/></a>
+                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
                         </div>
                     </td>
                 </tr>
@@ -170,9 +176,21 @@
 </table>
 <script type="text/javascript">
     var token=0;
+    var ucagId=null;
+    
     $(document).ready(function() {
-         $("#searchTable").tablesorter(); 
-       
+        $("#searchTable").tablesorter(); 
+        $(".delete_UCAG").fancybox({
+            'width': '100%',
+            'height': '100%',
+            'autoScale': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'type': 'inline',
+            'padding': 0,
+            'showCloseButton':false
+           
+        });
         
         
     });
@@ -180,6 +198,26 @@
     token='<?php echo count($searchString); ?>';
     token=parseInt(token);
     var removeToken=0;
+    var deletionType=null;
+    var ParentDeletionId=null;
+    function getID(id,type,parentId){
+        console.log(parentId);
+        ParentDeletionId=parentId;
+        ucagId=id;
+        deleteType=type;
+    }
+    function deleteUCAG(){
+        console.log(deleteType);
+        if(deleteType==1){
+             window.location.href='/unit/delete?id='+ucagId;
+        }
+        else if(deleteType==3){
+            window.location.href='/collection/delete?id='+ucagId+'&u='+ParentDeletionId;
+        }
+        else if(deleteType==4){
+            window.location.href='/assetgroup/delete?c='+ParentDeletionId+'&id='+ucagId;
+        }
+    }
     function makeToken(event){
         if (event.keyCode == 13 && $('#mainsearch').val()!='') {
             token=token+1;
@@ -284,3 +322,18 @@
         $('#search_values').val(search);
     }
 </script>
+<div style="display: none;"> 
+        <div id="fancyboxUCAG" style="background-color: #F4F4F4;width: 600px;" >
+            <header>
+                <h5  class="fancybox-heading">Warning!</h5>
+            </header>
+            <div style="margin: 10px;">
+                <h3>Careful!</h3>
+            </div>
+            <div style="margin: 10px;font-size: 0.8em;" id="msg_UCAG">
+                You are about to delete a Unit which will permanently erase all information associated with it.<br/>
+                Are you sure you want to proceed?
+            </div>
+            <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a  href="javascript:void(0);" onclick="deleteUCAG();">YES</a></div>
+        </div>
+    </div>
