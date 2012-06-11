@@ -99,8 +99,8 @@
                 </td>
 
             </tr>
-            <?php if ($sf_user->getGuardUser()->getRole() == 1 || !$form->getObject()->isNew()) { ?>
-                <tr>
+            <?php if ($sf_user->getGuardUser()->getRole() == 0 ) {$style='style="display:none;"';}else{$style='';} ?>
+                <tr <?php echo $style;?>>
                     <th>
 
                         <?php echo $form['role']->renderLabel(); ?>
@@ -111,7 +111,7 @@
                     </td>
 
                 </tr>
-            <?php } ?>
+            
         </tbody>
     </table>
 </form>

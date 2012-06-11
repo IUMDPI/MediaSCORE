@@ -15,20 +15,19 @@ class AssetGroupForm extends BaseAssetGroupForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('storage_location_id', new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,
+        $this->setWidget('resident_structure_description', new sfWidgetFormDoctrineChoice(array('model' => 'StorageLocation', 'add_empty' => false,
 //                    'method' => 'getStorageLocations',
 //                    'query' => Doctrine_Query::create()
 //                            ->from('Collection c')
 //                            ->where('c.id = ?', $this->getObject()->getParentNodeId())
                 )));
         $this->setWidget('location', new sfWidgetFormInputText());
-        $this->setValidator('storage_location_id', new sfValidatorString(array('required' => true)));
+        $this->setValidator('resident_structure_description', new sfValidatorString(array('required' => true)));
 
 
-        $this->getValidator('storage_location_id')->setMessages(array('required' => 'This is a required field.',
-            'invalid' => 'Invalid Unit Name'));
+        
 
-        $voidFields = array('created_at', 'updated_at', 'resident_structure_description', 'unit_personnel');
+        $voidFields = array('created_at', 'updated_at', 'storage_location_id', 'unit_personnel');
         foreach (array('format_id', 'parent_node_id', 'type') as $hiddenField)
             $this->setWidget($hiddenField, new sfWidgetFormInputHidden());
 
@@ -44,8 +43,8 @@ class AssetGroupForm extends BaseAssetGroupForm {
 
         $this->getWidget('inst_id')->setLabel('<span class="required">*</span>Primary ID:&nbsp;');
         $this->getWidget('name')->setLabel('<span class="required">*</span>Name:&nbsp;');
-        $this->getWidget('storage_location_id')->setLabel('<span class="required">*</span>Storage Location:&nbsp;');
-        $this->getValidator('storage_location_id')->setMessages(array('required' => 'Must select Storage Locations at the Unit Level. If the storage location record does not yet exist to select, you must create the storage location and then select it at the Unit level.',
+        $this->getWidget('resident_structure_description')->setLabel('<span class="required">*</span>Storage Location:&nbsp;');
+        $this->getValidator('resident_structure_description')->setMessages(array('required' => 'Must select Storage Locations at the Unit Level. If the storage location record does not yet exist to select, you must create the storage location and then select it at the Unit level.',
             'invalid' => 'Invalid Unit Name'));
         foreach ($voidFields as $voidField) {
             unset($this->widgetSchema[$voidField]);

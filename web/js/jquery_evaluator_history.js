@@ -18,13 +18,72 @@ function getRelatedForm(){
         $('#format_specific').empty();
     }
 }
-var firstTimeLoad=0;
-// Once the document object is loaded...
+function getCollectionAndLocation(){
+    $.ajax({
+        type: 'POST',
+        url: appBaseURL+'collection'+'/getCollectionsForUnit',
+        data: {
+            id:$('#unit-multiple-select').val()
+        },
+        success: function(data,textStatus) {
+            $('#collection-multiple-select').html('');
+            if(data!=undefined && data.length>0){
+                for (collection in data){
+                    if(collection==0)
+                        selected='selected="selected"';
+                    else
+                        selected='';
+                    $('#collection-multiple-select').append('<option value="'+data[collection].id+'" '+selected+'>'+data[collection].name+'</option>');
+                }
+                getStorageLocation($('#collection-multiple-select').val(),1);
+            }
+            else{
+                $('#collection-multiple-select').append('<option value="">No Collection</option>');
+                getStorageLocation($('#unit-multiple-select').val(),0);
+            }
+                    
+        },
+        error: function(data,textStatus,errorThrown) {
+            alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
+            $('body').html(data['responseText']);
+        }
+    });
+}
+function getStorageLocation(id,type){
+    if(type==0){
+        urlParameter='u='+id;
+        $('#asset_group_parent_node_id').val();
+    }
+    else if(type==1){
+        urlParameter='c='+id;
+        $('#asset_group_parent_node_id').val(id);
+    }
+    $.ajax({
+        type: 'POST',
+        url: appBaseURL+'storagelocation/index?'+urlParameter,
+        success: function(data,textStatus) {
+            locationVal=$('#asset_group_resident_structure_description').val();
+            $('#asset_group_resident_structure_description').html('');
+            if(data!=undefined && data.length>0){
+                for(cnt=0;cnt<data.length;cnt++){
+                    if(data[cnt].id==locationVal)
+                        $('#asset_group_resident_structure_description').append('<option value="'+data[cnt].id+'" selected="selected">'+data[cnt].name+'</option>');
+                    else
+                        $('#asset_group_resident_structure_description').append('<option value="'+data[cnt].id+'">'+data[cnt].name+'</option>'); 
+                }
+            }
+            else{
+                $('#asset_group_resident_structure_description').append('<option value="">No Storage Location</option>');
+            }
+        },
+        error: function(data,textStatus,errorThrown) {
+            alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
+            $('body').html(data['responseText']);
+        }
+    });
+}
+
 $('document').ready(function () {
-    
-    $.blockUI({
-        message: '<h3><img src="/images/ajax-loader.gif" /> Loading Please wait...</h3>'
-    });  
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -44,111 +103,14 @@ $('document').ready(function () {
             }
         });
     }
-
+    
     appBaseURL = '/frontend_dev.php/';
     assetGroupID = $('#asset_group_id').val();
-    populateStorageLocations = function() {
-        collectionID=$('#collection-multiple-select').val();
-        if(collectionID) {
-            $.get(
-                appBaseURL + 'storagelocation/index',
-                {
-                    c:collectionID
-                },
-                function (storageLocations) {
-                    $('#asset_group_storage_location_id').empty();
-                    //$('body').append(storageLocations);
-                    for(i in storageLocations)
-                        $('#asset_group_storage_location_id').append('<option value="'+storageLocations[i].id+'">'+storageLocations[i].name+'</option>');
-                    
-                    if(firstTimeLoad==0){
-                        firstTimeLoad=1;
-                        $.unblockUI(); 
-                    }
-                });
-        }
-    }
-    // Unit-Collection Multiple Selection
-    populateCollections = function (element,stores) {
-        element.empty();
-
-        for(i in stores) {
-            slected='';
-            if(i==0)
-                slected='selected="selected"';
-            element.append('<option class="collection-multiple-select" value="'+stores[i].id+'" >'+stores[i].name+'</option>');
-            if(stores[i].id == serializedCollectionID)
-                $('#collection-multiple-select').prop('selectedIndex',i);
-        }
-       
-        $('.collection-multiple-select').click(function () {
-            $('#asset_group_parent_node_id').val( $(this).val() );
-            populateStorageLocations();
-        //console.log( 'updated: '+$('#asset_group_parent_node_id').val() );
-        });
-        setTimeout('populateStorageLocations();',300);
-    //         populateStorageLocations();
-    }
-    //
-    getCollectionsForUnitID = function (unitID) {
-        $.get(
-            appBaseURL+'collection/getCollectionsForUnit',
-            {
-                id:unitID
-            },
-            function (collections) {
-                
-                populateCollections( $('#collection-multiple-select'),collections );
-
-            }
-            );
-    }
-    selectUnitForAssetGroupID = function (assetGroupID) {
-        $.get(
-            appBaseURL+'unit/getUnitForAssetGroup',
-            {
-                id:assetGroupID
-            },
-            function (unit) {
-                //console.log( unit );
-                //relatedUnitID=unit.id
-                //$('#unit-multiple-select').prop('selectedIndex',unit.id - 1);
-                $('#unit-multiple-select').val(unit.id);
-                getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
-            //console.log( $('#unit-multiple-select').val().shift() );
-            }
-            );
-    }
-		
-
-
-    setMultiSelectHandler = function () {
-
-    }
-    //
-    serializedCollectionID = $('#asset_group_parent_node_id').val();
-    var relatedUnitID;
-    //
-    $.get(
-        appBaseURL+'unit/index',
-        {},
-        function (units) {
-            //console.log(indexViewHTML);
-            $('#unit-multiple-select').empty();
-            //console.log(units);
-
-            for(i in units) {
-                //console.log(units[i]);
-                $('#unit-multiple-select').append('<option class="unit-multiple-select" value="'+units[i].id+'">'+units[i].name+'</option>');
-            }
-
-            selectUnitForAssetGroupID( $('#asset_group_id').val() );
-            $('.unit-multiple-select').click(function () {
-                //console.log('trace');
-                getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
-            });
-
-        });
+    if($('#collection-multiple-select').val()!='')
+        getStorageLocation($('#collection-multiple-select').val(),1);
+    else
+        getStorageLocation($('#unit-multiple-select').val(),0);
+    
 
     $('#asset-group-save').click(function(event) {
         event.preventDefault();
@@ -160,6 +122,7 @@ $('document').ready(function () {
             moduleName='formattype';
         }
         if(actionName == 'update') {
+            
             urlSuffix='/id/'+$('#format-type-container input[id$="_id"]').val();
             $.ajax({
                 type: 'POST',
@@ -201,13 +164,8 @@ $('document').ready(function () {
                 }
             });
             
-        } else if ( $('#asset_group_format_id').prop('selectedIndex') == -1 ) {
-            
         } else {
-//            console.log( $('#format-type-container'));
-//            console.log( $('#format-type-container').children('form'));
-//            console.log( $('#format-type-container').children('form').serialize());
-//            return;
+            
             $.ajax({
                 type: 'POST',
                 url: appBaseURL+'formattype'+'/'+actionName+urlSuffix,
@@ -272,17 +230,17 @@ $('document').ready(function () {
                     success: function(data,textStatus) {
                         console.log(data);
                         $('#format-type-container').append(data);
-//                        $('#format_specific').append(data);
+                    //                        $('#format_specific').append(data);
                     }
                 
                 });
-//                $('#format-type-container').load(
-//                    appBaseURL+'formattype/newform',
-//                    {},
-//                    function () {
-//                        console.log(this);
-//                        $('#asset_group_format_id').val('');
-//                    });
+            //                $('#format-type-container').load(
+            //                    appBaseURL+'formattype/newform',
+            //                    {},
+            //                    function () {
+            //                        console.log(this);
+            //                        $('#asset_group_format_id').val('');
+            //                    });
             }
         }
 

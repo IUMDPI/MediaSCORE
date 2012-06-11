@@ -257,6 +257,7 @@ class unitActions extends sfActions {
 
     public function executeShow(sfWebRequest $request) {
 
+
         if ($request->isXmlHttpRequest()) {
 
             $unit = Doctrine_Core::getTable('Unit')->find(
@@ -306,17 +307,27 @@ class unitActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
+
+
         $this->form = new UnitForm($unit,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
                             'action' => 'edit'
                 ));
 
+
+
+//            $this->locationError = 'This value is selected by a Collection or Asset Group. To de-select at the unit level, you must first de-select this value at the asset group and collection level';
+//            $this->setTemplate('edit');
+
         $success = $this->processForm($request, $this->form);
         if ($success && isset($success['form']) && $success['form'] == true) {
             echo $success['id'];
             exit;
         } else {
+            if ($success && isset($success['error']) && $success['error'] == true) {
+                $this->locationError = 'This value is selected by a Collection or Asset Group. To de-select at the unit level, you must first de-select this value at the asset group and collection level';
+            }
             $this->setTemplate('edit');
         }
     }
@@ -341,7 +352,26 @@ class unitActions extends sfActions {
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        $collections = Doctrine_Query::Create()
+                ->from('CollectionStorageLocation csl')
+                ->select('csl.*')
+                ->innerJoin('csl.Collection c')
+                ->where('c.parent_node_id  = ?', $form->getValue('id'))
+                ->groupBy('csl.storage_location_id')
+                ->fetchArray();
         if ($form->isValid()) {
+            $check = array();
+            foreach ($collections as $value) {
+                foreach ($form->getValue('storage_locations_list') as $location) {
+                    if ($location == $value['storage_location_id']) {
+                        $check[] = $value['storage_location_id'];
+                    }
+                }
+            }
+            if (count($collections) != count($check)) {
+                $error = array('error' => true);
+                return $error;
+            }
             $unit = $form->save();
             $success = array('form' => true, 'id' => $unit->getId());
             return $success;

@@ -97,9 +97,6 @@ class collectionActions extends sfActions {
             return $this->renderText(json_encode($this->collections->toArray()));
         } else {
 //            $this->unitObject = $this->getRoute()->getObject();
-            
-            
-            
 //            $this->forward404Unless($this->unitObject);
             $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
             $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
@@ -189,6 +186,9 @@ class collectionActions extends sfActions {
             echo $success['id'];
             exit;
         } else {
+            if ($success && isset($success['error']) && $success['error'] == true) {
+                $this->locationError = 'This value is selected by a Collection or Asset Group. To de-select at the unit level, you must first de-select this value at the asset group and collection level';
+            }
             $this->setTemplate('edit');
         }
     }
@@ -212,15 +212,30 @@ class collectionActions extends sfActions {
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
 
-//        $unitId=sfToolkit::getArrayValueForPath($request->getParameter($form->getName()), 'parent_node_id');
-//        $form->setOption('unitID', $unitId);
-//        $form->setDefault('unitID',  $form->getObject()->getParentNodeId()); 
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        $collectionsAssets = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('ag.*')
+                ->where('ag.parent_node_id  = ?', $form->getValue('id'))
+                ->groupBy('ag.resident_structure_description')
+                ->fetchArray();
+
         if ($form->isValid()) {
+            $check = array();
+            foreach ($collectionsAssets as $value) {
+                foreach ($form->getValue('storage_locations_list') as $location) {
+                    if ($location == $value['resident_structure_description']) {
+                        $check[] = $value['resident_structure_description'];
+                    }
+                }
+            }
+            if (count($collectionsAssets) != count($check)) {
+                $error = array('error' => true);
+                return $error;
+            }
             $collection = $form->save();
             $success = array('form' => true, 'id' => $collection->getId());
             return $success;
-//            $this->redirect('collection/index?u=' . $form->getObject()->getParentNodeId());
         }
     }
 

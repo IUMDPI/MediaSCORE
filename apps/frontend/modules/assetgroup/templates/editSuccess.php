@@ -2,7 +2,7 @@
 
 
 
-<?php include_partial('form', array('form' => $form)) ?>
+<?php include_partial('form', array('form' => $form,'unit'=>$unit,'assetCollection'=>$assetCollection,'collection'=>$collections)) ?>
 
 
 <div id="evaluator-history-container"></div>

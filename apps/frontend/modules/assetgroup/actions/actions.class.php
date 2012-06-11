@@ -149,7 +149,17 @@ class assetgroupActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
-        $this->collections = Doctrine_Core::getTable('Collection')->findAll();
+//        $this->collections = Doctrine_Core::getTable('Collection')->findAll();
+        $this->unit = Doctrine_Core::getTable('Unit')->findAll();
+        $this->assetCollection = Doctrine_Query::create()
+                ->from('Collection c')
+                ->where('c.id = ?', $asset_group->getParentNodeId())
+                ->fetchOne();
+        $this->collections = Doctrine_Query::create()
+                ->from('Collection c')
+                ->where('c.parent_node_id = ?', $this->assetCollection->getParentNodeId())
+                ->execute();
+
         $this->form = new AssetGroupForm($asset_group,
                         array(
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
@@ -171,17 +181,28 @@ class assetgroupActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
-
+        $this->unit = Doctrine_Core::getTable('Unit')->findAll();
+        $this->assetCollection = Doctrine_Query::create()
+                ->from('Collection c')
+                ->where('c.id = ?', $asset_group->getParentNodeId())
+                ->fetchOne();
+        $this->collections = Doctrine_Query::create()
+                ->from('Collection c')
+                ->where('c.parent_node_id = ?', $this->assetCollection->getParentNodeId())
+                ->execute();
+        
+        
         $collectionId = sfToolkit::getArrayValueForPath($request->getParameter('asset_group'), 'parent_node_id');
         $this->form = new AssetGroupForm($asset_group,
                         array(
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $collectionId,
                             'action' => 'edit'));
-        $this->processEditForm($request, $this->form);
-
-        //$this->setTemplate('edit');
-        $this->redirect('assetgroup/index?c=' . $collectionId);
+        $validateForm = $this->processEditForm($request, $this->form);
+        if ($validateForm)
+            $this->redirect('assetgroup/index?c=' . $collectionId);
+        else
+            $this->setTemplate('edit');
     }
 
     public function executeDelete(sfWebRequest $request) {
@@ -208,9 +229,10 @@ class assetgroupActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $asset_group = $form->save();
-
+            return true;
 //            $this->redirect('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $form->getOption('collectionID'));
         }
+        return false;
     }
 
 }

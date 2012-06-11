@@ -67,18 +67,22 @@
                             <?php echo $form['storage_locations_list']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['storage_locations_list']->render(); ?><?php echo $form['storage_locations_list']->renderError(); ?>
+                            <?php echo $form['storage_locations_list']->render(); ?>
+                            <?php if (isset($error)) {
+                                echo '<span class="required">' . $error . '</span>';
+                            } ?>
+<?php echo $form['storage_locations_list']->renderError(); ?>
                         </td>
 
                     </tr>
                     <tr style="background-color: #DADADA;">
                         <th>
-                            <?php echo $form['personnel_list']->renderLabel(); ?>
+<?php echo $form['personnel_list']->renderLabel(); ?>
                         </th>
                         <td style="padding: 8px 10px;">
 
 
-                            <?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
+<?php echo $form['personnel_list']->render(); ?><?php echo $form['personnel_list']->renderError(); ?>
                             <table id="user_info" style="width: 70%;">
 
                             </table>
@@ -87,7 +91,7 @@
 
                     </tr>
 
-                    <?php //echo $form ?>
+<?php //echo $form  ?>
                 </tbody>
             </table>
 

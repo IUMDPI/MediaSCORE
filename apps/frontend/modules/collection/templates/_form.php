@@ -70,7 +70,11 @@
                     <?php echo $form['storage_locations_list']->renderLabel(); ?>:
                 </th>
                 <td>
-                    <?php echo $form['storage_locations_list']->render(); ?><?php echo $form['storage_locations_list']->renderError(); ?>
+                    <?php echo $form['storage_locations_list']->render(); ?>
+                        <?php if (isset($error)) {
+                                echo '<span class="required">' . $error . '</span>';
+                            } ?>
+                        <?php echo $form['storage_locations_list']->renderError(); ?>
                 </td>
 
             </tr>
