@@ -52,9 +52,9 @@
                     <option value="0">Created On</option>
                     <option value="1">Updated On</option>
                 </select>
-                <input type="text" id="from" />
+                <input type="text" id="from" onchange="filterAssets();" readonly="readonly"/>
                 to
-                <input type="text" id="to" />
+                <input type="text" id="to" onchange="filterAssets();" readonly="readonly"/>
             </div>
             <strong>Status:</strong>
             <select id="filterStatus" onchange="filterAssets();">
