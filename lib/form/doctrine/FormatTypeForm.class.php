@@ -17,7 +17,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 0)));
         $this->setWidget('year_recorded', new sfWidgetFormInputText(array(), array('title' => 'If a range, enter a midpoint or a significant year')));
         $this->setWidget('copies', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if copies exist')));
-        $this->setWidget('other_contaminants', new sfWidgetFormInputText(array(), array('title' => 'Check the box if the object contains dirt, oil, powder, crystals, foreign objects or other particulate matter')));
+        $this->setWidget('other_contaminants', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if the object contains dirt, oil, powder, crystals, foreign objects or other particulate matter')));
         $this->setWidget('duration', new sfWidgetFormInputText(array(), array('title' => 'Enter the actual or estimated playback time for the collection or asset group. This is the total duration for the entire asset group, in minutes. Not the average number of minutes per item.')));
         $this->setWidget('duration_type_methodology', new sfWidgetFormInputText(array(), array('title' => 'Describe the methodology and evidence used to calculate duration')));
         
