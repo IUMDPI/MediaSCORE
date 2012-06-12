@@ -31,7 +31,6 @@ class PersonForm extends BasePersonForm
                 $this['password'],
                 $this['password_again'],
                 $this['units_list'],
-                $this['username'],
                 $this['is_active'],
                 $this['activation_key'],
                 $this['forgot_password'],
@@ -45,6 +44,7 @@ class PersonForm extends BasePersonForm
     $this->setValidator('last_name', new sfValidatorString(array('required'=>true)));
     $this->setValidator('role', new sfValidatorString(array('required'=>false)));
     $this->setValidator('phone', new sfValidatorInteger(array('required'=>false)));
+    $this->setValidator('username', new sfValidatorPass());
     
     
     $this->getValidator('first_name')->setMessages(array('required' => 'This is a required field.',
@@ -57,5 +57,6 @@ class PersonForm extends BasePersonForm
             'invalid' => 'Phone # must be numeric only.'));
     
     $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => 3 )));
+    $this->setWidget('username',new sfWidgetFormInputHidden());
   }
 }

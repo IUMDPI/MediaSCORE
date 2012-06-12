@@ -22,14 +22,13 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
             $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
         } else {
-            $voidFields[]='updated_at';
+            $voidFields[] = 'updated_at';
             $this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
             $this->setWidget('parent_node_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('unitID'))));
-            
         }
 
         $this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => 'Collection Status:&nbsp;')));
-        
+
 
         foreach ($voidFields as $voidField) {
             unset($this->widgetSchema[$voidField]);
@@ -46,6 +45,13 @@ class CollectionForm extends BaseCollectionForm {
             'invalid' => 'Invalid Unit Name'));
         $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
             'inst_id' => 'Invalid ID'));
+    }
+
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+
+        $taintedValues['name_slug'] = $taintedValues['name'];
+
+        parent::bind($taintedValues, $taintedFiles);
     }
 
 }

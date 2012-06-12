@@ -1,35 +1,44 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
-
+#
 # default rules
 homepage:
   url:   /
   param: { module: unit, action: index }
 
-#collection:
-#  url: /:name
-#  class:   sfDoctrineRoute
-#  options: { model: Unit, type: object }
-#  param: { module: collection, action: index }
-#assetgroup:
-#  url: /name/:name
-#  class:   sfDoctrineRoute
-#  options: { model: Collection, type: object  }
-#  param: { module: assetgroup, action: index }
 #storagelocation:
 #  url: /storagelocation
 #  param: { module: storagelocation, action: index }
+#  
+#  
+#person:
+#  url: /person
+#  param: { module: person, action: index }
+#  
+#user:
+#  url: /user
+#  param: { module: user, action: index }
   
-#  requirements:
-#    sf_method: [get]
-# generic rules
-# please, remove them by adding more specific rules
+collection:
+  url: /:name_slug
+  class:   sfDoctrineRoute
+  options: { model: Unit, type: object }
+  param: { module: collection, action: index }
+  requirements:
+    sf_method: [get]
+  
+assetgroup:
+  url: /:unit_slug/:name_slug/
+  class:   sfDoctrineRoute
+  options: { model: Collection, type: object  }
+  param: { module: assetgroup, action: index }
+  
 default_index:
-  url:   /:module
+  url:   /:module/index
   param: { action: index }
 
-default:
+default: 
   url:   /:module/:action/*
   
-
+  
 

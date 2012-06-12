@@ -10,7 +10,21 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Collection extends BaseCollection
-{
-	public static $statusConstants = array( 'Incomplete','In Progress','Completed' );
+class Collection extends BaseCollection {
+
+    public static $statusConstants = array('Incomplete', 'In Progress', 'Completed');
+
+    public function getUnitSlug() {
+        $unit = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.*')
+                    ->where('u.id  = ?', $this->getParentNodeId())
+                    ->fetchOne();
+        
+        return urlSlug::slugify($unit->getName());
+    }
+    public function getCollectionSlug() {
+        return urlSlug::slugify($this->getName());
+    }
+
 }

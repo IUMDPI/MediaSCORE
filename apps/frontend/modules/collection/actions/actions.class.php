@@ -5,21 +5,14 @@
  *
  * @package    mediaSCORE
  * @subpackage collection
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class collectionActions extends sfActions {
 
     public function executeGetCollectionsForUnit(sfWebRequest $request) {
-
         if ($request->isXmlHttpRequest()) {
-
             $unitID = $request->getParameter('id');
-
-            // Too many exceptions thrown - taking an overly complex approach
-            // (getFirst() and fetchOne() throw exceptions)
-            // Needs to be optimized
-
             $collections = Doctrine_Core::getTable('Collection')
                     ->createQuery('c')
                     ->where('parent_node_id =?', $unitID)
@@ -29,12 +22,12 @@ class collectionActions extends sfActions {
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             $this->setTemplate('index');
-            echo json_encode($collections);
+            return $this->renderText(json_encode($collections));
+            
         }
     }
 
     public function executeIndex(sfWebRequest $request) {
-
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
@@ -83,28 +76,20 @@ class collectionActions extends sfActions {
                     }
                 }
             }
-
-
             $this->collections = $this->collections->execute();
-//            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->createQuery('a')
-//                    ->where('parent_node_id =?', $unitID)
-//                    ->andWhere('name like "%'.$searchInpout.'%"')
-//                    ->execute();
-
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             return $this->renderText(json_encode($this->collections->toArray()));
         } else {
-//            $this->unitObject = $this->getRoute()->getObject();
-//            $this->forward404Unless($this->unitObject);
-            $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
-            $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
+            $this->unitObject = $this->getRoute()->getObject();
 
-            $this->unitID = $request->getParameter('u');
-//            $this->unitID = $this->unitObject->getId();
+            $this->forward404Unless($this->unitObject);
+//            $this->unitID = $request->getParameter('u');
+            $this->unitID = $this->unitObject->getId();
             $this->forward404Unless($this->unitID);
 
+            $this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
+            $this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
             $unit = Doctrine_Core::getTable('Unit')
                     ->find($this->unitID);
             $this->forward404Unless($unit);
@@ -114,12 +99,6 @@ class collectionActions extends sfActions {
                     ->select('c.*')
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
-
-//            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->findBy('parent_node_id', $this->unitID);
-//                                $this->filter=new CollectionFormFilter;
-            //->findAll();
-//		print_r($this->collections->toArray());exit;
         }
     }
 
@@ -129,16 +108,11 @@ class collectionActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
-        //$this->unitID=$request->getParameter('u');
-
         $this->form = new CollectionForm(null,
                         array(
                             'userID' => $this->getUser()->getGuardUser()->getId(),
                             'unitID' => $request->getParameter('u'))
         );
-
-        //$this->form = new CollectionForm();
-        //$this->form->setOption('unitID',$request->getParameter('u'));
     }
 
     public function executeCreate(sfWebRequest $request) {
@@ -197,6 +171,12 @@ class collectionActions extends sfActions {
         //$request->checkCSRFProtection();
 
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
+        $unit = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->select('u.*')
+                ->where('u.id  = ?', $collection->getParentNodeId())
+                ->fetchOne();
+
         $assets = Doctrine_Query::Create()
                 ->from('AssetGroup ag')
                 ->select('ag.*')
@@ -207,7 +187,7 @@ class collectionActions extends sfActions {
         } else {
             $collection->delete();
         }
-        $this->redirect('collection/index?u=' . $request->getParameter('u'));
+        $this->redirect('/' . $unit->getNameSlug());
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

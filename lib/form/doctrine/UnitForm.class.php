@@ -49,7 +49,14 @@ class UnitForm extends BaseUnitForm {
 		unset($this->widgetSchema[$voidField]);
 		unset($this->validatorSchema[$voidField]);
 	}
+        
     }
-
+ public function bind(array $taintedValues = null, array $taintedFiles = null) {
+        
+            $taintedValues['name_slug'] = $taintedValues['name'];
+        
+        parent::bind($taintedValues, $taintedFiles);
+    }
+    
 }
 

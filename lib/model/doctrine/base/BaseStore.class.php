@@ -51,7 +51,7 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseStore extends sfDoctrineRecord
@@ -136,6 +136,16 @@ abstract class BaseStore extends sfDoctrineRecord
              'foreign' => 'asset_group_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $sluggable0 = new Doctrine_Template_Sluggable(array(
+             'fields' => 
+             array(
+              0 => 'name',
+             ),
+             'indexName' => 'name_slug',
+             'canUpdate' => true,
+             'unique' => true,
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($sluggable0);
     }
 }

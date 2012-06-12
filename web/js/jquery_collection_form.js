@@ -57,7 +57,7 @@ $(document).ready(function () {
                                 $('#collectionResult').html('');
                                 for(collection in result){
                         
-                                    $('#collectionResult').append('<tr><td><a href="/assetgroup/index?c='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                                    $('#collectionResult').append('<tr><td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
                                         '<td>'+result[collection].created_at+'</td>'+
                                         '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                                         '<td>'+result[collection].updated_at+'</td>'+

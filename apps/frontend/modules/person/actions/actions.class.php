@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage person
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class personActions extends sfActions
@@ -92,11 +92,13 @@ class personActions extends sfActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    
     if ($form->isValid())
     {
       $person = $form->save();
-
-      $this->redirect('person/edit?id='.$person->getId());
+      $person->setUsername($person->getEmailAddress());
+      $person->save();
+      $this->redirect('person/index');
     }
   }
 }

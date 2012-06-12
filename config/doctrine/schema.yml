@@ -36,7 +36,15 @@ Person:
 
 
 Store: # Abstract
-  actAs: { Timestampable: ~ }
+  actAs: 
+    Timestampable: ~ 
+    Sluggable:
+      fields: [name_slug]
+      name: name_slug
+      type: string
+      length: 255 
+      canUpdate: true
+      unique: true
   columns:
     name:         { type: string(255), notnull: true }
     inst_id:      { type: string(255), notnull: true } # The institutional ID - can be modified from the UI

@@ -86,13 +86,13 @@
             foreach ($storeResult as $result):
                 if ($result->getType() == 1) {
                     $text = 'Unit';
-                    $urlOnName = '/collection?u=' . $result->getId();
+                    $urlOnName = url_for('collection',$result);
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
                     $parentId=0;
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
-                    $urlOnName = '/assetgroup?c=' . $result->getId();
+                    $urlOnName = url_for('assetgroup',$result);
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
                 }
@@ -131,13 +131,13 @@
             foreach ($randomSearch as $result):
                 if ($result->getType() == 1) {
                     $text = 'Unit';
-                    $urlOnName = '/collection?u=' . $result->getId();
+                    $urlOnName = url_for('collection',$result);
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
                     $parentId=0;
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
-                    $urlOnName = '/assetgroup?c=' . $result->getId();
+                     $urlOnName = url_for('assetgroup',$result);
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
                 }

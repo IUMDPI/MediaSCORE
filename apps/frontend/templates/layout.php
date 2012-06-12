@@ -41,7 +41,7 @@
                     } else {
                         echo '<div class="settings"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
                     }
-                    ?>
+                    ?> 
 
                 <?php } else { ?>
                     <div class="assess"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>Assess</h2></div>

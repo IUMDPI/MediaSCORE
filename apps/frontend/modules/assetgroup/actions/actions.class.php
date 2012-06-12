@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage assetgroup
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class assetgroupActions extends sfActions {
@@ -14,7 +14,7 @@ class assetgroupActions extends sfActions {
         /* $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
           ->createQuery('a')
           ->execute(); */
-        $collectionId = $request->getParameter('c');
+        $collectionId = $request->getParameter('c'); 
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
         $from = $request->getParameter('from');
@@ -79,8 +79,13 @@ class assetgroupActions extends sfActions {
 //        echo '<pre>';
 //        print_r($unitObject);
 //        exit;
-        $this->collectionID = $request->getParameter('c');
-        $this->forward404Unless($this->collectionID);
+        
+         $collectionObject = $this->getRoute()->getObject();
+           
+            $this->forward404Unless($collectionObject);
+//        $this->collectionID = $request->getParameter('c');
+         $this->collectionID = $collectionObject->getId();
+//        $this->forward404Unless($this->collectionID);
 
         $collection = Doctrine_Core::getTable('Collection')
                 ->find($this->collectionID);
@@ -91,7 +96,8 @@ class assetgroupActions extends sfActions {
         $this->unitName = Doctrine_Core::getTable('Unit')
                 ->find($this->unitID)
                 ->getName();
-
+        $this->unit=Doctrine_Core::getTable('Unit')
+                ->find($this->unitID);
         $this->persons = Doctrine_Core::getTable('Evaluator')
                 ->findAll();
         //print_r($this->persons->toArray());
@@ -124,6 +130,14 @@ class assetgroupActions extends sfActions {
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $request->getParameter('c'))
         );
+        $this->collection = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.id  = ?', $request->getParameter('c'))
+                ->fetchOne();
+        
+        
+        
         //$this->form->setOption('collectionID',$request->getParameter('c'));
     }
 
@@ -140,6 +154,11 @@ class assetgroupActions extends sfActions {
                         array(
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $collectionId));
+        $this->collection = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.id  = ?', $collectionId)
+                ->fetchOne();
 
         $this->processForm($request, $this->form);
 
@@ -167,7 +186,11 @@ class assetgroupActions extends sfActions {
                             'action' => 'edit')
         );
         $this->form->setOption('collectionID', $request->getParameter('c'));
-
+        $this->collection = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.id  = ?', $request->getParameter('c'))
+                ->fetchOne();
         // Pass the related EvaluatorHistory objects to the View
         //$this->evaluatorHistoryInstances = $asset_group->getEvaluatorHistory();
 
@@ -198,9 +221,20 @@ class assetgroupActions extends sfActions {
                             'creatorID' => $this->getUser()->getGuardUser()->getId(),
                             'collectionID' => $collectionId,
                             'action' => 'edit'));
+        $this->collection = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.id  = ?', $collectionId)
+                ->fetchOne();
+        $unitName = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->select('u.*')
+                ->where('u.id  = ?', $this->collection->getParentNodeId())
+                ->fetchOne();
         $validateForm = $this->processEditForm($request, $this->form);
-        if ($validateForm)
-            $this->redirect('assetgroup/index?c=' . $collectionId);
+        if ($validateForm){
+            $this->redirect('/'.$unitName->getNameSlug().'/'.$this->collection->getNameSlug().'/');
+        }
         else
             $this->setTemplate('edit');
     }
@@ -209,9 +243,19 @@ class assetgroupActions extends sfActions {
 //        $request->checkCSRFProtection();
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
+        
+        $collection = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*')
+                ->where('c.id  = ?', $asset_group->getParentNodeId())
+                ->fetchOne();
+        $unit = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->select('u.*')
+                ->where('u.id  = ?', $collection->getParentNodeId())
+                ->fetchOne();
         $asset_group->delete();
-
-        $this->redirect('assetgroup/index?c=' . $request->getParameter('c'));
+        $this->redirect('/'.$unit->getNameSlug().'/' . $collection->getNameSlug().'/');
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

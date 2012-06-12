@@ -242,7 +242,7 @@ class unitActions extends sfActions {
             }
 
 
-            $this->unit = $this->unit->execute();
+            $this->unit = $this->unit->fetchArray();
 //            $this->collections = Doctrine_Core::getTable('Collection')
 //                    ->createQuery('a')
 //                    ->where('parent_node_id =?', $unitID)
@@ -251,7 +251,7 @@ class unitActions extends sfActions {
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-            return $this->renderText(json_encode($this->unit->toArray()));
+            return $this->renderText(json_encode($this->unit));
         }
     }
 
@@ -273,6 +273,7 @@ class unitActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
+        
         $this->form = new UnitForm(null,
                         array('userID' => $this->getUser()->getGuardUser()->getId()
                 ));

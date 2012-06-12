@@ -89,8 +89,8 @@
                 <?php
                 ?>
                 <tr>
-                    <td><a href="<?php echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>
-        <!--                    <td><a href="<?php //echo url_for('assetgroup',$unitObject,$collection)  ?>"><?php echo $collection->getName() ?></a></td>-->
+<!--                    <td><a href="<?php //echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>-->
+                            <td><a href="<?php echo url_for('assetgroup',$collection)  ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
@@ -162,6 +162,7 @@
     var collectionId=null;
     var token=0;
     var removeToken=0;
+    var unit_slug_name='<?php echo $unitObject->getNameSlug();?>';
     function filterToggle(){
         $('#filter').slideToggle();
         if(filter==0){
@@ -194,6 +195,7 @@
     }
     function filterCollection(){
         unitId='<?php echo $unitID; ?>';
+       
         $.ajax({
             method: 'POST', 
             url: '/frontend_dev.php/collection/index',
@@ -206,7 +208,7 @@
                     $('#collectionResult').html('');
                     for(collection in result){
                         
-                        $('#collectionResult').append('<tr><td><a href="/assetgroup/index?c='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                        $('#collectionResult').append('<tr><td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
                             '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+

@@ -68,7 +68,7 @@ $(document).ready(function () {
                                 $('#unitResult').html('');
                                 for(unit in result){
                         
-                                    $('#unitResult').append('<tr><td><a href="/collection/index?u='+result[unit].id+'">'+result[unit].name+'</a></td>'+
+                                    $('#unitResult').append('<tr><td><a href="/'+result[unit].name_slug+'">'+result[unit].name+'</a></td>'+
                                         '<td>'+result[unit].created_at+'</td>'+
                                         '<td>'+result[unit].Creator.first_name+' '+result[unit].Creator.last_name+'</td>'+
                                         '<td>'+result[unit].updated_at+'</td>'+

@@ -85,8 +85,8 @@
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
                 <tr>
-        <!--                     <td><a href="<?php //echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>-->
-                    <td><a href="<?php echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php echo $unit->getName() ?></a></td>
+                             <td><a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>
+<!--                    <td><a href="<?php // echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php // echo $unit->getName() ?></a></td>-->
                     <td><?php echo $unit->getCreatedAt() ?></td>
                     <td>
                         <?php
@@ -223,15 +223,14 @@
                 if(result!=undefined && result.length>0){
                     $('#unitResult').html('');
                     for(collection in result){
-                        
-                        $('#unitResult').append('<tr><td><a href="/collection/index?u='+result[collection].id+'">'+result[collection].name+'</a></td>'+
+                        $('#unitResult').append('<tr><td><a href="/'+result[collection].name_slug+'">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
                             '<td>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
-                            '<a class="create_new_unit" href="unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            '<a class="create_new_unit" href="/unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
