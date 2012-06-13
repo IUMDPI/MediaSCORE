@@ -1,4 +1,6 @@
-
+function setSessionLocation(storageID){
+    console.log(storageID);
+}
 // Once the document object is loaded...
 $('document').ready(function () {
 
@@ -25,32 +27,33 @@ $('document').ready(function () {
 
     appBaseURL = '/frontend_dev.php/';
     assetGroupID = $('#asset_group_id').val();
-
-    // asset_group_storage_location_id
-    //
+    getSessionStorage();
+    
     populateStorageLocations = function() {
         collectionID=$('#collection-multiple-select').val();
-
-        if(collectionID) {
+        unitID=$('#unit-multiple-select').val();
+        $('#asset_group_resident_structure_description').html('');
+        if(unitID) {
             $.get(
                 appBaseURL + 'storagelocation/index',
                 {
-                    c:collectionID,
-                    n:1
+                    u:unitID
                 },
                 function (storageLocations) {
-                    selected='';
-                    $('#asset_group_storage_location_id').empty();
-                    for(i in storageLocations.s){
-                        if(storageLocations.n!=undefined && storageLocations.n[i]==storageLocations.s[i].id)
-                            selected='selected="selected"';
-                         $('#asset_group_storage_location_id').append('<option value="'+storageLocations.s[i].id+'" '+selected+'>'+storageLocations.s[i].name+'</option>');
+                    $('#asset_group_resident_structure_description').html('');
+                    if(storageLocations!= undefined && storageLocations.length>0){
+                        for(i in storageLocations){
+                            $('#asset_group_resident_structure_description').append('<option value="'+storageLocations[i].id+'">'+storageLocations[i].name+'</option>');
+                        } 
                     }
-                       
+                    else{
+                        $('#asset_group_resident_structure_description').append('<option value="">No Storage Location</option>');
+                    }
+                    
                 });
         }
         else{
-            $('#asset_group_storage_location_id').empty();
+            $('#asset_group_resident_structure_description').append('<option value="">No Storage Location</option>');
         }
     }
 
@@ -96,20 +99,9 @@ $('document').ready(function () {
         });
     }
 
-    selectUnitForAssetGroupID = function (assetGroupID) {
-        $.get(
-            appBaseURL+'unit/getUnitForAssetGroup',
-            {
-                id:assetGroupID
-            },
-            function (unit) {
-                selectUnit(unit.id);
-                getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
-            }
-            );
-    }
+
     serializedCollectionID = $('#asset_group_parent_node_id').val();
-    var relatedUnitID;
+    
 
     getUnitForCollectionID = function () {
         $.getJSON(	appBaseURL+'unit/show',

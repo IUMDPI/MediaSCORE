@@ -91,9 +91,9 @@
                     <?php //echo url_for('assetgroup', $collection) ?>
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
-                    <td><?php echo $collection->getCreator()->getName() ?></td>
+                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><span><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
-                    <td><?php echo $collection->getEditor()->getName() ?></td>
+                    <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                     <td class="invisible">
 
                         <div class="options">
@@ -211,9 +211,9 @@
                         
                         $('#collectionResult').append('<tr><td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
-                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
-                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
                             '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+

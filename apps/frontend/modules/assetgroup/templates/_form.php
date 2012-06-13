@@ -119,7 +119,8 @@ else
                                     <?php }} ?>
 
                             </select>
-                            <select multiple="multiple" id="collection-multiple-select" onclick="getStorageLocation($('#collection-multiple-select').val(),1)">
+<!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
+                            <select multiple="multiple" id="collection-multiple-select" >
                                 <?php foreach ($collection as $value) { ?>
                                     <?php if($assetCollection->getId()==$value->getId()){?>
                                     <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         

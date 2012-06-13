@@ -35,12 +35,13 @@ function getCollectionAndLocation(){
                         selected='';
                     $('#collection-multiple-select').append('<option value="'+data[collection].id+'" '+selected+'>'+data[collection].name+'</option>');
                 }
-                getStorageLocation($('#collection-multiple-select').val(),1);
+//                getStorageLocation($('#collection-multiple-select').val(),1);
             }
             else{
                 $('#collection-multiple-select').append('<option value="">No Collection</option>');
-                getStorageLocation($('#unit-multiple-select').val(),0);
+                
             }
+            getStorageLocation($('#unit-multiple-select').val(),0);
                     
         },
         error: function(data,textStatus,errorThrown) {
