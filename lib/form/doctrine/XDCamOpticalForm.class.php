@@ -16,9 +16,9 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm
   public function configure()
   {
 	  parent::configure();
-	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[0])));
+	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[0]),array('onchange'=>'checkFormat();')));
 	  $this->setWidget('capacityLayers',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[1])));
-	  $this->setWidget('codec',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2]),array('title'=>'Only active if SD is selected as format version')));
+	  $this->setWidget('codec',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2]),array('title'=>'Only active if SD is selected as format version','onchange'=>'checkCodec();')));
 	  $this->setWidget('dataRate',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[3]),array('title'=>'Only active if IMX is selected as codec')));
           $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
         

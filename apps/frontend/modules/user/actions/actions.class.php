@@ -16,7 +16,7 @@ class userActions extends sfActions {
         $msg = $request->getParameter('n');
         if ($msg)
             $this->popup = 1;
-        $this->users = Doctrine_Core::getTable('sfGuardUser')
+        $this->users = Doctrine_Core::getTable('User')
                 ->createQuery('a')
                 ->execute();
     }

@@ -15,7 +15,7 @@ class HDCamForm extends BaseHDCamForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => HDCam::$constants[0]),array('title'=>'HDCAM tapes are black with an orange lid, and HDCAM SR tapes black with a cyan lid.')));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => HDCam::$constants[0]),array('title'=>'HDCAM tapes are black with an orange lid, and HDCAM SR tapes black with a cyan lid.','onchange'=>'checkFormat();')));
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 

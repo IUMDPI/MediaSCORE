@@ -13,3 +13,36 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        checkFormat();
+        checkCodec();
+    });
+    function checkFormat(){
+        if($('#xd_cam_optical_format').val()==0){
+            $('#xd_cam_optical_codec').show();
+            $('label[for="xd_cam_optical_codec"]').show();
+            checkCodec();
+            
+        }
+        else{
+            $('#xd_cam_optical_codec').hide();
+            $('label[for="xd_cam_optical_codec"]').hide();
+            $('#xd_cam_optical_dataRate').hide();
+            $('label[for="xd_cam_optical_dataRate"]').hide();
+        }
+    }
+    function checkCodec(){
+        if($('#xd_cam_optical_codec').val()==1){
+            $('#xd_cam_optical_dataRate').show();
+            $('label[for="xd_cam_optical_dataRate"]').show();
+            
+        }
+        else{
+            $('#xd_cam_optical_dataRate').hide();
+            $('label[for="xd_cam_optical_dataRate"]').hide();
+            
+        }
+    }
+
+</script>

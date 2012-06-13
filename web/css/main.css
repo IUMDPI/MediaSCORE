@@ -24,11 +24,10 @@
     border: 1px solid black;
     padding: 5px;
 }*/
-.general{
-    width: 50%;
-}
+
 .general th{
     background-color: #DADADA;
+    width: 215px;
 }
 form input[type="checkbox"]{
     width: auto;

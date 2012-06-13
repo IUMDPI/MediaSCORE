@@ -43,7 +43,6 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

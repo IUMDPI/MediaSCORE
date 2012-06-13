@@ -1,4 +1,4 @@
-<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)  ?>">Create Collection</a>-->
+<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)    ?>">Create Collection</a>-->
 <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
@@ -73,24 +73,23 @@
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
 <div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
 <table id="collectionTable" class="tablesorter">
-    <?php if (sizeof($collections) > 0) { ?>
-        <thead>
-            <tr>
-                <th>Collection</th>
-                <th>Created</th>
-                <th>Created By</th>
-                <th>Updated On</th>
-                <th>Updated By</th>
-    <!--            <th></th>-->
-            </tr>
-        </thead>
-        <tbody id="collectionResult">
+
+    <thead>
+        <tr>
+            <th>Collection</th>
+            <th>Created</th>
+            <th>Created By</th>
+            <th>Updated On</th>
+            <th>Updated By</th>
+<!--            <th></th>-->
+        </tr>
+    </thead>
+    <tbody id="collectionResult">
+        <?php if (sizeof($collections) > 0) { ?>
             <?php foreach ($collections as $collection): ?>
-                <?php
-                ?>
                 <tr>
-<!--                    <td><a href="<?php //echo url_for('assetgroup/index?c=' . $collection->getId()) ?>"><?php echo $collection->getName() ?></a></td>-->
-                            <td><a href="<?php echo url_for('assetgroup',$collection)  ?>"><?php echo $collection->getName() ?></a></td>
+                    <?php //echo url_for('assetgroup', $collection) ?>
+                    <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
@@ -107,12 +106,14 @@
 
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-        <?php
-    } else {
-        echo '<tr><td>No Collection Available</td></tr>';
-    }
-    ?>
+
+            <?php
+        } else {
+            echo '<tr><td>No Collection Available</td></tr>';
+        }
+        ?>
+    </tbody>
+
 </table>
 
 <script type="text/javascript">
@@ -162,7 +163,7 @@
     var collectionId=null;
     var token=0;
     var removeToken=0;
-    var unit_slug_name='<?php echo $unitObject->getNameSlug();?>';
+    var unit_slug_name='<?php echo $unitObject->getNameSlug(); ?>';
     function filterToggle(){
         $('#filter').slideToggle();
         if(filter==0){

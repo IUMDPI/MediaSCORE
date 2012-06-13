@@ -99,6 +99,7 @@ class collectionActions extends sfActions {
                     ->select('c.*')
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
+            
         }
     }
 

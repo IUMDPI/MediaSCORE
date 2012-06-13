@@ -34,10 +34,10 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->getWidget('duration_type_methodology')->setLabel('Duration type methodology:&nbsp;');
         
         
-        $this->setValidator('quantity', new sfValidatorString(array('required' => true)));
+        $this->setValidator('quantity', new sfValidatorInteger(array('required' => true)));
         $this->setValidator('generation', new sfValidatorString(array('required' => true)));
         $this->setValidator('year_recorded', new sfValidatorString(array('required' => true)));
-        $this->setValidator('duration', new sfValidatorString(array('required' => true)));
+        $this->setValidator('duration', new sfValidatorNumber(array('required' => true)));
         $this->setValidator('duration_type', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => false)));
         

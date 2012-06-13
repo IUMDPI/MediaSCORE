@@ -20,8 +20,7 @@ class Collection extends BaseCollection {
                     ->select('u.*')
                     ->where('u.id  = ?', $this->getParentNodeId())
                     ->fetchOne();
-        
-        return urlSlug::slugify($unit->getName());
+        return $unit->getNameSlug();
     }
     public function getCollectionSlug() {
         return urlSlug::slugify($this->getName());

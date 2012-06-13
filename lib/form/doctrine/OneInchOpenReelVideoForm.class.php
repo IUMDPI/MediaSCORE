@@ -15,7 +15,7 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0])));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]),array('onchange'=>'checkFormat();')));
         $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1])));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
         $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true)));
@@ -28,9 +28,9 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
-        $this->getWidget('reelSize')->setLabel('<span class="required">*</span>White Residue:&nbsp;');
+        $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');
 
-        $this->getWidget('whiteResidue')->setLabel('Glue on reel:&nbsp;');
+        $this->getWidget('whiteResidue')->setLabel('White Residue:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));

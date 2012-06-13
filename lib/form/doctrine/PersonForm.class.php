@@ -31,11 +31,11 @@ class PersonForm extends BasePersonForm
                 $this['password'],
                 $this['password_again'],
                 $this['units_list'],
-                $this['is_active'],
                 $this['activation_key'],
                 $this['forgot_password'],
                 $this['consultation_records_list']
     );
+    $this->setWidget('role', new sfWidgetFormInputText());
     $this->getWidget('first_name')->setLabel('<span class="required">*</span>Unit Personnel First Name:');
     $this->getWidget('last_name')->setLabel('<span class="required">*</span>Unit Personnel Last Name:');
     $this->getWidget('email_address')->setLabel('<span class="required">*</span>Unit Personnel Email:');
@@ -57,6 +57,7 @@ class PersonForm extends BasePersonForm
             'invalid' => 'Phone # must be numeric only.'));
     
     $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => 3 )));
+    $this->setWidget('is_active',new sfWidgetFormInputHidden(array(),array('value' => 0 )));
     $this->setWidget('username',new sfWidgetFormInputHidden());
   }
 }
