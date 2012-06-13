@@ -91,7 +91,7 @@
                     <?php //echo url_for('assetgroup', $collection) ?>
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><span><?php echo $collection->getCreator()->getName() ?></td>
+                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                     <td class="invisible">

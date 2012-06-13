@@ -79,38 +79,16 @@
                 <th><span>Created By</span></th>
                 <th><span>Updated On</span></th>
                 <th><span>Updated By</span></th>
-    <!--                <th></th>-->
             </tr>
         </thead>
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
                 <tr>
                              <td><a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>
-<!--                    <td><a href="<?php // echo url_for('collection/index?u=' . $unit->getId()) ?>"><?php // echo $unit->getName() ?></a></td>-->
                     <td><?php echo $unit->getCreatedAt() ?></td>
-                    <td>
-                        <?php
-//print_r( Doctrine_Core::getTable('User')->find( $unit->getCreatorId() )->getFirstName() );
-                        echo '<span>' . $unit->getCreator()->getName() . '</span>';
-
-                        /* $evaluatorName = $creators[$unit->getId()];
-                          if($evaluatorName == ' ')
-                          echo 'Administrator';
-                          else
-                          echo $evaluatorName; */
-                        ?>
-                    </td>
+                    <td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
                     <td><?php echo $unit->getUpdatedAt() ?></td>
-                    <td>
-                        <?php
-                        echo $unit->getEditor()->getName();
-                        /* $lastEditorName = $editors[$unit->getId()];
-                          if($lastEditorName == ' ')
-                          echo 'Administrator';
-                          else
-                          echo $lastEditorName; */
-                        ?>
-                    </td>
+                    <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName();?></td>
 
                     <td class="invisible">
                         <div class="options">
