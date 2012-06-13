@@ -203,16 +203,16 @@
                     for(collection in result){
                         $('#unitResult').append('<tr><td><a href="/'+result[collection].name_slug+'">'+result[collection].name+'</a></td>'+
                             '<td>'+result[collection].created_at+'</td>'+
-                            '<td>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
-                            '<td>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
                             '<a class="create_new_unit" href="/unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
-                            '</tr>');
+                            '</tr>'); 
                     }
                     $(".delete_unit").fancybox({
                         'width': '100%',

@@ -56,12 +56,12 @@ $(document).ready(function () {
                             if(result!=undefined && result.length>0){
                                 $('#collectionResult').html('');
                                 for(collection in result){
-                        
+                         
                                     $('#collectionResult').append('<tr><td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
                                         '<td>'+result[collection].created_at+'</td>'+
-                                        '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                                        '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                                         '<td>'+result[collection].updated_at+'</td>'+
-                                        '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                                        '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                                         '<td class="invisible">'+
                                         '<div class="options">'+
                                         '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+result[collection].parent_node_id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+

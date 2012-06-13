@@ -220,7 +220,7 @@
                             ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
-                            '</tr>');
+                            '</tr>'); 
                     }
                     $(".delete_unit").fancybox({
                         'width': '100%',

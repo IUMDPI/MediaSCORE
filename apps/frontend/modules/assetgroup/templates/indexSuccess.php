@@ -87,9 +87,9 @@
             <tr>
                 <td><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
                 <td><?php echo $asset_group->getCreatedAt() ?></td>
-                <td><?php echo $asset_group->getCreator()->getName() ?></td>
+                <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
-                <td><?php echo $asset_group->getEditor()->getName() ?></td>
+                <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
                 <td class="invisible">
                     <div class="options">
                         <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
