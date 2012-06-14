@@ -82,8 +82,8 @@ $('document').ready(function () {
                     if(storageLocations!= undefined && storageLocations.length>0){
                         for(i in storageLocations){
                             if($('#unit-multiple-select').val()==globalUnitID){
-                                if(storageID.length>0){
-                                    if(storageID[0]==storageLocations[i].id)
+                                if(globalLocation.length>0){
+                                    if(globalLocation[0]==storageLocations[i].id)
                                         selected='selected="selected"';
                                     else
                                         selected='';
