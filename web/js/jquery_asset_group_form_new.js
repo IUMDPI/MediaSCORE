@@ -1,19 +1,9 @@
 var globalLocation=new Array();
+var globalUnitID=null;
 function setSessionLocation(storageID,unitID){
     globalLocation=storageID;
+    globalUnitID=unitID;
     
-    if($('#unit-multiple-select').val()==unitID){
-        if(storageID.length>0){
-            setTimeout(function(){
-                $('#asset_group_resident_structure_description').find('[value='+storageID[0]+']').attr('selected','selected');
-            },500);
-            
-
-    
-
-        //            $('#asset_group_resident_structure_description').val(storageID[0]);
-        }
-    }
 }
 function checkLocationStatus(){
     count=0;
@@ -24,34 +14,34 @@ function checkLocationStatus(){
     }
     if(count!=1){
         $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
-    $.blockUI({ 
-        message: $('div.growlUI'), 
-        fadeIn: 700, 
-        fadeOut: 700, 
-        timeout: 5000, 
-        showOverlay: false, 
-        centerY: false, 
-        css: { 
-            width: '350px', 
-            top: '10px', 
-            left: '', 
-            right: '10px', 
-            border: 'none', 
-            padding: '5px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px',  
-            opacity: .9,   
-            color: '#fff' 
-        } 
-    }); 
+        $.blockUI({ 
+            message: $('div.growlUI'), 
+            fadeIn: 700, 
+            fadeOut: 700, 
+            timeout: 5000, 
+            showOverlay: false, 
+            centerY: false, 
+            css: { 
+                width: '350px', 
+                top: '10px', 
+                left: '', 
+                right: '10px', 
+                border: 'none', 
+                padding: '5px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px',  
+                opacity: .9,   
+                color: '#fff' 
+            } 
+        }); 
     }
         
 }
 // Once the document object is loaded...
 $('document').ready(function () {
 
- 
+ getSessionStorage();
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -91,7 +81,16 @@ $('document').ready(function () {
                     $('#asset_group_resident_structure_description').html('');
                     if(storageLocations!= undefined && storageLocations.length>0){
                         for(i in storageLocations){
-                            $('#asset_group_resident_structure_description').append('<option value="'+storageLocations[i].id+'">'+storageLocations[i].name+'</option>');
+                            if($('#unit-multiple-select').val()==globalUnitID){
+                                if(storageID.length>0){
+                                    if(storageID[0]==storageLocations[i].id)
+                                        selected='selected="selected"';
+                                    else
+                                        selected='';
+                                }
+                                
+                            }
+                            $('#asset_group_resident_structure_description').append('<option value="'+storageLocations[i].id+'" '+selected+'>'+storageLocations[i].name+'</option>');
                         } 
                     }
                     else{
@@ -99,7 +98,7 @@ $('document').ready(function () {
                     }
                     
                 });
-            getSessionStorage();
+            
         } 
         else{
             $('#asset_group_resident_structure_description').append('<option value="">No Storage Location</option>');
