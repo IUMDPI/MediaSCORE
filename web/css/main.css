@@ -63,3 +63,7 @@ div.growlUI h1{
 div.growlUI h2 {
     font-size: 14px;
 }
+.warning{
+    font-size: 0.625rem;
+    color: #e78f08;
+}

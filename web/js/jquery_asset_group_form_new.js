@@ -14,28 +14,32 @@ function checkLocationStatus(){
             }
         }
         if(count!=1){
-            $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
-            $.blockUI({ 
-                message: $('div.growlUI'), 
-                fadeIn: 700, 
-                fadeOut: 700, 
-                timeout: 5000, 
-                showOverlay: false, 
-                centerY: false, 
-                css: { 
-                    width: '350px', 
-                    top: '10px', 
-                    left: '', 
-                    right: '10px', 
-                    border: 'none', 
-                    padding: '5px', 
-                    backgroundColor: '#000', 
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius': '10px',  
-                    opacity: .9,   
-                    color: '#fff' 
-                } 
-            }); 
+            $('#storageAtLogin').show();
+//            $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
+//            $.blockUI({ 
+//                message: $('div.growlUI'), 
+//                fadeIn: 700, 
+//                fadeOut: 700, 
+//                timeout: 5000, 
+//                showOverlay: false, 
+//                centerY: false, 
+//                css: { 
+//                    width: '350px', 
+//                    top: '10px', 
+//                    left: '', 
+//                    right: '10px', 
+//                    border: 'none', 
+//                    padding: '5px', 
+//                    backgroundColor: '#000', 
+//                    '-webkit-border-radius': '10px', 
+//                    '-moz-border-radius': '10px',  
+//                    opacity: .9,   
+//                    color: '#fff' 
+//                } 
+//            }); 
+        }
+        else{
+            $('#storageAtLogin').hide();
         }
     }     
 }

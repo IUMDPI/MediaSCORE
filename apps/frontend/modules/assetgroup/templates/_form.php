@@ -79,6 +79,7 @@ else
                         </th>
                         <td>
                             <?php echo $form['resident_structure_description']->render(array('onchange'=>'checkLocationStatus();')); ?> 
+                            <span style="display: none;" id="storageAtLogin" class="warning">The selected storage location does not match to the current selected storage location!</span>
                             <?php echo $form['resident_structure_description']->renderError(); ?>
                         </td>
 
