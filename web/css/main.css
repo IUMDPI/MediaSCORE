@@ -52,3 +52,14 @@ form input[type="radio"]{
    border: 1px solid black;
     padding: 5px; 
 }
+div.growlUI { background: url(/images/warning.png) no-repeat 10px 10px }
+div.growlUI h1, div.growlUI h2 {
+	color: white; padding: 5px 5px 5px 75px; text-align: left
+}
+div.growlUI h1{
+    font-size: 18px;
+    padding-bottom: 0px;
+}
+div.growlUI h2 {
+    font-size: 14px;
+}

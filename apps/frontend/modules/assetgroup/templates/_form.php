@@ -10,11 +10,11 @@ else
     <form id="asset-group-form" action="<?php echo url_for('assetgroup/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
         <?php if (!$form->getObject()->isNew()): ?>
             <input type="hidden" name="sf_method" value="put" />
-<?php endif; ?>
+        <?php endif; ?>
         <table class="assets-table">
             <tfoot>
                 <!-- For the selection of the format type constants -->
-<?php if (!$form->getObject()->isNew()): ?>
+                <?php if (!$form->getObject()->isNew()): ?>
                     <tr><td colspan="2">
 
                         </td>
@@ -23,7 +23,7 @@ else
                     </tr>
 
 
-<?php endif; ?>
+                <?php endif; ?>
 
 
 
@@ -34,52 +34,52 @@ else
                     else {
                         $buttonValue = 'Continue';
                         ?>
-                        <td colspan="2"><input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for2('assetgroup',$collectionObj) ?>">cancel</a></td>
+                        <td colspan="2"><input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for2('assetgroup', $collectionObj) ?>">cancel</a></td>
                     <?php }
                     ?>
 
                 </tr>
             </tfoot>
             <tbody>
-<?php if ($form->getObject()->isNew()) { ?>
+                <?php if ($form->getObject()->isNew()) { ?>
                     <tr>
                         <th>
                             <?php echo $form->renderHiddenFields(); ?>
-    <?php echo $form['name']->renderLabel(); ?>
+                            <?php echo $form['name']->renderLabel(); ?>
                         </th>
                         <td>
                             <?php echo $form['name']->render(); ?> 
-    <?php echo $form['name']->renderError(); ?>
+                            <?php echo $form['name']->renderError(); ?>
                         </td>
 
                     </tr>
                     <tr>
                         <th>
-    <?php echo $form['inst_id']->renderLabel(); ?>
+                            <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
                         <td>
                             <?php echo $form['inst_id']->render(array('title' => 'IU\'s identifier if applicable')); ?> <div class="help-text">IU's identifier if applicable</div>
-    <?php echo $form['inst_id']->renderError(); ?>
+                            <?php echo $form['inst_id']->renderError(); ?>
                         </td>
 
                     </tr>
                     <tr>
                         <th>
-    <?php echo $form['location']->renderLabel(); ?>
+                            <?php echo $form['location']->renderLabel(); ?>
                         </th>
                         <td>
                             <?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room')); ?> <div class="help-text">Provide a specific location within the storage location such as a shelf number or area of a room</div>
-    <?php echo $form['location']->renderError(); ?>
+                            <?php echo $form['location']->renderError(); ?>
                         </td>
 
                     </tr>
                     <tr>
                         <th>
-    <?php echo $form['resident_structure_description']->renderLabel(); ?>
+                            <?php echo $form['resident_structure_description']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['resident_structure_description']->render(); ?> 
-    <?php echo $form['resident_structure_description']->renderError(); ?>
+                            <?php echo $form['resident_structure_description']->render(array('onchange'=>'checkLocationStatus();')); ?> 
+                            <?php echo $form['resident_structure_description']->renderError(); ?>
                         </td>
 
                     </tr>
@@ -96,11 +96,11 @@ else
                     </tr>
                     <tr>
                         <th>
-    <?php echo $form['notes']->renderLabel(); ?>
+                            <?php echo $form['notes']->renderLabel(); ?>
                         </th>
                         <td>
                             <?php echo $form['notes']->render(array('title' => 'Explain what is distinctive about this subcollection')); ?> <div class="help-text">Explain what is distinctive about this subcollection</div>
-    <?php echo $form['notes']->renderError(); ?>
+                            <?php echo $form['notes']->renderError(); ?>
                         </td>
 
                     </tr>
@@ -110,23 +110,25 @@ else
                     <tr>
                         <td colspan="2">
                             <select multiple="multiple" id="unit-multiple-select" onchange="getCollectionAndLocation();">
-                                
+
                                 <?php foreach ($unit as $value) { ?>
-                                    <?php if($assetCollection->getParentNodeId()==$value->getId()){?>
-                                    <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
-                                    <?php } else{ ?>
-                                    <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-                                    <?php }} ?>
+                                    <?php if ($assetCollection->getParentNodeId() == $value->getId()) { ?>
+                                        <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
+                                    <?php } else { ?>
+                                        <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
+                                    <?php }
+                                } ?>
 
                             </select>
-<!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
+                            <!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
                             <select multiple="multiple" id="collection-multiple-select" >
                                 <?php foreach ($collection as $value) { ?>
-                                    <?php if($assetCollection->getId()==$value->getId()){?>
-                                    <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
-                                    <?php } else{ ?>
-                                    <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-                                    <?php }} ?>
+                                    <?php if ($assetCollection->getId() == $value->getId()) { ?>
+                                        <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
+                                    <?php } else { ?>
+                                        <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
+        <?php }
+    } ?>
                             </select>
                         </td>
                     </tr>
@@ -140,7 +142,7 @@ else
                                         <div class="left-column"><?php echo $form->renderHiddenFields(); ?>
                                             <b><?php echo $form['name']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <?php echo $form['name']->render(); ?> 
+    <?php echo $form['name']->render(); ?> 
     <?php echo $form['name']->renderError(); ?>
                                         </div>
                                     </div>
@@ -148,7 +150,7 @@ else
                                     <div class="row clearfix">
                                         <div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <?php echo $form['location']->render(); ?>
+    <?php echo $form['location']->render(); ?>
     <?php echo $form['location']->renderError(); ?>
                                         </div>
                                     </div>
@@ -165,20 +167,20 @@ else
                                         <div class="left-column"><b><?php echo $form['resident_structure_description']->renderLabel(); ?></b></div>
                                         <div class="right-column">
                                             <div>
-                                                <?php echo $form['resident_structure_description']->render(); ?>
-    
+    <?php echo $form['resident_structure_description']->render(); ?>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row clearfix">
-                                        <?php echo $form['resident_structure_description']->renderError(); ?>
+    <?php echo $form['resident_structure_description']->renderError(); ?>
                                     </div>
                                 </div>
 
                                 <div class="right-column-container">
                                     <div class="row">
                                         <div class="left-column"><b><?php echo $form['notes']->renderLabel(); ?></b></div>
-                                        <?php echo $form['notes']->render(array('style' => 'width:450px;')); ?>
+    <?php echo $form['notes']->render(array('style' => 'width:450px;')); ?>
     <?php echo $form['notes']->renderError(); ?>
                                     </div>
                                 </div>
@@ -236,7 +238,7 @@ else
             <div id="format_specific"></div>
         </div>
 
-        <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup',$collectionObj) ?>">cancel</a>
+        <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
         <div style="clear: both;"></div>
 
 <?php } ?>

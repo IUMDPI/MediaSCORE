@@ -1,9 +1,57 @@
-function setSessionLocation(storageID){
-    console.log(storageID);
+var globalLocation=new Array();
+function setSessionLocation(storageID,unitID){
+    globalLocation=storageID;
+    
+    if($('#unit-multiple-select').val()==unitID){
+        if(storageID.length>0){
+            setTimeout(function(){
+                $('#asset_group_resident_structure_description').find('[value='+storageID[0]+']').attr('selected','selected');
+            },500);
+            
+
+    
+
+        //            $('#asset_group_resident_structure_description').val(storageID[0]);
+        }
+    }
+}
+function checkLocationStatus(){
+    count=0;
+    for(i=0;i<globalLocation.length;i++){
+        if($('#asset_group_resident_structure_description').val()==globalLocation[i]){
+            count=1;
+        }
+    }
+    if(count!=1){
+        $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
+    $.blockUI({ 
+        message: $('div.growlUI'), 
+        fadeIn: 700, 
+        fadeOut: 700, 
+        timeout: 5000, 
+        showOverlay: false, 
+        centerY: false, 
+        css: { 
+            width: '350px', 
+            top: '10px', 
+            left: '', 
+            right: '10px', 
+            border: 'none', 
+            padding: '5px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px',  
+            opacity: .9,   
+            color: '#fff' 
+        } 
+    }); 
+    }
+        
 }
 // Once the document object is loaded...
 $('document').ready(function () {
 
+ 
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -27,7 +75,7 @@ $('document').ready(function () {
 
     appBaseURL = '/frontend_dev.php/';
     assetGroupID = $('#asset_group_id').val();
-    getSessionStorage();
+    
     
     populateStorageLocations = function() {
         collectionID=$('#collection-multiple-select').val();
@@ -51,7 +99,8 @@ $('document').ready(function () {
                     }
                     
                 });
-        }
+            getSessionStorage();
+        } 
         else{
             $('#asset_group_resident_structure_description').append('<option value="">No Storage Location</option>');
         }
