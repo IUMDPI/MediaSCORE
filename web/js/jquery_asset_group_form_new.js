@@ -6,42 +6,43 @@ function setSessionLocation(storageID,unitID){
     
 }
 function checkLocationStatus(){
-    count=0;
-    for(i=0;i<globalLocation.length;i++){
-        if($('#asset_group_resident_structure_description').val()==globalLocation[i]){
-            count=1;
+    if($('#unit-multiple-select').val()==globalUnitID){
+        count=0;
+        for(i=0;i<globalLocation.length;i++){
+            if($('#asset_group_resident_structure_description').val()==globalLocation[i]){
+                count=1;
+            }
         }
-    }
-    if(count!=1){
-        $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
-        $.blockUI({ 
-            message: $('div.growlUI'), 
-            fadeIn: 700, 
-            fadeOut: 700, 
-            timeout: 5000, 
-            showOverlay: false, 
-            centerY: false, 
-            css: { 
-                width: '350px', 
-                top: '10px', 
-                left: '', 
-                right: '10px', 
-                border: 'none', 
-                padding: '5px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px',  
-                opacity: .9,   
-                color: '#fff' 
-            } 
-        }); 
-    }
-        
+        if(count!=1){
+            $.growlUI('Storage Location', 'The selected storage location does not match to the current selected storage location!');
+            $.blockUI({ 
+                message: $('div.growlUI'), 
+                fadeIn: 700, 
+                fadeOut: 700, 
+                timeout: 5000, 
+                showOverlay: false, 
+                centerY: false, 
+                css: { 
+                    width: '350px', 
+                    top: '10px', 
+                    left: '', 
+                    right: '10px', 
+                    border: 'none', 
+                    padding: '5px', 
+                    backgroundColor: '#000', 
+                    '-webkit-border-radius': '10px', 
+                    '-moz-border-radius': '10px',  
+                    opacity: .9,   
+                    color: '#fff' 
+                } 
+            }); 
+        }
+    }     
 }
 // Once the document object is loaded...
 $('document').ready(function () {
 
- getSessionStorage();
+    getSessionStorage();
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
@@ -90,6 +91,8 @@ $('document').ready(function () {
                                 }
                                 
                             }
+                            else
+                                selected='';
                             $('#asset_group_resident_structure_description').append('<option value="'+storageLocations[i].id+'" '+selected+'>'+storageLocations[i].name+'</option>');
                         } 
                     }
