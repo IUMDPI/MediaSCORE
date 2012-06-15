@@ -35,12 +35,14 @@
 
         <div class="row" id="row_personnel_list" style="display: none;">
             <div class="left-column"><?php echo $form['personnel_list']->renderLabel(); ?>:</div>
-            <?php echo $form['personnel_list']->render(); ?>
+            <?php echo $form['personnel_list']->render(array('title'=>'sets default value for selection of Unit Personnel when creating asset group history records.')); ?>
+            <div>sets default value for selection of Unit Personnel when creating asset group history records.</div>
         </div>
 
         <div class="row" id="row_location" style="display: none;" >
             <div class="left-column"><?php echo $form['storage_locations_list']->renderLabel(); ?>:</div>
-            <?php echo $form['storage_locations_list']->render(); ?>
+            <?php echo $form['storage_locations_list']->render(array('title'=>'sets default value for selection of Storage Location when creating asset groups.')); ?>
+            <div>sets default value for selection of Storage Location when creating asset groups.</div>
         </div>
 
 
@@ -106,7 +108,9 @@
                     $("#signin_storage_locations_list").multiselect("refresh");
                     $("#signin_storage_locations_list").multiselect({
                         'height':'auto',
-                        'minWidth':145
+                        'minWidth':145,
+                        'multiple':false,
+                        selectedList: 1 // 0-based index
                     }).multiselectfilter();
                 }
                 else{
