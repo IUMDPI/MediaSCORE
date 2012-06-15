@@ -13,20 +13,6 @@ else
         <?php endif; ?>
         <table class="assets-table">
             <tfoot>
-                <!-- For the selection of the format type constants -->
-                <?php if (!$form->getObject()->isNew()): ?>
-                    <tr><td colspan="2">
-
-                        </td>
-
-
-                    </tr>
-
-
-                <?php endif; ?>
-
-
-
                 <tr>
                     <?php
                     if (!$form->getObject()->isNew())
@@ -42,6 +28,7 @@ else
             </tfoot>
             <tbody>
                 <?php if ($form->getObject()->isNew()) { ?>
+                
                     <tr>
                         <th>
                             <?php echo $form->renderHiddenFields(); ?>

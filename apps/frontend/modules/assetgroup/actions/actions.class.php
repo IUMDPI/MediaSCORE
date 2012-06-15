@@ -266,6 +266,7 @@ class assetgroupActions extends sfActions {
 
             $this->redirect('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $form->getOption('collectionID'));
         }
+        
     }
 
     protected function processEditForm(sfWebRequest $request, sfForm $form) {

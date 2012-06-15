@@ -57,5 +57,11 @@ class AssetGroupForm extends BaseAssetGroupForm {
 
         $this->getWidget('type')->setAttribute('value', 4);
     }
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+
+        $taintedValues['name_slug'] = $taintedValues['name'];
+
+        parent::bind($taintedValues, $taintedFiles);
+    }
 
 }
