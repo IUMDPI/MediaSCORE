@@ -9,7 +9,7 @@
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class FormatTypeForm extends BaseFormatTypeForm {
-    public static $durationtype=array(0=>'Calculated',1=>'estimated',2=>'max estimate');
+    public static $durationtype=array(''=>'Select',0=>'Calculated',1=>'estimated',2=>'max estimate');
 
     public function configure() {
         $this->setWidget('duration_type', new sfWidgetFormChoice(array('choices'=>  self::$durationtype),array('title'=>'Calculated is when it is known definitively. Estimate is when you have some evidence available to inform a best guess. If you have no evidence the max estimate is used based on the maximum media duration.')));

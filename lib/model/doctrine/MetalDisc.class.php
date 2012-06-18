@@ -13,7 +13,7 @@
 class MetalDisc extends BaseMetalDisc
 {
 	public static $constants = array('0' => 'Aluminum','1' => 'Pregrooved Zinc','2'=>'Unknown');
-	public static $generation = array('0' => 'Original','1' => 'Copy','2'=>'Unknown');
+	public static $generation = array(''=>'Select','0' => 'Original','1' => 'Copy','2'=>'Unknown');
 	public static $damage = array('0' => 'None','1' => 'Minor','2'=>'Moderate','3'=>'Severe');
 
 }
