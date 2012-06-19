@@ -12,5 +12,5 @@
  */
 class LacquerDisc extends BaseLacquerDisc
 {
-	public static $constants = array(0 => 'Glass',1 => 'Steel',2 => 'Aluminum',3 => 'Cardboard');
+	public static $constants = array(''=>'Select',0 => 'Glass',1 => 'Steel',2 => 'Aluminum',3 => 'Cardboard');
 }

@@ -23,7 +23,9 @@
         format=$('#one_inch_open_reel_video_format').val();
         reelsize=$('#one_inch_open_reel_video_reelSize').val();
         $('#one_inch_open_reel_video_reelSize').html('');
+         $('#one_inch_open_reel_video_reelSize').append('<option value="">Select</option>');
         if(format==0 || format==1 || format==2){
+           
             for(i=0;i<formatype1.length;i++){
                 if(i==reelsize)
                     selected='selected="selected"';

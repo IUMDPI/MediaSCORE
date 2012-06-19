@@ -24,7 +24,7 @@ class OpenReelAudiotapePolysterForm extends BaseOpenReelAudiotapePolysterForm
          $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
         
 //        $this->setValidator('speed', new sfValidatorChoice(array('required' => true,'multiple'=>true,'choices' => OpenReelAudioTapeFormatType::$constants[2])));
-        $this->setValidator('speed', new sfValidatorString(array('required' => false)));
+        $this->setValidator('speed', new sfValidatorString(array('required' => true)));
         $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
           

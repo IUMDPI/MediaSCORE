@@ -17,7 +17,7 @@ class OpticalDiscFormatTypeForm extends BaseOpticalDiscFormatTypeForm
   {
 	  parent::configure();
 	  $this->setWidget('reflectiveLayer',new sfWidgetFormChoice(array('choices' => OpticalDiscFormatType::$constants[0])));
-           $this->setValidator('reflectiveLayer', new sfValidatorString(array('required' => false)));
+           $this->setValidator('reflectiveLayer', new sfValidatorString(array('required' => true)));
            $this->getWidget('reflectiveLayer')->setLabel('<span class="required">*</span>Reflective Layer:&nbsp;');
 	  
           

@@ -18,15 +18,15 @@ class DVCProForm extends BaseDVCProForm {
         $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => DVCPro::$constants[0]),array('title'=>'"DVCPRO25 has a yellow tape-door
 DVCPRO50 has a blue tape-door
 DVCPRO HD has a red tape-door"')));
-        $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
+        $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
         $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => DVCPro::$constants[1])));
-        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
+        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
         
         $this->setWidget('size', new sfWidgetFormChoice(array('choices' => Umatic::$constants[0])));
-        $this->setValidator('size', new sfValidatorString(array('required' => false)));
+        $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
         $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1)));

@@ -16,11 +16,11 @@ class UmaticForm extends BaseUmaticForm {
     public function configure() {
         parent::configure();
         $this->setWidget('size', new sfWidgetFormChoice(array('choices' => Umatic::$constants[0])));
-        $this->setValidator('size', new sfValidatorString(array('required' => false)));
+        $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1])));
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
 
         $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Umatic::$constants[1])));

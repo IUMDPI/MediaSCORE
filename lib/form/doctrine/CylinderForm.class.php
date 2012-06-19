@@ -20,7 +20,7 @@ class CylinderForm extends BaseCylinderForm {
         $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing or efflorescence')));
         $this->setDefault('physicalDamage', 0);
         
-        $this->setValidator('cylinderType', new sfValidatorString(array('required' => false)));
+        $this->setValidator('cylinderType', new sfValidatorString(array('required' => true)));
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
          $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
          

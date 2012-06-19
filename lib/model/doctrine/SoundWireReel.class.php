@@ -12,5 +12,5 @@
  */
 class SoundWireReel extends BaseSoundWireReel
 {
-	public static $constants = array(0 => 'Stainless steel',1 => 'Non-stainless steel',2 => 'Iron',3 => 'Unknown');
+	public static $constants = array(''=>'Select',0 => 'Stainless steel',1 => 'Non-stainless steel',2 => 'Iron',3 => 'Unknown');
 }

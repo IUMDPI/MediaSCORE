@@ -12,7 +12,7 @@
  */
 class Umatic extends BaseUmatic
 {
-	public static $constants = array(0 => array(false => 'Small',true => 'Standard'),
+	public static $constants = array(0 => array(''=>'Select',0 => 'Small',1 => 'Standard'),
 					1 => array(0 => 'Low Band',
 						1 => 'High Band',
 						2 => 'SP',

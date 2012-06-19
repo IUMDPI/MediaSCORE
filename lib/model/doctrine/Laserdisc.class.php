@@ -12,5 +12,5 @@
  */
 class Laserdisc extends BaseLaserdisc
 {
-	public static $constants = array(0 => 'Standard',1 => 'Extended',2 => 'Unknown');
+	public static $constants = array(''=>'Select',0 => 'Standard',1 => 'Extended',2 => 'Unknown');
 }

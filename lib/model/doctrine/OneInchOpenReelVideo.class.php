@@ -13,7 +13,7 @@
 class OneInchOpenReelVideo extends BaseOneInchOpenReelVideo
 {
 	public static $constants = array(
-					0 => array(0 => 'Type A',1 => 'Type B',2 => 'Type C',3 => 'IVC'),
+					0 => array(''=>'Select',0 => 'Type A',1 => 'Type B',2 => 'Type C',3 => 'IVC'),
 					1 =>
 						array(0 => 'Spot, 9"',
 							1 => '10.5"',

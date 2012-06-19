@@ -13,6 +13,6 @@
 class OpticalVideo extends BaseOpticalVideo
 {
 	public static $constants = array(
-					0 => array(0 => 'Data',1 => 'Video',2 => 'Unknown'),
-					1 => array(0 => 'DVD',1 => 'DVD±',2 => 'VCD',3 => 'CD ±R'));
+					0 => array(''=>'Select',0 => 'Data',1 => 'Video',2 => 'Unknown'),
+					1 => array(''=>'Select',0 => 'DVD',1 => 'DVD±',2 => 'VCD',3 => 'CD ±R'));
 }

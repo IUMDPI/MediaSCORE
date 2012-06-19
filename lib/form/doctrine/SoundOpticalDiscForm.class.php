@@ -13,7 +13,7 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
     /**
      * @see OpticalDiscFormatTypeForm
      */
-    public static $type = array(0 => 'Pressed CD',1 => 'CD-R');
+    public static $type = array(''=>'Select',0 => 'Pressed CD',1 => 'CD-R');
     public function configure() {
         parent::configure();
 
@@ -24,7 +24,7 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
         $this->setDefault('physicalDamage', 0);
  
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
-        $this->setValidator('opticaldisctype', new sfValidatorString(array('required' => false)));
+        $this->setValidator('opticaldisctype', new sfValidatorString(array('required' => true)));
         $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
 
         $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');

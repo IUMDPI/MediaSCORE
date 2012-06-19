@@ -12,6 +12,6 @@
  */
 class Betacam extends BaseBetacam
 {
-	public static $constants = array(0 => array(false => 'Small',true => 'Standard'),
-					1 => array(0 => 'Oxide',1=>'SP'));
+	public static $constants = array(0 => array(''=>'Select',0 => 'Small',2 => 'Standard'),
+					1 => array(''=>'Select',0 => 'Oxide',1=>'SP'));
 }

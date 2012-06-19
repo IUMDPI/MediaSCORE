@@ -23,9 +23,9 @@ class EightMMForm extends BaseEightMMForm
 	
         $this->setDefault('pack_deformation',0);
           
-          $this->setValidator('format', new sfValidatorString(array('required' => false)));
-          $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
-          $this->setValidator('binderSystem', new sfValidatorString(array('required' => false)));
+          $this->setValidator('format', new sfValidatorString(array('required' => true)));
+          $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
+          $this->setValidator('binderSystem', new sfValidatorString(array('required' => true)));
           $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 
         

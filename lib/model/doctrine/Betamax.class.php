@@ -12,8 +12,8 @@
  */
 class Betamax extends BaseBetamax
 {
-	public static $constants = array(0 => array(0 => 'Standard',1 => 'Super', 2 => 'Extended'),
-					1 => array(0 => 'Chromium Dioxide',
+	public static $constants = array(0 => array(''=>'Select',0 => 'Standard',1 => 'Super', 2 => 'Extended'),
+					1 => array(''=>'Select',0 => 'Chromium Dioxide',
 						1 => 'Ferric Oxide',
 						2 => 'Metal Oxide'));
 }

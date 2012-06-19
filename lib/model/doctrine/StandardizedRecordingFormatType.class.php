@@ -12,5 +12,5 @@
  */
 class StandardizedRecordingFormatType extends BaseStandardizedRecordingFormatType
 {
-	public static $constants = array(0 => 'NTSC',1 => 'PAL',2 => 'SECAM',3 => 'Unknown');
+	public static $constants = array(''=>'Select',0 => 'NTSC',1 => 'PAL',2 => 'SECAM',3 => 'Unknown');
 }

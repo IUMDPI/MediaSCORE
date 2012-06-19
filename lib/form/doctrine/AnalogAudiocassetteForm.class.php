@@ -30,8 +30,8 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm
                 $this->setValidator('slow_speed', new sfValidatorBoolean());
                 $this->setValidator('noise_reduction', new sfValidatorBoolean());
                 $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
-                $this->setValidator('tape_type', new sfValidatorString(array('required' => false)));
-                $this->setValidator('sound_field', new sfValidatorString(array('required' => false)));
+                $this->setValidator('tape_type', new sfValidatorString(array('required' => true)));
+                $this->setValidator('sound_field', new sfValidatorString(array('required' => true)));
                 
                 $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
                 

@@ -16,15 +16,15 @@ class VHSForm extends BaseVHSForm {
     public function configure() {
         parent::configure();
         $this->setWidget('size', new sfWidgetFormChoice(array('choices' => VHS::$constants[0])));
-        $this->setValidator('size', new sfValidatorString(array('required' => false)));
+        $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
         
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1])));
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
         
         $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2])));
-        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
+        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
         
         $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1)));

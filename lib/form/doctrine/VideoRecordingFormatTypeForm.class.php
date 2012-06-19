@@ -19,7 +19,7 @@ class VideoRecordingFormatTypeForm extends BaseVideoRecordingFormatTypeForm
 	  $this->setWidget('recordingStandard',new sfWidgetFormChoice(array('choices' => VideoRecordingFormatType::$constants)));
 	  $this->setWidget('sheddingSoftBinder',new sfWidgetFormInputCheckbox());
           
-          $this->setValidator('recordingStandard', new sfValidatorString(array('required' => false)));
+          $this->setValidator('recordingStandard', new sfValidatorString(array('required' => true)));
          $this->setValidator('sheddingSoftBinder', new sfValidatorBoolean());
          
          $this->getWidget('recordingStandard')->setLabel('<span class="required">*</span>Recording Standard:&nbsp;');

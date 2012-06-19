@@ -13,6 +13,6 @@
 class AnalogAudiocassette extends BaseAnalogAudiocassette
 {
 	public static $constants = array(
-					0 => array(0 => 'Type I (Normal)',1 => 'Type II (High Bias: CrO2 or Cobalt Doped)',2 => 'Type III (Ferric Chrome)',3 => 'Type IV (Metal)'),
-					1 => array(0 => 'Mono',1 => 'Stereo',2 => 'Unknown'));
+					0 => array(''=>'Select',0 => 'Type I (Normal)',1 => 'Type II (High Bias: CrO2 or Cobalt Doped)',2 => 'Type III (Ferric Chrome)',3 => 'Type IV (Metal)'),
+					1 => array(''=>'Select',0 => 'Mono',1 => 'Stereo',2 => 'Unknown'));
 }

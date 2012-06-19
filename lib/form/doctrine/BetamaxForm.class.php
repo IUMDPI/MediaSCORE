@@ -22,8 +22,8 @@ class BetamaxForm extends BaseBetamaxForm {
         $this->setDefault('pack_deformation',0);
 
 
-        $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
-        $this->setValidator('oxide', new sfValidatorString(array('required' => false)));
+        $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
+        $this->setValidator('oxide', new sfValidatorString(array('required' => true)));
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');

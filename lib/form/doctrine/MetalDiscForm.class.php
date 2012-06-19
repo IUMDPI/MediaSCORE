@@ -30,7 +30,7 @@ class MetalDiscForm extends BaseMetalDiscForm
           
           $this->setDefault('physicalDamage', 0);  
           
-          $this->setValidator('material', new sfValidatorString(array('required' => false)));
+          $this->setValidator('material', new sfValidatorString(array('required' => true)));
           $this->setValidator('oxidationCorrosion',new sfValidatorBoolean());
           $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
        

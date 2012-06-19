@@ -22,8 +22,8 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
 
         $this->setDefault('pack_deformation', 0);
 
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
-        $this->setValidator('reelSize', new sfValidatorString(array('required' => false)));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
+        $this->setValidator('reelSize', new sfValidatorString(array('required' => true)));
         $this->setValidator('whiteResidue', new sfValidatorBoolean());
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 

@@ -13,6 +13,6 @@
 class HalfInchOpenReelVideo extends BaseHalfInchOpenReelVideo
 {
 	public static $constants = array(
-					0 => array(0 => 'EIAJ',1 => 'CV',2 => 'Unknown'),
-					1 => array(0 => '3"', 1 => '5"'));
+					0 => array(''=>'Select',0 => 'EIAJ',1 => 'CV',2 => 'Unknown'),
+					1 => array(''=>'Select',0 => '3"', 1 => '5"'));
 }

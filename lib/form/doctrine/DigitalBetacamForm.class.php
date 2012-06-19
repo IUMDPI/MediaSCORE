@@ -16,12 +16,12 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
     public function configure() {
         parent::configure();
         $this->setWidget('size', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[0])));
-        $this->setValidator('size', new sfValidatorString(array('required' => false)));
+        $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
 
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1]),array('onchange'=>'checkFormat();')));
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
 
 

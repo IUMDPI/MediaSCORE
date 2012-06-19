@@ -12,5 +12,5 @@
  */
 class Cylinder extends BaseCylinder
 {
-	public static $constants = array(0 => 'Cut Wax',1 => 'Molded Amberol Wax',2 => 'Other Molded Wax',3 => 'Molded Celluloid');
+	public static $constants = array(''=>'Select',0 => 'Cut Wax',1 => 'Molded Amberol Wax',2 => 'Other Molded Wax',3 => 'Molded Celluloid');
 }

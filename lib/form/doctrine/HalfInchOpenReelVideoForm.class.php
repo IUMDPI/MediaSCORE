@@ -16,13 +16,13 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm {
     public function configure() {
         parent::configure();
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[0])));
-        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[1], 'multiple' => true)));
+        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[1], 'multiple' => false)));
         $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true)));
 
         $this->setDefault('pack_deformation', 0);
 
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
-        $this->setValidator('reelSize', new sfValidatorString());
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
+        $this->setValidator('reelSize', new sfValidatorString(array('required' => true)));
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 
 

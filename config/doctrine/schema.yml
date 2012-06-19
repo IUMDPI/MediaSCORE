@@ -268,7 +268,7 @@ AnalogAudiocassette:
     thin_tape: { type: boolean }
     slow_speed: { type: boolean }
     sound_field: { type: integer, notnull: true }
-    soft_binder_syndrome: { type: boolean }
+    soft_binder_syndrome: { type: integer }
 
 Film:
   inheritance:
@@ -562,7 +562,7 @@ EightMM:
     keyValue: 31 # All are aggregated within the FormatType table
   columns:
     recordingSpeed: { type: integer, notnull: true }
-    binderSystem: { type: boolean, notnull: true }
+    binderSystem: { type: integer, notnull: true }
 
 OpenReelVideoFormatType: # Abstract
   inheritance:
@@ -610,7 +610,7 @@ SizedVideoRecordingFormatType: # Abstract
     keyField: type
     keyValue: 36 # All are aggregated within the FormatType table
   columns:
-    size: { type: boolean, notnull: true }
+    size: { type: integer, notnull: true }
 
 DV:
   inheritance:

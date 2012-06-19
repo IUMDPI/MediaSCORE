@@ -10,11 +10,12 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class EightMM extends BaseEightMM
-{
-	public static $constants = array(
-					0 => array(0 => 'Regular',1 => 'Hi',2 => 'Digital'),
-					1 => array(0 => 'Standard', 1 => 'Long Play', 2 => 'Unknown'),
-					2 => array(false => 'Metal Evaporated', true => 'Metal Particle')
-						);
+class EightMM extends BaseEightMM {
+
+    public static $constants = array(
+        0 => array('' => 'Select', 0 => 'Regular', 1 => 'Hi', 2 => 'Digital'),
+        1 => array('' => 'Select', 0 => 'Standard', 1 => 'Long Play', 2 => 'Unknown'),
+        2 => array('' => 'Select', 1 => 'Metal Evaporated', 2 => 'Metal Particle')
+    );
+
 }

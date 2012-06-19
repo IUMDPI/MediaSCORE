@@ -16,7 +16,7 @@ class DVForm extends BaseDVForm {
     public function configure() {
         parent::configure();
         $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => DV::$constants)));
-        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
+        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
 
 

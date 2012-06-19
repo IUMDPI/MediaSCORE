@@ -51,11 +51,11 @@ class FilmForm extends BaseFilmForm
         
         $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         
-        $this->setValidator('gauge', new sfValidatorString(array('required' => false)));
-        $this->setValidator('color', new sfValidatorString(array('required' => false)));
+        $this->setValidator('gauge', new sfValidatorString(array('required' => true)));
+        $this->setValidator('color', new sfValidatorString(array('required' => true)));
         $this->setValidator('colorFade', new sfValidatorBoolean());
         $this->setValidator('soundtrackFormat', new sfValidatorString(array('required' => false)));
-        $this->setValidator('substrate', new sfValidatorString(array('required' => false)));
+        $this->setValidator('substrate', new sfValidatorString(array('required' => true)));
         $this->setValidator('strongOdor', new sfValidatorBoolean());
         $this->setValidator('vinegarOdor', new sfValidatorBoolean());
         $this->setValidator('ADStripLevel', new sfValidatorString(array('required' => false)));

@@ -18,11 +18,11 @@ class OpenReelAudioTapeFormatTypeForm extends BaseOpenReelAudioTapeFormatTypeFor
 	  parent::configure();
 
 	  $this->setWidget('trackConfiguration',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0])));
-          $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => false)));
+          $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
 //	  $this->setWidget('tapeThickness',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1])));
 //	  $this->setWidget('speed',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
 	  $this->setWidget('softBinderSyndrome',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1])));
-          $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => false)));
+          $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => true)));
           
           $this->getWidget('trackConfiguration')->setLabel('<span class="required">*</span>Track Configuration / Sound Field:&nbsp;');
           $this->getWidget('softBinderSyndrome')->setLabel('<span class="required">*</span>Soft Binder Syndrome including Sticky Shed:&nbsp;');

@@ -22,8 +22,8 @@ class MiniDiscForm extends BaseMiniDiscForm {
         $this->setDefault('physicalDamage', 0);
         
 
-        $this->setValidator('recordingLayer', new sfValidatorString(array('required' => false)));
-        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => false)));
+        $this->setValidator('recordingLayer', new sfValidatorString(array('required' => true)));
+        $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
          $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
         

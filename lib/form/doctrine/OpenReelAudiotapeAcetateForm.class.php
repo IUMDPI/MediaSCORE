@@ -29,8 +29,8 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));
         $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
-        $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => false)));
-        $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => false)));
+        $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
+        $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => true)));
 
         $this->getWidget('vinegarOdor')->setLabel('Vinegar Odor:&nbsp;');
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');

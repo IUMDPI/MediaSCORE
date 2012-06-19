@@ -12,5 +12,5 @@
  */
 class SizedVideoRecordingFormatType extends BaseSizedVideoRecordingFormatType
 {
-	public static $constants = array(false => 'Small',true=>'Large'); 
+	public static $constants = array(''=>'Select',0 => 'Small',1=>'Large'); 
 }

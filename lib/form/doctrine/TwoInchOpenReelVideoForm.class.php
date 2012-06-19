@@ -23,10 +23,10 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
 
         $this->setDefault('pack_deformation', 0);
 
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
-        $this->setValidator('reelSize', new sfValidatorString(array('required' => false)));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
+        $this->setValidator('reelSize', new sfValidatorString(array('required' => true)));
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
-        $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
+        $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->setValidator('whiteResidue', new sfValidatorBoolean());
 
 

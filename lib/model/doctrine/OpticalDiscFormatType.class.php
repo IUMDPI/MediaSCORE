@@ -13,6 +13,6 @@
 class OpticalDiscFormatType extends BaseOpticalDiscFormatType
 {
 	public static $constants = array(
-					0 => array(0 => 'Gold',1 => 'Silver',2 => 'Silver Alloy',3 => 'Aluminum',4 => 'Silicon',5 => 'Unknown'),
-				       1 => array(0 => 'Cyanine',1 => 'Phthalocyanine',2 => 'Azo',3 => 'Phase-changing Film',4 => 'Molded',5 => 'Unknown'));
+					0 => array(''=>'Select',0 => 'Gold',1 => 'Silver',2 => 'Silver Alloy',3 => 'Aluminum',4 => 'Silicon',5 => 'Unknown'),
+				       1 => array(''=>'Select',0 => 'Cyanine',1 => 'Phthalocyanine',2 => 'Azo',3 => 'Phase-changing Film',4 => 'Molded',5 => 'Unknown'));
 }

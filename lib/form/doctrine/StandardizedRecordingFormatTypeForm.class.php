@@ -17,7 +17,7 @@ class StandardizedRecordingFormatTypeForm extends BaseStandardizedRecordingForma
   {
 	  parent::configure();
 	  $this->setWidget('recordingStandard',new sfWidgetFormChoice(array('choices' => StandardizedRecordingFormatType::$constants)));
-           $this->setValidator('recordingStandard', new sfValidatorString(array('required' => false)));
+           $this->setValidator('recordingStandard', new sfValidatorString(array('required' => true)));
           $this->getWidget('recordingStandard')->setLabel('<span class="required">*</span>Recording Standard:&nbsp;');
 
   }
