@@ -19,16 +19,16 @@ class OpenReelAudiotapePVCForm extends BaseOpenReelAudiotapePVCForm
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         
-        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
+        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
         $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
         
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));
-        $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
+        $this->setValidator('tapeThickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
         
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
-        $this->getWidget('tapethickness')->setLabel('Tape Thickness:&nbsp;');
+        $this->getWidget('tapeThickness')->setLabel('Tape Thickness:&nbsp;');
         $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
         
          foreach (array('tape_type',
