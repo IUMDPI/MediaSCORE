@@ -38,7 +38,7 @@
                             <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['inst_id']->render(array('title' => 'Unit Code assigned by MPI')); ?> <div class="help-text">Unit Code assigned by MPI</div>
+                            <?php echo $form['inst_id']->render(array('title' => 'Unit Code assigned by MPI')); ?> 
                             <?php echo $form['inst_id']->renderError(); ?>
                         </td>
 
@@ -48,7 +48,7 @@
                             <?php echo $form['resident_structure_description']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['resident_structure_description']->render(array('title' => 'Enter the Building name(s) or Room number(s) where the Unit is located')); ?> <div class="help-text">Enter the Building name(s) or Room number(s) where the Unit is located</div>
+                            <?php echo $form['resident_structure_description']->render(array('title' => 'Enter the Building name(s) or Room number(s) where the Unit is located')); ?> 
                             <?php echo $form['resident_structure_description']->renderError(); ?>
                         </td>
 

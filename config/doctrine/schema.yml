@@ -39,7 +39,7 @@ Store: # Abstract
   actAs: 
     Timestampable: ~ 
     Sluggable:
-      fields: [name_slug]
+      fields: [name]
       name: name_slug
       type: string
       length: 255 

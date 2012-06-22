@@ -10,7 +10,7 @@
  */
 class sfGuardUserForm extends PluginsfGuardUserForm {
 
-    static public $role = array(0 => 'User', 1 => 'Admin');
+    static public $role = array('' => 'Select', 0 => 'User', 1 => 'Admin');
 
     public function configure() {
         unset(
@@ -38,6 +38,29 @@ class sfGuardUserForm extends PluginsfGuardUserForm {
         $this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_again', array(), array('invalid' => 'The two passwords must be the same.')));
 
         $this->setWidget('username', new sfWidgetFormInputHidden());
+
+        $this->getWidget('first_name')->setLabel('<span class="required">*</span>First Name:');
+        $this->getWidget('last_name')->setLabel('<span class="required">*</span>Last Name:');
+        $this->getWidget('email_address')->setLabel('<span class="required">*</span>Email Address:');
+        $this->getWidget('password')->setLabel('<span class="required">*</span>Password:');
+        $this->getWidget('password_again')->setLabel('<span class="required">*</span>Password Again:');
+        $this->getWidget('role')->setLabel('<span class="required">*</span>Role:');
+        $this->getWidget('phone')->setLabel('Phone:');
+        $this->setValidator('first_name', new sfValidatorString(array('required' => true)));
+        $this->setValidator('last_name', new sfValidatorString(array('required' => true)));
+        $this->setValidator('password', new sfValidatorString(array('required' => true)));
+        $this->setValidator('password_again', new sfValidatorString(array('required' => true)));
+        $this->setValidator('role', new sfValidatorString(array('required' => true)));
+        $this->setValidator('phone', new sfValidatorInteger());
+
+        $this->getValidator('first_name')->setMessages(array('required' => 'This is a required field.',
+            'invalid' => 'Invalid First Name.'));
+        $this->getValidator('last_name')->setMessages(array('required' => 'This is a required field.',
+            'invalid' => 'Invalid Last Name.'));
+        $this->getValidator('password')->setMessages(array('required' => 'This is a required field.'));
+        $this->getValidator('password_again')->setMessages(array('required' => 'This is a required field.'));
+        $this->getValidator('role')->setMessages(array('required' => 'This is a required field.'));
+        $this->getValidator('phone')->setMessages(array('invalid' => 'Phone # must be numeric only.'));
     }
 
 }

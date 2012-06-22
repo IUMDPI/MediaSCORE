@@ -19,7 +19,7 @@ class UnitForm extends BaseUnitForm {
         $this->setWidget('notes', new sfWidgetFormTextarea());
         $this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
 
-        $voidFields = array('storage_location_id', 'parent_node_id', 'status', 'location', 'format_id', 'created_at', 'updated_at', 'unit_personnel');
+        $voidFields = array('storage_location_id', 'parent_node_id', 'status', 'location', 'format_id', 'created_at', 'updated_at','name_slug', 'unit_personnel');
         if ($this->getOption('action') == 'edit')
             $voidFields[] = 'creator_id';
         else
@@ -52,8 +52,8 @@ class UnitForm extends BaseUnitForm {
         
     }
  public function bind(array $taintedValues = null, array $taintedFiles = null) {
-        
-            $taintedValues['name_slug'] = $taintedValues['name'];
+         
+//            $taintedValues['name_slug'] = $taintedValues['name'];
         
         parent::bind($taintedValues, $taintedFiles);
     }

@@ -18,7 +18,7 @@ class BetacamForm extends BaseBetacamForm {
         $this->setWidget('size', new sfWidgetFormChoice(array('choices' => Betacam::$constants[0])));
         $this->setValidator('size', new sfValidatorString(array('required' => false)));
         $this->getWidget('size')->setLabel('Size:&nbsp;');
-        
+
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => Betacam::$constants[1])));
         $this->setValidator('format', new sfValidatorString(array('required' => false)));
         $this->getWidget('format')->setLabel('Format:&nbsp;');
@@ -27,16 +27,16 @@ class BetacamForm extends BaseBetacamForm {
         $this->setValidator('soft_binder_syndrome', new sfValidatorString(array('required' => false)));
         $this->getWidget('soft_binder_syndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true)));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('style' => 'float:none;')));
         $this->setDefault('pack_deformation', 0);
-        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
-
+        $this->setDefault('pack_deformation', -1);
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-        
-         foreach (array('noise_reduction',
-             'duration_type_methodology',
+
+        foreach (array('noise_reduction',
+    'duration_type_methodology',
     'tape_type',
     'slow_speed',
     'sound_field',

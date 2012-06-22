@@ -20,7 +20,7 @@
                     <?php echo $form['name']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['name']->render(array('title'=>'The name commonly used to refer to the storage location.')); ?> <div class="help-text">The name commonly used to refer to the storage location.</div>
+                    <?php echo $form['name']->render(array('title'=>'The name commonly used to refer to the storage location.')); ?> 
                     <?php echo $form['name']->renderError(); ?>
                 </td>
             </tr>
@@ -30,7 +30,7 @@
                     <?php echo $form['resident_structure_description']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['resident_structure_description']->render(array('title'=>'Select the environment that best describes the environment for this storage location. See help documentation for guidance.')); ?> <div class="help-text">Select the environment that best describes the environment for this storage location. See help documentation for guidance.</div>
+                    <?php echo $form['resident_structure_description']->render(); ?> 
                     <?php echo $form['resident_structure_description']->renderError(); ?>
                 </td>
             </tr>
@@ -40,7 +40,7 @@
                     <?php echo $form['env_rating']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['env_rating']->render(); ?> 
+                    <?php echo $form['env_rating']->render(array('title'=>'Select the environment that best describes the environment for this storage location. See help documentation for guidance.')); ?> 
                     <?php echo $form['env_rating']->renderError(); ?>
                 </td>
             </tr>

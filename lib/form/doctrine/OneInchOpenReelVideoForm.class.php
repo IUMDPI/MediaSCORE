@@ -18,14 +18,14 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]),array('onchange'=>'checkFormat();')));
         $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1])));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true)));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('style'=>'float:none;')));
 
-        $this->setDefault('pack_deformation', 0);
+        $this->setDefault('pack_deformation', -1);
 
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->setValidator('reelSize', new sfValidatorString(array('required' => true)));
         $this->setValidator('whiteResidue', new sfValidatorBoolean());
-        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
 
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
         $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');

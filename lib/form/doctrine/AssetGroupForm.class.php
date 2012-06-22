@@ -27,7 +27,7 @@ class AssetGroupForm extends BaseAssetGroupForm {
 
         
 
-        $voidFields = array('created_at', 'updated_at', 'storage_location_id', 'unit_personnel');
+        $voidFields = array('created_at', 'updated_at', 'storage_location_id', 'unit_personnel','name_slug');
         foreach (array('format_id', 'parent_node_id', 'type') as $hiddenField)
             $this->setWidget($hiddenField, new sfWidgetFormInputHidden());
 
@@ -59,7 +59,7 @@ class AssetGroupForm extends BaseAssetGroupForm {
     }
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
 
-        $taintedValues['name_slug'] = $taintedValues['name'];
+//        $taintedValues['name_slug'] = $taintedValues['name'];
 
         parent::bind($taintedValues, $taintedFiles);
     }

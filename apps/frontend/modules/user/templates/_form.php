@@ -5,7 +5,7 @@
     <?php if (!$form->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
     <?php endif; ?>
-    <table>
+        <table style="width: 50%;">
         <tfoot>
             <tr>
                 <td colspan="2">
@@ -106,7 +106,7 @@
                         <?php echo $form['role']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['role']->render(array('title'=>'Select the role of the user within this application')); ?> <span class="help-text">Select the role of the user within this application</span> 
+                        <?php echo $form['role']->render(array('title'=>'Select the role of the user within this application')); ?> 
                         <?php echo $form['role']->renderError(); ?>
                     </td>
 

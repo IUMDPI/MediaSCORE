@@ -28,7 +28,7 @@ else
             </tfoot>
             <tbody>
                 <?php if ($form->getObject()->isNew()) { ?>
-                
+
                     <tr>
                         <th>
                             <?php echo $form->renderHiddenFields(); ?>
@@ -45,7 +45,7 @@ else
                             <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['inst_id']->render(array('title' => 'IU\'s identifier if applicable')); ?> <div class="help-text">IU's identifier if applicable</div>
+                            <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
                             <?php echo $form['inst_id']->renderError(); ?>
                         </td>
 
@@ -55,7 +55,7 @@ else
                             <?php echo $form['location']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room')); ?> <div class="help-text">Provide a specific location within the storage location such as a shelf number or area of a room</div>
+                            <?php echo $form['location']->render(); ?> 
                             <?php echo $form['location']->renderError(); ?>
                         </td>
 
@@ -65,8 +65,8 @@ else
                             <?php echo $form['resident_structure_description']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['resident_structure_description']->render(array('onchange'=>'checkLocationStatus();')); ?> 
-                            <span style="display: none;" id="storageAtLogin" class="warning">The selected storage location does not match to the current selected storage location!</span>
+                            <?php echo $form['resident_structure_description']->render(array('onchange' => 'checkLocationStatus();', 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
+                            <span style="display: none;" id="storageAtLogin" class="warning">The selected storage location does not match to the login selected storage location!</span>
                             <?php echo $form['resident_structure_description']->renderError(); ?>
                         </td>
 
@@ -87,7 +87,7 @@ else
                             <?php echo $form['notes']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['notes']->render(array('title' => 'Explain what is distinctive about this subcollection')); ?> <div class="help-text">Explain what is distinctive about this subcollection</div>
+                            <?php echo $form['notes']->render(array('title' => 'Explain what is distinctive about this subcollection.')); ?>
                             <?php echo $form['notes']->renderError(); ?>
                         </td>
 
@@ -104,8 +104,10 @@ else
                                         <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
                                     <?php } else { ?>
                                         <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-                                    <?php }
-                                } ?>
+                                    <?php
+                                    }
+                                }
+                                ?>
 
                             </select>
                             <!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
@@ -115,8 +117,10 @@ else
                                         <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
                                     <?php } else { ?>
                                         <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-        <?php }
-    } ?>
+                                    <?php
+                                    }
+                                }
+                                ?>
                             </select>
                         </td>
                     </tr>
@@ -130,23 +134,23 @@ else
                                         <div class="left-column"><?php echo $form->renderHiddenFields(); ?>
                                             <b><?php echo $form['name']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-    <?php echo $form['name']->render(); ?> 
-    <?php echo $form['name']->renderError(); ?>
+                                            <?php echo $form['name']->render(); ?> 
+                                             <?php echo $form['name']->renderError(); ?>
                                         </div>
                                     </div>
 
                                     <div class="row clearfix">
                                         <div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-    <?php echo $form['location']->render(); ?>
-    <?php echo $form['location']->renderError(); ?>
+                                            <?php echo $form['location']->render(); ?>
+                                            <?php echo $form['location']->renderError(); ?>
                                         </div>
                                     </div>
 
                                     <div class="row clearfix">
                                         <div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <div><?php echo $form['inst_id']->render(); ?>
+                                            <div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?>
     <?php echo $form['inst_id']->renderError(); ?></div>
                                         </div>
                                     </div>
@@ -155,21 +159,21 @@ else
                                         <div class="left-column"><b><?php echo $form['resident_structure_description']->renderLabel(); ?></b></div>
                                         <div class="right-column">
                                             <div>
-    <?php echo $form['resident_structure_description']->render(); ?>
+                                                <?php echo $form['resident_structure_description']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row clearfix">
-    <?php echo $form['resident_structure_description']->renderError(); ?>
+                                         <?php echo $form['resident_structure_description']->renderError(); ?>
                                     </div>
                                 </div>
 
                                 <div class="right-column-container">
                                     <div class="row">
                                         <div class="left-column"><b><?php echo $form['notes']->renderLabel(); ?></b></div>
-    <?php echo $form['notes']->render(array('style' => 'width:450px;')); ?>
-    <?php echo $form['notes']->renderError(); ?>
+                                            <?php echo $form['notes']->render(array('style' => 'width:450px;','title' => 'Explain what is distinctive about this subcollection.')); ?>
+                                            <?php echo $form['notes']->renderError(); ?>
                                     </div>
                                 </div>
                             </div>

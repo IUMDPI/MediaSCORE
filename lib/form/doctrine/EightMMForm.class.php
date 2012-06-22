@@ -19,14 +19,14 @@ class EightMMForm extends BaseEightMMForm
 	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => EightMM::$constants[0])));
 	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => EightMM::$constants[1])));
 	  $this->setWidget('binderSystem',new sfWidgetFormChoice(array('choices' => EightMM::$constants[2])));
-          $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => Film::$constants[4],'expanded'=>true)));
+          $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => Film::$constants[4],'expanded'=>true), array('style' => 'float:none;')));
 	
-        $this->setDefault('pack_deformation',0);
+        $this->setDefault('pack_deformation',-1);
           
           $this->setValidator('format', new sfValidatorString(array('required' => true)));
           $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
           $this->setValidator('binderSystem', new sfValidatorString(array('required' => true)));
-          $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
+          $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
 
         
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');

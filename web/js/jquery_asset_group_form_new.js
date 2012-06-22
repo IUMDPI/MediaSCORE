@@ -85,6 +85,7 @@ $('document').ready(function () {
                 function (storageLocations) {
                     $('#asset_group_resident_structure_description').html('');
                     if(storageLocations!= undefined && storageLocations.length>0){
+                        $('#asset_group_resident_structure_description').append('<option value="">Select</option>');
                         for(i in storageLocations){
                             if($('#unit-multiple-select').val()==globalUnitID){
                                 if(globalLocation.length>0){

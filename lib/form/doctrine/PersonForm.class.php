@@ -35,7 +35,7 @@ class PersonForm extends BasePersonForm
                 $this['forgot_password'],
                 $this['consultation_records_list']
     );
-    $this->setWidget('role', new sfWidgetFormInputText());
+    $this->setWidget('role', new sfWidgetFormInputText(array(),array('title'=>'Enter the role of the person within the Unit.')));
     $this->getWidget('first_name')->setLabel('<span class="required">*</span>Unit Personnel First Name:');
     $this->getWidget('last_name')->setLabel('<span class="required">*</span>Unit Personnel Last Name:');
     $this->getWidget('email_address')->setLabel('<span class="required">*</span>Unit Personnel Email:');

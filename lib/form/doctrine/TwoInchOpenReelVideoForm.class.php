@@ -17,15 +17,15 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
         parent::configure();
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[0])));
         $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[1])));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true)));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('style'=>'float:none;')));
         $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Film::$constants[5])));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
 
-        $this->setDefault('pack_deformation', 0);
+        $this->setDefault('pack_deformation', -1);
 
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->setValidator('reelSize', new sfValidatorString(array('required' => true)));
-        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->setValidator('whiteResidue', new sfValidatorBoolean());
 

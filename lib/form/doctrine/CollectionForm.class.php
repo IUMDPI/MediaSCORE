@@ -16,7 +16,7 @@ class CollectionForm extends BaseCollectionForm {
     public function configure() {
         parent::configure(); // SubUnitForm invocation
 
-        $voidFields = array('created_at', 'resident_structure_description');
+        $voidFields = array('created_at', 'resident_structure_description','name_slug');
         if ($this->getOption('action') == 'edit') {
             $voidFields[] = 'creator_id';
             $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
@@ -27,7 +27,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('parent_node_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('unitID'))));
         }
 
-        $this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => 'Collection Status:&nbsp;')));
+        $this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => '<span class="required">*</span>Collection Status:&nbsp;')));
 
 
         foreach ($voidFields as $voidField) {
@@ -40,16 +40,18 @@ class CollectionForm extends BaseCollectionForm {
 
         $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));
-
+        $this->setValidator('status', new sfValidatorString(array('required' => true)));
         $this->getValidator('name')->setMessages(array('required' => 'This is a required field..',
             'invalid' => 'Invalid Unit Name'));
         $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
             'inst_id' => 'Invalid ID'));
+        $this->getValidator('status')->setMessages(array('required' => 'This is a required field.',
+            'inst_id' => 'Invalid Status'));
     }
 
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
 
-        $taintedValues['name_slug'] = $taintedValues['name'];
+//        $taintedValues['name_slug'] = $taintedValues['name'];
 
         parent::bind($taintedValues, $taintedFiles);
     }

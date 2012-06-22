@@ -32,7 +32,8 @@ $(document).ready(function () {
     
     $('#collection_status').multiselect({
         'height':'auto',
-        'multiple':false
+        'multiple':false,
+        selectedList: 1 // 0-based index
     });
         
     $('#collection_save').click(function(event) {

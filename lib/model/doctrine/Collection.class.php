@@ -12,7 +12,7 @@
  */
 class Collection extends BaseCollection {
 
-    public static $statusConstants = array('Incomplete', 'In Progress', 'Completed');
+    public static $statusConstants = array(''=>'Select',0=>'Incomplete',1=> 'In Progress', 2=>'Completed');
 
     public function getUnitSlug() {
         $unit = Doctrine_Query::Create()

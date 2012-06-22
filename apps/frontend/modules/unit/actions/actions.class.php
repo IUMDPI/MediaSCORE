@@ -374,6 +374,8 @@ class unitActions extends sfActions {
                 return $error;
             }
             $unit = $form->save();
+            
+            
             $success = array('form' => true, 'id' => $unit->getId());
             return $success;
         }
