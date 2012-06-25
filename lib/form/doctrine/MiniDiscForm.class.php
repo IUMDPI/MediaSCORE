@@ -15,16 +15,16 @@ class MiniDiscForm extends BaseMiniDiscForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('recordingLayer', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[0])));
-        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[1])));
-        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true))); 
+        $this->setWidget('recordingLayer', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[0]),array('class'=>'override_required')));
+        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => MiniDisc::$constants[1]),array('class'=>'override_required')));
+        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('class'=>'override_required'))); 
         $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing, oxidation, discoloration or delamination')));
-        $this->setDefault('physicalDamage', 0);
+        $this->setDefault('physicalDamage', -1);
         
 
         $this->setValidator('recordingLayer', new sfValidatorString(array('required' => true)));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
-         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
+         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
          $this->setValidator('materialsBreakdown', new sfValidatorBoolean());
         
 

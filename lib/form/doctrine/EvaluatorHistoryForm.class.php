@@ -61,7 +61,7 @@ class EvaluatorHistoryForm extends BaseEvaluatorHistoryForm
   public function updateDefaultsFromObject() {
       parent::updateDefaultsFromObject();
       if($this->getOption('action')=='new'){
-          $this->setDefault('consulted_personnel_list', sfContext::getInstance()->getUser()->getAttribute('personnel_list'));
+//          $this->setDefault('consulted_personnel_list', sfContext::getInstance()->getUser()->getAttribute('personnel_list'));
       }
      
   }

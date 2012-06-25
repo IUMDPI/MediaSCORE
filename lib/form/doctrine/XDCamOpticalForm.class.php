@@ -16,19 +16,19 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm
   public function configure()
   {
 	  parent::configure();
-	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[0]),array('onchange'=>'checkFormat();')));
-	  $this->setWidget('capacityLayers',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[1])));
-	  $this->setWidget('codec',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2]),array('title'=>'Only active if SD is selected as format version','onchange'=>'checkCodec();')));
-	  $this->setWidget('dataRate',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[3]),array('title'=>'Only active if IMX is selected as codec')));
-          $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
+	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[0]),array('onchange'=>'checkFormat();','class'=>'override_required')));
+	  $this->setWidget('capacityLayers',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[1]),array('class'=>'override_required')));
+	  $this->setWidget('codec',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2]),array('title'=>'Only active if SD is selected as format version','onchange'=>'checkCodec();','class'=>'override_required')));
+	  $this->setWidget('dataRate',new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[3]),array('title'=>'Only active if IMX is selected as codec','class'=>'override_required')));
+          $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('class'=>'override_required')));
         
-        $this->setDefault('physicalDamage', 0);
+        $this->setDefault('physicalDamage', -1);
           
           $this->setValidator('format', new sfValidatorString(array('required' => true)));
           $this->setValidator('capacityLayers', new sfValidatorString(array('required' => true)));
           $this->setValidator('codec', new sfValidatorString(array('required' => true)));
           $this->setValidator('dataRate', new sfValidatorString(array('required' => false)));
-          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
+          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
           
           $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
           $this->getWidget('capacityLayers')->setLabel('<span class="required">*</span>Capacity (Layers):&nbsp;');

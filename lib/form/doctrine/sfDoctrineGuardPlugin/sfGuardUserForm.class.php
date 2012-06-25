@@ -51,7 +51,12 @@ class sfGuardUserForm extends PluginsfGuardUserForm {
         $this->setValidator('password', new sfValidatorString(array('required' => true)));
         $this->setValidator('password_again', new sfValidatorString(array('required' => true)));
         $this->setValidator('role', new sfValidatorString(array('required' => true)));
-        $this->setValidator('phone', new sfValidatorInteger());
+        $this->setValidator('phone', new sfValidatorInteger(array('required' => false)));
+//        $this->setValidator('phone', new sfValidatorAnd(
+//                        new sfValidatorString(array('required' => false)),
+//                        new sfValidatorRegex(array('pattern' => "^[\(]? ([^0-1]){1}([0-9]){2}([-,\),/,\.])*([ ])?([^0-1]){1}([0-9]){2}[ ]?[-]?[/]?[\.]? ([0-9]){4}$"),
+//                                array('invalid' => 'Your phone may contain (xxx) xxx-xxxx.'))
+//        ));
 
         $this->getValidator('first_name')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Invalid First Name.'));

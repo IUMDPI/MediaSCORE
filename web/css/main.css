@@ -67,3 +67,8 @@ div.growlUI h2 {
     font-size: 0.625rem;
     color: #e78f08;
 }
+.override_required{
+    float: none !important;
+    font-weight: normal !important;
+    color: black !important;
+}

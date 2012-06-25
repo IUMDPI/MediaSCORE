@@ -18,10 +18,10 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
         parent::configure();
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
-        $this->setWidget('opticaldisctype', new sfWidgetFormChoice(array('choices' => self::$type)));
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('class'=>'override_required')));
+        $this->setWidget('opticaldisctype', new sfWidgetFormChoice(array('choices' => self::$type),array('class'=>'override_required')));
         $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing, oxidation, discoloration or delamination'))); 
-        $this->setDefault('physicalDamage', 0);
+        $this->setDefault('physicalDamage', -1);
  
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
         $this->setValidator('opticaldisctype', new sfValidatorString(array('required' => true)));

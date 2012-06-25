@@ -35,7 +35,7 @@ function getCollectionAndLocation(){
                         selected='';
                     $('#collection-multiple-select').append('<option value="'+data[collection].id+'" '+selected+'>'+data[collection].name+'</option>');
                 }
-//                getStorageLocation($('#collection-multiple-select').val(),1);
+            //                getStorageLocation($('#collection-multiple-select').val(),1);
             }
             else{
                 $('#collection-multiple-select').append('<option value="">No Collection</option>');
@@ -191,7 +191,6 @@ $('document').ready(function () {
                         }
                     }
                     else{
-                        console.log(data);
                         $('#format-type-container').html(data);
                     }
                 },
@@ -229,7 +228,6 @@ $('document').ready(function () {
                     url: appBaseURL+'formattype/newform',
                     dataType:'html',
                     success: function(data,textStatus) {
-                        console.log(data);
                         $('#format-type-container').append(data);
                     //                        $('#format_specific').append(data);
                     }
@@ -327,11 +325,25 @@ $('document').ready(function () {
         $.get(
             appBaseURL+'person/getPersonsForAssetGroup',
             {
-                ag:assetGroupID
+                //                ag:assetGroupID
+                u:$('#unit-multiple-select').val()
             },
             function (persons) {
-                for(i in persons)
-                    $('<option value="'+persons[i].id+'">'+persons[i].first_name+' '+persons[i].last_name+'</option>').appendTo('#evaluator_history_person_list');
+                if(persons.list.length>0){
+                    $('#evaluator_history_consulted_personnel_list').html('');
+                    for(i in persons.list){
+                        $('#evaluator_history_consulted_personnel_list').append('<option value="'+persons.list[i].id+'" id="person_'+persons.list[i].id+'">'+persons.list[i].first_name+' '+persons.list[i].last_name+'</option>');
+                    }
+                    if(persons.login_person!=undefined && persons.login_person!=null){
+                        for(person in persons.login_person){
+                           $('#person_'+persons.login_person[person]).attr('selected','selected');
+                        }
+                    }
+                }
+                else{
+                    $('#evaluator_history_consulted_personnel_list').html('<option value="">No Personnel</option>');
+                    
+                }
             });
 
         /*

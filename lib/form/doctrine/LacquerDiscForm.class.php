@@ -19,19 +19,19 @@ class LacquerDiscForm extends BaseLacquerDiscForm
 	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => LacquerDisc::$constants)));
 	$this->setWidget('delamination',new sfWidgetFormInputCheckbox());
 	$this->setWidget('plasticizerExudation',new sfWidgetFormInputCheckbox());
-        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.'))); 
+        $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.','class'=>'override_required'))); 
         
         $this->getWidget('substrate')->setLabel('<span class="required">*</span>Substrate:&nbsp;');
         $this->getWidget('delamination')->setLabel('Delamination:&nbsp;');
         $this->getWidget('plasticizerExudation')->setLabel('Plasticizer Exudation:&nbsp;');
         $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
           
-          $this->setDefault('physicalDamage', 0);  
+          $this->setDefault('physicalDamage', -1);  
         
         $this->setValidator('substrate',new sfValidatorString(array('required' => true))); 
         $this->setValidator('delamination', new sfValidatorBoolean());
          $this->setValidator('plasticizerExudation', new sfValidatorBoolean());
-         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
+         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         

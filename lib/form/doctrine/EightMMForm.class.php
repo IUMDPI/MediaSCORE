@@ -16,10 +16,10 @@ class EightMMForm extends BaseEightMMForm
   public function configure()
   {
 	  parent::configure();
-	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => EightMM::$constants[0])));
-	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => EightMM::$constants[1])));
-	  $this->setWidget('binderSystem',new sfWidgetFormChoice(array('choices' => EightMM::$constants[2])));
-          $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => Film::$constants[4],'expanded'=>true), array('style' => 'float:none;')));
+	  $this->setWidget('format',new sfWidgetFormChoice(array('choices' => EightMM::$constants[0]),array('class'=>'override_required')));
+	  $this->setWidget('recordingSpeed',new sfWidgetFormChoice(array('choices' => EightMM::$constants[1]),array('class'=>'override_required')));
+	  $this->setWidget('binderSystem',new sfWidgetFormChoice(array('choices' => EightMM::$constants[2]),array('class'=>'override_required')));
+          $this->setWidget('pack_deformation',new sfWidgetFormChoice(array('choices' => Film::$constants[4],'expanded'=>true), array('class'=>'override_required')));
 	
         $this->setDefault('pack_deformation',-1);
           

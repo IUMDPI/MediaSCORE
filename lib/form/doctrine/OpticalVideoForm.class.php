@@ -15,11 +15,11 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('opticalDiscType', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[0])));
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[1])));
+        $this->setWidget('opticalDiscType', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[0]),array('class'=>'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[1]),array('class'=>'override_required')));
         $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true)));
         $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing, oxidation, discoloration or delamination')));
-        $this->setDefault('physicalDamage', 0);
+        $this->setDefault('physicalDamage', -1);
 
         $this->setValidator('opticalDiscType', new sfValidatorString(array('required' => true)));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));

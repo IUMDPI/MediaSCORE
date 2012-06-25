@@ -15,10 +15,10 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]),array('onchange'=>'checkFormat();')));
-        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1])));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]),array('onchange'=>'checkFormat();','class'=>'override_required')));
+        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1]),array('class'=>'override_required')));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('style'=>'float:none;')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class'=>'override_required')));
 
         $this->setDefault('pack_deformation', -1);
 

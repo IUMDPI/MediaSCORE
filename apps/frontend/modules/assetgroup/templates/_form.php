@@ -55,7 +55,7 @@ else
                             <?php echo $form['location']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['location']->render(); ?> 
+                            <?php echo $form['location']->render(array( 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
                             <?php echo $form['location']->renderError(); ?>
                         </td>
 
@@ -65,7 +65,7 @@ else
                             <?php echo $form['resident_structure_description']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['resident_structure_description']->render(array('onchange' => 'checkLocationStatus();', 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
+                            <?php echo $form['resident_structure_description']->render(array('onchange' => 'checkLocationStatus();')); ?> 
                             <span style="display: none;" id="storageAtLogin" class="warning">The selected storage location does not match to the login selected storage location!</span>
                             <?php echo $form['resident_structure_description']->renderError(); ?>
                         </td>
@@ -142,10 +142,10 @@ else
                                     <div class="row clearfix">
                                         <div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <?php echo $form['location']->render(); ?>
+                                            <?php echo $form['location']->render(array( 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
                                             <?php echo $form['location']->renderError(); ?>
                                         </div>
-                                    </div>
+                                    </div> 
 
                                     <div class="row clearfix">
                                         <div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
@@ -159,7 +159,7 @@ else
                                         <div class="left-column"><b><?php echo $form['resident_structure_description']->renderLabel(); ?></b></div>
                                         <div class="right-column">
                                             <div>
-                                                <?php echo $form['resident_structure_description']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
+                                                <?php echo $form['resident_structure_description']->render(); ?>
 
                                             </div>
                                         </div>

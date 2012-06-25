@@ -20,7 +20,7 @@ class OpenReelAudiotapePVCForm extends BaseOpenReelAudiotapePVCForm
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         
         $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
-        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2]),array('class'=>'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
         
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));

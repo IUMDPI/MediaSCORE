@@ -5,7 +5,7 @@
     <?php if (!$form->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
     <?php endif; ?>
-        <table style="width: 50%;">
+    <table style="width: 50%;">
         <tfoot>
             <tr>
                 <td colspan="2">
@@ -52,7 +52,7 @@
                 </td>
 
             </tr>
-            
+
             <?php if ($sf_user->getGuardUser()->getRole() == 1 || !$form->getObject()->isNew()) { ?>
                 <tr>
                     <th>
@@ -60,10 +60,12 @@
                         <?php echo $form['password']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['password']->render(); ?> 
+                       
                         <?php
                         if (!$form->getObject()->isNew()) {
-                            echo '<div class="help-text">Leave blank if you not want to change it</div>';
+                            echo $form['password']->render(array('title' => 'User may reset password by selecting "forgot password" link at login'));
+                        } else {
+                            echo $form['password']->render();
                         }
                         ?>
                         <?php echo $form['password']->renderError(); ?>
@@ -76,42 +78,49 @@
                         <?php echo $form['password_again']->renderLabel(); ?>
                     </th>
                     <td>
-                        <?php echo $form['password_again']->render(); ?> 
+
                         <?php
                         if (!$form->getObject()->isNew()) {
-                            echo '<div class="help-text">Leave blank if you not want to change it</div>';
+                            echo $form['password_again']->render(array('title' => 'User may reset password by selecting "forgot password" link at login'));
+                        } else {
+                            echo $form['password_again']->render();
                         }
                         ?>
 
-                        <?php echo $form['password_again']->renderError(); ?>
+
+    <?php echo $form['password_again']->renderError(); ?>
                     </td>
 
                 </tr>
-            <?php } ?>
+<?php } ?>
             <tr>
                 <th>
 
-                    <?php echo $form['phone']->renderLabel(); ?>
+<?php echo $form['phone']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['phone']->render(); ?> 
+<?php echo $form['phone']->render(); ?> 
                     <?php echo $form['phone']->renderError(); ?>
                 </td>
 
             </tr>
-            <?php if ($sf_user->getGuardUser()->getRole() == 0 ) {$style='style="display:none;"';}else{$style='';} ?>
-                <tr <?php echo $style;?>>
-                    <th>
+<?php if ($sf_user->getGuardUser()->getRole() == 0) {
+    $style = 'style="display:none;"';
+} else {
+    $style = '';
+} ?>
+            <tr <?php echo $style; ?>>
+                <th>
 
-                        <?php echo $form['role']->renderLabel(); ?>
-                    </th>
-                    <td>
-                        <?php echo $form['role']->render(array('title'=>'Select the role of the user within this application')); ?> 
-                        <?php echo $form['role']->renderError(); ?>
-                    </td>
+                    <?php echo $form['role']->renderLabel(); ?>
+                </th>
+                <td>
+<?php echo $form['role']->render(array('title' => 'Select the role of the user within this application')); ?> 
+<?php echo $form['role']->renderError(); ?>
+                </td>
 
-                </tr>
-            
+            </tr>
+
         </tbody>
     </table>
 </form>

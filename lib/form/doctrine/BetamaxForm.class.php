@@ -15,9 +15,9 @@ class BetamaxForm extends BaseBetamaxForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Betamax::$constants[0])));
-        $this->setWidget('oxide', new sfWidgetFormChoice(array('choices' => Betamax::$constants[1])));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('style' => 'float:none;')));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Betamax::$constants[0]),array('class'=>'override_required')));
+        $this->setWidget('oxide', new sfWidgetFormChoice(array('choices' => Betamax::$constants[1]),array('class'=>'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class'=>'override_required')));
 
         
 

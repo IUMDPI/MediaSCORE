@@ -22,21 +22,23 @@ class MetalDiscForm extends BaseMetalDiscForm
 		));*/
 	  $this->setWidget('material',new sfWidgetFormChoice(array('choices' => MetalDisc::$constants)));
 	  $this->setWidget('oxidationCorrosion',new sfWidgetFormInputCheckbox());
-	  $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.'))); 
+	  $this->setWidget('physicalDamage',new sfWidgetFormChoice(array('choices' => MetalDisc::$damage,'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.','class'=>'override_required'))); 
           
           $this->getWidget('material')->setLabel('<span class="required">*</span>Material:&nbsp;');
           $this->getWidget('oxidationCorrosion')->setLabel('Oxidation / Corrosion:&nbsp;');
           $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
           
-          $this->setDefault('physicalDamage', 0);  
+          $this->setDefault('physicalDamage', -1);  
           
           $this->setValidator('material', new sfValidatorString(array('required' => true)));
           $this->setValidator('oxidationCorrosion',new sfValidatorBoolean());
-          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => false)));
+          $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
        
         
-        $this->getValidator('material')->setMessages(array('required' => 'This is a required field.',
-            'invalid' => 'Invalid Unit Name'));
+        $this->getValidator('material')->setMessages(array('required' => 'Required.',
+            'invalid' => 'Invalid.'));
+        $this->getValidator('physicalDamage')->setMessages(array('required' => 'Required.',
+            'invalid' => 'Invalid.'));
         
         
         foreach (array('pack_deformation',

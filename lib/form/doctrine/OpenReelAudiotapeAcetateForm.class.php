@@ -16,11 +16,11 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
     public function configure() {
         parent::configure();
         $this->setWidget('vinegarOdor', new sfWidgetFormInputCheckbox());
-        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
-        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2])));
+        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3]),array('class'=>'override_required')));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2]),array('class'=>'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
-        $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0])));
-        $this->setWidget('softBinderSyndrome', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1])));
+        $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0]),array('class'=>'override_required')));
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1]),array('class'=>'override_required')));
 
 
 

@@ -15,23 +15,23 @@ class VHSForm extends BaseVHSForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => VHS::$constants[0])));
+        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => VHS::$constants[0]),array('class' => 'override_required')));
         $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
         
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1])));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1]),array('class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
         
-        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2])));
+        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2]),array('class' => 'override_required')));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
         
-        $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1)));
+        $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1),array('class' => 'override_required')));
         $this->setValidator('soft_binder_syndrome', new sfValidatorString(array('required' => false)));
         $this->getWidget('soft_binder_syndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('style'=>'float:none;')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
