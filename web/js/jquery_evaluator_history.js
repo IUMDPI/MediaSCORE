@@ -330,15 +330,18 @@ $('document').ready(function () {
             },
             function (persons) {
                 if(persons.list.length>0){
+                    selectedPersons=$('#evaluator_history_consulted_personnel_list').val();
+                   
                     $('#evaluator_history_consulted_personnel_list').html('');
                     for(i in persons.list){
                         $('#evaluator_history_consulted_personnel_list').append('<option value="'+persons.list[i].id+'" id="person_'+persons.list[i].id+'">'+persons.list[i].first_name+' '+persons.list[i].last_name+'</option>');
                     }
-                    if(persons.login_person!=undefined && persons.login_person!=null){
-                        for(person in persons.login_person){
-                           $('#person_'+persons.login_person[person]).attr('selected','selected');
+                    if(selectedPersons!=undefined && selectedPersons!=null){
+                        for(person in selectedPersons){
+                            $('#person_'+selectedPersons[person]).attr('selected','selected');
                         }
                     }
+
                 }
                 else{
                     $('#evaluator_history_consulted_personnel_list').html('<option value="">No Personnel</option>');
