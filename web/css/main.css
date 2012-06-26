@@ -72,3 +72,7 @@ div.growlUI h2 {
     font-weight: normal !important;
     color: black !important;
 }
+#personForm input{
+    color: black !important;
+    font-weight: normal !important;
+}

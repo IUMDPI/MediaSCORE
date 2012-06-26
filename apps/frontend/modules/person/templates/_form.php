@@ -15,7 +15,7 @@
         </td>
       </tr>
     </tfoot>
-    <tbody>
+    <tbody id="personForm">
       <?php echo $form ?>
     </tbody>
   </table>
