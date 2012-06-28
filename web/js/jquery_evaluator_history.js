@@ -115,7 +115,7 @@ $('document').ready(function () {
 
     $('#asset-group-save').click(function(event) {
         event.preventDefault();
-        alert(1);
+        return false;
         $.blockUI({ message: null }); 
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
