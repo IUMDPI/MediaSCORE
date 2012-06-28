@@ -114,9 +114,9 @@ $('document').ready(function () {
     
 
     $('#asset-group-save').click(function(event) {
-        event.preventDefault();
-        return false;
-        $.blockUI({ message: null }); 
+        event.preventDefault();  
+        
+        $.blockUI({ message: null });
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
         moduleName=$('#format-type-model-name').val();
@@ -144,7 +144,8 @@ $('document').ready(function () {
                                         $('#asset-group-form').submit(); 
                                     }
                                     else{
-                                        $.unblockUI();
+                                        
+                                        $.unblockUI(); 
                                         $('#format_specific').html(data);
                                     }
                                     
@@ -157,12 +158,14 @@ $('document').ready(function () {
                         
                     }
                     else{
+                        
                         $.unblockUI();
                         $('#format-type-container').html(data);
                     }
                     
                 },
                 error: function(data,textStatus,errorThrown) {
+                    $.unblockUI();
                     alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
                     $('body').html(data['responseText']);
                 }
@@ -194,11 +197,13 @@ $('document').ready(function () {
                         }
                     }
                     else{
+                        
                         $.unblockUI();
                         $('#format-type-container').html(data);
                     }
                 },
                 error: function(data,textStatus,errorThrown) {
+                    $.unblockUI();
                     alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
                     $('body').html(data['responseText']);
                 }
@@ -233,17 +238,10 @@ $('document').ready(function () {
                     dataType:'html',
                     success: function(data,textStatus) {
                         $('#format-type-container').append(data);
-                    //                        $('#format_specific').append(data);
                     }
                 
                 });
-            //                $('#format-type-container').load(
-            //                    appBaseURL+'formattype/newform',
-            //                    {},
-            //                    function () {
-            //                        console.log(this);
-            //                        $('#asset_group_format_id').val('');
-            //                    });
+           
             }
         }
 
