@@ -220,6 +220,7 @@ FormatType:
     duration: { type: integer, notnull: true }
     duration_type: { type: string(255) }
     duration_type_methodology: { type: string(255) }
+    format_notes: { type:text }
 
 # The Specific Format Types
 

@@ -69,6 +69,7 @@ class FilmForm extends BaseFilmForm
         
          foreach (array('noise_reduction',
     'tape_type',
+    'format_notes',
     'thin_tape',
     'slow_speed',
     'sound_field',

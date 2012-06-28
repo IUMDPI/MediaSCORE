@@ -76,3 +76,6 @@ div.growlUI h2 {
     color: black !important;
     font-weight: normal !important;
 }
+.formattype_table tr:hover{
+    background: #DADADA;
+}

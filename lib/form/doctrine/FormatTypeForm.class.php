@@ -9,18 +9,20 @@
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class FormatTypeForm extends BaseFormatTypeForm {
-    public static $durationtype=array(''=>'Select',0=>'Calculated',1=>'estimated',2=>'max estimate');
+
+    public static $durationtype = array('' => 'Select', 0 => 'Calculated', 1 => 'estimated', 2 => 'max estimate');
 
     public function configure() {
-        $this->setWidget('duration_type', new sfWidgetFormChoice(array('choices'=>  self::$durationtype),array('title'=>'Calculated is when it is known definitively. Estimate is when you have some evidence available to inform a best guess. If you have no evidence the max estimate is used based on the maximum media duration.')));
-        $this->setWidget('generation',new sfWidgetFormChoice(array('choices' => MetalDisc::$generation)));
+        $this->setWidget('duration_type', new sfWidgetFormChoice(array('choices' => self::$durationtype), array('title' => 'Calculated is when it is known definitively. Estimate is when you have some evidence available to inform a best guess. If you have no evidence the max estimate is used based on the maximum media duration.')));
+        $this->setWidget('generation', new sfWidgetFormChoice(array('choices' => MetalDisc::$generation)));
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 0)));
         $this->setWidget('year_recorded', new sfWidgetFormInputText(array(), array('title' => 'If a range, enter a midpoint or a significant year')));
         $this->setWidget('copies', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if copies exist')));
         $this->setWidget('other_contaminants', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if the object contains dirt, oil, powder, crystals, foreign objects or other particulate matter')));
         $this->setWidget('duration', new sfWidgetFormInputText(array(), array('title' => 'Enter the actual or estimated playback time for the collection or asset group. This is the total duration for the entire asset group, in minutes. Not the average number of minutes per item.')));
         $this->setWidget('duration_type_methodology', new sfWidgetFormInputText(array(), array('title' => 'Describe the methodology and evidence used to calculate duration')));
-        
+        $this->setWidget('format_notes', new sfWidgetFormTextarea(array()));
+
         $this->getWidget('quantity')->setLabel('<span class="required">*</span>Quantity:&nbsp;');
         $this->getWidget('generation')->setLabel('<span class="required">*</span>Generation:&nbsp;');
         $this->getWidget('year_recorded')->setLabel('<span class="required">*</span>Year Recorded:&nbsp;');
@@ -32,19 +34,21 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->getWidget('duration')->setLabel('<span class="required">*</span>Duration:&nbsp;');
         $this->getWidget('duration_type')->setLabel('<span class="required">*</span>Duration Type:&nbsp;');
         $this->getWidget('duration_type_methodology')->setLabel('Duration type methodology:&nbsp;');
-        
-        
+        $this->getWidget('format_notes')->setLabel('Notes:&nbsp;');
+
+
         $this->setValidator('quantity', new sfValidatorInteger(array('required' => true)));
         $this->setValidator('generation', new sfValidatorString(array('required' => true)));
         $this->setValidator('year_recorded', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration', new sfValidatorNumber(array('required' => true)));
         $this->setValidator('duration_type', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => false)));
-        
-        
+        $this->setValidator('format_notes', new sfValidatorString(array('required' => false)));
+
+
 
         foreach (array('material',
-    'oxidationCorrosion', 
+    'oxidationCorrosion',
     'pack_deformation',
     'noise_reduction',
     'tape_type',

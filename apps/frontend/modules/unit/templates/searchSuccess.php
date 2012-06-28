@@ -309,7 +309,7 @@
     }
     function getRecords(){
         var search=new Array();
-        count=1;;
+        count=1;
         if(token>0){
             for(i=1;i<=token;){
                 if($('#search_string_'+count).length>0){

@@ -33,6 +33,7 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('tape_type',
+            'format_notes',
             'duration_type_methodology',
     'softBinderSyndrome',
     'thin_tape',

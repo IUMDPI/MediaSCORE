@@ -20,7 +20,7 @@ else
                     else {
                         $buttonValue = 'Continue';
                         ?>
-                        <td colspan="2"><input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for2('assetgroup', $collectionObj) ?>">cancel</a></td>
+                        <td colspan="2"><input id="asset-group-save" class="custom_button" onclick="saveForm();" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for2('assetgroup', $collectionObj) ?>">cancel</a></td>
                     <?php }
                     ?>
 

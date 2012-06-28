@@ -33,6 +33,7 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
 
         foreach (array('noise_reduction',
             'duration_type_methodology',
+            'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

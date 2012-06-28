@@ -42,6 +42,7 @@ DVCPRO HD has a red tape-door"','class' => 'override_required')));
         
         foreach (array('noise_reduction',
             'duration_type_methodology',
+            'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

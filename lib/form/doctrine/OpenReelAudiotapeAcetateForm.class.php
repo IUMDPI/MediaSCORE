@@ -30,19 +30,20 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
         $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
-        $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => true)));
+        $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => false)));
 
         $this->getWidget('vinegarOdor')->setLabel('Vinegar Odor:&nbsp;');
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
         $this->getWidget('tapethickness')->setLabel('Tape Thickness:&nbsp;');
         $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
         $this->getWidget('trackConfiguration')->setLabel('<span class="required">*</span>Track Configuration / Sound Field:&nbsp;');
-        $this->getWidget('softBinderSyndrome')->setLabel('<span class="required">*</span>Soft Binder Syndrome including Sticky Shed:&nbsp;');
+        $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('tape_type',
             'duration_type_methodology',
+            'format_notes',
     'thin_tape',
     'slow_speed',
     'sound_field',

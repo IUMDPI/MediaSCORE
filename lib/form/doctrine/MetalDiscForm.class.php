@@ -43,6 +43,7 @@ class MetalDiscForm extends BaseMetalDiscForm
         
         foreach (array('pack_deformation',
     'noise_reduction',
+    'format_notes',
     'tape_type',
     'thin_tape',
     'slow_speed',

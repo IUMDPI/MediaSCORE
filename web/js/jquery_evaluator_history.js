@@ -115,7 +115,7 @@ $('document').ready(function () {
 
     $('#asset-group-save').click(function(event) {
         event.preventDefault();
-
+        $.blockUI({ message: null }); 
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
         moduleName=$('#format-type-model-name').val();
@@ -143,6 +143,7 @@ $('document').ready(function () {
                                         $('#asset-group-form').submit(); 
                                     }
                                     else{
+                                        $.unblockUI();
                                         $('#format_specific').html(data);
                                     }
                                     
@@ -155,6 +156,7 @@ $('document').ready(function () {
                         
                     }
                     else{
+                        $.unblockUI();
                         $('#format-type-container').html(data);
                     }
                     
@@ -191,6 +193,7 @@ $('document').ready(function () {
                         }
                     }
                     else{
+                        $.unblockUI();
                         $('#format-type-container').html(data);
                     }
                 },
