@@ -116,7 +116,15 @@ $('document').ready(function () {
     $('#asset-group-save').click(function(event) {
         event.preventDefault();  
         
-        $.blockUI({ message: null });
+        $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
         moduleName=$('#format-type-model-name').val();
