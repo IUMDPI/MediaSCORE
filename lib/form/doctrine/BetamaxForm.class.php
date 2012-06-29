@@ -46,7 +46,7 @@ class BetamaxForm extends BaseBetamaxForm {
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
+    'sheddingSoftBinder',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

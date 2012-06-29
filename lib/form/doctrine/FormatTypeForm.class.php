@@ -39,12 +39,16 @@ class FormatTypeForm extends BaseFormatTypeForm {
 
         $this->setValidator('quantity', new sfValidatorInteger(array('required' => true)));
         $this->setValidator('generation', new sfValidatorString(array('required' => true)));
-        $this->setValidator('year_recorded', new sfValidatorString(array('required' => true)));
+//        $this->setValidator('year_recorded', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration', new sfValidatorNumber(array('required' => true)));
         $this->setValidator('duration_type', new sfValidatorString(array('required' => true)));
         $this->setValidator('duration_type_methodology', new sfValidatorString(array('required' => false)));
         $this->setValidator('format_notes', new sfValidatorString(array('required' => false)));
-
+        $this->getValidator('duration')->setMessages(array('required' => 'This is a required field.',
+            'invalid' => 'Please enter the duration in minutes using numbers only.'));
+        $this->setValidator('year_recorded', new sfValidatorRegex(array('pattern' => "/^[\s-0-9]*$/i"),
+                        array('invalid' => 'Please enter the year in numbers.'))
+        );
 
 
         foreach (array('material',

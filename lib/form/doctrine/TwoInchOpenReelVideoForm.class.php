@@ -40,7 +40,7 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
 
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-
+        $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
 
         foreach (array('noise_reduction',
             'duration_type_methodology',
@@ -56,7 +56,7 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
+    'sheddingSoftBinder',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

@@ -51,7 +51,7 @@ class EightMMForm extends BaseEightMMForm
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
+    'sheddingSoftBinder',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

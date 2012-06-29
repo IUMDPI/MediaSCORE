@@ -15,15 +15,19 @@ class LaserdiscForm extends BaseLaserdiscForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => Laserdisc::$constants),array('class'=>'override_required')));
+        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => Laserdisc::$constants), array('class' => 'override_required')));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
 
-        $this->setWidget('publicationYear', new sfWidgetFormInputText());
-        $this->setValidator('publicationYear', new sfValidatorString(array('required' => true)));
+        $this->setWidget('publicationYear', new sfWidgetFormInputText(array(),array('class' => 'override_required')));
+//        $this->setValidator('publicationYear', new sfValidatorInteger(array('required' => true,'min_length' => 4,)));
+        $this->setValidator('publicationYear', new sfValidatorAnd(array(
+                    new sfValidatorString(array('min_length' => 4, 'max_length' => 4),array('min_length' => 'Please enter a four digit numeric value (yyyy).', 'max_length' => 'Please enter a four digit numeric value (yyyy).')),
+                    new sfValidatorInteger(array('required' => true),array('required'=>'Please enter a four digit numeric value (yyyy).','invalid'=>'Please enter a four digit numeric value (yyyy).')),
+                )));
         $this->getWidget('publicationYear')->setLabel('<span class="required">*</span>Year of publication:&nbsp;');
 
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('class'=>'override_required')));
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('physicalDamage', -1);
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
         $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
@@ -31,8 +35,8 @@ class LaserdiscForm extends BaseLaserdiscForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

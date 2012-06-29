@@ -49,7 +49,7 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
+    'sheddingSoftBinder', 
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

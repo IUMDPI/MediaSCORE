@@ -1,24 +1,76 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<form action="<?php echo url_for('opticalvideo/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-<?php if (!$form->getObject()->isNew()): ?>
-<input type="hidden" name="sf_method" value="put" />
-<?php endif; ?>
-  <table>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-<!--          &nbsp;<a href="<?php //echo url_for('opticalvideo/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php //echo link_to('Delete', 'opticalvideo/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />-->
-        </td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
-  </table>
+<form action="<?php echo url_for('opticalvideo/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+    <?php if (!$form->getObject()->isNew()): ?>
+        <input type="hidden" name="sf_method" value="put" />
+    <?php endif; ?>
+    <table>
+        <tfoot>
+
+        </tfoot>
+        <tbody>
+            <tr>
+                <th>
+                    <?php echo $form->renderHiddenFields(); ?>
+                    <?php echo $form['format']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['format']->render(); ?> 
+                    <?php echo $form['format']->renderError(); ?>
+                </td>
+
+            </tr> 
+            <tr>
+                <th>
+                    <?php echo $form['opticalDiscType']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['opticalDiscType']->render(); ?> 
+                    <?php echo $form['opticalDiscType']->renderError(); ?>
+                </td>
+
+            </tr> 
+            <tr>
+                <th>
+                    <?php echo $form['reflectiveLayer']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['reflectiveLayer']->render(); ?> 
+                    <?php echo $form['reflectiveLayer']->renderError(); ?>
+                </td>
+
+            </tr> 
+            <tr>
+                <th>
+                    <?php echo $form['dataLayer']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['dataLayer']->render(); ?> 
+                    <?php echo $form['dataLayer']->renderError(); ?>
+                </td>
+
+            </tr> 
+            <tr>
+                <th>
+                    <?php echo $form['physicalDamage']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['physicalDamage']->render(); ?> 
+                    <?php echo $form['physicalDamage']->renderError(); ?>
+                </td>
+
+            </tr> 
+            <tr>
+                <th>
+                    <?php echo $form['materialsBreakdown']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['materialsBreakdown']->render(); ?> 
+                    <?php echo $form['materialsBreakdown']->renderError(); ?>
+                </td>
+
+            </tr> 
+        </tbody>
+    </table>
 </form>

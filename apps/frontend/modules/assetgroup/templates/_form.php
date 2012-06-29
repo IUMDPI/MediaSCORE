@@ -55,7 +55,7 @@ else
                             <?php echo $form['location']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['location']->render(array( 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
+                            <?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
                             <?php echo $form['location']->renderError(); ?>
                         </td>
 
@@ -104,7 +104,7 @@ else
                                         <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
                                     <?php } else { ?>
                                         <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-                                    <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -117,7 +117,7 @@ else
                                         <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         
                                     <?php } else { ?>
                                         <option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-                                    <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -135,14 +135,14 @@ else
                                             <b><?php echo $form['name']->renderLabel(); ?></b></div>
                                         <div class="right-column">
                                             <?php echo $form['name']->render(); ?> 
-                                             <?php echo $form['name']->renderError(); ?>
+                                            <?php echo $form['name']->renderError(); ?>
                                         </div>
                                     </div>
 
                                     <div class="row clearfix">
                                         <div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <?php echo $form['location']->render(array( 'title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
+                                            <?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
                                             <?php echo $form['location']->renderError(); ?>
                                         </div>
                                     </div> 
@@ -151,7 +151,7 @@ else
                                         <div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
                                         <div class="right-column">
                                             <div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?>
-    <?php echo $form['inst_id']->renderError(); ?></div>
+                                                <?php echo $form['inst_id']->renderError(); ?></div>
                                         </div>
                                     </div>
 
@@ -165,15 +165,15 @@ else
                                         </div>
                                     </div>
                                     <div class="row clearfix">
-                                         <?php echo $form['resident_structure_description']->renderError(); ?>
+                                        <?php echo $form['resident_structure_description']->renderError(); ?>
                                     </div>
                                 </div>
 
                                 <div class="right-column-container">
                                     <div class="row">
                                         <div class="left-column"><b><?php echo $form['notes']->renderLabel(); ?></b></div>
-                                            <?php echo $form['notes']->render(array('style' => 'width:450px;','title' => 'Explain what is distinctive about this subcollection.')); ?>
-                                            <?php echo $form['notes']->renderError(); ?>
+                                        <?php echo $form['notes']->render(array('style' => 'width:450px;', 'title' => 'Explain what is distinctive about this subcollection.')); ?>
+                                        <?php echo $form['notes']->renderError(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@ else
 
 
     </form>
-<?php if (!$form->getObject()->isNew()) { ?> 
+    <?php if (!$form->getObject()->isNew()) { ?> 
         <div id="format-type-container" class="section edit-asset-group clearfix">
 
         </div>
@@ -209,10 +209,10 @@ else
             <div class="left-column-container">
 
                 <div class="row clearfix">
-                    <div class="left-column" style="width: 215px;"><b>Format Type: </b></div>
+                    <div class="left-column" style="width: 215px;"><b><span class="required">*</span>Format Type: </b></div>
                     <div class="right-column">
                         <select id="format-type-model-name" onchange="getRelatedForm()">
-                            <option value ="" selected>Format</option>
+                            <option value ="" selected>Select</option>
                             <?php
                             foreach (FormatType::$typeNames as $formatTypeArray):
                                 foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
@@ -223,7 +223,9 @@ else
                             endforeach
                             ?>
                         </select>
+
                     </div>
+                    <div class="error_list" id="format_error" style="display: none;float: left;margin-top: 8px;">Please select the format type.</div>
                 </div>
             </div>
             <div style="clear: both;"></div>
@@ -233,5 +235,5 @@ else
         <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
         <div style="clear: both;"></div>
 
-<?php } ?>
+    <?php } ?>
 </div>

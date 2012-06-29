@@ -12,6 +12,6 @@
  */
 class MiniDisc extends BaseMiniDisc
 {
-	public static $constants = array(0 => array(''=>'Select',0 => 'Recordable',1 => 'Molded (Pre-Recorded)'),
-					1 => array(''=>'Select',0 => 'SP',1 => 'LP2',2 => 'LP4'));
+	public static $constants = array(0 => array(''=>'Select',0 => 'Recordable',1 => 'Molded (Pre-Recorded)',2=>'Unknown'),
+					1 => array(''=>'Select',0 => 'SP',1 => 'LP2',2 => 'LP4',3=>'Unknown'));
 }

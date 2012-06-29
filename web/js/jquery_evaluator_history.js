@@ -3,8 +3,8 @@ function getRelatedForm(){
     if($('#format-type-model-name').val()!=''){
         urlSuffix='/new';
         if($('#asset_group_format_id').val()!='')
-            //            urlSuffix='/edit/id/'+$('#asset_group_format_id').val();
-            $('#format_specific').empty();
+            $('#format_error').hide();
+        $('#format_specific').empty();
         $.ajax({
             type: 'POST',
             url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
@@ -152,6 +152,9 @@ $('document').ready(function () {
         moduleName=$('#format-type-model-name').val();
         if($('#format-type-model-name').val()==''){
             moduleName='formattype';
+            $('#format_error').show();
+            $.unblockUI();
+            return false;
         }
         if(actionName == 'update') {
             

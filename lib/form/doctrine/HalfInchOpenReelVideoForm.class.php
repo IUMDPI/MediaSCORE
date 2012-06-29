@@ -48,7 +48,7 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm {
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
+    'sheddingSoftBinder',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',
