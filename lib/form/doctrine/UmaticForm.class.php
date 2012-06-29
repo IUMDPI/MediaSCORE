@@ -24,7 +24,7 @@ class UmaticForm extends BaseUmaticForm {
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
 
         $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Umatic::$constants[1]),array('class' => 'override_required')));
-        $this->setValidator('formatVersion', new sfValidatorString(array('required' => false)));
+        $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
         $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1),array('class' => 'override_required')));
