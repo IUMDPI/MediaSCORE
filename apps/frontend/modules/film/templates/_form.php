@@ -35,7 +35,7 @@
                     <?php echo $form['colorFade']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['colorFade']->render(); ?> <div class="help-text">Will often give film a magenta appearance</div> 
+                    <?php echo $form['colorFade']->render(); ?> 
                     <?php echo $form['colorFade']->renderError(); ?>
                 </td>
 

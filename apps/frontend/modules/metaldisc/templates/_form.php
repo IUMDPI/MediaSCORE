@@ -35,7 +35,7 @@
                     <?php echo $form['physicalDamage']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['physicalDamage']->render(); ?> <div class="help-text">Note the presence of cracks, chips, and other externally caused damage. This does not include scratches or normal wear.</div>
+                    <?php echo $form['physicalDamage']->render(); ?> 
                     <?php echo $form['physicalDamage']->renderError(); ?>
                 </td>
 

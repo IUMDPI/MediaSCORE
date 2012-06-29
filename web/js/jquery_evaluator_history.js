@@ -1,3 +1,4 @@
+
 function getRelatedForm(){
     if($('#format-type-model-name').val()!=''){
         urlSuffix='/new';
@@ -83,7 +84,7 @@ function getStorageLocation(id,type){
         }
     });
 }
-
+var changes = false; 
 $('document').ready(function () {
     // Debugging
     debugAJAXRequest = function (url,requestType,requestData) {
@@ -104,7 +105,19 @@ $('document').ready(function () {
             }
         });
     }
+    $("input,textarea,select").keypress(function() {
+        changes=true;
+    });
+    $("select").click(function() {
+        changes=true;
+    });
     
+    window.onbeforeunload = function() {
+        if (changes)
+        {
+            return false; 
+        }
+    }
     appBaseURL = '/frontend_dev.php/';
     assetGroupID = $('#asset_group_id').val();
     if($('#collection-multiple-select').val()!='')
@@ -115,16 +128,18 @@ $('document').ready(function () {
 
     $('#asset-group-save').click(function(event) {
         event.preventDefault();  
-        
-        $.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
+        changes = false; 
+        $.blockUI({
+            css: { 
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+            }
+        }); 
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
         moduleName=$('#format-type-model-name').val();

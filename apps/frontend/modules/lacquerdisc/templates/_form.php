@@ -49,7 +49,7 @@
                     <?php echo $form['physicalDamage']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['physicalDamage']->render(); ?> <?php if($form['physicalDamage']->hasError()){echo '<div class="help-text"> Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.</div>';}?> 
+                    <?php echo $form['physicalDamage']->render(); ?> 
                     <?php echo $form['physicalDamage']->renderError(); ?>
                 </td>
 

@@ -26,7 +26,7 @@
                     <?php echo $form['thin_tape']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['thin_tape']->render(); ?> <?php if($form['thin_tape']->hasError()){echo '<div class="help-text"> Check the box if 120 or 180 minute cassettes.</div>';}?> 
+                    <?php echo $form['thin_tape']->render(); ?> 
                     <?php echo $form['thin_tape']->renderError(); ?>
                 </td>
 
@@ -37,7 +37,7 @@
                     <?php echo $form['slow_speed']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['slow_speed']->render(); ?> <?php if($form['slow_speed']->hasError()){echo '<div class="help-text"> Check the box if cassette is marked as recorded at 0.9375 ips.</div>';}?> 
+                    <?php echo $form['slow_speed']->render(); ?>
                     <?php echo $form['slow_speed']->renderError(); ?>
                 </td>
 

@@ -18,12 +18,12 @@
         checkFormat();
     });
     function checkFormat(){
-        formatype1 =new Array('Spot, 9"','10.5"','11.75"','14"');
-        formatype2 =new Array('8"','12.5"');
+        formatype1 =new Array('Select','Spot, 9"','10.5"','11.75"','14"');
+        formatype2 =new Array('Select','8"','12.5"');
         format=$('#one_inch_open_reel_video_format').val();
         reelsize=$('#one_inch_open_reel_video_reelSize').val();
         $('#one_inch_open_reel_video_reelSize').html('');
-         $('#one_inch_open_reel_video_reelSize').append('<option value="">Select</option>');
+//         $('#one_inch_open_reel_video_reelSize').append('<option value="" selected="selected">Select</option>');
         if(format==0 || format==1 || format==2){
            
             for(i=0;i<formatype1.length;i++){
@@ -31,17 +31,26 @@
                     selected='selected="selected"';
                 else
                     selected='';
-                $('#one_inch_open_reel_video_reelSize').append('<option value="'+i+'" '+selected+'>'+formatype1[i]+'</option>');
+                if(i==0){
+                    $('#one_inch_open_reel_video_reelSize').append('<option value="" '+selected+'>'+formatype1[i]+'</option>');
+                }
+                else{
+                    $('#one_inch_open_reel_video_reelSize').append('<option value="'+i+'" '+selected+'>'+formatype1[i]+'</option>');
+                }
+                
             }
         }
         else{
-            cnt=4;
+            cnt=3;
             for(i=0;i<formatype2.length;i++){
                if(cnt==reelsize)
                     selected='selected="selected"';
                 else
                     selected='';
-                $('#one_inch_open_reel_video_reelSize').append('<option value="'+cnt+'" '+selected+'>'+formatype2[i]+'</option>');
+                if(cnt==3)
+                    $('#one_inch_open_reel_video_reelSize').append('<option value="" '+selected+'>'+formatype2[i]+'</option>');
+                else
+                    $('#one_inch_open_reel_video_reelSize').append('<option value="'+cnt+'" '+selected+'>'+formatype2[i]+'</option>');
                 cnt++;
             }
         }

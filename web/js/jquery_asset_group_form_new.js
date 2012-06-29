@@ -1,6 +1,6 @@
 var globalLocation=new Array();
 var globalUnitID=null;
-var changes = true;       
+var changes = false;       
 function setSessionLocation(storageID,unitID){
     globalLocation=storageID;
     globalUnitID=unitID;
@@ -63,6 +63,13 @@ function checkLocationStatus(){
 $('document').ready(function () {
 
     getSessionStorage();
+    // check if user press key 
+    $("input,textarea,select").keypress(function() {
+        changes=true;
+    });
+    $("select").click(function() {
+        changes=true;
+    });
     
     window.onbeforeunload = function() {
         if (changes)
