@@ -22,7 +22,7 @@ class LaserdiscForm extends BaseLaserdiscForm {
         $this->setWidget('publicationYear', new sfWidgetFormInputText(array(),array('class' => 'override_required')));
 //        $this->setValidator('publicationYear', new sfValidatorInteger(array('required' => true,'min_length' => 4,)));
         $this->setValidator('publicationYear', new sfValidatorAnd(array(
-                    new sfValidatorString(array('min_length' => 4, 'max_length' => 4),array('min_length' => 'Please enter a four digit numeric value (yyyy).', 'max_length' => 'Please enter a four digit numeric value (yyyy).')),
+                    new sfValidatorString(array('min_length' => 4, 'max_length' => 4),array('min_length' => 'Year must be of 4 Numbers (yyyy).', 'max_length' => 'Year must be of 4 Numbers (yyyy).')),
                     new sfValidatorInteger(array('required' => true),array('required'=>'Please enter a four digit numeric value (yyyy).','invalid'=>'Please enter a four digit numeric value (yyyy).')),
                 )));
         $this->getWidget('publicationYear')->setLabel('<span class="required">*</span>Year of publication:&nbsp;');
