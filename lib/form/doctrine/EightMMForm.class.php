@@ -29,11 +29,11 @@ class EightMMForm extends BaseEightMMForm
           $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
 
         
-        $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
         $this->getWidget('binderSystem')->setLabel('<span class="required">*</span>Binder System:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
-        
+        $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
         

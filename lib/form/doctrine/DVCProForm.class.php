@@ -37,7 +37,7 @@ DVCPRO HD has a red tape-door"','class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
-
+$this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
         
         foreach (array('noise_reduction',

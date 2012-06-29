@@ -22,7 +22,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
 
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1]),array('onchange'=>'checkFormat();','class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
-        $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
 
         $this->setWidget('bitrate', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2]),array('title'=>'Mbps. Only active if IMX is selected as format','class' => 'override_required')));
@@ -37,7 +37,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
-
+$this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
 
 

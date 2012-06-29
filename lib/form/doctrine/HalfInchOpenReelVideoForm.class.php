@@ -26,11 +26,11 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm {
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
 
 
-        $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
-
+$this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 

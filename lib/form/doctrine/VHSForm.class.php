@@ -21,7 +21,7 @@ class VHSForm extends BaseVHSForm {
         
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1]),array('class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
-        $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         
         $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2]),array('class' => 'override_required')));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
@@ -37,7 +37,7 @@ class VHSForm extends BaseVHSForm {
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-        
+        $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
          foreach (array('noise_reduction',
              'duration_type_methodology',
              'format_notes',

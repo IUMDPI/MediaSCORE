@@ -30,6 +30,7 @@ class BetamaxForm extends BaseBetamaxForm {
         $this->getWidget('oxide')->setLabel('<span class="required">*</span>Oxide:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
         $this->setDefault('pack_deformation', -1);
+        $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('noise_reduction',

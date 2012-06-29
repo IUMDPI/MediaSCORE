@@ -28,7 +28,7 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
 
 
         $this->getWidget('opticalDiscType')->setLabel('<span class="required">*</span>Type:&nbsp;');
-        $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
         $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
 

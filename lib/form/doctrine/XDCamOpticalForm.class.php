@@ -37,7 +37,7 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm
           $this->getWidget('physicalDamage')->setLabel('<span class="required">*</span>Physical Damage:&nbsp;');
 
 	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
-        
+        $this->widgetSchema->moveField('format', 'before', 'materialsBreakdown');
         foreach (array('noise_reduction',
             'duration_type_methodology',
             'format_notes',
