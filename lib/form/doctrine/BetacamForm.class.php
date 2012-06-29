@@ -15,13 +15,13 @@ class BetacamForm extends BaseBetacamForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => Betacam::$constants[0])));
-        $this->setValidator('size', new sfValidatorString(array('required' => false)));
-        $this->getWidget('size')->setLabel('Size:&nbsp;');
+        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => Betacam::$constants[0]), array('class' => 'override_required')));
+        $this->setValidator('size', new sfValidatorString(array('required' => true)));
+        $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => Betacam::$constants[1])));
-        $this->setValidator('format', new sfValidatorString(array('required' => false)));
-        $this->getWidget('format')->setLabel('Format:&nbsp;');
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => Betacam::$constants[1]), array('class' => 'override_required')));
+        $this->setValidator('format', new sfValidatorString(array('required' => true)));
+        $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
         $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1)));
         $this->setValidator('soft_binder_syndrome', new sfValidatorString(array('required' => false)));
@@ -34,6 +34,7 @@ class BetacamForm extends BaseBetacamForm {
 
         $this->setDefault('pack_deformation', -1);
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
+        $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
         foreach (array('noise_reduction',
     'duration_type_methodology',
