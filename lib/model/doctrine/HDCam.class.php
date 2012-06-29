@@ -17,7 +17,7 @@ class HDCam extends BaseHDCam
 							1 => 'SQ',
 							2 => 'SR Lite',
 							3 => 'Unknown'),
-					2 => array(''=>'Select',0 => 'Interlace',
+					2 => array(''=>'Select',0 => 'Interlaced',
 							1 => 'Progressive',
 							2 => 'Unknown'));
 }

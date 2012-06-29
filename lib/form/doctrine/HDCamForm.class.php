@@ -40,7 +40,7 @@ class HDCamForm extends BaseHDCamForm {
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
-
+$this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
         
