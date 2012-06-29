@@ -225,7 +225,7 @@ else
                         </select>
 
                     </div>
-                    <div class="error_list" id="format_error" style="display: none;float: left;margin-top: 8px;">Please select the format type.</div>
+                    <div class="error_list" id="format_error" style="display: none;float: left;margin-top: 8px;">Required.Please select the format type.</div>
                 </div>
             </div>
             <div style="clear: both;"></div>
