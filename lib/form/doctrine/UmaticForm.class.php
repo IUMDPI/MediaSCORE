@@ -20,7 +20,7 @@ class UmaticForm extends BaseUmaticForm {
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
         $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1]),array('class' => 'override_required')));
-        $this->setValidator('format', new sfValidatorString(array('required' => true)));
+        $this->setValidator('format', new sfValidatorString(array('required' => false)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format:&nbsp;');
 
         $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Umatic::$constants[1]),array('class' => 'override_required')));
@@ -65,7 +65,7 @@ class UmaticForm extends BaseUmaticForm {
     'codec',
     'dataRate',
     'sheddingSoftBinder',
-    'formatVersion',
+    'format',
     'oxide',
     'binderSystem',
     'reelSize',
