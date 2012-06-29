@@ -10,7 +10,14 @@ function getRelatedForm(){
             url: appBaseURL+$('#format-type-model-name').val()+urlSuffix,
             success: function(data,textStatus) {
                 $('#format_specific').html('');
+                
                 $('#format_specific').append(data);
+                $("input,textarea,select").keypress(function() {
+                    changes=true;
+                });
+                $("select").click(function() {
+                    changes=true;
+                });
             }
                 
         });
@@ -260,7 +267,14 @@ $('document').ready(function () {
                     url: appBaseURL+'formattype/newform',
                     dataType:'html',
                     success: function(data,textStatus) {
+                       
                         $('#format-type-container').append(data);
+                        $("input,textarea,select").keypress(function() {
+                            changes=true;
+                        });
+                        $("select").click(function() {
+                            changes=true;
+                        });
                     }
                 
                 });
@@ -328,7 +342,15 @@ $('document').ready(function () {
             type: 'POST',
             url: appBaseURL+'formattype/edit/id/'+$('#asset_group_format_id').val(),
             success: function(data,textStatus) {
+                
                 $('#format-type-container').html(data);
+                $("input,textarea,select").keypress(function() {
+                    changes=true;
+                });
+                $("select").click(function() {
+                    changes=true;
+                });
+                
             },
             error: function(data,textStatus,errorThrown) {
                 alert('Error: '+errorThrown+"\n"+'Details: '+textStatus);
