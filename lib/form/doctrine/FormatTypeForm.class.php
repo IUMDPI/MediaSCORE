@@ -46,8 +46,8 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setValidator('format_notes', new sfValidatorString(array('required' => false)));
         $this->getValidator('duration')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Please enter the duration in minutes using numbers only.'));
-        $this->setValidator('year_recorded', new sfValidatorRegex(array('pattern' => "/^[\s-0-9]*$/i"),
-                        array('invalid' => 'Please enter the year in numbers.'))
+        $this->setValidator('year_recorded', new sfValidatorRegex(array('pattern' => "/^([\s-0-9]*|unknown|UNKNOWN)$/i"),
+                        array('invalid' => 'Please enter the year in numbers or "unknown".'))
         );
         
 
