@@ -20,9 +20,10 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm {
         $this->setWidget('codec', new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[2], 'multiple' => true), array('title' => 'Only active if SD is selected as format version', 'onchange' => 'checkCodec();', 'class' => 'override_required')));
         $this->setWidget('dataRate', new sfWidgetFormChoice(array('choices' => XDCamOptical::$constants[3], 'multiple' => true), array('title' => 'Only active if IMX is selected as codec', 'class' => 'override_required')));
         $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true), array('class' => 'override_required')));
-
+        
         $this->setDefault('physicalDamage', -1);
-
+        
+        
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->setValidator('capacityLayers', new sfValidatorString(array('required' => true)));
         $this->setValidator('codec', new sfValidatorString(array('required' => true)));

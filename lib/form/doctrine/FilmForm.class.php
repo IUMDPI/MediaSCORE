@@ -17,10 +17,10 @@ class FilmForm extends BaseFilmForm
   {
 	parent::configure();
 	$this->setWidget('gauge',new sfWidgetFormChoice(array('choices' => Film::$constants[0])));
-	$this->setWidget('color',new sfWidgetFormChoice(array('choices' => Film::$constants[1])));
+	$this->setWidget('color',new sfWidgetFormChoice(array('choices' => Film::$constants[1]),array('onchange'=>'checkColor();')));
 	$this->setWidget('colorFade',new sfWidgetFormInputCheckbox(array(),array('title'=>'Will often give film a magenta appearance')));
 	$this->setWidget('soundtrackFormat',new sfWidgetFormChoice(array('choices' => Film::$constants[2])));
-	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => Film::$constants[3])));
+	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => Film::$constants[3]),array('onchange'=>'checkSubstracte();')));
 	$this->setWidget('strongOdor',new sfWidgetFormInputCheckbox());
 	$this->setWidget('vinegarOdor',new sfWidgetFormInputCheckbox());
 	$this->setWidget('ADStripLevel',new sfWidgetFormInputText());
@@ -45,7 +45,7 @@ class FilmForm extends BaseFilmForm
 	$this->getWidget('levelOfShrinkage')->setLabel('Level of shrinkage:&nbsp;');
 	$this->getWidget('rust')->setLabel('Rust:&nbsp;');
 	$this->getWidget('discoloration')->setLabel(' Amber, brown, or yellowish discoloration:&nbsp;');
-	$this->getWidget('surfaceBlisteringBubbling')->setLabel('surface blistering or bubbling:&nbsp;');
+	$this->getWidget('surfaceBlisteringBubbling')->setLabel('Surface blistering or bubbling:&nbsp;');
 //	$this->getWidget('packDeformation')->setLabel('Pack Deformation:&nbsp;');
 	
         

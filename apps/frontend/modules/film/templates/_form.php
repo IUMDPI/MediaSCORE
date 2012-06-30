@@ -150,7 +150,50 @@
                 </td>
 
             </tr>
-            
+
         </tbody>
     </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        checkSubstracte();
+        checkColor();
+        
+    });
+    function checkSubstracte(){
+        if($('#film_substrate').val()=='2'){
+            $('#film_strongOdor').show();
+            $('label[for="film_strongOdor"]').show();
+            $('#film_discoloration').show();
+            $('label[for="film_discoloration"]').show();
+            $('#film_surfaceBlisteringBubbling').show();
+            $('label[for="film_surfaceBlisteringBubbling"]').show();
+        }
+        else{
+            $('#film_strongOdor').hide();
+            $('label[for="film_strongOdor"]').hide();
+            $('#film_discoloration').hide();
+            $('label[for="film_discoloration"]').hide();
+            $('#film_surfaceBlisteringBubbling').hide();
+            $('label[for="film_surfaceBlisteringBubbling"]').hide();
+        }
+        if($('#film_substrate').val()=='1'){
+            $('#film_vinegarOdor').show();
+            $('label[for="film_vinegarOdor"]').show();
+        }
+        else{
+            $('#film_vinegarOdor').hide();
+            $('label[for="film_vinegarOdor"]').hide();
+        }
+    }
+    function checkColor(){
+        if($('#film_color').val()!=''){
+            $('#film_colorFade').show();
+            $('label[for="film_colorFade"]').show();
+        }
+        else{
+            $('#film_colorFade').hide();
+            $('label[for="film_colorFade"]').hide();
+        }
+    }
+</script>
