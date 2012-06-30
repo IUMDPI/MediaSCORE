@@ -519,8 +519,8 @@ XDCamOptical:
   columns:
     format: { type: integer, notnull: true }
     capacityLayers: { type: integer, notnull: true }
-    codec: { type: integer, notnull: true }
-    dataRate: { type: integer, notnull: true }
+    codec: { type: string(255), notnull: true }
+    dataRate: { type: string(255), notnull: true }
 
 VideoRecordingFormatType: # Abstract
   inheritance:
