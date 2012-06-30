@@ -38,6 +38,10 @@ class dvcproActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($dvc_pro = Doctrine_Core::getTable('DVCPro')->find(array($request->getParameter('id'))), sprintf('Object dvc_pro does not exist (%s).', $request->getParameter('id')));
         $this->form = new DVCProForm($dvc_pro);
+        $formatVersion = explode(',', $dvc_pro->getFormatVersion());
+        
+
+        $this->form->setDefault('formatVersion', $formatVersion);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +52,10 @@ class dvcproActions extends sfActions {
         $dvc_pro->save();
         $dvc_pro = Doctrine_Core::getTable('DVCPro')->find(array($request->getParameter('id')));
         $this->form = new DVCProForm($dvc_pro);
+        $formatVersion = explode(',', $dvc_pro->getFormatVersion());
 
+
+        $this->form->setDefault('formatVersion', $formatVersion);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

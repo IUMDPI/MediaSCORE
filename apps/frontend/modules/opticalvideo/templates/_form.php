@@ -74,3 +74,17 @@
         </tbody>
     </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#optical_video_dataLayer").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        $("#optical_video_reflectiveLayer").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        
+        
+    });
+</script>

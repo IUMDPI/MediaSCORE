@@ -429,8 +429,8 @@ OpticalDiscFormatType: # Abstract
     keyField: type
     keyValue: 18 # All are aggregated within the FormatType table
   columns:
-    reflectiveLayer: { type: integer, notnull: true }
-    dataLayer: { type: integer, notnull: true }
+    reflectiveLayer: { type: string(255), notnull: true }
+    dataLayer: { type: string(255), notnull: true }
     opticalDiscType: { type: integer, notnull: true }
 
 SoundOpticalDisc:
@@ -541,7 +541,7 @@ Betamax:
     keyField: type
     keyValue: 29 # All are aggregated within the FormatType table
   columns:
-    formatVersion: { type: integer, notnull: true }
+    formatVersion: { type: string(255), notnull: true }
     oxide: { type: integer, notnull: true }
 
 ReelVideoRecordingFormatType: # Abstract
@@ -573,7 +573,7 @@ OpenReelVideoFormatType: # Abstract
     keyField: type
     keyValue: 32 # All are aggregated within the FormatType table
   columns:
-    reelSize: { type: integer, notnull: true }
+    reelSize: { type: string(255), notnull: true }
 
 TwoInchOpenReelVideo:
   inheritance:
@@ -669,7 +669,7 @@ DigitalBetacam:
     keyField: type
     keyValue: 42 # All are aggregated within the FormatType table
   columns:
-    bitrate: { type: integer }
+    bitrate: { type: string(255) }
 
 FormatVersionedVideoRecordingType: # Abstract
   inheritance:

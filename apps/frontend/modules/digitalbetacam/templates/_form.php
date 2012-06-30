@@ -15,3 +15,27 @@
 </form>
 
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#digital_betacam_bitrate").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        checkFormat();
+        
+        
+    });
+    function checkFormat(){
+        if($('#digital_betacam_format').val()==2)
+        {
+            $('label[for=digital_betacam_bitrate]').show();
+            $('.ui-multiselect').show();
+//                $('#digital_betacam_bitrate').show();
+        }
+        else{
+                $('label[for=digital_betacam_bitrate]').hide();
+//                $('#digital_betacam_bitrate').hide();
+                $('.ui-multiselect').hide();
+        }
+    }
+</script>

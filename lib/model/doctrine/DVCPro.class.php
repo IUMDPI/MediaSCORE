@@ -12,6 +12,6 @@
  */
 class DVCPro extends BaseDVCPro
 {
-	public static $constants = array(	0 => array(''=>'Select',0 => '25', 1 => '50', 2 => 'HD', 3 => 'Unknown'),
+	public static $constants = array(	0 => array(0 => '25', 1 => '50', 2 => 'HD', 3 => 'Unknown'),
 						1 => array(''=>'Select',0 => 'Standard',1 => 'Long Play',2 => 'Unknown'));
 }

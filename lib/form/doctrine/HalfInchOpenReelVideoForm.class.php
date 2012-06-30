@@ -15,9 +15,9 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[0]),array('class'=>'override_required')));
-        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[1], 'multiple' => false),array('class'=>'override_required')));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class'=>'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[0]), array('class' => 'override_required')));
+        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => HalfInchOpenReelVideo::$constants[1], 'multiple' => true), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
 
         $this->setDefault('pack_deformation', -1);
 
@@ -30,13 +30,13 @@ class HalfInchOpenReelVideoForm extends BaseHalfInchOpenReelVideoForm {
         $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
-$this->widgetSchema->moveField('format', 'before', 'recordingStandard');
+        $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',
@@ -86,6 +86,19 @@ $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
+    }
+
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+
+        if (isset($taintedValues['reelSize']) && $taintedValues['reelSize'] != null) {
+            $reelSize = implode(',', $taintedValues['reelSize']);
+            $taintedValues['reelSize'] = $reelSize;
+        }
+        
+
+
+
+        parent::bind($taintedValues, $taintedFiles);
     }
 
 }

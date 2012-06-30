@@ -22,3 +22,17 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sound_optical_disc_dataLayer").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        $("#sound_optical_disc_reflectiveLayer").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        
+        
+    });
+</script>

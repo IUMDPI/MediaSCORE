@@ -87,5 +87,20 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
             unset($this->validatorSchema[$voidField]);
         }
     }
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+
+        if (isset($taintedValues['dataLayer']) && $taintedValues['dataLayer'] != null) {
+            $dataLayer = implode(',', $taintedValues['dataLayer']);
+            $taintedValues['dataLayer'] = $dataLayer;
+        }
+        if (isset($taintedValues['reflectiveLayer']) && $taintedValues['reflectiveLayer'] != null) {
+            $reflectiveLayer = implode(',', $taintedValues['reflectiveLayer']);
+            $taintedValues['reflectiveLayer'] = $reflectiveLayer;
+        }
+
+
+
+        parent::bind($taintedValues, $taintedFiles);
+    }
 
 }

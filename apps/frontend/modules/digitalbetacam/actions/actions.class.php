@@ -38,6 +38,8 @@ class digitalbetacamActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($digital_betacam = Doctrine_Core::getTable('DigitalBetacam')->find(array($request->getParameter('id'))), sprintf('Object digital_betacam does not exist (%s).', $request->getParameter('id')));
         $this->form = new DigitalBetacamForm($digital_betacam);
+        $bitRate = explode(',', $digital_betacam->getBitrate());
+        $this->form->setDefault('bitrate', $bitRate);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +50,8 @@ class digitalbetacamActions extends sfActions {
         $digital_betacam->save();
         $digital_betacam = Doctrine_Core::getTable('DigitalBetacam')->find(array($request->getParameter('id')));
         $this->form = new DigitalBetacamForm($digital_betacam);
-
+        $bitRate = explode(',', $digital_betacam->getBitrate());
+        $this->form->setDefault('bitrate', $bitRate);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

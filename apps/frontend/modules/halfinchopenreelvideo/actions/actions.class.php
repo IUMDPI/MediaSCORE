@@ -38,6 +38,9 @@ class halfinchopenreelvideoActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($half_inch_open_reel_video = Doctrine_Core::getTable('HalfInchOpenReelVideo')->find(array($request->getParameter('id'))), sprintf('Object half_inch_open_reel_video does not exist (%s).', $request->getParameter('id')));
         $this->form = new HalfInchOpenReelVideoForm($half_inch_open_reel_video);
+        $reelSize = explode(',', $half_inch_open_reel_video->getReelSize());
+
+        $this->form->setDefault('reelSize', $reelSize);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +51,9 @@ class halfinchopenreelvideoActions extends sfActions {
         $half_inch_open_reel_video = Doctrine_Core::getTable('HalfInchOpenReelVideo')->find(array($request->getParameter('id')));
 
         $this->form = new HalfInchOpenReelVideoForm($half_inch_open_reel_video);
+        $reelSize = explode(',', $half_inch_open_reel_video->getReelSize());
 
+        $this->form->setDefault('reelSize', $reelSize);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

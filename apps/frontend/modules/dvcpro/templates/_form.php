@@ -13,3 +13,14 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#dvc_pro_formatVersion").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+        
+        
+        
+    });
+</script>

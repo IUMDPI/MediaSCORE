@@ -13,3 +13,14 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#half_inch_open_reel_video_reelSize").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+       
+        
+        
+    });
+</script>

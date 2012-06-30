@@ -38,6 +38,12 @@ class soundopticaldiscActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($sound_optical_disc = Doctrine_Core::getTable('SoundOpticalDisc')->find(array($request->getParameter('id'))), sprintf('Object sound_optical_disc does not exist (%s).', $request->getParameter('id')));
         $this->form = new SoundOpticalDiscForm($sound_optical_disc);
+        $dataLayer = explode(',', $sound_optical_disc->getDataLayer());
+        $reflectiveLayer = explode(',', $sound_optical_disc->getReflectiveLayer());
+
+        $this->form->setDefault('dataLayer', $dataLayer);
+        $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
+        $this->form->setDefault('opticaldisctype', $sound_optical_disc->getOpticaldisctype());
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +54,11 @@ class soundopticaldiscActions extends sfActions {
         $sound_optical_disc->save();
         $sound_optical_disc = Doctrine_Core::getTable('SoundOpticalDisc')->find(array($request->getParameter('id')));
         $this->form = new SoundOpticalDiscForm($sound_optical_disc);
-
+        $dataLayer = explode(',', $sound_optical_disc->getDataLayer());
+        $reflectiveLayer = explode(',', $sound_optical_disc->getReflectiveLayer());
+        $this->form->setDefault('opticaldisctype', $sound_optical_disc->getOpticaldisctype());
+        $this->form->setDefault('dataLayer', $dataLayer);
+        $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

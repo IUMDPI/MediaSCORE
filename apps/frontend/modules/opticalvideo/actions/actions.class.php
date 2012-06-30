@@ -38,6 +38,11 @@ class opticalvideoActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($optical_video = Doctrine_Core::getTable('OpticalVideo')->find(array($request->getParameter('id'))), sprintf('Object optical_video does not exist (%s).', $request->getParameter('id')));
         $this->form = new OpticalVideoForm($optical_video);
+        $dataLayer = explode(',', $optical_video->getDataLayer());
+        $reflectiveLayer = explode(',', $optical_video->getReflectiveLayer());
+
+        $this->form->setDefault('dataLayer', $dataLayer);
+        $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +53,11 @@ class opticalvideoActions extends sfActions {
         $optical_video = Doctrine_Core::getTable('OpticalVideo')->find(array($request->getParameter('id')));
 
         $this->form = new OpticalVideoForm($optical_video);
+        $dataLayer = explode(',', $optical_video->getDataLayer());
+        $reflectiveLayer = explode(',', $optical_video->getReflectiveLayer());
 
+        $this->form->setDefault('dataLayer', $dataLayer);
+        $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
