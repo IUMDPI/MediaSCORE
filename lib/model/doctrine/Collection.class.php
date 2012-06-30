@@ -12,18 +12,43 @@
  */
 class Collection extends BaseCollection {
 
-    public static $statusConstants = array(''=>'Select',0=>'Incomplete',1=> 'In Progress', 2=>'Completed');
+    public static $statusConstants = array('' => 'Select', 0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed');
 
     public function getUnitSlug() {
         $unit = Doctrine_Query::Create()
-                    ->from('Unit u')
-                    ->select('u.*')
-                    ->where('u.id  = ?', $this->getParentNodeId())
-                    ->fetchOne();
+                ->from('Unit u')
+                ->select('u.*')
+                ->where('u.id  = ?', $this->getParentNodeId())
+                ->fetchOne();
         return $unit->getNameSlug();
     }
+
     public function getCollectionSlug() {
         return urlSlug::slugify($this->getName());
+    }
+
+    public function getDuration($collectionID) {
+        $totalDuration = 0;
+        $assetGroup = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('ag.*')
+                ->where('ag.parent_node_id  = ?', $collectionID)
+                ->fetchArray();
+
+        if (sizeof($assetGroup) > 0) {
+            foreach ($assetGroup as $valueAG) {
+                $formatType = Doctrine_Query::Create()
+                        ->from('FormatType ft')
+                        ->select('ft.*')
+                        ->where('ft.id  = ?', $valueAG['format_id'])
+                        ->fetchArray();
+                if (sizeof($formatType) > 0)
+                    $totalDuration = $totalDuration + $formatType[0]['duration'];
+            }
+        }
+
+
+        return $totalDuration;
     }
 
 }

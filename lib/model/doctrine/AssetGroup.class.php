@@ -10,6 +10,23 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class AssetGroup extends BaseAssetGroup
-{
+class AssetGroup extends BaseAssetGroup {
+
+    public function getDuration($formatID) {
+        $totalDuration = 0;
+
+        $formatType = Doctrine_Query::Create()
+                ->from('FormatType ft')
+                ->select('ft.*')
+                ->where('ft.id  = ?', $formatID)
+                ->fetchArray();
+        if (sizeof($formatType) > 0)
+            $totalDuration = $totalDuration + $formatType[0]['duration'];
+
+
+
+
+        return $totalDuration;
+    }
+
 }

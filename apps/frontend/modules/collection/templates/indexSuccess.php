@@ -81,6 +81,7 @@
             <th>Created By</th>
             <th>Updated On</th>
             <th>Updated By</th>
+            <th>Duration</th>
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -94,6 +95,7 @@
                     <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
+                    <td><?php echo $collection->getDuration($collection->getId()) ?>&nbsp;minute</td>
                     <td class="invisible">
 
                         <div class="options">
@@ -214,6 +216,7 @@
                             '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td>'+result[collection].duration+' minute</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
                             '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+

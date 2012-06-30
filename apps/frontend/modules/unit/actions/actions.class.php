@@ -243,6 +243,10 @@ class unitActions extends sfActions {
 
 
             $this->unit = $this->unit->fetchArray();
+            foreach ($this->unit as $key=>$value) {
+                $duration=new Unit();
+                $this->unit[$key]['duration']=$duration->getDuration($value['id']);
+            }
 //            $this->collections = Doctrine_Core::getTable('Collection')
 //                    ->createQuery('a')
 //                    ->where('parent_node_id =?', $unitID)

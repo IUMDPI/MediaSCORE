@@ -14,7 +14,7 @@ class assetgroupActions extends sfActions {
         /* $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
           ->createQuery('a')
           ->execute(); */
-        $collectionId = $request->getParameter('c'); 
+        $collectionId = $request->getParameter('c');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
         $from = $request->getParameter('from');
@@ -64,7 +64,14 @@ class assetgroupActions extends sfActions {
             }
 
 
-            $this->assets = $this->assets->execute();
+            $this->assets = $this->assets->fetchArray();
+            if (sizeof($this->assets) > 0) {
+                foreach ($this->assets as $key => $value) {
+                    $duration = new AssetGroup();
+                    $duration = $duration->getDuration($value['format_id']);
+                    $this->assets[$key]['duration'] = $duration;
+                }
+            }
 //            $this->collections = Doctrine_Core::getTable('Collection')
 //                    ->createQuery('a')
 //                    ->where('parent_node_id =?', $unitID)
@@ -73,18 +80,18 @@ class assetgroupActions extends sfActions {
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-            return $this->renderText(json_encode($this->assets->toArray()));
+            return $this->renderText(json_encode($this->assets));
         }
 //        $unitObject = $this->getRoute()->getObject();
 //        echo '<pre>';
 //        print_r($unitObject);
 //        exit;
-        
-         $collectionObject = $this->getRoute()->getObject();
-           
-            $this->forward404Unless($collectionObject);
+
+        $collectionObject = $this->getRoute()->getObject();
+
+        $this->forward404Unless($collectionObject);
 //        $this->collectionID = $request->getParameter('c');
-         $this->collectionID = $collectionObject->getId();
+        $this->collectionID = $collectionObject->getId();
 //        $this->forward404Unless($this->collectionID);
 
         $collection = Doctrine_Core::getTable('Collection')
@@ -96,7 +103,7 @@ class assetgroupActions extends sfActions {
         $this->unitName = Doctrine_Core::getTable('Unit')
                 ->find($this->unitID)
                 ->getName();
-        $this->unit=Doctrine_Core::getTable('Unit')
+        $this->unit = Doctrine_Core::getTable('Unit')
                 ->find($this->unitID);
         $this->persons = Doctrine_Core::getTable('Evaluator')
                 ->findAll();
@@ -135,9 +142,9 @@ class assetgroupActions extends sfActions {
                 ->select('c.*')
                 ->where('c.id  = ?', $request->getParameter('c'))
                 ->fetchOne();
-        
-        
-        
+
+
+
         //$this->form->setOption('collectionID',$request->getParameter('c'));
     }
 
@@ -213,8 +220,8 @@ class assetgroupActions extends sfActions {
                 ->from('Collection c')
                 ->where('c.parent_node_id = ?', $this->assetCollection->getParentNodeId())
                 ->execute();
-        
-        
+
+
         $collectionId = sfToolkit::getArrayValueForPath($request->getParameter('asset_group'), 'parent_node_id');
         $this->form = new AssetGroupForm($asset_group,
                         array(
@@ -232,8 +239,8 @@ class assetgroupActions extends sfActions {
                 ->where('u.id  = ?', $this->collection->getParentNodeId())
                 ->fetchOne();
         $validateForm = $this->processEditForm($request, $this->form);
-        if ($validateForm){
-            $this->redirect('/'.$unitName->getNameSlug().'/'.$this->collection->getNameSlug().'/');
+        if ($validateForm) {
+            $this->redirect('/' . $unitName->getNameSlug() . '/' . $this->collection->getNameSlug() . '/');
         }
         else
             $this->setTemplate('edit');
@@ -243,7 +250,7 @@ class assetgroupActions extends sfActions {
 //        $request->checkCSRFProtection();
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
-        
+
         $collection = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
@@ -255,7 +262,7 @@ class assetgroupActions extends sfActions {
                 ->where('u.id  = ?', $collection->getParentNodeId())
                 ->fetchOne();
         $asset_group->delete();
-        $this->redirect('/'.$unit->getNameSlug().'/' . $collection->getNameSlug().'/');
+        $this->redirect('/' . $unit->getNameSlug() . '/' . $collection->getNameSlug() . '/');
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
@@ -266,7 +273,6 @@ class assetgroupActions extends sfActions {
 
             $this->redirect('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $form->getOption('collectionID'));
         }
-        
     }
 
     protected function processEditForm(sfWebRequest $request, sfForm $form) {

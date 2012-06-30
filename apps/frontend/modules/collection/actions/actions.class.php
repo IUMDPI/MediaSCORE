@@ -76,10 +76,15 @@ class collectionActions extends sfActions {
                     }
                 }
             }
-            $this->collections = $this->collections->execute();
+            $this->collections = $this->collections->fetchArray();
+            foreach ($this->collections as $key => $value) {
+                $duration=new Collection();
+                $duration=$duration->getDuration($value['id']);
+                $this->collections[$key]['duration']=$duration;
+            }
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-            return $this->renderText(json_encode($this->collections->toArray()));
+            return $this->renderText(json_encode($this->collections));
         } else {
             $this->unitObject = $this->getRoute()->getObject();
 

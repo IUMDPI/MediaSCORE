@@ -55,6 +55,7 @@
             <th><span>Created By</span></th>
             <th><span>Updated On</span></th>
             <th><span>Updated By</span></th>
+            <th><span>Duration</span></th>
         </tr>
     </thead>
     <tbody id="unitResult">
@@ -69,6 +70,9 @@
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
                         <?php echo $result->getEditor()->getName(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getDuration($result->getFormatId()); ?>&nbsp;minute
                     </td>
 
                     <td class="invisible">
@@ -89,17 +93,20 @@
                     $urlOnName = url_for('collection',$result);
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
                     $parentId=0;
+                    $duration=$result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = url_for('assetgroup',$result);
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
+                    $duration=$result->getDuration($result->getId());
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
+                    $duration=$result->getDuration($result->getFormatId());
                 }
                 ?>
                 <tr>
@@ -111,6 +118,9 @@
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
                         <?php echo $result->getEditor()->getName(); ?>
+                    </td>
+                    <td>
+                        <?php echo $duration.' minute' ?>
                     </td>
 
                     <td class="invisible">
@@ -134,17 +144,20 @@
                     $urlOnName = url_for('collection',$result);
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
                     $parentId=0;
+                    $duration=$result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                      $urlOnName = url_for('assetgroup',$result);
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
+                    $duration=$result->getDuration($result->getId());
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
                     $parentId=$result->getParentNodeId();
+                    $duration=$result->getDuration($result->getFormatId());
                 }
                 ?>
                 <tr>
@@ -156,6 +169,9 @@
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
                         <?php echo $result->getEditor()->getName(); ?>
+                    </td>
+                    <td>
+                        <?php echo $duration.' minute'; ?>
                     </td>
 
                     <td class="invisible">

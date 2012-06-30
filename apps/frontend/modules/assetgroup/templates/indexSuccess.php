@@ -2,43 +2,43 @@
 <a class="button" href="<?php echo url_for('assetgroup/new?c=' . $collectionID) ?>">Create Asset Group</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
-    <div class="search-input">
-        <div id="token_string" style="float: left;">
+        <div class="search-input">
+            <div id="token_string" style="float: left;">
 
-        </div>
-        <input type="hidden" id="search_values" name="search_values"/>
-        <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
-        <div class="container">
-            <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();$('.dropdown-container').css('width',$('.search-input').width()+26);"></a><b class="token-count" style="display: none;"></b>
-            <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();" style="display: none;"></a>
-        </div>
-        <input class="button" type="submit" value="" />
-        <div class="dropdown-container" style="height: 200px;overflow-y: scroll;display: none;">
-            <div class="dropdown clearfix Xhidden">
-                <ul class="left-column">
-                    <li><h1>Format</h1></li>
-                    <?php
-                    foreach (FormatType::$formatTypesValue as $formatTypeArray):
-                        foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
-                            ?>
-                    <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
+            </div>
+            <input type="hidden" id="search_values" name="search_values"/>
+            <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
+            <div class="container">
+                <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();$('.dropdown-container').css('width',$('.search-input').width()+26);"></a><b class="token-count" style="display: none;"></b>
+                <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();" style="display: none;"></a>
+            </div>
+            <input class="button" type="submit" value="" />
+            <div class="dropdown-container" style="height: 200px;overflow-y: scroll;display: none;">
+                <div class="dropdown clearfix Xhidden">
+                    <ul class="left-column">
+                        <li><h1>Format</h1></li>
+                        <?php
+                        foreach (FormatType::$formatTypesValue as $formatTypeArray):
+                            foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
+                                ?>
+                                <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
 
-                            <?php
-                        endforeach;
-                    endforeach
-                    ?>
+                                <?php
+                            endforeach;
+                        endforeach
+                        ?>
 
-                </ul>
-                <ul class="right-column">
-                    <li><h1>Type</h1></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(0);">Unit</a></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
-                    <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
-                </ul>
+                    </ul>
+                    <ul class="right-column">
+                        <li><h1>Type</h1></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(0);">Unit</a></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
+                        <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
@@ -68,7 +68,7 @@
     </div>
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
-<div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
+<div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
 
 <table id="assetGroupTable" class="tablesorter">
     <thead>
@@ -78,6 +78,7 @@
             <th>Created By</th>
             <th>Updated On</th>
             <th>Updated By</th>
+            <th>Duration</th>
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -90,6 +91,7 @@
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
+                <td><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?>&nbsp;minute</td>
                 <td class="invisible">
                     <div class="options">
                         <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
@@ -187,6 +189,7 @@
                             '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td>'+result[collection].duration+' minute</td>'+
                             '<td class="invisible">'+
                             '<div class="options">'+
                             ' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID('+result[collection].id+');"/></a>'+

@@ -63,6 +63,7 @@ $(document).ready(function () {
                                         '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                                         '<td>'+result[collection].updated_at+'</td>'+
                                         '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                                        '<td>'+result[collection].duration+' minute</td>'+
                                         '<td class="invisible">'+
                                         '<div class="options">'+
                                         '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+result[collection].parent_node_id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+

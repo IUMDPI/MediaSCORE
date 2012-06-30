@@ -49,6 +49,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setValidator('year_recorded', new sfValidatorRegex(array('pattern' => "/^[\s-0-9]*$/i"),
                         array('invalid' => 'Please enter the year in numbers.'))
         );
+        
 
 
         foreach (array('material',

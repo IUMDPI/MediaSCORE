@@ -75,6 +75,7 @@ $(document).ready(function () {
                                         '<td><span style="display: none;">'+result[unit].Creator.last_name+'</span>'+result[unit].Creator.first_name+' '+result[unit].Creator.last_name+'</td>'+
                                         '<td>'+result[unit].updated_at+'</td>'+
                                         '<td><span style="display: none;">'+result[unit].Editor.last_name+'</span>'+result[unit].Editor.first_name+' '+result[unit].Editor.last_name+'</td>'+
+                                        '<td>'+result[unit].duration+' minute</td>'+
                                         '<td class="invisible">'+
                                         '<div class="options">'+
                                         '<a class="create_new_unit" href="/unit/edit/id/' +result[unit].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
