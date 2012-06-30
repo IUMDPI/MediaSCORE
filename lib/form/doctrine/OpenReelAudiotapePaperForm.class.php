@@ -17,16 +17,16 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
         parent::configure();
 
 
-        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
-        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2]),array('class'=>'override_required')));
+        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2],'multiple'=>true),array('class'=>'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
         
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));
-        $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
+        $this->setValidator('tapeThickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
 
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
-        $this->getWidget('tapethickness')->setLabel('Tape Thickness:&nbsp;');
+        $this->getWidget('tapeThickness')->setLabel('Tape Thickness:&nbsp;');
         $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
 
 
@@ -90,6 +90,14 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
+    }
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+        if (isset($taintedValues['speed']) && $taintedValues['speed'] != null) {
+            $speed = implode(',', $taintedValues['speed']);
+            $taintedValues['speed'] = $speed;
+        }
+
+        parent::bind($taintedValues, $taintedFiles);
     }
 
 }

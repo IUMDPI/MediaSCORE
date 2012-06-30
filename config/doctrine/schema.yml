@@ -329,7 +329,7 @@ OpenReelAudioTapeFormatType: # Abstract
     trackConfiguration: { type: integer, notnull: true }
     tapeThickness: { type: integer }
     speed: { type: integer, notnull: true }
-    softBinderSyndrome: { type: integer }
+    softBinderSyndrome: { type: string(255) }
 
 OpenReelAudiotapePolyster:
   inheritance:
@@ -698,7 +698,7 @@ HDCam:
     keyField: type
     keyValue: 45 # All are aggregated within the FormatType table
   columns:
-    speed: { type: integer, notnull: true }
+    speed: { type: string(255), notnull: true }
     scanning: { type: integer, notnull: true }
 
 DVCPro:

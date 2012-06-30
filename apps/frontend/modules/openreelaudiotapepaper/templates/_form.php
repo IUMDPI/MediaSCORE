@@ -13,3 +13,14 @@
     </tbody>
   </table>
 </form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#open_reel_audiotape_paper_speed").multiselect({
+            'height':'auto',
+            'minWidth':145
+        });
+       
+        
+        
+    });
+</script>

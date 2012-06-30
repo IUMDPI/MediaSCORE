@@ -38,6 +38,9 @@ class openreelaudiotapepaperActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($open_reel_audiotape_paper = Doctrine_Core::getTable('OpenReelAudiotapePaper')->find(array($request->getParameter('id'))), sprintf('Object open_reel_audiotape_paper does not exist (%s).', $request->getParameter('id')));
         $this->form = new OpenReelAudiotapePaperForm($open_reel_audiotape_paper);
+        $speed = explode(',', $open_reel_audiotape_paper->getSpeed());
+
+        $this->form->setDefault('speed', $speed);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -49,7 +52,9 @@ class openreelaudiotapepaperActions extends sfActions {
 
         $open_reel_audiotape_paper = Doctrine_Core::getTable('OpenReelAudiotapePaper')->find(array($request->getParameter('id')));
         $this->form = new OpenReelAudiotapePaperForm($open_reel_audiotape_paper);
+        $speed = explode(',', $open_reel_audiotape_paper->getSpeed());
 
+        $this->form->setDefault('speed', $speed);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

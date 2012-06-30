@@ -38,6 +38,10 @@ class openreelaudiotapepvcActions extends sfActions {
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($open_reel_audiotape_pvc = Doctrine_Core::getTable('OpenReelAudiotapePVC')->find(array($request->getParameter('id'))), sprintf('Object open_reel_audiotape_pvc does not exist (%s).', $request->getParameter('id')));
         $this->form = new OpenReelAudiotapePVCForm($open_reel_audiotape_pvc);
+        $softBinderSyndrome = explode(',', $open_reel_audiotape_pvc->getSoftbindersyndrome());
+        $speed = explode(',', $open_reel_audiotape_pvc->getSpeed());
+        $this->form->setDefault('softBinderSyndrome', $softBinderSyndrome);
+        $this->form->setDefault('speed', $speed);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -48,7 +52,11 @@ class openreelaudiotapepvcActions extends sfActions {
 
         $open_reel_audiotape_pvc = Doctrine_Core::getTable('OpenReelAudiotapePVC')->find(array($request->getParameter('id')));
         $this->form = new OpenReelAudiotapePVCForm($open_reel_audiotape_pvc);
+        $softBinderSyndrome = explode(',', $open_reel_audiotape_pvc->getSoftbindersyndrome());
+        $speed = explode(',', $open_reel_audiotape_pvc->getSpeed());
 
+        $this->form->setDefault('softBinderSyndrome', $softBinderSyndrome);
+        $this->form->setDefault('speed', $speed);
         $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 

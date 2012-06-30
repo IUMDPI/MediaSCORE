@@ -16,25 +16,25 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
     public function configure() {
         parent::configure();
         $this->setWidget('vinegarOdor', new sfWidgetFormInputCheckbox());
-        $this->setWidget('tapethickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3]),array('class'=>'override_required')));
-        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2]),array('class'=>'override_required')));
+        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3]), array('class' => 'override_required')));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2],'multiple'=>true), array('class' => 'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
-        $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0]),array('class'=>'override_required')));
-        $this->setWidget('softBinderSyndrome', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1]),array('class'=>'override_required')));
+        $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0]), array('class' => 'override_required')));
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1],'multiple'=>true), array('class' => 'override_required')));
 
 
 
 
         $this->setValidator('vinegarOdor', new sfValidatorBoolean());
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));
-        $this->setValidator('tapethickness', new sfValidatorString(array('required' => false)));
+        $this->setValidator('tapeThickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
         $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
         $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => false)));
 
         $this->getWidget('vinegarOdor')->setLabel('Vinegar Odor:&nbsp;');
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
-        $this->getWidget('tapethickness')->setLabel('Tape Thickness:&nbsp;');
+        $this->getWidget('tapeThickness')->setLabel('Tape Thickness:&nbsp;');
         $this->getWidget('noise_reduction')->setLabel('Noise Reduction:&nbsp;');
         $this->getWidget('trackConfiguration')->setLabel('<span class="required">*</span>Track Configuration / Sound Field:&nbsp;');
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
@@ -42,8 +42,8 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('tape_type',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'thin_tape',
     'slow_speed',
     'sound_field',
@@ -98,6 +98,19 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
+    }
+
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+        if (isset($taintedValues['softBinderSyndrome']) && $taintedValues['softBinderSyndrome'] != null) {
+            $softBinderSyndrome = implode(',', $taintedValues['softBinderSyndrome']);
+            $taintedValues['softBinderSyndrome'] = $softBinderSyndrome;
+        }
+        if (isset($taintedValues['speed']) && $taintedValues['speed'] != null) {
+            $speed = implode(',', $taintedValues['speed']);
+            $taintedValues['speed'] = $speed;
+        }
+
+        parent::bind($taintedValues, $taintedFiles);
     }
 
 }
