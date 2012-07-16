@@ -46,7 +46,7 @@ class collectionActions extends sfActions {
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->collections = $this->collections->andWhere('name like "%' . $searchInpout . '%"');
             }
-            if ($status && trim($status) != '') {
+            if (trim($status) != '') {
                 $this->collections = $this->collections->andWhere('status =?', $status);
             }
             if ($dateType != '') {
@@ -77,6 +77,7 @@ class collectionActions extends sfActions {
                 }
             }
             $this->collections = $this->collections->fetchArray();
+            
             foreach ($this->collections as $key => $value) {
                 $duration=new Collection();
                 $duration=$duration->getDuration($value['id']);

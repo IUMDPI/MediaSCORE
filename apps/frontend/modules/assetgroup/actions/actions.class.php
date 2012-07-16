@@ -32,7 +32,7 @@ class assetgroupActions extends sfActions {
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->assets = $this->assets->andWhere('name like "%' . $searchInpout . '%"');
             }
-            if ($status && trim($status) != '') {
+            if (trim($status) != '') {
                 $this->assets = $this->assets->andWhere('status =?', $status);
             }
             if ($dateType != '') {

@@ -43,6 +43,7 @@ class AssetGroupForm extends BaseAssetGroupForm {
 
         $this->getWidget('inst_id')->setLabel('<span class="required">*</span>Primary ID:&nbsp;');
         $this->getWidget('name')->setLabel('<span class="required">*</span>Name:&nbsp;');
+        $this->getWidget('location')->setLabel('Location in room:&nbsp;');
         $this->getWidget('resident_structure_description')->setLabel('<span class="required">*</span>Storage Location:&nbsp;');
         $this->getValidator('resident_structure_description')->setMessages(array('required' => 'Must select Storage Locations at the Unit Level. If the storage location record does not yet exist to select, you must create the storage location and then select it at the Unit level.',
             'invalid' => 'Invalid Unit Name'));

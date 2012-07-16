@@ -210,7 +210,7 @@ class unitActions extends sfActions {
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
             }
-            if ($status && trim($status) != '') {
+            if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
             }
             if ($dateType != '') {

@@ -22,6 +22,8 @@ class PersonForm extends BasePersonForm {
         $this->getWidget('first_name')->setLabel('<span class="required">*</span>Unit Personnel First Name:');
         $this->getWidget('last_name')->setLabel('<span class="required">*</span>Unit Personnel Last Name:');
         $this->getWidget('email_address')->setLabel('<span class="required">*</span>Unit Personnel Email:');
+        $this->getWidget('phone')->setLabel('<span class="required">*</span>Phone:');
+        $this->getWidget('role')->setLabel('Title:');
 
         $this->setValidator('first_name', new sfValidatorString(array('required' => true)));
         $this->setValidator('last_name', new sfValidatorString(array('required' => true)));

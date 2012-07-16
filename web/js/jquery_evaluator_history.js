@@ -122,7 +122,7 @@ $('document').ready(function () {
     window.onbeforeunload = function() {
         if (changes)
         {
-            return false; 
+            return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.'; 
         }
     }
     appBaseURL = '/frontend_dev.php/';

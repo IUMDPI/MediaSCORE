@@ -280,7 +280,7 @@ Film:
     keyValue: 5 # All are aggregated within the FormatType table
   columns:
     gauge: { type: integer, notnull: true }
-    color: { type: boolean, notnull: true }
+    color: { type: integer, notnull: true }
     colorFade: { type: boolean }
     soundtrackFormat: { type: integer }
     substrate: { type: integer, notnull: true }
