@@ -76,6 +76,7 @@
 
     <thead>
         <tr>
+            <th>Primary ID</th>
             <th>Collection</th>
             <th>Created</th>
             <th>Created By</th>
@@ -90,6 +91,7 @@
             <?php foreach ($collections as $collection): ?>
                 <tr>
                     <?php //echo url_for('assetgroup', $collection) ?>
+                    <td><?php echo $collection->getInstId() ?></td>
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
