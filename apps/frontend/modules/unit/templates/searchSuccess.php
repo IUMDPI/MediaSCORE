@@ -12,6 +12,7 @@
                 <?php } ?>
 
             </div>
+            
             <input type="hidden" id="search_values" name="search_values" value="<?php echo $searchValues; ?>"/>
             <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
             <div class="container">
@@ -50,6 +51,7 @@
 <table id="searchTable" class="tablesorter">
     <thead>
         <tr>
+            <td width="50"></td>
             <th><span>Title</span></th>
             <th><span>Created</span></th>
             <th><span>Created By</span></th>
@@ -62,6 +64,11 @@
         <?php if (isset($formatsResult) && sizeof($formatsResult) > 0) { ?>
             <?php foreach ($formatsResult as $result): ?>
                 <tr>
+                     <td class="invisible">
+                        <div class="options">
+                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
+                        </div>
+                    </td>
                     <td><a href="assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
@@ -72,14 +79,10 @@
                         <?php echo $result->getEditor()->getName(); ?>
                     </td>
                     <td>
-                        <?php echo $result->getDuration($result->getFormatId()); ?>&nbsp;minute
+                        <?php echo $result->getDuration($result->getFormatId()); ?>
                     </td>
 
-                    <td class="invisible">
-                        <div class="options">
-                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
-                        </div>
-                    </td>
+                   
                 </tr>
                 <?php
             endforeach;
@@ -110,6 +113,14 @@
                 }
                 ?>
                 <tr>
+                     <td class="invisible">
+                        <div class="options">
+                            <?php if ($result->getType() != 4) { ?>
+                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <?php } ?>
+                           <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
+                        </div>
+                    </td>
                     <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
@@ -123,14 +134,7 @@
                         <?php echo $duration.' minute' ?>
                     </td>
 
-                    <td class="invisible">
-                        <div class="options">
-                            <?php if ($result->getType() != 4) { ?>
-                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                            <?php } ?>
-                           <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
-                        </div>
-                    </td>
+                   
                 </tr>
                 <?php
             endforeach;
@@ -161,6 +165,14 @@
                 }
                 ?>
                 <tr>
+                    <td class="invisible">
+                        <div class="options">
+                            <?php if ($result->getType() != 4) { ?>
+                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <?php } ?>
+                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
+                        </div>
+                    </td>
                     <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
@@ -174,14 +186,7 @@
                         <?php echo $duration.' minute'; ?>
                     </td>
 
-                    <td class="invisible">
-                        <div class="options">
-                            <?php if ($result->getType() != 4) { ?>
-                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                            <?php } ?>
-                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
-                        </div>
-                    </td>
+                    
                 </tr>
                 <?php
             endforeach;

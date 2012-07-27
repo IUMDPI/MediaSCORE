@@ -27,10 +27,10 @@ class UmaticForm extends BaseUmaticForm {
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
-        $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1),array('class' => 'override_required')));
-        $this->setValidator('soft_binder_syndrome', new sfValidatorString(array('required' => false)));
-        $this->getWidget('soft_binder_syndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
-
+         $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+        $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
+        $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
+        
         $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
@@ -51,7 +51,6 @@ $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

@@ -74,6 +74,7 @@
     <?php if (sizeof($units) > 0) { ?>
         <thead>
             <tr>
+                <td width="50"></td>
                 <th><span>Unit</span></th>
                 <th><span>Created</span></th>
                 <th><span>Created By</span></th>
@@ -85,18 +86,19 @@
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
                 <tr>
-                             <td><a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>
-                    <td><?php echo $unit->getCreatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
-                    <td><?php echo $unit->getUpdatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName();?></td>
-                    <td><?php echo $unit->getDuration($unit->getId());?> Minute</td>
                     <td class="invisible">
                         <div class="options">
                             <a class="create_new_unit" href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $unit->getId(); ?>)"/></a>
                         </div>
                     </td>
+                             <td><a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>
+                    <td><?php echo $unit->getCreatedAt() ?></td>
+                    <td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
+                    <td><?php echo $unit->getUpdatedAt() ?></td>
+                    <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName();?></td>
+                    <td><?php echo $unit->getDuration($unit->getId());?></td>
+                    
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -202,18 +204,19 @@
                 if(result!=undefined && result.length>0){
                     $('#unitResult').html('');
                     for(collection in result){
-                        $('#unitResult').append('<tr><td><a href="/'+result[collection].name_slug+'">'+result[collection].name+'</a></td>'+
-                            '<td>'+result[collection].created_at+'</td>'+
-                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
-                            '<td>'+result[collection].updated_at+'</td>'+
-                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
-                            '<td>'+result[collection].duration+' minute</td>'+
-                            '<td class="invisible">'+
+                        $('#unitResult').append('<tr><td class="invisible">'+
                             '<div class="options">'+
                             '<a class="create_new_unit" href="/unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
+                            '<td><a href="/'+result[collection].name_slug+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
+                            '<td>'+result[collection].duration+'</td>'+
+                            
                             '</tr>'); 
                     }
                     $(".delete_unit").fancybox({

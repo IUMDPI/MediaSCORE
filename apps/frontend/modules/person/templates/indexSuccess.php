@@ -5,6 +5,7 @@
     <table id="personTable" class="tablesorter">
         <thead>
             <tr>
+                <td width="50"></td>
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Email</th>
@@ -15,6 +16,12 @@
         <tbody>
             <?php foreach ($persons as $person): ?>
                 <tr>
+                    <td class="invisible">
+                        <div class="options">
+                            <a href="<?php echo url_for('person/edit?id=' . $person->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                           <a href="#fancyboxUnitPerson" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUserID(<?php echo $person->getId(); ?>)"/></a>
+                        </div>
+                    </td>
                     <td><?php echo $person->getFirstName() ?></td>
                     <td><?php echo $person->getLastName() ?></td>
                     <td><?php echo $person->getEmailAddress() ?></td>
@@ -23,12 +30,7 @@
                             <div><span><?php echo $unit->getName() ?></span></div>
                         <?php endforeach ?>
                     </td>
-                    <td class="invisible">
-                        <div class="options">
-                            <a href="<?php echo url_for('person/edit?id=' . $person->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                           <a href="#fancyboxUnitPerson" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUserID(<?php echo $person->getId(); ?>)"/></a>
-                        </div>
-                    </td>
+                    
                 </tr>
             <?php endforeach ?>
         </tbody>

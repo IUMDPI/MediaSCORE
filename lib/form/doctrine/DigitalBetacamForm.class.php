@@ -29,9 +29,9 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->setValidator('bitrate', new sfValidatorString(array('required' => false)));
         $this->getWidget('bitrate')->setLabel('<span class="required">*</span>Bitrate:&nbsp;');
 
-        $this->setWidget('soft_binder_syndrome', new sfWidgetFormChoice(array('choices' => DV::$constants1), array('class' => 'override_required')));
-        $this->setValidator('soft_binder_syndrome', new sfValidatorString(array('required' => false)));
-        $this->getWidget('soft_binder_syndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
+      $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+        $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
+        $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
         $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
@@ -56,7 +56,6 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'softBinderSyndrome',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

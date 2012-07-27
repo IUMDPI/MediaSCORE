@@ -51,7 +51,10 @@ class Unit extends BaseUnit {
                 }
             }
         }
-        return $totalDuration;
+       
+        return  minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+
+    
 
 }

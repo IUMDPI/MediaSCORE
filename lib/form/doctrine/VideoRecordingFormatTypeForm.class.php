@@ -17,7 +17,7 @@ class VideoRecordingFormatTypeForm extends BaseVideoRecordingFormatTypeForm
   {
 	  parent::configure();
 	  $this->setWidget('recordingStandard',new sfWidgetFormChoice(array('choices' => VideoRecordingFormatType::$constants),array('class'=>'override_required')));
-	  $this->setWidget('softBinderSyndrome',new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1]),array('class'=>'override_required')));
+	   $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
           
           $this->setValidator('recordingStandard', new sfValidatorString(array('required' => true)));
          $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());

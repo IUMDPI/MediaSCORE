@@ -26,7 +26,7 @@ class AssetGroup extends BaseAssetGroup {
 
 
 
-        return $totalDuration;
+       return  minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
 
 }

@@ -20,7 +20,7 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2],'multiple'=>true), array('class' => 'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
         $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0]), array('class' => 'override_required')));
-        $this->setWidget('softBinderSyndrome', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[1],'multiple'=>true), array('class' => 'override_required')));
+        $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
 
 
 
@@ -30,7 +30,7 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         $this->setValidator('tapeThickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
         $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
-        $this->setValidator('softBinderSyndrome', new sfValidatorString(array('required' => false)));
+        $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
 
         $this->getWidget('vinegarOdor')->setLabel('Vinegar Odor:&nbsp;');
         $this->getWidget('speed')->setLabel('<span class="required">*</span>Speed:&nbsp;');
@@ -101,10 +101,10 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
     }
 
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
-        if (isset($taintedValues['softBinderSyndrome']) && $taintedValues['softBinderSyndrome'] != null) {
-            $softBinderSyndrome = implode(',', $taintedValues['softBinderSyndrome']);
-            $taintedValues['softBinderSyndrome'] = $softBinderSyndrome;
-        }
+//        if (isset($taintedValues['softBinderSyndrome']) && $taintedValues['softBinderSyndrome'] != null) {
+//            $softBinderSyndrome = implode(',', $taintedValues['softBinderSyndrome']);
+//            $taintedValues['softBinderSyndrome'] = $softBinderSyndrome;
+//        }
         if (isset($taintedValues['speed']) && $taintedValues['speed'] != null) {
             $speed = implode(',', $taintedValues['speed']);
             $taintedValues['speed'] = $speed;

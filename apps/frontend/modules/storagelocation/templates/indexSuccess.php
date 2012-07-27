@@ -29,14 +29,15 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
     <?php if (sizeof($storage_locations) > 0) { ?>
             <thead>
                 <tr>
+                    
+                    <th width="50"></th>
                     <th>Storage Location</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
     <?php foreach ($storage_locations as $storage_location): ?>
                     <tr>
-                        <td><?php echo $storage_location->getName() ?></td>
+                        
 
                         <td class="invisible">
                             <div class="options">
@@ -44,6 +45,7 @@ slot('settingsMenu', sprintf('<ul id="settings-navigation">
                                 <a href="#fancyboxStorage" class="delete_storage"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getStorageId(<?php echo $storage_location->getId();?>);" /></a>
                             </div>
                         </td>
+                        <td><?php echo $storage_location->getName() ?></td>
                     </tr>
     <?php endforeach; ?>
             </tbody>

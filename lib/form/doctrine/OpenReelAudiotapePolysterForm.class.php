@@ -88,10 +88,10 @@ class OpenReelAudiotapePolysterForm extends BaseOpenReelAudiotapePolysterForm {
     }
 
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
-        if (isset($taintedValues['softBinderSyndrome']) && $taintedValues['softBinderSyndrome'] != null) {
-            $softBinderSyndrome = implode(',', $taintedValues['softBinderSyndrome']);
-            $taintedValues['softBinderSyndrome'] = $softBinderSyndrome;
-        }
+//        if (isset($taintedValues['softBinderSyndrome']) && $taintedValues['softBinderSyndrome'] != null) {
+//            $softBinderSyndrome = implode(',', $taintedValues['softBinderSyndrome']);
+//            $taintedValues['softBinderSyndrome'] = $softBinderSyndrome;
+//        }
         if (isset($taintedValues['speed']) && $taintedValues['speed'] != null) {
             $speed = implode(',', $taintedValues['speed']);
             $taintedValues['speed'] = $speed;

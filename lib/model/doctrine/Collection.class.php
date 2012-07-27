@@ -48,7 +48,7 @@ class Collection extends BaseCollection {
         }
 
 
-        return $totalDuration;
+        return  minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
 
 }

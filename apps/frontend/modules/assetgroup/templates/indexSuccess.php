@@ -73,6 +73,7 @@
 <table id="assetGroupTable" class="tablesorter">
     <thead>
         <tr>
+            <td width="30"></td>
             <th>Asset Groups</th>
             <th>Created</th>
             <th>Created By</th>
@@ -86,17 +87,18 @@
         <?php /* print_r($persons)->toArray() */ ?>
         <?php foreach ($asset_groups as $asset_group): ?>
             <tr>
+                 <td class="invisible">
+                    <div class="options">
+                        <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
+                    </div>
+                </td>
                 <td><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
                 <td><?php echo $asset_group->getCreatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
-                <td><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?>&nbsp;minute</td>
-                <td class="invisible">
-                    <div class="options">
-                        <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
-                    </div>
-                </td>
+                <td><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
+               
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -184,17 +186,18 @@
                     $('#assetsResult').html('');
                     for(collection in result){
                         
-                        $('#assetsResult').append('<tr><td><a href="/assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
-                            '<td>'+result[collection].created_at+'</td>'+
-                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
-                            '<td>'+result[collection].updated_at+'</td>'+
-                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                            '<td>'+result[collection].duration+' minute</td>'+
-                            '<td class="invisible">'+
+                        $('#assetsResult').append('<tr><td class="invisible">'+
                             '<div class="options">'+
                             ' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID('+result[collection].id+');"/></a>'+
                             '</div>'+
                             '</td>'+
+                            '<td><a href="/assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td>'+result[collection].duration+'</td>'+
+                            
                             '</tr>');
                     }
                     $(".delete_unit").fancybox({

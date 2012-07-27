@@ -22,6 +22,7 @@ if (!(isset($popup)))
 <table id="userTable" class="tablesorter">
     <thead>
         <tr>
+            <td></td>
             <th>Name</th>
             <th>Last name</th>
             <th>Email</th>
@@ -31,15 +32,16 @@ if (!(isset($popup)))
     <tbody>
         <?php foreach ($users as $user): ?>
             <tr>
-                <td><?php echo $user->getFirstName() ?></td>
-                <td><?php echo $user->getLastName() ?></td>
-                <td><?php echo $user->getEmailAddress() ?></td>
-                <td class="invisible">
+                <td class="invisible" width="50">
                     <div class="options">
                         <a href="<?php echo url_for('user/edit?id=' . $user->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                         <a href="#fancyboxUser" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUserID(<?php echo $user->getId(); ?>)"/></a>
                     </div>
                 </td>
+                <td><?php echo $user->getFirstName() ?></td>
+                <td><?php echo $user->getLastName() ?></td>
+                <td><?php echo $user->getEmailAddress() ?></td>
+                
             </tr>
 
         <?php endforeach; ?>

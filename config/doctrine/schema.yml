@@ -329,7 +329,7 @@ OpenReelAudioTapeFormatType: # Abstract
     trackConfiguration: { type: integer, notnull: true }
     tapeThickness: { type: integer }
     speed: { type: integer, notnull: true }
-    softBinderSyndrome: { type: string(255) }
+    softBinderSyndrome: { type: boolean }
 
 OpenReelAudiotapePolyster:
   inheritance:

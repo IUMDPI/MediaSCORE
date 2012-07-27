@@ -15,10 +15,10 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#open_reel_audiotape_polyster_softBinderSyndrome").multiselect({
-            'height':'auto',
-            'minWidth':145
-        });
+//        $("#open_reel_audiotape_polyster_softBinderSyndrome").multiselect({
+//            'height':'auto',
+//            'minWidth':145
+//        });
         $("#open_reel_audiotape_polyster_speed").multiselect({
             'height':'auto',
             'minWidth':145

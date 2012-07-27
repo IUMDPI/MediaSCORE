@@ -308,7 +308,7 @@ td { vertical-align: top; }
   td {padding:3px 0;}
   tr:hover {background-color:#ebebeb;}
   tr:hover td {visibility: visible !important;}
-  table .options {text-align:right;}
+  table .options {text-align:left;}
   .no-highlight:hover {background-color:#f4f4f4}
 
   /*EDIT ASSET GROUP*/

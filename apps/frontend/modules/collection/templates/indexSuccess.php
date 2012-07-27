@@ -1,4 +1,4 @@
-<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)    ?>">Create Collection</a>-->
+<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)     ?>">Create Collection</a>-->
 <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
@@ -76,6 +76,7 @@
 
     <thead>
         <tr>
+            <td width="50"></td>
             <th>Primary ID</th>
             <th>Collection</th>
             <th>Created</th>
@@ -91,13 +92,6 @@
             <?php foreach ($collections as $collection): ?>
                 <tr>
                     <?php //echo url_for('assetgroup', $collection) ?>
-                    <td><?php echo $collection->getInstId() ?></td>
-                    <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
-                    <td><?php echo $collection->getCreatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
-                    <td><?php echo $collection->getUpdatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
-                    <td><?php echo $collection->getDuration($collection->getId()) ?>&nbsp;minute</td>
                     <td class="invisible">
 
                         <div class="options">
@@ -107,6 +101,14 @@
                         </div>
 
                     </td>
+                    <td><?php echo $collection->getInstId() ?></td>
+                    <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
+                    <td><?php echo $collection->getCreatedAt() ?></td>
+                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
+                    <td><?php echo $collection->getUpdatedAt() ?></td>
+                    <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
+                    <td><?php echo $collection->getDuration($collection->getId()) ?></td>
+                    
 
                 </tr>
             <?php endforeach; ?>
@@ -213,18 +215,19 @@
                     $('#collectionResult').html('');
                     for(collection in result){
                         
-                        $('#collectionResult').append('<tr><td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
-                            '<td>'+result[collection].created_at+'</td>'+
-                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
-                            '<td>'+result[collection].updated_at+'</td>'+
-                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                            '<td>'+result[collection].duration+' minute</td>'+
-                            '<td class="invisible">'+
+                        $('#collectionResult').append('<tr><td class="invisible">'+
                             '<div class="options">'+
                             '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
                             ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
                             '</div>'+
-                            '</td>'+
+                            '</td>'+'<td>'+result[collection].inst_id+'</td>'+
+                            '<td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td>'+result[collection].duration+'</td>'+
+                            
                             '</tr>'); 
                     }
                     $(".delete_unit").fancybox({

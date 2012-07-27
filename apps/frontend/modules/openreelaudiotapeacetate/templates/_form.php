@@ -15,10 +15,7 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#open_reel_audiotape_acetate_softBinderSyndrome").multiselect({
-            'height':'auto',
-            'minWidth':145
-        });
+       
         $("#open_reel_audiotape_acetate_speed").multiselect({
             'height':'auto',
             'minWidth':145
