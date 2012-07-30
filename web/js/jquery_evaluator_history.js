@@ -1,4 +1,34 @@
-
+timeInMin=null;
+function makeTime() {
+    timeInMin = ($('#format_type_duration').val()); // validates input
+    if(!isNaN(timeInMin)){
+        $('#duration_error').hide();
+        timetoSec=parseFloat(timeInMin*60);
+        var hr = Math.floor(timetoSec / 3600);
+        var min = Math.floor((timetoSec - (hr * 3600))/60);
+        var sec = timetoSec - (hr * 3600) - (min * 60);
+    
+        while (min.length < 2) {
+            min = '0' + min;
+        }
+        while (sec.length < 2) {
+            sec = '0' + min;
+        }
+        if(hr<9)
+            hr='0'+hr;
+        if(min<9)
+            min='0'+min;
+        if(sec<9)
+            sec='0'+sec;
+        $('#format_type_duration').val(hr + ':' + min + ':' + sec);
+    }
+    else{
+        $('#duration_error').show();
+    }
+}
+function convertToMinutues(){
+    $('#format_type_duration').val(timeInMin);
+}
 function getRelatedForm(){
     if($('#format-type-model-name').val()!=''){
         urlSuffix='/new';
@@ -94,6 +124,7 @@ function getStorageLocation(id,type){
 var changes = false; 
 $('document').ready(function () {
     // Debugging
+   
     debugAJAXRequest = function (url,requestType,requestData) {
         console.log('Debugging...');
 
@@ -112,6 +143,7 @@ $('document').ready(function () {
             }
         });
     }
+    
     $("input,textarea,select").keypress(function() {
         changes=true;
     });
@@ -147,6 +179,7 @@ $('document').ready(function () {
                 color: '#fff' 
             }
         }); 
+        $('#format_type_duration').val(timeInMin);
         actionName=$('#asset_group_format_id').val() ? 'update' : 'create';
         urlSuffix='';
         moduleName=$('#format-type-model-name').val();
@@ -272,6 +305,8 @@ $('document').ready(function () {
                     success: function(data,textStatus) {
                        
                         $('#format-type-container').append(data);
+                        timeInMin=$('#format_type_duration').val();
+                        makeTime();
                         $("input,textarea,select").keypress(function() {
                             changes=true;
                         });
@@ -346,7 +381,10 @@ $('document').ready(function () {
             url: appBaseURL+'formattype/edit/id/'+$('#asset_group_format_id').val(),
             success: function(data,textStatus) {
                 
+               
                 $('#format-type-container').html(data);
+                timeInMin=$('#format_type_duration').val();
+                makeTime();
                 $("input,textarea,select").keypress(function() {
                     changes=true;
                 });

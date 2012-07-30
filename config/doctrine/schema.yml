@@ -217,7 +217,7 @@ FormatType:
     off_brand: { type: boolean }
     fungus: { type: boolean }
     other_contaminants: { type: boolean }
-    duration: { type: integer, notnull: true }
+    duration: {type: string(255), notnull: true }
     duration_type: { type: string(255) }
     duration_type_methodology: { type: string(255) }
     format_notes: { type:text }

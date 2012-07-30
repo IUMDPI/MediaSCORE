@@ -84,6 +84,7 @@
                                 <div class="right-column">
                                     <?php echo $form['duration']->render(); ?>
                                     <?php echo $form['duration']->renderError(); ?>
+                                    <div class="error_list" id="duration_error" style="display: none;margin-top: 8px;">Please enter minutes in numbers.</div>
                                 </div>
                             </div>
                             <div class="row clearfix">

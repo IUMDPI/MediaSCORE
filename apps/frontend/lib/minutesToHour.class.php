@@ -2,7 +2,15 @@
 
 class minutesToHour {
 
-   static public function ConvertMinutes2Hours($Minutes) {
+    static public function ConvertMinutes2Hours($Minutes) {
+
+
+        $seconds = $Minutes * 60;
+
+        return gmdate('H:i:s', $seconds);
+    }
+
+    static public function oldFunctions($Minutes) {
         if ($Minutes < 0) {
             $Min = Abs($Minutes);
         } else {
@@ -24,7 +32,19 @@ class minutesToHour {
             $Minutes = $Minutes . "0";
         }
         $tHours = $iHours . ":" . $Minutes;
-        return $tHours;
+
+
+        //other
+        $seconds = $Minutes * 60;
+
+        $hoursPerDay = 24;
+        $SecondsPerHour = 3600;
+        $SecondsPerMinute = 60;
+        $MinutesPerHour = 60;
+
+        $hh = intval($seconds / $SecondsPerHour);
+        $mm = intval($seconds / $SecondsPerMinute) % $MinutesPerHour;
+        $ss = $seconds % $SecondsPerMinute;
     }
 
 }
