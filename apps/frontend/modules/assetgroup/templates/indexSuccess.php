@@ -79,7 +79,7 @@
             <th>Created By</th>
             <th>Updated On</th>
             <th>Updated By</th>
-            <th>Duration</th>
+            <th style="text-align: center;">Duration</th>
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -97,7 +97,7 @@
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
-                <td><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
+                <td style="text-align: right;"><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
                
             </tr>
         <?php endforeach; ?>
@@ -196,7 +196,7 @@
                             '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                            '<td>'+result[collection].duration+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>'+
                             
                             '</tr>');
                     }

@@ -7,7 +7,22 @@ class minutesToHour {
 
         $seconds = $Minutes * 60;
 
-        return gmdate('H:i:s', $seconds);
+
+        $hoursPerDay = 24;
+        $SecondsPerHour = 3600;
+        $SecondsPerMinute = 60;
+        $MinutesPerHour = 60;
+
+        $hh = intval($seconds / $SecondsPerHour);
+        $mm = intval($seconds / $SecondsPerMinute) % $MinutesPerHour;
+        $ss = $seconds % $SecondsPerMinute;
+        
+        if($mm<=9)
+            $mm='0'.$mm;
+        if($ss<=9)
+            $ss='0'.$ss;
+        return $hh . ':' . $mm . ':' . $ss;
+        
     }
 
     static public function oldFunctions($Minutes) {

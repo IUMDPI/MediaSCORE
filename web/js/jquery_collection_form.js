@@ -69,7 +69,7 @@ $(document).ready(function () {
                                         '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                                         '<td>'+result[collection].updated_at+'</td>'+
                                         '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                                        '<td>'+result[collection].duration+'</td>'+
+                                        '<td style="text-align: right;">'+result[collection].duration+'</td>'+
                                        
                                         '</tr>');
                                 }

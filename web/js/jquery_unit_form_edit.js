@@ -81,7 +81,7 @@ $(document).ready(function () {
                                         '<td><span style="display: none;">'+result[unit].Creator.last_name+'</span>'+result[unit].Creator.first_name+' '+result[unit].Creator.last_name+'</td>'+
                                         '<td>'+result[unit].updated_at+'</td>'+
                                         '<td><span style="display: none;">'+result[unit].Editor.last_name+'</span>'+result[unit].Editor.first_name+' '+result[unit].Editor.last_name+'</td>'+
-                                        '<td>'+result[unit].duration+'</td>'+
+                                        '<td style="text-align: right;">'+result[unit].duration+'</td>'+
                                         
                                         '</tr>');
                                 }

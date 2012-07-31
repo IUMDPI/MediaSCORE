@@ -83,7 +83,7 @@
             <th>Created By</th>
             <th>Updated On</th>
             <th>Updated By</th>
-            <th>Duration</th>
+            <th style="text-align: center;">Duration</th>
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -108,7 +108,7 @@
                     <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
-                    <td><?php echo $collection->getDuration($collection->getId()) ?></td>
+                    <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
                     
 
                 </tr>
@@ -227,7 +227,7 @@
                             '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                            '<td>'+result[collection].duration+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>'+
                             
                             '</tr>'); 
                     }
