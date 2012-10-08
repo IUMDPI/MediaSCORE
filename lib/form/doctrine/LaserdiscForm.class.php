@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class LaserdiscForm extends BaseLaserdiscForm {
@@ -19,11 +19,11 @@ class LaserdiscForm extends BaseLaserdiscForm {
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
 
-        $this->setWidget('publicationYear', new sfWidgetFormInputText(array(),array('class' => 'override_required')));
-//        $this->setValidator('publicationYear', new sfValidatorInteger(array('required' => true,'min_length' => 4,)));
+        $this->setWidget('publicationYear', new sfWidgetFormInputText(array(), array('class' => 'override_required')));
+
         $this->setValidator('publicationYear', new sfValidatorAnd(array(
-                    new sfValidatorString(array('min_length' => 4, 'max_length' => 4),array('min_length' => 'Year must be of 4 Numbers (yyyy).', 'max_length' => 'Year must be of 4 Numbers (yyyy).')),
-                    new sfValidatorInteger(array('required' => true),array('required'=>'Please enter a four digit numeric value (yyyy).','invalid'=>'Please enter a four digit numeric value (yyyy).')),
+                    new sfValidatorString(array('min_length' => 4, 'max_length' => 4), array('min_length' => 'Year must be of 4 Numbers (yyyy).', 'max_length' => 'Year must be of 4 Numbers (yyyy).')),
+                    new sfValidatorInteger(array('required' => true), array('required' => 'Please enter a four digit numeric value (yyyy).', 'invalid' => 'Please enter a four digit numeric value (yyyy).')),
                 )));
         $this->getWidget('publicationYear')->setLabel('<span class="required">*</span>Year of publication:&nbsp;');
 

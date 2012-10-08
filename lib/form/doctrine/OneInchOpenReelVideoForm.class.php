@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
@@ -15,10 +15,10 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]),array('onchange'=>'checkFormat();','class'=>'override_required')));
-        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1]),array('class'=>'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[0]), array('onchange' => 'checkFormat();', 'class' => 'override_required')));
+        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => OneInchOpenReelVideo::$constants[1]), array('class' => 'override_required')));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class'=>'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
 
         $this->setDefault('pack_deformation', -1);
 
@@ -34,10 +34,10 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-$this->widgetSchema->moveField('format', 'before', 'recordingStandard');
+        $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',
@@ -49,7 +49,7 @@ $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
     'trackConfiguration',
     'tapeThickness',
     'speed',
-    'sheddingSoftBinder', 
+    'sheddingSoftBinder',
     'materialsBreakdown',
     'delamination',
     'plasticizerExudation',

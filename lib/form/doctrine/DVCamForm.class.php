@@ -5,32 +5,31 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class DVCamForm extends BaseDVCamForm
-{
-  /**
-   * @see SizedVideoRecordingFormatTypeForm
-   */
-  public function configure()
-  {
-	  parent::configure();
+class DVCamForm extends BaseDVCamForm {
 
-	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
-        
-          $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+    /**
+     * @see SizedVideoRecordingFormatTypeForm
+     */
+    public function configure() {
+        parent::configure();
+
+        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
+
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormInputCheckbox());
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
-        
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class'=>'override_required')));
+
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
-        
+
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',
@@ -81,5 +80,6 @@ class DVCamForm extends BaseDVCamForm
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
-  }
+    }
+
 }

@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
@@ -17,12 +17,12 @@ class SoundOpticalDiscForm extends BaseSoundOpticalDiscForm {
 
     public function configure() {
         parent::configure();
-        
+
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
         $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true), array('class' => 'override_required')));
-        
-        
-        
+
+
+
         $this->setWidget('opticaldisctype', new sfWidgetFormChoice(array('choices' => self::$type), array('class' => 'override_required')));
         $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(), array('title' => 'Note presence of hazing, oxidation, discoloration or delamination')));
         $this->setDefault('physicalDamage', -1);

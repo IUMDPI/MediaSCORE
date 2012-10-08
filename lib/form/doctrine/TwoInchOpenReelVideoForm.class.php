@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
@@ -15,10 +15,10 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[0]),array('class'=>'override_required')));
-        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[1]),array('class'=>'override_required')));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class'=>'override_required')));
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Film::$constants[5]),array('class'=>'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[0]), array('class' => 'override_required')));
+        $this->setWidget('reelSize', new sfWidgetFormChoice(array('choices' => TwoInchOpenReelVideo::$constants[1]), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Film::$constants[5]), array('class' => 'override_required')));
         $this->setWidget('whiteResidue', new sfWidgetFormInputCheckbox());
 
         $this->setDefault('pack_deformation', -1);
@@ -43,8 +43,8 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
         $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
 
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

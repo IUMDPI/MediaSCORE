@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class DigitalBetacamForm extends BaseDigitalBetacamForm {
@@ -25,11 +25,11 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
 
-        $this->setWidget('bitrate', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2],'multiple'=>true), array('title' => 'Mbps. Only active if IMX is selected as format', 'class' => 'override_required')));
+        $this->setWidget('bitrate', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[2], 'multiple' => true), array('title' => 'Mbps. Only active if IMX is selected as format', 'class' => 'override_required')));
         $this->setValidator('bitrate', new sfValidatorString(array('required' => false)));
         $this->getWidget('bitrate')->setLabel('<span class="required">*</span>Bitrate:&nbsp;');
 
-      $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormInputCheckbox());
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 

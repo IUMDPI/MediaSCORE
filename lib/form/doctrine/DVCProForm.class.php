@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class DVCProForm extends BaseDVCProForm {
@@ -29,7 +29,7 @@ DVCPRO HD has a red tape-door', 'class' => 'override_required')));
         $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
-         $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormInputCheckbox());
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 

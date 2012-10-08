@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class UserForm extends BaseUserForm {
@@ -14,17 +14,7 @@ class UserForm extends BaseUserForm {
 
     public function configure() {
         unset(
-                $this['last_login'], 
-                $this['created_at'], 
-                $this['updated_at'], 
-                $this['salt'], 
-                $this['groups_list'], 
-                $this['permissions_list'], 
-                $this['salt'], 
-                $this['algorithm'], 
-                $this['is_super_admin'], 
-                $this['contact_info'], 
-                $this['unit_id']
+                $this['last_login'], $this['created_at'], $this['updated_at'], $this['salt'], $this['groups_list'], $this['permissions_list'], $this['salt'], $this['algorithm'], $this['is_super_admin'], $this['contact_info'], $this['unit_id']
         );
 
 
@@ -36,7 +26,7 @@ class UserForm extends BaseUserForm {
 
         $this->widgetSchema->moveField('password_again', 'after', 'password');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
-         if ($this->getOption('action') == 'edit')
+        if ($this->getOption('action') == 'edit')
             $this->setWidget('is_active', new sfWidgetFormInputHidden(array(), array('value' => 1)));
         $this->setWidget('role', new sfWidgetFormChoice(array('choices' => self::$role)));
 

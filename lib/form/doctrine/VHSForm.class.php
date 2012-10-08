@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class VHSForm extends BaseVHSForm {
@@ -15,32 +15,32 @@ class VHSForm extends BaseVHSForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => VHS::$constants[0]),array('class' => 'override_required')));
+        $this->setWidget('size', new sfWidgetFormChoice(array('choices' => VHS::$constants[0]), array('class' => 'override_required')));
         $this->setValidator('size', new sfValidatorString(array('required' => true)));
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
-        
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1]),array('class' => 'override_required')));
+
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => VHS::$constants[1]), array('class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
-        
-        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2]),array('class' => 'override_required')));
+
+        $this->setWidget('recordingSpeed', new sfWidgetFormChoice(array('choices' => VHS::$constants[2]), array('class' => 'override_required')));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
-        
-       $this->setWidget('softBinderSyndrome',new sfWidgetFormInputCheckbox());
+
+        $this->setWidget('softBinderSyndrome', new sfWidgetFormInputCheckbox());
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true),array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
-         foreach (array('noise_reduction',
-             'duration_type_methodology',
-             'format_notes',
+        foreach (array('noise_reduction',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

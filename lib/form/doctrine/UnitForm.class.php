@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class UnitForm extends BaseUnitForm {
@@ -19,7 +19,7 @@ class UnitForm extends BaseUnitForm {
         $this->setWidget('notes', new sfWidgetFormTextarea());
         $this->getWidget('notes')->setLabel('Contact&nbsp;Notes:&nbsp;');
 
-        $voidFields = array('storage_location_id', 'parent_node_id', 'status', 'location', 'format_id', 'created_at', 'updated_at','name_slug', 'unit_personnel');
+        $voidFields = array('storage_location_id', 'parent_node_id', 'status', 'location', 'format_id', 'created_at', 'updated_at', 'name_slug', 'unit_personnel');
         if ($this->getOption('action') == 'edit')
             $voidFields[] = 'creator_id';
         else
@@ -41,23 +41,23 @@ class UnitForm extends BaseUnitForm {
         $this->getWidget('personnel_list')->setLabel('Unit Personnel List:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 1)));
-        $this->setValidator('inst_id',new sfValidatorString(array('required'=>false)));
+        $this->setValidator('inst_id', new sfValidatorString(array('required' => false)));
         $this->getValidator('name')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Invalid Unit Name'));
         $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
             'inst_id' => 'Invalid ID'));
-        foreach( $voidFields as $voidField) {
-		unset($this->widgetSchema[$voidField]);
-		unset($this->validatorSchema[$voidField]);
-	}
-        
+        foreach ($voidFields as $voidField) {
+            unset($this->widgetSchema[$voidField]);
+            unset($this->validatorSchema[$voidField]);
+        }
     }
- public function bind(array $taintedValues = null, array $taintedFiles = null) {
-         
+
+    public function bind(array $taintedValues = null, array $taintedFiles = null) {
+
 //            $taintedValues['name_slug'] = $taintedValues['name'];
-        
+
         parent::bind($taintedValues, $taintedFiles);
     }
-    
+
 }
 

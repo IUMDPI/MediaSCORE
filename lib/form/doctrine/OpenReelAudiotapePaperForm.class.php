@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
@@ -18,9 +18,9 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
 
 
         $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3])));
-        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2],'multiple'=>true),array('class'=>'override_required')));
+        $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2], 'multiple' => true), array('class' => 'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
-        
+
         $this->setValidator('speed', new sfValidatorString(array('required' => true)));
         $this->setValidator('tapeThickness', new sfValidatorString(array('required' => false)));
         $this->setValidator('noise_reduction', new sfValidatorBoolean());
@@ -33,8 +33,8 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('tape_type',
-            'format_notes',
-            'duration_type_methodology',
+    'format_notes',
+    'duration_type_methodology',
     'softBinderSyndrome',
     'thin_tape',
     'slow_speed',
@@ -91,6 +91,7 @@ class OpenReelAudiotapePaperForm extends BaseOpenReelAudiotapePaperForm {
             unset($this->validatorSchema[$voidField]);
         }
     }
+
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
         if (isset($taintedValues['speed']) && $taintedValues['speed'] != null) {
             $speed = implode(',', $taintedValues['speed']);

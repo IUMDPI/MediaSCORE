@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class OpticalDiscFormatTypeForm extends BaseOpticalDiscFormatTypeForm {
@@ -22,7 +22,7 @@ class OpticalDiscFormatTypeForm extends BaseOpticalDiscFormatTypeForm {
 
         $this->setValidator('dataLayer', new sfValidatorString(array('required' => false)));
 
-        
+
         $this->getWidget('dataLayer')->setLabel('Data Layer:&nbsp;');
     }
 

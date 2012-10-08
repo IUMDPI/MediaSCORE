@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class PressedSeventyEightRPMDiscForm extends BasePressedSeventyEightRPMDiscForm {
@@ -18,8 +18,8 @@ class PressedSeventyEightRPMDiscForm extends BasePressedSeventyEightRPMDiscForm 
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('title'=>'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.','class'=>'override_required')));
-        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of exudation of any type')));
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true), array('title' => 'Note the presence of cracks, chips, and other externally caused damage. This does not include cracks from actual delamination.', 'class' => 'override_required')));
+        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(), array('title' => 'Note presence of exudation of any type')));
         $this->setDefault('physicalDamage', -1);
 
 
@@ -31,8 +31,8 @@ class PressedSeventyEightRPMDiscForm extends BasePressedSeventyEightRPMDiscForm 
         $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
 
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',

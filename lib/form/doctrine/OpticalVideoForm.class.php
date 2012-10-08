@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class OpticalVideoForm extends BaseOpticalVideoForm {
@@ -15,10 +15,10 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('opticalDiscType', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[0]),array('class'=>'override_required')));
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[1]),array('class'=>'override_required')));
-        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true),array('class'=>'override_required')));
-        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(),array('title'=>'Note presence of hazing, oxidation, discoloration or delamination')));
+        $this->setWidget('opticalDiscType', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[0]), array('class' => 'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => OpticalVideo::$constants[1]), array('class' => 'override_required')));
+        $this->setWidget('physicalDamage', new sfWidgetFormChoice(array('choices' => MetalDisc::$damage, 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('materialsBreakdown', new sfWidgetFormInputCheckbox(array(), array('title' => 'Note presence of hazing, oxidation, discoloration or delamination')));
         $this->setDefault('physicalDamage', -1);
 
         $this->setValidator('opticalDiscType', new sfValidatorString(array('required' => true)));
@@ -33,10 +33,10 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
         $this->getWidget('materialsBreakdown')->setLabel('Breakdown of Materials:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-        
+
         foreach (array('noise_reduction',
-            'duration_type_methodology',
-            'format_notes',
+    'duration_type_methodology',
+    'format_notes',
     'tape_type',
     'slow_speed',
     'sound_field',
@@ -87,6 +87,7 @@ class OpticalVideoForm extends BaseOpticalVideoForm {
             unset($this->validatorSchema[$voidField]);
         }
     }
+
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
 
         if (isset($taintedValues['dataLayer']) && $taintedValues['dataLayer'] != null) {

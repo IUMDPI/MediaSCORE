@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class AssetGroupForm extends BaseAssetGroupForm {
@@ -25,9 +25,9 @@ class AssetGroupForm extends BaseAssetGroupForm {
         $this->setValidator('resident_structure_description', new sfValidatorString(array('required' => true)));
 
 
-        
 
-        $voidFields = array('created_at', 'updated_at', 'storage_location_id', 'unit_personnel','name_slug');
+
+        $voidFields = array('created_at', 'updated_at', 'storage_location_id', 'unit_personnel', 'name_slug');
         foreach (array('format_id', 'parent_node_id', 'type') as $hiddenField)
             $this->setWidget($hiddenField, new sfWidgetFormInputHidden());
 
@@ -51,16 +51,15 @@ class AssetGroupForm extends BaseAssetGroupForm {
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
-        // 05/08/12
-        // Temporary - Need user plug-in
-        //$this->getWidget('creator_id')->setAttribute('value',1);
+
 
 
         $this->getWidget('type')->setAttribute('value', 4);
     }
+
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
 
-//        $taintedValues['name_slug'] = $taintedValues['name'];
+
 
         parent::bind($taintedValues, $taintedFiles);
     }

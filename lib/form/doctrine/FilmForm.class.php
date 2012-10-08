@@ -5,52 +5,49 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class FilmForm extends BaseFilmForm
-{
-  /**
-   * @see ReelCassetteFormatTypeForm
-   */
-  public function configure()
-  {
-	parent::configure();
-	$this->setWidget('gauge',new sfWidgetFormChoice(array('choices' => Film::$constants[0])));
-	$this->setWidget('color',new sfWidgetFormChoice(array('choices' => Film::$constants[1]),array('onchange'=>'checkColor();')));
-	$this->setWidget('colorFade',new sfWidgetFormInputCheckbox(array(),array('title'=>'Will often give film a magenta appearance')));
-	$this->setWidget('soundtrackFormat',new sfWidgetFormChoice(array('choices' => Film::$constants[2])));
-	$this->setWidget('substrate',new sfWidgetFormChoice(array('choices' => Film::$constants[3]),array('onchange'=>'checkSubstracte();')));
-	$this->setWidget('strongOdor',new sfWidgetFormInputCheckbox());
-	$this->setWidget('vinegarOdor',new sfWidgetFormInputCheckbox());
-	$this->setWidget('ADStripLevel',new sfWidgetFormInputText());
-	$this->setWidget('shrinkage',new sfWidgetFormInputCheckbox()); 
-	$this->setWidget('levelOfShrinkage',new sfWidgetFormInputText());
-	$this->setWidget('rust',new sfWidgetFormInputCheckbox());
-	$this->setWidget('discoloration',new sfWidgetFormInputCheckbox());
-	$this->setWidget('surfaceBlisteringBubbling',new sfWidgetFormInputCheckbox());
-//	$this->setWidget('packDeformation',new sfWidgetFormChoice(array('choices' => Film::$constants[4],'expanded'=>true)));
-	
-//        $this->setDefault('packDeformation',1);
+class FilmForm extends BaseFilmForm {
 
-	$this->getWidget('gauge')->setLabel('<span class="required">*</span>Gauge / Type:&nbsp;');
-	$this->getWidget('color')->setLabel('<span class="required">*</span>Presence of Color?:&nbsp;');
-	$this->getWidget('colorFade')->setLabel('Color Fade:&nbsp;');
-	$this->getWidget('soundtrackFormat')->setLabel('<span class="required">*</span>Soundtrack Format:&nbsp;');
-	$this->getWidget('substrate')->setLabel('<span class="required">*</span>Substrate:&nbsp;');
-	$this->getWidget('strongOdor')->setLabel('Strong odor:&nbsp;');
-	$this->getWidget('vinegarOdor')->setLabel('Vinegar odor:&nbsp;');
-	$this->getWidget('ADStripLevel')->setLabel('A-D strip level:&nbsp;');
-	$this->getWidget('shrinkage')->setLabel('Shrinkage:&nbsp;');
-	$this->getWidget('levelOfShrinkage')->setLabel('Level of shrinkage:&nbsp;');
-	$this->getWidget('rust')->setLabel('Rust:&nbsp;');
-	$this->getWidget('discoloration')->setLabel(' Amber, brown, or yellowish discoloration:&nbsp;');
-	$this->getWidget('surfaceBlisteringBubbling')->setLabel('Surface blistering or bubbling:&nbsp;');
-//	$this->getWidget('packDeformation')->setLabel('Pack Deformation:&nbsp;');
-	
-        
-        $this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
-        
+    /**
+     * @see ReelCassetteFormatTypeForm
+     */
+    public function configure() {
+        parent::configure();
+        $this->setWidget('gauge', new sfWidgetFormChoice(array('choices' => Film::$constants[0])));
+        $this->setWidget('color', new sfWidgetFormChoice(array('choices' => Film::$constants[1]), array('onchange' => 'checkColor();')));
+        $this->setWidget('colorFade', new sfWidgetFormInputCheckbox(array(), array('title' => 'Will often give film a magenta appearance')));
+        $this->setWidget('soundtrackFormat', new sfWidgetFormChoice(array('choices' => Film::$constants[2])));
+        $this->setWidget('substrate', new sfWidgetFormChoice(array('choices' => Film::$constants[3]), array('onchange' => 'checkSubstracte();')));
+        $this->setWidget('strongOdor', new sfWidgetFormInputCheckbox());
+        $this->setWidget('vinegarOdor', new sfWidgetFormInputCheckbox());
+        $this->setWidget('ADStripLevel', new sfWidgetFormInputText());
+        $this->setWidget('shrinkage', new sfWidgetFormInputCheckbox());
+        $this->setWidget('levelOfShrinkage', new sfWidgetFormInputText());
+        $this->setWidget('rust', new sfWidgetFormInputCheckbox());
+        $this->setWidget('discoloration', new sfWidgetFormInputCheckbox());
+        $this->setWidget('surfaceBlisteringBubbling', new sfWidgetFormInputCheckbox());
+
+
+        $this->getWidget('gauge')->setLabel('<span class="required">*</span>Gauge / Type:&nbsp;');
+        $this->getWidget('color')->setLabel('<span class="required">*</span>Presence of Color?:&nbsp;');
+        $this->getWidget('colorFade')->setLabel('Color Fade:&nbsp;');
+        $this->getWidget('soundtrackFormat')->setLabel('<span class="required">*</span>Soundtrack Format:&nbsp;');
+        $this->getWidget('substrate')->setLabel('<span class="required">*</span>Substrate:&nbsp;');
+        $this->getWidget('strongOdor')->setLabel('Strong odor:&nbsp;');
+        $this->getWidget('vinegarOdor')->setLabel('Vinegar odor:&nbsp;');
+        $this->getWidget('ADStripLevel')->setLabel('A-D strip level:&nbsp;');
+        $this->getWidget('shrinkage')->setLabel('Shrinkage:&nbsp;');
+        $this->getWidget('levelOfShrinkage')->setLabel('Level of shrinkage:&nbsp;');
+        $this->getWidget('rust')->setLabel('Rust:&nbsp;');
+        $this->getWidget('discoloration')->setLabel(' Amber, brown, or yellowish discoloration:&nbsp;');
+        $this->getWidget('surfaceBlisteringBubbling')->setLabel('Surface blistering or bubbling:&nbsp;');
+
+
+
+        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
+
         $this->setValidator('gauge', new sfValidatorString(array('required' => true)));
         $this->setValidator('color', new sfValidatorString(array('required' => true)));
         $this->setValidator('colorFade', new sfValidatorBoolean());
@@ -64,10 +61,10 @@ class FilmForm extends BaseFilmForm
         $this->setValidator('rust', new sfValidatorBoolean());
         $this->setValidator('discoloration', new sfValidatorBoolean());
         $this->setValidator('surfaceBlisteringBubbling', new sfValidatorBoolean());
-//        $this->setValidator('packDeformation', new sfValidatorString(array('required' => true)));
-        
-        
-         foreach (array('noise_reduction',
+
+
+
+        foreach (array('noise_reduction',
     'tape_type',
     'format_notes',
     'thin_tape',
@@ -124,12 +121,12 @@ class FilmForm extends BaseFilmForm
     'material',
     'oxidationCorrosion',
     'physicalDamage',
-            'quantity') as $voidField) {
+    'quantity') as $voidField) {
             unset($this->widgetSchema[$voidField]);
             unset($this->validatorSchema[$voidField]);
         }
 
-	$this->setWidget('type',new sfWidgetFormInputHidden(array(),array('value' => $this->getObject()->getTypeValue() )));
+        $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
+    }
 
-  }
 }

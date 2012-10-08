@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class CollectionForm extends BaseCollectionForm {
@@ -51,7 +51,7 @@ class CollectionForm extends BaseCollectionForm {
 
     public function bind(array $taintedValues = null, array $taintedFiles = null) {
 
-//        $taintedValues['name_slug'] = $taintedValues['name'];
+
 
         parent::bind($taintedValues, $taintedFiles);
     }
