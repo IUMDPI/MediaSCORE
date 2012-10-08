@@ -49,7 +49,7 @@ class dvActions extends sfActions {
         $dv = Doctrine_Core::getTable('DV')->find(array($request->getParameter('id')));
         $this->form = new DVForm($dv);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

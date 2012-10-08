@@ -50,7 +50,7 @@ class analogaudiocassetteActions extends sfActions {
 
         $this->form = new AnalogAudioCassetteForm($analog_audio_cassette);
 
-        $this->form->disableLocalCSRFProtection();
+//        $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

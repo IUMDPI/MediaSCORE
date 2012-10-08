@@ -57,7 +57,7 @@ class xdcamopticalActions extends sfActions {
 
         $this->form->setDefault('codec', $codec);
         $this->form->setDefault('dataRate', $dataRate);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

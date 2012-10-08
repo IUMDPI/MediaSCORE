@@ -59,7 +59,7 @@ class soundopticaldiscActions extends sfActions {
         $this->form->setDefault('opticaldisctype', $sound_optical_disc->getOpticaldisctype());
         $this->form->setDefault('dataLayer', $dataLayer);
         $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

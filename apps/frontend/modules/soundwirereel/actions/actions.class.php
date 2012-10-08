@@ -47,7 +47,7 @@ class soundwirereelActions extends sfActions {
         $sound_wire_reel->save();
         $sound_wire_reel = Doctrine_Core::getTable('SoundWireReel')->find(array($request->getParameter('id')));
         $this->form = new SoundWireReelForm($sound_wire_reel);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

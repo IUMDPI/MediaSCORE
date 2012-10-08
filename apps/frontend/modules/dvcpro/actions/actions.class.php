@@ -56,7 +56,7 @@ class dvcproActions extends sfActions {
 
 
         $this->form->setDefault('formatVersion', $formatVersion);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

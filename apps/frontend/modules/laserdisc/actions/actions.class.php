@@ -49,7 +49,6 @@ class laserdiscActions extends sfActions {
 
         $this->form = new LaserdiscForm($laserdisc);
 
-        $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

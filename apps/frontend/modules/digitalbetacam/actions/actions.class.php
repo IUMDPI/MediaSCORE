@@ -50,9 +50,10 @@ class digitalbetacamActions extends sfActions {
         $digital_betacam->save();
         $digital_betacam = Doctrine_Core::getTable('DigitalBetacam')->find(array($request->getParameter('id')));
         $this->form = new DigitalBetacamForm($digital_betacam);
+        // get and set the default value for bitrate
         $bitRate = explode(',', $digital_betacam->getBitrate());
         $this->form->setDefault('bitrate', $bitRate);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

@@ -49,7 +49,7 @@ class umaticActions extends sfActions {
         $umatic = Doctrine_Core::getTable('Umatic')->find(array($request->getParameter('id')));
         $this->form = new UmaticForm($umatic);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

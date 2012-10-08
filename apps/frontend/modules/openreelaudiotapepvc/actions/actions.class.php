@@ -53,11 +53,10 @@ class openreelaudiotapepvcActions extends sfActions {
         $open_reel_audiotape_pvc = Doctrine_Core::getTable('OpenReelAudiotapePVC')->find(array($request->getParameter('id')));
         $this->form = new OpenReelAudiotapePVCForm($open_reel_audiotape_pvc);
         
+        // set the default value for speed
         $speed = explode(',', $open_reel_audiotape_pvc->getSpeed());
-
-        
         $this->form->setDefault('speed', $speed);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

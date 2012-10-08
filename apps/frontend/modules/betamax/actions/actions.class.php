@@ -49,7 +49,7 @@ class betamaxActions extends sfActions {
         $betamax = Doctrine_Core::getTable('Betamax')->find(array($request->getParameter('id')));
         $this->form = new BetamaxForm($betamax);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

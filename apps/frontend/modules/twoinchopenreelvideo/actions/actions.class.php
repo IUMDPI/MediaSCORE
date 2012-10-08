@@ -49,7 +49,7 @@ class twoinchopenreelvideoActions extends sfActions {
         $two_inch_open_reel_video = Doctrine_Core::getTable('TwoInchOpenReelVideo')->find(array($request->getParameter('id')));
         $this->form = new TwoInchOpenReelVideoForm($two_inch_open_reel_video);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

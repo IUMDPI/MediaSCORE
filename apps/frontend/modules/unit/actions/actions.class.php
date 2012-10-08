@@ -11,6 +11,7 @@
 class unitActions extends sfActions {
 
     public function executeSearch(sfWebRequest $request) {
+        // make array of all the format types that are available
         $types = array('Metal Disc' => '1',
             'Film' => '5',
             'DAT' => '6',
@@ -44,14 +45,15 @@ class unitActions extends sfActions {
             'HDCAM' => '45',
             'DVCPro' => '46',
         );
-
+        // make array of search parameters
         $store = array('Unit' => '1',
             'Collection' => '3',
             'Asset Group' => '4');
-
+        // get the parameter of search
         $this->searchValues = $request->getParameter('search_values');
+        // make array of search values
         $this->searchString = explode(',', $this->searchValues);
-
+        // compare search values with the arrays ($store and $type)
         $formatType = array();
         $storeType = array();
         $stringForName = '%';
@@ -64,8 +66,8 @@ class unitActions extends sfActions {
             else
                 $stringForName.=$value . '%';
         }
-//        echo strlen($stringForName);
 
+        // query with the  search values that exist in our database
         if (count($formatType) > 0) {
 
             $this->formatsResult = Doctrine_Query::Create()
@@ -100,16 +102,8 @@ class unitActions extends sfActions {
     public function executeGetUnitForAssetGroup(sfWebRequest $request) {
 
         if ($request->isXmlHttpRequest()) {
-            // assetgroup.parent_node_id -> collection
-            // collection.parent_node_id -> unit
-
             $assetGroupID = $request->getParameter('id');
-
-            // Too many exceptions thrown - taking an overly complex approach
-            // (getFirst() and fetchOne() throw exceptions)
-            // Needs to be optimized
-            //$map = array('AssetGroup','Collection','Unit');
-
+            // search the assets with the request ID
             $assetGroups = Doctrine_Core::getTable('AssetGroup')
                     ->createQuery('a')
                     ->where('id =?', $assetGroupID)
@@ -117,19 +111,20 @@ class unitActions extends sfActions {
                     ->toArray();
             $assetGroup = array_pop($assetGroups);
 
+            // get collection for the search asset group
             $collections = Doctrine_Core::getTable('Collection')
                     ->createQuery('c')
                     ->where('id =?', $assetGroup['parent_node_id'])
                     ->execute()
                     ->toArray();
             $collection = array_pop($collections);
-
+            // get unit for the collection for the asset group
             $units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
                     ->where('id =?', $collection['parent_node_id'])
                     ->execute()
                     ->toArray();
-
+            // return the response with the units detail
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             $this->setTemplate('index');
@@ -141,12 +136,14 @@ class unitActions extends sfActions {
         $unitId = $request->getParameter('u');
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
+            // get details of unit persons for the given unit id.
             $unit = Doctrine_Query::Create()
                     ->from('Person p')
                     ->select('p.*')
                     ->innerJoin('p.UnitPerson up')
                     ->where('up.unit_id =?', $unitId)
                     ->fetchArray();
+            // get the detail of storage location for the given unit id
             $location = Doctrine_Query::Create()
                     ->from('StorageLocation sl')
                     ->select('sl.*')
@@ -160,10 +157,11 @@ class unitActions extends sfActions {
     public function executeGetUserDetail(sfWebRequest $request) {
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
-            $explodeId = explode(',', $request->getParameter('id'));
+            $explodedId = explode(',', $request->getParameter('id'));
+            // search and get the detail of users
             $user = Doctrine_Core::getTable('sfGuardUser')
                     ->createQuery('c')
-                    ->whereIn('id ', $explodeId)
+                    ->whereIn('id ', $explodedId)
                     ->execute()
                     ->toArray();
             return $this->renderText(json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user)));
@@ -171,29 +169,17 @@ class unitActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
+        // if any unit is deleted then so the message and remove it.
         $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
         $this->getUser()->getAttributeHolder()->remove('delMsg');
+
+        // get the list of all the units 
         $this->units = Doctrine_Core::getTable('Unit')
                 ->createQuery('a')
                 ->orderBy('name')
                 ->execute();
 
-        // Cannot forge a one-to-one relationship with myUser class that provides a 
-        /* $this->creators = array();
-          foreach($this->units as $unit) {
-
-          //$unit->getCreator();
-
-          $this->creators[$unit->getId()] = Doctrine_Core::getTable('User')->find( $unit->getCreatorId() );
-          }
-
-          $this->editors = array();
-          foreach($this->units as $unit) {
-          $this->editors[$unit->getId()] = Doctrine_Core::getTable('User')->find( $unit->getLastEditorId() );
-          } */
-
-
-        // To be moved into a separate Action or Controller
+        // get all the request parameters
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
         $from = $request->getParameter('from');
@@ -206,7 +192,7 @@ class unitActions extends sfActions {
                     ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu');
-
+            // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
             }
@@ -241,17 +227,14 @@ class unitActions extends sfActions {
                 }
             }
 
-
+            // after applying the parametes get units.
             $this->unit = $this->unit->fetchArray();
-            foreach ($this->unit as $key=>$value) {
-                $duration=new Unit();
-                $this->unit[$key]['duration']=$duration->getDuration($value['id']);
+            // get duration for each unit
+            foreach ($this->unit as $key => $value) {
+                $duration = new Unit();
+                $this->unit[$key]['duration'] = $duration->getDuration($value['id']);
             }
-//            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->createQuery('a')
-//                    ->where('parent_node_id =?', $unitID)
-//                    ->andWhere('name like "%'.$searchInpout.'%"')
-//                    ->execute();
+
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
@@ -277,7 +260,7 @@ class unitActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
-        
+
         $this->form = new UnitForm(null,
                         array('userID' => $this->getUser()->getGuardUser()->getId()
                 ));
@@ -320,11 +303,6 @@ class unitActions extends sfActions {
                             'action' => 'edit'
                 ));
 
-
-
-//            $this->locationError = 'This value is selected by a Collection or Asset Group. To de-select at the unit level, you must first de-select this value at the asset group and collection level';
-//            $this->setTemplate('edit');
-
         $success = $this->processForm($request, $this->form);
         if ($success && isset($success['form']) && $success['form'] == true) {
             echo $success['id'];
@@ -341,7 +319,7 @@ class unitActions extends sfActions {
         //$request->checkCSRFProtection();
 
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
-
+        // remove all the collection first before deleting any unit.
         $collections = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
@@ -357,6 +335,7 @@ class unitActions extends sfActions {
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        // get the storage location for the given unit.
         $collections = Doctrine_Query::Create()
                 ->from('CollectionStorageLocation csl')
                 ->select('csl.*')
@@ -366,6 +345,7 @@ class unitActions extends sfActions {
                 ->fetchArray();
         if ($form->isValid()) {
             $check = array();
+            // match the selected and already assign the storage location. 
             foreach ($collections as $value) {
                 foreach ($form->getValue('storage_locations_list') as $location) {
                     if ($location == $value['storage_location_id']) {
@@ -373,13 +353,14 @@ class unitActions extends sfActions {
                     }
                 }
             }
+            // if store location is already assign to collection that user want to remove then show error message.
             if (count($collections) != count($check)) {
                 $error = array('error' => true);
                 return $error;
             }
             $unit = $form->save();
-            
-            
+
+
             $success = array('form' => true, 'id' => $unit->getId());
             return $success;
         }

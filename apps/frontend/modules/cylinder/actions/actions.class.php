@@ -49,7 +49,7 @@ class cylinderActions extends sfActions {
         $cylinder = Doctrine_Core::getTable('Cylinder')->find(array($request->getParameter('id')));
         $this->form = new CylinderForm($cylinder);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

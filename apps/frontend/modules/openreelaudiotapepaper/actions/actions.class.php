@@ -55,7 +55,7 @@ class openreelaudiotapepaperActions extends sfActions {
         $speed = explode(',', $open_reel_audiotape_paper->getSpeed());
 
         $this->form->setDefault('speed', $speed);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

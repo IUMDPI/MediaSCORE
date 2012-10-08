@@ -43,15 +43,15 @@ class eightmmActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($eight_mm = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object eight_mm does not exist (%s).', $request->getParameter('id')));
-
+        // set the format type
         $eight_mm->setType(31);
         $eight_mm->save();
         $eight_mm = Doctrine_Core::getTable('EightMM')->find(array($request->getParameter('id')));
         $this->form = new EightMMForm($eight_mm);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
-
+        // form is valid then return the id;
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
             echo $validateForm['id'];
             exit;

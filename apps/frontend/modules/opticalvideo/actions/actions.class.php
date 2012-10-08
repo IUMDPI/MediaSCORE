@@ -58,7 +58,7 @@ class opticalvideoActions extends sfActions {
 
         $this->form->setDefault('dataLayer', $dataLayer);
         $this->form->setDefault('reflectiveLayer', $reflectiveLayer);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

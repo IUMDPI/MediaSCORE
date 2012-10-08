@@ -49,7 +49,7 @@ class lacquerdiscActions extends sfActions {
         $lacquer_disc = Doctrine_Core::getTable('LacquerDisc')->find(array($request->getParameter('id')));
         $this->form = new LacquerDiscForm($lacquer_disc);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

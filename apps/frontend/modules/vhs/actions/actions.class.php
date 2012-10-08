@@ -48,7 +48,7 @@ class vhsActions extends sfActions {
         $vhs->save();
         $vhs = Doctrine_Core::getTable('VHS')->find(array($request->getParameter('id')));
         $this->form = new VHSForm($vhs);
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

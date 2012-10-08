@@ -43,13 +43,13 @@ class betacamActions extends sfActions {
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($betacam = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object betacam does not exist (%s).', $request->getParameter('id')));
-
+        // change the format type
         $betacam->setType(40);
         $betacam->save();
         $betacam = Doctrine_Core::getTable('Betacam')->find(array($request->getParameter('id')));
         $this->form = new BetacamForm($betacam);
 
-        $this->form->disableLocalCSRFProtection();
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

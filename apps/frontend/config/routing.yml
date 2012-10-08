@@ -6,19 +6,6 @@ homepage:
   url:   /
   param: { module: unit, action: index }
 
-#storagelocation:
-#  url: /storagelocation
-#  param: { module: storagelocation, action: index }
-#  
-#  
-#person:
-#  url: /person
-#  param: { module: person, action: index }
-#  
-#user:
-#  url: /user
-#  param: { module: user, action: index }
-  
 collection:
   url: /:name_slug
   class:   sfDoctrineRoute

@@ -49,7 +49,6 @@ class hdcamActions extends sfActions {
         $hd_cam = Doctrine_Core::getTable('HDCam')->find(array($request->getParameter('id')));
         $this->form = new HDCamForm($hd_cam);
 
-        $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

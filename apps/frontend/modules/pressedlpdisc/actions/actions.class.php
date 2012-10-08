@@ -49,7 +49,7 @@ class pressedlpdiscActions extends sfActions {
 
         $this->form = new PressedLPDiscForm($pressed_lp_disc);
 
-        $this->form->disableLocalCSRFProtection();
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

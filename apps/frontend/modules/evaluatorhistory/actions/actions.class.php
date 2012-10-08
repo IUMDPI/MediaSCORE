@@ -12,7 +12,7 @@ class evaluatorhistoryActions extends sfActions {
 
     public function executeGetConsultedPersons(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
-
+            // get the histroy of Evaluator
             $consultationRecords = Doctrine_Core::getTable('EvaluatorHistoryPersonnel')
                     ->findBy('evaluator_history_id', $request->getParameter('id'));
 
@@ -57,12 +57,6 @@ class evaluatorhistoryActions extends sfActions {
         }
     }
 
-    /*  public function executeShow(sfWebRequest $request)
-      {
-      $this->evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id')));
-      $this->forward404Unless($this->evaluator_history);
-      } */
-
     public function executeNew(sfWebRequest $request) {
 
         $this->form = new EvaluatorHistoryForm(
@@ -81,24 +75,14 @@ class evaluatorhistoryActions extends sfActions {
                             'action' => 'new'
                 ));
 
-        /* echo 'trace';
-          echo var_dump($request);
-          exit(); */
-
         $this->processForm($request, $this->form);
 
         $this->setTemplate('new');
-
-        //$this->forward($this->getModuleName(),'new');
     }
 
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id'))), sprintf('Object evaluator_history does not exist (%s).', $request->getParameter('id')));
-
-
-
-
         $this->form = new EvaluatorHistoryForm($evaluator_history, array('creatorID' => $this->getUser()->getGuardUser()->getId()
                 ));
     }
@@ -126,44 +110,7 @@ class evaluatorhistoryActions extends sfActions {
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
-
-            /*
-
-              $formValues=$form->getValues();
-              // Doctrine does not bind values properly, and I cannot remove field values which are null and for which there exists no NOT NULL MySQL table constraint
-              if($form->getObject()->isNew()) {
-              echo 'trace';
-              $evaluatorHistory=Doctrine_Core::getTable('EvaluatorHistory')->create(array(
-              'updated_at' => $formValues['updated_at'])); // The only field with a NOT NULL constraint.
-              $evaluatorHistory->save();
-              } else {
-              $evaluatorHistory=$form->getObject();
-              }
-
-              if(isset($formValues['person_list']))
-              foreach($formValues['person_list'] as $personID)
-              Doctrine_Core::getTable('EvaluatorHistoryPersonnel')->create(array(
-              'evaluator_history_id' => $evaluatorHistory->getId(),
-              'person_id' => $personID))->save();
-
-              unset($formValues['person_list']);
-
-              // 0 is stored as NULL
-              $evaluatorHistory->set('type',$formValues['type']);
-              $evaluatorHistory->save();
-              foreach(array_keys($formValues) as $formField) {
-              if($formValues[$formField] && !$evaluatorHistory->get($formField)) {
-              $evaluatorHistory->set($formField,$formValues[$formField]);
-              $evaluatorHistory->save();
-              }
-              }
-
-             */
             $evaluatorHistory = $form->save();
-
-
-            //$evaluator_history = $form->save();
-//            $this->redirect('evaluatorhistory/edit?id=' . $evaluatorHistory->getId());
         }
     }
 

@@ -54,7 +54,6 @@ class halfinchopenreelvideoActions extends sfActions {
         $reelSize = explode(',', $half_inch_open_reel_video->getReelSize());
 
         $this->form->setDefault('reelSize', $reelSize);
-        $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

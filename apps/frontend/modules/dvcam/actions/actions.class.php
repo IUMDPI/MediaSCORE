@@ -49,7 +49,7 @@ class dvcamActions extends sfActions {
         $dv_cam = Doctrine_Core::getTable('DVCam')->find(array($request->getParameter('id')));
         $this->form = new DVCamForm($dv_cam);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

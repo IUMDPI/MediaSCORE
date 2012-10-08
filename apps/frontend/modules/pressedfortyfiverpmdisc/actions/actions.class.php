@@ -49,7 +49,7 @@ class pressedfortyfiverpmdiscActions extends sfActions {
 
         $this->form = new PressedFortyFiveRPMDiscForm($pressed_forty_five_rpm_disc);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

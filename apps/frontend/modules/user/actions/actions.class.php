@@ -11,11 +11,16 @@
 class userActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
+        // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
             $this->redirect('storagelocation/index');
-        $msg = $request->getParameter('n');
+        $msg = $request->getParameter('n'); // if new user is created
         if ($msg)
-            $this->popup = 1;
+            $this->popup = 1;   // show popup for the new users
+
+
+            
+        // List all the users
         $this->users = Doctrine_Core::getTable('User')
                 ->createQuery('a')
                 ->execute();
@@ -27,14 +32,17 @@ class userActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
+        // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
             $this->redirect('storagelocation/index');
         $this->form = new sfGuardUserForm();
     }
 
     public function executeCreate(sfWebRequest $request) {
+         // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
             $this->redirect('storagelocation/index');
+        
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new sfGuardUserForm();
@@ -79,17 +87,18 @@ class userActions extends sfActions {
         if ($form->isValid()) {
             $user = $form->save();
             if ($new) {
-                $key = md5(rand() . microtime());
-                $user->setActivation_key($key);
-                $user->setIsActive(false);
+                $key = md5(rand() . microtime()); // generate a key for activation
+                $user->setActivation_key($key);    // set the key in database
+                $user->setIsActive(false);         // set inacitve status 
                 $user->save();
+                // send email to the user for activating the account
                 $user->setUsername($user->getEmailAddress());
                 $user->save();
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')
                         ->setTo($user->getEmailAddress())
                         ->setSubject('Active your account ' . $user->getUsername())
-                        ->setBody('To Active your accout click on the link.<br/> http://108.166.74.254/sfGuardAuth/activateAccount?key=' . $key)
+                        ->setBody('To Active your account click on the link.<br/> ' . sfConfig::get('app_url') . '/sfGuardAuth/activateAccount?key=' . $key)
                         ->setContentType('text/html');
 
                 $this->getMailer()->send($message);

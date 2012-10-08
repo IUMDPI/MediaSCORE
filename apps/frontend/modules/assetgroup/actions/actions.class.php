@@ -11,9 +11,7 @@
 class assetgroupActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
-        /* $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
-          ->createQuery('a')
-          ->execute(); */
+
         $collectionId = $request->getParameter('c');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
@@ -21,7 +19,7 @@ class assetgroupActions extends sfActions {
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
 
-        // Get collections for a specific Unit
+        // Get collections for a specific Asset Group
         if ($request->isXmlHttpRequest()) {
             $this->assets = Doctrine_Query::Create()
                     ->from('AssetGroup c')
@@ -29,6 +27,7 @@ class assetgroupActions extends sfActions {
                     ->innerJoin('c.Creator cu')
                     ->innerJoin('c.Editor eu')
                     ->where('c.parent_node_id  = ?', $collectionId);
+            // apply the filters for assets group
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->assets = $this->assets->andWhere('name like "%' . $searchInpout . '%"');
             }
@@ -63,8 +62,9 @@ class assetgroupActions extends sfActions {
                 }
             }
 
-
+            // fetch the assets groups
             $this->assets = $this->assets->fetchArray();
+            // get durations for assets groups respectively
             if (sizeof($this->assets) > 0) {
                 foreach ($this->assets as $key => $value) {
                     $duration = new AssetGroup();
@@ -72,49 +72,40 @@ class assetgroupActions extends sfActions {
                     $this->assets[$key]['duration'] = $duration;
                 }
             }
-//            $this->collections = Doctrine_Core::getTable('Collection')
-//                    ->createQuery('a')
-//                    ->where('parent_node_id =?', $unitID)
-//                    ->andWhere('name like "%'.$searchInpout.'%"')
-//                    ->execute();
+
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             return $this->renderText(json_encode($this->assets));
         }
-//        $unitObject = $this->getRoute()->getObject();
-//        echo '<pre>';
-//        print_r($unitObject);
-//        exit;
-
+        // get the object of collection
         $collectionObject = $this->getRoute()->getObject();
 
         $this->forward404Unless($collectionObject);
 //        $this->collectionID = $request->getParameter('c');
         $this->collectionID = $collectionObject->getId();
 //        $this->forward404Unless($this->collectionID);
-
+        // get collection for the assets group
         $collection = Doctrine_Core::getTable('Collection')
                 ->find($this->collectionID);
         $this->forward404Unless($collection);
-
+        // set the unit id of a collection
         $this->unitID = $collection->getParentNodeId();
-
+        // get name of unit against collection
         $this->unitName = Doctrine_Core::getTable('Unit')
                 ->find($this->unitID)
                 ->getName();
+        // get unit detail
         $this->unit = Doctrine_Core::getTable('Unit')
                 ->find($this->unitID);
         $this->persons = Doctrine_Core::getTable('Evaluator')
                 ->findAll();
-        //print_r($this->persons->toArray());
-        //print_r($this->persons->count());
-        //exit();
 
+        // get collection name
         $this->collectionName = $collection->getName();
+        // get all the assets groups for given collection
         $this->asset_groups = Doctrine_Core::getTable('AssetGroup')
                 ->findBy('parent_node_id', $this->collectionID);
-        //print_r($this->asset_groups->getPerson()->toArray());
     }
 
     public function executeShow(sfWebRequest $request) {
@@ -142,17 +133,9 @@ class assetgroupActions extends sfActions {
                 ->select('c.*')
                 ->where('c.id  = ?', $request->getParameter('c'))
                 ->fetchOne();
-
-
-
-        //$this->form->setOption('collectionID',$request->getParameter('c'));
     }
 
     public function executeCreate(sfWebRequest $request) {
-
-        // 05/08/12
-        //$this->getResponse()->setContent( print_r($request->getPostParameters()) );
-        //return sfView::NONE;
 
         $this->forward404Unless($request->isMethod(sfRequest::POST));
         $collectionId = sfToolkit::getArrayValueForPath($request->getParameter('asset_group'), 'parent_node_id');
@@ -198,14 +181,7 @@ class assetgroupActions extends sfActions {
                 ->select('c.*')
                 ->where('c.id  = ?', $request->getParameter('c'))
                 ->fetchOne();
-        // Pass the related EvaluatorHistory objects to the View
-        //$this->evaluatorHistoryInstances = $asset_group->getEvaluatorHistory();
-
-        /* Doctrine_Query::create()
-          ->from('AssetGroup ag')
-          ->leftJoin('ag.evaluatorActions eh')
-          ->where('ag.id = ?',7)
-          ->fetchOne(); */
+        
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -250,7 +226,7 @@ class assetgroupActions extends sfActions {
 //        $request->checkCSRFProtection();
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
-
+        
         $collection = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
@@ -281,7 +257,7 @@ class assetgroupActions extends sfActions {
         if ($form->isValid()) {
             $asset_group = $form->save();
             return true;
-//            $this->redirect('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $form->getOption('collectionID'));
+
         }
         return false;
     }

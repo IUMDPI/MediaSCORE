@@ -51,7 +51,6 @@ class filmActions extends sfActions {
          
         $this->form = new FilmForm($film);
         
-        $this->form->disableLocalCSRFProtection();
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -77,7 +76,7 @@ class filmActions extends sfActions {
             $film = $form->save();
             $saveReturnId = array('form' => true, 'id' => $film->getId());
             return $saveReturnId;
-//            $this->redirect('film/edit?id=' . $film->getId());
+
         }
         return false;
     }

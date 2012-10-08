@@ -6,12 +6,17 @@
 prod:
     .settings:
         base:       http://mediascore.avpreserve.com
+        url: http://mediascore.avpreserve.com
         
 dev:
     .settings:
         base:     http://108.166.74.254/frontend_dev.php
-
-        
+        url: http://108.166.74.254
+ 
+testing:
+    .settings:
+        base:     http://indiana.iserver.purelogics.info/frontend_dev.php
+        url: http://indiana.iserver.purelogics.info
         
 all:
   .settings:

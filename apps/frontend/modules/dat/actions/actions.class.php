@@ -49,7 +49,7 @@ class datActions extends sfActions {
         $dat = Doctrine_Core::getTable('DAT')->find(array($request->getParameter('id')));
         $this->form = new DATForm($dat);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {

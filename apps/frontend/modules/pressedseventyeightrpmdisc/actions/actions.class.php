@@ -49,7 +49,7 @@ class pressedseventyeightrpmdiscActions extends sfActions {
         $pressed_seventy_eight_rpm_disc = Doctrine_Core::getTable('PressedSeventyEightRPMDisc')->find(array($request->getParameter('id')));
         $this->form = new PressedSeventyEightRPMDiscForm($pressed_seventy_eight_rpm_disc);
 
-        $this->form->disableLocalCSRFProtection();
+        
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
