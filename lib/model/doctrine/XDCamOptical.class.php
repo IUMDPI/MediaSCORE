@@ -7,14 +7,15 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class XDCamOptical extends BaseXDCamOptical
-{
-	public static $constants = array(
-					0 => array(''=>'Select',0 => 'SD',1 => 'HD', 2 => 'HD422', 3 => 'Unknown'),
-					1 => array(''=>'Select',0 => 'Single (23.3)',1 => 'Dual (50)',2 => 'Quad (128)',4=>'Unknown'),
-					2 => array(0 => 'DVCam',1 => 'IMX',2 => 'Unknown'),
-					3 => array(0 => '30',1 => '40', 2 => '50',3=>'Unknown'));
+class XDCamOptical extends BaseXDCamOptical {
+
+    public static $constants = array(
+        0 => array('' => 'Select', 0 => 'SD', 1 => 'HD', 2 => 'HD422', 3 => 'Unknown'),
+        1 => array('' => 'Select', 0 => 'Single (23.3)', 1 => 'Dual (50)', 2 => 'Quad (128)', 4 => 'Unknown'),
+        2 => array(0 => 'DVCam', 1 => 'IMX', 2 => 'Unknown'),
+        3 => array(0 => '30', 1 => '40', 2 => '50', 3 => 'Unknown'));
+
 }

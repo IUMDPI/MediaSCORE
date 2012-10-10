@@ -10,21 +10,41 @@
  */
 class xdcamopticalActions extends sfActions {
 
+    /**
+     * List all XDCamOptical
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeIndex(sfWebRequest $request) {
         $this->xd_cam_opticals = Doctrine_Core::getTable('XDCamOptical')
                 ->createQuery('a')
                 ->execute();
     }
 
+    /**
+     * XDCamOptical detail of specific record
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeShow(sfWebRequest $request) {
         $this->xd_cam_optical = Doctrine_Core::getTable('XDCamOptical')->find(array($request->getParameter('id')));
         $this->forward404Unless($this->xd_cam_optical);
     }
 
+    /**
+     * XDCamOptical form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new XDCamOpticalForm();
     }
 
+    /**
+     * XDCamOptical Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,6 +55,11 @@ class xdcamopticalActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * XDCamOptical edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($xd_cam_optical = Doctrine_Core::getTable('XDCamOptical')->find(array($request->getParameter('id'))), sprintf('Object xd_cam_optical does not exist (%s).', $request->getParameter('id')));
         $this->form = new XDCamOpticalForm($xd_cam_optical);
@@ -45,6 +70,11 @@ class xdcamopticalActions extends sfActions {
         $this->form->setDefault('dataRate', $dataRate);
     }
 
+    /**
+     * XDCamOptical Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($xd_cam_optical = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object xd_cam_optical does not exist (%s).', $request->getParameter('id')));
@@ -57,7 +87,7 @@ class xdcamopticalActions extends sfActions {
 
         $this->form->setDefault('codec', $codec);
         $this->form->setDefault('dataRate', $dataRate);
-        
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -68,6 +98,11 @@ class xdcamopticalActions extends sfActions {
         }
     }
 
+    /**
+     * XDCamOptical Delete form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         $request->checkCSRFProtection();
 
@@ -77,14 +112,20 @@ class xdcamopticalActions extends sfActions {
         $this->redirect('xdcamoptical/index');
     }
 
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $xd_cam_optical = $form->save();
             $saveReturnId = array('form' => true, 'id' => $xd_cam_optical->getId());
             return $saveReturnId;
-
-//      $this->redirect('xdcamoptical/edit?id='.$xd_cam_optical->getId());
         }
         return false;
     }

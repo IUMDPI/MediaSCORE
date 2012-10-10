@@ -1,0 +1,1209 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » mediaSCORE\filter</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/mediaSCORE.filter.html" title="filter"><i class="icon-folder-open"></i>filter</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#AnalogAudiocassetteFormFilter" title="AnalogAudiocassette filter form.">AnalogAudiocassetteFormFilter</a></li>
+<li><a href="#AssetGroupFormFilter" title="AssetGroup filter form.">AssetGroupFormFilter</a></li>
+<li><a href="#AudiotapeFormatTypeFormFilter" title="AudiotapeFormatType filter form.">AudiotapeFormatTypeFormFilter</a></li>
+<li><a href="#BaseAnalogAudiocassetteFormFilter" title="AnalogAudiocassette filter form base class.">BaseAnalogAudiocassetteFormFilter</a></li>
+<li><a href="#BaseAssetGroupFormFilter" title="AssetGroup filter form base class.">BaseAssetGroupFormFilter</a></li>
+<li><a href="#BaseAudiotapeFormatTypeFormFilter" title="AudiotapeFormatType filter form base class.">BaseAudiotapeFormatTypeFormFilter</a></li>
+<li><a href="#BaseBetacamFormFilter" title="Betacam filter form base class.">BaseBetacamFormFilter</a></li>
+<li><a href="#BaseBetamaxFormFilter" title="Betamax filter form base class.">BaseBetamaxFormFilter</a></li>
+<li><a href="#BaseCollectionFormFilter" title="Collection filter form base class.">BaseCollectionFormFilter</a></li>
+<li><a href="#BaseCollectionStorageLocationFormFilter" title="CollectionStorageLocation filter form base class.">BaseCollectionStorageLocationFormFilter</a></li>
+<li><a href="#BaseCylinderFormFilter" title="Cylinder filter form base class.">BaseCylinderFormFilter</a></li>
+<li><a href="#BaseDATFormFilter" title="DAT filter form base class.">BaseDATFormFilter</a></li>
+<li><a href="#BaseDigitalBetacamFormFilter" title="DigitalBetacam filter form base class.">BaseDigitalBetacamFormFilter</a></li>
+<li><a href="#BaseDiskFormatTypeFormFilter" title="DiskFormatType filter form base class.">BaseDiskFormatTypeFormFilter</a></li>
+<li><a href="#BaseDVCamFormFilter" title="DVCam filter form base class.">BaseDVCamFormFilter</a></li>
+<li><a href="#BaseDVCProFormFilter" title="DVCPro filter form base class.">BaseDVCProFormFilter</a></li>
+<li><a href="#BaseDVFormFilter" title="DV filter form base class.">BaseDVFormFilter</a></li>
+<li><a href="#BaseEightMMFormFilter" title="EightMM filter form base class.">BaseEightMMFormFilter</a></li>
+<li><a href="#BaseEvaluatorFormFilter" title="Evaluator filter form base class.">BaseEvaluatorFormFilter</a></li>
+<li><a href="#BaseEvaluatorHistoryFormFilter" title="EvaluatorHistory filter form base class.">BaseEvaluatorHistoryFormFilter</a></li>
+<li><a href="#BaseEvaluatorHistoryPersonnelFormFilter" title="EvaluatorHistoryPersonnel filter form base class.">BaseEvaluatorHistoryPersonnelFormFilter</a></li>
+<li><a href="#BaseFilmFormFilter" title="Film filter form base class.">BaseFilmFormFilter</a></li>
+<li><a href="#BaseFormatTypedVideoRecordingFormFilter" title="FormatTypedVideoRecording filter form base class.">BaseFormatTypedVideoRecordingFormFilter</a></li>
+<li><a href="#BaseFormatTypeFormFilter" title="FormatType filter form base class.">BaseFormatTypeFormFilter</a></li>
+<li><a href="#BaseFormatVersionedVideoRecordingTypeFormFilter" title="FormatVersionedVideoRecordingType filter form base class.">BaseFormatVersionedVideoRecordingTypeFormFilter</a></li>
+<li><a href="#BaseHalfInchOpenReelVideoFormFilter" title="HalfInchOpenReelVideo filter form base class.">BaseHalfInchOpenReelVideoFormFilter</a></li>
+<li><a href="#BaseHDCamFormFilter" title="HDCam filter form base class.">BaseHDCamFormFilter</a></li>
+<li><a href="#BaseLacquerDiscFormFilter" title="LacquerDisc filter form base class.">BaseLacquerDiscFormFilter</a></li>
+<li><a href="#BaseLaserdiscFormFilter" title="Laserdisc filter form base class.">BaseLaserdiscFormFilter</a></li>
+<li><a href="#BaseMetalDiscFormFilter" title="MetalDisc filter form base class.">BaseMetalDiscFormFilter</a></li>
+<li><a href="#BaseMiniDiscFormFilter" title="MiniDisc filter form base class.">BaseMiniDiscFormFilter</a></li>
+<li><a href="#BaseOneInchOpenReelVideoFormFilter" title="OneInchOpenReelVideo filter form base class.">BaseOneInchOpenReelVideoFormFilter</a></li>
+<li><a href="#BaseOpenReelAudiotapeAcetateFormFilter" title="OpenReelAudiotapeAcetate filter form base class.">BaseOpenReelAudiotapeAcetateFormFilter</a></li>
+<li><a href="#BaseOpenReelAudioTapeFormatTypeFormFilter" title="OpenReelAudioTapeFormatType filter form base class.">BaseOpenReelAudioTapeFormatTypeFormFilter</a></li>
+<li><a href="#BaseOpenReelAudiotapePaperFormFilter" title="OpenReelAudiotapePaper filter form base class.">BaseOpenReelAudiotapePaperFormFilter</a></li>
+<li><a href="#BaseOpenReelAudiotapePolysterFormFilter" title="OpenReelAudiotapePolyster filter form base class.">BaseOpenReelAudiotapePolysterFormFilter</a></li>
+<li><a href="#BaseOpenReelAudiotapePVCFormFilter" title="OpenReelAudiotapePVC filter form base class.">BaseOpenReelAudiotapePVCFormFilter</a></li>
+<li><a href="#BaseOpenReelVideoFormatTypeFormFilter" title="OpenReelVideoFormatType filter form base class.">BaseOpenReelVideoFormatTypeFormFilter</a></li>
+<li><a href="#BaseOpticalDiscFormatTypeFormFilter" title="OpticalDiscFormatType filter form base class.">BaseOpticalDiscFormatTypeFormFilter</a></li>
+<li><a href="#BaseOpticalVideoFormFilter" title="OpticalVideo filter form base class.">BaseOpticalVideoFormFilter</a></li>
+<li><a href="#BasePersonFormFilter" title="Person filter form base class.">BasePersonFormFilter</a></li>
+<li><a href="#BasePressed45RPMDiscFormFilter" title="Pressed45RPMDisc filter form base class.">BasePressed45RPMDiscFormFilter</a></li>
+<li><a href="#BasePressed78RPMDiscFormFilter" title="Pressed78RPMDisc filter form base class.">BasePressed78RPMDiscFormFilter</a></li>
+<li><a href="#BasePressedAudioDiscFormatTypeFormFilter" title="PressedAudioDiscFormatType filter form base class.">BasePressedAudioDiscFormatTypeFormFilter</a></li>
+<li><a href="#BasePressedFortyFiveRPMDiscFormFilter" title="PressedFortyFiveRPMDisc filter form base class.">BasePressedFortyFiveRPMDiscFormFilter</a></li>
+<li><a href="#BasePressedLPDiscFormFilter" title="PressedLPDisc filter form base class.">BasePressedLPDiscFormFilter</a></li>
+<li><a href="#BasePressedSeventyEightRPMDiscFormFilter" title="PressedSeventyEightRPMDisc filter form base class.">BasePressedSeventyEightRPMDiscFormFilter</a></li>
+<li><a href="#BaseReelCassetteFormatTypeFormFilter" title="ReelCassetteFormatType filter form base class.">BaseReelCassetteFormatTypeFormFilter</a></li>
+<li><a href="#BaseReelVideoRecordingFormatTypeFormFilter" title="ReelVideoRecordingFormatType filter form base class.">BaseReelVideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#BaseSetFormFilter" title="Set filter form base class.">BaseSetFormFilter</a></li>
+<li><a href="#BaseSizedVideoRecordingFormatTypeFormFilter" title="SizedVideoRecordingFormatType filter form base class.">BaseSizedVideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#BaseSoftDiskFormatTypeFormFilter" title="SoftDiskFormatType filter form base class.">BaseSoftDiskFormatTypeFormFilter</a></li>
+<li><a href="#BaseSoundOpticalDiscFormFilter" title="SoundOpticalDisc filter form base class.">BaseSoundOpticalDiscFormFilter</a></li>
+<li><a href="#BaseSoundOpticalDiskFormFilter" title="SoundOpticalDisk filter form base class.">BaseSoundOpticalDiskFormFilter</a></li>
+<li><a href="#BaseSoundWireReelFormFilter" title="SoundWireReel filter form base class.">BaseSoundWireReelFormFilter</a></li>
+<li><a href="#BaseStandardizedRecordingFormatTypeFormFilter" title="StandardizedRecordingFormatType filter form base class.">BaseStandardizedRecordingFormatTypeFormFilter</a></li>
+<li><a href="#BaseStorageLocationFormFilter" title="StorageLocation filter form base class.">BaseStorageLocationFormFilter</a></li>
+<li><a href="#BaseStoreFormFilter" title="Store filter form base class.">BaseStoreFormFilter</a></li>
+<li><a href="#BaseSubUnitFormFilter" title="SubUnit filter form base class.">BaseSubUnitFormFilter</a></li>
+<li><a href="#BaseTwoInchOpenReelVideoFormFilter" title="TwoInchOpenReelVideo filter form base class.">BaseTwoInchOpenReelVideoFormFilter</a></li>
+<li><a href="#BaseUmaticFormFilter" title="Umatic filter form base class.">BaseUmaticFormFilter</a></li>
+<li><a href="#BaseUnitFormFilter" title="Unit filter form base class.">BaseUnitFormFilter</a></li>
+<li><a href="#BaseUnitPersonFormFilter" title="UnitPerson filter form base class.">BaseUnitPersonFormFilter</a></li>
+<li><a href="#BaseUnitStorageLocationFormFilter" title="UnitStorageLocation filter form base class.">BaseUnitStorageLocationFormFilter</a></li>
+<li><a href="#BaseUserFormFilter" title="User filter form base class.">BaseUserFormFilter</a></li>
+<li><a href="#BaseVHSFormFilter" title="VHS filter form base class.">BaseVHSFormFilter</a></li>
+<li><a href="#BaseVideoRecordingFormatTypeFormFilter" title="VideoRecordingFormatType filter form base class.">BaseVideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#BaseXDCamOpticalFormFilter" title="XDCamOptical filter form base class.">BaseXDCamOpticalFormFilter</a></li>
+<li><a href="#BaseFormFilterDoctrine" title="Project filter form base class.">BaseFormFilterDoctrine</a></li>
+<li><a href="#BetacamFormFilter" title="Betacam filter form.">BetacamFormFilter</a></li>
+<li><a href="#BetamaxFormFilter" title="Betamax filter form.">BetamaxFormFilter</a></li>
+<li><a href="#CollectionFormFilter" title="Collection filter form.">CollectionFormFilter</a></li>
+<li><a href="#CollectionStorageLocationFormFilter" title="CollectionStorageLocation filter form.">CollectionStorageLocationFormFilter</a></li>
+<li><a href="#CylinderFormFilter" title="Cylinder filter form.">CylinderFormFilter</a></li>
+<li><a href="#DATFormFilter" title="DAT filter form.">DATFormFilter</a></li>
+<li><a href="#DigitalBetacamFormFilter" title="DigitalBetacam filter form.">DigitalBetacamFormFilter</a></li>
+<li><a href="#DiskFormatTypeFormFilter" title="DiskFormatType filter form.">DiskFormatTypeFormFilter</a></li>
+<li><a href="#DVCamFormFilter" title="DVCam filter form.">DVCamFormFilter</a></li>
+<li><a href="#DVCProFormFilter" title="DVCPro filter form.">DVCProFormFilter</a></li>
+<li><a href="#DVFormFilter" title="DV filter form.">DVFormFilter</a></li>
+<li><a href="#EightMMFormFilter" title="EightMM filter form.">EightMMFormFilter</a></li>
+<li><a href="#EvaluatorFormFilter" title="Evaluator filter form.">EvaluatorFormFilter</a></li>
+<li><a href="#EvaluatorHistoryFormFilter" title="EvaluatorHistory filter form.">EvaluatorHistoryFormFilter</a></li>
+<li><a href="#EvaluatorHistoryPersonnelFormFilter" title="EvaluatorHistoryPersonnel filter form.">EvaluatorHistoryPersonnelFormFilter</a></li>
+<li><a href="#FilmFormFilter" title="Film filter form.">FilmFormFilter</a></li>
+<li><a href="#FormatTypedVideoRecordingFormFilter" title="FormatTypedVideoRecording filter form.">FormatTypedVideoRecordingFormFilter</a></li>
+<li><a href="#FormatTypeFormFilter" title="FormatType filter form.">FormatTypeFormFilter</a></li>
+<li><a href="#FormatVersionedVideoRecordingTypeFormFilter" title="FormatVersionedVideoRecordingType filter form.">FormatVersionedVideoRecordingTypeFormFilter</a></li>
+<li><a href="#HalfInchOpenReelVideoFormFilter" title="HalfInchOpenReelVideo filter form.">HalfInchOpenReelVideoFormFilter</a></li>
+<li><a href="#HDCamFormFilter" title="HDCam filter form.">HDCamFormFilter</a></li>
+<li><a href="#LacquerDiscFormFilter" title="LacquerDisc filter form.">LacquerDiscFormFilter</a></li>
+<li><a href="#LaserdiscFormFilter" title="Laserdisc filter form.">LaserdiscFormFilter</a></li>
+<li><a href="#MetalDiscFormFilter" title="MetalDisc filter form.">MetalDiscFormFilter</a></li>
+<li><a href="#MiniDiscFormFilter" title="MiniDisc filter form.">MiniDiscFormFilter</a></li>
+<li><a href="#OneInchOpenReelVideoFormFilter" title="OneInchOpenReelVideo filter form.">OneInchOpenReelVideoFormFilter</a></li>
+<li><a href="#OpenReelAudiotapeAcetateFormFilter" title="OpenReelAudiotapeAcetate filter form.">OpenReelAudiotapeAcetateFormFilter</a></li>
+<li><a href="#OpenReelAudioTapeFormatTypeFormFilter" title="OpenReelAudioTapeFormatType filter form.">OpenReelAudioTapeFormatTypeFormFilter</a></li>
+<li><a href="#OpenReelAudiotapePaperFormFilter" title="OpenReelAudiotapePaper filter form.">OpenReelAudiotapePaperFormFilter</a></li>
+<li><a href="#OpenReelAudiotapePolysterFormFilter" title="OpenReelAudiotapePolyster filter form.">OpenReelAudiotapePolysterFormFilter</a></li>
+<li><a href="#OpenReelAudiotapePVCFormFilter" title="OpenReelAudiotapePVC filter form.">OpenReelAudiotapePVCFormFilter</a></li>
+<li><a href="#OpenReelVideoFormatTypeFormFilter" title="OpenReelVideoFormatType filter form.">OpenReelVideoFormatTypeFormFilter</a></li>
+<li><a href="#OpticalDiscFormatTypeFormFilter" title="OpticalDiscFormatType filter form.">OpticalDiscFormatTypeFormFilter</a></li>
+<li><a href="#OpticalVideoFormFilter" title="OpticalVideo filter form.">OpticalVideoFormFilter</a></li>
+<li><a href="#PersonFormFilter" title="Person filter form.">PersonFormFilter</a></li>
+<li><a href="#Pressed45RPMDiscFormFilter" title="Pressed45RPMDisc filter form.">Pressed45RPMDiscFormFilter</a></li>
+<li><a href="#Pressed78RPMDiscFormFilter" title="Pressed78RPMDisc filter form.">Pressed78RPMDiscFormFilter</a></li>
+<li><a href="#PressedAudioDiscFormatTypeFormFilter" title="PressedAudioDiscFormatType filter form.">PressedAudioDiscFormatTypeFormFilter</a></li>
+<li><a href="#PressedFortyFiveRPMDiscFormFilter" title="PressedFortyFiveRPMDisc filter form.">PressedFortyFiveRPMDiscFormFilter</a></li>
+<li><a href="#PressedLPDiscFormFilter" title="PressedLPDisc filter form.">PressedLPDiscFormFilter</a></li>
+<li><a href="#PressedSeventyEightRPMDiscFormFilter" title="PressedSeventyEightRPMDisc filter form.">PressedSeventyEightRPMDiscFormFilter</a></li>
+<li><a href="#ReelCassetteFormatTypeFormFilter" title="ReelCassetteFormatType filter form.">ReelCassetteFormatTypeFormFilter</a></li>
+<li><a href="#ReelVideoRecordingFormatTypeFormFilter" title="ReelVideoRecordingFormatType filter form.">ReelVideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#SetFormFilter" title="Set filter form.">SetFormFilter</a></li>
+<li><a href="#BasesfGuardGroupFormFilter" title="sfGuardGroup filter form base class.">BasesfGuardGroupFormFilter</a></li>
+<li><a href="#BasesfGuardPermissionFormFilter" title="sfGuardPermission filter form base class.">BasesfGuardPermissionFormFilter</a></li>
+<li><a href="#BasesfGuardUserFormFilter" title="sfGuardUser filter form base class.">BasesfGuardUserFormFilter</a></li>
+<li><a href="#sfGuardGroupFormFilter" title="sfGuardGroup filter form.">sfGuardGroupFormFilter</a></li>
+<li><a href="#sfGuardPermissionFormFilter" title="sfGuardPermission filter form.">sfGuardPermissionFormFilter</a></li>
+<li><a href="#sfGuardUserFormFilter" title="sfGuardUser filter form.">sfGuardUserFormFilter</a></li>
+<li><a href="#SizedVideoRecordingFormatTypeFormFilter" title="SizedVideoRecordingFormatType filter form.">SizedVideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#SoftDiskFormatTypeFormFilter" title="SoftDiskFormatType filter form.">SoftDiskFormatTypeFormFilter</a></li>
+<li><a href="#SoundOpticalDiscFormFilter" title="SoundOpticalDisc filter form.">SoundOpticalDiscFormFilter</a></li>
+<li><a href="#SoundOpticalDiskFormFilter" title="SoundOpticalDisk filter form.">SoundOpticalDiskFormFilter</a></li>
+<li><a href="#SoundWireReelFormFilter" title="SoundWireReel filter form.">SoundWireReelFormFilter</a></li>
+<li><a href="#StandardizedRecordingFormatTypeFormFilter" title="StandardizedRecordingFormatType filter form.">StandardizedRecordingFormatTypeFormFilter</a></li>
+<li><a href="#StorageLocationFormFilter" title="StorageLocation filter form.">StorageLocationFormFilter</a></li>
+<li><a href="#StoreFormFilter" title="Store filter form.">StoreFormFilter</a></li>
+<li><a href="#SubUnitFormFilter" title="SubUnit filter form.">SubUnitFormFilter</a></li>
+<li><a href="#TwoInchOpenReelVideoFormFilter" title="TwoInchOpenReelVideo filter form.">TwoInchOpenReelVideoFormFilter</a></li>
+<li><a href="#UmaticFormFilter" title="Umatic filter form.">UmaticFormFilter</a></li>
+<li><a href="#UnitFormFilter" title="Unit filter form.">UnitFormFilter</a></li>
+<li><a href="#UnitPersonFormFilter" title="UnitPerson filter form.">UnitPersonFormFilter</a></li>
+<li><a href="#UnitStorageLocationFormFilter" title="UnitStorageLocation filter form.">UnitStorageLocationFormFilter</a></li>
+<li><a href="#UserFormFilter" title="User filter form.">UserFormFilter</a></li>
+<li><a href="#VHSFormFilter" title="VHS filter form.">VHSFormFilter</a></li>
+<li><a href="#VideoRecordingFormatTypeFormFilter" title="VideoRecordingFormatType filter form.">VideoRecordingFormatTypeFormFilter</a></li>
+<li><a href="#XDCamOpticalFormFilter" title="XDCamOptical filter form.">XDCamOpticalFormFilter</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.filter.html">filter</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AnalogAudiocassetteFormFilter" class="element ajax clickable class">
+<h1>AnalogAudiocassetteFormFilter<a href="../classes/AnalogAudiocassetteFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AnalogAudiocassetteFormFilter.html" class="more">« More »</a>
+</div>
+<div id="AssetGroupFormFilter" class="element ajax clickable class">
+<h1>AssetGroupFormFilter<a href="../classes/AssetGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AssetGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="AudiotapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>AudiotapeFormatTypeFormFilter<a href="../classes/AudiotapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AudiotapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAnalogAudiocassetteFormFilter" class="element ajax clickable class">
+<h1>BaseAnalogAudiocassetteFormFilter<a href="../classes/BaseAnalogAudiocassetteFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAnalogAudiocassetteFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAssetGroupFormFilter" class="element ajax clickable class">
+<h1>BaseAssetGroupFormFilter<a href="../classes/BaseAssetGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAssetGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAudiotapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseAudiotapeFormatTypeFormFilter<a href="../classes/BaseAudiotapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAudiotapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseBetacamFormFilter" class="element ajax clickable class">
+<h1>BaseBetacamFormFilter<a href="../classes/BaseBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betacam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseBetamaxFormFilter" class="element ajax clickable class">
+<h1>BaseBetamaxFormFilter<a href="../classes/BaseBetamaxFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betamax filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetamaxFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionFormFilter" class="element ajax clickable class">
+<h1>BaseCollectionFormFilter<a href="../classes/BaseCollectionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Collection filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseCollectionStorageLocationFormFilter<a href="../classes/BaseCollectionStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCylinderFormFilter" class="element ajax clickable class">
+<h1>BaseCylinderFormFilter<a href="../classes/BaseCylinderFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Cylinder filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCylinderFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDATFormFilter" class="element ajax clickable class">
+<h1>BaseDATFormFilter<a href="../classes/BaseDATFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DAT filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDATFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCProFormFilter" class="element ajax clickable class">
+<h1>BaseDVCProFormFilter<a href="../classes/BaseDVCProFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCPro filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCProFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCamFormFilter" class="element ajax clickable class">
+<h1>BaseDVCamFormFilter<a href="../classes/BaseDVCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVFormFilter" class="element ajax clickable class">
+<h1>BaseDVFormFilter<a href="../classes/BaseDVFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DV filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDigitalBetacamFormFilter" class="element ajax clickable class">
+<h1>BaseDigitalBetacamFormFilter<a href="../classes/BaseDigitalBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDigitalBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseDiskFormatTypeFormFilter<a href="../classes/BaseDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEightMMFormFilter" class="element ajax clickable class">
+<h1>BaseEightMMFormFilter<a href="../classes/BaseEightMMFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EightMM filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEightMMFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorFormFilter<a href="../classes/BaseEvaluatorFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Evaluator filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryFormFilter<a href="../classes/BaseEvaluatorHistoryFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryPersonnelFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryPersonnelFormFilter<a href="../classes/BaseEvaluatorHistoryPersonnelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryPersonnelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFilmFormFilter" class="element ajax clickable class">
+<h1>BaseFilmFormFilter<a href="../classes/BaseFilmFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Film filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFilmFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormFilterDoctrine" class="element ajax clickable class">
+<h1>BaseFormFilterDoctrine<a href="../classes/BaseFormFilterDoctrine.html">¶</a>
+</h1>
+<p class="short_description">Project filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormFilterDoctrine.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseFormatTypeFormFilter<a href="../classes/BaseFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypedVideoRecordingFormFilter" class="element ajax clickable class">
+<h1>BaseFormatTypedVideoRecordingFormFilter<a href="../classes/BaseFormatTypedVideoRecordingFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypedVideoRecordingFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatVersionedVideoRecordingTypeFormFilter" class="element ajax clickable class">
+<h1>BaseFormatVersionedVideoRecordingTypeFormFilter<a href="../classes/BaseFormatVersionedVideoRecordingTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatVersionedVideoRecordingTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseHDCamFormFilter" class="element ajax clickable class">
+<h1>BaseHDCamFormFilter<a href="../classes/BaseHDCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HDCam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHDCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseHalfInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseHalfInchOpenReelVideoFormFilter<a href="../classes/BaseHalfInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHalfInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseLacquerDiscFormFilter" class="element ajax clickable class">
+<h1>BaseLacquerDiscFormFilter<a href="../classes/BaseLacquerDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLacquerDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseLaserdiscFormFilter" class="element ajax clickable class">
+<h1>BaseLaserdiscFormFilter<a href="../classes/BaseLaserdiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLaserdiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseMetalDiscFormFilter" class="element ajax clickable class">
+<h1>BaseMetalDiscFormFilter<a href="../classes/BaseMetalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMetalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseMiniDiscFormFilter" class="element ajax clickable class">
+<h1>BaseMiniDiscFormFilter<a href="../classes/BaseMiniDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMiniDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOneInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseOneInchOpenReelVideoFormFilter<a href="../classes/BaseOneInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOneInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudioTapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudioTapeFormatTypeFormFilter<a href="../classes/BaseOpenReelAudioTapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudioTapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapeAcetateFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapeAcetateFormFilter<a href="../classes/BaseOpenReelAudiotapeAcetateFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapeAcetateFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePVCFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePVCFormFilter<a href="../classes/BaseOpenReelAudiotapePVCFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePVCFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePaperFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePaperFormFilter<a href="../classes/BaseOpenReelAudiotapePaperFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePaperFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePolysterFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePolysterFormFilter<a href="../classes/BaseOpenReelAudiotapePolysterFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePolysterFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelVideoFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelVideoFormatTypeFormFilter<a href="../classes/BaseOpenReelVideoFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelVideoFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpticalDiscFormatTypeFormFilter<a href="../classes/BaseOpticalDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalVideoFormFilter" class="element ajax clickable class">
+<h1>BaseOpticalVideoFormFilter<a href="../classes/BaseOpticalVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePersonFormFilter" class="element ajax clickable class">
+<h1>BasePersonFormFilter<a href="../classes/BasePersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Person filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressed45RPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressed45RPMDiscFormFilter<a href="../classes/BasePressed45RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed45RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressed78RPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressed78RPMDiscFormFilter<a href="../classes/BasePressed78RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed78RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedAudioDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BasePressedAudioDiscFormatTypeFormFilter<a href="../classes/BasePressedAudioDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedAudioDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedFortyFiveRPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedFortyFiveRPMDiscFormFilter<a href="../classes/BasePressedFortyFiveRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedFortyFiveRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedLPDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedLPDiscFormFilter<a href="../classes/BasePressedLPDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedLPDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedSeventyEightRPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedSeventyEightRPMDiscFormFilter<a href="../classes/BasePressedSeventyEightRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedSeventyEightRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseReelCassetteFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseReelCassetteFormatTypeFormFilter<a href="../classes/BaseReelCassetteFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelCassetteFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseReelVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseReelVideoRecordingFormatTypeFormFilter<a href="../classes/BaseReelVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSetFormFilter" class="element ajax clickable class">
+<h1>BaseSetFormFilter<a href="../classes/BaseSetFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Set filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSetFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSizedVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseSizedVideoRecordingFormatTypeFormFilter<a href="../classes/BaseSizedVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSizedVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoftDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseSoftDiskFormatTypeFormFilter<a href="../classes/BaseSoftDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoftDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiscFormFilter" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiscFormFilter<a href="../classes/BaseSoundOpticalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiskFormFilter" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiskFormFilter<a href="../classes/BaseSoundOpticalDiskFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiskFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundWireReelFormFilter" class="element ajax clickable class">
+<h1>BaseSoundWireReelFormFilter<a href="../classes/BaseSoundWireReelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundWireReelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStandardizedRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseStandardizedRecordingFormatTypeFormFilter<a href="../classes/BaseStandardizedRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStandardizedRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseStorageLocationFormFilter<a href="../classes/BaseStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStoreFormFilter" class="element ajax clickable class">
+<h1>BaseStoreFormFilter<a href="../classes/BaseStoreFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Store filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStoreFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSubUnitFormFilter" class="element ajax clickable class">
+<h1>BaseSubUnitFormFilter<a href="../classes/BaseSubUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SubUnit filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSubUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseTwoInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseTwoInchOpenReelVideoFormFilter<a href="../classes/BaseTwoInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseTwoInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUmaticFormFilter" class="element ajax clickable class">
+<h1>BaseUmaticFormFilter<a href="../classes/BaseUmaticFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Umatic filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUmaticFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitFormFilter" class="element ajax clickable class">
+<h1>BaseUnitFormFilter<a href="../classes/BaseUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Unit filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitPersonFormFilter" class="element ajax clickable class">
+<h1>BaseUnitPersonFormFilter<a href="../classes/BaseUnitPersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitPersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseUnitStorageLocationFormFilter<a href="../classes/BaseUnitStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUserFormFilter" class="element ajax clickable class">
+<h1>BaseUserFormFilter<a href="../classes/BaseUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">User filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseVHSFormFilter" class="element ajax clickable class">
+<h1>BaseVHSFormFilter<a href="../classes/BaseVHSFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VHS filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVHSFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseVideoRecordingFormatTypeFormFilter<a href="../classes/BaseVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseXDCamOpticalFormFilter" class="element ajax clickable class">
+<h1>BaseXDCamOpticalFormFilter<a href="../classes/BaseXDCamOpticalFormFilter.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseXDCamOpticalFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardGroupFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardGroupFormFilter<a href="../classes/BasesfGuardGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardPermissionFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardPermissionFormFilter<a href="../classes/BasesfGuardPermissionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardPermissionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUserFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardUserFormFilter<a href="../classes/BasesfGuardUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BetacamFormFilter" class="element ajax clickable class">
+<h1>BetacamFormFilter<a href="../classes/BetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betacam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BetamaxFormFilter" class="element ajax clickable class">
+<h1>BetamaxFormFilter<a href="../classes/BetamaxFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betamax filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetamaxFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CollectionFormFilter" class="element ajax clickable class">
+<h1>CollectionFormFilter<a href="../classes/CollectionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Collection filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CollectionStorageLocationFormFilter" class="element ajax clickable class">
+<h1>CollectionStorageLocationFormFilter<a href="../classes/CollectionStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CylinderFormFilter" class="element ajax clickable class">
+<h1>CylinderFormFilter<a href="../classes/CylinderFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Cylinder filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CylinderFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DATFormFilter" class="element ajax clickable class">
+<h1>DATFormFilter<a href="../classes/DATFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DAT filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DATFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVCProFormFilter" class="element ajax clickable class">
+<h1>DVCProFormFilter<a href="../classes/DVCProFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCPro filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCProFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVCamFormFilter" class="element ajax clickable class">
+<h1>DVCamFormFilter<a href="../classes/DVCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVFormFilter" class="element ajax clickable class">
+<h1>DVFormFilter<a href="../classes/DVFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DV filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DigitalBetacamFormFilter" class="element ajax clickable class">
+<h1>DigitalBetacamFormFilter<a href="../classes/DigitalBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DigitalBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>DiskFormatTypeFormFilter<a href="../classes/DiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EightMMFormFilter" class="element ajax clickable class">
+<h1>EightMMFormFilter<a href="../classes/EightMMFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EightMM filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EightMMFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorFormFilter" class="element ajax clickable class">
+<h1>EvaluatorFormFilter<a href="../classes/EvaluatorFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Evaluator filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryFormFilter" class="element ajax clickable class">
+<h1>EvaluatorHistoryFormFilter<a href="../classes/EvaluatorHistoryFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryPersonnelFormFilter" class="element ajax clickable class">
+<h1>EvaluatorHistoryPersonnelFormFilter<a href="../classes/EvaluatorHistoryPersonnelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryPersonnelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FilmFormFilter" class="element ajax clickable class">
+<h1>FilmFormFilter<a href="../classes/FilmFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Film filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FilmFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatTypeFormFilter" class="element ajax clickable class">
+<h1>FormatTypeFormFilter<a href="../classes/FormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatTypedVideoRecordingFormFilter" class="element ajax clickable class">
+<h1>FormatTypedVideoRecordingFormFilter<a href="../classes/FormatTypedVideoRecordingFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypedVideoRecordingFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatVersionedVideoRecordingTypeFormFilter" class="element ajax clickable class">
+<h1>FormatVersionedVideoRecordingTypeFormFilter<a href="../classes/FormatVersionedVideoRecordingTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatVersionedVideoRecordingTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="HDCamFormFilter" class="element ajax clickable class">
+<h1>HDCamFormFilter<a href="../classes/HDCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HDCam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HDCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="HalfInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>HalfInchOpenReelVideoFormFilter<a href="../classes/HalfInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HalfInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="LacquerDiscFormFilter" class="element ajax clickable class">
+<h1>LacquerDiscFormFilter<a href="../classes/LacquerDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LacquerDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="LaserdiscFormFilter" class="element ajax clickable class">
+<h1>LaserdiscFormFilter<a href="../classes/LaserdiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LaserdiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="MetalDiscFormFilter" class="element ajax clickable class">
+<h1>MetalDiscFormFilter<a href="../classes/MetalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MetalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="MiniDiscFormFilter" class="element ajax clickable class">
+<h1>MiniDiscFormFilter<a href="../classes/MiniDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MiniDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OneInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>OneInchOpenReelVideoFormFilter<a href="../classes/OneInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OneInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudioTapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudioTapeFormatTypeFormFilter<a href="../classes/OpenReelAudioTapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudioTapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapeAcetateFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapeAcetateFormFilter<a href="../classes/OpenReelAudiotapeAcetateFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapeAcetateFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePVCFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePVCFormFilter<a href="../classes/OpenReelAudiotapePVCFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePVCFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePaperFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePaperFormFilter<a href="../classes/OpenReelAudiotapePaperFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePaperFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePolysterFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePolysterFormFilter<a href="../classes/OpenReelAudiotapePolysterFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePolysterFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelVideoFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpenReelVideoFormatTypeFormFilter<a href="../classes/OpenReelVideoFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelVideoFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpticalDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpticalDiscFormatTypeFormFilter<a href="../classes/OpticalDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpticalVideoFormFilter" class="element ajax clickable class">
+<h1>OpticalVideoFormFilter<a href="../classes/OpticalVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PersonFormFilter" class="element ajax clickable class">
+<h1>PersonFormFilter<a href="../classes/PersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Person filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="Pressed45RPMDiscFormFilter" class="element ajax clickable class">
+<h1>Pressed45RPMDiscFormFilter<a href="../classes/Pressed45RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed45RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="Pressed78RPMDiscFormFilter" class="element ajax clickable class">
+<h1>Pressed78RPMDiscFormFilter<a href="../classes/Pressed78RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed78RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedAudioDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>PressedAudioDiscFormatTypeFormFilter<a href="../classes/PressedAudioDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedAudioDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedFortyFiveRPMDiscFormFilter" class="element ajax clickable class">
+<h1>PressedFortyFiveRPMDiscFormFilter<a href="../classes/PressedFortyFiveRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedFortyFiveRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedLPDiscFormFilter" class="element ajax clickable class">
+<h1>PressedLPDiscFormFilter<a href="../classes/PressedLPDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedLPDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedSeventyEightRPMDiscFormFilter" class="element ajax clickable class">
+<h1>PressedSeventyEightRPMDiscFormFilter<a href="../classes/PressedSeventyEightRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedSeventyEightRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="ReelCassetteFormatTypeFormFilter" class="element ajax clickable class">
+<h1>ReelCassetteFormatTypeFormFilter<a href="../classes/ReelCassetteFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelCassetteFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="ReelVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>ReelVideoRecordingFormatTypeFormFilter<a href="../classes/ReelVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SetFormFilter" class="element ajax clickable class">
+<h1>SetFormFilter<a href="../classes/SetFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Set filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SetFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SizedVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>SizedVideoRecordingFormatTypeFormFilter<a href="../classes/SizedVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SizedVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoftDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>SoftDiskFormatTypeFormFilter<a href="../classes/SoftDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoftDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiscFormFilter" class="element ajax clickable class">
+<h1>SoundOpticalDiscFormFilter<a href="../classes/SoundOpticalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiskFormFilter" class="element ajax clickable class">
+<h1>SoundOpticalDiskFormFilter<a href="../classes/SoundOpticalDiskFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiskFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundWireReelFormFilter" class="element ajax clickable class">
+<h1>SoundWireReelFormFilter<a href="../classes/SoundWireReelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundWireReelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StandardizedRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>StandardizedRecordingFormatTypeFormFilter<a href="../classes/StandardizedRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StandardizedRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StorageLocationFormFilter" class="element ajax clickable class">
+<h1>StorageLocationFormFilter<a href="../classes/StorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StoreFormFilter" class="element ajax clickable class">
+<h1>StoreFormFilter<a href="../classes/StoreFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Store filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StoreFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SubUnitFormFilter" class="element ajax clickable class">
+<h1>SubUnitFormFilter<a href="../classes/SubUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SubUnit filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SubUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="TwoInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>TwoInchOpenReelVideoFormFilter<a href="../classes/TwoInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/TwoInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UmaticFormFilter" class="element ajax clickable class">
+<h1>UmaticFormFilter<a href="../classes/UmaticFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Umatic filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UmaticFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitFormFilter" class="element ajax clickable class">
+<h1>UnitFormFilter<a href="../classes/UnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Unit filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitPersonFormFilter" class="element ajax clickable class">
+<h1>UnitPersonFormFilter<a href="../classes/UnitPersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitPersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitStorageLocationFormFilter" class="element ajax clickable class">
+<h1>UnitStorageLocationFormFilter<a href="../classes/UnitStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UserFormFilter" class="element ajax clickable class">
+<h1>UserFormFilter<a href="../classes/UserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">User filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="VHSFormFilter" class="element ajax clickable class">
+<h1>VHSFormFilter<a href="../classes/VHSFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VHS filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VHSFormFilter.html" class="more">« More »</a>
+</div>
+<div id="VideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>VideoRecordingFormatTypeFormFilter<a href="../classes/VideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="XDCamOpticalFormFilter" class="element ajax clickable class">
+<h1>XDCamOpticalFormFilter<a href="../classes/XDCamOpticalFormFilter.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/XDCamOpticalFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardGroupFormFilter" class="element ajax clickable class">
+<h1>sfGuardGroupFormFilter<a href="../classes/sfGuardGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardPermissionFormFilter" class="element ajax clickable class">
+<h1>sfGuardPermissionFormFilter<a href="../classes/sfGuardPermissionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardPermissionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUserFormFilter" class="element ajax clickable class">
+<h1>sfGuardUserFormFilter<a href="../classes/sfGuardUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUserFormFilter.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:40:41+05:00.<br></footer></div>
+</div>
+</body>
+</html>

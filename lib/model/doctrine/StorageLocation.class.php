@@ -7,29 +7,30 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author    Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class StorageLocation extends BaseStorageLocation
-{
-	/*
-1. Frozen conditions
- 
-2. Cold conditions
- 
-3. Cool conditions
- 
-4. Room conditions
- 
-5. Above room conditions
- 
-6. Extreme conditions
-	 */
-	public static $constants = array(	'Select',
-                                                'Frozen Conditions',
-						'Cold Conditions',
-						'Cool Conditions',
-						'Room Conditions',
-						'Above Room Conditions',
-						'Extreme Conditions');
+class StorageLocation extends BaseStorageLocation {
+    /*
+      1. Frozen conditions
+
+      2. Cold conditions
+
+      3. Cool conditions
+
+      4. Room conditions
+
+      5. Above room conditions
+
+      6. Extreme conditions
+     */
+
+    public static $constants = array('Select',
+        'Frozen Conditions',
+        'Cold Conditions',
+        'Cool Conditions',
+        'Room Conditions',
+        'Above Room Conditions',
+        'Extreme Conditions');
+
 }

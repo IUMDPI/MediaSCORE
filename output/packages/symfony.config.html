@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » symfony\config</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/symfony.config.html" title="config"><i class="icon-folder-open"></i>config</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#sfApplicationConfiguration" title="sfConfiguration represents a configuration for a symfony application.">sfApplicationConfiguration</a></li>
+<li><a href="#sfAutoloadConfigHandler" title="sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.">sfAutoloadConfigHandler</a></li>
+<li><a href="#sfCacheConfigHandler" title="sfCacheConfigHandler allows you to configure cache.">sfCacheConfigHandler</a></li>
+<li><a href="#sfCompileConfigHandler" title="sfCompileConfigHandler gathers multiple files and puts them into a single file.">sfCompileConfigHandler</a></li>
+<li><a href="#sfConfig" title="sfConfig stores all configuration information for a symfony application.">sfConfig</a></li>
+<li><a href="#sfConfigCache" title="sfConfigCache allows you to customize the format of a configuration file to
+make it easy-to-use, yet still provide a PHP formatted result for direct
+inclusion into your modules.">sfConfigCache</a></li>
+<li><a href="#sfConfigHandler" title="sfConfigHandler allows a developer to create a custom formatted configuration
+file pertaining to any information they like and still have it auto-generate
+PHP code.">sfConfigHandler</a></li>
+<li><a href="#sfDatabaseConfigHandler" title="sfDatabaseConfigHandler allows you to setup database connections in a
+configuration file that will be created for you automatically upon first
+request.">sfDatabaseConfigHandler</a></li>
+<li><a href="#sfDefineEnvironmentConfigHandler" title="sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.">sfDefineEnvironmentConfigHandler</a></li>
+<li><a href="#sfFactoryConfigHandler" title="sfFactoryConfigHandler allows you to specify which factory implementation the
+system will use.">sfFactoryConfigHandler</a></li>
+<li><a href="#sfFilterConfigHandler" title="sfFilterConfigHandler allows you to register filters with the system.">sfFilterConfigHandler</a></li>
+<li><a href="#sfGeneratorConfigHandler" title="sfGeneratorConfigHandler.">sfGeneratorConfigHandler</a></li>
+<li><a href="#sfPluginConfiguration" title="sfPluginConfiguration represents a configuration for a symfony plugin.">sfPluginConfiguration</a></li>
+<li><a href="#sfPluginConfigurationGeneric" title="sfPluginConfigurationGeneric represents a configuration for a plugin with no configuration class.">sfPluginConfigurationGeneric</a></li>
+<li><a href="#sfProjectConfiguration" title="sfProjectConfiguration represents a configuration for a symfony project.">sfProjectConfiguration</a></li>
+<li><a href="#sfRootConfigHandler" title="sfRootConfigHandler allows you to specify configuration handlers for the
+application or on a module level.">sfRootConfigHandler</a></li>
+<li><a href="#sfRoutingConfigHandler" title="sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.">sfRoutingConfigHandler</a></li>
+<li><a href="#sfSecurityConfigHandler" title="sfSecurityConfigHandler allows you to configure action security.">sfSecurityConfigHandler</a></li>
+<li><a href="#sfSimpleYamlConfigHandler" title="sfSimpleYamlConfigHandler allows you to load simple configuration files formatted as YAML.">sfSimpleYamlConfigHandler</a></li>
+<li><a href="#sfViewConfigHandler" title="sfViewConfigHandler allows you to configure views.">sfViewConfigHandler</a></li>
+<li><a href="#sfYamlConfigHandler" title="sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.">sfYamlConfigHandler</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/symfony.html">symfony</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/symfony.config.html">config</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="sfApplicationConfiguration" class="element ajax clickable class">
+<h1>sfApplicationConfiguration<a href="../classes/sfApplicationConfiguration.html">¶</a>
+</h1>
+<p class="short_description">sfConfiguration represents a configuration for a symfony application.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfApplicationConfiguration.html" class="more">« More »</a>
+</div>
+<div id="sfAutoloadConfigHandler" class="element ajax clickable class">
+<h1>sfAutoloadConfigHandler<a href="../classes/sfAutoloadConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfAutoloadConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfCacheConfigHandler" class="element ajax clickable class">
+<h1>sfCacheConfigHandler<a href="../classes/sfCacheConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfCacheConfigHandler allows you to configure cache.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfCacheConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfCompileConfigHandler" class="element ajax clickable class">
+<h1>sfCompileConfigHandler<a href="../classes/sfCompileConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfCompileConfigHandler gathers multiple files and puts them into a single file.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfCompileConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfConfig" class="element ajax clickable class">
+<h1>sfConfig<a href="../classes/sfConfig.html">¶</a>
+</h1>
+<p class="short_description">sfConfig stores all configuration information for a symfony application.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfConfig.html" class="more">« More »</a>
+</div>
+<div id="sfConfigCache" class="element ajax clickable class">
+<h1>sfConfigCache<a href="../classes/sfConfigCache.html">¶</a>
+</h1>
+<p class="short_description">sfConfigCache allows you to customize the format of a configuration file to
+make it easy-to-use, yet still provide a PHP formatted result for direct
+inclusion into your modules.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfConfigCache.html" class="more">« More »</a>
+</div>
+<div id="sfConfigHandler" class="element ajax clickable class">
+<h1>sfConfigHandler<a href="../classes/sfConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfConfigHandler allows a developer to create a custom formatted configuration
+file pertaining to any information they like and still have it auto-generate
+PHP code.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfDatabaseConfigHandler" class="element ajax clickable class">
+<h1>sfDatabaseConfigHandler<a href="../classes/sfDatabaseConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfDatabaseConfigHandler allows you to setup database connections in a
+configuration file that will be created for you automatically upon first
+request.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDatabaseConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfDefineEnvironmentConfigHandler" class="element ajax clickable class">
+<h1>sfDefineEnvironmentConfigHandler<a href="../classes/sfDefineEnvironmentConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDefineEnvironmentConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfFactoryConfigHandler" class="element ajax clickable class">
+<h1>sfFactoryConfigHandler<a href="../classes/sfFactoryConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfFactoryConfigHandler allows you to specify which factory implementation the
+system will use.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfFactoryConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfFilterConfigHandler" class="element ajax clickable class">
+<h1>sfFilterConfigHandler<a href="../classes/sfFilterConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfFilterConfigHandler allows you to register filters with the system.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfFilterConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfGeneratorConfigHandler" class="element ajax clickable class">
+<h1>sfGeneratorConfigHandler<a href="../classes/sfGeneratorConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfGeneratorConfigHandler.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGeneratorConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfPluginConfiguration" class="element ajax clickable class">
+<h1>sfPluginConfiguration<a href="../classes/sfPluginConfiguration.html">¶</a>
+</h1>
+<p class="short_description">sfPluginConfiguration represents a configuration for a symfony plugin.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginConfiguration.html" class="more">« More »</a>
+</div>
+<div id="sfPluginConfigurationGeneric" class="element ajax clickable class">
+<h1>sfPluginConfigurationGeneric<a href="../classes/sfPluginConfigurationGeneric.html">¶</a>
+</h1>
+<p class="short_description">sfPluginConfigurationGeneric represents a configuration for a plugin with no configuration class.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginConfigurationGeneric.html" class="more">« More »</a>
+</div>
+<div id="sfProjectConfiguration" class="element ajax clickable class">
+<h1>sfProjectConfiguration<a href="../classes/sfProjectConfiguration.html">¶</a>
+</h1>
+<p class="short_description">sfProjectConfiguration represents a configuration for a symfony project.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectConfiguration.html" class="more">« More »</a>
+</div>
+<div id="sfRootConfigHandler" class="element ajax clickable class">
+<h1>sfRootConfigHandler<a href="../classes/sfRootConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfRootConfigHandler allows you to specify configuration handlers for the
+application or on a module level.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfRootConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfRoutingConfigHandler" class="element ajax clickable class">
+<h1>sfRoutingConfigHandler<a href="../classes/sfRoutingConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfRoutingConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfSecurityConfigHandler" class="element ajax clickable class">
+<h1>sfSecurityConfigHandler<a href="../classes/sfSecurityConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfSecurityConfigHandler allows you to configure action security.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfSecurityConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfSimpleYamlConfigHandler" class="element ajax clickable class">
+<h1>sfSimpleYamlConfigHandler<a href="../classes/sfSimpleYamlConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfSimpleYamlConfigHandler allows you to load simple configuration files formatted as YAML.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfSimpleYamlConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfViewConfigHandler" class="element ajax clickable class">
+<h1>sfViewConfigHandler<a href="../classes/sfViewConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfViewConfigHandler allows you to configure views.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfViewConfigHandler.html" class="more">« More »</a>
+</div>
+<div id="sfYamlConfigHandler" class="element ajax clickable class">
+<h1>sfYamlConfigHandler<a href="../classes/sfYamlConfigHandler.html">¶</a>
+</h1>
+<p class="short_description">sfYamlConfigHandler is a base class for YAML (.yml) configuration handlers.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfYamlConfigHandler.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:44:27+05:00.<br></footer></div>
+</div>
+</body>
+</html>

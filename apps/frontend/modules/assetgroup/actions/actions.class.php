@@ -10,6 +10,12 @@
  */
 class assetgroupActions extends sfActions {
 
+    /**
+     * list all asset groups or filter asset groups
+     * 
+     * @param sfWebRequest $request
+     * @return json if ajax call 
+     */
     public function executeIndex(sfWebRequest $request) {
 
         $collectionId = $request->getParameter('c');
@@ -108,11 +114,11 @@ class assetgroupActions extends sfActions {
                 ->findBy('parent_node_id', $this->collectionID);
     }
 
-    public function executeShow(sfWebRequest $request) {
-        $this->asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->asset_group);
-    }
-
+    /**
+     * generate form for assets group. List down collections and units
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->units = Doctrine_Core::getTable('Unit')
                 ->createQuery('a')
@@ -135,6 +141,11 @@ class assetgroupActions extends sfActions {
                 ->fetchOne();
     }
 
+    /**
+     * receive post request, process the form and insert the record.
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
 
         $this->forward404Unless($request->isMethod(sfRequest::POST));
@@ -155,6 +166,11 @@ class assetgroupActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * generate asset group form with prefilled values. List all the collections and units
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
@@ -181,9 +197,13 @@ class assetgroupActions extends sfActions {
                 ->select('c.*')
                 ->where('c.id  = ?', $request->getParameter('c'))
                 ->fetchOne();
-        
     }
 
+    /**
+     * receive post request, process form values and update the record
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
@@ -222,11 +242,16 @@ class assetgroupActions extends sfActions {
             $this->setTemplate('edit');
     }
 
+    /**
+     * delete asset group
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
 //        $request->checkCSRFProtection();
 
         $this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
-        
+
         $collection = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
@@ -241,6 +266,12 @@ class assetgroupActions extends sfActions {
         $this->redirect('/' . $unit->getNameSlug() . '/' . $collection->getNameSlug() . '/');
     }
 
+    /**
+     * process and validate the form.
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $collectionId = sfToolkit::getArrayValueForPath($form->getName(), 'parent_node_id');
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
@@ -251,13 +282,19 @@ class assetgroupActions extends sfActions {
         }
     }
 
+    /**
+     * process and validate form when record is edited
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean 
+     */
     protected function processEditForm(sfWebRequest $request, sfForm $form) {
         $collectionId = sfToolkit::getArrayValueForPath($form->getName(), 'parent_node_id');
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $asset_group = $form->save();
             return true;
-
         }
         return false;
     }

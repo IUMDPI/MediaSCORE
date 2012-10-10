@@ -7,10 +7,11 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Laserdisc extends BaseLaserdisc
-{
-	public static $constants = array(''=>'Select',0 => 'Standard',1 => 'Extended',2 => 'Unknown');
+class Laserdisc extends BaseLaserdisc {
+
+    public static $constants = array('' => 'Select', 0 => 'Standard', 1 => 'Extended', 2 => 'Unknown');
+
 }

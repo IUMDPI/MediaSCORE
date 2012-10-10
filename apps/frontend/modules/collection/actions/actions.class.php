@@ -10,6 +10,12 @@
  */
 class collectionActions extends sfActions {
 
+    /**
+     * get collections for the given unit
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeGetCollectionsForUnit(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             $unitID = $request->getParameter('id');
@@ -23,10 +29,15 @@ class collectionActions extends sfActions {
             $this->setLayout('json');
             $this->setTemplate('index');
             return $this->renderText(json_encode($collections));
-            
         }
     }
 
+    /**
+     * list all collections or filter collections
+     * 
+     * @param sfWebRequest $request
+     * @return json  if request is ajax
+     */
     public function executeIndex(sfWebRequest $request) {
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
@@ -77,11 +88,11 @@ class collectionActions extends sfActions {
                 }
             }
             $this->collections = $this->collections->fetchArray();
-            
+
             foreach ($this->collections as $key => $value) {
-                $duration=new Collection();
-                $duration=$duration->getDuration($value['id']);
-                $this->collections[$key]['duration']=$duration;
+                $duration = new Collection();
+                $duration = $duration->getDuration($value['id']);
+                $this->collections[$key]['duration'] = $duration;
             }
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
@@ -105,15 +116,14 @@ class collectionActions extends sfActions {
                     ->select('c.*')
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
-            
         }
     }
 
-    public function executeShow(sfWebRequest $request) {
-        $this->collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->collection);
-    }
-
+    /**
+     * generate form for collection.
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new CollectionForm(null,
                         array(
@@ -122,6 +132,11 @@ class collectionActions extends sfActions {
         );
     }
 
+    /**
+     * receive post request, process the form and insert the record.
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
         $unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
@@ -140,6 +155,11 @@ class collectionActions extends sfActions {
         }
     }
 
+    /**
+     * generate collection form with prefilled values.
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
@@ -152,6 +172,11 @@ class collectionActions extends sfActions {
         );
     }
 
+    /**
+     * receive post request, process form values and update the record
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
@@ -173,7 +198,11 @@ class collectionActions extends sfActions {
             $this->setTemplate('edit');
         }
     }
-
+    /**
+     * delete collection
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         //$request->checkCSRFProtection();
 
@@ -196,7 +225,13 @@ class collectionActions extends sfActions {
         }
         $this->redirect('/' . $unit->getNameSlug());
     }
-
+    /**
+     * process and validate form. And also manage and validate storage location
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return string[] 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
 
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));

@@ -10,21 +10,20 @@
  */
 class betacamActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->betacams = Doctrine_Core::getTable('Betacam')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->betacam = Doctrine_Core::getTable('Betacam')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->betacam);
-    }
-
+    /**
+     * Generate Betacam form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new BetacamForm();
     }
 
+    /**
+     * Betacam Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,20 @@ class betacamActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * Betacam edit Form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($betacam = Doctrine_Core::getTable('Betacam')->find(array($request->getParameter('id'))), sprintf('Object betacam does not exist (%s).', $request->getParameter('id')));
         $this->form = new BetacamForm($betacam);
     }
-
+    /**
+     * Betacam Post Edit form Process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($betacam = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object betacam does not exist (%s).', $request->getParameter('id')));
@@ -59,23 +67,21 @@ class betacamActions extends sfActions {
             $this->setTemplate('edit');
         }
     }
-
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($betacam = Doctrine_Core::getTable('Betacam')->find(array($request->getParameter('id'))), sprintf('Object betacam does not exist (%s).', $request->getParameter('id')));
-        $betacam->delete();
-
-        $this->redirect('betacam/index');
-    }
-
+    
+    /**
+     * Process and Validate Form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $betacam = $form->save();
             $saveReturnId = array('form' => true, 'id' => $betacam->getId());
             return $saveReturnId;
-//            $this->redirect('betacam/edit?id=' . $betacam->getId());
         }
         return false;
     }

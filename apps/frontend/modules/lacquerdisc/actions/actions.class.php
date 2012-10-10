@@ -10,21 +10,20 @@
  */
 class lacquerdiscActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->lacquer_discs = Doctrine_Core::getTable('LacquerDisc')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->lacquer_disc = Doctrine_Core::getTable('LacquerDisc')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->lacquer_disc);
-    }
-
+    /**
+     * Generate LacquerDisc form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new LacquerDiscForm();
     }
 
+    /**
+     * LacquerDisc Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,21 @@ class lacquerdiscActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * LacquerDisc edit Form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($lacquer_disc = Doctrine_Core::getTable('LacquerDisc')->find(array($request->getParameter('id'))), sprintf('Object lacquer_disc does not exist (%s).', $request->getParameter('id')));
         $this->form = new LacquerDiscForm($lacquer_disc);
     }
 
+    /**
+     * LacquerDisc Post Edit form Process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($lacquer_disc = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object lacquer_disc does not exist (%s).', $request->getParameter('id')));
@@ -49,7 +58,7 @@ class lacquerdiscActions extends sfActions {
         $lacquer_disc = Doctrine_Core::getTable('LacquerDisc')->find(array($request->getParameter('id')));
         $this->form = new LacquerDiscForm($lacquer_disc);
 
-        
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -60,22 +69,20 @@ class lacquerdiscActions extends sfActions {
         }
     }
 
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($lacquer_disc = Doctrine_Core::getTable('LacquerDisc')->find(array($request->getParameter('id'))), sprintf('Object lacquer_disc does not exist (%s).', $request->getParameter('id')));
-        $lacquer_disc->delete();
-
-        $this->redirect('lacquerdisc/index');
-    }
-
+    /**
+     * Process and Validate Form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $lacquer_disc = $form->save();
             $saveReturnId = array('form' => true, 'id' => $lacquer_disc->getId());
             return $saveReturnId;
-//      $this->redirect('lacquerdisc/edit?id='.$lacquer_disc->getId());
         }
         return false;
     }

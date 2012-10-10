@@ -10,21 +10,20 @@
  */
 class datActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->da_ts = Doctrine_Core::getTable('DAT')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->dat = Doctrine_Core::getTable('DAT')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->dat);
-    }
-
+    /**
+     * Generate DAT form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new DATForm();
     }
 
+    /**
+     * DAT Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,21 @@ class datActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * DAT edit Form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($dat = Doctrine_Core::getTable('DAT')->find(array($request->getParameter('id'))), sprintf('Object dat does not exist (%s).', $request->getParameter('id')));
         $this->form = new DATForm($dat);
     }
 
+    /**
+     * DAT Post Edit form Process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($dat = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object dat does not exist (%s).', $request->getParameter('id')));
@@ -49,7 +58,7 @@ class datActions extends sfActions {
         $dat = Doctrine_Core::getTable('DAT')->find(array($request->getParameter('id')));
         $this->form = new DATForm($dat);
 
-        
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -60,22 +69,20 @@ class datActions extends sfActions {
         }
     }
 
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($dat = Doctrine_Core::getTable('DAT')->find(array($request->getParameter('id'))), sprintf('Object dat does not exist (%s).', $request->getParameter('id')));
-        $dat->delete();
-
-        $this->redirect('dat/index');
-    }
-
+    /**
+     * Process and Validate Form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $dat = $form->save();
             $saveReturnId = array('form' => true, 'id' => $dat->getId());
             return $saveReturnId;
-//            $this->redirect('dat/edit?id=' . $dat->getId());
         }
         return false;
     }

@@ -1,0 +1,2018 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \soundopticaldiscActions</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___call" title="__call :: Calls methods defined via sfEventDispatcher."><span class="description">Calls methods defined via sfEventDispatcher.</span><pre>__call()</pre></a></li>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: Class constructor."><span class="description">Class constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method___get" title="__get :: Gets a variable for the template."><span class="description">Gets a variable for the template.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#method___isset" title="__isset :: Returns true if a variable for the template is set."><span class="description">Returns true if a variable for the template is set.</span><pre>__isset()</pre></a></li>
+<li class="method public inherited"><a href="#method___set" title="__set :: Sets a variable for the template."><span class="description">Sets a variable for the template.</span><pre>__set()</pre></a></li>
+<li class="method public inherited"><a href="#method___unset" title="__unset :: Removes a variable for the template."><span class="description">Removes a variable for the template.</span><pre>__unset()</pre></a></li>
+<li class="method public inherited"><a href="#method_execute" title="execute :: Dispatches to the action defined by the 'action' parameter of the sfRequest object."><span class="description">Dispatches to the action defined by the 'action' parameter of the sfRequest object.</span><pre>execute()</pre></a></li>
+<li class="method public "><a href="#method_executeCreate" title="executeCreate :: "><span class="description">executeCreate()
+        </span><pre>executeCreate()</pre></a></li>
+<li class="method public "><a href="#method_executeDelete" title="executeDelete :: "><span class="description">executeDelete()
+        </span><pre>executeDelete()</pre></a></li>
+<li class="method public "><a href="#method_executeEdit" title="executeEdit :: "><span class="description">executeEdit()
+        </span><pre>executeEdit()</pre></a></li>
+<li class="method public "><a href="#method_executeIndex" title="executeIndex :: "><span class="description">executeIndex()
+        </span><pre>executeIndex()</pre></a></li>
+<li class="method public "><a href="#method_executeNew" title="executeNew :: "><span class="description">executeNew()
+        </span><pre>executeNew()</pre></a></li>
+<li class="method public "><a href="#method_executeShow" title="executeShow :: "><span class="description">executeShow()
+        </span><pre>executeShow()</pre></a></li>
+<li class="method public "><a href="#method_executeUpdate" title="executeUpdate :: "><span class="description">executeUpdate()
+        </span><pre>executeUpdate()</pre></a></li>
+<li class="method public inherited"><a href="#method_forward" title="forward :: Forwards current action to a new one (without browser redirection)."><span class="description">Forwards current action to a new one (without browser redirection).</span><pre>forward()</pre></a></li>
+<li class="method public inherited"><a href="#method_forward404" title="forward404 :: Forwards current action to the default 404 error action."><span class="description">Forwards current action to the default 404 error action.</span><pre>forward404()</pre></a></li>
+<li class="method public inherited"><a href="#method_forward404If" title="forward404If :: Forwards current action to the default 404 error action if the specified condition is true."><span class="description">Forwards current action to the default 404 error action if the specified condition is true.</span><pre>forward404If()</pre></a></li>
+<li class="method public inherited"><a href="#method_forward404Unless" title="forward404Unless :: Forwards current action to the default 404 error action unless the specified condition is true."><span class="description">Forwards current action to the default 404 error action unless the specified condition is true.</span><pre>forward404Unless()</pre></a></li>
+<li class="method public inherited"><a href="#method_forwardIf" title="forwardIf :: If the condition is true, forwards current action to a new one (without browser redirection)."><span class="description">If the condition is true, forwards current action to a new one (without browser redirection).</span><pre>forwardIf()</pre></a></li>
+<li class="method public inherited"><a href="#method_forwardUnless" title="forwardUnless :: Unless the condition is true, forwards current action to a new one (without browser redirection)."><span class="description">Unless the condition is true, forwards current action to a new one (without browser redirection).</span><pre>forwardUnless()</pre></a></li>
+<li class="method public inherited"><a href="#method_generateUrl" title="generateUrl :: Generates a URL for the given route and arguments."><span class="description">Generates a URL for the given route and arguments.</span><pre>generateUrl()</pre></a></li>
+<li class="method public inherited"><a href="#method_getActionName" title="getActionName :: Gets the action name associated with this component."><span class="description">Gets the action name associated with this component.</span><pre>getActionName()</pre></a></li>
+<li class="method public inherited"><a href="#method_getComponent" title="getComponent :: Returns the component rendered content."><span class="description">Returns the component rendered content.</span><pre>getComponent()</pre></a></li>
+<li class="method public inherited"><a href="#method_getContext" title="getContext :: Retrieves the current application context."><span class="description">Retrieves the current application context.</span><pre>getContext()</pre></a></li>
+<li class="method public inherited"><a href="#method_getController" title="getController :: Retrieves the current sfController object."><span class="description">Retrieves the current sfController object.</span><pre>getController()</pre></a></li>
+<li class="method public inherited"><a href="#method_getCredential" title="getCredential :: Gets credentials the user must have to access this action."><span class="description">Gets credentials the user must have to access this action.</span><pre>getCredential()</pre></a></li>
+<li class="method public inherited"><a href="#method_getLayout" title="getLayout :: Gets the name of the alternate layout for this sfAction."><span class="description">Gets the name of the alternate layout for this sfAction.</span><pre>getLayout()</pre></a></li>
+<li class="method public inherited"><a href="#method_getLogger" title="getLogger :: Retrieves the current logger instance."><span class="description">Retrieves the current logger instance.</span><pre>getLogger()</pre></a></li>
+<li class="method public inherited"><a href="#method_getMailer" title="getMailer :: Gets the current mailer instance."><span class="description">Gets the current mailer instance.</span><pre>getMailer()</pre></a></li>
+<li class="method public inherited"><a href="#method_getModuleName" title="getModuleName :: Gets the module name associated with this component."><span class="description">Gets the module name associated with this component.</span><pre>getModuleName()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPartial" title="getPartial :: Returns the partial rendered content."><span class="description">Returns the partial rendered content.</span><pre>getPartial()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRequest" title="getRequest :: Retrieves the current sfRequest object."><span class="description">Retrieves the current sfRequest object.</span><pre>getRequest()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRequestParameter" title="getRequestParameter :: Returns the value of a request parameter."><span class="description">Returns the value of a request parameter.</span><pre>getRequestParameter()</pre></a></li>
+<li class="method public inherited"><a href="#method_getResponse" title="getResponse :: Retrieves the current sfResponse object."><span class="description">Retrieves the current sfResponse object.</span><pre>getResponse()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRoute" title="getRoute :: Returns the current route for this request"><span class="description">Returns the current route for this request</span><pre>getRoute()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSecurityConfiguration" title="getSecurityConfiguration :: Returns the security configuration for this module."><span class="description">Returns the security configuration for this module.</span><pre>getSecurityConfiguration()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSecurityValue" title="getSecurityValue :: Returns a value from security.yml."><span class="description">Returns a value from security.yml.</span><pre>getSecurityValue()</pre></a></li>
+<li class="method public inherited"><a href="#method_getTemplate" title="getTemplate :: Gets the name of the alternate template for this sfAction."><span class="description">Gets the name of the alternate template for this sfAction.</span><pre>getTemplate()</pre></a></li>
+<li class="method public inherited"><a href="#method_getUser" title="getUser :: Retrieves the current sfUser object."><span class="description">Retrieves the current sfUser object.</span><pre>getUser()</pre></a></li>
+<li class="method public inherited"><a href="#method_getVar" title="getVar :: Gets a variable set for the template."><span class="description">Gets a variable set for the template.</span><pre>getVar()</pre></a></li>
+<li class="method public inherited"><a href="#method_getVarHolder" title="getVarHolder :: Gets the sfParameterHolder object that stores the template variables."><span class="description">Gets the sfParameterHolder object that stores the template variables.</span><pre>getVarHolder()</pre></a></li>
+<li class="method public inherited"><a href="#method_hasRequestParameter" title="hasRequestParameter :: Returns true if a request parameter exists."><span class="description">Returns true if a request parameter exists.</span><pre>hasRequestParameter()</pre></a></li>
+<li class="method public inherited"><a href="#method_initialize" title="initialize :: Initializes this action."><span class="description">Initializes this action.</span><pre>initialize()</pre></a></li>
+<li class="method public inherited"><a href="#method_isSecure" title="isSecure :: Indicates that this action requires security."><span class="description">Indicates that this action requires security.</span><pre>isSecure()</pre></a></li>
+<li class="method public inherited"><a href="#method_logMessage" title="logMessage :: Logs a message using the sfLogger object."><span class="description">Logs a message using the sfLogger object.</span><pre>logMessage()</pre></a></li>
+<li class="method public inherited"><a href="#method_postExecute" title="postExecute :: Execute an application defined process immediately after execution of this sfAction object."><span class="description">Execute an application defined process immediately after execution of this sfAction object.</span><pre>postExecute()</pre></a></li>
+<li class="method public inherited"><a href="#method_preExecute" title="preExecute :: Executes an application defined process prior to execution of this sfAction object."><span class="description">Executes an application defined process prior to execution of this sfAction object.</span><pre>preExecute()</pre></a></li>
+<li class="method public inherited"><a href="#method_redirect" title="redirect :: Redirects current request to a new URL."><span class="description">Redirects current request to a new URL.</span><pre>redirect()</pre></a></li>
+<li class="method public inherited"><a href="#method_redirect404" title="redirect404 :: Redirects current action to the default 404 error action (with browser redirection)."><span class="description">Redirects current action to the default 404 error action (with browser redirection).</span><pre>redirect404()</pre></a></li>
+<li class="method public inherited"><a href="#method_redirectIf" title="redirectIf :: Redirects current request to a new URL, only if specified condition is true."><span class="description">Redirects current request to a new URL, only if specified condition is true.</span><pre>redirectIf()</pre></a></li>
+<li class="method public inherited"><a href="#method_redirectUnless" title="redirectUnless :: Redirects current request to a new URL, unless specified condition is true."><span class="description">Redirects current request to a new URL, unless specified condition is true.</span><pre>redirectUnless()</pre></a></li>
+<li class="method public inherited"><a href="#method_renderComponent" title="renderComponent :: Appends the result of the given component execution to the response content."><span class="description">Appends the result of the given component execution to the response content.</span><pre>renderComponent()</pre></a></li>
+<li class="method public inherited"><a href="#method_renderPartial" title="renderPartial :: Appends the result of the given partial execution to the response content."><span class="description">Appends the result of the given partial execution to the response content.</span><pre>renderPartial()</pre></a></li>
+<li class="method public inherited"><a href="#method_renderText" title="renderText :: Appends the given text to the response content and bypasses the built-in view system."><span class="description">Appends the given text to the response content and bypasses the built-in view system.</span><pre>renderText()</pre></a></li>
+<li class="method public inherited"><a href="#method_setLayout" title="setLayout :: Sets an alternate layout for this sfAction."><span class="description">Sets an alternate layout for this sfAction.</span><pre>setLayout()</pre></a></li>
+<li class="method public inherited"><a href="#method_setSecurityConfiguration" title="setSecurityConfiguration :: Overrides the current security configuration for this module."><span class="description">Overrides the current security configuration for this module.</span><pre>setSecurityConfiguration()</pre></a></li>
+<li class="method public inherited"><a href="#method_setTemplate" title="setTemplate :: Sets an alternate template for this sfAction."><span class="description">Sets an alternate template for this sfAction.</span><pre>setTemplate()</pre></a></li>
+<li class="method public inherited"><a href="#method_setVar" title="setVar :: Sets a variable for the template."><span class="description">Sets a variable for the template.</span><pre>setVar()</pre></a></li>
+<li class="method public inherited"><a href="#method_setViewClass" title="setViewClass :: Changes the default view class used for rendering the template associated with the current action."><span class="description">Changes the default view class used for rendering the template associated with the current action.</span><pre>setViewClass()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_get404Message" title="get404Message :: Returns a formatted message for a 404 error."><span class="description">Returns a formatted message for a 404 error.</span><pre>get404Message()</pre></a></li>
+<li class="method protected "><a href="#method_processForm" title="processForm :: "><span class="description">processForm()
+        </span><pre>processForm()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_actionName" title="$actionName :: "><span class="description">$actionName</span><pre>$actionName</pre></a></li>
+<li class="property protected inherited"><a href="#property_context" title="$context :: "><span class="description">$context</span><pre>$context</pre></a></li>
+<li class="property protected inherited"><a href="#property_dispatcher" title="$dispatcher :: "><span class="description">$dispatcher</span><pre>$dispatcher</pre></a></li>
+<li class="property protected inherited"><a href="#property_moduleName" title="$moduleName :: "><span class="description">$moduleName</span><pre>$moduleName</pre></a></li>
+<li class="property protected inherited"><a href="#property_request" title="$request :: "><span class="description">$request</span><pre>$request</pre></a></li>
+<li class="property protected inherited"><a href="#property_requestParameterHolder" title="$requestParameterHolder :: "><span class="description">$requestParameterHolder</span><pre>$requestParameterHolder</pre></a></li>
+<li class="property protected inherited"><a href="#property_response" title="$response :: "><span class="description">$response</span><pre>$response</pre></a></li>
+<li class="property protected inherited"><a href="#property_security" title="$security :: "><span class="description">$security</span><pre>$security</pre></a></li>
+<li class="property protected inherited"><a href="#property_varHolder" title="$varHolder :: "><span class="description">$varHolder</span><pre>$varHolder</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\soundopticaldiscActions"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/soundopticaldiscActions.html">soundopticaldiscActions</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">soundopticaldisc actions.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/mediaSCORE.soundopticaldisc.html">mediaSCORE</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>soundopticaldisc</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Nouman Tayyab</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___call"></a><div class="element clickable method public method___call" data-toggle="collapse" data-target=".method___call .collapse">
+<h2>Calls methods defined via sfEventDispatcher.</h2>
+<pre>__call(string $method, array $arguments) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__call()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__call()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__call()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>The method name</p></div>
+<div class="subelement argument">
+<h4>$arguments</h4>
+<code>array</code><p>The method arguments</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfException.html">\sfException</a></code></th>
+<td>If called method is undefined</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The returned value of the called method</div>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Class constructor.</h2>
+<pre>__construct($context, $moduleName, $actionName) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\initialize()</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__construct()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__construct()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__construct()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$context</h4></div>
+<div class="subelement argument"><h4>$moduleName</h4></div>
+<div class="subelement argument"><h4>$actionName</h4></div>
+</div></div>
+</div>
+<a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
+<h2>Gets a variable for the template.</h2>
+<pre>__get(string $key) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a shortcut for:</p>
+
+<pre><code>$this->getVar('name')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\getVar()</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__get()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__get()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__get()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The variable name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The variable value</div>
+</div></div>
+</div>
+<a id="method___isset"></a><div class="element clickable method public method___isset" data-toggle="collapse" data-target=".method___isset .collapse">
+<h2>Returns true if a variable for the template is set.</h2>
+<pre>__isset(string $name) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a shortcut for:</p>
+
+<pre><code>$this->getVarHolder()->has('name')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__isset()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__isset()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__isset()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The variable name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if the variable is set</div>
+</div></div>
+</div>
+<a id="method___set"></a><div class="element clickable method public method___set" data-toggle="collapse" data-target=".method___set .collapse">
+<h2>Sets a variable for the template.</h2>
+<pre>__set(string $key, string $value) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a shortcut for:</p>
+
+<pre><code>$this->setVar('name', 'value')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\setVar()</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__set()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__set()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__set()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>The variable name</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>The variable value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>always true</div>
+</div></div>
+</div>
+<a id="method___unset"></a><div class="element clickable method public method___unset" data-toggle="collapse" data-target=".method___unset .collapse">
+<h2>Removes a variable for the template.</h2>
+<pre>__unset(string $name) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is just really a shortcut for:</p>
+
+<pre><code>$this->getVarHolder()->remove('name')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::__unset()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::__unset()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::__unset()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The variable Name</p></div>
+</div></div>
+</div>
+<a id="method_execute"></a><div class="element clickable method public method_execute" data-toggle="collapse" data-target=".method_execute .collapse">
+<h2>Dispatches to the action defined by the 'action' parameter of the sfRequest object.</h2>
+<pre>execute(<a href="../classes/sfRequest.html">\sfRequest</a> $request) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method try to execute the executeXXX() method of the current object where XXX is the
+defined action name.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\sfAction</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::execute()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$request</h4>
+<code><a href="../classes/sfRequest.html">\sfRequest</a></code><p>The current sfRequest object</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfInitializationException.html">\sfInitializationException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A string containing the view name associated with this action</div>
+</div></div>
+</div>
+<a id="method_executeCreate"></a><div class="element clickable method public method_executeCreate" data-toggle="collapse" data-target=".method_executeCreate .collapse">
+<h2>executeCreate()
+        </h2>
+<pre>executeCreate(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeDelete"></a><div class="element clickable method public method_executeDelete" data-toggle="collapse" data-target=".method_executeDelete .collapse">
+<h2>executeDelete()
+        </h2>
+<pre>executeDelete(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeEdit"></a><div class="element clickable method public method_executeEdit" data-toggle="collapse" data-target=".method_executeEdit .collapse">
+<h2>executeEdit()
+        </h2>
+<pre>executeEdit(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeIndex"></a><div class="element clickable method public method_executeIndex" data-toggle="collapse" data-target=".method_executeIndex .collapse">
+<h2>executeIndex()
+        </h2>
+<pre>executeIndex(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeNew"></a><div class="element clickable method public method_executeNew" data-toggle="collapse" data-target=".method_executeNew .collapse">
+<h2>executeNew()
+        </h2>
+<pre>executeNew(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeShow"></a><div class="element clickable method public method_executeShow" data-toggle="collapse" data-target=".method_executeShow .collapse">
+<h2>executeShow()
+        </h2>
+<pre>executeShow(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_executeUpdate"></a><div class="element clickable method public method_executeUpdate" data-toggle="collapse" data-target=".method_executeUpdate .collapse">
+<h2>executeUpdate()
+        </h2>
+<pre>executeUpdate(\sfWebRequest $request) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+</div></div>
+</div>
+<a id="method_forward"></a><div class="element clickable method public method_forward" data-toggle="collapse" data-target=".method_forward .collapse">
+<h2>Forwards current action to a new one (without browser redirection).</h2>
+<pre>forward(string $module, string $action) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forward()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forward()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$module</h4>
+<code>string</code><p>A module name</p></div>
+<div class="subelement argument">
+<h4>$action</h4>
+<code>string</code><p>An action name</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_forward404"></a><div class="element clickable method public method_forward404" data-toggle="collapse" data-target=".method_forward404 .collapse">
+<h2>Forwards current action to the default 404 error action.</h2>
+<pre>forward404(string $message) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forward404()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forward404()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>Message of the generated exception</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfError404Exception.html">\sfError404Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_forward404If"></a><div class="element clickable method public method_forward404If" data-toggle="collapse" data-target=".method_forward404If .collapse">
+<h2>Forwards current action to the default 404 error action if the specified condition is true.</h2>
+<pre>forward404If(bool $condition, string $message) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forward404If()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forward404If()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>Message of the generated exception</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfError404Exception.html">\sfError404Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_forward404Unless"></a><div class="element clickable method public method_forward404Unless" data-toggle="collapse" data-target=".method_forward404Unless .collapse">
+<h2>Forwards current action to the default 404 error action unless the specified condition is true.</h2>
+<pre>forward404Unless(bool $condition, string $message) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forward404Unless()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forward404Unless()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>Message of the generated exception</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfError404Exception.html">\sfError404Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_forwardIf"></a><div class="element clickable method public method_forwardIf" data-toggle="collapse" data-target=".method_forwardIf .collapse">
+<h2>If the condition is true, forwards current action to a new one (without browser redirection).</h2>
+<pre>forwardIf(bool $condition, string $module, string $action) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forwardIf()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forwardIf()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$module</h4>
+<code>string</code><p>A module name</p></div>
+<div class="subelement argument">
+<h4>$action</h4>
+<code>string</code><p>An action name</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_forwardUnless"></a><div class="element clickable method public method_forwardUnless" data-toggle="collapse" data-target=".method_forwardUnless .collapse">
+<h2>Unless the condition is true, forwards current action to a new one (without browser redirection).</h2>
+<pre>forwardUnless(bool $condition, string $module, string $action) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::forwardUnless()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::forwardUnless()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$module</h4>
+<code>string</code><p>A module name</p></div>
+<div class="subelement argument">
+<h4>$action</h4>
+<code>string</code><p>An action name</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_generateUrl"></a><div class="element clickable method public method_generateUrl" data-toggle="collapse" data-target=".method_generateUrl .collapse">
+<h2>Generates a URL for the given route and arguments.</h2>
+<pre>generateUrl(string $route, array $params, Boolean $absolute) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getContext()->getRouting()->generate(...)</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::generateUrl()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::generateUrl()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::generateUrl()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$route</h4>
+<code>string</code><p>The route name</p></div>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>array</code><p>An array of parameters for the route</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>Boolean</code><p>Whether to generate an absolute URL or not</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The URL</div>
+</div></div>
+</div>
+<a id="method_getActionName"></a><div class="element clickable method public method_getActionName" data-toggle="collapse" data-target=".method_getActionName .collapse">
+<h2>Gets the action name associated with this component.</h2>
+<pre>getActionName() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getActionName()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getActionName()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getActionName()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>An action name</div>
+</div></div>
+</div>
+<a id="method_getComponent"></a><div class="element clickable method public method_getComponent" data-toggle="collapse" data-target=".method_getComponent .collapse">
+<h2>Returns the component rendered content.</h2>
+<pre>getComponent(string $moduleName, string $componentName, array $vars) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the vars parameter is omitted, the action's internal variables
+will be passed, just as it would to a normal template.</p>
+
+<p>If the vars parameter is set then only those values are
+available in the component.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getComponent()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getComponent()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>module name</p></div>
+<div class="subelement argument">
+<h4>$componentName</h4>
+<code>string</code><p>component name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>vars</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The component rendered content</div>
+</div></div>
+</div>
+<a id="method_getContext"></a><div class="element clickable method public method_getContext" data-toggle="collapse" data-target=".method_getContext .collapse">
+<h2>Retrieves the current application context.</h2>
+<pre>getContext() : <a href="../classes/sfContext.html">\sfContext</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getContext()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getContext()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getContext()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfContext.html">\sfContext</a></code>The current sfContext instance</div>
+</div></div>
+</div>
+<a id="method_getController"></a><div class="element clickable method public method_getController" data-toggle="collapse" data-target=".method_getController .collapse">
+<h2>Retrieves the current sfController object.</h2>
+<pre>getController() : <a href="../classes/sfController.html">\sfController</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getContext()->getController()</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getController()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getController()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getController()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfController.html">\sfController</a></code>The current sfController implementation instance</div>
+</div></div>
+</div>
+<a id="method_getCredential"></a><div class="element clickable method public method_getCredential" data-toggle="collapse" data-target=".method_getCredential .collapse">
+<h2>Gets credentials the user must have to access this action.</h2>
+<pre>getCredential() : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getCredential()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getCredential()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>An array or a string describing the credentials the user must have to access this action</div>
+</div></div>
+</div>
+<a id="method_getLayout"></a><div class="element clickable method public method_getLayout" data-toggle="collapse" data-target=".method_getLayout .collapse">
+<h2>Gets the name of the alternate layout for this sfAction.</h2>
+<pre>getLayout() : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>WARNING: It only returns the layout you set with the setLayout() method,
+         and does not return the layout that you configured in your view.yml.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getLayout()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getLayout()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Layout name. Returns null if no layout has been set within the action</div>
+</div></div>
+</div>
+<a id="method_getLogger"></a><div class="element clickable method public method_getLogger" data-toggle="collapse" data-target=".method_getLogger .collapse">
+<h2>Retrieves the current logger instance.</h2>
+<pre>getLogger() : <a href="../classes/sfLogger.html">\sfLogger</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getLogger()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getLogger()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getLogger()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfLogger.html">\sfLogger</a></code>The current sfLogger instance</div>
+</div></div>
+</div>
+<a id="method_getMailer"></a><div class="element clickable method public method_getMailer" data-toggle="collapse" data-target=".method_getMailer .collapse">
+<h2>Gets the current mailer instance.</h2>
+<pre>getMailer() : <a href="../classes/sfMailer.html">\sfMailer</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getMailer()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getMailer()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getMailer()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfMailer.html">\sfMailer</a></code>A sfMailer instance</div>
+</div></div>
+</div>
+<a id="method_getModuleName"></a><div class="element clickable method public method_getModuleName" data-toggle="collapse" data-target=".method_getModuleName .collapse">
+<h2>Gets the module name associated with this component.</h2>
+<pre>getModuleName() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getModuleName()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getModuleName()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getModuleName()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A module name</div>
+</div></div>
+</div>
+<a id="method_getPartial"></a><div class="element clickable method public method_getPartial" data-toggle="collapse" data-target=".method_getPartial .collapse">
+<h2>Returns the partial rendered content.</h2>
+<pre>getPartial(string $templateName, array $vars) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the vars parameter is omitted, the action's internal variables
+will be passed, just as it would to a normal template.</p>
+
+<p>If the vars parameter is set then only those values are
+available in the partial.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getPartial()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getPartial()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateName</h4>
+<code>string</code><p>partial name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>vars</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The partial content</div>
+</div></div>
+</div>
+<a id="method_getRequest"></a><div class="element clickable method public method_getRequest" data-toggle="collapse" data-target=".method_getRequest .collapse">
+<h2>Retrieves the current sfRequest object.</h2>
+<pre>getRequest() : <a href="../classes/sfRequest.html">\sfRequest</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getContext()->getRequest()</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getRequest()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getRequest()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getRequest()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfRequest.html">\sfRequest</a></code>The current sfRequest implementation instance</div>
+</div></div>
+</div>
+<a id="method_getRequestParameter"></a><div class="element clickable method public method_getRequestParameter" data-toggle="collapse" data-target=".method_getRequestParameter .collapse">
+<h2>Returns the value of a request parameter.</h2>
+<pre>getRequestParameter(string $name, mixed $default) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getRequest()->getParameterHolder()->get($name)</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getRequestParameter()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getRequestParameter()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getRequestParameter()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The parameter name</p></div>
+<div class="subelement argument">
+<h4>$default</h4>
+<code>mixed</code><p>The default value if parameter does not exist</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The request parameter value</div>
+</div></div>
+</div>
+<a id="method_getResponse"></a><div class="element clickable method public method_getResponse" data-toggle="collapse" data-target=".method_getResponse .collapse">
+<h2>Retrieves the current sfResponse object.</h2>
+<pre>getResponse() : <a href="../classes/sfResponse.html">\sfResponse</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getContext()->getResponse()</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getResponse()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getResponse()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getResponse()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfResponse.html">\sfResponse</a></code>The current sfResponse implementation instance</div>
+</div></div>
+</div>
+<a id="method_getRoute"></a><div class="element clickable method public method_getRoute" data-toggle="collapse" data-target=".method_getRoute .collapse">
+<h2>Returns the current route for this request</h2>
+<pre>getRoute() : <a href="../classes/sfRoute.html">\sfRoute</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getRoute()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getRoute()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfRoute.html">\sfRoute</a></code>The route for the request</div>
+</div></div>
+</div>
+<a id="method_getSecurityConfiguration"></a><div class="element clickable method public method_getSecurityConfiguration" data-toggle="collapse" data-target=".method_getSecurityConfiguration .collapse">
+<h2>Returns the security configuration for this module.</h2>
+<pre>getSecurityConfiguration() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getSecurityConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getSecurityConfiguration()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Current security configuration as an array</div>
+</div></div>
+</div>
+<a id="method_getSecurityValue"></a><div class="element clickable method public method_getSecurityValue" data-toggle="collapse" data-target=".method_getSecurityValue .collapse">
+<h2>Returns a value from security.yml.</h2>
+<pre>getSecurityValue(string $name, mixed $default) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getSecurityValue()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getSecurityValue()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The name of the value to pull from security.yml</p></div>
+<div class="subelement argument">
+<h4>$default</h4>
+<code>mixed</code><p>The default value to return if none is found in security.yml</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getTemplate"></a><div class="element clickable method public method_getTemplate" data-toggle="collapse" data-target=".method_getTemplate .collapse">
+<h2>Gets the name of the alternate template for this sfAction.</h2>
+<pre>getTemplate() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>WARNING: It only returns the template you set with the setTemplate() method,
+         and does not return the template that you configured in your view.yml.</p>
+
+<p>See 'Naming Conventions' in the 'Symfony View' documentation.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getTemplate()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getTemplate()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Template name. Returns null if no template has been set within the action</div>
+</div></div>
+</div>
+<a id="method_getUser"></a><div class="element clickable method public method_getUser" data-toggle="collapse" data-target=".method_getUser .collapse">
+<h2>Retrieves the current sfUser object.</h2>
+<pre>getUser() : <a href="../classes/sfUser.html">\sfUser</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getContext()->getUser()</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getUser()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getUser()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getUser()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfUser.html">\sfUser</a></code>The current sfUser implementation instance</div>
+</div></div>
+</div>
+<a id="method_getVar"></a><div class="element clickable method public method_getVar" data-toggle="collapse" data-target=".method_getVar .collapse">
+<h2>Gets a variable set for the template.</h2>
+<pre>getVar(string $name) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getVar()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getVar()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getVar()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The variable name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The variable value</div>
+</div></div>
+</div>
+<a id="method_getVarHolder"></a><div class="element clickable method public method_getVarHolder" data-toggle="collapse" data-target=".method_getVarHolder .collapse">
+<h2>Gets the sfParameterHolder object that stores the template variables.</h2>
+<pre>getVarHolder() : <a href="../classes/sfParameterHolder.html">\sfParameterHolder</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::getVarHolder()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::getVarHolder()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::getVarHolder()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfParameterHolder.html">\sfParameterHolder</a></code>The variable holder.</div>
+</div></div>
+</div>
+<a id="method_hasRequestParameter"></a><div class="element clickable method public method_hasRequestParameter" data-toggle="collapse" data-target=".method_hasRequestParameter .collapse">
+<h2>Returns true if a request parameter exists.</h2>
+<pre>hasRequestParameter(string $name) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is a proxy method equivalent to:</p>
+
+<pre><code>$this->getRequest()->getParameterHolder()->has($name)</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::hasRequestParameter()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::hasRequestParameter()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::hasRequestParameter()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The parameter name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if the request parameter exists, false otherwise</div>
+</div></div>
+</div>
+<a id="method_initialize"></a><div class="element clickable method public method_initialize" data-toggle="collapse" data-target=".method_initialize .collapse">
+<h2>Initializes this action.</h2>
+<pre>initialize(<a href="../classes/sfContext.html">\sfContext</a> $context, string $moduleName, string $actionName) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::initialize()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::initialize()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$context</h4>
+<code><a href="../classes/sfContext.html">\sfContext</a></code><p>The current application context.</p></div>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name.</p></div>
+<div class="subelement argument">
+<h4>$actionName</h4>
+<code>string</code><p>The action name.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true, if initialization completes successfully, otherwise false</div>
+</div></div>
+</div>
+<a id="method_isSecure"></a><div class="element clickable method public method_isSecure" data-toggle="collapse" data-target=".method_isSecure .collapse">
+<h2>Indicates that this action requires security.</h2>
+<pre>isSecure() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::isSecure()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::isSecure()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true, if this action requires security, otherwise false.</div>
+</div></div>
+</div>
+<a id="method_logMessage"></a><div class="element clickable method public method_logMessage" data-toggle="collapse" data-target=".method_logMessage .collapse">
+<h2>Logs a message using the sfLogger object.</h2>
+<pre>logMessage(mixed $message, string $priority) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\sfLogger</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::logMessage()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::logMessage()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::logMessage()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>mixed</code><p>String or object containing the message to log</p></div>
+<div class="subelement argument">
+<h4>$priority</h4>
+<code>string</code><p>The priority of the message (available priorities: emerg, alert, crit, err, warning, notice, info, debug)</p>
+</div>
+</div></div>
+</div>
+<a id="method_postExecute"></a><div class="element clickable method public method_postExecute" data-toggle="collapse" data-target=".method_postExecute .collapse">
+<h2>Execute an application defined process immediately after execution of this sfAction object.</h2>
+<pre>postExecute() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>By default, this method is empty.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::postExecute()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::postExecute()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_preExecute"></a><div class="element clickable method public method_preExecute" data-toggle="collapse" data-target=".method_preExecute .collapse">
+<h2>Executes an application defined process prior to execution of this sfAction object.</h2>
+<pre>preExecute() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>By default, this method is empty.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::preExecute()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::preExecute()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_redirect"></a><div class="element clickable method public method_redirect" data-toggle="collapse" data-target=".method_redirect .collapse">
+<h2>Redirects current request to a new URL.</h2>
+<pre>redirect(string $url, string $statusCode) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>2 URL formats are accepted :
+ - a full URL: http://www.google.com/
+ - an internal URL (url_for() format): module/action</p>
+
+<p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::redirect()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::redirect()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>Url</p></div>
+<div class="subelement argument">
+<h4>$statusCode</h4>
+<code>string</code><p>Status code (default to 302)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_redirect404"></a><div class="element clickable method public method_redirect404" data-toggle="collapse" data-target=".method_redirect404 .collapse">
+<h2>Redirects current action to the default 404 error action (with browser redirection).</h2>
+<pre>redirect404() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the current code flow.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::redirect404()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::redirect404()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_redirectIf"></a><div class="element clickable method public method_redirectIf" data-toggle="collapse" data-target=".method_redirectIf .collapse">
+<h2>Redirects current request to a new URL, only if specified condition is true.</h2>
+<pre>redirectIf(bool $condition, string $url, string $statusCode) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\redirect</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::redirectIf()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::redirectIf()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>Url</p></div>
+<div class="subelement argument">
+<h4>$statusCode</h4>
+<code>string</code><p>Status code (default to 302)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_redirectUnless"></a><div class="element clickable method public method_redirectUnless" data-toggle="collapse" data-target=".method_redirectUnless .collapse">
+<h2>Redirects current request to a new URL, unless specified condition is true.</h2>
+<pre>redirectUnless(bool $condition, string $url, string $statusCode) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method stops the action. So, no code is executed after a call to this method.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\redirect</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::redirectUnless()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::redirectUnless()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>bool</code><p>A condition that evaluates to true or false</p></div>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>Url</p></div>
+<div class="subelement argument">
+<h4>$statusCode</h4>
+<code>string</code><p>Status code (default to 302)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfStopException.html">\sfStopException</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_renderComponent"></a><div class="element clickable method public method_renderComponent" data-toggle="collapse" data-target=".method_renderComponent .collapse">
+<h2>Appends the result of the given component execution to the response content.</h2>
+<pre>renderComponent(string $moduleName, string $componentName, array $vars) : \sfView::NONE</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method must be called as with a return:</p>
+
+<pre><code>return $this->renderComponent('foo', 'bar')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\getComponent</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::renderComponent()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::renderComponent()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>module name</p></div>
+<div class="subelement argument">
+<h4>$componentName</h4>
+<code>string</code><p>component name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>vars</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\sfView::NONE</code></div>
+</div></div>
+</div>
+<a id="method_renderPartial"></a><div class="element clickable method public method_renderPartial" data-toggle="collapse" data-target=".method_renderPartial .collapse">
+<h2>Appends the result of the given partial execution to the response content.</h2>
+<pre>renderPartial(string $templateName, array $vars) : \sfView::NONE</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method must be called as with a return:</p>
+
+<pre><code>return $this->renderPartial('foo/bar')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\getPartial</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::renderPartial()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::renderPartial()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateName</h4>
+<code>string</code><p>partial name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>vars</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\sfView::NONE</code></div>
+</div></div>
+</div>
+<a id="method_renderText"></a><div class="element clickable method public method_renderText" data-toggle="collapse" data-target=".method_renderText .collapse">
+<h2>Appends the given text to the response content and bypasses the built-in view system.</h2>
+<pre>renderText(string $text) : \sfView::NONE</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method must be called as with a return:</p>
+
+<pre><code>return $this->renderText('some text')</code></pre></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::renderText()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::renderText()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>Text to append to the response</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\sfView::NONE</code></div>
+</div></div>
+</div>
+<a id="method_setLayout"></a><div class="element clickable method public method_setLayout" data-toggle="collapse" data-target=".method_setLayout .collapse">
+<h2>Sets an alternate layout for this sfAction.</h2>
+<pre>setLayout(mixed $name) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>To de-activate the layout, set the layout name to false.</p>
+
+<p>To revert the layout to the one configured in the view.yml, set the template name to null.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::setLayout()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::setLayout()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>mixed</code><p>Layout name or false to de-activate the layout</p>
+</div>
+</div></div>
+</div>
+<a id="method_setSecurityConfiguration"></a><div class="element clickable method public method_setSecurityConfiguration" data-toggle="collapse" data-target=".method_setSecurityConfiguration .collapse">
+<h2>Overrides the current security configuration for this module.</h2>
+<pre>setSecurityConfiguration(array $security) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::setSecurityConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::setSecurityConfiguration()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$security</h4>
+<code>array</code><p>The new security configuration</p></div>
+</div></div>
+</div>
+<a id="method_setTemplate"></a><div class="element clickable method public method_setTemplate" data-toggle="collapse" data-target=".method_setTemplate .collapse">
+<h2>Sets an alternate template for this sfAction.</h2>
+<pre>setTemplate(string $name, string $module) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>See 'Naming Conventions' in the 'Symfony View' documentation.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::setTemplate()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::setTemplate()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>Template name</p></div>
+<div class="subelement argument">
+<h4>$module</h4>
+<code>string</code><p>The module (current if null)</p>
+</div>
+</div></div>
+</div>
+<a id="method_setVar"></a><div class="element clickable method public method_setVar" data-toggle="collapse" data-target=".method_setVar .collapse">
+<h2>Sets a variable for the template.</h2>
+<pre>setVar(string $name, mixed $value, Boolean $safe) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If you add a safe value, the variable won't be output escaped
+by symfony, so this is your responsability to ensure that the
+value is escaped properly.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::setVar()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::setVar()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::setVar()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The variable name</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>The variable value</p></div>
+<div class="subelement argument">
+<h4>$safe</h4>
+<code>Boolean</code><p>true if the value is safe for output (false by default)</p>
+</div>
+</div></div>
+</div>
+<a id="method_setViewClass"></a><div class="element clickable method public method_setViewClass" data-toggle="collapse" data-target=".method_setViewClass .collapse">
+<h2>Changes the default view class used for rendering the template associated with the current action.</h2>
+<pre>setViewClass(string $class) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::setViewClass()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::setViewClass()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>View class name</p></div>
+</div></div>
+</div>
+<a id="method_get404Message"></a><div class="element clickable method protected method_get404Message" data-toggle="collapse" data-target=".method_get404Message .collapse">
+<h2>Returns a formatted message for a 404 error.</h2>
+<pre>get404Message(string $message) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::get404Message()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::get404Message()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>An error message (null by default)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The error message or a default one if null</div>
+</div></div>
+</div>
+<a id="method_processForm"></a><div class="element clickable method protected method_processForm" data-toggle="collapse" data-target=".method_processForm .collapse">
+<h2>processForm()
+        </h2>
+<pre>processForm(\sfWebRequest $request, \sfForm $form) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$request</h4></div>
+<div class="subelement argument"><h4>$form</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_actionName"> </a><div class="element clickable property protected property_actionName" data-toggle="collapse" data-target=".property_actionName .collapse">
+<h2>$actionName</h2>
+<pre>$actionName </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$actionName</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$actionName</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$actionName</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_context"> </a><div class="element clickable property protected property_context" data-toggle="collapse" data-target=".property_context .collapse">
+<h2>$context</h2>
+<pre>$context </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$context</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$context</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$context</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_dispatcher"> </a><div class="element clickable property protected property_dispatcher" data-toggle="collapse" data-target=".property_dispatcher .collapse">
+<h2>$dispatcher</h2>
+<pre>$dispatcher </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$dispatcher</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$dispatcher</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$dispatcher</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_moduleName"> </a><div class="element clickable property protected property_moduleName" data-toggle="collapse" data-target=".property_moduleName .collapse">
+<h2>$moduleName</h2>
+<pre>$moduleName </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$moduleName</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$moduleName</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$moduleName</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_request"> </a><div class="element clickable property protected property_request" data-toggle="collapse" data-target=".property_request .collapse">
+<h2>$request</h2>
+<pre>$request </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$request</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$request</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$request</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_requestParameterHolder"> </a><div class="element clickable property protected property_requestParameterHolder" data-toggle="collapse" data-target=".property_requestParameterHolder .collapse">
+<h2>$requestParameterHolder</h2>
+<pre>$requestParameterHolder </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$requestParameterHolder</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$requestParameterHolder</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$requestParameterHolder</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_response"> </a><div class="element clickable property protected property_response" data-toggle="collapse" data-target=".property_response .collapse">
+<h2>$response</h2>
+<pre>$response </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$response</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$response</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$response</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_security"> </a><div class="element clickable property protected property_security" data-toggle="collapse" data-target=".property_security .collapse">
+<h2>$security</h2>
+<pre>$security </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$security</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$security</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_varHolder"> </a><div class="element clickable property protected property_varHolder" data-toggle="collapse" data-target=".property_varHolder .collapse">
+<h2>$varHolder</h2>
+<pre>$varHolder </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfComponent::$$varHolder</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfAction::$$varHolder</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfActions::$$varHolder</td>
+</tr>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:47:48+05:00.<br></footer></div>
+</div>
+</body>
+</html>

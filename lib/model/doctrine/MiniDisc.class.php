@@ -7,11 +7,12 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class MiniDisc extends BaseMiniDisc
-{
-	public static $constants = array(0 => array(''=>'Select',0 => 'Recordable',1 => 'Molded (Pre-Recorded)',2=>'Unknown'),
-					1 => array(''=>'Select',0 => 'SP',1 => 'LP2',2 => 'LP4',3=>'Unknown'));
+class MiniDisc extends BaseMiniDisc {
+
+    public static $constants = array(0 => array('' => 'Select', 0 => 'Recordable', 1 => 'Molded (Pre-Recorded)', 2 => 'Unknown'),
+        1 => array('' => 'Select', 0 => 'SP', 1 => 'LP2', 2 => 'LP4', 3 => 'Unknown'));
+
 }

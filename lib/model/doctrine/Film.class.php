@@ -7,16 +7,17 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Film extends BaseFilm
-{
-	public static $constants = array(
-					0 => array(''=>'Select',0 => '35 mm',1 => '16 mm',2 => '8 mm',3 => 'Super 8 mm'),
-					1 => array(''=>'Select',0 => 'Monochrome',1 => 'Color',2=>'Unknown'),
-					2 => array('' => 'Select',1 => 'Magnetic composite',2 => 'Magnetic separate',3=>'Optical composite',4=>'Optical separate'),
-					3 => array(''=>'Select',0 => 'Polyester',1 => 'Acetate',2 => 'Nitrate'),
-                                        4 => array(0=>'None',1 => 'Minor',2 => 'Moderate',3 => 'Severe'),
-                                        5 => array(''=>'Select',0 => 'Quad',1 => 'High Band',2 => 'Low Band',3=>'Unknown'));
+class Film extends BaseFilm {
+
+    public static $constants = array(
+        0 => array('' => 'Select', 0 => '35 mm', 1 => '16 mm', 2 => '8 mm', 3 => 'Super 8 mm'),
+        1 => array('' => 'Select', 0 => 'Monochrome', 1 => 'Color', 2 => 'Unknown'),
+        2 => array('' => 'Select', 1 => 'Magnetic composite', 2 => 'Magnetic separate', 3 => 'Optical composite', 4 => 'Optical separate'),
+        3 => array('' => 'Select', 0 => 'Polyester', 1 => 'Acetate', 2 => 'Nitrate'),
+        4 => array(0 => 'None', 1 => 'Minor', 2 => 'Moderate', 3 => 'Severe'),
+        5 => array('' => 'Select', 0 => 'Quad', 1 => 'High Band', 2 => 'Low Band', 3 => 'Unknown'));
+
 }

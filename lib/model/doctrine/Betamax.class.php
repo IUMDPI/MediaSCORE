@@ -7,13 +7,18 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Betamax extends BaseBetamax
-{
-	public static $constants = array(0 => array(''=>'Select',0 => 'Standard',1 => 'Super', 2 => 'Extended'),
-					1 => array(''=>'Select',0 => 'Chromium Dioxide',
-						1 => 'Ferric Oxide',
-						2 => 'Metal Oxide'));
+class Betamax extends BaseBetamax {
+    /**
+     *
+     * 
+     * @var string[]
+     */
+    public static $constants = array(0 => array('' => 'Select', 0 => 'Standard', 1 => 'Super', 2 => 'Extended'),
+        1 => array('' => 'Select', 0 => 'Chromium Dioxide',
+            1 => 'Ferric Oxide',
+            2 => 'Metal Oxide'));
+
 }

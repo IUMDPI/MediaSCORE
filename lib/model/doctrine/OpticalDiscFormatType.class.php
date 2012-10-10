@@ -7,12 +7,13 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class OpticalDiscFormatType extends BaseOpticalDiscFormatType
-{
-	public static $constants = array(
-					0 => array(0 => 'Gold',1 => 'Silver',2 => 'Silver Alloy',3 => 'Aluminum',4 => 'Silicon',5 => 'Unknown'),
-				       1 => array(0 => 'Cyanine',1 => 'Phthalocyanine',2 => 'Azo',3 => 'Phase-changing Film',4 => 'Molded',5 => 'Unknown'));
+class OpticalDiscFormatType extends BaseOpticalDiscFormatType {
+
+    public static $constants = array(
+        0 => array(0 => 'Gold', 1 => 'Silver', 2 => 'Silver Alloy', 3 => 'Aluminum', 4 => 'Silicon', 5 => 'Unknown'),
+        1 => array(0 => 'Cyanine', 1 => 'Phthalocyanine', 2 => 'Azo', 3 => 'Phase-changing Film', 4 => 'Molded', 5 => 'Unknown'));
+
 }

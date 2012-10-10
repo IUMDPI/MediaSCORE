@@ -10,10 +10,16 @@
  */
 class personActions extends sfActions {
 
+    /**
+     * get list of persons for specific asset group
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeGetPersonsForAssetGroup(sfWebRequest $request) {
 
         $unitId = $request->getParameter('u');
-    		$this->forward404Unless($request->isXmlHttpRequest() && $unitId);
+        $this->forward404Unless($request->isXmlHttpRequest() && $unitId);
         // Needs optimization
         $persons = Doctrine_Query::Create()
                 ->from('Person p')
@@ -25,15 +31,26 @@ class personActions extends sfActions {
         $this->getResponse()->setHttpHeader('Content-type', 'application/json');
         $this->setLayout('json');
         $this->setTemplate('index');
-        return $this->renderText(json_encode(array('list'=>$persons,'login_person'=>$this->getUser()->getAttribute('personnel_list'))));
+        return $this->renderText(json_encode(array('list' => $persons, 'login_person' => $this->getUser()->getAttribute('personnel_list'))));
     }
 
+    /**
+     * List all
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeIndex(sfWebRequest $request) {
         $this->persons = Doctrine_Core::getTable('Person')
                 ->createQuery('a')
                 ->execute();
     }
 
+    /**
+     * detail of specific record
+     * 
+     * @param sfWebRequest $request
+     * @return type 
+     */
     public function executeShow(sfWebRequest $request) {
         $this->person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id')));
 
@@ -45,10 +62,20 @@ class personActions extends sfActions {
             $this->forward404Unless($this->person);
     }
 
+    /**
+     * Person form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new PersonForm();
     }
 
+    /**
+     * Person Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -59,11 +86,21 @@ class personActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * Person edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id'))), sprintf('Object person does not exist (%s).', $request->getParameter('id')));
         $this->form = new PersonForm($person);
     }
 
+    /**
+     * Person Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id'))), sprintf('Object person does not exist (%s).', $request->getParameter('id')));
@@ -74,8 +111,13 @@ class personActions extends sfActions {
         $this->setTemplate('edit');
     }
 
+    /**
+     * Person Delete function
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
-//    $request->checkCSRFProtection();
+
 
         $this->forward404Unless($person = Doctrine_Core::getTable('Person')->find(array($request->getParameter('id'))), sprintf('Object person does not exist (%s).', $request->getParameter('id')));
         $person->delete();
@@ -83,6 +125,12 @@ class personActions extends sfActions {
         $this->redirect('person/index');
     }
 
+    /**
+     * process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
 

@@ -3,7 +3,12 @@
 # Source: http://arpeggios.wordpress.com/2008/09/28/http-authentification-with-sfguard/
 
 class sfGuardAuthActions extends sfActions {
-
+    /**
+     * sign in process
+     * 
+     * @param type $request
+     * @return type 
+     */
     public function executeSignin($request) {
 
         $user = $this->getUser();
@@ -70,7 +75,11 @@ class sfGuardAuthActions extends sfActions {
             }
         }
     }
-
+    /**
+     * signout process
+     * 
+     * @param type $request 
+     */
     public function executeSignout($request) {
         $this->getUser()->signOut();
 
@@ -78,7 +87,11 @@ class sfGuardAuthActions extends sfActions {
         //$this->redirect('' != $signoutUrl ? $signoutUrl : '@homepage');
         $this->redirect('@homepage');
     }
-
+    /**
+     * change password method
+     * 
+     * @param type $request 
+     */
     public function executeChangePassword($request) {
         $this->user = $this->getUser()->getGuardUser();
         $this->form = new sfGuardChangeUserPasswordForm($this->user);
@@ -93,7 +106,11 @@ class sfGuardAuthActions extends sfActions {
             }
         }
     }
-
+    /**
+     * forgot password method
+     * 
+     * @param type $request 
+     */
     public function executeForgotpassword($request) {
         if ($request->isMethod('post')) {
             $this->email = $request->getParameter('email');
@@ -125,10 +142,12 @@ class sfGuardAuthActions extends sfActions {
         }
     }
 
-    function executePasswordchange($request) {
-        
-    }
-
+    
+    /**
+     * activate user
+     * 
+     * @param type $request 
+     */
     function executeActivateAccount($request) {
         $user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('activation_key', $request->getParameter('key'));
         if (!$user) {
@@ -142,7 +161,11 @@ class sfGuardAuthActions extends sfActions {
             $this->message = 'Account Successfully Activated.';
         }
     }
-
+    /**
+     * generate randam password
+     * 
+     * @return string 
+     */
     function createRandomPassword() {
         $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijkmnopqrstuvwxyz";
         srand((double) microtime() * 1000000);

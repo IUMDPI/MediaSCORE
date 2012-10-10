@@ -10,6 +10,12 @@
  */
 class storagelocationActions extends sfActions {
 
+    /**
+     * List all storage location
+     * 
+     * @param sfWebRequest $request
+     * @return json if request is ajax 
+     */
     public function executeIndex(sfWebRequest $request) {
 
 
@@ -44,17 +50,32 @@ class storagelocationActions extends sfActions {
         }
     }
 
+    /**
+     * StorageLocation detail of specific record
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeShow(sfWebRequest $request) {
         $this->storage_location = Doctrine_Core::getTable('StorageLocation')->find(array($request->getParameter('id')));
         $this->forward404Unless($this->storage_location);
     }
 
+    /**
+     * storage location new form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new StorageLocationForm();
     }
 
+    /**
+     * storage location Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
-        
+
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isXmlHttpRequest());
 
         $this->form = new StorageLocationForm();
@@ -64,13 +85,23 @@ class storagelocationActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * storage location edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($storage_location = Doctrine_Core::getTable('StorageLocation')->find(array($request->getParameter('id'))), sprintf('Object storage_location does not exist (%s).', $request->getParameter('id')));
         $this->form = new StorageLocationForm($storage_location);
     }
 
+    /**
+     * storage location Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
-        
+
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT) || $request->isXmlHttpRequest());
 
         $postParameters = $request->getPostParameters();
@@ -79,17 +110,19 @@ class storagelocationActions extends sfActions {
         else
             $storageLocationID = $request->getParameter('id');
         $this->forward404Unless($storage_location = Doctrine_Core::getTable('StorageLocation')->find($storageLocationID), sprintf('Object storage_location does not exist (%s).', $storageLocationID));
-        
+
         $this->form = new StorageLocationForm($storage_location);
         $this->processForm($request, $this->form);
         $this->setTemplate('edit');
     }
 
+    /**
+     * storage location delete function
+     * 
+     * @param sfWebRequest $request
+     * @return type 
+     */
     public function executeDelete(sfWebRequest $request) {
-
-        
-        //$request->checkCSRFProtection();
-
         $postParameters = $request->getPostParameters();
         if (!($request->getParameter('id')))
             $storageLocationID = $postParameters['storage_location']['id'];
@@ -104,7 +137,13 @@ class storagelocationActions extends sfActions {
         else
             $this->redirect('storagelocation/index');
     }
-
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return type 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {

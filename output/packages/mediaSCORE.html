@@ -1,0 +1,4016 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » mediaSCORE</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<span class="empty-package"><i class="icon-folder-close"></i>mediaSCORE</span><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/mediaSCORE.analogaudiocassette.html" title="analogaudiocassette"><i class="icon-folder-open"></i>analogaudiocassette</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.assetgroup.html" title="assetgroup"><i class="icon-folder-open"></i>assetgroup</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.betacam.html" title="betacam"><i class="icon-folder-open"></i>betacam</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.betamax.html" title="betamax"><i class="icon-folder-open"></i>betamax</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.collection.html" title="collection"><i class="icon-folder-open"></i>collection</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.cylinder.html" title="cylinder"><i class="icon-folder-open"></i>cylinder</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.dat.html" title="dat"><i class="icon-folder-open"></i>dat</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.digitalbetacam.html" title="digitalbetacam"><i class="icon-folder-open"></i>digitalbetacam</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.dv.html" title="dv"><i class="icon-folder-open"></i>dv</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.dvcam.html" title="dvcam"><i class="icon-folder-open"></i>dvcam</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.dvcpro.html" title="dvcpro"><i class="icon-folder-open"></i>dvcpro</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.eightmm.html" title="eightmm"><i class="icon-folder-open"></i>eightmm</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.evaluator.html" title="evaluator"><i class="icon-folder-open"></i>evaluator</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.evaluatorhistory.html" title="evaluatorhistory"><i class="icon-folder-open"></i>evaluatorhistory</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.film.html" title="film"><i class="icon-folder-open"></i>film</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.filter.html" title="filter"><i class="icon-folder-open"></i>filter</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.form.html" title="form"><i class="icon-folder-open"></i>form</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.formattype.html" title="formattype"><i class="icon-folder-open"></i>formattype</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.halfinchopenreelvideo.html" title="halfinchopenreelvideo"><i class="icon-folder-open"></i>halfinchopenreelvideo</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.hdcam.html" title="hdcam"><i class="icon-folder-open"></i>hdcam</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.lacquerdisc.html" title="lacquerdisc"><i class="icon-folder-open"></i>lacquerdisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.laserdisc.html" title="laserdisc"><i class="icon-folder-open"></i>laserdisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.metaldisc.html" title="metaldisc"><i class="icon-folder-open"></i>metaldisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.minidisc.html" title="minidisc"><i class="icon-folder-open"></i>minidisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.model.html" title="model"><i class="icon-folder-open"></i>model</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.oneinchopenreelvideo.html" title="oneinchopenreelvideo"><i class="icon-folder-open"></i>oneinchopenreelvideo</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.openreelaudiotapeacetate.html" title="openreelaudiotapeacetate"><i class="icon-folder-open"></i>openreelaudiotapeacetate</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.openreelaudiotapepaper.html" title="openreelaudiotapepaper"><i class="icon-folder-open"></i>openreelaudiotapepaper</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.openreelaudiotapepolyster.html" title="openreelaudiotapepolyster"><i class="icon-folder-open"></i>openreelaudiotapepolyster</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.openreelaudiotapepvc.html" title="openreelaudiotapepvc"><i class="icon-folder-open"></i>openreelaudiotapepvc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.optical.html" title="optical"><i class="icon-folder-open"></i>optical</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.opticalvideo.html" title="opticalvideo"><i class="icon-folder-open"></i>opticalvideo</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.person.html" title="person"><i class="icon-folder-open"></i>person</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.pressedfortyfiverpmdisc.html" title="pressedfortyfiverpmdisc"><i class="icon-folder-open"></i>pressedfortyfiverpmdisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.pressedlpdisc.html" title="pressedlpdisc"><i class="icon-folder-open"></i>pressedlpdisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.pressedseventyeightrpmdisc.html" title="pressedseventyeightrpmdisc"><i class="icon-folder-open"></i>pressedseventyeightrpmdisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.soundopticaldisc.html" title="soundopticaldisc"><i class="icon-folder-open"></i>soundopticaldisc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.soundopticaldisk.html" title="soundopticaldisk"><i class="icon-folder-open"></i>soundopticaldisk</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.soundwirereel.html" title="soundwirereel"><i class="icon-folder-open"></i>soundwirereel</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.storagelocation.html" title="storagelocation"><i class="icon-folder-open"></i>storagelocation</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.twoinchopenreelvideo.html" title="twoinchopenreelvideo"><i class="icon-folder-open"></i>twoinchopenreelvideo</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.umatic.html" title="umatic"><i class="icon-folder-open"></i>umatic</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.unit.html" title="unit"><i class="icon-folder-open"></i>unit</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.user.html" title="user"><i class="icon-folder-open"></i>user</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.vhs.html" title="vhs"><i class="icon-folder-open"></i>vhs</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/mediaSCORE.xdcamoptical.html" title="xdcamoptical"><i class="icon-folder-open"></i>xdcamoptical</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+</li></ul>
+<div class="package-indent">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.analogaudiocassette.html">analogaudiocassette</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="analogaudiocassetteActions" class="element ajax clickable class">
+<h1>analogaudiocassetteActions<a href="../classes/analogaudiocassetteActions.html">¶</a>
+</h1>
+<p class="short_description">analogaudiocassette actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/analogaudiocassetteActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.assetgroup.html">assetgroup</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="assetgroupActions" class="element ajax clickable class">
+<h1>assetgroupActions<a href="../classes/assetgroupActions.html">¶</a>
+</h1>
+<p class="short_description">assetgroup actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/assetgroupActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.betacam.html">betacam</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="betacamActions" class="element ajax clickable class">
+<h1>betacamActions<a href="../classes/betacamActions.html">¶</a>
+</h1>
+<p class="short_description">betacam actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/betacamActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.betamax.html">betamax</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="betamaxActions" class="element ajax clickable class">
+<h1>betamaxActions<a href="../classes/betamaxActions.html">¶</a>
+</h1>
+<p class="short_description">betamax actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/betamaxActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.collection.html">collection</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="collectionActions" class="element ajax clickable class">
+<h1>collectionActions<a href="../classes/collectionActions.html">¶</a>
+</h1>
+<p class="short_description">collection actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/collectionActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.cylinder.html">cylinder</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="cylinderActions" class="element ajax clickable class">
+<h1>cylinderActions<a href="../classes/cylinderActions.html">¶</a>
+</h1>
+<p class="short_description">cylinder actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/cylinderActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.dat.html">dat</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="datActions" class="element ajax clickable class">
+<h1>datActions<a href="../classes/datActions.html">¶</a>
+</h1>
+<p class="short_description">dat actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/datActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.digitalbetacam.html">digitalbetacam</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="digitalbetacamActions" class="element ajax clickable class">
+<h1>digitalbetacamActions<a href="../classes/digitalbetacamActions.html">¶</a>
+</h1>
+<p class="short_description">digitalbetacam actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/digitalbetacamActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.dv.html">dv</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="dvActions" class="element ajax clickable class">
+<h1>dvActions<a href="../classes/dvActions.html">¶</a>
+</h1>
+<p class="short_description">dv actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/dvActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.dvcam.html">dvcam</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="dvcamActions" class="element ajax clickable class">
+<h1>dvcamActions<a href="../classes/dvcamActions.html">¶</a>
+</h1>
+<p class="short_description">dvcam actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/dvcamActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.dvcpro.html">dvcpro</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="dvcproActions" class="element ajax clickable class">
+<h1>dvcproActions<a href="../classes/dvcproActions.html">¶</a>
+</h1>
+<p class="short_description">dvcpro actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/dvcproActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.eightmm.html">eightmm</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="eightmmActions" class="element ajax clickable class">
+<h1>eightmmActions<a href="../classes/eightmmActions.html">¶</a>
+</h1>
+<p class="short_description">eightmm actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/eightmmActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.evaluator.html">evaluator</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="evaluatorActions" class="element ajax clickable class">
+<h1>evaluatorActions<a href="../classes/evaluatorActions.html">¶</a>
+</h1>
+<p class="short_description">evaluator actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/evaluatorActions.html" class="more">« More »</a>
+</div>
+<div id="evaluatorActions" class="element ajax clickable class">
+<h1>evaluatorActions<a href="../classes/evaluatorActions.html">¶</a>
+</h1>
+<p class="short_description">evaluator actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/evaluatorActions.html" class="more">« More »</a>
+</div>
+<div id="evaluatorGeneratorConfiguration" class="element ajax clickable class">
+<h1>evaluatorGeneratorConfiguration<a href="../classes/evaluatorGeneratorConfiguration.html">¶</a>
+</h1>
+<p class="short_description">evaluator module configuration.</p>
+<div class="details collapse"></div>
+<a href="../classes/evaluatorGeneratorConfiguration.html" class="more">« More »</a>
+</div>
+<div id="evaluatorGeneratorHelper" class="element ajax clickable class">
+<h1>evaluatorGeneratorHelper<a href="../classes/evaluatorGeneratorHelper.html">¶</a>
+</h1>
+<p class="short_description">evaluator module helper.</p>
+<div class="details collapse"></div>
+<a href="../classes/evaluatorGeneratorHelper.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.evaluatorhistory.html">evaluatorhistory</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="evaluatorhistoryActions" class="element ajax clickable class">
+<h1>evaluatorhistoryActions<a href="../classes/evaluatorhistoryActions.html">¶</a>
+</h1>
+<p class="short_description">evaluatorhistory actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/evaluatorhistoryActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.film.html">film</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="filmActions" class="element ajax clickable class">
+<h1>filmActions<a href="../classes/filmActions.html">¶</a>
+</h1>
+<p class="short_description">film actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/filmActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.filter.html">filter</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AnalogAudiocassetteFormFilter" class="element ajax clickable class">
+<h1>AnalogAudiocassetteFormFilter<a href="../classes/AnalogAudiocassetteFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AnalogAudiocassetteFormFilter.html" class="more">« More »</a>
+</div>
+<div id="AssetGroupFormFilter" class="element ajax clickable class">
+<h1>AssetGroupFormFilter<a href="../classes/AssetGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AssetGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="AudiotapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>AudiotapeFormatTypeFormFilter<a href="../classes/AudiotapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AudiotapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAnalogAudiocassetteFormFilter" class="element ajax clickable class">
+<h1>BaseAnalogAudiocassetteFormFilter<a href="../classes/BaseAnalogAudiocassetteFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAnalogAudiocassetteFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAssetGroupFormFilter" class="element ajax clickable class">
+<h1>BaseAssetGroupFormFilter<a href="../classes/BaseAssetGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAssetGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseAudiotapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseAudiotapeFormatTypeFormFilter<a href="../classes/BaseAudiotapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAudiotapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseBetacamFormFilter" class="element ajax clickable class">
+<h1>BaseBetacamFormFilter<a href="../classes/BaseBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betacam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseBetamaxFormFilter" class="element ajax clickable class">
+<h1>BaseBetamaxFormFilter<a href="../classes/BaseBetamaxFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betamax filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetamaxFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionFormFilter" class="element ajax clickable class">
+<h1>BaseCollectionFormFilter<a href="../classes/BaseCollectionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Collection filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseCollectionStorageLocationFormFilter<a href="../classes/BaseCollectionStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseCylinderFormFilter" class="element ajax clickable class">
+<h1>BaseCylinderFormFilter<a href="../classes/BaseCylinderFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Cylinder filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCylinderFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDATFormFilter" class="element ajax clickable class">
+<h1>BaseDATFormFilter<a href="../classes/BaseDATFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DAT filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDATFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCProFormFilter" class="element ajax clickable class">
+<h1>BaseDVCProFormFilter<a href="../classes/BaseDVCProFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCPro filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCProFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCamFormFilter" class="element ajax clickable class">
+<h1>BaseDVCamFormFilter<a href="../classes/BaseDVCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDVFormFilter" class="element ajax clickable class">
+<h1>BaseDVFormFilter<a href="../classes/BaseDVFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DV filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDigitalBetacamFormFilter" class="element ajax clickable class">
+<h1>BaseDigitalBetacamFormFilter<a href="../classes/BaseDigitalBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDigitalBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseDiskFormatTypeFormFilter<a href="../classes/BaseDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEightMMFormFilter" class="element ajax clickable class">
+<h1>BaseEightMMFormFilter<a href="../classes/BaseEightMMFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EightMM filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEightMMFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorFormFilter<a href="../classes/BaseEvaluatorFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Evaluator filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryFormFilter<a href="../classes/BaseEvaluatorHistoryFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryPersonnelFormFilter" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryPersonnelFormFilter<a href="../classes/BaseEvaluatorHistoryPersonnelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryPersonnelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFilmFormFilter" class="element ajax clickable class">
+<h1>BaseFilmFormFilter<a href="../classes/BaseFilmFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Film filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFilmFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormFilterDoctrine" class="element ajax clickable class">
+<h1>BaseFormFilterDoctrine<a href="../classes/BaseFormFilterDoctrine.html">¶</a>
+</h1>
+<p class="short_description">Project filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormFilterDoctrine.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseFormatTypeFormFilter<a href="../classes/BaseFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypedVideoRecordingFormFilter" class="element ajax clickable class">
+<h1>BaseFormatTypedVideoRecordingFormFilter<a href="../classes/BaseFormatTypedVideoRecordingFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypedVideoRecordingFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatVersionedVideoRecordingTypeFormFilter" class="element ajax clickable class">
+<h1>BaseFormatVersionedVideoRecordingTypeFormFilter<a href="../classes/BaseFormatVersionedVideoRecordingTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatVersionedVideoRecordingTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseHDCamFormFilter" class="element ajax clickable class">
+<h1>BaseHDCamFormFilter<a href="../classes/BaseHDCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HDCam filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHDCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseHalfInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseHalfInchOpenReelVideoFormFilter<a href="../classes/BaseHalfInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHalfInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseLacquerDiscFormFilter" class="element ajax clickable class">
+<h1>BaseLacquerDiscFormFilter<a href="../classes/BaseLacquerDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLacquerDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseLaserdiscFormFilter" class="element ajax clickable class">
+<h1>BaseLaserdiscFormFilter<a href="../classes/BaseLaserdiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLaserdiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseMetalDiscFormFilter" class="element ajax clickable class">
+<h1>BaseMetalDiscFormFilter<a href="../classes/BaseMetalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMetalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseMiniDiscFormFilter" class="element ajax clickable class">
+<h1>BaseMiniDiscFormFilter<a href="../classes/BaseMiniDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMiniDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOneInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseOneInchOpenReelVideoFormFilter<a href="../classes/BaseOneInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOneInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudioTapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudioTapeFormatTypeFormFilter<a href="../classes/BaseOpenReelAudioTapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudioTapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapeAcetateFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapeAcetateFormFilter<a href="../classes/BaseOpenReelAudiotapeAcetateFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapeAcetateFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePVCFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePVCFormFilter<a href="../classes/BaseOpenReelAudiotapePVCFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePVCFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePaperFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePaperFormFilter<a href="../classes/BaseOpenReelAudiotapePaperFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePaperFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePolysterFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePolysterFormFilter<a href="../classes/BaseOpenReelAudiotapePolysterFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePolysterFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelVideoFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpenReelVideoFormatTypeFormFilter<a href="../classes/BaseOpenReelVideoFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelVideoFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseOpticalDiscFormatTypeFormFilter<a href="../classes/BaseOpticalDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalVideoFormFilter" class="element ajax clickable class">
+<h1>BaseOpticalVideoFormFilter<a href="../classes/BaseOpticalVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePersonFormFilter" class="element ajax clickable class">
+<h1>BasePersonFormFilter<a href="../classes/BasePersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Person filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressed45RPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressed45RPMDiscFormFilter<a href="../classes/BasePressed45RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed45RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressed78RPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressed78RPMDiscFormFilter<a href="../classes/BasePressed78RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed78RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedAudioDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BasePressedAudioDiscFormatTypeFormFilter<a href="../classes/BasePressedAudioDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedAudioDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedFortyFiveRPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedFortyFiveRPMDiscFormFilter<a href="../classes/BasePressedFortyFiveRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedFortyFiveRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedLPDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedLPDiscFormFilter<a href="../classes/BasePressedLPDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedLPDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasePressedSeventyEightRPMDiscFormFilter" class="element ajax clickable class">
+<h1>BasePressedSeventyEightRPMDiscFormFilter<a href="../classes/BasePressedSeventyEightRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedSeventyEightRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseReelCassetteFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseReelCassetteFormatTypeFormFilter<a href="../classes/BaseReelCassetteFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelCassetteFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseReelVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseReelVideoRecordingFormatTypeFormFilter<a href="../classes/BaseReelVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSetFormFilter" class="element ajax clickable class">
+<h1>BaseSetFormFilter<a href="../classes/BaseSetFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Set filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSetFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSizedVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseSizedVideoRecordingFormatTypeFormFilter<a href="../classes/BaseSizedVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSizedVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoftDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseSoftDiskFormatTypeFormFilter<a href="../classes/BaseSoftDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoftDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiscFormFilter" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiscFormFilter<a href="../classes/BaseSoundOpticalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiskFormFilter" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiskFormFilter<a href="../classes/BaseSoundOpticalDiskFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiskFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundWireReelFormFilter" class="element ajax clickable class">
+<h1>BaseSoundWireReelFormFilter<a href="../classes/BaseSoundWireReelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundWireReelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStandardizedRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseStandardizedRecordingFormatTypeFormFilter<a href="../classes/BaseStandardizedRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStandardizedRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseStorageLocationFormFilter<a href="../classes/BaseStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseStoreFormFilter" class="element ajax clickable class">
+<h1>BaseStoreFormFilter<a href="../classes/BaseStoreFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Store filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStoreFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseSubUnitFormFilter" class="element ajax clickable class">
+<h1>BaseSubUnitFormFilter<a href="../classes/BaseSubUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SubUnit filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSubUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseTwoInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>BaseTwoInchOpenReelVideoFormFilter<a href="../classes/BaseTwoInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseTwoInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUmaticFormFilter" class="element ajax clickable class">
+<h1>BaseUmaticFormFilter<a href="../classes/BaseUmaticFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Umatic filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUmaticFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitFormFilter" class="element ajax clickable class">
+<h1>BaseUnitFormFilter<a href="../classes/BaseUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Unit filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitPersonFormFilter" class="element ajax clickable class">
+<h1>BaseUnitPersonFormFilter<a href="../classes/BaseUnitPersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitPersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitStorageLocationFormFilter" class="element ajax clickable class">
+<h1>BaseUnitStorageLocationFormFilter<a href="../classes/BaseUnitStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseUserFormFilter" class="element ajax clickable class">
+<h1>BaseUserFormFilter<a href="../classes/BaseUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">User filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseVHSFormFilter" class="element ajax clickable class">
+<h1>BaseVHSFormFilter<a href="../classes/BaseVHSFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VHS filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVHSFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>BaseVideoRecordingFormatTypeFormFilter<a href="../classes/BaseVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BaseXDCamOpticalFormFilter" class="element ajax clickable class">
+<h1>BaseXDCamOpticalFormFilter<a href="../classes/BaseXDCamOpticalFormFilter.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseXDCamOpticalFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardGroupFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardGroupFormFilter<a href="../classes/BasesfGuardGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardPermissionFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardPermissionFormFilter<a href="../classes/BasesfGuardPermissionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardPermissionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUserFormFilter" class="element ajax clickable class">
+<h1>BasesfGuardUserFormFilter<a href="../classes/BasesfGuardUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser filter form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BetacamFormFilter" class="element ajax clickable class">
+<h1>BetacamFormFilter<a href="../classes/BetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betacam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="BetamaxFormFilter" class="element ajax clickable class">
+<h1>BetamaxFormFilter<a href="../classes/BetamaxFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Betamax filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetamaxFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CollectionFormFilter" class="element ajax clickable class">
+<h1>CollectionFormFilter<a href="../classes/CollectionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Collection filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CollectionStorageLocationFormFilter" class="element ajax clickable class">
+<h1>CollectionStorageLocationFormFilter<a href="../classes/CollectionStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="CylinderFormFilter" class="element ajax clickable class">
+<h1>CylinderFormFilter<a href="../classes/CylinderFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Cylinder filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CylinderFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DATFormFilter" class="element ajax clickable class">
+<h1>DATFormFilter<a href="../classes/DATFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DAT filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DATFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVCProFormFilter" class="element ajax clickable class">
+<h1>DVCProFormFilter<a href="../classes/DVCProFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCPro filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCProFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVCamFormFilter" class="element ajax clickable class">
+<h1>DVCamFormFilter<a href="../classes/DVCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DVCam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DVFormFilter" class="element ajax clickable class">
+<h1>DVFormFilter<a href="../classes/DVFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DV filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DigitalBetacamFormFilter" class="element ajax clickable class">
+<h1>DigitalBetacamFormFilter<a href="../classes/DigitalBetacamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DigitalBetacamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="DiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>DiskFormatTypeFormFilter<a href="../classes/DiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EightMMFormFilter" class="element ajax clickable class">
+<h1>EightMMFormFilter<a href="../classes/EightMMFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EightMM filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EightMMFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorFormFilter" class="element ajax clickable class">
+<h1>EvaluatorFormFilter<a href="../classes/EvaluatorFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Evaluator filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryFormFilter" class="element ajax clickable class">
+<h1>EvaluatorHistoryFormFilter<a href="../classes/EvaluatorHistoryFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryFormFilter.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryPersonnelFormFilter" class="element ajax clickable class">
+<h1>EvaluatorHistoryPersonnelFormFilter<a href="../classes/EvaluatorHistoryPersonnelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryPersonnelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FilmFormFilter" class="element ajax clickable class">
+<h1>FilmFormFilter<a href="../classes/FilmFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Film filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FilmFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatTypeFormFilter" class="element ajax clickable class">
+<h1>FormatTypeFormFilter<a href="../classes/FormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatTypedVideoRecordingFormFilter" class="element ajax clickable class">
+<h1>FormatTypedVideoRecordingFormFilter<a href="../classes/FormatTypedVideoRecordingFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypedVideoRecordingFormFilter.html" class="more">« More »</a>
+</div>
+<div id="FormatVersionedVideoRecordingTypeFormFilter" class="element ajax clickable class">
+<h1>FormatVersionedVideoRecordingTypeFormFilter<a href="../classes/FormatVersionedVideoRecordingTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatVersionedVideoRecordingTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="HDCamFormFilter" class="element ajax clickable class">
+<h1>HDCamFormFilter<a href="../classes/HDCamFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HDCam filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HDCamFormFilter.html" class="more">« More »</a>
+</div>
+<div id="HalfInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>HalfInchOpenReelVideoFormFilter<a href="../classes/HalfInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HalfInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="LacquerDiscFormFilter" class="element ajax clickable class">
+<h1>LacquerDiscFormFilter<a href="../classes/LacquerDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LacquerDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="LaserdiscFormFilter" class="element ajax clickable class">
+<h1>LaserdiscFormFilter<a href="../classes/LaserdiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LaserdiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="MetalDiscFormFilter" class="element ajax clickable class">
+<h1>MetalDiscFormFilter<a href="../classes/MetalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MetalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="MiniDiscFormFilter" class="element ajax clickable class">
+<h1>MiniDiscFormFilter<a href="../classes/MiniDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MiniDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OneInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>OneInchOpenReelVideoFormFilter<a href="../classes/OneInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OneInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudioTapeFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudioTapeFormatTypeFormFilter<a href="../classes/OpenReelAudioTapeFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudioTapeFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapeAcetateFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapeAcetateFormFilter<a href="../classes/OpenReelAudiotapeAcetateFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapeAcetateFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePVCFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePVCFormFilter<a href="../classes/OpenReelAudiotapePVCFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePVCFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePaperFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePaperFormFilter<a href="../classes/OpenReelAudiotapePaperFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePaperFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePolysterFormFilter" class="element ajax clickable class">
+<h1>OpenReelAudiotapePolysterFormFilter<a href="../classes/OpenReelAudiotapePolysterFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePolysterFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpenReelVideoFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpenReelVideoFormatTypeFormFilter<a href="../classes/OpenReelVideoFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelVideoFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpticalDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>OpticalDiscFormatTypeFormFilter<a href="../classes/OpticalDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="OpticalVideoFormFilter" class="element ajax clickable class">
+<h1>OpticalVideoFormFilter<a href="../classes/OpticalVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PersonFormFilter" class="element ajax clickable class">
+<h1>PersonFormFilter<a href="../classes/PersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Person filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="Pressed45RPMDiscFormFilter" class="element ajax clickable class">
+<h1>Pressed45RPMDiscFormFilter<a href="../classes/Pressed45RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed45RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="Pressed78RPMDiscFormFilter" class="element ajax clickable class">
+<h1>Pressed78RPMDiscFormFilter<a href="../classes/Pressed78RPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed78RPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedAudioDiscFormatTypeFormFilter" class="element ajax clickable class">
+<h1>PressedAudioDiscFormatTypeFormFilter<a href="../classes/PressedAudioDiscFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedAudioDiscFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedFortyFiveRPMDiscFormFilter" class="element ajax clickable class">
+<h1>PressedFortyFiveRPMDiscFormFilter<a href="../classes/PressedFortyFiveRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedFortyFiveRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedLPDiscFormFilter" class="element ajax clickable class">
+<h1>PressedLPDiscFormFilter<a href="../classes/PressedLPDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedLPDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="PressedSeventyEightRPMDiscFormFilter" class="element ajax clickable class">
+<h1>PressedSeventyEightRPMDiscFormFilter<a href="../classes/PressedSeventyEightRPMDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedSeventyEightRPMDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="ReelCassetteFormatTypeFormFilter" class="element ajax clickable class">
+<h1>ReelCassetteFormatTypeFormFilter<a href="../classes/ReelCassetteFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelCassetteFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="ReelVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>ReelVideoRecordingFormatTypeFormFilter<a href="../classes/ReelVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SetFormFilter" class="element ajax clickable class">
+<h1>SetFormFilter<a href="../classes/SetFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Set filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SetFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SizedVideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>SizedVideoRecordingFormatTypeFormFilter<a href="../classes/SizedVideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SizedVideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoftDiskFormatTypeFormFilter" class="element ajax clickable class">
+<h1>SoftDiskFormatTypeFormFilter<a href="../classes/SoftDiskFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoftDiskFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiscFormFilter" class="element ajax clickable class">
+<h1>SoundOpticalDiscFormFilter<a href="../classes/SoundOpticalDiscFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiscFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiskFormFilter" class="element ajax clickable class">
+<h1>SoundOpticalDiskFormFilter<a href="../classes/SoundOpticalDiskFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiskFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SoundWireReelFormFilter" class="element ajax clickable class">
+<h1>SoundWireReelFormFilter<a href="../classes/SoundWireReelFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundWireReelFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StandardizedRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>StandardizedRecordingFormatTypeFormFilter<a href="../classes/StandardizedRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StandardizedRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StorageLocationFormFilter" class="element ajax clickable class">
+<h1>StorageLocationFormFilter<a href="../classes/StorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="StoreFormFilter" class="element ajax clickable class">
+<h1>StoreFormFilter<a href="../classes/StoreFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Store filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StoreFormFilter.html" class="more">« More »</a>
+</div>
+<div id="SubUnitFormFilter" class="element ajax clickable class">
+<h1>SubUnitFormFilter<a href="../classes/SubUnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">SubUnit filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SubUnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="TwoInchOpenReelVideoFormFilter" class="element ajax clickable class">
+<h1>TwoInchOpenReelVideoFormFilter<a href="../classes/TwoInchOpenReelVideoFormFilter.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/TwoInchOpenReelVideoFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UmaticFormFilter" class="element ajax clickable class">
+<h1>UmaticFormFilter<a href="../classes/UmaticFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Umatic filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UmaticFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitFormFilter" class="element ajax clickable class">
+<h1>UnitFormFilter<a href="../classes/UnitFormFilter.html">¶</a>
+</h1>
+<p class="short_description">Unit filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitPersonFormFilter" class="element ajax clickable class">
+<h1>UnitPersonFormFilter<a href="../classes/UnitPersonFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitPersonFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UnitStorageLocationFormFilter" class="element ajax clickable class">
+<h1>UnitStorageLocationFormFilter<a href="../classes/UnitStorageLocationFormFilter.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitStorageLocationFormFilter.html" class="more">« More »</a>
+</div>
+<div id="UserFormFilter" class="element ajax clickable class">
+<h1>UserFormFilter<a href="../classes/UserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">User filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UserFormFilter.html" class="more">« More »</a>
+</div>
+<div id="VHSFormFilter" class="element ajax clickable class">
+<h1>VHSFormFilter<a href="../classes/VHSFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VHS filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VHSFormFilter.html" class="more">« More »</a>
+</div>
+<div id="VideoRecordingFormatTypeFormFilter" class="element ajax clickable class">
+<h1>VideoRecordingFormatTypeFormFilter<a href="../classes/VideoRecordingFormatTypeFormFilter.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VideoRecordingFormatTypeFormFilter.html" class="more">« More »</a>
+</div>
+<div id="XDCamOpticalFormFilter" class="element ajax clickable class">
+<h1>XDCamOpticalFormFilter<a href="../classes/XDCamOpticalFormFilter.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/XDCamOpticalFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardGroupFormFilter" class="element ajax clickable class">
+<h1>sfGuardGroupFormFilter<a href="../classes/sfGuardGroupFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardGroupFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardPermissionFormFilter" class="element ajax clickable class">
+<h1>sfGuardPermissionFormFilter<a href="../classes/sfGuardPermissionFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardPermissionFormFilter.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUserFormFilter" class="element ajax clickable class">
+<h1>sfGuardUserFormFilter<a href="../classes/sfGuardUserFormFilter.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser filter form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUserFormFilter.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.form.html">form</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AnalogAudiocassetteForm" class="element ajax clickable class">
+<h1>AnalogAudiocassetteForm<a href="../classes/AnalogAudiocassetteForm.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AnalogAudiocassetteForm.html" class="more">« More »</a>
+</div>
+<div id="AssetGroupForm" class="element ajax clickable class">
+<h1>AssetGroupForm<a href="../classes/AssetGroupForm.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AssetGroupForm.html" class="more">« More »</a>
+</div>
+<div id="AudiotapeFormatTypeForm" class="element ajax clickable class">
+<h1>AudiotapeFormatTypeForm<a href="../classes/AudiotapeFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/AudiotapeFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseAnalogAudiocassetteForm" class="element ajax clickable class">
+<h1>BaseAnalogAudiocassetteForm<a href="../classes/BaseAnalogAudiocassetteForm.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAnalogAudiocassetteForm.html" class="more">« More »</a>
+</div>
+<div id="BaseAssetGroupForm" class="element ajax clickable class">
+<h1>BaseAssetGroupForm<a href="../classes/BaseAssetGroupForm.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAssetGroupForm.html" class="more">« More »</a>
+</div>
+<div id="BaseAudiotapeFormatTypeForm" class="element ajax clickable class">
+<h1>BaseAudiotapeFormatTypeForm<a href="../classes/BaseAudiotapeFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAudiotapeFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseBetacamForm" class="element ajax clickable class">
+<h1>BaseBetacamForm<a href="../classes/BaseBetacamForm.html">¶</a>
+</h1>
+<p class="short_description">Betacam form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetacamForm.html" class="more">« More »</a>
+</div>
+<div id="BaseBetamaxForm" class="element ajax clickable class">
+<h1>BaseBetamaxForm<a href="../classes/BaseBetamaxForm.html">¶</a>
+</h1>
+<p class="short_description">Betamax form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetamaxForm.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionForm" class="element ajax clickable class">
+<h1>BaseCollectionForm<a href="../classes/BaseCollectionForm.html">¶</a>
+</h1>
+<p class="short_description">Collection form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionForm.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionStorageLocationForm" class="element ajax clickable class">
+<h1>BaseCollectionStorageLocationForm<a href="../classes/BaseCollectionStorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionStorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="BaseCylinderForm" class="element ajax clickable class">
+<h1>BaseCylinderForm<a href="../classes/BaseCylinderForm.html">¶</a>
+</h1>
+<p class="short_description">Cylinder form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCylinderForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDATForm" class="element ajax clickable class">
+<h1>BaseDATForm<a href="../classes/BaseDATForm.html">¶</a>
+</h1>
+<p class="short_description">DAT form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDATForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCProForm" class="element ajax clickable class">
+<h1>BaseDVCProForm<a href="../classes/BaseDVCProForm.html">¶</a>
+</h1>
+<p class="short_description">DVCPro form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCProForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCamForm" class="element ajax clickable class">
+<h1>BaseDVCamForm<a href="../classes/BaseDVCamForm.html">¶</a>
+</h1>
+<p class="short_description">DVCam form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCamForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDVForm" class="element ajax clickable class">
+<h1>BaseDVForm<a href="../classes/BaseDVForm.html">¶</a>
+</h1>
+<p class="short_description">DV form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDigitalBetacamForm" class="element ajax clickable class">
+<h1>BaseDigitalBetacamForm<a href="../classes/BaseDigitalBetacamForm.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDigitalBetacamForm.html" class="more">« More »</a>
+</div>
+<div id="BaseDiskFormatTypeForm" class="element ajax clickable class">
+<h1>BaseDiskFormatTypeForm<a href="../classes/BaseDiskFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDiskFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseEightMMForm" class="element ajax clickable class">
+<h1>BaseEightMMForm<a href="../classes/BaseEightMMForm.html">¶</a>
+</h1>
+<p class="short_description">EightMM form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEightMMForm.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorForm" class="element ajax clickable class">
+<h1>BaseEvaluatorForm<a href="../classes/BaseEvaluatorForm.html">¶</a>
+</h1>
+<p class="short_description">Evaluator form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorForm.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryForm" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryForm<a href="../classes/BaseEvaluatorHistoryForm.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryForm.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryPersonnelForm" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryPersonnelForm<a href="../classes/BaseEvaluatorHistoryPersonnelForm.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryPersonnelForm.html" class="more">« More »</a>
+</div>
+<div id="BaseFilmForm" class="element ajax clickable class">
+<h1>BaseFilmForm<a href="../classes/BaseFilmForm.html">¶</a>
+</h1>
+<p class="short_description">Film form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFilmForm.html" class="more">« More »</a>
+</div>
+<div id="BaseForm" class="element ajax clickable class">
+<h1>BaseForm<a href="../classes/BaseForm.html">¶</a>
+</h1>
+<p class="short_description">Base project form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseForm.html" class="more">« More »</a>
+</div>
+<div id="BaseFormDoctrine" class="element ajax clickable class">
+<h1>BaseFormDoctrine<a href="../classes/BaseFormDoctrine.html">¶</a>
+</h1>
+<p class="short_description">Project form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormDoctrine.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypeForm" class="element ajax clickable class">
+<h1>BaseFormatTypeForm<a href="../classes/BaseFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">FormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypedVideoRecordingForm" class="element ajax clickable class">
+<h1>BaseFormatTypedVideoRecordingForm<a href="../classes/BaseFormatTypedVideoRecordingForm.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypedVideoRecordingForm.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatVersionedVideoRecordingTypeForm" class="element ajax clickable class">
+<h1>BaseFormatVersionedVideoRecordingTypeForm<a href="../classes/BaseFormatVersionedVideoRecordingTypeForm.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatVersionedVideoRecordingTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseHDCamForm" class="element ajax clickable class">
+<h1>BaseHDCamForm<a href="../classes/BaseHDCamForm.html">¶</a>
+</h1>
+<p class="short_description">HDCam form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHDCamForm.html" class="more">« More »</a>
+</div>
+<div id="BaseHalfInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>BaseHalfInchOpenReelVideoForm<a href="../classes/BaseHalfInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHalfInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="BaseLacquerDiscForm" class="element ajax clickable class">
+<h1>BaseLacquerDiscForm<a href="../classes/BaseLacquerDiscForm.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLacquerDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseLaserdiscForm" class="element ajax clickable class">
+<h1>BaseLaserdiscForm<a href="../classes/BaseLaserdiscForm.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLaserdiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseMetalDiscForm" class="element ajax clickable class">
+<h1>BaseMetalDiscForm<a href="../classes/BaseMetalDiscForm.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMetalDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseMiniDiscForm" class="element ajax clickable class">
+<h1>BaseMiniDiscForm<a href="../classes/BaseMiniDiscForm.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMiniDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOneInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>BaseOneInchOpenReelVideoForm<a href="../classes/BaseOneInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOneInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudioTapeFormatTypeForm" class="element ajax clickable class">
+<h1>BaseOpenReelAudioTapeFormatTypeForm<a href="../classes/BaseOpenReelAudioTapeFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudioTapeFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapeAcetateForm" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapeAcetateForm<a href="../classes/BaseOpenReelAudiotapeAcetateForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapeAcetateForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePVCForm" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePVCForm<a href="../classes/BaseOpenReelAudiotapePVCForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePVCForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePaperForm" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePaperForm<a href="../classes/BaseOpenReelAudiotapePaperForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePaperForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePolysterForm" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePolysterForm<a href="../classes/BaseOpenReelAudiotapePolysterForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePolysterForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelVideoFormatTypeForm" class="element ajax clickable class">
+<h1>BaseOpenReelVideoFormatTypeForm<a href="../classes/BaseOpenReelVideoFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelVideoFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalDiscFormatTypeForm" class="element ajax clickable class">
+<h1>BaseOpticalDiscFormatTypeForm<a href="../classes/BaseOpticalDiscFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalDiscFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalVideoForm" class="element ajax clickable class">
+<h1>BaseOpticalVideoForm<a href="../classes/BaseOpticalVideoForm.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalVideoForm.html" class="more">« More »</a>
+</div>
+<div id="BasePersonForm" class="element ajax clickable class">
+<h1>BasePersonForm<a href="../classes/BasePersonForm.html">¶</a>
+</h1>
+<p class="short_description">Person form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePersonForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressed45RPMDiscForm" class="element ajax clickable class">
+<h1>BasePressed45RPMDiscForm<a href="../classes/BasePressed45RPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed45RPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressed78RPMDiscForm" class="element ajax clickable class">
+<h1>BasePressed78RPMDiscForm<a href="../classes/BasePressed78RPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed78RPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressedAudioDiscFormatTypeForm" class="element ajax clickable class">
+<h1>BasePressedAudioDiscFormatTypeForm<a href="../classes/BasePressedAudioDiscFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedAudioDiscFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressedFortyFiveRPMDiscForm" class="element ajax clickable class">
+<h1>BasePressedFortyFiveRPMDiscForm<a href="../classes/BasePressedFortyFiveRPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedFortyFiveRPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressedLPDiscForm" class="element ajax clickable class">
+<h1>BasePressedLPDiscForm<a href="../classes/BasePressedLPDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedLPDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BasePressedSeventyEightRPMDiscForm" class="element ajax clickable class">
+<h1>BasePressedSeventyEightRPMDiscForm<a href="../classes/BasePressedSeventyEightRPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedSeventyEightRPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseReelCassetteFormatTypeForm" class="element ajax clickable class">
+<h1>BaseReelCassetteFormatTypeForm<a href="../classes/BaseReelCassetteFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelCassetteFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseReelVideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>BaseReelVideoRecordingFormatTypeForm<a href="../classes/BaseReelVideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelVideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSetForm" class="element ajax clickable class">
+<h1>BaseSetForm<a href="../classes/BaseSetForm.html">¶</a>
+</h1>
+<p class="short_description">Set form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSetForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSizedVideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>BaseSizedVideoRecordingFormatTypeForm<a href="../classes/BaseSizedVideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSizedVideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSoftDiskFormatTypeForm" class="element ajax clickable class">
+<h1>BaseSoftDiskFormatTypeForm<a href="../classes/BaseSoftDiskFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoftDiskFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiscForm" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiscForm<a href="../classes/BaseSoundOpticalDiscForm.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiscForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDiskForm" class="element ajax clickable class">
+<h1>BaseSoundOpticalDiskForm<a href="../classes/BaseSoundOpticalDiskForm.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDiskForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundWireReelForm" class="element ajax clickable class">
+<h1>BaseSoundWireReelForm<a href="../classes/BaseSoundWireReelForm.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundWireReelForm.html" class="more">« More »</a>
+</div>
+<div id="BaseStandardizedRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>BaseStandardizedRecordingFormatTypeForm<a href="../classes/BaseStandardizedRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStandardizedRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseStorageLocationForm" class="element ajax clickable class">
+<h1>BaseStorageLocationForm<a href="../classes/BaseStorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="BaseStoreForm" class="element ajax clickable class">
+<h1>BaseStoreForm<a href="../classes/BaseStoreForm.html">¶</a>
+</h1>
+<p class="short_description">Store form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStoreForm.html" class="more">« More »</a>
+</div>
+<div id="BaseSubUnitForm" class="element ajax clickable class">
+<h1>BaseSubUnitForm<a href="../classes/BaseSubUnitForm.html">¶</a>
+</h1>
+<p class="short_description">SubUnit form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSubUnitForm.html" class="more">« More »</a>
+</div>
+<div id="BaseTwoInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>BaseTwoInchOpenReelVideoForm<a href="../classes/BaseTwoInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseTwoInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="BaseUmaticForm" class="element ajax clickable class">
+<h1>BaseUmaticForm<a href="../classes/BaseUmaticForm.html">¶</a>
+</h1>
+<p class="short_description">Umatic form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUmaticForm.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitForm" class="element ajax clickable class">
+<h1>BaseUnitForm<a href="../classes/BaseUnitForm.html">¶</a>
+</h1>
+<p class="short_description">Unit form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitForm.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitPersonForm" class="element ajax clickable class">
+<h1>BaseUnitPersonForm<a href="../classes/BaseUnitPersonForm.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitPersonForm.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitStorageLocationForm" class="element ajax clickable class">
+<h1>BaseUnitStorageLocationForm<a href="../classes/BaseUnitStorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitStorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="BaseUserForm" class="element ajax clickable class">
+<h1>BaseUserForm<a href="../classes/BaseUserForm.html">¶</a>
+</h1>
+<p class="short_description">User form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUserForm.html" class="more">« More »</a>
+</div>
+<div id="BaseVHSForm" class="element ajax clickable class">
+<h1>BaseVHSForm<a href="../classes/BaseVHSForm.html">¶</a>
+</h1>
+<p class="short_description">VHS form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVHSForm.html" class="more">« More »</a>
+</div>
+<div id="BaseVideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>BaseVideoRecordingFormatTypeForm<a href="../classes/BaseVideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="BaseXDCamOpticalForm" class="element ajax clickable class">
+<h1>BaseXDCamOpticalForm<a href="../classes/BaseXDCamOpticalForm.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseXDCamOpticalForm.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardGroupForm" class="element ajax clickable class">
+<h1>BasesfGuardGroupForm<a href="../classes/BasesfGuardGroupForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardGroupForm.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardPermissionForm" class="element ajax clickable class">
+<h1>BasesfGuardPermissionForm<a href="../classes/BasesfGuardPermissionForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardPermissionForm.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUserForm" class="element ajax clickable class">
+<h1>BasesfGuardUserForm<a href="../classes/BasesfGuardUserForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser form base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUserForm.html" class="more">« More »</a>
+</div>
+<div id="BetacamForm" class="element ajax clickable class">
+<h1>BetacamForm<a href="../classes/BetacamForm.html">¶</a>
+</h1>
+<p class="short_description">Betacam form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetacamForm.html" class="more">« More »</a>
+</div>
+<div id="BetamaxForm" class="element ajax clickable class">
+<h1>BetamaxForm<a href="../classes/BetamaxForm.html">¶</a>
+</h1>
+<p class="short_description">Betamax form.</p>
+<div class="details collapse"></div>
+<a href="../classes/BetamaxForm.html" class="more">« More »</a>
+</div>
+<div id="CollectionForm" class="element ajax clickable class">
+<h1>CollectionForm<a href="../classes/CollectionForm.html">¶</a>
+</h1>
+<p class="short_description">Collection form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionForm.html" class="more">« More »</a>
+</div>
+<div id="CollectionStorageLocationForm" class="element ajax clickable class">
+<h1>CollectionStorageLocationForm<a href="../classes/CollectionStorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionStorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="CylinderForm" class="element ajax clickable class">
+<h1>CylinderForm<a href="../classes/CylinderForm.html">¶</a>
+</h1>
+<p class="short_description">Cylinder form.</p>
+<div class="details collapse"></div>
+<a href="../classes/CylinderForm.html" class="more">« More »</a>
+</div>
+<div id="DATForm" class="element ajax clickable class">
+<h1>DATForm<a href="../classes/DATForm.html">¶</a>
+</h1>
+<p class="short_description">DAT form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DATForm.html" class="more">« More »</a>
+</div>
+<div id="DVCProForm" class="element ajax clickable class">
+<h1>DVCProForm<a href="../classes/DVCProForm.html">¶</a>
+</h1>
+<p class="short_description">DVCPro form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCProForm.html" class="more">« More »</a>
+</div>
+<div id="DVCamForm" class="element ajax clickable class">
+<h1>DVCamForm<a href="../classes/DVCamForm.html">¶</a>
+</h1>
+<p class="short_description">DVCam form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCamForm.html" class="more">« More »</a>
+</div>
+<div id="DVForm" class="element ajax clickable class">
+<h1>DVForm<a href="../classes/DVForm.html">¶</a>
+</h1>
+<p class="short_description">DV form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DVForm.html" class="more">« More »</a>
+</div>
+<div id="DigitalBetacamForm" class="element ajax clickable class">
+<h1>DigitalBetacamForm<a href="../classes/DigitalBetacamForm.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DigitalBetacamForm.html" class="more">« More »</a>
+</div>
+<div id="DiskFormatTypeForm" class="element ajax clickable class">
+<h1>DiskFormatTypeForm<a href="../classes/DiskFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/DiskFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="EightMMForm" class="element ajax clickable class">
+<h1>EightMMForm<a href="../classes/EightMMForm.html">¶</a>
+</h1>
+<p class="short_description">EightMM form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EightMMForm.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorForm" class="element ajax clickable class">
+<h1>EvaluatorForm<a href="../classes/EvaluatorForm.html">¶</a>
+</h1>
+<p class="short_description">Evaluator form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorForm.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryForm" class="element ajax clickable class">
+<h1>EvaluatorHistoryForm<a href="../classes/EvaluatorHistoryForm.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryForm.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryPersonnelForm" class="element ajax clickable class">
+<h1>EvaluatorHistoryPersonnelForm<a href="../classes/EvaluatorHistoryPersonnelForm.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel form.</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryPersonnelForm.html" class="more">« More »</a>
+</div>
+<div id="FilmForm" class="element ajax clickable class">
+<h1>FilmForm<a href="../classes/FilmForm.html">¶</a>
+</h1>
+<p class="short_description">Film form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FilmForm.html" class="more">« More »</a>
+</div>
+<div id="FormatTypeForm" class="element ajax clickable class">
+<h1>FormatTypeForm<a href="../classes/FormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">FormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="FormatTypedVideoRecordingForm" class="element ajax clickable class">
+<h1>FormatTypedVideoRecordingForm<a href="../classes/FormatTypedVideoRecordingForm.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypedVideoRecordingForm.html" class="more">« More »</a>
+</div>
+<div id="FormatVersionedVideoRecordingTypeForm" class="element ajax clickable class">
+<h1>FormatVersionedVideoRecordingTypeForm<a href="../classes/FormatVersionedVideoRecordingTypeForm.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatVersionedVideoRecordingTypeForm.html" class="more">« More »</a>
+</div>
+<div id="HDCamForm" class="element ajax clickable class">
+<h1>HDCamForm<a href="../classes/HDCamForm.html">¶</a>
+</h1>
+<p class="short_description">HDCam form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HDCamForm.html" class="more">« More »</a>
+</div>
+<div id="HalfInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>HalfInchOpenReelVideoForm<a href="../classes/HalfInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo form.</p>
+<div class="details collapse"></div>
+<a href="../classes/HalfInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="LacquerDiscForm" class="element ajax clickable class">
+<h1>LacquerDiscForm<a href="../classes/LacquerDiscForm.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LacquerDiscForm.html" class="more">« More »</a>
+</div>
+<div id="LaserdiscForm" class="element ajax clickable class">
+<h1>LaserdiscForm<a href="../classes/LaserdiscForm.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/LaserdiscForm.html" class="more">« More »</a>
+</div>
+<div id="MetalDiscForm" class="element ajax clickable class">
+<h1>MetalDiscForm<a href="../classes/MetalDiscForm.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MetalDiscForm.html" class="more">« More »</a>
+</div>
+<div id="MiniDiscForm" class="element ajax clickable class">
+<h1>MiniDiscForm<a href="../classes/MiniDiscForm.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/MiniDiscForm.html" class="more">« More »</a>
+</div>
+<div id="OneInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>OneInchOpenReelVideoForm<a href="../classes/OneInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OneInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudioTapeFormatTypeForm" class="element ajax clickable class">
+<h1>OpenReelAudioTapeFormatTypeForm<a href="../classes/OpenReelAudioTapeFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudioTapeFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapeAcetateForm" class="element ajax clickable class">
+<h1>OpenReelAudiotapeAcetateForm<a href="../classes/OpenReelAudiotapeAcetateForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapeAcetateForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePVCForm" class="element ajax clickable class">
+<h1>OpenReelAudiotapePVCForm<a href="../classes/OpenReelAudiotapePVCForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePVCForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePaperForm" class="element ajax clickable class">
+<h1>OpenReelAudiotapePaperForm<a href="../classes/OpenReelAudiotapePaperForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePaperForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePolysterForm" class="element ajax clickable class">
+<h1>OpenReelAudiotapePolysterForm<a href="../classes/OpenReelAudiotapePolysterForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePolysterForm.html" class="more">« More »</a>
+</div>
+<div id="OpenReelVideoFormatTypeForm" class="element ajax clickable class">
+<h1>OpenReelVideoFormatTypeForm<a href="../classes/OpenReelVideoFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelVideoFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="OpticalDiscFormatTypeForm" class="element ajax clickable class">
+<h1>OpticalDiscFormatTypeForm<a href="../classes/OpticalDiscFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalDiscFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="OpticalVideoForm" class="element ajax clickable class">
+<h1>OpticalVideoForm<a href="../classes/OpticalVideoForm.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo form.</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalVideoForm.html" class="more">« More »</a>
+</div>
+<div id="PersonForm" class="element ajax clickable class">
+<h1>PersonForm<a href="../classes/PersonForm.html">¶</a>
+</h1>
+<p class="short_description">Person form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PersonForm.html" class="more">« More »</a>
+</div>
+<div id="Pressed45RPMDiscForm" class="element ajax clickable class">
+<h1>Pressed45RPMDiscForm<a href="../classes/Pressed45RPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed45RPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="Pressed78RPMDiscForm" class="element ajax clickable class">
+<h1>Pressed78RPMDiscForm<a href="../classes/Pressed78RPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed78RPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="PressedAudioDiscFormatTypeForm" class="element ajax clickable class">
+<h1>PressedAudioDiscFormatTypeForm<a href="../classes/PressedAudioDiscFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedAudioDiscFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="PressedFortyFiveRPMDiscForm" class="element ajax clickable class">
+<h1>PressedFortyFiveRPMDiscForm<a href="../classes/PressedFortyFiveRPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedFortyFiveRPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="PressedLPDiscForm" class="element ajax clickable class">
+<h1>PressedLPDiscForm<a href="../classes/PressedLPDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedLPDiscForm.html" class="more">« More »</a>
+</div>
+<div id="PressedSeventyEightRPMDiscForm" class="element ajax clickable class">
+<h1>PressedSeventyEightRPMDiscForm<a href="../classes/PressedSeventyEightRPMDiscForm.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedSeventyEightRPMDiscForm.html" class="more">« More »</a>
+</div>
+<div id="ReelCassetteFormatTypeForm" class="element ajax clickable class">
+<h1>ReelCassetteFormatTypeForm<a href="../classes/ReelCassetteFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelCassetteFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="ReelVideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>ReelVideoRecordingFormatTypeForm<a href="../classes/ReelVideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelVideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="SetForm" class="element ajax clickable class">
+<h1>SetForm<a href="../classes/SetForm.html">¶</a>
+</h1>
+<p class="short_description">Set form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SetForm.html" class="more">« More »</a>
+</div>
+<div id="SizedVideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>SizedVideoRecordingFormatTypeForm<a href="../classes/SizedVideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SizedVideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="SoftDiskFormatTypeForm" class="element ajax clickable class">
+<h1>SoftDiskFormatTypeForm<a href="../classes/SoftDiskFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoftDiskFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiscForm" class="element ajax clickable class">
+<h1>SoundOpticalDiscForm<a href="../classes/SoundOpticalDiscForm.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiscForm.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDiskForm" class="element ajax clickable class">
+<h1>SoundOpticalDiskForm<a href="../classes/SoundOpticalDiskForm.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDiskForm.html" class="more">« More »</a>
+</div>
+<div id="SoundWireReelForm" class="element ajax clickable class">
+<h1>SoundWireReelForm<a href="../classes/SoundWireReelForm.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundWireReelForm.html" class="more">« More »</a>
+</div>
+<div id="StandardizedRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>StandardizedRecordingFormatTypeForm<a href="../classes/StandardizedRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StandardizedRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="StorageLocationForm" class="element ajax clickable class">
+<h1>StorageLocationForm<a href="../classes/StorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="StoreForm" class="element ajax clickable class">
+<h1>StoreForm<a href="../classes/StoreForm.html">¶</a>
+</h1>
+<p class="short_description">Store form.</p>
+<div class="details collapse"></div>
+<a href="../classes/StoreForm.html" class="more">« More »</a>
+</div>
+<div id="SubUnitForm" class="element ajax clickable class">
+<h1>SubUnitForm<a href="../classes/SubUnitForm.html">¶</a>
+</h1>
+<p class="short_description">SubUnit form.</p>
+<div class="details collapse"></div>
+<a href="../classes/SubUnitForm.html" class="more">« More »</a>
+</div>
+<div id="TwoInchOpenReelVideoForm" class="element ajax clickable class">
+<h1>TwoInchOpenReelVideoForm<a href="../classes/TwoInchOpenReelVideoForm.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo form.</p>
+<div class="details collapse"></div>
+<a href="../classes/TwoInchOpenReelVideoForm.html" class="more">« More »</a>
+</div>
+<div id="UmaticForm" class="element ajax clickable class">
+<h1>UmaticForm<a href="../classes/UmaticForm.html">¶</a>
+</h1>
+<p class="short_description">Umatic form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UmaticForm.html" class="more">« More »</a>
+</div>
+<div id="UnitForm" class="element ajax clickable class">
+<h1>UnitForm<a href="../classes/UnitForm.html">¶</a>
+</h1>
+<p class="short_description">Unit form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitForm.html" class="more">« More »</a>
+</div>
+<div id="UnitPersonForm" class="element ajax clickable class">
+<h1>UnitPersonForm<a href="../classes/UnitPersonForm.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitPersonForm.html" class="more">« More »</a>
+</div>
+<div id="UnitStorageLocationForm" class="element ajax clickable class">
+<h1>UnitStorageLocationForm<a href="../classes/UnitStorageLocationForm.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitStorageLocationForm.html" class="more">« More »</a>
+</div>
+<div id="UserForm" class="element ajax clickable class">
+<h1>UserForm<a href="../classes/UserForm.html">¶</a>
+</h1>
+<p class="short_description">User form.</p>
+<div class="details collapse"></div>
+<a href="../classes/UserForm.html" class="more">« More »</a>
+</div>
+<div id="VHSForm" class="element ajax clickable class">
+<h1>VHSForm<a href="../classes/VHSForm.html">¶</a>
+</h1>
+<p class="short_description">VHS form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VHSForm.html" class="more">« More »</a>
+</div>
+<div id="VideoRecordingFormatTypeForm" class="element ajax clickable class">
+<h1>VideoRecordingFormatTypeForm<a href="../classes/VideoRecordingFormatTypeForm.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType form.</p>
+<div class="details collapse"></div>
+<a href="../classes/VideoRecordingFormatTypeForm.html" class="more">« More »</a>
+</div>
+<div id="XDCamOpticalForm" class="element ajax clickable class">
+<h1>XDCamOpticalForm<a href="../classes/XDCamOpticalForm.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical form.</p>
+<div class="details collapse"></div>
+<a href="../classes/XDCamOpticalForm.html" class="more">« More »</a>
+</div>
+<div id="sfGuardGroupForm" class="element ajax clickable class">
+<h1>sfGuardGroupForm<a href="../classes/sfGuardGroupForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardGroupForm.html" class="more">« More »</a>
+</div>
+<div id="sfGuardPermissionForm" class="element ajax clickable class">
+<h1>sfGuardPermissionForm<a href="../classes/sfGuardPermissionForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardPermissionForm.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUserForm" class="element ajax clickable class">
+<h1>sfGuardUserForm<a href="../classes/sfGuardUserForm.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser form.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUserForm.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.formattype.html">formattype</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="formattypeActions" class="element ajax clickable class">
+<h1>formattypeActions<a href="../classes/formattypeActions.html">¶</a>
+</h1>
+<p class="short_description">formattype actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/formattypeActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.halfinchopenreelvideo.html">halfinchopenreelvideo</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="halfinchopenreelvideoActions" class="element ajax clickable class">
+<h1>halfinchopenreelvideoActions<a href="../classes/halfinchopenreelvideoActions.html">¶</a>
+</h1>
+<p class="short_description">halfinchopenreelvideo actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/halfinchopenreelvideoActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.hdcam.html">hdcam</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="hdcamActions" class="element ajax clickable class">
+<h1>hdcamActions<a href="../classes/hdcamActions.html">¶</a>
+</h1>
+<p class="short_description">hdcam actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/hdcamActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.lacquerdisc.html">lacquerdisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="lacquerdiscActions" class="element ajax clickable class">
+<h1>lacquerdiscActions<a href="../classes/lacquerdiscActions.html">¶</a>
+</h1>
+<p class="short_description">lacquerdisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/lacquerdiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.laserdisc.html">laserdisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="laserdiscActions" class="element ajax clickable class">
+<h1>laserdiscActions<a href="../classes/laserdiscActions.html">¶</a>
+</h1>
+<p class="short_description">laserdisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/laserdiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.metaldisc.html">metaldisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="metaldiscActions" class="element ajax clickable class">
+<h1>metaldiscActions<a href="../classes/metaldiscActions.html">¶</a>
+</h1>
+<p class="short_description">metaldisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/metaldiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.minidisc.html">minidisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="minidiscActions" class="element ajax clickable class">
+<h1>minidiscActions<a href="../classes/minidiscActions.html">¶</a>
+</h1>
+<p class="short_description">minidisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/minidiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.model.html">model</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AnalogAudiocassette" class="element ajax clickable class">
+<h1>AnalogAudiocassette<a href="../classes/AnalogAudiocassette.html">¶</a>
+</h1>
+<p class="short_description">AnalogAudiocassette</p>
+<div class="details collapse"></div>
+<a href="../classes/AnalogAudiocassette.html" class="more">« More »</a>
+</div>
+<div id="AssetGroup" class="element ajax clickable class">
+<h1>AssetGroup<a href="../classes/AssetGroup.html">¶</a>
+</h1>
+<p class="short_description">AssetGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/AssetGroup.html" class="more">« More »</a>
+</div>
+<div id="AudiotapeFormatType" class="element ajax clickable class">
+<h1>AudiotapeFormatType<a href="../classes/AudiotapeFormatType.html">¶</a>
+</h1>
+<p class="short_description">AudiotapeFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/AudiotapeFormatType.html" class="more">« More »</a>
+</div>
+<div id="Base8MM" class="element ajax clickable class">
+<h1>Base8MM<a href="../classes/Base8MM.html">¶</a>
+</h1>
+<p class="short_description">Base8MM</p>
+<div class="details collapse"></div>
+<a href="../classes/Base8MM.html" class="more">« More »</a>
+</div>
+<div id="BaseAnalogAudiocassette" class="element ajax clickable class">
+<h1>BaseAnalogAudiocassette<a href="../classes/BaseAnalogAudiocassette.html">¶</a>
+</h1>
+<p class="short_description">BaseAnalogAudiocassette</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAnalogAudiocassette.html" class="more">« More »</a>
+</div>
+<div id="BaseAssetGroup" class="element ajax clickable class">
+<h1>BaseAssetGroup<a href="../classes/BaseAssetGroup.html">¶</a>
+</h1>
+<p class="short_description">BaseAssetGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAssetGroup.html" class="more">« More »</a>
+</div>
+<div id="BaseAudiotapeFormatType" class="element ajax clickable class">
+<h1>BaseAudiotapeFormatType<a href="../classes/BaseAudiotapeFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseAudiotapeFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseAudiotapeFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseBetacam" class="element ajax clickable class">
+<h1>BaseBetacam<a href="../classes/BaseBetacam.html">¶</a>
+</h1>
+<p class="short_description">BaseBetacam</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetacam.html" class="more">« More »</a>
+</div>
+<div id="BaseBetamax" class="element ajax clickable class">
+<h1>BaseBetamax<a href="../classes/BaseBetamax.html">¶</a>
+</h1>
+<p class="short_description">BaseBetamax</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseBetamax.html" class="more">« More »</a>
+</div>
+<div id="BaseCollection" class="element ajax clickable class">
+<h1>BaseCollection<a href="../classes/BaseCollection.html">¶</a>
+</h1>
+<p class="short_description">BaseCollection</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollection.html" class="more">« More »</a>
+</div>
+<div id="BaseCollectionStorageLocation" class="element ajax clickable class">
+<h1>BaseCollectionStorageLocation<a href="../classes/BaseCollectionStorageLocation.html">¶</a>
+</h1>
+<p class="short_description">BaseCollectionStorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCollectionStorageLocation.html" class="more">« More »</a>
+</div>
+<div id="BaseCylinder" class="element ajax clickable class">
+<h1>BaseCylinder<a href="../classes/BaseCylinder.html">¶</a>
+</h1>
+<p class="short_description">BaseCylinder</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseCylinder.html" class="more">« More »</a>
+</div>
+<div id="BaseDAT" class="element ajax clickable class">
+<h1>BaseDAT<a href="../classes/BaseDAT.html">¶</a>
+</h1>
+<p class="short_description">BaseDAT</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDAT.html" class="more">« More »</a>
+</div>
+<div id="BaseDV" class="element ajax clickable class">
+<h1>BaseDV<a href="../classes/BaseDV.html">¶</a>
+</h1>
+<p class="short_description">BaseDV</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDV.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCPro" class="element ajax clickable class">
+<h1>BaseDVCPro<a href="../classes/BaseDVCPro.html">¶</a>
+</h1>
+<p class="short_description">BaseDVCPro</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCPro.html" class="more">« More »</a>
+</div>
+<div id="BaseDVCam" class="element ajax clickable class">
+<h1>BaseDVCam<a href="../classes/BaseDVCam.html">¶</a>
+</h1>
+<p class="short_description">BaseDVCam</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDVCam.html" class="more">« More »</a>
+</div>
+<div id="BaseDigitalBetacam" class="element ajax clickable class">
+<h1>BaseDigitalBetacam<a href="../classes/BaseDigitalBetacam.html">¶</a>
+</h1>
+<p class="short_description">BaseDigitalBetacam</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDigitalBetacam.html" class="more">« More »</a>
+</div>
+<div id="BaseDiskFormatType" class="element ajax clickable class">
+<h1>BaseDiskFormatType<a href="../classes/BaseDiskFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseDiskFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseDiskFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseEightMM" class="element ajax clickable class">
+<h1>BaseEightMM<a href="../classes/BaseEightMM.html">¶</a>
+</h1>
+<p class="short_description">BaseEightMM</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEightMM.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluator" class="element ajax clickable class">
+<h1>BaseEvaluator<a href="../classes/BaseEvaluator.html">¶</a>
+</h1>
+<p class="short_description">BaseEvaluator</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluator.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistory" class="element ajax clickable class">
+<h1>BaseEvaluatorHistory<a href="../classes/BaseEvaluatorHistory.html">¶</a>
+</h1>
+<p class="short_description">BaseEvaluatorHistory</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistory.html" class="more">« More »</a>
+</div>
+<div id="BaseEvaluatorHistoryPersonnel" class="element ajax clickable class">
+<h1>BaseEvaluatorHistoryPersonnel<a href="../classes/BaseEvaluatorHistoryPersonnel.html">¶</a>
+</h1>
+<p class="short_description">BaseEvaluatorHistoryPersonnel</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseEvaluatorHistoryPersonnel.html" class="more">« More »</a>
+</div>
+<div id="BaseFilm" class="element ajax clickable class">
+<h1>BaseFilm<a href="../classes/BaseFilm.html">¶</a>
+</h1>
+<p class="short_description">BaseFilm</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFilm.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatType" class="element ajax clickable class">
+<h1>BaseFormatType<a href="../classes/BaseFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatTypedVideoRecording" class="element ajax clickable class">
+<h1>BaseFormatTypedVideoRecording<a href="../classes/BaseFormatTypedVideoRecording.html">¶</a>
+</h1>
+<p class="short_description">BaseFormatTypedVideoRecording</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatTypedVideoRecording.html" class="more">« More »</a>
+</div>
+<div id="BaseFormatVersionedVideoRecordingType" class="element ajax clickable class">
+<h1>BaseFormatVersionedVideoRecordingType<a href="../classes/BaseFormatVersionedVideoRecordingType.html">¶</a>
+</h1>
+<p class="short_description">BaseFormatVersionedVideoRecordingType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseFormatVersionedVideoRecordingType.html" class="more">« More »</a>
+</div>
+<div id="BaseHDCam" class="element ajax clickable class">
+<h1>BaseHDCam<a href="../classes/BaseHDCam.html">¶</a>
+</h1>
+<p class="short_description">BaseHDCam</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHDCam.html" class="more">« More »</a>
+</div>
+<div id="BaseHalfInchOpenReelVideo" class="element ajax clickable class">
+<h1>BaseHalfInchOpenReelVideo<a href="../classes/BaseHalfInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">BaseHalfInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseHalfInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="BaseLacquerDisc" class="element ajax clickable class">
+<h1>BaseLacquerDisc<a href="../classes/BaseLacquerDisc.html">¶</a>
+</h1>
+<p class="short_description">BaseLacquerDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLacquerDisc.html" class="more">« More »</a>
+</div>
+<div id="BaseLaserdisc" class="element ajax clickable class">
+<h1>BaseLaserdisc<a href="../classes/BaseLaserdisc.html">¶</a>
+</h1>
+<p class="short_description">BaseLaserdisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseLaserdisc.html" class="more">« More »</a>
+</div>
+<div id="BaseMetalDisc" class="element ajax clickable class">
+<h1>BaseMetalDisc<a href="../classes/BaseMetalDisc.html">¶</a>
+</h1>
+<p class="short_description">BaseMetalDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMetalDisc.html" class="more">« More »</a>
+</div>
+<div id="BaseMiniDisc" class="element ajax clickable class">
+<h1>BaseMiniDisc<a href="../classes/BaseMiniDisc.html">¶</a>
+</h1>
+<p class="short_description">BaseMiniDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseMiniDisc.html" class="more">« More »</a>
+</div>
+<div id="BaseOneInchOpenReelVideo" class="element ajax clickable class">
+<h1>BaseOneInchOpenReelVideo<a href="../classes/BaseOneInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">BaseOneInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOneInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudioTapeFormatType" class="element ajax clickable class">
+<h1>BaseOpenReelAudioTapeFormatType<a href="../classes/BaseOpenReelAudioTapeFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelAudioTapeFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudioTapeFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapeAcetate" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapeAcetate<a href="../classes/BaseOpenReelAudiotapeAcetate.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelAudiotapeAcetate</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapeAcetate.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePVC" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePVC<a href="../classes/BaseOpenReelAudiotapePVC.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelAudiotapePVC</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePVC.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePaper" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePaper<a href="../classes/BaseOpenReelAudiotapePaper.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelAudiotapePaper</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePaper.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelAudiotapePolyster" class="element ajax clickable class">
+<h1>BaseOpenReelAudiotapePolyster<a href="../classes/BaseOpenReelAudiotapePolyster.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelAudiotapePolyster</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelAudiotapePolyster.html" class="more">« More »</a>
+</div>
+<div id="BaseOpenReelVideoFormatType" class="element ajax clickable class">
+<h1>BaseOpenReelVideoFormatType<a href="../classes/BaseOpenReelVideoFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseOpenReelVideoFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpenReelVideoFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalDiscFormatType" class="element ajax clickable class">
+<h1>BaseOpticalDiscFormatType<a href="../classes/BaseOpticalDiscFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseOpticalDiscFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalDiscFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseOpticalVideo" class="element ajax clickable class">
+<h1>BaseOpticalVideo<a href="../classes/BaseOpticalVideo.html">¶</a>
+</h1>
+<p class="short_description">BaseOpticalVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseOpticalVideo.html" class="more">« More »</a>
+</div>
+<div id="BasePerson" class="element ajax clickable class">
+<h1>BasePerson<a href="../classes/BasePerson.html">¶</a>
+</h1>
+<p class="short_description">BasePerson</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePerson.html" class="more">« More »</a>
+</div>
+<div id="BasePressed45RPMDisc" class="element ajax clickable class">
+<h1>BasePressed45RPMDisc<a href="../classes/BasePressed45RPMDisc.html">¶</a>
+</h1>
+<p class="short_description">BasePressed45RPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed45RPMDisc.html" class="more">« More »</a>
+</div>
+<div id="BasePressed78RPMDisc" class="element ajax clickable class">
+<h1>BasePressed78RPMDisc<a href="../classes/BasePressed78RPMDisc.html">¶</a>
+</h1>
+<p class="short_description">BasePressed78RPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressed78RPMDisc.html" class="more">« More »</a>
+</div>
+<div id="BasePressedAudioDiscFormatType" class="element ajax clickable class">
+<h1>BasePressedAudioDiscFormatType<a href="../classes/BasePressedAudioDiscFormatType.html">¶</a>
+</h1>
+<p class="short_description">BasePressedAudioDiscFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedAudioDiscFormatType.html" class="more">« More »</a>
+</div>
+<div id="BasePressedFortyFiveRPMDisc" class="element ajax clickable class">
+<h1>BasePressedFortyFiveRPMDisc<a href="../classes/BasePressedFortyFiveRPMDisc.html">¶</a>
+</h1>
+<p class="short_description">BasePressedFortyFiveRPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedFortyFiveRPMDisc.html" class="more">« More »</a>
+</div>
+<div id="BasePressedLPDisc" class="element ajax clickable class">
+<h1>BasePressedLPDisc<a href="../classes/BasePressedLPDisc.html">¶</a>
+</h1>
+<p class="short_description">BasePressedLPDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedLPDisc.html" class="more">« More »</a>
+</div>
+<div id="BasePressedSeventyEightRPMDisc" class="element ajax clickable class">
+<h1>BasePressedSeventyEightRPMDisc<a href="../classes/BasePressedSeventyEightRPMDisc.html">¶</a>
+</h1>
+<p class="short_description">BasePressedSeventyEightRPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BasePressedSeventyEightRPMDisc.html" class="more">« More »</a>
+</div>
+<div id="BaseReelCassetteFormatType" class="element ajax clickable class">
+<h1>BaseReelCassetteFormatType<a href="../classes/BaseReelCassetteFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseReelCassetteFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelCassetteFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseReelVideoRecordingFormatType" class="element ajax clickable class">
+<h1>BaseReelVideoRecordingFormatType<a href="../classes/BaseReelVideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseReelVideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseReelVideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseSet" class="element ajax clickable class">
+<h1>BaseSet<a href="../classes/BaseSet.html">¶</a>
+</h1>
+<p class="short_description">BaseSet</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSet.html" class="more">« More »</a>
+</div>
+<div id="BaseSizedVideoRecordingFormatType" class="element ajax clickable class">
+<h1>BaseSizedVideoRecordingFormatType<a href="../classes/BaseSizedVideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseSizedVideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSizedVideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseSoftDiskFormatType" class="element ajax clickable class">
+<h1>BaseSoftDiskFormatType<a href="../classes/BaseSoftDiskFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseSoftDiskFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoftDiskFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDisc" class="element ajax clickable class">
+<h1>BaseSoundOpticalDisc<a href="../classes/BaseSoundOpticalDisc.html">¶</a>
+</h1>
+<p class="short_description">BaseSoundOpticalDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDisc.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundOpticalDisk" class="element ajax clickable class">
+<h1>BaseSoundOpticalDisk<a href="../classes/BaseSoundOpticalDisk.html">¶</a>
+</h1>
+<p class="short_description">BaseSoundOpticalDisk</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundOpticalDisk.html" class="more">« More »</a>
+</div>
+<div id="BaseSoundWireReel" class="element ajax clickable class">
+<h1>BaseSoundWireReel<a href="../classes/BaseSoundWireReel.html">¶</a>
+</h1>
+<p class="short_description">BaseSoundWireReel</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSoundWireReel.html" class="more">« More »</a>
+</div>
+<div id="BaseStandardizedRecordingFormatType" class="element ajax clickable class">
+<h1>BaseStandardizedRecordingFormatType<a href="../classes/BaseStandardizedRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseStandardizedRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStandardizedRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseStorageLocation" class="element ajax clickable class">
+<h1>BaseStorageLocation<a href="../classes/BaseStorageLocation.html">¶</a>
+</h1>
+<p class="short_description">BaseStorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStorageLocation.html" class="more">« More »</a>
+</div>
+<div id="BaseStore" class="element ajax clickable class">
+<h1>BaseStore<a href="../classes/BaseStore.html">¶</a>
+</h1>
+<p class="short_description">BaseStore</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseStore.html" class="more">« More »</a>
+</div>
+<div id="BaseSubUnit" class="element ajax clickable class">
+<h1>BaseSubUnit<a href="../classes/BaseSubUnit.html">¶</a>
+</h1>
+<p class="short_description">BaseSubUnit</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSubUnit.html" class="more">« More »</a>
+</div>
+<div id="BaseTwoInchOpenReelVideo" class="element ajax clickable class">
+<h1>BaseTwoInchOpenReelVideo<a href="../classes/BaseTwoInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">BaseTwoInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseTwoInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="BaseUmatic" class="element ajax clickable class">
+<h1>BaseUmatic<a href="../classes/BaseUmatic.html">¶</a>
+</h1>
+<p class="short_description">BaseUmatic</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUmatic.html" class="more">« More »</a>
+</div>
+<div id="BaseUnit" class="element ajax clickable class">
+<h1>BaseUnit<a href="../classes/BaseUnit.html">¶</a>
+</h1>
+<p class="short_description">BaseUnit</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnit.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitPerson" class="element ajax clickable class">
+<h1>BaseUnitPerson<a href="../classes/BaseUnitPerson.html">¶</a>
+</h1>
+<p class="short_description">BaseUnitPerson</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitPerson.html" class="more">« More »</a>
+</div>
+<div id="BaseUnitStorageLocation" class="element ajax clickable class">
+<h1>BaseUnitStorageLocation<a href="../classes/BaseUnitStorageLocation.html">¶</a>
+</h1>
+<p class="short_description">BaseUnitStorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUnitStorageLocation.html" class="more">« More »</a>
+</div>
+<div id="BaseUser" class="element ajax clickable class">
+<h1>BaseUser<a href="../classes/BaseUser.html">¶</a>
+</h1>
+<p class="short_description">BaseUser</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseUser.html" class="more">« More »</a>
+</div>
+<div id="BaseVHS" class="element ajax clickable class">
+<h1>BaseVHS<a href="../classes/BaseVHS.html">¶</a>
+</h1>
+<p class="short_description">BaseVHS</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVHS.html" class="more">« More »</a>
+</div>
+<div id="BaseVideoRecordingFormatType" class="element ajax clickable class">
+<h1>BaseVideoRecordingFormatType<a href="../classes/BaseVideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">BaseVideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseVideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="BaseXDCamOptical" class="element ajax clickable class">
+<h1>BaseXDCamOptical<a href="../classes/BaseXDCamOptical.html">¶</a>
+</h1>
+<p class="short_description">BaseXDCamOptical</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseXDCamOptical.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardForgotPassword" class="element ajax clickable class">
+<h1>BasesfGuardForgotPassword<a href="../classes/BasesfGuardForgotPassword.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardForgotPassword</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardForgotPassword.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardGroup" class="element ajax clickable class">
+<h1>BasesfGuardGroup<a href="../classes/BasesfGuardGroup.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardGroup.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardGroupPermission" class="element ajax clickable class">
+<h1>BasesfGuardGroupPermission<a href="../classes/BasesfGuardGroupPermission.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardGroupPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardGroupPermission.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardPermission" class="element ajax clickable class">
+<h1>BasesfGuardPermission<a href="../classes/BasesfGuardPermission.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardPermission.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardRememberKey" class="element ajax clickable class">
+<h1>BasesfGuardRememberKey<a href="../classes/BasesfGuardRememberKey.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardRememberKey</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardRememberKey.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUser" class="element ajax clickable class">
+<h1>BasesfGuardUser<a href="../classes/BasesfGuardUser.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardUser</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUser.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUserGroup" class="element ajax clickable class">
+<h1>BasesfGuardUserGroup<a href="../classes/BasesfGuardUserGroup.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardUserGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUserGroup.html" class="more">« More »</a>
+</div>
+<div id="BasesfGuardUserPermission" class="element ajax clickable class">
+<h1>BasesfGuardUserPermission<a href="../classes/BasesfGuardUserPermission.html">¶</a>
+</h1>
+<p class="short_description">BasesfGuardUserPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/BasesfGuardUserPermission.html" class="more">« More »</a>
+</div>
+<div id="Betacam" class="element ajax clickable class">
+<h1>Betacam<a href="../classes/Betacam.html">¶</a>
+</h1>
+<p class="short_description">Betacam</p>
+<div class="details collapse"></div>
+<a href="../classes/Betacam.html" class="more">« More »</a>
+</div>
+<div id="Betamax" class="element ajax clickable class">
+<h1>Betamax<a href="../classes/Betamax.html">¶</a>
+</h1>
+<p class="short_description">Betamax</p>
+<div class="details collapse"></div>
+<a href="../classes/Betamax.html" class="more">« More »</a>
+</div>
+<div id="Collection" class="element ajax clickable class">
+<h1>Collection<a href="../classes/Collection.html">¶</a>
+</h1>
+<p class="short_description">Collection</p>
+<div class="details collapse"></div>
+<a href="../classes/Collection.html" class="more">« More »</a>
+</div>
+<div id="CollectionStorageLocation" class="element ajax clickable class">
+<h1>CollectionStorageLocation<a href="../classes/CollectionStorageLocation.html">¶</a>
+</h1>
+<p class="short_description">CollectionStorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/CollectionStorageLocation.html" class="more">« More »</a>
+</div>
+<div id="Cylinder" class="element ajax clickable class">
+<h1>Cylinder<a href="../classes/Cylinder.html">¶</a>
+</h1>
+<p class="short_description">Cylinder</p>
+<div class="details collapse"></div>
+<a href="../classes/Cylinder.html" class="more">« More »</a>
+</div>
+<div id="DAT" class="element ajax clickable class">
+<h1>DAT<a href="../classes/DAT.html">¶</a>
+</h1>
+<p class="short_description">DAT</p>
+<div class="details collapse"></div>
+<a href="../classes/DAT.html" class="more">« More »</a>
+</div>
+<div id="DV" class="element ajax clickable class">
+<h1>DV<a href="../classes/DV.html">¶</a>
+</h1>
+<p class="short_description">DV</p>
+<div class="details collapse"></div>
+<a href="../classes/DV.html" class="more">« More »</a>
+</div>
+<div id="DVCPro" class="element ajax clickable class">
+<h1>DVCPro<a href="../classes/DVCPro.html">¶</a>
+</h1>
+<p class="short_description">DVCPro</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCPro.html" class="more">« More »</a>
+</div>
+<div id="DVCam" class="element ajax clickable class">
+<h1>DVCam<a href="../classes/DVCam.html">¶</a>
+</h1>
+<p class="short_description">DVCam</p>
+<div class="details collapse"></div>
+<a href="../classes/DVCam.html" class="more">« More »</a>
+</div>
+<div id="DigitalBetacam" class="element ajax clickable class">
+<h1>DigitalBetacam<a href="../classes/DigitalBetacam.html">¶</a>
+</h1>
+<p class="short_description">DigitalBetacam</p>
+<div class="details collapse"></div>
+<a href="../classes/DigitalBetacam.html" class="more">« More »</a>
+</div>
+<div id="DiskFormatType" class="element ajax clickable class">
+<h1>DiskFormatType<a href="../classes/DiskFormatType.html">¶</a>
+</h1>
+<p class="short_description">DiskFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/DiskFormatType.html" class="more">« More »</a>
+</div>
+<div id="EightMM" class="element ajax clickable class">
+<h1>EightMM<a href="../classes/EightMM.html">¶</a>
+</h1>
+<p class="short_description">EightMM</p>
+<div class="details collapse"></div>
+<a href="../classes/EightMM.html" class="more">« More »</a>
+</div>
+<div id="Evaluator" class="element ajax clickable class">
+<h1>Evaluator<a href="../classes/Evaluator.html">¶</a>
+</h1>
+<p class="short_description">Evaluator</p>
+<div class="details collapse"></div>
+<a href="../classes/Evaluator.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistory" class="element ajax clickable class">
+<h1>EvaluatorHistory<a href="../classes/EvaluatorHistory.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistory</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistory.html" class="more">« More »</a>
+</div>
+<div id="EvaluatorHistoryPersonnel" class="element ajax clickable class">
+<h1>EvaluatorHistoryPersonnel<a href="../classes/EvaluatorHistoryPersonnel.html">¶</a>
+</h1>
+<p class="short_description">EvaluatorHistoryPersonnel</p>
+<div class="details collapse"></div>
+<a href="../classes/EvaluatorHistoryPersonnel.html" class="more">« More »</a>
+</div>
+<div id="Film" class="element ajax clickable class">
+<h1>Film<a href="../classes/Film.html">¶</a>
+</h1>
+<p class="short_description">Film</p>
+<div class="details collapse"></div>
+<a href="../classes/Film.html" class="more">« More »</a>
+</div>
+<div id="FormatType" class="element ajax clickable class">
+<h1>FormatType<a href="../classes/FormatType.html">¶</a>
+</h1>
+<p class="short_description">FormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatType.html" class="more">« More »</a>
+</div>
+<div id="FormatTypedVideoRecording" class="element ajax clickable class">
+<h1>FormatTypedVideoRecording<a href="../classes/FormatTypedVideoRecording.html">¶</a>
+</h1>
+<p class="short_description">FormatTypedVideoRecording</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatTypedVideoRecording.html" class="more">« More »</a>
+</div>
+<div id="FormatVersionedVideoRecordingType" class="element ajax clickable class">
+<h1>FormatVersionedVideoRecordingType<a href="../classes/FormatVersionedVideoRecordingType.html">¶</a>
+</h1>
+<p class="short_description">FormatVersionedVideoRecordingType</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatVersionedVideoRecordingType.html" class="more">« More »</a>
+</div>
+<div id="HDCam" class="element ajax clickable class">
+<h1>HDCam<a href="../classes/HDCam.html">¶</a>
+</h1>
+<p class="short_description">HDCam</p>
+<div class="details collapse"></div>
+<a href="../classes/HDCam.html" class="more">« More »</a>
+</div>
+<div id="HalfInchOpenReelVideo" class="element ajax clickable class">
+<h1>HalfInchOpenReelVideo<a href="../classes/HalfInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">HalfInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/HalfInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="LacquerDisc" class="element ajax clickable class">
+<h1>LacquerDisc<a href="../classes/LacquerDisc.html">¶</a>
+</h1>
+<p class="short_description">LacquerDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/LacquerDisc.html" class="more">« More »</a>
+</div>
+<div id="Laserdisc" class="element ajax clickable class">
+<h1>Laserdisc<a href="../classes/Laserdisc.html">¶</a>
+</h1>
+<p class="short_description">Laserdisc</p>
+<div class="details collapse"></div>
+<a href="../classes/Laserdisc.html" class="more">« More »</a>
+</div>
+<div id="MetalDisc" class="element ajax clickable class">
+<h1>MetalDisc<a href="../classes/MetalDisc.html">¶</a>
+</h1>
+<p class="short_description">MetalDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/MetalDisc.html" class="more">« More »</a>
+</div>
+<div id="MiniDisc" class="element ajax clickable class">
+<h1>MiniDisc<a href="../classes/MiniDisc.html">¶</a>
+</h1>
+<p class="short_description">MiniDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/MiniDisc.html" class="more">« More »</a>
+</div>
+<div id="OneInchOpenReelVideo" class="element ajax clickable class">
+<h1>OneInchOpenReelVideo<a href="../classes/OneInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">OneInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/OneInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudioTapeFormatType" class="element ajax clickable class">
+<h1>OpenReelAudioTapeFormatType<a href="../classes/OpenReelAudioTapeFormatType.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudioTapeFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudioTapeFormatType.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapeAcetate" class="element ajax clickable class">
+<h1>OpenReelAudiotapeAcetate<a href="../classes/OpenReelAudiotapeAcetate.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapeAcetate</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapeAcetate.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePVC" class="element ajax clickable class">
+<h1>OpenReelAudiotapePVC<a href="../classes/OpenReelAudiotapePVC.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePVC</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePVC.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePaper" class="element ajax clickable class">
+<h1>OpenReelAudiotapePaper<a href="../classes/OpenReelAudiotapePaper.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePaper</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePaper.html" class="more">« More »</a>
+</div>
+<div id="OpenReelAudiotapePolyster" class="element ajax clickable class">
+<h1>OpenReelAudiotapePolyster<a href="../classes/OpenReelAudiotapePolyster.html">¶</a>
+</h1>
+<p class="short_description">OpenReelAudiotapePolyster</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelAudiotapePolyster.html" class="more">« More »</a>
+</div>
+<div id="OpenReelVideoFormatType" class="element ajax clickable class">
+<h1>OpenReelVideoFormatType<a href="../classes/OpenReelVideoFormatType.html">¶</a>
+</h1>
+<p class="short_description">OpenReelVideoFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/OpenReelVideoFormatType.html" class="more">« More »</a>
+</div>
+<div id="OpticalDiscFormatType" class="element ajax clickable class">
+<h1>OpticalDiscFormatType<a href="../classes/OpticalDiscFormatType.html">¶</a>
+</h1>
+<p class="short_description">OpticalDiscFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalDiscFormatType.html" class="more">« More »</a>
+</div>
+<div id="OpticalVideo" class="element ajax clickable class">
+<h1>OpticalVideo<a href="../classes/OpticalVideo.html">¶</a>
+</h1>
+<p class="short_description">OpticalVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/OpticalVideo.html" class="more">« More »</a>
+</div>
+<div id="Person" class="element ajax clickable class">
+<h1>Person<a href="../classes/Person.html">¶</a>
+</h1>
+<p class="short_description">Person</p>
+<div class="details collapse"></div>
+<a href="../classes/Person.html" class="more">« More »</a>
+</div>
+<div id="Pressed45RPMDisc" class="element ajax clickable class">
+<h1>Pressed45RPMDisc<a href="../classes/Pressed45RPMDisc.html">¶</a>
+</h1>
+<p class="short_description">Pressed45RPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed45RPMDisc.html" class="more">« More »</a>
+</div>
+<div id="Pressed78RPMDisc" class="element ajax clickable class">
+<h1>Pressed78RPMDisc<a href="../classes/Pressed78RPMDisc.html">¶</a>
+</h1>
+<p class="short_description">Pressed78RPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/Pressed78RPMDisc.html" class="more">« More »</a>
+</div>
+<div id="PressedAudioDiscFormatType" class="element ajax clickable class">
+<h1>PressedAudioDiscFormatType<a href="../classes/PressedAudioDiscFormatType.html">¶</a>
+</h1>
+<p class="short_description">PressedAudioDiscFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedAudioDiscFormatType.html" class="more">« More »</a>
+</div>
+<div id="PressedFortyFiveRPMDisc" class="element ajax clickable class">
+<h1>PressedFortyFiveRPMDisc<a href="../classes/PressedFortyFiveRPMDisc.html">¶</a>
+</h1>
+<p class="short_description">PressedFortyFiveRPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedFortyFiveRPMDisc.html" class="more">« More »</a>
+</div>
+<div id="PressedLPDisc" class="element ajax clickable class">
+<h1>PressedLPDisc<a href="../classes/PressedLPDisc.html">¶</a>
+</h1>
+<p class="short_description">PressedLPDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedLPDisc.html" class="more">« More »</a>
+</div>
+<div id="PressedSeventyEightRPMDisc" class="element ajax clickable class">
+<h1>PressedSeventyEightRPMDisc<a href="../classes/PressedSeventyEightRPMDisc.html">¶</a>
+</h1>
+<p class="short_description">PressedSeventyEightRPMDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/PressedSeventyEightRPMDisc.html" class="more">« More »</a>
+</div>
+<div id="ReelCassetteFormatType" class="element ajax clickable class">
+<h1>ReelCassetteFormatType<a href="../classes/ReelCassetteFormatType.html">¶</a>
+</h1>
+<p class="short_description">ReelCassetteFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelCassetteFormatType.html" class="more">« More »</a>
+</div>
+<div id="ReelVideoRecordingFormatType" class="element ajax clickable class">
+<h1>ReelVideoRecordingFormatType<a href="../classes/ReelVideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">ReelVideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/ReelVideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="SizedVideoRecordingFormatType" class="element ajax clickable class">
+<h1>SizedVideoRecordingFormatType<a href="../classes/SizedVideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">SizedVideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/SizedVideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="SoftDiskFormatType" class="element ajax clickable class">
+<h1>SoftDiskFormatType<a href="../classes/SoftDiskFormatType.html">¶</a>
+</h1>
+<p class="short_description">SoftDiskFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/SoftDiskFormatType.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDisc" class="element ajax clickable class">
+<h1>SoundOpticalDisc<a href="../classes/SoundOpticalDisc.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisc</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDisc.html" class="more">« More »</a>
+</div>
+<div id="SoundOpticalDisk" class="element ajax clickable class">
+<h1>SoundOpticalDisk<a href="../classes/SoundOpticalDisk.html">¶</a>
+</h1>
+<p class="short_description">SoundOpticalDisk</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundOpticalDisk.html" class="more">« More »</a>
+</div>
+<div id="SoundWireReel" class="element ajax clickable class">
+<h1>SoundWireReel<a href="../classes/SoundWireReel.html">¶</a>
+</h1>
+<p class="short_description">SoundWireReel</p>
+<div class="details collapse"></div>
+<a href="../classes/SoundWireReel.html" class="more">« More »</a>
+</div>
+<div id="StandardizedRecordingFormatType" class="element ajax clickable class">
+<h1>StandardizedRecordingFormatType<a href="../classes/StandardizedRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">StandardizedRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/StandardizedRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="StorageLocation" class="element ajax clickable class">
+<h1>StorageLocation<a href="../classes/StorageLocation.html">¶</a>
+</h1>
+<p class="short_description">StorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/StorageLocation.html" class="more">« More »</a>
+</div>
+<div id="Store" class="element ajax clickable class">
+<h1>Store<a href="../classes/Store.html">¶</a>
+</h1>
+<p class="short_description">Store</p>
+<div class="details collapse"></div>
+<a href="../classes/Store.html" class="more">« More »</a>
+</div>
+<div id="SubUnit" class="element ajax clickable class">
+<h1>SubUnit<a href="../classes/SubUnit.html">¶</a>
+</h1>
+<p class="short_description">SubUnit</p>
+<div class="details collapse"></div>
+<a href="../classes/SubUnit.html" class="more">« More »</a>
+</div>
+<div id="TwoInchOpenReelVideo" class="element ajax clickable class">
+<h1>TwoInchOpenReelVideo<a href="../classes/TwoInchOpenReelVideo.html">¶</a>
+</h1>
+<p class="short_description">TwoInchOpenReelVideo</p>
+<div class="details collapse"></div>
+<a href="../classes/TwoInchOpenReelVideo.html" class="more">« More »</a>
+</div>
+<div id="Umatic" class="element ajax clickable class">
+<h1>Umatic<a href="../classes/Umatic.html">¶</a>
+</h1>
+<p class="short_description">Umatic</p>
+<div class="details collapse"></div>
+<a href="../classes/Umatic.html" class="more">« More »</a>
+</div>
+<div id="Unit" class="element ajax clickable class">
+<h1>Unit<a href="../classes/Unit.html">¶</a>
+</h1>
+<p class="short_description">Unit</p>
+<div class="details collapse"></div>
+<a href="../classes/Unit.html" class="more">« More »</a>
+</div>
+<div id="UnitPerson" class="element ajax clickable class">
+<h1>UnitPerson<a href="../classes/UnitPerson.html">¶</a>
+</h1>
+<p class="short_description">UnitPerson</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitPerson.html" class="more">« More »</a>
+</div>
+<div id="UnitStorageLocation" class="element ajax clickable class">
+<h1>UnitStorageLocation<a href="../classes/UnitStorageLocation.html">¶</a>
+</h1>
+<p class="short_description">UnitStorageLocation</p>
+<div class="details collapse"></div>
+<a href="../classes/UnitStorageLocation.html" class="more">« More »</a>
+</div>
+<div id="User" class="element ajax clickable class">
+<h1>User<a href="../classes/User.html">¶</a>
+</h1>
+<p class="short_description">User</p>
+<div class="details collapse"></div>
+<a href="../classes/User.html" class="more">« More »</a>
+</div>
+<div id="VHS" class="element ajax clickable class">
+<h1>VHS<a href="../classes/VHS.html">¶</a>
+</h1>
+<p class="short_description">VHS</p>
+<div class="details collapse"></div>
+<a href="../classes/VHS.html" class="more">« More »</a>
+</div>
+<div id="VideoRecordingFormatType" class="element ajax clickable class">
+<h1>VideoRecordingFormatType<a href="../classes/VideoRecordingFormatType.html">¶</a>
+</h1>
+<p class="short_description">VideoRecordingFormatType</p>
+<div class="details collapse"></div>
+<a href="../classes/VideoRecordingFormatType.html" class="more">« More »</a>
+</div>
+<div id="XDCamOptical" class="element ajax clickable class">
+<h1>XDCamOptical<a href="../classes/XDCamOptical.html">¶</a>
+</h1>
+<p class="short_description">XDCamOptical</p>
+<div class="details collapse"></div>
+<a href="../classes/XDCamOptical.html" class="more">« More »</a>
+</div>
+<div id="sfGuardForgotPassword" class="element ajax clickable class">
+<h1>sfGuardForgotPassword<a href="../classes/sfGuardForgotPassword.html">¶</a>
+</h1>
+<p class="short_description">sfGuardForgotPassword</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardForgotPassword.html" class="more">« More »</a>
+</div>
+<div id="sfGuardGroup" class="element ajax clickable class">
+<h1>sfGuardGroup<a href="../classes/sfGuardGroup.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardGroup.html" class="more">« More »</a>
+</div>
+<div id="sfGuardGroupPermission" class="element ajax clickable class">
+<h1>sfGuardGroupPermission<a href="../classes/sfGuardGroupPermission.html">¶</a>
+</h1>
+<p class="short_description">sfGuardGroupPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardGroupPermission.html" class="more">« More »</a>
+</div>
+<div id="sfGuardPermission" class="element ajax clickable class">
+<h1>sfGuardPermission<a href="../classes/sfGuardPermission.html">¶</a>
+</h1>
+<p class="short_description">sfGuardPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardPermission.html" class="more">« More »</a>
+</div>
+<div id="sfGuardRememberKey" class="element ajax clickable class">
+<h1>sfGuardRememberKey<a href="../classes/sfGuardRememberKey.html">¶</a>
+</h1>
+<p class="short_description">sfGuardRememberKey</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardRememberKey.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUser" class="element ajax clickable class">
+<h1>sfGuardUser<a href="../classes/sfGuardUser.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUser</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUser.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUserGroup" class="element ajax clickable class">
+<h1>sfGuardUserGroup<a href="../classes/sfGuardUserGroup.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUserGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUserGroup.html" class="more">« More »</a>
+</div>
+<div id="sfGuardUserPermission" class="element ajax clickable class">
+<h1>sfGuardUserPermission<a href="../classes/sfGuardUserPermission.html">¶</a>
+</h1>
+<p class="short_description">sfGuardUserPermission</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardUserPermission.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.oneinchopenreelvideo.html">oneinchopenreelvideo</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="oneinchopenreelvideoActions" class="element ajax clickable class">
+<h1>oneinchopenreelvideoActions<a href="../classes/oneinchopenreelvideoActions.html">¶</a>
+</h1>
+<p class="short_description">oneinchopenreelvideo actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/oneinchopenreelvideoActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.openreelaudiotapeacetate.html">openreelaudiotapeacetate</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="openreelaudiotapeacetateActions" class="element ajax clickable class">
+<h1>openreelaudiotapeacetateActions<a href="../classes/openreelaudiotapeacetateActions.html">¶</a>
+</h1>
+<p class="short_description">openreelaudiotapeacetate actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/openreelaudiotapeacetateActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.openreelaudiotapepaper.html">openreelaudiotapepaper</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="openreelaudiotapepaperActions" class="element ajax clickable class">
+<h1>openreelaudiotapepaperActions<a href="../classes/openreelaudiotapepaperActions.html">¶</a>
+</h1>
+<p class="short_description">openreelaudiotapepaper actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/openreelaudiotapepaperActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.openreelaudiotapepolyster.html">openreelaudiotapepolyster</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="openreelaudiotapepolysterActions" class="element ajax clickable class">
+<h1>openreelaudiotapepolysterActions<a href="../classes/openreelaudiotapepolysterActions.html">¶</a>
+</h1>
+<p class="short_description">openreelaudiotapepolyster actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/openreelaudiotapepolysterActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.openreelaudiotapepvc.html">openreelaudiotapepvc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="openreelaudiotapepvcActions" class="element ajax clickable class">
+<h1>openreelaudiotapepvcActions<a href="../classes/openreelaudiotapepvcActions.html">¶</a>
+</h1>
+<p class="short_description">openreelaudiotapepvc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/openreelaudiotapepvcActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.optical.html">optical</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="opticalActions" class="element ajax clickable class">
+<h1>opticalActions<a href="../classes/opticalActions.html">¶</a>
+</h1>
+<p class="short_description">optical actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/opticalActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.opticalvideo.html">opticalvideo</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="opticalvideoActions" class="element ajax clickable class">
+<h1>opticalvideoActions<a href="../classes/opticalvideoActions.html">¶</a>
+</h1>
+<p class="short_description">opticalvideo actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/opticalvideoActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.person.html">person</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="personActions" class="element ajax clickable class">
+<h1>personActions<a href="../classes/personActions.html">¶</a>
+</h1>
+<p class="short_description">person actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/personActions.html" class="more">« More »</a>
+</div>
+<div id="personActions" class="element ajax clickable class">
+<h1>personActions<a href="../classes/personActions.html">¶</a>
+</h1>
+<p class="short_description">person actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/personActions.html" class="more">« More »</a>
+</div>
+<div id="personGeneratorConfiguration" class="element ajax clickable class">
+<h1>personGeneratorConfiguration<a href="../classes/personGeneratorConfiguration.html">¶</a>
+</h1>
+<p class="short_description">person module configuration.</p>
+<div class="details collapse"></div>
+<a href="../classes/personGeneratorConfiguration.html" class="more">« More »</a>
+</div>
+<div id="personGeneratorHelper" class="element ajax clickable class">
+<h1>personGeneratorHelper<a href="../classes/personGeneratorHelper.html">¶</a>
+</h1>
+<p class="short_description">person module helper.</p>
+<div class="details collapse"></div>
+<a href="../classes/personGeneratorHelper.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.pressedfortyfiverpmdisc.html">pressedfortyfiverpmdisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="pressedfortyfiverpmdiscActions" class="element ajax clickable class">
+<h1>pressedfortyfiverpmdiscActions<a href="../classes/pressedfortyfiverpmdiscActions.html">¶</a>
+</h1>
+<p class="short_description">pressedfortyfiverpmdisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/pressedfortyfiverpmdiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.pressedlpdisc.html">pressedlpdisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="pressedlpdiscActions" class="element ajax clickable class">
+<h1>pressedlpdiscActions<a href="../classes/pressedlpdiscActions.html">¶</a>
+</h1>
+<p class="short_description">pressedlpdisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/pressedlpdiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.pressedseventyeightrpmdisc.html">pressedseventyeightrpmdisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="pressedseventyeightrpmdiscActions" class="element ajax clickable class">
+<h1>pressedseventyeightrpmdiscActions<a href="../classes/pressedseventyeightrpmdiscActions.html">¶</a>
+</h1>
+<p class="short_description">pressedseventyeightrpmdisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/pressedseventyeightrpmdiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.soundopticaldisc.html">soundopticaldisc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="soundopticaldiscActions" class="element ajax clickable class">
+<h1>soundopticaldiscActions<a href="../classes/soundopticaldiscActions.html">¶</a>
+</h1>
+<p class="short_description">soundopticaldisc actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/soundopticaldiscActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.soundopticaldisk.html">soundopticaldisk</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="soundopticaldiskActions" class="element ajax clickable class">
+<h1>soundopticaldiskActions<a href="../classes/soundopticaldiskActions.html">¶</a>
+</h1>
+<p class="short_description">soundopticaldisk actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/soundopticaldiskActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.soundwirereel.html">soundwirereel</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="soundwirereelActions" class="element ajax clickable class">
+<h1>soundwirereelActions<a href="../classes/soundwirereelActions.html">¶</a>
+</h1>
+<p class="short_description">soundwirereel actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/soundwirereelActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.storagelocation.html">storagelocation</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="storagelocationActions" class="element ajax clickable class">
+<h1>storagelocationActions<a href="../classes/storagelocationActions.html">¶</a>
+</h1>
+<p class="short_description">storagelocation actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/storagelocationActions.html" class="more">« More »</a>
+</div>
+<div id="storagelocationActions" class="element ajax clickable class">
+<h1>storagelocationActions<a href="../classes/storagelocationActions.html">¶</a>
+</h1>
+<p class="short_description">storagelocation actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/storagelocationActions.html" class="more">« More »</a>
+</div>
+<div id="storagelocationGeneratorConfiguration" class="element ajax clickable class">
+<h1>storagelocationGeneratorConfiguration<a href="../classes/storagelocationGeneratorConfiguration.html">¶</a>
+</h1>
+<p class="short_description">storagelocation module configuration.</p>
+<div class="details collapse"></div>
+<a href="../classes/storagelocationGeneratorConfiguration.html" class="more">« More »</a>
+</div>
+<div id="storagelocationGeneratorHelper" class="element ajax clickable class">
+<h1>storagelocationGeneratorHelper<a href="../classes/storagelocationGeneratorHelper.html">¶</a>
+</h1>
+<p class="short_description">storagelocation module helper.</p>
+<div class="details collapse"></div>
+<a href="../classes/storagelocationGeneratorHelper.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.twoinchopenreelvideo.html">twoinchopenreelvideo</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="twoinchopenreelvideoActions" class="element ajax clickable class">
+<h1>twoinchopenreelvideoActions<a href="../classes/twoinchopenreelvideoActions.html">¶</a>
+</h1>
+<p class="short_description">twoinchopenreelvideo actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/twoinchopenreelvideoActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.umatic.html">umatic</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="umaticActions" class="element ajax clickable class">
+<h1>umaticActions<a href="../classes/umaticActions.html">¶</a>
+</h1>
+<p class="short_description">umatic actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/umaticActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.unit.html">unit</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="unitActions" class="element ajax clickable class">
+<h1>unitActions<a href="../classes/unitActions.html">¶</a>
+</h1>
+<p class="short_description">unit actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/unitActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.user.html">user</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="userActions" class="element ajax clickable class">
+<h1>userActions<a href="../classes/userActions.html">¶</a>
+</h1>
+<p class="short_description">user actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/userActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.vhs.html">vhs</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="vhsActions" class="element ajax clickable class">
+<h1>vhsActions<a href="../classes/vhsActions.html">¶</a>
+</h1>
+<p class="short_description">vhs actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/vhsActions.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/mediaSCORE.html">mediaSCORE</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/mediaSCORE.xdcamoptical.html">xdcamoptical</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="xdcamopticalActions" class="element ajax clickable class">
+<h1>xdcamopticalActions<a href="../classes/xdcamopticalActions.html">¶</a>
+</h1>
+<p class="short_description">xdcamoptical actions.</p>
+<div class="details collapse"></div>
+<a href="../classes/xdcamopticalActions.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:40:16+05:00.<br></footer></div>
+</div>
+</body>
+</html>

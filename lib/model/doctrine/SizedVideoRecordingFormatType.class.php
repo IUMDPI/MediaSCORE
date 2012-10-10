@@ -7,10 +7,11 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class SizedVideoRecordingFormatType extends BaseSizedVideoRecordingFormatType
-{
-	public static $constants = array(''=>'Select',0 => 'Small',1=>'Large'); 
+class SizedVideoRecordingFormatType extends BaseSizedVideoRecordingFormatType {
+
+    public static $constants = array('' => 'Select', 0 => 'Small', 1 => 'Large');
+
 }

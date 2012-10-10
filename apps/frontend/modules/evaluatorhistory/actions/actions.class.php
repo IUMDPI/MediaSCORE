@@ -10,6 +10,12 @@
  */
 class evaluatorhistoryActions extends sfActions {
 
+    /**
+     * Get Consulted persons
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeGetConsultedPersons(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             // get the histroy of Evaluator
@@ -29,6 +35,11 @@ class evaluatorhistoryActions extends sfActions {
         }
     }
 
+    /**
+     * List EvaluatorHistoryPersonnel
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeIndex(sfWebRequest $request) {
 
         $agID = $request->getParameter('id');
@@ -57,6 +68,11 @@ class evaluatorhistoryActions extends sfActions {
         }
     }
 
+    /**
+     * Generate EvaluatorHistoryPersonnel form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
 
         $this->form = new EvaluatorHistoryForm(
@@ -67,6 +83,11 @@ class evaluatorhistoryActions extends sfActions {
         );
     }
 
+    /**
+     * EvaluatorHistoryPersonnel Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -80,6 +101,11 @@ class evaluatorhistoryActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * EvaluatorHistoryPersonnel edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
 
         $this->forward404Unless($evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id'))), sprintf('Object evaluator_history does not exist (%s).', $request->getParameter('id')));
@@ -87,6 +113,11 @@ class evaluatorhistoryActions extends sfActions {
                 ));
     }
 
+    /**
+     * EvaluatorHistoryPersonnel Post edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($evaluator_history = Doctrine_Core::getTable('EvaluatorHistory')->find(array($request->getParameter('id'))), sprintf('Object evaluator_history does not exist (%s).', $request->getParameter('id')));
@@ -98,6 +129,11 @@ class evaluatorhistoryActions extends sfActions {
         $this->setTemplate('edit');
     }
 
+    /**
+     * Delete EvaluatorHistoryPersonnel
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         //$request->checkCSRFProtection();
 
@@ -107,6 +143,12 @@ class evaluatorhistoryActions extends sfActions {
         $this->redirect('evaluatorhistory/index');
     }
 
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {

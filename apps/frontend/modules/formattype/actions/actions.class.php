@@ -10,6 +10,12 @@
  */
 class formattypeActions extends sfActions {
 
+    /**
+     * Get format type
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeGetModelName(sfWebRequest $request) {
         $formatTypeID = $request->getParameter('id');
 
@@ -33,30 +39,53 @@ class formattypeActions extends sfActions {
         }
     }
 
+    /**
+     * List FormatType
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeIndex(sfWebRequest $request) {
         $this->format_types = Doctrine_Core::getTable('FormatType')
                 ->createQuery('a')
                 ->execute();
     }
 
+    /**
+     * FormatType show detail 
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeShow(sfWebRequest $request) {
         $this->format_type = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id')));
         $this->forward404Unless($this->format_type);
     }
 
+    /**
+     * Get Format type
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         echo FormatType::getTypeModelNameForModuleName($this->getModuleName());
         //$this->form = new FormatTypeForm();
     }
 
+    /**
+     * FormatType new form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNewform(sfWebRequest $request) {
 
         $this->form = new FormatTypeForm();
-
-
         $this->setTemplate('new');
     }
 
+    /** 
+     * FormatType Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -72,11 +101,21 @@ class formattypeActions extends sfActions {
         }
     }
 
+    /**
+     * FormatType edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($format_type = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object format_type does not exist (%s).', $request->getParameter('id')));
         $this->form = new FormatTypeForm($format_type);
     }
 
+    /**
+     * FormatType Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($format_type = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object format_type does not exist (%s).', $request->getParameter('id')));
@@ -91,6 +130,11 @@ class formattypeActions extends sfActions {
         }
     }
 
+    /**
+     * Delete FormatType
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         $request->checkCSRFProtection();
 
@@ -100,6 +144,14 @@ class formattypeActions extends sfActions {
         $this->redirect('formattype/index');
     }
 
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         $for = $request->getParameter('format_type');
@@ -108,7 +160,6 @@ class formattypeActions extends sfActions {
             $format_type = $form->save();
             $saveReturnId = array('form' => true, 'id' => $format_type->getId());
             return $saveReturnId;
-//      $this->redirect('formattype/edit?id='.$format_type->getId());
         }
         return false;
     }

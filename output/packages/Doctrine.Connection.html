@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » Doctrine\Connection</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/Doctrine.Connection.html" title="Connection"><i class="icon-folder-open"></i>Connection</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#Doctrine_Connection_Common" title="standard connection, the parent of pgsql, mysql and sqlite">Doctrine_Connection_Common</a></li>
+<li><a href="#Doctrine_Connection_Db2" title="Doctrine_Connection_Db2">Doctrine_Connection_Db2</a></li>
+<li><a href="#Doctrine_Connection_Exception" title="Doctrine_Exception">Doctrine_Connection_Exception</a></li>
+<li><a href="#Doctrine_Connection_Mock" title="Doctrine_Connection_Mysql">Doctrine_Connection_Mock</a></li>
+<li><a href="#Doctrine_Connection_Module" title="Doctrine_Connection_Module">Doctrine_Connection_Module</a></li>
+<li><a href="#Doctrine_Connection_Mssql_Exception" title="Doctrine_Connection_Mssql_Exception">Doctrine_Connection_Mssql_Exception</a></li>
+<li><a href="#Doctrine_Connection_Mssql" title="Doctrine_Connection_Mssql">Doctrine_Connection_Mssql</a></li>
+<li><a href="#Doctrine_Connection_Mysql_Exception" title="Doctrine_Connection_Mysql_Exception">Doctrine_Connection_Mysql_Exception</a></li>
+<li><a href="#Doctrine_Connection_Mysql" title="Doctrine_Connection_Mysql">Doctrine_Connection_Mysql</a></li>
+<li><a href="#Doctrine_Connection_Oracle_Exception" title="Doctrine_Connection_Oracle_Exception">Doctrine_Connection_Oracle_Exception</a></li>
+<li><a href="#Doctrine_Connection_Oracle" title="Doctrine_Connection_Oracle">Doctrine_Connection_Oracle</a></li>
+<li><a href="#Doctrine_Connection_Pgsql_Exception" title="Doctrine_Connection_Pgsql_Exception">Doctrine_Connection_Pgsql_Exception</a></li>
+<li><a href="#Doctrine_Connection_Pgsql" title="Doctrine_Connection_Pgsql">Doctrine_Connection_Pgsql</a></li>
+<li><a href="#Doctrine_Connection_Profiler_Exception" title="Doctrine_Connection_Profiler_Exception">Doctrine_Connection_Profiler_Exception</a></li>
+<li><a href="#Doctrine_Connection_Profiler" title="Doctrine_Connection_Profiler">Doctrine_Connection_Profiler</a></li>
+<li><a href="#Doctrine_Connection_Sqlite_Exception" title="Doctrine_Connection_Sqlite_Exception">Doctrine_Connection_Sqlite_Exception</a></li>
+<li><a href="#Doctrine_Connection_Sqlite" title="Doctrine_Connection_Sqlite">Doctrine_Connection_Sqlite</a></li>
+<li><a href="#Doctrine_Connection_Statement" title="Doctrine_Connection_Statement">Doctrine_Connection_Statement</a></li>
+<li><a href="#Doctrine_Connection_UnitOfWork" title="Doctrine_Connection_UnitOfWork">Doctrine_Connection_UnitOfWork</a></li>
+<li><a href="#Doctrine_Connection" title="Doctrine_Connection">Doctrine_Connection</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/Doctrine.html">Doctrine</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/Doctrine.Connection.html">Connection</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="Doctrine_Connection" class="element ajax clickable class">
+<h1>Doctrine_Connection<a href="../classes/Doctrine_Connection.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Common" class="element ajax clickable class">
+<h1>Doctrine_Connection_Common<a href="../classes/Doctrine_Connection_Common.html">¶</a>
+</h1>
+<p class="short_description">standard connection, the parent of pgsql, mysql and sqlite</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Common.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Db2" class="element ajax clickable class">
+<h1>Doctrine_Connection_Db2<a href="../classes/Doctrine_Connection_Db2.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Db2</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Db2.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Exception<a href="../classes/Doctrine_Connection_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Mock" class="element ajax clickable class">
+<h1>Doctrine_Connection_Mock<a href="../classes/Doctrine_Connection_Mock.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Mysql</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Mock.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Module" class="element ajax clickable class">
+<h1>Doctrine_Connection_Module<a href="../classes/Doctrine_Connection_Module.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Module</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Module.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Mssql" class="element ajax clickable class">
+<h1>Doctrine_Connection_Mssql<a href="../classes/Doctrine_Connection_Mssql.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Mssql</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Mssql.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Mssql_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Mssql_Exception<a href="../classes/Doctrine_Connection_Mssql_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Mssql_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Mssql_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Mysql" class="element ajax clickable class">
+<h1>Doctrine_Connection_Mysql<a href="../classes/Doctrine_Connection_Mysql.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Mysql</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Mysql.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Mysql_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Mysql_Exception<a href="../classes/Doctrine_Connection_Mysql_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Mysql_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Mysql_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Oracle" class="element ajax clickable class">
+<h1>Doctrine_Connection_Oracle<a href="../classes/Doctrine_Connection_Oracle.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Oracle</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Oracle.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Oracle_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Oracle_Exception<a href="../classes/Doctrine_Connection_Oracle_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Oracle_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Oracle_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Pgsql" class="element ajax clickable class">
+<h1>Doctrine_Connection_Pgsql<a href="../classes/Doctrine_Connection_Pgsql.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Pgsql</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Pgsql.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Pgsql_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Pgsql_Exception<a href="../classes/Doctrine_Connection_Pgsql_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Pgsql_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Pgsql_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Profiler" class="element ajax clickable class">
+<h1>Doctrine_Connection_Profiler<a href="../classes/Doctrine_Connection_Profiler.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Profiler</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Profiler.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Profiler_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Profiler_Exception<a href="../classes/Doctrine_Connection_Profiler_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Profiler_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Profiler_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Sqlite" class="element ajax clickable class">
+<h1>Doctrine_Connection_Sqlite<a href="../classes/Doctrine_Connection_Sqlite.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Sqlite</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Sqlite.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Sqlite_Exception" class="element ajax clickable class">
+<h1>Doctrine_Connection_Sqlite_Exception<a href="../classes/Doctrine_Connection_Sqlite_Exception.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Sqlite_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Sqlite_Exception.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_Statement" class="element ajax clickable class">
+<h1>Doctrine_Connection_Statement<a href="../classes/Doctrine_Connection_Statement.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_Statement</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_Statement.html" class="more">« More »</a>
+</div>
+<div id="Doctrine_Connection_UnitOfWork" class="element ajax clickable class">
+<h1>Doctrine_Connection_UnitOfWork<a href="../classes/Doctrine_Connection_UnitOfWork.html">¶</a>
+</h1>
+<p class="short_description">Doctrine_Connection_UnitOfWork</p>
+<div class="details collapse"></div>
+<a href="../classes/Doctrine_Connection_UnitOfWork.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:37:49+05:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -9,7 +9,11 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class userActions extends sfActions {
-
+    /**
+     * List users
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeIndex(sfWebRequest $request) {
         // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
@@ -25,19 +29,31 @@ class userActions extends sfActions {
                 ->createQuery('a')
                 ->execute();
     }
-
+    /**
+     * show detail of a user
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeShow(sfWebRequest $request) {
         $this->user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id')));
         $this->forward404Unless($this->user);
     }
-
+    /**
+     * New form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
             $this->redirect('storagelocation/index');
         $this->form = new sfGuardUserForm();
     }
-
+    /**
+     * Post new form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
          // if user dont have admin rights then redirect storagelocation
         if ($this->getUser()->getGuardUser()->getRole() != 1)
@@ -51,14 +67,22 @@ class userActions extends sfActions {
 
         $this->setTemplate('new');
     }
-
+    /**
+     * Edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
         $this->form = new sfGuardUserForm($user, array(
                     'action' => 'edit'
                 ));
     }
-
+    /**
+     * Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($user = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object user does not exist (%s).', $request->getParameter('id')));
@@ -70,7 +94,11 @@ class userActions extends sfActions {
 
         $this->setTemplate('edit');
     }
-
+    /**
+     * Delete user
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         if ($this->getUser()->getGuardUser()->getRole() != 1)
             $this->redirect('storagelocation/index');
@@ -81,7 +109,13 @@ class userActions extends sfActions {
 
         $this->redirect('user/index');
     }
-
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @param boolean $new 
+     */
     protected function processForm(sfWebRequest $request, sfForm $form, $new = null) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {

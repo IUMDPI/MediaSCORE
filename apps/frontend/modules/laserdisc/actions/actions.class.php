@@ -10,21 +10,20 @@
  */
 class laserdiscActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->laserdiscs = Doctrine_Core::getTable('Laserdisc')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->laserdisc = Doctrine_Core::getTable('Laserdisc')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->laserdisc);
-    }
-
+    /**
+     * Generate Laserdisc form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new LaserdiscForm();
     }
 
+    /**
+     * Laserdisc Post fom process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,21 @@ class laserdiscActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * Laserdisc edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($laserdisc = Doctrine_Core::getTable('Laserdisc')->find(array($request->getParameter('id'))), sprintf('Object laserdisc does not exist (%s).', $request->getParameter('id')));
         $this->form = new LaserdiscForm($laserdisc);
     }
 
+    /**
+     * Laserdisc Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($laserdisc = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object laserdisc does not exist (%s).', $request->getParameter('id')));
@@ -59,6 +68,11 @@ class laserdiscActions extends sfActions {
         }
     }
 
+    /**
+     * Laserdisc Delete
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         $request->checkCSRFProtection();
 
@@ -68,13 +82,20 @@ class laserdiscActions extends sfActions {
         $this->redirect('laserdisc/index');
     }
 
+    /**
+     * Process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $laserdisc = $form->save();
             $saveReturnId = array('form' => true, 'id' => $laserdisc->getId());
             return $saveReturnId;
-//      $this->redirect('laserdisc/edit?id='.$laserdisc->getId());
         }
         return false;
     }

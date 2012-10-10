@@ -9,7 +9,11 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class unitActions extends sfActions {
-
+    /**
+     * global search method
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeSearch(sfWebRequest $request) {
         // make array of all the format types that are available
         $types = array('Metal Disc' => '1',
@@ -98,7 +102,12 @@ class unitActions extends sfActions {
             }
         }
     }
-
+    /**
+     * get list of unit for asset group
+     * 
+     * @param sfWebRequest $request 
+     * @return json
+     */
     public function executeGetUnitForAssetGroup(sfWebRequest $request) {
 
         if ($request->isXmlHttpRequest()) {
@@ -131,7 +140,12 @@ class unitActions extends sfActions {
             echo json_encode(array_pop($units));
         }
     }
-
+    /**
+     * get unit personnel
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeUnitPersonnelLocation(sfWebRequest $request) {
         $unitId = $request->getParameter('u');
         $this->forward404Unless($request->isXmlHttpRequest());
@@ -153,7 +167,12 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode(array('success' => true, 'unit' => $unit, 'location' => $location)));
         }
     }
-
+    /**
+     * get user detail of unit
+     * 
+     * @param sfWebRequest $request
+     * @return json 
+     */
     public function executeGetUserDetail(sfWebRequest $request) {
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
@@ -167,7 +186,12 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user)));
         }
     }
-
+    /**
+     * list and filter unit
+     * 
+     * @param sfWebRequest $request
+     * @return json if request is ajax 
+     */
     public function executeIndex(sfWebRequest $request) {
         // if any unit is deleted then so the message and remove it.
         $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
@@ -241,7 +265,12 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         }
     }
-
+    /**
+     * detail of specific unit
+     * 
+     * @param sfWebRequest $request
+     * @return type 
+     */
     public function executeShow(sfWebRequest $request) {
 
 
@@ -258,14 +287,22 @@ class unitActions extends sfActions {
             $this->forward404Unless($this->unit);
         }
     }
-
+    /**
+     * Unit new form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
 
         $this->form = new UnitForm(null,
                         array('userID' => $this->getUser()->getGuardUser()->getId()
                 ));
     }
-
+    /**
+     * Unit Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -281,7 +318,11 @@ class unitActions extends sfActions {
             $this->setTemplate('new');
         }
     }
-
+    /**
+     * Unit edit form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
         $this->form = new UnitForm(
@@ -291,7 +332,11 @@ class unitActions extends sfActions {
                             'action' => 'edit'
                 ));
     }
-
+    /**
+     * Unit Post edit form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
@@ -314,7 +359,11 @@ class unitActions extends sfActions {
             $this->setTemplate('edit');
         }
     }
-
+    /**
+     * delete method
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDelete(sfWebRequest $request) {
         //$request->checkCSRFProtection();
 
@@ -332,7 +381,14 @@ class unitActions extends sfActions {
         }
         $this->redirect('unit/index');
     }
-
+    /**
+     * process and validate form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean 
+     * @return string[]
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         // get the storage location for the given unit.

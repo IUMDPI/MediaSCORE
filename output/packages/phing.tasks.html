@@ -1,0 +1,1079 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » phing\tasks</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<span class="empty-package"><i class="icon-folder-close"></i>tasks</span><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/phing.tasks.ext.html" title="ext"><i class="icon-folder-open"></i>ext</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/phing.tasks.ext.coverage.html" title="coverage"><i class="icon-folder-open"></i>coverage</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.ioncube.html" title="ioncube"><i class="icon-folder-open"></i>ioncube</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.pdo.html" title="pdo"><i class="icon-folder-open"></i>pdo</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.pearpackage.html" title="pearpackage"><i class="icon-folder-open"></i>pearpackage</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.phpdoc.html" title="phpdoc"><i class="icon-folder-open"></i>phpdoc</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.phpunit.html" title="phpunit"><i class="icon-folder-open"></i>phpunit</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/phing.tasks.ext.phpunit.phpunit2.html" title="phpunit2"><i class="icon-folder-open"></i>phpunit2</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.phpunit.phpunit3.html" title="phpunit3"><i class="icon-folder-open"></i>phpunit3</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.phpunit2.html" title="phpunit2"><i class="icon-folder-open"></i>phpunit2</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.simpletest.html" title="simpletest"><i class="icon-folder-open"></i>simpletest</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.ext.svn.html" title="svn"><i class="icon-folder-open"></i>svn</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="../packages/phing.tasks.system.html" title="system"><i class="icon-folder-open"></i>system</a><ul class="nav nav-list nav-packages"><li>
+<a href="../packages/phing.tasks.system.condition.html" title="condition"><i class="icon-folder-open"></i>condition</a><ul class="nav nav-list nav-packages"></ul>
+</li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="BuildPropelGenPEARPackageTask" class="element ajax clickable class">
+<h1>BuildPropelGenPEARPackageTask<a href="../classes/BuildPropelGenPEARPackageTask.html">¶</a>
+</h1>
+<p class="short_description">This is an abstract task that should be used by all those tasks that
+require to include or exclude files based on pattern matching.</p>
+<div class="details collapse"></div>
+<a href="../classes/BuildPropelGenPEARPackageTask.html" class="more">« More »</a>
+</div>
+<div id="CapsuleTask" class="element ajax clickable class">
+<h1>CapsuleTask<a href="../classes/CapsuleTask.html">¶</a>
+</h1>
+<p class="short_description">A phing task for generating output by using Capsule.</p>
+<div class="details collapse"></div>
+<a href="../classes/CapsuleTask.html" class="more">« More »</a>
+</div>
+<div id="CreoleSQLExecTask" class="element ajax clickable class">
+<h1>CreoleSQLExecTask<a href="../classes/CreoleSQLExecTask.html">¶</a>
+</h1>
+<p class="short_description">Executes a series of SQL statements on a database using Creole.</p>
+<div class="details collapse"></div>
+<a href="../classes/CreoleSQLExecTask.html" class="more">« More »</a>
+</div>
+<div id="ExtractBaseTask" class="element ajax clickable class">
+<h1>ExtractBaseTask<a href="../classes/ExtractBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for extracting tasks such as Unzip and Untar.</p>
+<div class="details collapse"></div>
+<a href="../classes/ExtractBaseTask.html" class="more">« More »</a>
+</div>
+<div id="PDOSQLExecTask" class="element ajax clickable class">
+<h1>PDOSQLExecTask<a href="../classes/PDOSQLExecTask.html">¶</a>
+</h1>
+<p class="short_description">Executes a series of SQL statements on a database using PDO.</p>
+<div class="details collapse"></div>
+<a href="../classes/PDOSQLExecTask.html" class="more">« More »</a>
+</div>
+<div id="PackageAsPathTask" class="element ajax clickable class">
+<h1>PackageAsPathTask<a href="../classes/PackageAsPathTask.html">¶</a>
+</h1>
+<p class="short_description">Convert dot-notation packages to relative paths.</p>
+<div class="details collapse"></div>
+<a href="../classes/PackageAsPathTask.html" class="more">« More »</a>
+</div>
+<div id="PearPackage2Task" class="element ajax clickable class">
+<h1>PearPackage2Task<a href="../classes/PearPackage2Task.html">¶</a>
+</h1>
+<p class="short_description">A task to create a PEAR package.xml version 2.0 file.</p>
+<div class="details collapse"></div>
+<a href="../classes/PearPackage2Task.html" class="more">« More »</a>
+</div>
+<div id="PearPackageTask" class="element ajax clickable class">
+<h1>PearPackageTask<a href="../classes/PearPackageTask.html">¶</a>
+</h1>
+<p class="short_description">A task to create PEAR package.xml file.</p>
+<div class="details collapse"></div>
+<a href="../classes/PearPackageTask.html" class="more">« More »</a>
+</div>
+<div id="PhpCodeSnifferTask" class="element ajax clickable class">
+<h1>PhpCodeSnifferTask<a href="../classes/PhpCodeSnifferTask.html">¶</a>
+</h1>
+<p class="short_description">A PHP code sniffer task.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpCodeSnifferTask.html" class="more">« More »</a>
+</div>
+<div id="PhpLintTask" class="element ajax clickable class">
+<h1>PhpLintTask<a href="../classes/PhpLintTask.html">¶</a>
+</h1>
+<p class="short_description">A PHP lint task.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpLintTask.html" class="more">« More »</a>
+</div>
+<div id="ScpSendTask" class="element ajax clickable class">
+<h1>ScpSendTask<a href="../classes/ScpSendTask.html">¶</a>
+</h1>
+<p class="short_description">SCPs a File to a remote server</p>
+<div class="details collapse"></div>
+<a href="../classes/ScpSendTask.html" class="more">« More »</a>
+</div>
+<div id="SmartyTask" class="element ajax clickable class">
+<h1>SmartyTask<a href="../classes/SmartyTask.html">¶</a>
+</h1>
+<p class="short_description">A phing task for generating output by using Smarty.</p>
+<div class="details collapse"></div>
+<a href="../classes/SmartyTask.html" class="more">« More »</a>
+</div>
+<div id="TarTask" class="element ajax clickable class">
+<h1>TarTask<a href="../classes/TarTask.html">¶</a>
+</h1>
+<p class="short_description">Creates a tar archive using PEAR Archive_Tar.</p>
+<div class="details collapse"></div>
+<a href="../classes/TarTask.html" class="more">« More »</a>
+</div>
+<div id="UntarTask" class="element ajax clickable class">
+<h1>UntarTask<a href="../classes/UntarTask.html">¶</a>
+</h1>
+<p class="short_description">Extracts one or several tar archives using PEAR Archive_Tar</p>
+<div class="details collapse"></div>
+<a href="../classes/UntarTask.html" class="more">« More »</a>
+</div>
+<div id="UnzipTask" class="element ajax clickable class">
+<h1>UnzipTask<a href="../classes/UnzipTask.html">¶</a>
+</h1>
+<p class="short_description">Extracts one or several zip archive using PEAR Archive_Zip (which is presently unreleased
+and included with Phing).</p>
+<div class="details collapse"></div>
+<a href="../classes/UnzipTask.html" class="more">« More »</a>
+</div>
+<div id="XmlLintTask" class="element ajax clickable class">
+<h1>XmlLintTask<a href="../classes/XmlLintTask.html">¶</a>
+</h1>
+<p class="short_description">A XML lint task.</p>
+<div class="details collapse"></div>
+<a href="../classes/XmlLintTask.html" class="more">« More »</a>
+</div>
+<div id="ZendCodeAnalyzerTask" class="element ajax clickable class">
+<h1>ZendCodeAnalyzerTask<a href="../classes/ZendCodeAnalyzerTask.html">¶</a>
+</h1>
+<p class="short_description">ZendCodeAnalyzerTask analyze PHP source code using the ZendCodeAnalyzer included in Zend Studio 5.1</p>
+<div class="details collapse"></div>
+<a href="../classes/ZendCodeAnalyzerTask.html" class="more">« More »</a>
+</div>
+<div id="ZipTask" class="element ajax clickable class">
+<h1>ZipTask<a href="../classes/ZipTask.html">¶</a>
+</h1>
+<p class="short_description">Creates a zip archive using PEAR Archive_Zip (which is presently unreleased
+and included with Phing).</p>
+<div class="details collapse"></div>
+<a href="../classes/ZipTask.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.coverage.html">coverage</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="CoverageMerger" class="element ajax clickable class">
+<h1>CoverageMerger<a href="../classes/CoverageMerger.html">¶</a>
+</h1>
+<p class="short_description">Saves coverage output of the test to a specified database</p>
+<div class="details collapse"></div>
+<a href="../classes/CoverageMerger.html" class="more">« More »</a>
+</div>
+<div id="CoverageMergerTask" class="element ajax clickable class">
+<h1>CoverageMergerTask<a href="../classes/CoverageMergerTask.html">¶</a>
+</h1>
+<p class="short_description">Merges code coverage snippets into a code coverage database</p>
+<div class="details collapse"></div>
+<a href="../classes/CoverageMergerTask.html" class="more">« More »</a>
+</div>
+<div id="CoverageReportTask" class="element ajax clickable class">
+<h1>CoverageReportTask<a href="../classes/CoverageReportTask.html">¶</a>
+</h1>
+<p class="short_description">Transforms information in a code coverage database to XML</p>
+<div class="details collapse"></div>
+<a href="../classes/CoverageReportTask.html" class="more">« More »</a>
+</div>
+<div id="CoverageReportTransformer" class="element ajax clickable class">
+<h1>CoverageReportTransformer<a href="../classes/CoverageReportTransformer.html">¶</a>
+</h1>
+<p class="short_description">Transform a Phing/Xdebug code coverage xml report.</p>
+<div class="details collapse"></div>
+<a href="../classes/CoverageReportTransformer.html" class="more">« More »</a>
+</div>
+<div id="CoverageSetupTask" class="element ajax clickable class">
+<h1>CoverageSetupTask<a href="../classes/CoverageSetupTask.html">¶</a>
+</h1>
+<p class="short_description">Initializes a code coverage database</p>
+<div class="details collapse"></div>
+<a href="../classes/CoverageSetupTask.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.ioncube.html">ioncube</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="IoncubeComment" class="element ajax clickable class">
+<h1>IoncubeComment<a href="../classes/IoncubeComment.html">¶</a>
+</h1>
+<p class="short_description">Wrapper for comments for ionCube tasks</p>
+<div class="details collapse"></div>
+<a href="../classes/IoncubeComment.html" class="more">« More »</a>
+</div>
+<div id="IoncubeEncoderTask" class="element ajax clickable class">
+<h1>IoncubeEncoderTask<a href="../classes/IoncubeEncoderTask.html">¶</a>
+</h1>
+<p class="short_description">Invokes the ionCube Encoder (PHP4 or PHP5)</p>
+<div class="details collapse"></div>
+<a href="../classes/IoncubeEncoderTask.html" class="more">« More »</a>
+</div>
+<div id="IoncubeLicenseTask" class="element ajax clickable class">
+<h1>IoncubeLicenseTask<a href="../classes/IoncubeLicenseTask.html">¶</a>
+</h1>
+<p class="short_description">Invokes the ionCube "make_license" program</p>
+<div class="details collapse"></div>
+<a href="../classes/IoncubeLicenseTask.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.pdo.html">pdo</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PDOResultFormatter" class="element ajax clickable class">
+<h1>PDOResultFormatter<a href="../classes/PDOResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Abstract</p>
+<div class="details collapse"></div>
+<a href="../classes/PDOResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="PDOSQLExecFormatterElement" class="element ajax clickable class">
+<h1>PDOSQLExecFormatterElement<a href="../classes/PDOSQLExecFormatterElement.html">¶</a>
+</h1>
+<p class="short_description">A class to represent the nested <formatter> element for PDO SQL results.</p>
+<div class="details collapse"></div>
+<a href="../classes/PDOSQLExecFormatterElement.html" class="more">« More »</a>
+</div>
+<div id="PlainPDOResultFormatter" class="element ajax clickable class">
+<h1>PlainPDOResultFormatter<a href="../classes/PlainPDOResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Plain text formatter for PDO results.</p>
+<div class="details collapse"></div>
+<a href="../classes/PlainPDOResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="XMLPDOResultFormatter" class="element ajax clickable class">
+<h1>XMLPDOResultFormatter<a href="../classes/XMLPDOResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">XML formatter for PDO results.</p>
+<div class="details collapse"></div>
+<a href="../classes/XMLPDOResultFormatter.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.pearpackage.html">pearpackage</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PEAR_PackageFileManager_Fileset" class="element ajax clickable class">
+<h1>PEAR_PackageFileManager_Fileset<a href="../classes/PEAR_PackageFileManager_Fileset.html">¶</a>
+</h1>
+<p class="short_description">Builds list of files for PEAR_PackageFileManager using a Phing FileSet.</p>
+<div class="details collapse"></div>
+<a href="../classes/PEAR_PackageFileManager_Fileset.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpdoc.html">phpdoc</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PhingPhpDocumentorSetup" class="element ajax clickable class">
+<h1>PhingPhpDocumentorSetup<a href="../classes/PhingPhpDocumentorSetup.html">¶</a>
+</h1>
+<p class="short_description">Phing subclass of the phpDocumentor_setup class provided with PhpDocumentor to work around limitations in PhpDocumentor API.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhingPhpDocumentorSetup.html" class="more">« More »</a>
+</div>
+<div id="PhpDocumentorExternalTask" class="element ajax clickable class">
+<h1>PhpDocumentorExternalTask<a href="../classes/PhpDocumentorExternalTask.html">¶</a>
+</h1>
+<p class="short_description">Task to run phpDocumentor with an external process</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpDocumentorExternalTask.html" class="more">« More »</a>
+</div>
+<div id="PhpDocumentorTask" class="element ajax clickable class">
+<h1>PhpDocumentorTask<a href="../classes/PhpDocumentorTask.html">¶</a>
+</h1>
+<p class="short_description">Task to run PhpDocumentor.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpDocumentorTask.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit.html">phpunit</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="BatchTest" class="element ajax clickable class">
+<h1>BatchTest<a href="../classes/BatchTest.html">¶</a>
+</h1>
+<p class="short_description">Scans a list of files given by the fileset attribute, extracts
+all subclasses of PHPUnit(2)_Framework_TestCase / PHPUnit(2)_Framework_TestSuite.</p>
+<div class="details collapse"></div>
+<a href="../classes/BatchTest.html" class="more">« More »</a>
+</div>
+<div id="FormatterElement" class="element ajax clickable class">
+<h1>FormatterElement<a href="../classes/FormatterElement.html">¶</a>
+</h1>
+<p class="short_description">A wrapper for the implementations of PHPUnit2ResultFormatter.</p>
+<div class="details collapse"></div>
+<a href="../classes/FormatterElement.html" class="more">« More »</a>
+</div>
+<div id="PHPUnit3ResultFormatter" class="element ajax clickable class">
+<h1>PHPUnit3ResultFormatter<a href="../classes/PHPUnit3ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">This abstract class describes classes that format the results of a PHPUnit2 testrun.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnit3ResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="PHPUnitReportTask" class="element ajax clickable class">
+<h1>PHPUnitReportTask<a href="../classes/PHPUnitReportTask.html">¶</a>
+</h1>
+<p class="short_description">Transform a PHPUnit2 xml report using XSLT.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnitReportTask.html" class="more">« More »</a>
+</div>
+<div id="PHPUnitTask" class="element ajax clickable class">
+<h1>PHPUnitTask<a href="../classes/PHPUnitTask.html">¶</a>
+</h1>
+<p class="short_description">Runs PHPUnit2/3 tests.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnitTask.html" class="more">« More »</a>
+</div>
+<div id="PHPUnitTestRunner" class="element ajax clickable class">
+<h1>PHPUnitTestRunner<a href="../classes/PHPUnitTestRunner.html">¶</a>
+</h1>
+<p class="short_description">Simple Testrunner for PHPUnit2/3 that runs all tests of a testsuite.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnitTestRunner.html" class="more">« More »</a>
+</div>
+<div id="PHPUnitUtil" class="element ajax clickable class">
+<h1>PHPUnitUtil<a href="../classes/PHPUnitUtil.html">¶</a>
+</h1>
+<p class="short_description">Various utility functions</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnitUtil.html" class="more">« More »</a>
+</div>
+<div id="SummaryPHPUnit3ResultFormatter" class="element ajax clickable class">
+<h1>SummaryPHPUnit3ResultFormatter<a href="../classes/SummaryPHPUnit3ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints short summary output of the test to Phing's logging system.</p>
+<div class="details collapse"></div>
+<a href="../classes/SummaryPHPUnit3ResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="XMLPHPUnit3ResultFormatter" class="element ajax clickable class">
+<h1>XMLPHPUnit3ResultFormatter<a href="../classes/XMLPHPUnit3ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints XML output of the test to a specified Writer</p>
+<div class="details collapse"></div>
+<a href="../classes/XMLPHPUnit3ResultFormatter.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit.html">phpunit</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit.phpunit2.html">phpunit2</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPUnit2ResultFormatter" class="element ajax clickable class">
+<h1>PHPUnit2ResultFormatter<a href="../classes/PHPUnit2ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">This abstract class describes classes that format the results of a PHPUnit2 testrun.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPUnit2ResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="PlainPHPUnit2ResultFormatter" class="element ajax clickable class">
+<h1>PlainPHPUnit2ResultFormatter<a href="../classes/PlainPHPUnit2ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints plain text output of the test to a specified Writer.</p>
+<div class="details collapse"></div>
+<a href="../classes/PlainPHPUnit2ResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="SummaryPHPUnit2ResultFormatter" class="element ajax clickable class">
+<h1>SummaryPHPUnit2ResultFormatter<a href="../classes/SummaryPHPUnit2ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints short summary output of the test to Phing's logging system.</p>
+<div class="details collapse"></div>
+<a href="../classes/SummaryPHPUnit2ResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="XMLPHPUnit2ResultFormatter" class="element ajax clickable class">
+<h1>XMLPHPUnit2ResultFormatter<a href="../classes/XMLPHPUnit2ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints XML output of the test to a specified Writer</p>
+<div class="details collapse"></div>
+<a href="../classes/XMLPHPUnit2ResultFormatter.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit.html">phpunit</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit.phpunit3.html">phpunit3</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PlainPHPUnit3ResultFormatter" class="element ajax clickable class">
+<h1>PlainPHPUnit3ResultFormatter<a href="../classes/PlainPHPUnit3ResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints plain text output of the test to a specified Writer.</p>
+<div class="details collapse"></div>
+<a href="../classes/PlainPHPUnit3ResultFormatter.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.phpunit2.html">phpunit2</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="SimpleTestResultFormatter" class="element ajax clickable class">
+<h1>SimpleTestResultFormatter<a href="../classes/SimpleTestResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">This abstract class describes classes that format the results of a SimpleTest testrun.</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestResultFormatter.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.simpletest.html">simpletest</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="SimpleTestCountResultFormatter" class="element ajax clickable class">
+<h1>SimpleTestCountResultFormatter<a href="../classes/SimpleTestCountResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Dummy result formatter used to count SimpleTest results</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestCountResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="SimpleTestFormatterElement" class="element ajax clickable class">
+<h1>SimpleTestFormatterElement<a href="../classes/SimpleTestFormatterElement.html">¶</a>
+</h1>
+<p class="short_description">Child class of "FormatterElement", overrides setType to provide other
+formatter classes for SimpleTest</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestFormatterElement.html" class="more">« More »</a>
+</div>
+<div id="SimpleTestPlainResultFormatter" class="element ajax clickable class">
+<h1>SimpleTestPlainResultFormatter<a href="../classes/SimpleTestPlainResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints plain text output of the test to a specified Writer.</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestPlainResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="SimpleTestSummaryResultFormatter" class="element ajax clickable class">
+<h1>SimpleTestSummaryResultFormatter<a href="../classes/SimpleTestSummaryResultFormatter.html">¶</a>
+</h1>
+<p class="short_description">Prints short summary output of the test to Phing's logging system.</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestSummaryResultFormatter.html" class="more">« More »</a>
+</div>
+<div id="SimpleTestTask" class="element ajax clickable class">
+<h1>SimpleTestTask<a href="../classes/SimpleTestTask.html">¶</a>
+</h1>
+<p class="short_description">Runs SimpleTest tests.</p>
+<div class="details collapse"></div>
+<a href="../classes/SimpleTestTask.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.html">ext</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.ext.svn.html">svn</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="SvnBaseTask" class="element ajax clickable class">
+<h1>SvnBaseTask<a href="../classes/SvnBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for Subversion tasks</p>
+<div class="details collapse"></div>
+<a href="../classes/SvnBaseTask.html" class="more">« More »</a>
+</div>
+<div id="SvnCheckoutTask" class="element ajax clickable class">
+<h1>SvnCheckoutTask<a href="../classes/SvnCheckoutTask.html">¶</a>
+</h1>
+<p class="short_description">Checks out a repository to a local directory</p>
+<div class="details collapse"></div>
+<a href="../classes/SvnCheckoutTask.html" class="more">« More »</a>
+</div>
+<div id="SvnExportTask" class="element ajax clickable class">
+<h1>SvnExportTask<a href="../classes/SvnExportTask.html">¶</a>
+</h1>
+<p class="short_description">Exports/checks out a repository to a local directory
+with authentication</p>
+<div class="details collapse"></div>
+<a href="../classes/SvnExportTask.html" class="more">« More »</a>
+</div>
+<div id="SvnLastRevisionTask" class="element ajax clickable class">
+<h1>SvnLastRevisionTask<a href="../classes/SvnLastRevisionTask.html">¶</a>
+</h1>
+<p class="short_description">Stores the number of the last revision of a workingcopy in a property</p>
+<div class="details collapse"></div>
+<a href="../classes/SvnLastRevisionTask.html" class="more">« More »</a>
+</div>
+<div id="SvnUpdateTask" class="element ajax clickable class">
+<h1>SvnUpdateTask<a href="../classes/SvnUpdateTask.html">¶</a>
+</h1>
+<p class="short_description">Updates a repository in local directory</p>
+<div class="details collapse"></div>
+<a href="../classes/SvnUpdateTask.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.system.html">system</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="AdhocTask" class="element ajax clickable class">
+<h1>AdhocTask<a href="../classes/AdhocTask.html">¶</a>
+</h1>
+<p class="short_description">Abstract class for creating adhoc Phing components in buildfile.</p>
+<div class="details collapse"></div>
+<a href="../classes/AdhocTask.html" class="more">« More »</a>
+</div>
+<div id="AdhocTaskdefTask" class="element ajax clickable class">
+<h1>AdhocTaskdefTask<a href="../classes/AdhocTaskdefTask.html">¶</a>
+</h1>
+<p class="short_description">A class for creating adhoc tasks in build file.</p>
+<div class="details collapse"></div>
+<a href="../classes/AdhocTaskdefTask.html" class="more">« More »</a>
+</div>
+<div id="AdhocTypedefTask" class="element ajax clickable class">
+<h1>AdhocTypedefTask<a href="../classes/AdhocTypedefTask.html">¶</a>
+</h1>
+<p class="short_description">A class for creating adhoc datatypes in build file.</p>
+<div class="details collapse"></div>
+<a href="../classes/AdhocTypedefTask.html" class="more">« More »</a>
+</div>
+<div id="AppendTask" class="element ajax clickable class">
+<h1>AppendTask<a href="../classes/AppendTask.html">¶</a>
+</h1>
+<p class="short_description">Appends text, contents of a file or set of files defined by a filelist to a destination file.</p>
+<div class="details collapse"></div>
+<a href="../classes/AppendTask.html" class="more">« More »</a>
+</div>
+<div id="CVSPassTask" class="element ajax clickable class">
+<h1>CVSPassTask<a href="../classes/CVSPassTask.html">¶</a>
+</h1>
+<p class="short_description">Adds an new entry to a CVS password file.</p>
+<div class="details collapse"></div>
+<a href="../classes/CVSPassTask.html" class="more">« More »</a>
+</div>
+<div id="ChmodTask" class="element ajax clickable class">
+<h1>ChmodTask<a href="../classes/ChmodTask.html">¶</a>
+</h1>
+<p class="short_description">Task that changes the permissions on a file/directory.</p>
+<div class="details collapse"></div>
+<a href="../classes/ChmodTask.html" class="more">« More »</a>
+</div>
+<div id="ChownTask" class="element ajax clickable class">
+<h1>ChownTask<a href="../classes/ChownTask.html">¶</a>
+</h1>
+<p class="short_description">Task that changes the permissions on a file/directory.</p>
+<div class="details collapse"></div>
+<a href="../classes/ChownTask.html" class="more">« More »</a>
+</div>
+<div id="CopyTask" class="element ajax clickable class">
+<h1>CopyTask<a href="../classes/CopyTask.html">¶</a>
+</h1>
+<p class="short_description">A phing copy task.</p>
+<div class="details collapse"></div>
+<a href="../classes/CopyTask.html" class="more">« More »</a>
+</div>
+<div id="CreoleTask" class="element ajax clickable class">
+<h1>CreoleTask<a href="../classes/CreoleTask.html">¶</a>
+</h1>
+<p class="short_description">Handles Creole configuration needed by SQL type tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/CreoleTask.html" class="more">« More »</a>
+</div>
+<div id="CvsTask" class="element ajax clickable class">
+<h1>CvsTask<a href="../classes/CvsTask.html">¶</a>
+</h1>
+<p class="short_description">Task for performing CVS operations.</p>
+<div class="details collapse"></div>
+<a href="../classes/CvsTask.html" class="more">« More »</a>
+</div>
+<div id="DeleteTask" class="element ajax clickable class">
+<h1>DeleteTask<a href="../classes/DeleteTask.html">¶</a>
+</h1>
+<p class="short_description">Deletes a file or directory, or set of files defined by a fileset.</p>
+<div class="details collapse"></div>
+<a href="../classes/DeleteTask.html" class="more">« More »</a>
+</div>
+<div id="ExecTask" class="element ajax clickable class">
+<h1>ExecTask<a href="../classes/ExecTask.html">¶</a>
+</h1>
+<p class="short_description">Executes a command on the shell.</p>
+<div class="details collapse"></div>
+<a href="../classes/ExecTask.html" class="more">« More »</a>
+</div>
+<div id="ExitTask" class="element ajax clickable class">
+<h1>ExitTask<a href="../classes/ExitTask.html">¶</a>
+</h1>
+<p class="short_description">Exits the active build, giving an additional message
+if available.</p>
+<div class="details collapse"></div>
+<a href="../classes/ExitTask.html" class="more">« More »</a>
+</div>
+<div id="ForeachTask" class="element ajax clickable class">
+<h1>ForeachTask<a href="../classes/ForeachTask.html">¶</a>
+</h1>
+<p class="short_description"><foreach> task</p>
+<div class="details collapse"></div>
+<a href="../classes/ForeachTask.html" class="more">« More »</a>
+</div>
+<div id="IncludePathTask" class="element ajax clickable class">
+<h1>IncludePathTask<a href="../classes/IncludePathTask.html">¶</a>
+</h1>
+<p class="short_description">Adds a normalized path to the PHP include_path.</p>
+<div class="details collapse"></div>
+<a href="../classes/IncludePathTask.html" class="more">« More »</a>
+</div>
+<div id="InputTask" class="element ajax clickable class">
+<h1>InputTask<a href="../classes/InputTask.html">¶</a>
+</h1>
+<p class="short_description">Reads input from the InputHandler.</p>
+<div class="details collapse"></div>
+<a href="../classes/InputTask.html" class="more">« More »</a>
+</div>
+<div id="MatchingTask" class="element ajax clickable class">
+<h1>MatchingTask<a href="../classes/MatchingTask.html">¶</a>
+</h1>
+<p class="short_description">This is an abstract task that should be used by all those tasks that
+require to include or exclude files based on pattern matching.</p>
+<div class="details collapse"></div>
+<a href="../classes/MatchingTask.html" class="more">« More »</a>
+</div>
+<div id="MkdirTask" class="element ajax clickable class">
+<h1>MkdirTask<a href="../classes/MkdirTask.html">¶</a>
+</h1>
+<p class="short_description">Task to create a directory.</p>
+<div class="details collapse"></div>
+<a href="../classes/MkdirTask.html" class="more">« More »</a>
+</div>
+<div id="MoveTask" class="element ajax clickable class">
+<h1>MoveTask<a href="../classes/MoveTask.html">¶</a>
+</h1>
+<p class="short_description">Moves a file or directory to a new file or directory.</p>
+<div class="details collapse"></div>
+<a href="../classes/MoveTask.html" class="more">« More »</a>
+</div>
+<div id="PDOTask" class="element ajax clickable class">
+<h1>PDOTask<a href="../classes/PDOTask.html">¶</a>
+</h1>
+<p class="short_description">Handles PDO configuration needed by SQL type tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/PDOTask.html" class="more">« More »</a>
+</div>
+<div id="PhingCallTask" class="element ajax clickable class">
+<h1>PhingCallTask<a href="../classes/PhingCallTask.html">¶</a>
+</h1>
+<p class="short_description">Call another target in the same project.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhingCallTask.html" class="more">« More »</a>
+</div>
+<div id="PhingTask" class="element ajax clickable class">
+<h1>PhingTask<a href="../classes/PhingTask.html">¶</a>
+</h1>
+<p class="short_description">Task that invokes phing on another build file.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhingTask.html" class="more">« More »</a>
+</div>
+<div id="PhpEvalTask" class="element ajax clickable class">
+<h1>PhpEvalTask<a href="../classes/PhpEvalTask.html">¶</a>
+</h1>
+<p class="short_description">Executes PHP function or evaluates expression and sets return value to a property.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpEvalTask.html" class="more">« More »</a>
+</div>
+<div id="PropertyPromptTask" class="element ajax clickable class">
+<h1>PropertyPromptTask<a href="../classes/PropertyPromptTask.html">¶</a>
+</h1>
+<p class="short_description">Deprecated task that uses console to prompt user for property values.</p>
+<div class="details collapse"></div>
+<a href="../classes/PropertyPromptTask.html" class="more">« More »</a>
+</div>
+<div id="PropertyTask" class="element ajax clickable class">
+<h1>PropertyTask<a href="../classes/PropertyTask.html">¶</a>
+</h1>
+<p class="short_description">Task for setting properties in buildfiles.</p>
+<div class="details collapse"></div>
+<a href="../classes/PropertyTask.html" class="more">« More »</a>
+</div>
+<div id="ReflexiveTask" class="element ajax clickable class">
+<h1>ReflexiveTask<a href="../classes/ReflexiveTask.html">¶</a>
+</h1>
+<p class="short_description">This task is for using filter chains to make changes to files and overwrite the original files.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReflexiveTask.html" class="more">« More »</a>
+</div>
+<div id="ResolvePathTask" class="element ajax clickable class">
+<h1>ResolvePathTask<a href="../classes/ResolvePathTask.html">¶</a>
+</h1>
+<p class="short_description">Task for resolving relative paths and setting absolute path in property value.</p>
+<div class="details collapse"></div>
+<a href="../classes/ResolvePathTask.html" class="more">« More »</a>
+</div>
+<div id="TaskdefTask" class="element ajax clickable class">
+<h1>TaskdefTask<a href="../classes/TaskdefTask.html">¶</a>
+</h1>
+<p class="short_description">Register a task for use within a buildfile.</p>
+<div class="details collapse"></div>
+<a href="../classes/TaskdefTask.html" class="more">« More »</a>
+</div>
+<div id="TouchTask" class="element ajax clickable class">
+<h1>TouchTask<a href="../classes/TouchTask.html">¶</a>
+</h1>
+<p class="short_description">Touch a file and/or fileset(s); corresponds to the Unix touch command.</p>
+<div class="details collapse"></div>
+<a href="../classes/TouchTask.html" class="more">« More »</a>
+</div>
+<div id="TstampTask" class="element ajax clickable class">
+<h1>TstampTask<a href="../classes/TstampTask.html">¶</a>
+</h1>
+<p class="short_description">Sets properties to the current time, or offsets from the current time.</p>
+<div class="details collapse"></div>
+<a href="../classes/TstampTask.html" class="more">« More »</a>
+</div>
+<div id="TypedefTask" class="element ajax clickable class">
+<h1>TypedefTask<a href="../classes/TypedefTask.html">¶</a>
+</h1>
+<p class="short_description">Register a datatype for use within a buildfile.</p>
+<div class="details collapse"></div>
+<a href="../classes/TypedefTask.html" class="more">« More »</a>
+</div>
+<div id="UpToDateTask" class="element ajax clickable class">
+<h1>UpToDateTask<a href="../classes/UpToDateTask.html">¶</a>
+</h1>
+<p class="short_description">Sets the given property if the specified target has a timestamp
+greater than all of the source files.</p>
+<div class="details collapse"></div>
+<a href="../classes/UpToDateTask.html" class="more">« More »</a>
+</div>
+<div id="WarnTask" class="element ajax clickable class">
+<h1>WarnTask<a href="../classes/WarnTask.html">¶</a>
+</h1>
+<p class="short_description">Simple task to echo a warning message (Project::MSG_WARN) to all output devices.</p>
+<div class="details collapse"></div>
+<a href="../classes/WarnTask.html" class="more">« More »</a>
+</div>
+<div id="XsltTask" class="element ajax clickable class">
+<h1>XsltTask<a href="../classes/XsltTask.html">¶</a>
+</h1>
+<p class="short_description">Implements an XSLT processing filter while copying files.</p>
+<div class="details collapse"></div>
+<a href="../classes/XsltTask.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/phing.html">phing</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.html">tasks</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/phing.tasks.system.html">system</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/phing.tasks.system.condition.html">condition</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="Condition" class="element ajax clickable interface">
+<h1>Condition<a href="../classes/Condition.html">¶</a>
+</h1>
+<p class="short_description">Condition interface specification:</p>
+<div class="details collapse"></div>
+<a href="../classes/Condition.html" class="more">« More »</a>
+</div>
+<div id="ContainsCondition" class="element ajax clickable class">
+<h1>ContainsCondition<a href="../classes/ContainsCondition.html">¶</a>
+</h1>
+<p class="short_description">Is one string part of another string?</p>
+<div class="details collapse"></div>
+<a href="../classes/ContainsCondition.html" class="more">« More »</a>
+</div>
+<div id="IsFalseCondition" class="element ajax clickable class">
+<h1>IsFalseCondition<a href="../classes/IsFalseCondition.html">¶</a>
+</h1>
+<p class="short_description">Condition that tests whether a given string evals to false.</p>
+<div class="details collapse"></div>
+<a href="../classes/IsFalseCondition.html" class="more">« More »</a>
+</div>
+<div id="IsSetCondition" class="element ajax clickable class">
+<h1>IsSetCondition<a href="../classes/IsSetCondition.html">¶</a>
+</h1>
+<p class="short_description">Condition that tests whether a given property has been set.</p>
+<div class="details collapse"></div>
+<a href="../classes/IsSetCondition.html" class="more">« More »</a>
+</div>
+<div id="IsTrueCondition" class="element ajax clickable class">
+<h1>IsTrueCondition<a href="../classes/IsTrueCondition.html">¶</a>
+</h1>
+<p class="short_description">Condition that tests whether a given string evals to true.</p>
+<div class="details collapse"></div>
+<a href="../classes/IsTrueCondition.html" class="more">« More »</a>
+</div>
+<div id="ReferenceExistsCondition" class="element ajax clickable class">
+<h1>ReferenceExistsCondition<a href="../classes/ReferenceExistsCondition.html">¶</a>
+</h1>
+<p class="short_description">Condition that tests whether a given reference exists.</p>
+<div class="details collapse"></div>
+<a href="../classes/ReferenceExistsCondition.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:41:50+05:00.<br></footer></div>
+</div>
+</body>
+</html>

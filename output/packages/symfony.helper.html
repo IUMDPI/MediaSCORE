@@ -1,0 +1,2310 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » symfony\helper</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/symfony.helper.html" title="helper"><i class="icon-folder-open"></i>helper</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#function___" title="__ :: "><span class="description">__()
+        </span><pre>__</pre></a></li>
+<li class="function  "><a href="#function__auto_link_email_addresses" title="_auto_link_email_addresses :: Turns all email addresses into clickable links."><span class="description">Turns all email addresses into clickable links.</span><pre>_auto_link_email_addresses</pre></a></li>
+<li class="function  "><a href="#function__auto_link_urls" title="_auto_link_urls :: Turns all urls into clickable links."><span class="description">Turns all urls into clickable links.</span><pre>_auto_link_urls</pre></a></li>
+<li class="function  "><a href="#function__call_component" title="_call_component :: "><span class="description">_call_component()
+        </span><pre>_call_component</pre></a></li>
+<li class="function  "><a href="#function__compute_public_path" title="_compute_public_path :: "><span class="description">_compute_public_path()
+        </span><pre>_compute_public_path</pre></a></li>
+<li class="function  "><a href="#function__confirm_javascript_function" title="_confirm_javascript_function :: "><span class="description">_confirm_javascript_function()
+        </span><pre>_confirm_javascript_function</pre></a></li>
+<li class="function  "><a href="#function__convert_options" title="_convert_options :: Converts specific &lt;i&gt;$options&lt;/i&gt; to their correct HTML format"><span class="description">Converts specific &lt;i&gt;$options&lt;/i&gt; to their correct HTML format</span><pre>_convert_options</pre></a></li>
+<li class="function  "><a href="#function__convert_options_to_javascript" title="_convert_options_to_javascript :: "><span class="description">_convert_options_to_javascript()
+        </span><pre>_convert_options_to_javascript</pre></a></li>
+<li class="function  "><a href="#function__current_language" title="_current_language :: "><span class="description">_current_language()
+        </span><pre>_current_language</pre></a></li>
+<li class="function  "><a href="#function__dynamic_path" title="_dynamic_path :: "><span class="description">_dynamic_path()
+        </span><pre>_dynamic_path</pre></a></li>
+<li class="function  "><a href="#function__encodeText" title="_encodeText :: "><span class="description">_encodeText()
+        </span><pre>_encodeText</pre></a></li>
+<li class="function  "><a href="#function__get_option" title="_get_option :: "><span class="description">_get_option()
+        </span><pre>_get_option</pre></a></li>
+<li class="function  "><a href="#function__method_javascript_function" title="_method_javascript_function :: "><span class="description">_method_javascript_function()
+        </span><pre>_method_javascript_function</pre></a></li>
+<li class="function  "><a href="#function__parse_attributes" title="_parse_attributes :: "><span class="description">_parse_attributes()
+        </span><pre>_parse_attributes</pre></a></li>
+<li class="function  "><a href="#function__popup_javascript_function" title="_popup_javascript_function :: "><span class="description">_popup_javascript_function()
+        </span><pre>_popup_javascript_function</pre></a></li>
+<li class="function  "><a href="#function__post_javascript_function" title="_post_javascript_function :: "><span class="description">_post_javascript_function()
+        </span><pre>_post_javascript_function</pre></a></li>
+<li class="function  "><a href="#function__tag_options" title="_tag_options :: "><span class="description">_tag_options()
+        </span><pre>_tag_options</pre></a></li>
+<li class="function  "><a href="#function_array_or_string_for_javascript" title="array_or_string_for_javascript :: converts the given PHP array or string to the corresponding javascript array or string."><span class="description">converts the given PHP array or string to the corresponding javascript array or string.</span><pre>array_or_string_for_javascript</pre></a></li>
+<li class="function  "><a href="#function_auto_discovery_link_tag" title="auto_discovery_link_tag :: Returns a &lt;link&gt; tag that browsers and news readers
+can use to auto-detect a RSS or ATOM feed for the current page,
+to be included in the &lt;head&gt; section of a HTML document."><span class="description">Returns a &lt;link&gt; tag that browsers and news readers
+can use to auto-detect a RSS or ATOM feed for the current page,
+to be included in the &lt;head&gt; section of a HTML document.</span><pre>auto_discovery_link_tag</pre></a></li>
+<li class="function  "><a href="#function_auto_link_text" title="auto_link_text :: Turns all urls and email addresses into clickable links."><span class="description">Turns all urls and email addresses into clickable links.</span><pre>auto_link_text</pre></a></li>
+<li class="function  "><a href="#function_boolean_for_javascript" title="boolean_for_javascript :: converts the given PHP boolean to the corresponding javascript boolean."><span class="description">converts the given PHP boolean to the corresponding javascript boolean.</span><pre>boolean_for_javascript</pre></a></li>
+<li class="function  "><a href="#function_button_to" title="button_to :: Creates an &lt;input&gt; button tag of the given name pointing to a routed URL
+based on the module/action passed as argument and the routing configuration."><span class="description">Creates an &lt;input&gt; button tag of the given name pointing to a routed URL
+based on the module/action passed as argument and the routing configuration.</span><pre>button_to</pre></a></li>
+<li class="function  "><a href="#function_button_to_function" title="button_to_function :: Returns a button that will trigger a javascript function using the
+onclick handler and return false after the fact."><span class="description">Returns a button that will trigger a javascript function using the
+onclick handler and return false after the fact.</span><pre>button_to_function</pre></a></li>
+<li class="function  "><a href="#function_cache" title="cache :: "><span class="description">cache()
+        </span><pre>cache</pre></a></li>
+<li class="function  "><a href="#function_cache_save" title="cache_save :: "><span class="description">cache_save()
+        </span><pre>cache_save</pre></a></li>
+<li class="function  "><a href="#function_cdata_section" title="cdata_section :: "><span class="description">cdata_section()
+        </span><pre>cdata_section</pre></a></li>
+<li class="function  "><a href="#function_comment_as_conditional" title="comment_as_conditional :: Wraps the content in conditional comments."><span class="description">Wraps the content in conditional comments.</span><pre>comment_as_conditional</pre></a></li>
+<li class="function  "><a href="#function_content_tag" title="content_tag :: "><span class="description">content_tag()
+        </span><pre>content_tag</pre></a></li>
+<li class="function  "><a href="#function_decorate_with" title="decorate_with :: Decorates the current template with a given layout."><span class="description">Decorates the current template with a given layout.</span><pre>decorate_with</pre></a></li>
+<li class="function  "><a href="#function_distance_of_time_in_words" title="distance_of_time_in_words :: "><span class="description">distance_of_time_in_words()
+        </span><pre>distance_of_time_in_words</pre></a></li>
+<li class="function  "><a href="#function_dynamic_javascript_include_tag" title="dynamic_javascript_include_tag :: Returns a &lt;script&gt; include tag for the given internal URI."><span class="description">Returns a &lt;script&gt; include tag for the given internal URI.</span><pre>dynamic_javascript_include_tag</pre></a></li>
+<li class="function  "><a href="#function_end_if_javascript" title="end_if_javascript :: Mark the end of a block that should only be shown in the browser if JavaScript
+is switched on."><span class="description">Mark the end of a block that should only be shown in the browser if JavaScript
+is switched on.</span><pre>end_if_javascript</pre></a></li>
+<li class="function  "><a href="#function_end_javascript_tag" title="end_javascript_tag :: "><span class="description">end_javascript_tag()
+        </span><pre>end_javascript_tag</pre></a></li>
+<li class="function  "><a href="#function_end_slot" title="end_slot :: Stops the content capture and save the content in the slot."><span class="description">Stops the content capture and save the content in the slot.</span><pre>end_slot</pre></a></li>
+<li class="function  "><a href="#function_esc_entities" title="esc_entities :: Runs the PHP function htmlentities on the value passed."><span class="description">Runs the PHP function htmlentities on the value passed.</span><pre>esc_entities</pre></a></li>
+<li class="function  "><a href="#function_esc_js" title="esc_js :: A function that c-escapes a string after applying {@link esc_entities()}."><span class="description">A function that c-escapes a string after applying {@link esc_entities()}.</span><pre>esc_js</pre></a></li>
+<li class="function  "><a href="#function_esc_js_no_entities" title="esc_js_no_entities :: A function the c-escapes a string, making it suitable to be placed in a
+JavaScript string."><span class="description">A function the c-escapes a string, making it suitable to be placed in a
+JavaScript string.</span><pre>esc_js_no_entities</pre></a></li>
+<li class="function  "><a href="#function_esc_raw" title="esc_raw :: An identity function that merely returns that which it is given, the purpose
+being to be able to specify that the value is not to be escaped in any way."><span class="description">An identity function that merely returns that which it is given, the purpose
+being to be able to specify that the value is not to be escaped in any way.</span><pre>esc_raw</pre></a></li>
+<li class="function  "><a href="#function_esc_specialchars" title="esc_specialchars :: Runs the PHP function htmlspecialchars on the value passed."><span class="description">Runs the PHP function htmlspecialchars on the value passed.</span><pre>esc_specialchars</pre></a></li>
+<li class="function  "><a href="#function_escape_javascript" title="escape_javascript :: Escape carrier returns and single and double quotes for Javascript segments."><span class="description">Escape carrier returns and single and double quotes for Javascript segments.</span><pre>escape_javascript</pre></a></li>
+<li class="function  "><a href="#function_escape_once" title="escape_once :: Escapes an HTML string."><span class="description">Escapes an HTML string.</span><pre>escape_once</pre></a></li>
+<li class="function  "><a href="#function_excerpt_text" title="excerpt_text :: Extracts an excerpt from the +text+ surrounding the +phrase+ with a number of characters on each side determined
+by +radius+."><span class="description">Extracts an excerpt from the +text+ surrounding the +phrase+ with a number of characters on each side determined
+by +radius+.</span><pre>excerpt_text</pre></a></li>
+<li class="function  "><a href="#function_fix_double_escape" title="fix_double_escape :: Fixes double escaped strings."><span class="description">Fixes double escaped strings.</span><pre>fix_double_escape</pre></a></li>
+<li class="function  "><a href="#function_form_tag" title="form_tag :: Returns an HTML &lt;form&gt; tag that points to a valid action, route or URL as defined by &lt;i&gt;$url_for_options&lt;/i&gt;."><span class="description">Returns an HTML &lt;form&gt; tag that points to a valid action, route or URL as defined by &lt;i&gt;$url_for_options&lt;/i&gt;.</span><pre>form_tag</pre></a></li>
+<li class="function  "><a href="#function_form_tag_for" title="form_tag_for :: "><span class="description">form_tag_for()
+        </span><pre>form_tag_for</pre></a></li>
+<li class="function  "><a href="#function_format_country" title="format_country :: "><span class="description">format_country()
+        </span><pre>format_country</pre></a></li>
+<li class="function  "><a href="#function_format_currency" title="format_currency :: "><span class="description">format_currency()
+        </span><pre>format_currency</pre></a></li>
+<li class="function  "><a href="#function_format_date" title="format_date :: "><span class="description">format_date()
+        </span><pre>format_date</pre></a></li>
+<li class="function  "><a href="#function_format_daterange" title="format_daterange :: "><span class="description">format_daterange()
+        </span><pre>format_daterange</pre></a></li>
+<li class="function  "><a href="#function_format_datetime" title="format_datetime :: "><span class="description">format_datetime()
+        </span><pre>format_datetime</pre></a></li>
+<li class="function  "><a href="#function_format_language" title="format_language :: "><span class="description">format_language()
+        </span><pre>format_language</pre></a></li>
+<li class="function  "><a href="#function_format_number" title="format_number :: "><span class="description">format_number()
+        </span><pre>format_number</pre></a></li>
+<li class="function  "><a href="#function_format_number_choice" title="format_number_choice :: Format a string according to a number."><span class="description">Format a string according to a number.</span><pre>format_number_choice</pre></a></li>
+<li class="function  "><a href="#function_get_component" title="get_component :: Evaluates and returns a component."><span class="description">Evaluates and returns a component.</span><pre>get_component</pre></a></li>
+<li class="function  "><a href="#function_get_component_slot" title="get_component_slot :: Evaluates and returns a component slot."><span class="description">Evaluates and returns a component slot.</span><pre>get_component_slot</pre></a></li>
+<li class="function  "><a href="#function_get_id_from_name" title="get_id_from_name :: Returns a formatted ID based on the &lt;i&gt;$name&lt;/i&gt; parameter and optionally the &lt;i&gt;$value&lt;/i&gt; parameter."><span class="description">Returns a formatted ID based on the &lt;i&gt;$name&lt;/i&gt; parameter and optionally the &lt;i&gt;$value&lt;/i&gt; parameter.</span><pre>get_id_from_name</pre></a></li>
+<li class="function  "><a href="#function_get_javascripts" title="get_javascripts :: Returns &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object."><span class="description">Returns &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object.</span><pre>get_javascripts</pre></a></li>
+<li class="function  "><a href="#function_get_javascripts_for_form" title="get_javascripts_for_form :: Returns &lt;script&gt; tags for all javascripts associated with the given form."><span class="description">Returns &lt;script&gt; tags for all javascripts associated with the given form.</span><pre>get_javascripts_for_form</pre></a></li>
+<li class="function  "><a href="#function_get_partial" title="get_partial :: Evaluates and returns a partial."><span class="description">Evaluates and returns a partial.</span><pre>get_partial</pre></a></li>
+<li class="function  "><a href="#function_get_slot" title="get_slot :: Evaluates and returns a slot."><span class="description">Evaluates and returns a slot.</span><pre>get_slot</pre></a></li>
+<li class="function  "><a href="#function_get_stylesheets" title="get_stylesheets :: Returns &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object."><span class="description">Returns &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object.</span><pre>get_stylesheets</pre></a></li>
+<li class="function  "><a href="#function_get_stylesheets_for_form" title="get_stylesheets_for_form :: Returns &lt;link&gt; tags for all stylesheets associated with the given form."><span class="description">Returns &lt;link&gt; tags for all stylesheets associated with the given form.</span><pre>get_stylesheets_for_form</pre></a></li>
+<li class="function  "><a href="#function_has_component_slot" title="has_component_slot :: Returns true if component slot exists."><span class="description">Returns true if component slot exists.</span><pre>has_component_slot</pre></a></li>
+<li class="function  "><a href="#function_has_slot" title="has_slot :: Returns true if the slot exists."><span class="description">Returns true if the slot exists.</span><pre>has_slot</pre></a></li>
+<li class="function  "><a href="#function_highlight_text" title="highlight_text :: Highlights the +phrase+ where it is found in the +text+ by surrounding it like
+&lt;strong class=&quot;highlight&quot;&gt;I'm a highlight phrase&lt;/strong&gt;."><span class="description">Highlights the +phrase+ where it is found in the +text+ by surrounding it like
+&lt;strong class="highlight"&gt;I'm a highlight phrase&lt;/strong&gt;.</span><pre>highlight_text</pre></a></li>
+<li class="function  "><a href="#function_if_javascript" title="if_javascript :: Mark the start of a block that should only be shown in the browser if JavaScript
+is switched on."><span class="description">Mark the start of a block that should only be shown in the browser if JavaScript
+is switched on.</span><pre>if_javascript</pre></a></li>
+<li class="function  "><a href="#function_image_path" title="image_path :: Returns the path to an image asset."><span class="description">Returns the path to an image asset.</span><pre>image_path</pre></a></li>
+<li class="function  "><a href="#function_image_tag" title="image_tag :: Returns an &lt;img&gt; image tag for the asset given as argument."><span class="description">Returns an &lt;img&gt; image tag for the asset given as argument.</span><pre>image_tag</pre></a></li>
+<li class="function  "><a href="#function_include_component" title="include_component :: Evaluates and echoes a component."><span class="description">Evaluates and echoes a component.</span><pre>include_component</pre></a></li>
+<li class="function  "><a href="#function_include_component_slot" title="include_component_slot :: Evaluates and echoes a component slot."><span class="description">Evaluates and echoes a component slot.</span><pre>include_component_slot</pre></a></li>
+<li class="function  "><a href="#function_include_http_metas" title="include_http_metas :: Returns a set of &lt;meta http-equiv&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document."><span class="description">Returns a set of &lt;meta http-equiv&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document.</span><pre>include_http_metas</pre></a></li>
+<li class="function  "><a href="#function_include_javascripts" title="include_javascripts :: Prints &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object."><span class="description">Prints &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object.</span><pre>include_javascripts</pre></a></li>
+<li class="function  "><a href="#function_include_javascripts_for_form" title="include_javascripts_for_form :: Prints &lt;script&gt; tags for all javascripts associated with the given form."><span class="description">Prints &lt;script&gt; tags for all javascripts associated with the given form.</span><pre>include_javascripts_for_form</pre></a></li>
+<li class="function  "><a href="#function_include_metas" title="include_metas :: Prints a set of &lt;meta&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document."><span class="description">Prints a set of &lt;meta&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document.</span><pre>include_metas</pre></a></li>
+<li class="function  "><a href="#function_include_partial" title="include_partial :: Evaluates and echoes a partial."><span class="description">Evaluates and echoes a partial.</span><pre>include_partial</pre></a></li>
+<li class="function  "><a href="#function_include_slot" title="include_slot :: Evaluates and echoes a slot."><span class="description">Evaluates and echoes a slot.</span><pre>include_slot</pre></a></li>
+<li class="function  "><a href="#function_include_stylesheets" title="include_stylesheets :: Prints &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object."><span class="description">Prints &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object.</span><pre>include_stylesheets</pre></a></li>
+<li class="function  "><a href="#function_include_stylesheets_for_form" title="include_stylesheets_for_form :: Prints &lt;link&gt; tags for all stylesheets associated with the given form."><span class="description">Prints &lt;link&gt; tags for all stylesheets associated with the given form.</span><pre>include_stylesheets_for_form</pre></a></li>
+<li class="function  "><a href="#function_include_title" title="include_title :: Returns the title of the current page according to the response attributes,
+to be included in the &lt;title&gt; section of a HTML document."><span class="description">Returns the title of the current page according to the response attributes,
+to be included in the &lt;title&gt; section of a HTML document.</span><pre>include_title</pre></a></li>
+<li class="function  "><a href="#function_javascript_cdata_section" title="javascript_cdata_section :: "><span class="description">javascript_cdata_section()
+        </span><pre>javascript_cdata_section</pre></a></li>
+<li class="function  "><a href="#function_javascript_include_tag" title="javascript_include_tag :: Returns a &lt;script&gt; include tag per source given as argument."><span class="description">Returns a &lt;script&gt; include tag per source given as argument.</span><pre>javascript_include_tag</pre></a></li>
+<li class="function  "><a href="#function_javascript_path" title="javascript_path :: Returns the path to a JavaScript asset."><span class="description">Returns the path to a JavaScript asset.</span><pre>javascript_path</pre></a></li>
+<li class="function  "><a href="#function_javascript_tag" title="javascript_tag :: Returns a JavaScript tag with the '$content' inside."><span class="description">Returns a JavaScript tag with the '$content' inside.</span><pre>javascript_tag</pre></a></li>
+<li class="function  "><a href="#function_link_to" title="link_to :: Creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration."><span class="description">Creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</span><pre>link_to</pre></a></li>
+<li class="function  "><a href="#function_link_to_function" title="link_to_function :: Returns a link that will trigger a javascript function using the
+onclick handler and return false after the fact."><span class="description">Returns a link that will trigger a javascript function using the
+onclick handler and return false after the fact.</span><pre>link_to_function</pre></a></li>
+<li class="function  "><a href="#function_link_to_if" title="link_to_if :: If the condition passed as first argument is true,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration."><span class="description">If the condition passed as first argument is true,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</span><pre>link_to_if</pre></a></li>
+<li class="function  "><a href="#function_link_to_unless" title="link_to_unless :: If the condition passed as first argument is false,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration."><span class="description">If the condition passed as first argument is false,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</span><pre>link_to_unless</pre></a></li>
+<li class="function  "><a href="#function_mail_to" title='mail_to :: Creates a &lt;a&gt; link tag to the given email (with href="mailto:.'><span class="description">Creates a &lt;a&gt; link tag to the given email (with href="mailto:.</span><pre>mail_to</pre></a></li>
+<li class="function  "><a href="#function_options_for_javascript" title="options_for_javascript :: converts the the PHP options array into a javscript array"><span class="description">converts the the PHP options array into a javscript array</span><pre>options_for_javascript</pre></a></li>
+<li class="function  "><a href="#function_public_path" title="public_path :: Returns a URL rooted at the web root"><span class="description">Returns a URL rooted at the web root</span><pre>public_path</pre></a></li>
+<li class="function  "><a href="#function_simple_format_text" title="simple_format_text :: Returns +text+ transformed into html using very simple formatting rules
+Surrounds paragraphs with &lt;tt&gt;&amp;lt;p&amp;gt;&lt;/tt&gt; tags, and converts line breaks into &lt;tt&gt;&amp;lt;br /&amp;gt;&lt;/tt&gt;
+Two consecutive newlines(&lt;tt&gt;\n\n&lt;/tt&gt;) are considered as a paragraph, one newline (&lt;tt&gt;\n&lt;/tt&gt;) is
+considered a linebreak, three or more consecutive newlines are turned into two newlines"><span class="description">Returns +text+ transformed into html using very simple formatting rules
+Surrounds paragraphs with &lt;tt&gt;&amp;lt;p&amp;gt;&lt;/tt&gt; tags, and converts line breaks into &lt;tt&gt;&amp;lt;br /&amp;gt;&lt;/tt&gt;
+Two consecutive newlines(&lt;tt&gt;\n\n&lt;/tt&gt;) are considered as a paragraph, one newline (&lt;tt&gt;\n&lt;/tt&gt;) is
+considered a linebreak, three or more consecutive newlines are turned into two newlines</span><pre>simple_format_text</pre></a></li>
+<li class="function  "><a href="#function_slot" title="slot :: Begins the capturing of the slot."><span class="description">Begins the capturing of the slot.</span><pre>slot</pre></a></li>
+<li class="function  "><a href="#function_strip_links_text" title='strip_links_text :: Turns all links into words, like "&lt;a href="something"&gt;else&lt;/a&gt;" to "else".'><span class="description">Turns all links into words, like "&lt;a href="something"&gt;else&lt;/a&gt;" to "else".</span><pre>strip_links_text</pre></a></li>
+<li class="function  "><a href="#function_stylesheet_path" title="stylesheet_path :: Returns the path to a stylesheet asset."><span class="description">Returns the path to a stylesheet asset.</span><pre>stylesheet_path</pre></a></li>
+<li class="function  "><a href="#function_stylesheet_tag" title="stylesheet_tag :: Returns a css &lt;link&gt; tag per source given as argument,
+to be included in the &lt;head&gt; section of a HTML document."><span class="description">Returns a css &lt;link&gt; tag per source given as argument,
+to be included in the &lt;head&gt; section of a HTML document.</span><pre>stylesheet_tag</pre></a></li>
+<li class="function  "><a href="#function_tag" title="tag :: Constructs an html tag."><span class="description">Constructs an html tag.</span><pre>tag</pre></a></li>
+<li class="function  "><a href="#function_time_ago_in_words" title="time_ago_in_words :: "><span class="description">time_ago_in_words()
+        </span><pre>time_ago_in_words</pre></a></li>
+<li class="function  "><a href="#function_truncate_text" title="truncate_text :: Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncate_string+
+if the +text+ is longer than +length+."><span class="description">Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncate_string+
+if the +text+ is longer than +length+.</span><pre>truncate_text</pre></a></li>
+<li class="function  "><a href="#function_url_for" title="url_for :: Returns a routed URL based on the module/action passed as argument
+and the routing configuration."><span class="description">Returns a routed URL based on the module/action passed as argument
+and the routing configuration.</span><pre>url_for</pre></a></li>
+<li class="function  "><a href="#function_url_for_form" title="url_for_form :: "><span class="description">url_for_form()
+        </span><pre>url_for_form</pre></a></li>
+<li class="function  "><a href="#function_use_dynamic_javascript" title="use_dynamic_javascript :: Adds a dynamic javascript to the response object."><span class="description">Adds a dynamic javascript to the response object.</span><pre>use_dynamic_javascript</pre></a></li>
+<li class="function  "><a href="#function_use_dynamic_stylesheet" title="use_dynamic_stylesheet :: Adds a dynamic stylesheet to the response object."><span class="description">Adds a dynamic stylesheet to the response object.</span><pre>use_dynamic_stylesheet</pre></a></li>
+<li class="function  "><a href="#function_use_helper" title="use_helper :: "><span class="description">use_helper()
+        </span><pre>use_helper</pre></a></li>
+<li class="function  "><a href="#function_use_javascript" title="use_javascript :: Adds a javascript to the response object."><span class="description">Adds a javascript to the response object.</span><pre>use_javascript</pre></a></li>
+<li class="function  "><a href="#function_use_javascripts_for_form" title="use_javascripts_for_form :: Adds javascripts from the supplied form to the response object."><span class="description">Adds javascripts from the supplied form to the response object.</span><pre>use_javascripts_for_form</pre></a></li>
+<li class="function  "><a href="#function_use_stylesheet" title="use_stylesheet :: Adds a stylesheet to the response object."><span class="description">Adds a stylesheet to the response object.</span><pre>use_stylesheet</pre></a></li>
+<li class="function  "><a href="#function_use_stylesheets_for_form" title="use_stylesheets_for_form :: Adds stylesheets from the supplied form to the response object."><span class="description">Adds stylesheets from the supplied form to the response object.</span><pre>use_stylesheets_for_form</pre></a></li>
+<li class="function  "><a href="#function_wrap_text" title="wrap_text :: Word wrap long lines to line_width."><span class="description">Word wrap long lines to line_width.</span><pre>wrap_text</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_ESC_ENTITIES" title="ESC_ENTITIES :: "><span class="description">ESC_ENTITIES</span><pre>ESC_ENTITIES</pre></a></li>
+<li class="constant  "><a href="#constant_ESC_JS" title="ESC_JS :: "><span class="description">ESC_JS</span><pre>ESC_JS</pre></a></li>
+<li class="constant  "><a href="#constant_ESC_JS_NO_ENTITIES" title="ESC_JS_NO_ENTITIES :: "><span class="description">ESC_JS_NO_ENTITIES</span><pre>ESC_JS_NO_ENTITIES</pre></a></li>
+<li class="constant  "><a href="#constant_ESC_RAW" title="ESC_RAW :: "><span class="description">ESC_RAW</span><pre>ESC_RAW</pre></a></li>
+<li class="constant  "><a href="#constant_ESC_SPECIALCHARS" title="ESC_SPECIALCHARS :: "><span class="description">ESC_SPECIALCHARS</span><pre>ESC_SPECIALCHARS</pre></a></li>
+<li class="constant  "><a href="#constant_SF_AUTO_LINK_RE" title="SF_AUTO_LINK_RE :: "><span class="description">SF_AUTO_LINK_RE</span><pre>SF_AUTO_LINK_RE</pre></a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/symfony.html">symfony</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/symfony.helper.html">helper</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a id="function___"></a><div class="element clickable function  function___" data-toggle="collapse" data-target=".function___ .collapse">
+<h2>__()
+        </h2>
+<pre>__($text, $args, $catalogue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$args</h4></div>
+<div class="subelement argument"><h4>$catalogue</h4></div>
+</div></div>
+</div>
+<a id="function__auto_link_email_addresses"></a><div class="element clickable function  function__auto_link_email_addresses" data-toggle="collapse" data-target=".function__auto_link_email_addresses .collapse">
+<h2>Turns all email addresses into clickable links.</h2>
+<pre>_auto_link_email_addresses($text) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+</div></div>
+</div>
+<a id="function__auto_link_urls"></a><div class="element clickable function  function__auto_link_urls" data-toggle="collapse" data-target=".function__auto_link_urls .collapse">
+<h2>Turns all urls into clickable links.</h2>
+<pre>_auto_link_urls($text, $href_options, $truncate, $truncate_len, $pad) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$href_options</h4></div>
+<div class="subelement argument"><h4>$truncate</h4></div>
+<div class="subelement argument"><h4>$truncate_len</h4></div>
+<div class="subelement argument"><h4>$pad</h4></div>
+</div></div>
+</div>
+<a id="function__call_component"></a><div class="element clickable function  function__call_component" data-toggle="collapse" data-target=".function__call_component .collapse">
+<h2>_call_component()
+        </h2>
+<pre>_call_component($moduleName, $componentName, $vars) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$moduleName</h4></div>
+<div class="subelement argument"><h4>$componentName</h4></div>
+<div class="subelement argument"><h4>$vars</h4></div>
+</div></div>
+</div>
+<a id="function__compute_public_path"></a><div class="element clickable function  function__compute_public_path" data-toggle="collapse" data-target=".function__compute_public_path .collapse">
+<h2>_compute_public_path()
+        </h2>
+<pre>_compute_public_path($source, $dir, $ext, $absolute) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$source</h4></div>
+<div class="subelement argument"><h4>$dir</h4></div>
+<div class="subelement argument"><h4>$ext</h4></div>
+<div class="subelement argument"><h4>$absolute</h4></div>
+</div></div>
+</div>
+<a id="function__confirm_javascript_function"></a><div class="element clickable function  function__confirm_javascript_function" data-toggle="collapse" data-target=".function__confirm_javascript_function .collapse">
+<h2>_confirm_javascript_function()
+        </h2>
+<pre>_confirm_javascript_function($confirm) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$confirm</h4></div>
+</div></div>
+</div>
+<a id="function__convert_options"></a><div class="element clickable function  function__convert_options" data-toggle="collapse" data-target=".function__convert_options .collapse">
+<h2>Converts specific &lt;i&gt;$options&lt;/i&gt; to their correct HTML format</h2>
+<pre>_convert_options(array $options) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>returns properly formatted options</div>
+</div></div>
+</div>
+<a id="function__convert_options_to_javascript"></a><div class="element clickable function  function__convert_options_to_javascript" data-toggle="collapse" data-target=".function__convert_options_to_javascript .collapse">
+<h2>_convert_options_to_javascript()
+        </h2>
+<pre>_convert_options_to_javascript($html_options, $url) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$html_options</h4></div>
+<div class="subelement argument"><h4>$url</h4></div>
+</div></div>
+</div>
+<a id="function__current_language"></a><div class="element clickable function  function__current_language" data-toggle="collapse" data-target=".function__current_language .collapse">
+<h2>_current_language()
+        </h2>
+<pre>_current_language($culture) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$culture</h4></div>
+</div></div>
+</div>
+<a id="function__dynamic_path"></a><div class="element clickable function  function__dynamic_path" data-toggle="collapse" data-target=".function__dynamic_path .collapse">
+<h2>_dynamic_path()
+        </h2>
+<pre>_dynamic_path($uri, $format, $absolute) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$uri</h4></div>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$absolute</h4></div>
+</div></div>
+</div>
+<a id="function__encodeText"></a><div class="element clickable function  function__encodeText" data-toggle="collapse" data-target=".function__encodeText .collapse">
+<h2>_encodeText()
+        </h2>
+<pre>_encodeText($text) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+</div></div>
+</div>
+<a id="function__get_option"></a><div class="element clickable function  function__get_option" data-toggle="collapse" data-target=".function__get_option .collapse">
+<h2>_get_option()
+        </h2>
+<pre>_get_option($options, $name, $default) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$options</h4></div>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$default</h4></div>
+</div></div>
+</div>
+<a id="function__method_javascript_function"></a><div class="element clickable function  function__method_javascript_function" data-toggle="collapse" data-target=".function__method_javascript_function .collapse">
+<h2>_method_javascript_function()
+        </h2>
+<pre>_method_javascript_function($method) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$method</h4></div>
+</div></div>
+</div>
+<a id="function__parse_attributes"></a><div class="element clickable function  function__parse_attributes" data-toggle="collapse" data-target=".function__parse_attributes .collapse">
+<h2>_parse_attributes()
+        </h2>
+<pre>_parse_attributes($string) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$string</h4></div>
+</div></div>
+</div>
+<a id="function__popup_javascript_function"></a><div class="element clickable function  function__popup_javascript_function" data-toggle="collapse" data-target=".function__popup_javascript_function .collapse">
+<h2>_popup_javascript_function()
+        </h2>
+<pre>_popup_javascript_function($popup, $url) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$popup</h4></div>
+<div class="subelement argument"><h4>$url</h4></div>
+</div></div>
+</div>
+<a id="function__post_javascript_function"></a><div class="element clickable function  function__post_javascript_function" data-toggle="collapse" data-target=".function__post_javascript_function .collapse">
+<h2>_post_javascript_function()
+        </h2>
+<pre>_post_javascript_function() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function__tag_options"></a><div class="element clickable function  function__tag_options" data-toggle="collapse" data-target=".function__tag_options .collapse">
+<h2>_tag_options()
+        </h2>
+<pre>_tag_options($options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_array_or_string_for_javascript"></a><div class="element clickable function  function_array_or_string_for_javascript" data-toggle="collapse" data-target=".function_array_or_string_for_javascript .collapse">
+<h2>converts the given PHP array or string to the corresponding javascript array or string.</h2>
+<pre>array_or_string_for_javascript(\option $option) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>javascript strings need to be single quoted.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$option</h4>
+<code>\option</code><p>(typically from option array)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>javascript string or array equivalent</div>
+</div></div>
+</div>
+<a id="function_auto_discovery_link_tag"></a><div class="element clickable function  function_auto_discovery_link_tag" data-toggle="collapse" data-target=".function_auto_discovery_link_tag .collapse">
+<h2>Returns a &lt;link&gt; tag that browsers and news readers
+can use to auto-detect a RSS or ATOM feed for the current page,
+to be included in the &lt;head&gt; section of a HTML document.</h2>
+<pre>auto_discovery_link_tag(string $type, string $url, array $tag_options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Options:</b>
+- rel - defaults to 'alternate'
+- type - defaults to 'application/rss+xml'
+- title - defaults to the feed type in upper case</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo auto_discovery_link_tag('rss', 'module/feed');
+   => <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.curenthost.com/module/feed" />
+ echo auto_discovery_link_tag('rss', 'module/feed', array('title' => 'My RSS'));
+   => <link rel="alternate" type="application/rss+xml" title="My RSS" href="http://www.curenthost.com/module/feed" />
+</code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code><p>feed type ('rss', 'atom')</p>
+</div>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>'module/action' or '@rule' of the feed</p>
+</div>
+<div class="subelement argument">
+<h4>$tag_options</h4>
+<code>array</code><p>additional HTML compliant <link> tag parameters</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <link> tag</div>
+</div></div>
+</div>
+<a id="function_auto_link_text"></a><div class="element clickable function  function_auto_link_text" data-toggle="collapse" data-target=".function_auto_link_text .collapse">
+<h2>Turns all urls and email addresses into clickable links.</h2>
+<pre>auto_link_text($text, $link, $href_options, $truncate, $truncate_len, $pad) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The +link+ parameter can limit what should be linked.
+Options are :all (default), :email_addresses, and :urls.</p>
+
+<p>Example:
+  auto_link("Go to http://www.symfony-project.com and say hello to fabien.potencier@example.com") =>
+    Go to <a href="http://www.symfony-project.com">http://www.symfony-project.com</a> and
+    say hello to <a href="mailto:fabien.potencier@example.com">fabien.potencier@example.com</a></p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$link</h4></div>
+<div class="subelement argument"><h4>$href_options</h4></div>
+<div class="subelement argument"><h4>$truncate</h4></div>
+<div class="subelement argument"><h4>$truncate_len</h4></div>
+<div class="subelement argument"><h4>$pad</h4></div>
+</div></div>
+</div>
+<a id="function_boolean_for_javascript"></a><div class="element clickable function  function_boolean_for_javascript" data-toggle="collapse" data-target=".function_boolean_for_javascript .collapse">
+<h2>converts the given PHP boolean to the corresponding javascript boolean.</h2>
+<pre>boolean_for_javascript(bool $bool) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>booleans need to be true or false (php would print 1 or nothing).</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$bool</h4>
+<code>bool</code><p>(typically from option array)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>javascript boolean equivalent</div>
+</div></div>
+</div>
+<a id="function_button_to"></a><div class="element clickable function  function_button_to" data-toggle="collapse" data-target=".function_button_to .collapse">
+<h2>Creates an &lt;input&gt; button tag of the given name pointing to a routed URL
+based on the module/action passed as argument and the routing configuration.</h2>
+<pre>button_to(string $name, string $internal_uri, array $options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The syntax is similar to the one of link_to.</p>
+
+<p><b>Options:</b>
+- 'absolute' - if set to true, the helper outputs an absolute URL
+- 'query_string' - to append a query string (starting by ?) to the routed url
+- 'anchor' - to append an anchor (starting by #) to the routed url
+- 'confirm' - displays a javascript confirmation alert when the button is clicked
+- 'popup' - if set to true, the button opens a new browser window
+- 'post' - if set to true, the button submits a POST request instead of GET (caution: do not use inside a form)</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo button_to('Delete this page', 'my_module/my_action');
+   => <input value="Delete this page" type="button" onclick="document.location.href='/path/to/my/action';" />
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\url_for,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>name of the button</p></div>
+<div class="subelement argument">
+<h4>$internal_uri</h4>
+<code>string</code><p>'module/action' or '@rule' of the action</p>
+</div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>additional HTML compliant <input> tag parameters</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <input> tag</div>
+</div></div>
+</div>
+<a id="function_button_to_function"></a><div class="element clickable function  function_button_to_function" data-toggle="collapse" data-target=".function_button_to_function .collapse">
+<h2>Returns a button that will trigger a javascript function using the
+onclick handler and return false after the fact.</h2>
+<pre>button_to_function($name, $function, $html_options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Examples:
+  <?php echo button_to_function('Greeting', "alert('Hello world!')") ?></p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$function</h4></div>
+<div class="subelement argument"><h4>$html_options</h4></div>
+</div></div>
+</div>
+<a id="function_cache"></a><div class="element clickable function  function_cache" data-toggle="collapse" data-target=".function_cache .collapse">
+<h2>cache()
+        </h2>
+<pre>cache($name, $lifeTime) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$lifeTime</h4></div>
+</div></div>
+</div>
+<a id="function_cache_save"></a><div class="element clickable function  function_cache_save" data-toggle="collapse" data-target=".function_cache_save .collapse">
+<h2>cache_save()
+        </h2>
+<pre>cache_save() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function_cdata_section"></a><div class="element clickable function  function_cdata_section" data-toggle="collapse" data-target=".function_cdata_section .collapse">
+<h2>cdata_section()
+        </h2>
+<pre>cdata_section($content) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$content</h4></div>
+</div></div>
+</div>
+<a id="function_comment_as_conditional"></a><div class="element clickable function  function_comment_as_conditional" data-toggle="collapse" data-target=".function_comment_as_conditional .collapse">
+<h2>Wraps the content in conditional comments.</h2>
+<pre>comment_as_conditional(string $condition, string $content) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\http://msdn.microsoft.com/en-us/library/ms537512(VS.85).aspx</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$condition</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$content</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="function_content_tag"></a><div class="element clickable function  function_content_tag" data-toggle="collapse" data-target=".function_content_tag .collapse">
+<h2>content_tag()
+        </h2>
+<pre>content_tag($name, $content, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$content</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_decorate_with"></a><div class="element clickable function  function_decorate_with" data-toggle="collapse" data-target=".function_decorate_with .collapse">
+<h2>Decorates the current template with a given layout.</h2>
+<pre>decorate_with(mixed $layout) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$layout</h4>
+<code>mixed</code><p>The layout name or path or false to disable the layout</p></div>
+</div></div>
+</div>
+<a id="function_distance_of_time_in_words"></a><div class="element clickable function  function_distance_of_time_in_words" data-toggle="collapse" data-target=".function_distance_of_time_in_words .collapse">
+<h2>distance_of_time_in_words()
+        </h2>
+<pre>distance_of_time_in_words($from_time, $to_time, $include_seconds) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$from_time</h4></div>
+<div class="subelement argument"><h4>$to_time</h4></div>
+<div class="subelement argument"><h4>$include_seconds</h4></div>
+</div></div>
+</div>
+<a id="function_dynamic_javascript_include_tag"></a><div class="element clickable function  function_dynamic_javascript_include_tag" data-toggle="collapse" data-target=".function_dynamic_javascript_include_tag .collapse">
+<h2>Returns a &lt;script&gt; include tag for the given internal URI.</h2>
+<pre>dynamic_javascript_include_tag(string $uri, bool $absolute, array $options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The helper automatically adds the sf_format to the internal URI, so you don't have to.</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\javascript_include_tag</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$uri</h4>
+<code>string</code><p>The internal URI for the dynamic javascript</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>bool</code><p>Whether to generate an absolute URL</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>An array of options</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <script> tag(s)</div>
+</div></div>
+</div>
+<a id="function_end_if_javascript"></a><div class="element clickable function  function_end_if_javascript" data-toggle="collapse" data-target=".function_end_if_javascript .collapse">
+<h2>Mark the end of a block that should only be shown in the browser if JavaScript
+is switched on.</h2>
+<pre>end_if_javascript() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function_end_javascript_tag"></a><div class="element clickable function  function_end_javascript_tag" data-toggle="collapse" data-target=".function_end_javascript_tag .collapse">
+<h2>end_javascript_tag()
+        </h2>
+<pre>end_javascript_tag() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function_end_slot"></a><div class="element clickable function  function_end_slot" data-toggle="collapse" data-target=".function_end_slot .collapse">
+<h2>Stops the content capture and save the content in the slot.</h2>
+<pre>end_slot() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\slot</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="function_esc_entities"></a><div class="element clickable function  function_esc_entities" data-toggle="collapse" data-target=".function_esc_entities .collapse">
+<h2>Runs the PHP function htmlentities on the value passed.</h2>
+<pre>esc_entities(string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>the value to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the escaped value</div>
+</div></div>
+</div>
+<a id="function_esc_js"></a><div class="element clickable function  function_esc_js" data-toggle="collapse" data-target=".function_esc_js .collapse">
+<h2>A function that c-escapes a string after applying {@link esc_entities()}.</h2>
+<pre>esc_js(string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The
+assumption is that the value will be used to generate dynamic HTML in some
+way and the safest way to prevent mishap is to assume the value should have
+HTML entities set properly.</p>
+
+<p>The <a href="esc_js_no_entities()">esc_js_no_entities()</a> method should be used to escape a string
+that is ultimately not going to end up as text in an HTML document.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>the value to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the escaped value</div>
+</div></div>
+</div>
+<a id="function_esc_js_no_entities"></a><div class="element clickable function  function_esc_js_no_entities" data-toggle="collapse" data-target=".function_esc_js_no_entities .collapse">
+<h2>A function the c-escapes a string, making it suitable to be placed in a
+JavaScript string.</h2>
+<pre>esc_js_no_entities(string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>the value to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the escaped value</div>
+</div></div>
+</div>
+<a id="function_esc_raw"></a><div class="element clickable function  function_esc_raw" data-toggle="collapse" data-target=".function_esc_raw .collapse">
+<h2>An identity function that merely returns that which it is given, the purpose
+being to be able to specify that the value is not to be escaped in any way.</h2>
+<pre>esc_raw(string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>the value to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the escaped value</div>
+</div></div>
+</div>
+<a id="function_esc_specialchars"></a><div class="element clickable function  function_esc_specialchars" data-toggle="collapse" data-target=".function_esc_specialchars .collapse">
+<h2>Runs the PHP function htmlspecialchars on the value passed.</h2>
+<pre>esc_specialchars(string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>the value to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the escaped value</div>
+</div></div>
+</div>
+<a id="function_escape_javascript"></a><div class="element clickable function  function_escape_javascript" data-toggle="collapse" data-target=".function_escape_javascript .collapse">
+<h2>Escape carrier returns and single and double quotes for Javascript segments.</h2>
+<pre>escape_javascript($javascript) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$javascript</h4></div>
+</div></div>
+</div>
+<a id="function_escape_once"></a><div class="element clickable function  function_escape_once" data-toggle="collapse" data-target=".function_escape_once .collapse">
+<h2>Escapes an HTML string.</h2>
+<pre>escape_once(string $html) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$html</h4>
+<code>string</code><p>HTML string to escape</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>escaped string</div>
+</div></div>
+</div>
+<a id="function_excerpt_text"></a><div class="element clickable function  function_excerpt_text" data-toggle="collapse" data-target=".function_excerpt_text .collapse">
+<h2>Extracts an excerpt from the +text+ surrounding the +phrase+ with a number of characters on each side determined
+by +radius+.</h2>
+<pre>excerpt_text($text, $phrase, $radius, $excerpt_string, $excerpt_space) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the phrase isn't found, nil is returned. Ex:
+  excerpt("hello my world", "my", 3) => "...lo my wo..."
+If +excerpt_space+ is true the text will only be truncated on whitespace, never inbetween words.
+This might return a smaller radius than specified.
+  excerpt("hello my world", "my", 3, "...", true) => "... my ..."</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$phrase</h4></div>
+<div class="subelement argument"><h4>$radius</h4></div>
+<div class="subelement argument"><h4>$excerpt_string</h4></div>
+<div class="subelement argument"><h4>$excerpt_space</h4></div>
+</div></div>
+</div>
+<a id="function_fix_double_escape"></a><div class="element clickable function  function_fix_double_escape" data-toggle="collapse" data-target=".function_fix_double_escape .collapse">
+<h2>Fixes double escaped strings.</h2>
+<pre>fix_double_escape(string $escaped) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$escaped</h4>
+<code>string</code><p>HTML string to fix</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>fixed escaped string</div>
+</div></div>
+</div>
+<a id="function_form_tag"></a><div class="element clickable function  function_form_tag" data-toggle="collapse" data-target=".function_form_tag .collapse">
+<h2>Returns an HTML &lt;form&gt; tag that points to a valid action, route or URL as defined by &lt;i&gt;$url_for_options&lt;/i&gt;.</h2>
+<pre>form_tag(string $url_for_options, array $options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>By default, the form tag is generated in POST format, but can easily be configured along with any additional
+HTML parameters via the optional <i>$options</i> parameter. If you are using file uploads, be sure to set the
+<i>multipart</i> option to true.</p>
+
+<p><b>Options:</b>
+- multipart - When set to true, enctype is set to "multipart/form-data".</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code><?php echo form_tag('@myroute'); ?></code></pre>
+
+<pre><code><?php echo form_tag('/module/action', array('name' => 'myformname', 'multipart' => true)); ?></code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url_for_options</h4>
+<code>string</code><p>valid action, route or URL</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>optional HTML parameters for the</p>
+
+<p><</p>
+
+<p>form> tag</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>opening HTML <form> tag with options</div>
+</div></div>
+</div>
+<a id="function_form_tag_for"></a><div class="element clickable function  function_form_tag_for" data-toggle="collapse" data-target=".function_form_tag_for .collapse">
+<h2>form_tag_for()
+        </h2>
+<pre>form_tag_for(\sfForm $form, $routePrefix, $attributes) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+<div class="subelement argument"><h4>$routePrefix</h4></div>
+<div class="subelement argument"><h4>$attributes</h4></div>
+</div></div>
+</div>
+<a id="function_format_country"></a><div class="element clickable function  function_format_country" data-toggle="collapse" data-target=".function_format_country .collapse">
+<h2>format_country()
+        </h2>
+<pre>format_country($country_iso, $culture) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$country_iso</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+</div></div>
+</div>
+<a id="function_format_currency"></a><div class="element clickable function  function_format_currency" data-toggle="collapse" data-target=".function_format_currency .collapse">
+<h2>format_currency()
+        </h2>
+<pre>format_currency($amount, $currency, $culture) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$amount</h4></div>
+<div class="subelement argument"><h4>$currency</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+</div></div>
+</div>
+<a id="function_format_date"></a><div class="element clickable function  function_format_date" data-toggle="collapse" data-target=".function_format_date .collapse">
+<h2>format_date()
+        </h2>
+<pre>format_date($date, $format, $culture, $charset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$date</h4></div>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+<div class="subelement argument"><h4>$charset</h4></div>
+</div></div>
+</div>
+<a id="function_format_daterange"></a><div class="element clickable function  function_format_daterange" data-toggle="collapse" data-target=".function_format_daterange .collapse">
+<h2>format_daterange()
+        </h2>
+<pre>format_daterange($start_date, $end_date, $format, $full_text, $start_text, $end_text, $culture, $charset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$start_date</h4></div>
+<div class="subelement argument"><h4>$end_date</h4></div>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$full_text</h4></div>
+<div class="subelement argument"><h4>$start_text</h4></div>
+<div class="subelement argument"><h4>$end_text</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+<div class="subelement argument"><h4>$charset</h4></div>
+</div></div>
+</div>
+<a id="function_format_datetime"></a><div class="element clickable function  function_format_datetime" data-toggle="collapse" data-target=".function_format_datetime .collapse">
+<h2>format_datetime()
+        </h2>
+<pre>format_datetime($date, $format, $culture, $charset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$date</h4></div>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+<div class="subelement argument"><h4>$charset</h4></div>
+</div></div>
+</div>
+<a id="function_format_language"></a><div class="element clickable function  function_format_language" data-toggle="collapse" data-target=".function_format_language .collapse">
+<h2>format_language()
+        </h2>
+<pre>format_language($language_iso, $culture) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$language_iso</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+</div></div>
+</div>
+<a id="function_format_number"></a><div class="element clickable function  function_format_number" data-toggle="collapse" data-target=".function_format_number .collapse">
+<h2>format_number()
+        </h2>
+<pre>format_number($number, $culture) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$number</h4></div>
+<div class="subelement argument"><h4>$culture</h4></div>
+</div></div>
+</div>
+<a id="function_format_number_choice"></a><div class="element clickable function  function_format_number_choice" data-toggle="collapse" data-target=".function_format_number_choice .collapse">
+<h2>Format a string according to a number.</h2>
+<pre>format_number_choice(string $text, array $args, int $number, string $catalogue) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Every segment is separated with |
+Each segment defines an intervale and a value.</p>
+
+<p>For example :</p>
+
+<ul>
+<li>[0]Nobody is logged|[1]There is 1 person logged|(1,+Inf]There are %number persons logged</li>
+</ul></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>Text used for different number values</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>Arguments to replace in the string</p></div>
+<div class="subelement argument">
+<h4>$number</h4>
+<code>int</code><p>Number to use to determine the string to use</p></div>
+<div class="subelement argument">
+<h4>$catalogue</h4>
+<code>string</code><p>Catalogue for translation</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Result of the translation</div>
+</div></div>
+</div>
+<a id="function_get_component"></a><div class="element clickable function  function_get_component" data-toggle="collapse" data-target=".function_get_component .collapse">
+<h2>Evaluates and returns a component.</h2>
+<pre>get_component(string $moduleName, string $componentName, array $vars) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The syntax is similar to the one of include_component.</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> echo get_component('mymodule', 'mypartial', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\include_component</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>module name</p></div>
+<div class="subelement argument">
+<h4>$componentName</h4>
+<code>string</code><p>component name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the component</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>result of the component execution</div>
+</div></div>
+</div>
+<a id="function_get_component_slot"></a><div class="element clickable function  function_get_component_slot" data-toggle="collapse" data-target=".function_get_component_slot .collapse">
+<h2>Evaluates and returns a component slot.</h2>
+<pre>get_component_slot(string $name, array $vars) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The syntax is similar to the one of include_component_slot.</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> echo get_component_slot('sidebar', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_component_slot,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the component</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>result of the component execution</div>
+</div></div>
+</div>
+<a id="function_get_id_from_name"></a><div class="element clickable function  function_get_id_from_name" data-toggle="collapse" data-target=".function_get_id_from_name .collapse">
+<h2>Returns a formatted ID based on the &lt;i&gt;$name&lt;/i&gt; parameter and optionally the &lt;i&gt;$value&lt;/i&gt; parameter.</h2>
+<pre>get_id_from_name(string $name, string $value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This function determines the proper form field ID name based on the parameters. If a form field has an
+array value as a name we need to convert them to proper and unique IDs like so:
+<samp>
+ name[] => name (if value == null)
+ name[] => name_value (if value != null)
+ name[bob] => name_bob
+ name[item][total] => name_item_total
+</samp></p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo get_id_from_name('status[]', '1');
+</code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>field name</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>field value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><select> tag populated with all the languages in the world.</div>
+</div></div>
+</div>
+<a id="function_get_javascripts"></a><div class="element clickable function  function_get_javascripts" data-toggle="collapse" data-target=".function_get_javascripts .collapse">
+<h2>Returns &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object.</h2>
+<pre>get_javascripts() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>You can use this helper to decide the location of javascripts in pages.
+By default, if you don't call this helper, symfony will automatically include javascripts before </head>.
+Calling this helper disables this behavior.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><script> tags</div>
+</div></div>
+</div>
+<a id="function_get_javascripts_for_form"></a><div class="element clickable function  function_get_javascripts_for_form" data-toggle="collapse" data-target=".function_get_javascripts_for_form .collapse">
+<h2>Returns &lt;script&gt; tags for all javascripts associated with the given form.</h2>
+<pre>get_javascripts_for_form(\sfForm $form) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The scripts are set by implementing the getJavaScripts() method in the
+corresponding widget.</p>
+
+<pre><code>class MyWidget extends sfWidgetForm
+{
+  public function getJavaScripts()
+  {
+    return array('/path/to/a/file.js');
+  }
+}
+</code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><script> tags</div>
+</div></div>
+</div>
+<a id="function_get_partial"></a><div class="element clickable function  function_get_partial" data-toggle="collapse" data-target=".function_get_partial .collapse">
+<h2>Evaluates and returns a partial.</h2>
+<pre>get_partial(string $templateName, array $vars) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The syntax is similar to the one of include_partial</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> echo get_partial('mypartial', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\include_partial</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateName</h4>
+<code>string</code><p>partial name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the partial</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>result of the partial execution</div>
+</div></div>
+</div>
+<a id="function_get_slot"></a><div class="element clickable function  function_get_slot" data-toggle="collapse" data-target=".function_get_slot .collapse">
+<h2>Evaluates and returns a slot.</h2>
+<pre>get_slot(string $name, string $default) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Example:</b></p>
+
+<pre><code> echo get_slot('navigation');
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\has_slot,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<div class="subelement argument">
+<h4>$default</h4>
+<code>string</code><p>default content to return if slot is unexistent</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>content of the slot</div>
+</div></div>
+</div>
+<a id="function_get_stylesheets"></a><div class="element clickable function  function_get_stylesheets" data-toggle="collapse" data-target=".function_get_stylesheets .collapse">
+<h2>Returns &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object.</h2>
+<pre>get_stylesheets() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>You can use this helper to decide the location of stylesheets in pages.
+By default, if you don't call this helper, symfony will automatically include stylesheets before </head>.
+Calling this helper disables this behavior.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><link> tags</div>
+</div></div>
+</div>
+<a id="function_get_stylesheets_for_form"></a><div class="element clickable function  function_get_stylesheets_for_form" data-toggle="collapse" data-target=".function_get_stylesheets_for_form .collapse">
+<h2>Returns &lt;link&gt; tags for all stylesheets associated with the given form.</h2>
+<pre>get_stylesheets_for_form(\sfForm $form) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The stylesheets are set by implementing the getStyleSheets() method in the
+corresponding widget.</p>
+
+<pre><code>class MyWidget extends sfWidgetForm
+{
+  public function getStyleSheets()
+  {
+    return array('/path/to/a/file.css');
+  }
+}
+</code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><link> tags</div>
+</div></div>
+</div>
+<a id="function_has_component_slot"></a><div class="element clickable function  function_has_component_slot" data-toggle="collapse" data-target=".function_has_component_slot .collapse">
+<h2>Returns true if component slot exists.</h2>
+<pre>has_component_slot(string $name) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true if component slot exists, false otherwise</div>
+</div></div>
+</div>
+<a id="function_has_slot"></a><div class="element clickable function  function_has_slot" data-toggle="collapse" data-target=".function_has_slot .collapse">
+<h2>Returns true if the slot exists.</h2>
+<pre>has_slot(string $name) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_slot,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true, if the slot exists</div>
+</div></div>
+</div>
+<a id="function_highlight_text"></a><div class="element clickable function  function_highlight_text" data-toggle="collapse" data-target=".function_highlight_text .collapse">
+<h2>Highlights the +phrase+ where it is found in the +text+ by surrounding it like
+&lt;strong class="highlight"&gt;I'm a highlight phrase&lt;/strong&gt;.</h2>
+<pre>highlight_text(string $text, string $phrase, string $highlighter) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The highlighter can be specialized by
+passing +highlighter+ as single-quoted string with \1 where the phrase is supposed to be inserted.
+N.B.: The +phrase+ is sanitized to include only letters, digits, and spaces before use.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>subject input to preg_replace.</p></div>
+<div class="subelement argument">
+<h4>$phrase</h4>
+<code>string</code><p>string or array of words to highlight</p></div>
+<div class="subelement argument">
+<h4>$highlighter</h4>
+<code>string</code><p>regex replacement input to preg_replace.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="function_if_javascript"></a><div class="element clickable function  function_if_javascript" data-toggle="collapse" data-target=".function_if_javascript .collapse">
+<h2>Mark the start of a block that should only be shown in the browser if JavaScript
+is switched on.</h2>
+<pre>if_javascript() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function_image_path"></a><div class="element clickable function  function_image_path" data-toggle="collapse" data-target=".function_image_path .collapse">
+<h2>Returns the path to an image asset.</h2>
+<pre>image_path(string $source, bool $absolute) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Example:</b></p>
+
+<pre><code> echo image_path('foobar');
+   => /images/foobar.png
+</code></pre>
+
+<p><b>Note:</b> The asset name can be supplied as a...
+- full path, like "/my_images/image.gif"
+- file name, like "rss.gif", that gets expanded to "/images/rss.gif"
+- file name without extension, like "logo", that gets expanded to "/images/logo.png"</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\image_tag</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$source</h4>
+<code>string</code><p>asset name</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>bool</code><p>return absolute path ?</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>file path to the image file</div>
+</div></div>
+</div>
+<a id="function_image_tag"></a><div class="element clickable function  function_image_tag" data-toggle="collapse" data-target=".function_image_tag .collapse">
+<h2>Returns an &lt;img&gt; image tag for the asset given as argument.</h2>
+<pre>image_tag(string $source, array $options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Options:</b>
+- 'absolute' - to output absolute file paths, useful for embedded images in emails
+- 'alt'  - defaults to the file name part of the asset (capitalized and without the extension)
+- 'size' - Supplied as "XxY", so "30x45" becomes width="30" and height="45"</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo image_tag('foobar');
+   => <img src="images/foobar.png" alt="Foobar" />
+ echo image_tag('/my_images/image.gif', array('alt' => 'Alternative text', 'size' => '100x200'));
+   => <img src="/my_images/image.gif" alt="Alternative text" width="100" height="200" />
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\image_path</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$source</h4>
+<code>string</code><p>image asset name</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>additional HTML compliant <img> tag parameters</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <img> tag</div>
+</div></div>
+</div>
+<a id="function_include_component"></a><div class="element clickable function  function_include_component" data-toggle="collapse" data-target=".function_include_component .collapse">
+<h2>Evaluates and echoes a component.</h2>
+<pre>include_component(string $moduleName, string $componentName, array $vars) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>For a variable to be accessible to the component and its partial,
+it has to be passed in the third argument.</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> include_component('mymodule', 'mypartial', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_component,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>module name</p></div>
+<div class="subelement argument">
+<h4>$componentName</h4>
+<code>string</code><p>component name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the component</p></div>
+</div></div>
+</div>
+<a id="function_include_component_slot"></a><div class="element clickable function  function_include_component_slot" data-toggle="collapse" data-target=".function_include_component_slot .collapse">
+<h2>Evaluates and echoes a component slot.</h2>
+<pre>include_component_slot(string $name, array $vars) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The component name is deduced from the definition of the view.yml
+For a variable to be accessible to the component and its partial,
+it has to be passed in the second argument.</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> include_component_slot('sidebar', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_component_slot,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the component</p></div>
+</div></div>
+</div>
+<a id="function_include_http_metas"></a><div class="element clickable function  function_include_http_metas" data-toggle="collapse" data-target=".function_include_http_metas .collapse">
+<h2>Returns a set of &lt;meta http-equiv&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document.</h2>
+<pre>include_http_metas() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Examples:</b></p>
+
+<pre><code> include_http_metas();
+   => <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</code></pre>
+
+<p><b>Note:</b> Modify the view.yml or use sfWebResponse::addHttpMeta() to change, add or remove HTTP metas.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\include_metas</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sfWebResponse::addHttpMeta()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <meta> tag(s)</div>
+</div></div>
+</div>
+<a id="function_include_javascripts"></a><div class="element clickable function  function_include_javascripts" data-toggle="collapse" data-target=".function_include_javascripts .collapse">
+<h2>Prints &lt;script&gt; tags for all javascripts configured in view.yml or added to the response object.</h2>
+<pre>include_javascripts() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_javascripts()</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="function_include_javascripts_for_form"></a><div class="element clickable function  function_include_javascripts_for_form" data-toggle="collapse" data-target=".function_include_javascripts_for_form .collapse">
+<h2>Prints &lt;script&gt; tags for all javascripts associated with the given form.</h2>
+<pre>include_javascripts_for_form(\sfForm $form) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_javascripts_for_form()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+</div></div>
+</div>
+<a id="function_include_metas"></a><div class="element clickable function  function_include_metas" data-toggle="collapse" data-target=".function_include_metas .collapse">
+<h2>Prints a set of &lt;meta&gt; tags according to the response attributes,
+to be included in the &lt;head&gt; section of a HTML document.</h2>
+<pre>include_metas() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Examples:</b></p>
+
+<pre><code> include_metas();
+   => <meta name="title" content="symfony - open-source PHP5 web framework" />
+      <meta name="robots" content="index, follow" />
+      <meta name="description" content="symfony - open-source PHP5 web framework" />
+      <meta name="keywords" content="symfony, project, framework, php, php5, open-source, mit, symphony" />
+      <meta name="language" content="en" /><link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+</code></pre>
+
+<p><b>Note:</b> Modify the view.yml or use sfWebResponse::addMeta() to change, add or remove metas.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\include_http_metas</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sfWebResponse::addMeta()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <meta> tag(s)</div>
+</div></div>
+</div>
+<a id="function_include_partial"></a><div class="element clickable function  function_include_partial" data-toggle="collapse" data-target=".function_include_partial .collapse">
+<h2>Evaluates and echoes a partial.</h2>
+<pre>include_partial(string $templateName, array $vars) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The partial name is composed as follows: 'mymodule/mypartial'.
+The partial file name is _mypartial.php and is looked for in modules/mymodule/templates/.
+If the partial name doesn't include a module name,
+then the partial file is searched for in the caller's template/ directory.
+If the module name is 'global', then the partial file is looked for in myapp/templates/.
+For a variable to be accessible to the partial, it has to be passed in the second argument.</p>
+
+<p><b>Example:</b></p>
+
+<pre><code> include_partial('mypartial', array('myvar' => 12345));
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_partial,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateName</h4>
+<code>string</code><p>partial name</p></div>
+<div class="subelement argument">
+<h4>$vars</h4>
+<code>array</code><p>variables to be made accessible to the partial</p></div>
+</div></div>
+</div>
+<a id="function_include_slot"></a><div class="element clickable function  function_include_slot" data-toggle="collapse" data-target=".function_include_slot .collapse">
+<h2>Evaluates and echoes a slot.</h2>
+<pre>include_slot(string $name, string $default) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Example:</b></p>
+
+<pre><code> include_slot('navigation');
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\has_slot,</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<div class="subelement argument">
+<h4>$default</h4>
+<code>string</code><p>default content to return if slot is unexistent</p></div>
+</div></div>
+</div>
+<a id="function_include_stylesheets"></a><div class="element clickable function  function_include_stylesheets" data-toggle="collapse" data-target=".function_include_stylesheets .collapse">
+<h2>Prints &lt;link&gt; tags for all stylesheets configured in view.yml or added to the response object.</h2>
+<pre>include_stylesheets() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_stylesheets()</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="function_include_stylesheets_for_form"></a><div class="element clickable function  function_include_stylesheets_for_form" data-toggle="collapse" data-target=".function_include_stylesheets_for_form .collapse">
+<h2>Prints &lt;link&gt; tags for all stylesheets associated with the given form.</h2>
+<pre>include_stylesheets_for_form(\sfForm $form) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\get_stylesheets_for_form()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+</div></div>
+</div>
+<a id="function_include_title"></a><div class="element clickable function  function_include_title" data-toggle="collapse" data-target=".function_include_title .collapse">
+<h2>Returns the title of the current page according to the response attributes,
+to be included in the &lt;title&gt; section of a HTML document.</h2>
+<pre>include_title() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Note:</b> Modify the sfResponse object or the view.yml to modify the title of a page.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>page title</div>
+</div></div>
+</div>
+<a id="function_javascript_cdata_section"></a><div class="element clickable function  function_javascript_cdata_section" data-toggle="collapse" data-target=".function_javascript_cdata_section .collapse">
+<h2>javascript_cdata_section()
+        </h2>
+<pre>javascript_cdata_section($content) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$content</h4></div>
+</div></div>
+</div>
+<a id="function_javascript_include_tag"></a><div class="element clickable function  function_javascript_include_tag" data-toggle="collapse" data-target=".function_javascript_include_tag .collapse">
+<h2>Returns a &lt;script&gt; include tag per source given as argument.</h2>
+<pre>javascript_include_tag() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Examples:</b></p>
+
+<pre><code> echo javascript_include_tag('xmlhr');
+   => <script language="JavaScript" type="text/javascript" src="/js/xmlhr.js"></script>
+ echo javascript_include_tag('common.javascript', '/elsewhere/cools');
+   => <script language="JavaScript" type="text/javascript" src="/js/common.javascript"></script>
+      <script language="JavaScript" type="text/javascript" src="/elsewhere/cools.js"></script>
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\javascript_path</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <script> tag(s)</div>
+</div></div>
+</div>
+<a id="function_javascript_path"></a><div class="element clickable function  function_javascript_path" data-toggle="collapse" data-target=".function_javascript_path .collapse">
+<h2>Returns the path to a JavaScript asset.</h2>
+<pre>javascript_path(string $source, bool $absolute) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Example:</b></p>
+
+<pre><code> echo javascript_path('myscript');
+   => /js/myscript.js
+</code></pre>
+
+<p><b>Note:</b> The asset name can be supplied as a...
+- full path, like "/my_js/myscript.css"
+- file name, like "myscript.js", that gets expanded to "/js/myscript.js"
+- file name without extension, like "myscript", that gets expanded to "/js/myscript.js"</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\javascript_include_tag</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$source</h4>
+<code>string</code><p>asset name</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>bool</code><p>return absolute path ?</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>file path to the JavaScript file</div>
+</div></div>
+</div>
+<a id="function_javascript_tag"></a><div class="element clickable function  function_javascript_tag" data-toggle="collapse" data-target=".function_javascript_tag .collapse">
+<h2>Returns a JavaScript tag with the '$content' inside.</h2>
+<pre>javascript_tag($content) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If no content is passed, it works as the slot() method and will output everythin between
+javascript_tag() and end_javascript_tag(),
+Example:
+  <?php echo javascript_tag("alert('All is good')") ?>
+  => <script type="text/javascript">alert('All is good')</script>
+  <?php javascript_tag() ?>alert('All is good')<?php end_javascript_tag() ?></p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$content</h4></div>
+</div></div>
+</div>
+<a id="function_link_to"></a><div class="element clickable function  function_link_to" data-toggle="collapse" data-target=".function_link_to .collapse">
+<h2>Creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</h2>
+<pre>link_to() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It's also possible to pass a string instead of a module/action pair to
+get a link tag that just points without consideration.
+If null is passed as a name, the link itself will become the name.
+If an object is passed as a name, the object string representation is used.
+One of the options serves for for creating javascript confirm alerts where
+if you pass 'confirm' => 'Are you sure?', the link will be guarded
+with a JS popup asking that question. If the user accepts, the link is processed,
+otherwise not.</p>
+
+<p><b>Options:</b>
+- 'absolute' - if set to true, the helper outputs an absolute URL
+- 'query_string' - to append a query string (starting by ?) to the routed url
+- 'anchor' - to append an anchor (starting by #) to the routed url
+- 'confirm' - displays a javascript confirmation alert when the link is clicked
+- 'popup' - if set to true, the link opens a new browser window
+- 'post' - if set to true, the link submits a POST request instead of GET (caution: do not use inside a form)
+- 'method' - if set to post, delete, or put, the link submits a request with the given HTTP method instead of GET (caution: do not use inside a form)</p>
+
+<p><b>Note:</b> The 'popup', 'post', and 'method' options are not compatible with each other.</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo link_to('Delete this page', 'my_module/my_action');
+   => <a href="/path/to/my/action">Delete this page</a>
+ echo link_to('Visit Hoogle', 'http://www.hoogle.com');
+   => <a href="http://www.hoogle.com">Visit Hoogle</a>
+ echo link_to('Delete this page', 'my_module/my_action', array('id' => 'myid', 'confirm' => 'Are you sure?', 'absolute' => true));
+   => <a href="http://myapp.example.com/path/to/my/action" id="myid" onclick="return confirm('Are you sure?');">Delete this page</a>
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\url_for</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <a href> tag</div>
+</div></div>
+</div>
+<a id="function_link_to_function"></a><div class="element clickable function  function_link_to_function" data-toggle="collapse" data-target=".function_link_to_function .collapse">
+<h2>Returns a link that will trigger a javascript function using the
+onclick handler and return false after the fact.</h2>
+<pre>link_to_function($name, $function, $html_options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Examples:
+  <?php echo link_to_function('Greeting', "alert('Hello world!')") ?>
+  <?php echo link_to_function(image_tag('delete'), "do_delete()", array('confirm' => 'Really?')) ?></p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$function</h4></div>
+<div class="subelement argument"><h4>$html_options</h4></div>
+</div></div>
+</div>
+<a id="function_link_to_if"></a><div class="element clickable function  function_link_to_if" data-toggle="collapse" data-target=".function_link_to_if .collapse">
+<h2>If the condition passed as first argument is true,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</h2>
+<pre>link_to_if() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the condition is false, the given name is returned between <span> tags</p>
+
+<p><b>Options:</b>
+- 'tag' - the HTML tag that must enclose the name if the condition is false, defaults to <span>
+- 'absolute' - if set to true, the helper outputs an absolute URL
+- 'query_string' - to append a query string (starting by ?) to the routed url
+- 'anchor' - to append an anchor (starting by #) to the routed url
+- 'confirm' - displays a javascript confirmation alert when the link is clicked
+- 'popup' - if set to true, the link opens a new browser window
+- 'post' - if set to true, the link submits a POST request instead of GET (caution: do not use inside a form)</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo link_to_if($user->isAdministrator(), 'Delete this page', 'my_module/my_action');
+   => <a href="/path/to/my/action">Delete this page</a>
+ echo link_to_if(!$user->isAdministrator(), 'Delete this page', 'my_module/my_action');
+   => <span>Delete this page</span>
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\link_to</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <a href> tag or name</div>
+</div></div>
+</div>
+<a id="function_link_to_unless"></a><div class="element clickable function  function_link_to_unless" data-toggle="collapse" data-target=".function_link_to_unless .collapse">
+<h2>If the condition passed as first argument is false,
+creates a &lt;a&gt; link tag of the given name using a routed URL
+based on the module/action passed as argument and the routing configuration.</h2>
+<pre>link_to_unless() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the condition is true, the given name is returned between <span> tags</p>
+
+<p><b>Options:</b>
+- 'tag' - the HTML tag that must enclose the name if the condition is true, defaults to <span>
+- 'absolute' - if set to true, the helper outputs an absolute URL
+- 'query_string' - to append a query string (starting by ?) to the routed url
+- 'anchor' - to append an anchor (starting by #) to the routed url
+- 'confirm' - displays a javascript confirmation alert when the link is clicked
+- 'popup' - if set to true, the link opens a new browser window
+- 'post' - if set to true, the link submits a POST request instead of GET (caution: do not use inside a form)</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo link_to_unless($user->isAdministrator(), 'Delete this page', 'my_module/my_action');
+   => <span>Delete this page</span>
+ echo link_to_unless(!$user->isAdministrator(), 'Delete this page', 'my_module/my_action');
+   => <a href="/path/to/my/action">Delete this page</a>
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\link_to</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <a href> tag or name</div>
+</div></div>
+</div>
+<a id="function_mail_to"></a><div class="element clickable function  function_mail_to" data-toggle="collapse" data-target=".function_mail_to .collapse">
+<h2>Creates a &lt;a&gt; link tag to the given email (with href="mailto:.</h2>
+<pre>mail_to(string $email, string $name, array $options, array $default_value) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>..").
+If null is passed as a name, the email itself will become the name.</p>
+
+<p><b>Options:</b>
+- 'encode' - if set to true, the email address appears with various random encoding for each letter.
+The mail link still works when encoded, but the address doesn't appear in clear
+in the source. Use it to prevent spam (efficiency not guaranteed).</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo mail_to('webmaster@example.com');
+   => <a href="mailto:webmaster@example.com">webmaster@example.com</a>
+ echo mail_to('webmaster@example.com', 'send us an email');
+   => <a href="mailto:webmaster@example.com">send us an email</a>
+ echo mail_to('webmaster@example.com', 'send us an email', array('encode' => true));
+   => <a href="
+&#x6d;a&#x69;&#x6c;&#x74;&#111;&#58;&#x77;&#x65;b&#x6d;as&#116;&#x65;&#114;
+&#64;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;
+">send us an email</a>
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\link_to</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>string</code><p>target email</p></div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>name of the link, i.e. string to appear between the <a> tags</p>
+</div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>additional HTML compliant <a> tag parameters</p>
+</div>
+<div class="subelement argument">
+<h4>$default_value</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <a href> tag</div>
+</div></div>
+</div>
+<a id="function_options_for_javascript"></a><div class="element clickable function  function_options_for_javascript" data-toggle="collapse" data-target=".function_options_for_javascript .collapse">
+<h2>converts the the PHP options array into a javscript array</h2>
+<pre>options_for_javascript($options) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$options</h4><p>array</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>javascript arry equivalent</div>
+</div></div>
+</div>
+<a id="function_public_path"></a><div class="element clickable function  function_public_path" data-toggle="collapse" data-target=".function_public_path .collapse">
+<h2>Returns a URL rooted at the web root</h2>
+<pre>public_path(string $path, bool $absolute) : \The</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$path</h4>
+<code>string</code><p>The route to append</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>bool</code><p>If true, an absolute path is returned (optional)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\The</code>web URL root</div>
+</div></div>
+</div>
+<a id="function_simple_format_text"></a><div class="element clickable function  function_simple_format_text" data-toggle="collapse" data-target=".function_simple_format_text .collapse">
+<h2>Returns +text+ transformed into html using very simple formatting rules
+Surrounds paragraphs with &lt;tt&gt;&amp;lt;p&amp;gt;&lt;/tt&gt; tags, and converts line breaks into &lt;tt&gt;&amp;lt;br /&amp;gt;&lt;/tt&gt;
+Two consecutive newlines(&lt;tt&gt;\n\n&lt;/tt&gt;) are considered as a paragraph, one newline (&lt;tt&gt;\n&lt;/tt&gt;) is
+considered a linebreak, three or more consecutive newlines are turned into two newlines</h2>
+<pre>simple_format_text($text, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_slot"></a><div class="element clickable function  function_slot" data-toggle="collapse" data-target=".function_slot .collapse">
+<h2>Begins the capturing of the slot.</h2>
+<pre>slot(string $name, string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\end_slot</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>slot name</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>The slot content</p></div>
+</div></div>
+</div>
+<a id="function_strip_links_text"></a><div class="element clickable function  function_strip_links_text" data-toggle="collapse" data-target=".function_strip_links_text .collapse">
+<h2>Turns all links into words, like "&lt;a href="something"&gt;else&lt;/a&gt;" to "else".</h2>
+<pre>strip_links_text($text) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+</div></div>
+</div>
+<a id="function_stylesheet_path"></a><div class="element clickable function  function_stylesheet_path" data-toggle="collapse" data-target=".function_stylesheet_path .collapse">
+<h2>Returns the path to a stylesheet asset.</h2>
+<pre>stylesheet_path(string $source, bool $absolute) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Example:</b></p>
+
+<pre><code> echo stylesheet_path('style');
+   => /css/style.css
+</code></pre>
+
+<p><b>Note:</b> The asset name can be supplied as a...
+- full path, like "/my_css/style.css"
+- file name, like "style.css", that gets expanded to "/css/style.css"
+- file name without extension, like "style", that gets expanded to "/css/style.css"</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\stylesheet_tag</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$source</h4>
+<code>string</code><p>asset name</p></div>
+<div class="subelement argument">
+<h4>$absolute</h4>
+<code>bool</code><p>return absolute path ?</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>file path to the stylesheet file</div>
+</div></div>
+</div>
+<a id="function_stylesheet_tag"></a><div class="element clickable function  function_stylesheet_tag" data-toggle="collapse" data-target=".function_stylesheet_tag .collapse">
+<h2>Returns a css &lt;link&gt; tag per source given as argument,
+to be included in the &lt;head&gt; section of a HTML document.</h2>
+<pre>stylesheet_tag() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Options:</b>
+- rel - defaults to 'stylesheet'
+- type - defaults to 'text/css'
+- media - defaults to 'screen'</p>
+
+<p><b>Examples:</b></p>
+
+<pre><code> echo stylesheet_tag('style');
+   => <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+ echo stylesheet_tag('style', array('media' => 'all'));
+   => <link href="/stylesheets/style.css" media="all" rel="stylesheet" type="text/css" />
+ echo stylesheet_tag('style', array('raw_name' => true));
+   => <link href="style" media="all" rel="stylesheet" type="text/css" />
+ echo stylesheet_tag('random.styles', '/css/stylish');
+   => <link href="/stylesheets/random.styles" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/css/stylish.css" media="screen" rel="stylesheet" type="text/css" />
+</code></pre></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\stylesheet_path</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>XHTML compliant <link> tag(s)</div>
+</div></div>
+</div>
+<a id="function_tag"></a><div class="element clickable function  function_tag" data-toggle="collapse" data-target=".function_tag .collapse">
+<h2>Constructs an html tag.</h2>
+<pre>tag(string $name, array $options, bool $open) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>tag name</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>tag options</p></div>
+<div class="subelement argument">
+<h4>$open</h4>
+<code>bool</code><p>true to leave tag open</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="function_time_ago_in_words"></a><div class="element clickable function  function_time_ago_in_words" data-toggle="collapse" data-target=".function_time_ago_in_words .collapse">
+<h2>time_ago_in_words()
+        </h2>
+<pre>time_ago_in_words($from_time, $include_seconds) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$from_time</h4></div>
+<div class="subelement argument"><h4>$include_seconds</h4></div>
+</div></div>
+</div>
+<a id="function_truncate_text"></a><div class="element clickable function  function_truncate_text" data-toggle="collapse" data-target=".function_truncate_text .collapse">
+<h2>Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncate_string+
+if the +text+ is longer than +length+.</h2>
+<pre>truncate_text($text, $length, $truncate_string, $truncate_lastspace) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$length</h4></div>
+<div class="subelement argument"><h4>$truncate_string</h4></div>
+<div class="subelement argument"><h4>$truncate_lastspace</h4></div>
+</div></div>
+</div>
+<a id="function_url_for"></a><div class="element clickable function  function_url_for" data-toggle="collapse" data-target=".function_url_for .collapse">
+<h2>Returns a routed URL based on the module/action passed as argument
+and the routing configuration.</h2>
+<pre>url_for() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p><b>Examples:</b></p>
+
+<pre><code> echo url_for('my_module/my_action');
+   => /path/to/my/action
+ echo url_for('@my_rule');
+   => /path/to/my/action
+ echo url_for('@my_rule', true);
+   => http://myapp.example.com/path/to/my/action
+</code></pre></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>routed URL</div>
+</div></div>
+</div>
+<a id="function_url_for_form"></a><div class="element clickable function  function_url_for_form" data-toggle="collapse" data-target=".function_url_for_form .collapse">
+<h2>url_for_form()
+        </h2>
+<pre>url_for_form(\sfFormObject $form, $routePrefix) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$form</h4></div>
+<div class="subelement argument"><h4>$routePrefix</h4></div>
+</div></div>
+</div>
+<a id="function_use_dynamic_javascript"></a><div class="element clickable function  function_use_dynamic_javascript" data-toggle="collapse" data-target=".function_use_dynamic_javascript .collapse">
+<h2>Adds a dynamic javascript to the response object.</h2>
+<pre>use_dynamic_javascript($js, $position, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The first argument is an internal URI.
+The helper automatically adds the sf_format to the internal URI, so you don't have to.</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\sfResponse-&gt;addJavascript()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$js</h4></div>
+<div class="subelement argument"><h4>$position</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_use_dynamic_stylesheet"></a><div class="element clickable function  function_use_dynamic_stylesheet" data-toggle="collapse" data-target=".function_use_dynamic_stylesheet .collapse">
+<h2>Adds a dynamic stylesheet to the response object.</h2>
+<pre>use_dynamic_stylesheet($css, $position, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The first argument is an internal URI.
+The helper automatically adds the sf_format to the internal URI, so you don't have to.</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\sfResponse-&gt;addStylesheet()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$css</h4></div>
+<div class="subelement argument"><h4>$position</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_use_helper"></a><div class="element clickable function  function_use_helper" data-toggle="collapse" data-target=".function_use_helper .collapse">
+<h2>use_helper()
+        </h2>
+<pre>use_helper() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="function_use_javascript"></a><div class="element clickable function  function_use_javascript" data-toggle="collapse" data-target=".function_use_javascript .collapse">
+<h2>Adds a javascript to the response object.</h2>
+<pre>use_javascript($js, $position, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\sfResponse-&gt;addJavascript()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$js</h4></div>
+<div class="subelement argument"><h4>$position</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_use_javascripts_for_form"></a><div class="element clickable function  function_use_javascripts_for_form" data-toggle="collapse" data-target=".function_use_javascripts_for_form .collapse">
+<h2>Adds javascripts from the supplied form to the response object.</h2>
+<pre>use_javascripts_for_form(\sfForm $form) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$form</h4>
+<code><a href="../classes/sfForm.html">\sfForm</a></code>
+</div>
+</div></div>
+</div>
+<a id="function_use_stylesheet"></a><div class="element clickable function  function_use_stylesheet" data-toggle="collapse" data-target=".function_use_stylesheet .collapse">
+<h2>Adds a stylesheet to the response object.</h2>
+<pre>use_stylesheet($css, $position, $options) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\sfResponse-&gt;addStylesheet()</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$css</h4></div>
+<div class="subelement argument"><h4>$position</h4></div>
+<div class="subelement argument"><h4>$options</h4></div>
+</div></div>
+</div>
+<a id="function_use_stylesheets_for_form"></a><div class="element clickable function  function_use_stylesheets_for_form" data-toggle="collapse" data-target=".function_use_stylesheets_for_form .collapse">
+<h2>Adds stylesheets from the supplied form to the response object.</h2>
+<pre>use_stylesheets_for_form(\sfForm $form) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$form</h4>
+<code><a href="../classes/sfForm.html">\sfForm</a></code>
+</div>
+</div></div>
+</div>
+<a id="function_wrap_text"></a><div class="element clickable function  function_wrap_text" data-toggle="collapse" data-target=".function_wrap_text .collapse">
+<h2>Word wrap long lines to line_width.</h2>
+<pre>wrap_text($text, $line_width) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$text</h4></div>
+<div class="subelement argument"><h4>$line_width</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ESC_ENTITIES"> </a><div class="element clickable constant  constant_ESC_ENTITIES" data-toggle="collapse" data-target=".constant_ESC_ENTITIES .collapse">
+<h2>ESC_ENTITIES</h2>
+<pre>ESC_ENTITIES </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ESC_JS"> </a><div class="element clickable constant  constant_ESC_JS" data-toggle="collapse" data-target=".constant_ESC_JS .collapse">
+<h2>ESC_JS</h2>
+<pre>ESC_JS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ESC_JS_NO_ENTITIES"> </a><div class="element clickable constant  constant_ESC_JS_NO_ENTITIES" data-toggle="collapse" data-target=".constant_ESC_JS_NO_ENTITIES .collapse">
+<h2>ESC_JS_NO_ENTITIES</h2>
+<pre>ESC_JS_NO_ENTITIES </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ESC_RAW"> </a><div class="element clickable constant  constant_ESC_RAW" data-toggle="collapse" data-target=".constant_ESC_RAW .collapse">
+<h2>ESC_RAW</h2>
+<pre>ESC_RAW </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ESC_SPECIALCHARS"> </a><div class="element clickable constant  constant_ESC_SPECIALCHARS" data-toggle="collapse" data-target=".constant_ESC_SPECIALCHARS .collapse">
+<h2>ESC_SPECIALCHARS</h2>
+<pre>ESC_SPECIALCHARS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_SF_AUTO_LINK_RE"> </a><div class="element clickable constant  constant_SF_AUTO_LINK_RE" data-toggle="collapse" data-target=".constant_SF_AUTO_LINK_RE .collapse">
+<h2>SF_AUTO_LINK_RE</h2>
+<pre>SF_AUTO_LINK_RE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:44:42+05:00.<br></footer></div>
+</div>
+</body>
+</html>

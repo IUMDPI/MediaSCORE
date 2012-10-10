@@ -10,21 +10,20 @@
  */
 class cylinderActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->cylinders = Doctrine_Core::getTable('Cylinder')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->cylinder = Doctrine_Core::getTable('Cylinder')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->cylinder);
-    }
-
+    /**
+     * Generate Betamax form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new CylinderForm();
     }
 
+    /**
+     * Betamax Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,21 @@ class cylinderActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * Betamax edit Form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($cylinder = Doctrine_Core::getTable('Cylinder')->find(array($request->getParameter('id'))), sprintf('Object cylinder does not exist (%s).', $request->getParameter('id')));
         $this->form = new CylinderForm($cylinder);
     }
 
+    /**
+     * Betamax Post Edit form Process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($cylinder = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object cylinder does not exist (%s).', $request->getParameter('id')));
@@ -49,7 +58,7 @@ class cylinderActions extends sfActions {
         $cylinder = Doctrine_Core::getTable('Cylinder')->find(array($request->getParameter('id')));
         $this->form = new CylinderForm($cylinder);
 
-        
+
         $validateForm = $this->processForm($request, $this->form);
 
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -60,23 +69,20 @@ class cylinderActions extends sfActions {
         }
     }
 
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($cylinder = Doctrine_Core::getTable('Cylinder')->find(array($request->getParameter('id'))), sprintf('Object cylinder does not exist (%s).', $request->getParameter('id')));
-        $cylinder->delete();
-
-        $this->redirect('cylinder/index');
-    }
-
+    /**
+     * Process and Validate Form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $cylinder = $form->save();
             $saveReturnId = array('form' => true, 'id' => $cylinder->getId());
             return $saveReturnId;
-
-//            $this->redirect('cylinder/edit?id=' . $cylinder->getId());
         }
         return false;
     }

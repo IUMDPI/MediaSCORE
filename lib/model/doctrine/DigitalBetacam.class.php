@@ -7,13 +7,14 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class DigitalBetacam extends BaseDigitalBetacam
-{
-	public static $constants = array(
-					array(''=>'Select',0 => 'Small', 1 => 'Standard'),
-					array(''=>'Select','Digital','SX','IMX'),
-					array('30','40','50','unknown'));
+class DigitalBetacam extends BaseDigitalBetacam {
+
+    public static $constants = array(
+        array('' => 'Select', 0 => 'Small', 1 => 'Standard'),
+        array('' => 'Select', 'Digital', 'SX', 'IMX'),
+        array('30', '40', '50', 'unknown'));
+
 }

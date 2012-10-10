@@ -7,10 +7,11 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class SoundWireReel extends BaseSoundWireReel
-{
-	public static $constants = array(''=>'Select',0 => 'Stainless steel',1 => 'Non-stainless steel',2 => 'Iron',3 => 'Unknown');
+class SoundWireReel extends BaseSoundWireReel {
+
+    public static $constants = array('' => 'Select', 0 => 'Stainless steel', 1 => 'Non-stainless steel', 2 => 'Iron', 3 => 'Unknown');
+
 }

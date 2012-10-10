@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » symfony\doctrine</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/symfony.doctrine.html" title="doctrine"><i class="icon-folder-open"></i>doctrine</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#sfDoctrinePluginConfiguration" title="sfDoctrinePluginConfiguration Class">sfDoctrinePluginConfiguration</a></li>
+<li><a href="#sfDoctrineCli" title="sfDoctrineCli">sfDoctrineCli</a></li>
+<li><a href="#sfDoctrineConnectionListener" title="Standard connection listener">sfDoctrineConnectionListener</a></li>
+<li><a href="#sfDoctrineDatabase" title="A symfony database driver for Doctrine.">sfDoctrineDatabase</a></li>
+<li><a href="#sfDoctrineColumn" title="Represents a Doctrine column">sfDoctrineColumn</a></li>
+<li><a href="#sfDoctrineGenerator" title="Doctrine generator.">sfDoctrineGenerator</a></li>
+<li><a href="#sfDoctrineRecord" title="Base sfDoctrineRecord extends the base Doctrine_Record in Doctrine to provide some
+symfony specific functionality to Doctrine_Records">sfDoctrineRecord</a></li>
+<li><a href="#sfDoctrineRecordI18nFilter" title="sfDoctrineRecordI18nFilter implements access to the translated properties for
+the current culture from the internationalized model.">sfDoctrineRecordI18nFilter</a></li>
+<li><a href="#sfDoctrineRoute" title="sfDoctrineRoute represents a route that is bound to a Doctrine class.">sfDoctrineRoute</a></li>
+<li><a href="#sfDoctrineRouteCollection" title="sfObjectRouteCollection represents a collection of routes bound to Doctrine objects.">sfDoctrineRouteCollection</a></li>
+<li><a href="#sfDoctrineException" title="sfDoctrine exception class">sfDoctrineException</a></li>
+<li><a href="#sfDoctrineBaseTask" title="Base class for all symfony Doctrine tasks.">sfDoctrineBaseTask</a></li>
+<li><a href="#sfDoctrineBuildDbTask" title="Creates database for current model.">sfDoctrineBuildDbTask</a></li>
+<li><a href="#sfDoctrineBuildFiltersTask" title="Create filter form classes for the current model.">sfDoctrineBuildFiltersTask</a></li>
+<li><a href="#sfDoctrineBuildFormsTask" title="Create form classes for the current model.">sfDoctrineBuildFormsTask</a></li>
+<li><a href="#sfDoctrineBuildModelTask" title="Create classes for the current model.">sfDoctrineBuildModelTask</a></li>
+<li><a href="#sfDoctrineBuildSchemaTask" title="Creates a schema.yml from an existing database.">sfDoctrineBuildSchemaTask</a></li>
+<li><a href="#sfDoctrineBuildSqlTask" title="Create SQL for the current model.">sfDoctrineBuildSqlTask</a></li>
+<li><a href="#sfDoctrineCleanModelFilesTask" title="Delete all generated model classes for models which no longer exist in your YAML schema">sfDoctrineCleanModelFilesTask</a></li>
+<li><a href="#sfDoctrineCreateModelTables" title="Create tables for specified list of models">sfDoctrineCreateModelTables</a></li>
+<li><a href="#sfDoctrineDataDumpTask" title="Dumps data to the fixtures directory.">sfDoctrineDataDumpTask</a></li>
+<li><a href="#sfDoctrineDataLoadTask" title="Loads YAML fixture data.">sfDoctrineDataLoadTask</a></li>
+<li><a href="#sfDoctrineDeleteModelFilesTask" title="Delete all generated files associated with a Doctrine model.">sfDoctrineDeleteModelFilesTask</a></li>
+<li><a href="#sfDoctrineDqlTask" title="Creates database for current model.">sfDoctrineDqlTask</a></li>
+<li><a href="#sfDoctrineDropDbTask" title="Drops database for current model.">sfDoctrineDropDbTask</a></li>
+<li><a href="#sfDoctrineGenerateAdminTask" title="Generates a Doctrine admin module.">sfDoctrineGenerateAdminTask</a></li>
+<li><a href="#sfDoctrineGenerateMigrationsDbTask" title="Generate migrations from database">sfDoctrineGenerateMigrationsDbTask</a></li>
+<li><a href="#sfDoctrineGenerateMigrationsDiffTask" title="Generate migration classes by producing a diff between your old and new schema.">sfDoctrineGenerateMigrationsDiffTask</a></li>
+<li><a href="#sfDoctrineGenerateMigrationsModelsTask" title="Inserts SQL for current model.">sfDoctrineGenerateMigrationsModelsTask</a></li>
+<li><a href="#sfDoctrineGenerateMigrationTask" title="Inserts SQL for current model.">sfDoctrineGenerateMigrationTask</a></li>
+<li><a href="#sfDoctrineGenerateModuleForRouteTask" title="Generates a Doctrine module for a route definition.">sfDoctrineGenerateModuleForRouteTask</a></li>
+<li><a href="#sfDoctrineGenerateModuleTask" title="Generates a Doctrine module.">sfDoctrineGenerateModuleTask</a></li>
+<li><a href="#sfDoctrineInsertSqlTask" title="Inserts SQL for current model.">sfDoctrineInsertSqlTask</a></li>
+<li><a href="#sfDoctrineMigrateTask" title="Inserts SQL for current model.">sfDoctrineMigrateTask</a></li>
+<li><a href="#sfValidatorDoctrineChoice" title="sfValidatorDoctrineChoice validates that the value is one of the rows of a table.">sfValidatorDoctrineChoice</a></li>
+<li><a href="#sfValidatorDoctrineUnique" title="sfValidatorDoctrineUnique validates that the uniqueness of a column.">sfValidatorDoctrineUnique</a></li>
+<li><a href="#sfWidgetFormDoctrineChoice" title="sfWidgetFormDoctrineChoice represents a choice widget for a model.">sfWidgetFormDoctrineChoice</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/symfony.html">symfony</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/symfony.doctrine.html">doctrine</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="sfDoctrineBaseTask" class="element ajax clickable class">
+<h1>sfDoctrineBaseTask<a href="../classes/sfDoctrineBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for all symfony Doctrine tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildDbTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildDbTask<a href="../classes/sfDoctrineBuildDbTask.html">¶</a>
+</h1>
+<p class="short_description">Creates database for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildDbTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildFiltersTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildFiltersTask<a href="../classes/sfDoctrineBuildFiltersTask.html">¶</a>
+</h1>
+<p class="short_description">Create filter form classes for the current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildFiltersTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildFormsTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildFormsTask<a href="../classes/sfDoctrineBuildFormsTask.html">¶</a>
+</h1>
+<p class="short_description">Create form classes for the current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildFormsTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildModelTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildModelTask<a href="../classes/sfDoctrineBuildModelTask.html">¶</a>
+</h1>
+<p class="short_description">Create classes for the current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildModelTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildSchemaTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildSchemaTask<a href="../classes/sfDoctrineBuildSchemaTask.html">¶</a>
+</h1>
+<p class="short_description">Creates a schema.yml from an existing database.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildSchemaTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineBuildSqlTask" class="element ajax clickable class">
+<h1>sfDoctrineBuildSqlTask<a href="../classes/sfDoctrineBuildSqlTask.html">¶</a>
+</h1>
+<p class="short_description">Create SQL for the current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineBuildSqlTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineCleanModelFilesTask" class="element ajax clickable class">
+<h1>sfDoctrineCleanModelFilesTask<a href="../classes/sfDoctrineCleanModelFilesTask.html">¶</a>
+</h1>
+<p class="short_description">Delete all generated model classes for models which no longer exist in your YAML schema</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineCleanModelFilesTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineCli" class="element ajax clickable class">
+<h1>sfDoctrineCli<a href="../classes/sfDoctrineCli.html">¶</a>
+</h1>
+<p class="short_description">sfDoctrineCli</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineCli.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineColumn" class="element ajax clickable class">
+<h1>sfDoctrineColumn<a href="../classes/sfDoctrineColumn.html">¶</a>
+</h1>
+<p class="short_description">Represents a Doctrine column</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineColumn.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineConnectionListener" class="element ajax clickable class">
+<h1>sfDoctrineConnectionListener<a href="../classes/sfDoctrineConnectionListener.html">¶</a>
+</h1>
+<p class="short_description">Standard connection listener</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineConnectionListener.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineCreateModelTables" class="element ajax clickable class">
+<h1>sfDoctrineCreateModelTables<a href="../classes/sfDoctrineCreateModelTables.html">¶</a>
+</h1>
+<p class="short_description">Create tables for specified list of models</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineCreateModelTables.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDataDumpTask" class="element ajax clickable class">
+<h1>sfDoctrineDataDumpTask<a href="../classes/sfDoctrineDataDumpTask.html">¶</a>
+</h1>
+<p class="short_description">Dumps data to the fixtures directory.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDataDumpTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDataLoadTask" class="element ajax clickable class">
+<h1>sfDoctrineDataLoadTask<a href="../classes/sfDoctrineDataLoadTask.html">¶</a>
+</h1>
+<p class="short_description">Loads YAML fixture data.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDataLoadTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDatabase" class="element ajax clickable class">
+<h1>sfDoctrineDatabase<a href="../classes/sfDoctrineDatabase.html">¶</a>
+</h1>
+<p class="short_description">A symfony database driver for Doctrine.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDatabase.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDeleteModelFilesTask" class="element ajax clickable class">
+<h1>sfDoctrineDeleteModelFilesTask<a href="../classes/sfDoctrineDeleteModelFilesTask.html">¶</a>
+</h1>
+<p class="short_description">Delete all generated files associated with a Doctrine model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDeleteModelFilesTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDqlTask" class="element ajax clickable class">
+<h1>sfDoctrineDqlTask<a href="../classes/sfDoctrineDqlTask.html">¶</a>
+</h1>
+<p class="short_description">Creates database for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDqlTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineDropDbTask" class="element ajax clickable class">
+<h1>sfDoctrineDropDbTask<a href="../classes/sfDoctrineDropDbTask.html">¶</a>
+</h1>
+<p class="short_description">Drops database for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineDropDbTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineException" class="element ajax clickable class">
+<h1>sfDoctrineException<a href="../classes/sfDoctrineException.html">¶</a>
+</h1>
+<p class="short_description">sfDoctrine exception class</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineException.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateAdminTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateAdminTask<a href="../classes/sfDoctrineGenerateAdminTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a Doctrine admin module.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateAdminTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateMigrationTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateMigrationTask<a href="../classes/sfDoctrineGenerateMigrationTask.html">¶</a>
+</h1>
+<p class="short_description">Inserts SQL for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateMigrationTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateMigrationsDbTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateMigrationsDbTask<a href="../classes/sfDoctrineGenerateMigrationsDbTask.html">¶</a>
+</h1>
+<p class="short_description">Generate migrations from database</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateMigrationsDbTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateMigrationsDiffTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateMigrationsDiffTask<a href="../classes/sfDoctrineGenerateMigrationsDiffTask.html">¶</a>
+</h1>
+<p class="short_description">Generate migration classes by producing a diff between your old and new schema.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateMigrationsDiffTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateMigrationsModelsTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateMigrationsModelsTask<a href="../classes/sfDoctrineGenerateMigrationsModelsTask.html">¶</a>
+</h1>
+<p class="short_description">Inserts SQL for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateMigrationsModelsTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateModuleForRouteTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateModuleForRouteTask<a href="../classes/sfDoctrineGenerateModuleForRouteTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a Doctrine module for a route definition.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateModuleForRouteTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerateModuleTask" class="element ajax clickable class">
+<h1>sfDoctrineGenerateModuleTask<a href="../classes/sfDoctrineGenerateModuleTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a Doctrine module.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerateModuleTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineGenerator" class="element ajax clickable class">
+<h1>sfDoctrineGenerator<a href="../classes/sfDoctrineGenerator.html">¶</a>
+</h1>
+<p class="short_description">Doctrine generator.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineGenerator.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineInsertSqlTask" class="element ajax clickable class">
+<h1>sfDoctrineInsertSqlTask<a href="../classes/sfDoctrineInsertSqlTask.html">¶</a>
+</h1>
+<p class="short_description">Inserts SQL for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineInsertSqlTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineMigrateTask" class="element ajax clickable class">
+<h1>sfDoctrineMigrateTask<a href="../classes/sfDoctrineMigrateTask.html">¶</a>
+</h1>
+<p class="short_description">Inserts SQL for current model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineMigrateTask.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrinePluginConfiguration" class="element ajax clickable class">
+<h1>sfDoctrinePluginConfiguration<a href="../classes/sfDoctrinePluginConfiguration.html">¶</a>
+</h1>
+<p class="short_description">sfDoctrinePluginConfiguration Class</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrinePluginConfiguration.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineRecord" class="element ajax clickable class">
+<h1>sfDoctrineRecord<a href="../classes/sfDoctrineRecord.html">¶</a>
+</h1>
+<p class="short_description">Base sfDoctrineRecord extends the base Doctrine_Record in Doctrine to provide some
+symfony specific functionality to Doctrine_Records</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineRecord.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineRecordI18nFilter" class="element ajax clickable class">
+<h1>sfDoctrineRecordI18nFilter<a href="../classes/sfDoctrineRecordI18nFilter.html">¶</a>
+</h1>
+<p class="short_description">sfDoctrineRecordI18nFilter implements access to the translated properties for
+the current culture from the internationalized model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineRecordI18nFilter.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineRoute" class="element ajax clickable class">
+<h1>sfDoctrineRoute<a href="../classes/sfDoctrineRoute.html">¶</a>
+</h1>
+<p class="short_description">sfDoctrineRoute represents a route that is bound to a Doctrine class.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineRoute.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineRouteCollection" class="element ajax clickable class">
+<h1>sfDoctrineRouteCollection<a href="../classes/sfDoctrineRouteCollection.html">¶</a>
+</h1>
+<p class="short_description">sfObjectRouteCollection represents a collection of routes bound to Doctrine objects.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineRouteCollection.html" class="more">« More »</a>
+</div>
+<div id="sfValidatorDoctrineChoice" class="element ajax clickable class">
+<h1>sfValidatorDoctrineChoice<a href="../classes/sfValidatorDoctrineChoice.html">¶</a>
+</h1>
+<p class="short_description">sfValidatorDoctrineChoice validates that the value is one of the rows of a table.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfValidatorDoctrineChoice.html" class="more">« More »</a>
+</div>
+<div id="sfValidatorDoctrineUnique" class="element ajax clickable class">
+<h1>sfValidatorDoctrineUnique<a href="../classes/sfValidatorDoctrineUnique.html">¶</a>
+</h1>
+<p class="short_description">sfValidatorDoctrineUnique validates that the uniqueness of a column.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfValidatorDoctrineUnique.html" class="more">« More »</a>
+</div>
+<div id="sfWidgetFormDoctrineChoice" class="element ajax clickable class">
+<h1>sfWidgetFormDoctrineChoice<a href="../classes/sfWidgetFormDoctrineChoice.html">¶</a>
+</h1>
+<p class="short_description">sfWidgetFormDoctrineChoice represents a choice widget for a model.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfWidgetFormDoctrineChoice.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:44:32+05:00.<br></footer></div>
+</div>
+</body>
+</html>

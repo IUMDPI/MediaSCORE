@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » propel\engine\database</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<span class="empty-package"><i class="icon-folder-close"></i>database</span><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/propel.engine.database.model.html" title="model"><i class="icon-folder-open"></i>model</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/propel.engine.database.reverse.html" title="reverse"><i class="icon-folder-open"></i>reverse</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/propel.engine.database.reverse.mssql.html" title="mssql"><i class="icon-folder-open"></i>mssql</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/propel.engine.database.reverse.mysql.html" title="mysql"><i class="icon-folder-open"></i>mysql</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/propel.engine.database.reverse.oracle.html" title="oracle"><i class="icon-folder-open"></i>oracle</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/propel.engine.database.reverse.pgsql.html" title="pgsql"><i class="icon-folder-open"></i>pgsql</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="../packages/propel.engine.database.transform.html" title="transform"><i class="icon-folder-open"></i>transform</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.model.html">model</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="IDMethod" class="element ajax clickable interface">
+<h1>IDMethod<a href="../classes/IDMethod.html">¶</a>
+</h1>
+<p class="short_description">Interface for various ID retrieval method types
+(i.e.</p>
+<div class="details collapse"></div>
+<a href="../classes/IDMethod.html" class="more">« More »</a>
+</div>
+<div id="NameGenerator" class="element ajax clickable interface">
+<h1>NameGenerator<a href="../classes/NameGenerator.html">¶</a>
+</h1>
+<p class="short_description">The generic interface to a name generation algorithm.</p>
+<div class="details collapse"></div>
+<a href="../classes/NameGenerator.html" class="more">« More »</a>
+</div>
+<div id="AppData" class="element ajax clickable class">
+<h1>AppData<a href="../classes/AppData.html">¶</a>
+</h1>
+<p class="short_description">A class for holding application data structures.</p>
+<div class="details collapse"></div>
+<a href="../classes/AppData.html" class="more">« More »</a>
+</div>
+<div id="Behavior" class="element ajax clickable class">
+<h1>Behavior<a href="../classes/Behavior.html">¶</a>
+</h1>
+<p class="short_description">Information about behaviors of a table.</p>
+<div class="details collapse"></div>
+<a href="../classes/Behavior.html" class="more">« More »</a>
+</div>
+<div id="Column" class="element ajax clickable class">
+<h1>Column<a href="../classes/Column.html">¶</a>
+</h1>
+<p class="short_description">A Class for holding data about a column used in an Application.</p>
+<div class="details collapse"></div>
+<a href="../classes/Column.html" class="more">« More »</a>
+</div>
+<div id="ColumnDefaultValue" class="element ajax clickable class">
+<h1>ColumnDefaultValue<a href="../classes/ColumnDefaultValue.html">¶</a>
+</h1>
+<p class="short_description">A class for holding a column default value.</p>
+<div class="details collapse"></div>
+<a href="../classes/ColumnDefaultValue.html" class="more">« More »</a>
+</div>
+<div id="ConstraintNameGenerator" class="element ajax clickable class">
+<h1>ConstraintNameGenerator<a href="../classes/ConstraintNameGenerator.html">¶</a>
+</h1>
+<p class="short_description">A <code>NameGenerator</code> implementation for table-specific
+constraints.</p>
+<div class="details collapse"></div>
+<a href="../classes/ConstraintNameGenerator.html" class="more">« More »</a>
+</div>
+<div id="Database" class="element ajax clickable class">
+<h1>Database<a href="../classes/Database.html">¶</a>
+</h1>
+<p class="short_description">A class for holding application data structures.</p>
+<div class="details collapse"></div>
+<a href="../classes/Database.html" class="more">« More »</a>
+</div>
+<div id="Domain" class="element ajax clickable class">
+<h1>Domain<a href="../classes/Domain.html">¶</a>
+</h1>
+<p class="short_description">A class for holding data about a domain used in the schema.</p>
+<div class="details collapse"></div>
+<a href="../classes/Domain.html" class="more">« More »</a>
+</div>
+<div id="ForeignKey" class="element ajax clickable class">
+<h1>ForeignKey<a href="../classes/ForeignKey.html">¶</a>
+</h1>
+<p class="short_description">A Class for information about foreign keys of a table.</p>
+<div class="details collapse"></div>
+<a href="../classes/ForeignKey.html" class="more">« More »</a>
+</div>
+<div id="IdMethodParameter" class="element ajax clickable class">
+<h1>IdMethodParameter<a href="../classes/IdMethodParameter.html">¶</a>
+</h1>
+<p class="short_description">Information related to an ID method.</p>
+<div class="details collapse"></div>
+<a href="../classes/IdMethodParameter.html" class="more">« More »</a>
+</div>
+<div id="Index" class="element ajax clickable class">
+<h1>Index<a href="../classes/Index.html">¶</a>
+</h1>
+<p class="short_description">Information about indices of a table.</p>
+<div class="details collapse"></div>
+<a href="../classes/Index.html" class="more">« More »</a>
+</div>
+<div id="Inheritance" class="element ajax clickable class">
+<h1>Inheritance<a href="../classes/Inheritance.html">¶</a>
+</h1>
+<p class="short_description">A Class for information regarding possible objects representing a table</p>
+<div class="details collapse"></div>
+<a href="../classes/Inheritance.html" class="more">« More »</a>
+</div>
+<div id="NameFactory" class="element ajax clickable class">
+<h1>NameFactory<a href="../classes/NameFactory.html">¶</a>
+</h1>
+<p class="short_description">A name generation factory.</p>
+<div class="details collapse"></div>
+<a href="../classes/NameFactory.html" class="more">« More »</a>
+</div>
+<div id="PhpNameGenerator" class="element ajax clickable class">
+<h1>PhpNameGenerator<a href="../classes/PhpNameGenerator.html">¶</a>
+</h1>
+<p class="short_description">A <code>NameGenerator</code> implementation for PHP-esque names.</p>
+<div class="details collapse"></div>
+<a href="../classes/PhpNameGenerator.html" class="more">« More »</a>
+</div>
+<div id="PropelTypes" class="element ajax clickable class">
+<h1>PropelTypes<a href="../classes/PropelTypes.html">¶</a>
+</h1>
+<p class="short_description">A class that maps PropelTypes to PHP native types, PDO types (and Creole types).</p>
+<div class="details collapse"></div>
+<a href="../classes/PropelTypes.html" class="more">« More »</a>
+</div>
+<div id="Rule" class="element ajax clickable class">
+<h1>Rule<a href="../classes/Rule.html">¶</a>
+</h1>
+<p class="short_description">Data about a validation rule used in an application.</p>
+<div class="details collapse"></div>
+<a href="../classes/Rule.html" class="more">« More »</a>
+</div>
+<div id="Table" class="element ajax clickable class">
+<h1>Table<a href="../classes/Table.html">¶</a>
+</h1>
+<p class="short_description">Data about a table used in an application.</p>
+<div class="details collapse"></div>
+<a href="../classes/Table.html" class="more">« More »</a>
+</div>
+<div id="Unique" class="element ajax clickable class">
+<h1>Unique<a href="../classes/Unique.html">¶</a>
+</h1>
+<p class="short_description">Information about unique columns of a table.</p>
+<div class="details collapse"></div>
+<a href="../classes/Unique.html" class="more">« More »</a>
+</div>
+<div id="Validator" class="element ajax clickable class">
+<h1>Validator<a href="../classes/Validator.html">¶</a>
+</h1>
+<p class="short_description">Validator.</p>
+<div class="details collapse"></div>
+<a href="../classes/Validator.html" class="more">« More »</a>
+</div>
+<div id="VendorInfo" class="element ajax clickable class">
+<h1>VendorInfo<a href="../classes/VendorInfo.html">¶</a>
+</h1>
+<p class="short_description">Object to hold vendor-specific info.</p>
+<div class="details collapse"></div>
+<a href="../classes/VendorInfo.html" class="more">« More »</a>
+</div>
+<div id="XMLElement" class="element ajax clickable class">
+<h1>XMLElement<a href="../classes/XMLElement.html">¶</a>
+</h1>
+<p class="short_description">An abstract class for elements represented by XML tags (e.g.</p>
+<div class="details collapse"></div>
+<a href="../classes/XMLElement.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.html">reverse</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="SchemaParser" class="element ajax clickable interface">
+<h1>SchemaParser<a href="../classes/SchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Interface for reverse engineering schema parsers.</p>
+<div class="details collapse"></div>
+<a href="../classes/SchemaParser.html" class="more">« More »</a>
+</div>
+<div id="BaseSchemaParser" class="element ajax clickable class">
+<h1>BaseSchemaParser<a href="../classes/BaseSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Base class for reverse engineering a database schema.</p>
+<div class="details collapse"></div>
+<a href="../classes/BaseSchemaParser.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.html">reverse</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.mssql.html">mssql</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="MssqlSchemaParser" class="element ajax clickable class">
+<h1>MssqlSchemaParser<a href="../classes/MssqlSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Microsoft SQL Server database schema parser.</p>
+<div class="details collapse"></div>
+<a href="../classes/MssqlSchemaParser.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.html">reverse</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.mysql.html">mysql</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="MysqlSchemaParser" class="element ajax clickable class">
+<h1>MysqlSchemaParser<a href="../classes/MysqlSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Mysql database schema parser.</p>
+<div class="details collapse"></div>
+<a href="../classes/MysqlSchemaParser.html" class="more">« More »</a>
+</div>
+<div id="SqliteSchemaParser" class="element ajax clickable class">
+<h1>SqliteSchemaParser<a href="../classes/SqliteSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">SQLite database schema parser.</p>
+<div class="details collapse"></div>
+<a href="../classes/SqliteSchemaParser.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.html">reverse</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.oracle.html">oracle</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="OracleSchemaParser" class="element ajax clickable class">
+<h1>OracleSchemaParser<a href="../classes/OracleSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Oracle database schema parser.</p>
+<div class="details collapse"></div>
+<a href="../classes/OracleSchemaParser.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.html">reverse</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.reverse.pgsql.html">pgsql</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PgsqlSchemaParser" class="element ajax clickable class">
+<h1>PgsqlSchemaParser<a href="../classes/PgsqlSchemaParser.html">¶</a>
+</h1>
+<p class="short_description">Postgresql database schema parser.</p>
+<div class="details collapse"></div>
+<a href="../classes/PgsqlSchemaParser.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/propel.html">propel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.html">engine</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../packages/propel.engine.database.html">database</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/propel.engine.database.transform.html">transform</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="ColumnValue" class="element ajax clickable class">
+<h1>ColumnValue<a href="../classes/ColumnValue.html">¶</a>
+</h1>
+<p class="short_description">"inner" class</p>
+<div class="details collapse"></div>
+<a href="../classes/ColumnValue.html" class="more">« More »</a>
+</div>
+<div id="DataRow" class="element ajax clickable class">
+<h1>DataRow<a href="../classes/DataRow.html">¶</a>
+</h1>
+<p class="short_description">"inner class"</p>
+<div class="details collapse"></div>
+<a href="../classes/DataRow.html" class="more">« More »</a>
+</div>
+<div id="XmlToAppData" class="element ajax clickable class">
+<h1>XmlToAppData<a href="../classes/XmlToAppData.html">¶</a>
+</h1>
+<p class="short_description">A class that is used to parse an input xml schema file and creates an AppData
+PHP object.</p>
+<div class="details collapse"></div>
+<a href="../classes/XmlToAppData.html" class="more">« More »</a>
+</div>
+<div id="XmlToDataSQL" class="element ajax clickable class">
+<h1>XmlToDataSQL<a href="../classes/XmlToDataSQL.html">¶</a>
+</h1>
+<p class="short_description">A Class that is used to parse an data dump XML file and create SQL using a DataSQLBuilder class.</p>
+<div class="details collapse"></div>
+<a href="../classes/XmlToDataSQL.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:43:21+05:00.<br></footer></div>
+</div>
+</body>
+</html>

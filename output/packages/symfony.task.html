@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » symfony\task</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/symfony.task.html" title="task"><i class="icon-folder-open"></i>task</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#sfDoctrineConfigureDatabaseTask" title="Configures the database connection.">sfDoctrineConfigureDatabaseTask</a></li>
+<li><a href="#sfPropelConfigureDatabaseTask" title="Configures the database connection.">sfPropelConfigureDatabaseTask</a></li>
+<li><a href="#sfAppRoutesTask" title="Displays the current routes for an application.">sfAppRoutesTask</a></li>
+<li><a href="#sfCacheClearTask" title="Clears the symfony cache.">sfCacheClearTask</a></li>
+<li><a href="#sfConfigureAuthorTask" title="Configures the main author of the project.">sfConfigureAuthorTask</a></li>
+<li><a href="#sfGenerateAppTask" title="Generates a new application.">sfGenerateAppTask</a></li>
+<li><a href="#sfGenerateModuleTask" title="Generates a new module.">sfGenerateModuleTask</a></li>
+<li><a href="#sfGenerateProjectTask" title="Generates a new project.">sfGenerateProjectTask</a></li>
+<li><a href="#sfGenerateTaskTask" title="Creates a task skeleton">sfGenerateTaskTask</a></li>
+<li><a href="#sfGeneratorBaseTask" title="Base class for all symfony generator tasks.">sfGeneratorBaseTask</a></li>
+<li><a href="#sfHelpTask" title="Displays help for a task.">sfHelpTask</a></li>
+<li><a href="#sfListTask" title="Lists tasks.">sfListTask</a></li>
+<li><a href="#sfI18nExtractTask" title="Extracts i18n strings from php files.">sfI18nExtractTask</a></li>
+<li><a href="#sfI18nFindTask" title='Finds non "i18n ready" strings in an application.'>sfI18nFindTask</a></li>
+<li><a href="#sfLogClearTask" title="Clears log files.">sfLogClearTask</a></li>
+<li><a href="#sfLogRotateTask" title="Rotates an application log files.">sfLogRotateTask</a></li>
+<li><a href="#sfPluginAddChannelTask" title="Installs a plugin.">sfPluginAddChannelTask</a></li>
+<li><a href="#sfPluginBaseTask" title="Base class for all symfony plugin tasks.">sfPluginBaseTask</a></li>
+<li><a href="#sfPluginInstallTask" title="Installs a plugin.">sfPluginInstallTask</a></li>
+<li><a href="#sfPluginListTask" title="Lists installed plugins.">sfPluginListTask</a></li>
+<li><a href="#sfPluginPublishAssetsTask" title="Publishes Web Assets for Core and third party plugins">sfPluginPublishAssetsTask</a></li>
+<li><a href="#sfPluginUninstallTask" title="Uninstall a plugin.">sfPluginUninstallTask</a></li>
+<li><a href="#sfPluginUpgradeTask" title="Upgrades a plugin.">sfPluginUpgradeTask</a></li>
+<li><a href="#sfProjectClearControllersTask" title="Clears all non production environment controllers.">sfProjectClearControllersTask</a></li>
+<li><a href="#sfProjectDeployTask" title="Deploys a project to another server.">sfProjectDeployTask</a></li>
+<li><a href="#sfProjectDisableTask" title="Disables an application in a given environment.">sfProjectDisableTask</a></li>
+<li><a href="#sfProjectEnableTask" title="Enables an application in a given environment.">sfProjectEnableTask</a></li>
+<li><a href="#sfProjectOptimizeTask" title="Optimizes a project for better performance.">sfProjectOptimizeTask</a></li>
+<li><a href="#sfProjectPermissionsTask" title="Fixes symfony directory permissions.">sfProjectPermissionsTask</a></li>
+<li><a href="#sfProjectSendEmailsTask" title="Send emails stored in a queue.">sfProjectSendEmailsTask</a></li>
+<li><a href="#sfValidateTask" title="Finds deprecated usage in a project.">sfValidateTask</a></li>
+<li><a href="#sfDeprecatedClassesValidation" title="Finds deprecated classes usage.">sfDeprecatedClassesValidation</a></li>
+<li><a href="#sfDeprecatedConfigurationFilesValidation" title="Finds deprecated configuration files usage.">sfDeprecatedConfigurationFilesValidation</a></li>
+<li><a href="#sfDeprecatedHelpersValidation" title="Finds deprecated helpers usage.">sfDeprecatedHelpersValidation</a></li>
+<li><a href="#sfDeprecatedMethodsValidation" title="Finds deprecated methods usage.">sfDeprecatedMethodsValidation</a></li>
+<li><a href="#sfDeprecatedPluginsValidation" title="Finds deprecated plugins usage.">sfDeprecatedPluginsValidation</a></li>
+<li><a href="#sfDeprecatedSettingsValidation" title="Finds deprecated settings usage.">sfDeprecatedSettingsValidation</a></li>
+<li><a href="#sfParameterHolderValidation" title="Finds usage of array notation with a parameter holder.">sfParameterHolderValidation</a></li>
+<li><a href="#sfValidation" title="Abstract class for validation classes.">sfValidation</a></li>
+<li><a href="#sfBaseTask" title="Base class for all symfony tasks.">sfBaseTask</a></li>
+<li><a href="#sfCommandApplicationTask" title="Base class for tasks that depends on a sfCommandApplication object.">sfCommandApplicationTask</a></li>
+<li><a href="#sfTask" title="Abstract class for all tasks.">sfTask</a></li>
+<li><a href="#sfSymfonyTestTask" title="Launches the symfony test suite.">sfSymfonyTestTask</a></li>
+<li><a href="#sfTestAllTask" title="Launches all tests.">sfTestAllTask</a></li>
+<li><a href="#sfTestBaseTask" title="Base test task.">sfTestBaseTask</a></li>
+<li><a href="#sfTestCoverageTask" title="Outputs test code coverage.">sfTestCoverageTask</a></li>
+<li><a href="#sfTestFunctionalTask" title="Launches functional tests.">sfTestFunctionalTask</a></li>
+<li><a href="#sfTestUnitTask" title="Launches unit tests.">sfTestUnitTask</a></li>
+<li><a href="#sfGuardAddGroupTask" title="Add a group to a user.">sfGuardAddGroupTask</a></li>
+<li><a href="#sfGuardAddPermissionTask" title="Add a permission to a user.">sfGuardAddPermissionTask</a></li>
+<li><a href="#sfGuardChangePasswordTask" title="Promotes a user as a super administrator.">sfGuardChangePasswordTask</a></li>
+<li><a href="#sfGuardCreateUserTask" title="Create a new user.">sfGuardCreateUserTask</a></li>
+<li><a href="#sfGuardPromoteSuperAdminTask" title="Promotes a user as a super administrator.">sfGuardPromoteSuperAdminTask</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/symfony.html">symfony</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/symfony.task.html">task</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="sfAppRoutesTask" class="element ajax clickable class">
+<h1>sfAppRoutesTask<a href="../classes/sfAppRoutesTask.html">¶</a>
+</h1>
+<p class="short_description">Displays the current routes for an application.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfAppRoutesTask.html" class="more">« More »</a>
+</div>
+<div id="sfBaseTask" class="element ajax clickable class">
+<h1>sfBaseTask<a href="../classes/sfBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for all symfony tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfBaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfCacheClearTask" class="element ajax clickable class">
+<h1>sfCacheClearTask<a href="../classes/sfCacheClearTask.html">¶</a>
+</h1>
+<p class="short_description">Clears the symfony cache.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfCacheClearTask.html" class="more">« More »</a>
+</div>
+<div id="sfCommandApplicationTask" class="element ajax clickable class">
+<h1>sfCommandApplicationTask<a href="../classes/sfCommandApplicationTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for tasks that depends on a sfCommandApplication object.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfCommandApplicationTask.html" class="more">« More »</a>
+</div>
+<div id="sfConfigureAuthorTask" class="element ajax clickable class">
+<h1>sfConfigureAuthorTask<a href="../classes/sfConfigureAuthorTask.html">¶</a>
+</h1>
+<p class="short_description">Configures the main author of the project.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfConfigureAuthorTask.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedClassesValidation" class="element ajax clickable class">
+<h1>sfDeprecatedClassesValidation<a href="../classes/sfDeprecatedClassesValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated classes usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedClassesValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedConfigurationFilesValidation" class="element ajax clickable class">
+<h1>sfDeprecatedConfigurationFilesValidation<a href="../classes/sfDeprecatedConfigurationFilesValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated configuration files usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedConfigurationFilesValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedHelpersValidation" class="element ajax clickable class">
+<h1>sfDeprecatedHelpersValidation<a href="../classes/sfDeprecatedHelpersValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated helpers usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedHelpersValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedMethodsValidation" class="element ajax clickable class">
+<h1>sfDeprecatedMethodsValidation<a href="../classes/sfDeprecatedMethodsValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated methods usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedMethodsValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedPluginsValidation" class="element ajax clickable class">
+<h1>sfDeprecatedPluginsValidation<a href="../classes/sfDeprecatedPluginsValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated plugins usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedPluginsValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDeprecatedSettingsValidation" class="element ajax clickable class">
+<h1>sfDeprecatedSettingsValidation<a href="../classes/sfDeprecatedSettingsValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated settings usage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDeprecatedSettingsValidation.html" class="more">« More »</a>
+</div>
+<div id="sfDoctrineConfigureDatabaseTask" class="element ajax clickable class">
+<h1>sfDoctrineConfigureDatabaseTask<a href="../classes/sfDoctrineConfigureDatabaseTask.html">¶</a>
+</h1>
+<p class="short_description">Configures the database connection.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfDoctrineConfigureDatabaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfGenerateAppTask" class="element ajax clickable class">
+<h1>sfGenerateAppTask<a href="../classes/sfGenerateAppTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a new application.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGenerateAppTask.html" class="more">« More »</a>
+</div>
+<div id="sfGenerateModuleTask" class="element ajax clickable class">
+<h1>sfGenerateModuleTask<a href="../classes/sfGenerateModuleTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a new module.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGenerateModuleTask.html" class="more">« More »</a>
+</div>
+<div id="sfGenerateProjectTask" class="element ajax clickable class">
+<h1>sfGenerateProjectTask<a href="../classes/sfGenerateProjectTask.html">¶</a>
+</h1>
+<p class="short_description">Generates a new project.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGenerateProjectTask.html" class="more">« More »</a>
+</div>
+<div id="sfGenerateTaskTask" class="element ajax clickable class">
+<h1>sfGenerateTaskTask<a href="../classes/sfGenerateTaskTask.html">¶</a>
+</h1>
+<p class="short_description">Creates a task skeleton</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGenerateTaskTask.html" class="more">« More »</a>
+</div>
+<div id="sfGeneratorBaseTask" class="element ajax clickable class">
+<h1>sfGeneratorBaseTask<a href="../classes/sfGeneratorBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for all symfony generator tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGeneratorBaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfGuardAddGroupTask" class="element ajax clickable class">
+<h1>sfGuardAddGroupTask<a href="../classes/sfGuardAddGroupTask.html">¶</a>
+</h1>
+<p class="short_description">Add a group to a user.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardAddGroupTask.html" class="more">« More »</a>
+</div>
+<div id="sfGuardAddPermissionTask" class="element ajax clickable class">
+<h1>sfGuardAddPermissionTask<a href="../classes/sfGuardAddPermissionTask.html">¶</a>
+</h1>
+<p class="short_description">Add a permission to a user.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardAddPermissionTask.html" class="more">« More »</a>
+</div>
+<div id="sfGuardChangePasswordTask" class="element ajax clickable class">
+<h1>sfGuardChangePasswordTask<a href="../classes/sfGuardChangePasswordTask.html">¶</a>
+</h1>
+<p class="short_description">Promotes a user as a super administrator.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardChangePasswordTask.html" class="more">« More »</a>
+</div>
+<div id="sfGuardCreateUserTask" class="element ajax clickable class">
+<h1>sfGuardCreateUserTask<a href="../classes/sfGuardCreateUserTask.html">¶</a>
+</h1>
+<p class="short_description">Create a new user.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardCreateUserTask.html" class="more">« More »</a>
+</div>
+<div id="sfGuardPromoteSuperAdminTask" class="element ajax clickable class">
+<h1>sfGuardPromoteSuperAdminTask<a href="../classes/sfGuardPromoteSuperAdminTask.html">¶</a>
+</h1>
+<p class="short_description">Promotes a user as a super administrator.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfGuardPromoteSuperAdminTask.html" class="more">« More »</a>
+</div>
+<div id="sfHelpTask" class="element ajax clickable class">
+<h1>sfHelpTask<a href="../classes/sfHelpTask.html">¶</a>
+</h1>
+<p class="short_description">Displays help for a task.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfHelpTask.html" class="more">« More »</a>
+</div>
+<div id="sfI18nExtractTask" class="element ajax clickable class">
+<h1>sfI18nExtractTask<a href="../classes/sfI18nExtractTask.html">¶</a>
+</h1>
+<p class="short_description">Extracts i18n strings from php files.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfI18nExtractTask.html" class="more">« More »</a>
+</div>
+<div id="sfI18nFindTask" class="element ajax clickable class">
+<h1>sfI18nFindTask<a href="../classes/sfI18nFindTask.html">¶</a>
+</h1>
+<p class="short_description">Finds non "i18n ready" strings in an application.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfI18nFindTask.html" class="more">« More »</a>
+</div>
+<div id="sfListTask" class="element ajax clickable class">
+<h1>sfListTask<a href="../classes/sfListTask.html">¶</a>
+</h1>
+<p class="short_description">Lists tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfListTask.html" class="more">« More »</a>
+</div>
+<div id="sfLogClearTask" class="element ajax clickable class">
+<h1>sfLogClearTask<a href="../classes/sfLogClearTask.html">¶</a>
+</h1>
+<p class="short_description">Clears log files.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfLogClearTask.html" class="more">« More »</a>
+</div>
+<div id="sfLogRotateTask" class="element ajax clickable class">
+<h1>sfLogRotateTask<a href="../classes/sfLogRotateTask.html">¶</a>
+</h1>
+<p class="short_description">Rotates an application log files.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfLogRotateTask.html" class="more">« More »</a>
+</div>
+<div id="sfParameterHolderValidation" class="element ajax clickable class">
+<h1>sfParameterHolderValidation<a href="../classes/sfParameterHolderValidation.html">¶</a>
+</h1>
+<p class="short_description">Finds usage of array notation with a parameter holder.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfParameterHolderValidation.html" class="more">« More »</a>
+</div>
+<div id="sfPluginAddChannelTask" class="element ajax clickable class">
+<h1>sfPluginAddChannelTask<a href="../classes/sfPluginAddChannelTask.html">¶</a>
+</h1>
+<p class="short_description">Installs a plugin.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginAddChannelTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginBaseTask" class="element ajax clickable class">
+<h1>sfPluginBaseTask<a href="../classes/sfPluginBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base class for all symfony plugin tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginBaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginInstallTask" class="element ajax clickable class">
+<h1>sfPluginInstallTask<a href="../classes/sfPluginInstallTask.html">¶</a>
+</h1>
+<p class="short_description">Installs a plugin.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginInstallTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginListTask" class="element ajax clickable class">
+<h1>sfPluginListTask<a href="../classes/sfPluginListTask.html">¶</a>
+</h1>
+<p class="short_description">Lists installed plugins.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginListTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginPublishAssetsTask" class="element ajax clickable class">
+<h1>sfPluginPublishAssetsTask<a href="../classes/sfPluginPublishAssetsTask.html">¶</a>
+</h1>
+<p class="short_description">Publishes Web Assets for Core and third party plugins</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginPublishAssetsTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginUninstallTask" class="element ajax clickable class">
+<h1>sfPluginUninstallTask<a href="../classes/sfPluginUninstallTask.html">¶</a>
+</h1>
+<p class="short_description">Uninstall a plugin.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginUninstallTask.html" class="more">« More »</a>
+</div>
+<div id="sfPluginUpgradeTask" class="element ajax clickable class">
+<h1>sfPluginUpgradeTask<a href="../classes/sfPluginUpgradeTask.html">¶</a>
+</h1>
+<p class="short_description">Upgrades a plugin.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPluginUpgradeTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectClearControllersTask" class="element ajax clickable class">
+<h1>sfProjectClearControllersTask<a href="../classes/sfProjectClearControllersTask.html">¶</a>
+</h1>
+<p class="short_description">Clears all non production environment controllers.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectClearControllersTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectDeployTask" class="element ajax clickable class">
+<h1>sfProjectDeployTask<a href="../classes/sfProjectDeployTask.html">¶</a>
+</h1>
+<p class="short_description">Deploys a project to another server.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectDeployTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectDisableTask" class="element ajax clickable class">
+<h1>sfProjectDisableTask<a href="../classes/sfProjectDisableTask.html">¶</a>
+</h1>
+<p class="short_description">Disables an application in a given environment.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectDisableTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectEnableTask" class="element ajax clickable class">
+<h1>sfProjectEnableTask<a href="../classes/sfProjectEnableTask.html">¶</a>
+</h1>
+<p class="short_description">Enables an application in a given environment.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectEnableTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectOptimizeTask" class="element ajax clickable class">
+<h1>sfProjectOptimizeTask<a href="../classes/sfProjectOptimizeTask.html">¶</a>
+</h1>
+<p class="short_description">Optimizes a project for better performance.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectOptimizeTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectPermissionsTask" class="element ajax clickable class">
+<h1>sfProjectPermissionsTask<a href="../classes/sfProjectPermissionsTask.html">¶</a>
+</h1>
+<p class="short_description">Fixes symfony directory permissions.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectPermissionsTask.html" class="more">« More »</a>
+</div>
+<div id="sfProjectSendEmailsTask" class="element ajax clickable class">
+<h1>sfProjectSendEmailsTask<a href="../classes/sfProjectSendEmailsTask.html">¶</a>
+</h1>
+<p class="short_description">Send emails stored in a queue.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfProjectSendEmailsTask.html" class="more">« More »</a>
+</div>
+<div id="sfPropelConfigureDatabaseTask" class="element ajax clickable class">
+<h1>sfPropelConfigureDatabaseTask<a href="../classes/sfPropelConfigureDatabaseTask.html">¶</a>
+</h1>
+<p class="short_description">Configures the database connection.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfPropelConfigureDatabaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfSymfonyTestTask" class="element ajax clickable class">
+<h1>sfSymfonyTestTask<a href="../classes/sfSymfonyTestTask.html">¶</a>
+</h1>
+<p class="short_description">Launches the symfony test suite.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfSymfonyTestTask.html" class="more">« More »</a>
+</div>
+<div id="sfTask" class="element ajax clickable class">
+<h1>sfTask<a href="../classes/sfTask.html">¶</a>
+</h1>
+<p class="short_description">Abstract class for all tasks.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTask.html" class="more">« More »</a>
+</div>
+<div id="sfTestAllTask" class="element ajax clickable class">
+<h1>sfTestAllTask<a href="../classes/sfTestAllTask.html">¶</a>
+</h1>
+<p class="short_description">Launches all tests.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTestAllTask.html" class="more">« More »</a>
+</div>
+<div id="sfTestBaseTask" class="element ajax clickable class">
+<h1>sfTestBaseTask<a href="../classes/sfTestBaseTask.html">¶</a>
+</h1>
+<p class="short_description">Base test task.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTestBaseTask.html" class="more">« More »</a>
+</div>
+<div id="sfTestCoverageTask" class="element ajax clickable class">
+<h1>sfTestCoverageTask<a href="../classes/sfTestCoverageTask.html">¶</a>
+</h1>
+<p class="short_description">Outputs test code coverage.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTestCoverageTask.html" class="more">« More »</a>
+</div>
+<div id="sfTestFunctionalTask" class="element ajax clickable class">
+<h1>sfTestFunctionalTask<a href="../classes/sfTestFunctionalTask.html">¶</a>
+</h1>
+<p class="short_description">Launches functional tests.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTestFunctionalTask.html" class="more">« More »</a>
+</div>
+<div id="sfTestUnitTask" class="element ajax clickable class">
+<h1>sfTestUnitTask<a href="../classes/sfTestUnitTask.html">¶</a>
+</h1>
+<p class="short_description">Launches unit tests.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfTestUnitTask.html" class="more">« More »</a>
+</div>
+<div id="sfValidateTask" class="element ajax clickable class">
+<h1>sfValidateTask<a href="../classes/sfValidateTask.html">¶</a>
+</h1>
+<p class="short_description">Finds deprecated usage in a project.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfValidateTask.html" class="more">« More »</a>
+</div>
+<div id="sfValidation" class="element ajax clickable class">
+<h1>sfValidation<a href="../classes/sfValidation.html">¶</a>
+</h1>
+<p class="short_description">Abstract class for validation classes.</p>
+<div class="details collapse"></div>
+<a href="../classes/sfValidation.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:44:55+05:00.<br></footer></div>
+</div>
+</body>
+</html>

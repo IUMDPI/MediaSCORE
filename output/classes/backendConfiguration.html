@@ -1,0 +1,1782 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \backendConfiguration</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul><li class="method public "><a href="#method_configure" title="configure :: "><span class="description">configure()
+        </span><pre>configure()</pre></a></li></ul>
+</li></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___call" title="__call :: Calls methods defined via sfEventDispatcher."><span class="description">Calls methods defined via sfEventDispatcher.</span><pre>__call()</pre></a></li>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method_activate" title="activate :: "><span class="description">activate()
+        </span><pre>activate()</pre></a></li>
+<li class="method public inherited"><a href="#method_checkLock" title="checkLock :: Check lock files to see if we're not in a cache cleaning process."><span class="description">Check lock files to see if we're not in a cache cleaning process.</span><pre>checkLock()</pre></a></li>
+<li class="method public "><a href="#method_configure" title="configure :: Configures the current configuration."><span class="description">Configures the current configuration.</span><pre>configure()</pre></a></li>
+<li class="method public inherited"><a href="#method_disablePlugins" title="disablePlugins :: Disables a plugin."><span class="description">Disables a plugin.</span><pre>disablePlugins()</pre></a></li>
+<li class="method public inherited"><a href="#method_enableAllPluginsExcept" title="enableAllPluginsExcept :: Enabled all installed plugins except the one given as argument."><span class="description">Enabled all installed plugins except the one given as argument.</span><pre>enableAllPluginsExcept()</pre></a></li>
+<li class="method public inherited"><a href="#method_enablePlugins" title="enablePlugins :: Enables a plugin or a list of plugins."><span class="description">Enables a plugin or a list of plugins.</span><pre>enablePlugins()</pre></a></li>
+<li class="method public inherited"><a href="#method_filterAutoloadConfig" title="filterAutoloadConfig :: Adds enabled plugins to autoload config."><span class="description">Adds enabled plugins to autoload config.</span><pre>filterAutoloadConfig()</pre></a></li>
+<li class="method public inherited"><a href="#method_getActive" title="getActive :: Returns the active configuration."><span class="description">Returns the active configuration.</span><pre>getActive()</pre></a></li>
+<li class="method public inherited"><a href="#method_getAllPluginPaths" title="getAllPluginPaths :: Returns an array of paths for all available plugins."><span class="description">Returns an array of paths for all available plugins.</span><pre>getAllPluginPaths()</pre></a></li>
+<li class="method public inherited"><a href="#method_getApplication" title="getApplication :: Returns the application name."><span class="description">Returns the application name.</span><pre>getApplication()</pre></a></li>
+<li class="method public inherited"><a href="#method_getApplicationConfiguration" title="getApplicationConfiguration :: Returns a sfApplicationConfiguration configuration for a given application."><span class="description">Returns a sfApplicationConfiguration configuration for a given application.</span><pre>getApplicationConfiguration()</pre></a></li>
+<li class="method public inherited"><a href="#method_getConfigCache" title="getConfigCache :: Returns a configuration cache object for the current configuration."><span class="description">Returns a configuration cache object for the current configuration.</span><pre>getConfigCache()</pre></a></li>
+<li class="method public inherited"><a href="#method_getConfigPaths" title="getConfigPaths :: Gets the configuration file paths for a given relative configuration path."><span class="description">Gets the configuration file paths for a given relative configuration path.</span><pre>getConfigPaths()</pre></a></li>
+<li class="method public inherited"><a href="#method_getControllerDirs" title="getControllerDirs :: Gets directories where controller classes are stored for a given module."><span class="description">Gets directories where controller classes are stored for a given module.</span><pre>getControllerDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getDecoratorDir" title="getDecoratorDir :: Gets the decorator directory for a given template."><span class="description">Gets the decorator directory for a given template.</span><pre>getDecoratorDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_getDecoratorDirs" title="getDecoratorDirs :: Gets the decorator directories."><span class="description">Gets the decorator directories.</span><pre>getDecoratorDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getEnvironment" title="getEnvironment :: Returns the environment name."><span class="description">Returns the environment name.</span><pre>getEnvironment()</pre></a></li>
+<li class="method public inherited"><a href="#method_getEventDispatcher" title="getEventDispatcher :: Returns the event dispatcher."><span class="description">Returns the event dispatcher.</span><pre>getEventDispatcher()</pre></a></li>
+<li class="method public inherited"><a href="#method_getGeneratorSkeletonDirs" title="getGeneratorSkeletonDirs :: Gets directories where the skeleton is stored for a generator class and a specific theme."><span class="description">Gets directories where the skeleton is stored for a generator class and a specific theme.</span><pre>getGeneratorSkeletonDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getGeneratorTemplate" title="getGeneratorTemplate :: Gets the template to use for a generator class."><span class="description">Gets the template to use for a generator class.</span><pre>getGeneratorTemplate()</pre></a></li>
+<li class="method public inherited"><a href="#method_getGeneratorTemplateDirs" title="getGeneratorTemplateDirs :: Gets directories where template files are stored for a generator class and a specific theme."><span class="description">Gets directories where template files are stored for a generator class and a specific theme.</span><pre>getGeneratorTemplateDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHelperDirs" title="getHelperDirs :: Gets the helper directories for a given module name."><span class="description">Gets the helper directories for a given module name.</span><pre>getHelperDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getI18NDirs" title="getI18NDirs :: Gets the i18n directories to use for a given module."><span class="description">Gets the i18n directories to use for a given module.</span><pre>getI18NDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getI18NGlobalDirs" title="getI18NGlobalDirs :: Gets the i18n directories to use globally."><span class="description">Gets the i18n directories to use globally.</span><pre>getI18NGlobalDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getLibDirs" title="getLibDirs :: Gets directories where lib files are stored for a given module."><span class="description">Gets directories where lib files are stored for a given module.</span><pre>getLibDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getModelDirs" title="getModelDirs :: Gets directories where model classes are stored."><span class="description">Gets directories where model classes are stored.</span><pre>getModelDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPluginConfiguration" title="getPluginConfiguration :: Returns the configuration for the requested plugin."><span class="description">Returns the configuration for the requested plugin.</span><pre>getPluginConfiguration()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPluginPaths" title="getPluginPaths :: Gets the paths to plugins root directories, minding overloaded plugins."><span class="description">Gets the paths to plugins root directories, minding overloaded plugins.</span><pre>getPluginPaths()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPluginSubPaths" title="getPluginSubPaths :: Gets the paths plugin sub-directories, minding overloaded plugins."><span class="description">Gets the paths plugin sub-directories, minding overloaded plugins.</span><pre>getPluginSubPaths()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPlugins" title="getPlugins :: Gets the list of enabled plugins."><span class="description">Gets the list of enabled plugins.</span><pre>getPlugins()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRootDir" title="getRootDir :: Returns the project root directory."><span class="description">Returns the project root directory.</span><pre>getRootDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSymfonyLibDir" title="getSymfonyLibDir :: Returns the symfony lib directory."><span class="description">Returns the symfony lib directory.</span><pre>getSymfonyLibDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_getTemplateDir" title="getTemplateDir :: Gets the template directory to use for a given module and template file."><span class="description">Gets the template directory to use for a given module and template file.</span><pre>getTemplateDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_getTemplateDirs" title="getTemplateDirs :: Gets directories where template files are stored for a given module."><span class="description">Gets directories where template files are stored for a given module.</span><pre>getTemplateDirs()</pre></a></li>
+<li class="method public inherited"><a href="#method_getTemplatePath" title="getTemplatePath :: Gets the template to use for a given module and template file."><span class="description">Gets the template to use for a given module and template file.</span><pre>getTemplatePath()</pre></a></li>
+<li class="method public inherited"><a href="#method_guessRootDir" title="guessRootDir :: Guesses the project root directory."><span class="description">Guesses the project root directory.</span><pre>guessRootDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_hasActive" title="hasActive :: Returns true if these is an active configuration."><span class="description">Returns true if these is an active configuration.</span><pre>hasActive()</pre></a></li>
+<li class="method public inherited"><a href="#method_initConfiguration" title="initConfiguration :: Various initializations."><span class="description">Various initializations.</span><pre>initConfiguration()</pre></a></li>
+<li class="method public inherited"><a href="#method_initialize" title="initialize :: Initialized the current configuration."><span class="description">Initialized the current configuration.</span><pre>initialize()</pre></a></li>
+<li class="method public inherited"><a href="#method_isDebug" title="isDebug :: Returns true if this configuration has debug enabled."><span class="description">Returns true if this configuration has debug enabled.</span><pre>isDebug()</pre></a></li>
+<li class="method public inherited"><a href="#method_loadHelpers" title="loadHelpers :: Loads helpers."><span class="description">Loads helpers.</span><pre>loadHelpers()</pre></a></li>
+<li class="method public inherited"><a href="#method_loadPlugins" title="loadPlugins :: Loads the project's plugin configurations."><span class="description">Loads the project's plugin configurations.</span><pre>loadPlugins()</pre></a></li>
+<li class="method public inherited"><a href="#method_setAppDir" title="setAppDir :: Sets the app directory."><span class="description">Sets the app directory.</span><pre>setAppDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_setCacheDir" title="setCacheDir :: Sets the cache root directory."><span class="description">Sets the cache root directory.</span><pre>setCacheDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_setLogDir" title="setLogDir :: Sets the log directory."><span class="description">Sets the log directory.</span><pre>setLogDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_setPluginPath" title="setPluginPath :: Manually sets the location of a particular plugin."><span class="description">Manually sets the location of a particular plugin.</span><pre>setPluginPath()</pre></a></li>
+<li class="method public inherited"><a href="#method_setPlugins" title="setPlugins :: Sets the enabled plugins."><span class="description">Sets the enabled plugins.</span><pre>setPlugins()</pre></a></li>
+<li class="method public inherited"><a href="#method_setRootDir" title="setRootDir :: Sets the project root directory."><span class="description">Sets the project root directory.</span><pre>setRootDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_setWebDir" title="setWebDir :: Sets the web root directory."><span class="description">Sets the web root directory.</span><pre>setWebDir()</pre></a></li>
+<li class="method public inherited"><a href="#method_setup" title="setup :: Setups the current configuration."><span class="description">Setups the current configuration.</span><pre>setup()</pre></a></li>
+<li class="method public inherited"><a href="#method_setupPlugins" title="setupPlugins :: Sets up plugin configurations."><span class="description">Sets up plugin configurations.</span><pre>setupPlugins()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_hasLockFile" title="hasLockFile :: Determines if a lock file is present."><span class="description">Determines if a lock file is present.</span><pre>hasLockFile()</pre></a></li>
+<li class="method protected inherited"><a href="#method_initializePlugins" title="initializePlugins :: Initializes plugin configuration objects."><span class="description">Initializes plugin configuration objects.</span><pre>initializePlugins()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_active" title="$active :: "><span class="description">$active</span><pre>$active</pre></a></li>
+<li class="property protected inherited"><a href="#property_application" title="$application :: "><span class="description">$application</span><pre>$application</pre></a></li>
+<li class="property protected inherited"><a href="#property_cache" title="$cache :: "><span class="description">$cache</span><pre>$cache</pre></a></li>
+<li class="property protected inherited"><a href="#property_config" title="$config :: "><span class="description">$config</span><pre>$config</pre></a></li>
+<li class="property protected inherited"><a href="#property_configCache" title="$configCache :: "><span class="description">$configCache</span><pre>$configCache</pre></a></li>
+<li class="property protected inherited"><a href="#property_coreLoaded" title="$coreLoaded :: "><span class="description">$coreLoaded</span><pre>$coreLoaded</pre></a></li>
+<li class="property protected inherited"><a href="#property_debug" title="$debug :: "><span class="description">$debug</span><pre>$debug</pre></a></li>
+<li class="property protected inherited"><a href="#property_dispatcher" title="$dispatcher :: "><span class="description">$dispatcher</span><pre>$dispatcher</pre></a></li>
+<li class="property protected inherited"><a href="#property_environment" title="$environment :: "><span class="description">$environment</span><pre>$environment</pre></a></li>
+<li class="property protected inherited"><a href="#property_loadedHelpers" title="$loadedHelpers :: "><span class="description">$loadedHelpers</span><pre>$loadedHelpers</pre></a></li>
+<li class="property protected inherited"><a href="#property_overriddenPluginPaths" title="$overriddenPluginPaths :: "><span class="description">$overriddenPluginPaths</span><pre>$overriddenPluginPaths</pre></a></li>
+<li class="property protected inherited"><a href="#property_pluginConfigurations" title="$pluginConfigurations :: "><span class="description">$pluginConfigurations</span><pre>$pluginConfigurations</pre></a></li>
+<li class="property protected inherited"><a href="#property_pluginPaths" title="$pluginPaths :: "><span class="description">$pluginPaths</span><pre>$pluginPaths</pre></a></li>
+<li class="property protected inherited"><a href="#property_plugins" title="$plugins :: "><span class="description">$plugins</span><pre>$plugins</pre></a></li>
+<li class="property protected inherited"><a href="#property_pluginsLoaded" title="$pluginsLoaded :: "><span class="description">$pluginsLoaded</span><pre>$pluginsLoaded</pre></a></li>
+<li class="property protected inherited"><a href="#property_rootDir" title="$rootDir :: "><span class="description">$rootDir</span><pre>$rootDir</pre></a></li>
+<li class="property protected inherited"><a href="#property_symfonyLibDir" title="$symfonyLibDir :: "><span class="description">$symfonyLibDir</span><pre>$symfonyLibDir</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\backendConfiguration"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/backendConfiguration.html">backendConfiguration</a>
+</li>
+</ul>
+<div class="element class"><div class="details">
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_configure"></a><div class="element clickable method public method_configure" data-toggle="collapse" data-target=".method_configure .collapse">
+<h2>configure()
+        </h2>
+<pre>configure() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div></div>
+<a id="\backendConfiguration"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/backendConfiguration.html">backendConfiguration</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">sfConfiguration represents a configuration for a symfony application.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Default.html">symfony</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:fabien.potencier@symfony-project.com">Fabien Potencier</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>SVN: $Id: sfApplicationConfiguration.class.php 33214 2011-11-19 13:47:24Z fabien $</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___call"></a><div class="element clickable method public method___call" data-toggle="collapse" data-target=".method___call .collapse">
+<h2>Calls methods defined via sfEventDispatcher.</h2>
+<pre>__call(string $method, array $arguments) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::__call()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::__call()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::__call()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>The method name</p></div>
+<div class="subelement argument">
+<h4>$arguments</h4>
+<code>array</code><p>The method arguments</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The returned value of the called method</div>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Constructor.</h2>
+<pre>__construct(string $environment, Boolean $debug, string $rootDir, \sfEventDispatcher $dispatcher) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$environment</h4>
+<code>string</code><p>The environment name</p></div>
+<div class="subelement argument">
+<h4>$debug</h4>
+<code>Boolean</code><p>true to enable debug mode</p></div>
+<div class="subelement argument">
+<h4>$rootDir</h4>
+<code>string</code><p>The project root directory</p></div>
+<div class="subelement argument">
+<h4>$dispatcher</h4>
+<code><a href="../classes/sfEventDispatcher.html">\sfEventDispatcher</a></code><p>An event dispatcher</p></div>
+</div></div>
+</div>
+<a id="method_activate"></a><div class="element clickable method public method_activate" data-toggle="collapse" data-target=".method_activate .collapse">
+<h2>activate()
+        </h2>
+<pre>activate() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::activate()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_checkLock"></a><div class="element clickable method public method_checkLock" data-toggle="collapse" data-target=".method_checkLock .collapse">
+<h2>Check lock files to see if we're not in a cache cleaning process.</h2>
+<pre>checkLock() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::checkLock()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_configure"></a><div class="element clickable method public method_configure" data-toggle="collapse" data-target=".method_configure .collapse">
+<h2>Configures the current configuration.</h2>
+<pre>configure() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Override this method if you want to customize your application configuration.</p></div></div></div>
+</div>
+<a id="method_disablePlugins"></a><div class="element clickable method public method_disablePlugins" data-toggle="collapse" data-target=".method_disablePlugins .collapse">
+<h2>Disables a plugin.</h2>
+<pre>disablePlugins(array | string $plugins) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::disablePlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::disablePlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::disablePlugins()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugins</h4>
+<code>array</code><code>string</code><p>A plugin name or a plugin list</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.logicexception.php">\LogicException</a></code></th>
+<td>If plugins have already been loaded</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_enableAllPluginsExcept"></a><div class="element clickable method public method_enableAllPluginsExcept" data-toggle="collapse" data-target=".method_enableAllPluginsExcept .collapse">
+<h2>Enabled all installed plugins except the one given as argument.</h2>
+<pre>enableAllPluginsExcept(array | string $plugins) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::enableAllPluginsExcept()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::enableAllPluginsExcept()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::enableAllPluginsExcept()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugins</h4>
+<code>array</code><code>string</code><p>A plugin name or a plugin list</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.logicexception.php">\LogicException</a></code></th>
+<td>If plugins have already been loaded</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_enablePlugins"></a><div class="element clickable method public method_enablePlugins" data-toggle="collapse" data-target=".method_enablePlugins .collapse">
+<h2>Enables a plugin or a list of plugins.</h2>
+<pre>enablePlugins(array | string $plugins) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::enablePlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::enablePlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::enablePlugins()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugins</h4>
+<code>array</code><code>string</code><p>A plugin name or a plugin list</p></div>
+</div></div>
+</div>
+<a id="method_filterAutoloadConfig"></a><div class="element clickable method public method_filterAutoloadConfig" data-toggle="collapse" data-target=".method_filterAutoloadConfig .collapse">
+<h2>Adds enabled plugins to autoload config.</h2>
+<pre>filterAutoloadConfig(\sfEvent $event, array $config) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::filterAutoloadConfig()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$event</h4>
+<code><a href="../classes/sfEvent.html">\sfEvent</a></code>
+</div>
+<div class="subelement argument">
+<h4>$config</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getActive"></a><div class="element clickable method public method_getActive" data-toggle="collapse" data-target=".method_getActive .collapse">
+<h2>Returns the active configuration.</h2>
+<pre>getActive() : <a href="../classes/sfProjectConfiguration.html">\sfProjectConfiguration</a></pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getActive()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getActive()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getActive()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfProjectConfiguration.html">\sfProjectConfiguration</a></code>The current sfProjectConfiguration instance</div>
+</div></div>
+</div>
+<a id="method_getAllPluginPaths"></a><div class="element clickable method public method_getAllPluginPaths" data-toggle="collapse" data-target=".method_getAllPluginPaths .collapse">
+<h2>Returns an array of paths for all available plugins.</h2>
+<pre>getAllPluginPaths() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getAllPluginPaths()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getAllPluginPaths()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getAllPluginPaths()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getApplication"></a><div class="element clickable method public method_getApplication" data-toggle="collapse" data-target=".method_getApplication .collapse">
+<h2>Returns the application name.</h2>
+<pre>getApplication() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getApplication()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The application name</div>
+</div></div>
+</div>
+<a id="method_getApplicationConfiguration"></a><div class="element clickable method public method_getApplicationConfiguration" data-toggle="collapse" data-target=".method_getApplicationConfiguration .collapse">
+<h2>Returns a sfApplicationConfiguration configuration for a given application.</h2>
+<pre>getApplicationConfiguration(string $application, string $environment, Boolean $debug, string $rootDir, \sfEventDispatcher $dispatcher) : <a href="../classes/sfApplicationConfiguration.html">\sfApplicationConfiguration</a></pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getApplicationConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getApplicationConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getApplicationConfiguration()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$application</h4>
+<code>string</code><p>An application name</p></div>
+<div class="subelement argument">
+<h4>$environment</h4>
+<code>string</code><p>The environment name</p></div>
+<div class="subelement argument">
+<h4>$debug</h4>
+<code>Boolean</code><p>true to enable debug mode</p></div>
+<div class="subelement argument">
+<h4>$rootDir</h4>
+<code>string</code><p>The project root directory</p></div>
+<div class="subelement argument">
+<h4>$dispatcher</h4>
+<code><a href="../classes/sfEventDispatcher.html">\sfEventDispatcher</a></code><p>An event dispatcher</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfApplicationConfiguration.html">\sfApplicationConfiguration</a></code>A sfApplicationConfiguration instance</div>
+</div></div>
+</div>
+<a id="method_getConfigCache"></a><div class="element clickable method public method_getConfigCache" data-toggle="collapse" data-target=".method_getConfigCache .collapse">
+<h2>Returns a configuration cache object for the current configuration.</h2>
+<pre>getConfigCache() : <a href="../classes/sfConfigCache.html">\sfConfigCache</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getConfigCache()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfConfigCache.html">\sfConfigCache</a></code>A sfConfigCache instance</div>
+</div></div>
+</div>
+<a id="method_getConfigPaths"></a><div class="element clickable method public method_getConfigPaths" data-toggle="collapse" data-target=".method_getConfigPaths .collapse">
+<h2>Gets the configuration file paths for a given relative configuration path.</h2>
+<pre>getConfigPaths(string $configPath) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getConfigPaths()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$configPath</h4>
+<code>string</code><p>The configuration path</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of paths</div>
+</div></div>
+</div>
+<a id="method_getControllerDirs"></a><div class="element clickable method public method_getControllerDirs" data-toggle="collapse" data-target=".method_getControllerDirs .collapse">
+<h2>Gets directories where controller classes are stored for a given module.</h2>
+<pre>getControllerDirs(string $moduleName) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getControllerDirs()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getDecoratorDir"></a><div class="element clickable method public method_getDecoratorDir" data-toggle="collapse" data-target=".method_getDecoratorDir .collapse">
+<h2>Gets the decorator directory for a given template.</h2>
+<pre>getDecoratorDir(string $template) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getDecoratorDir()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$template</h4>
+<code>string</code><p>The template file</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A template directory</div>
+</div></div>
+</div>
+<a id="method_getDecoratorDirs"></a><div class="element clickable method public method_getDecoratorDirs" data-toggle="collapse" data-target=".method_getDecoratorDirs .collapse">
+<h2>Gets the decorator directories.</h2>
+<pre>getDecoratorDirs() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getDecoratorDirs()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of the decorator directories</div>
+</div></div>
+</div>
+<a id="method_getEnvironment"></a><div class="element clickable method public method_getEnvironment" data-toggle="collapse" data-target=".method_getEnvironment .collapse">
+<h2>Returns the environment name.</h2>
+<pre>getEnvironment() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getEnvironment()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The environment name</div>
+</div></div>
+</div>
+<a id="method_getEventDispatcher"></a><div class="element clickable method public method_getEventDispatcher" data-toggle="collapse" data-target=".method_getEventDispatcher .collapse">
+<h2>Returns the event dispatcher.</h2>
+<pre>getEventDispatcher() : <a href="../classes/sfEventDispatcher.html">\sfEventDispatcher</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getEventDispatcher()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getEventDispatcher()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getEventDispatcher()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/sfEventDispatcher.html">\sfEventDispatcher</a></code>A sfEventDispatcher instance</div>
+</div></div>
+</div>
+<a id="method_getGeneratorSkeletonDirs"></a><div class="element clickable method public method_getGeneratorSkeletonDirs" data-toggle="collapse" data-target=".method_getGeneratorSkeletonDirs .collapse">
+<h2>Gets directories where the skeleton is stored for a generator class and a specific theme.</h2>
+<pre>getGeneratorSkeletonDirs(string $class, string $theme) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getGeneratorSkeletonDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getGeneratorSkeletonDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getGeneratorSkeletonDirs()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>The generator class name</p></div>
+<div class="subelement argument">
+<h4>$theme</h4>
+<code>string</code><p>The theme name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getGeneratorTemplate"></a><div class="element clickable method public method_getGeneratorTemplate" data-toggle="collapse" data-target=".method_getGeneratorTemplate .collapse">
+<h2>Gets the template to use for a generator class.</h2>
+<pre>getGeneratorTemplate(string $class, string $theme, string $path) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getGeneratorTemplate()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getGeneratorTemplate()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getGeneratorTemplate()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>The generator class name</p></div>
+<div class="subelement argument">
+<h4>$theme</h4>
+<code>string</code><p>The theme name</p></div>
+<div class="subelement argument">
+<h4>$path</h4>
+<code>string</code><p>The template path</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/sfException.html">\sfException</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A template path</div>
+</div></div>
+</div>
+<a id="method_getGeneratorTemplateDirs"></a><div class="element clickable method public method_getGeneratorTemplateDirs" data-toggle="collapse" data-target=".method_getGeneratorTemplateDirs .collapse">
+<h2>Gets directories where template files are stored for a generator class and a specific theme.</h2>
+<pre>getGeneratorTemplateDirs(string $class, string $theme) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getGeneratorTemplateDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getGeneratorTemplateDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getGeneratorTemplateDirs()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>string</code><p>The generator class name</p></div>
+<div class="subelement argument">
+<h4>$theme</h4>
+<code>string</code><p>The theme name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getHelperDirs"></a><div class="element clickable method public method_getHelperDirs" data-toggle="collapse" data-target=".method_getHelperDirs .collapse">
+<h2>Gets the helper directories for a given module name.</h2>
+<pre>getHelperDirs(string $moduleName) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getHelperDirs()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getI18NDirs"></a><div class="element clickable method public method_getI18NDirs" data-toggle="collapse" data-target=".method_getI18NDirs .collapse">
+<h2>Gets the i18n directories to use for a given module.</h2>
+<pre>getI18NDirs(string $moduleName) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getI18NDirs()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of i18n directories</div>
+</div></div>
+</div>
+<a id="method_getI18NGlobalDirs"></a><div class="element clickable method public method_getI18NGlobalDirs" data-toggle="collapse" data-target=".method_getI18NGlobalDirs .collapse">
+<h2>Gets the i18n directories to use globally.</h2>
+<pre>getI18NGlobalDirs() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getI18NGlobalDirs()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of i18n directories</div>
+</div></div>
+</div>
+<a id="method_getLibDirs"></a><div class="element clickable method public method_getLibDirs" data-toggle="collapse" data-target=".method_getLibDirs .collapse">
+<h2>Gets directories where lib files are stored for a given module.</h2>
+<pre>getLibDirs(string $moduleName) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getLibDirs()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getModelDirs"></a><div class="element clickable method public method_getModelDirs" data-toggle="collapse" data-target=".method_getModelDirs .collapse">
+<h2>Gets directories where model classes are stored.</h2>
+<pre>getModelDirs() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The order of returned paths is lowest precedence
+to highest precedence.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getModelDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getModelDirs()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getModelDirs()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getPluginConfiguration"></a><div class="element clickable method public method_getPluginConfiguration" data-toggle="collapse" data-target=".method_getPluginConfiguration .collapse">
+<h2>Returns the configuration for the requested plugin.</h2>
+<pre>getPluginConfiguration(string $name) : <a href="../classes/sfPluginConfiguration.html">\sfPluginConfiguration</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getPluginConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getPluginConfiguration()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getPluginConfiguration()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/sfPluginConfiguration.html">\sfPluginConfiguration</a></code></div>
+</div></div>
+</div>
+<a id="method_getPluginPaths"></a><div class="element clickable method public method_getPluginPaths" data-toggle="collapse" data-target=".method_getPluginPaths .collapse">
+<h2>Gets the paths to plugins root directories, minding overloaded plugins.</h2>
+<pre>getPluginPaths() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\sfProjectConfiguration</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getPluginPaths()</td>
+</tr>
+</table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.invalidargumentexception.php">\InvalidArgumentException</a></code></th>
+<td>If an enabled plugin does not exist</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The plugin root paths.</div>
+</div></div>
+</div>
+<a id="method_getPluginSubPaths"></a><div class="element clickable method public method_getPluginSubPaths" data-toggle="collapse" data-target=".method_getPluginSubPaths .collapse">
+<h2>Gets the paths plugin sub-directories, minding overloaded plugins.</h2>
+<pre>getPluginSubPaths(string $subPath) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getPluginSubPaths()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getPluginSubPaths()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getPluginSubPaths()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$subPath</h4>
+<code>string</code><p>The subdirectory to look for</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The plugin paths.</div>
+</div></div>
+</div>
+<a id="method_getPlugins"></a><div class="element clickable method public method_getPlugins" data-toggle="collapse" data-target=".method_getPlugins .collapse">
+<h2>Gets the list of enabled plugins.</h2>
+<pre>getPlugins() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getPlugins()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of enabled plugins</div>
+</div></div>
+</div>
+<a id="method_getRootDir"></a><div class="element clickable method public method_getRootDir" data-toggle="collapse" data-target=".method_getRootDir .collapse">
+<h2>Returns the project root directory.</h2>
+<pre>getRootDir() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getRootDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getRootDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getRootDir()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The project root directory</div>
+</div></div>
+</div>
+<a id="method_getSymfonyLibDir"></a><div class="element clickable method public method_getSymfonyLibDir" data-toggle="collapse" data-target=".method_getSymfonyLibDir .collapse">
+<h2>Returns the symfony lib directory.</h2>
+<pre>getSymfonyLibDir() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::getSymfonyLibDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::getSymfonyLibDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getSymfonyLibDir()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The symfony lib directory</div>
+</div></div>
+</div>
+<a id="method_getTemplateDir"></a><div class="element clickable method public method_getTemplateDir" data-toggle="collapse" data-target=".method_getTemplateDir .collapse">
+<h2>Gets the template directory to use for a given module and template file.</h2>
+<pre>getTemplateDir(string $moduleName, string $templateFile) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getTemplateDir()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<div class="subelement argument">
+<h4>$templateFile</h4>
+<code>string</code><p>The template file</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A template directory</div>
+</div></div>
+</div>
+<a id="method_getTemplateDirs"></a><div class="element clickable method public method_getTemplateDirs" data-toggle="collapse" data-target=".method_getTemplateDirs .collapse">
+<h2>Gets directories where template files are stored for a given module.</h2>
+<pre>getTemplateDirs(string $moduleName) : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getTemplateDirs()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array of directories</div>
+</div></div>
+</div>
+<a id="method_getTemplatePath"></a><div class="element clickable method public method_getTemplatePath" data-toggle="collapse" data-target=".method_getTemplatePath .collapse">
+<h2>Gets the template to use for a given module and template file.</h2>
+<pre>getTemplatePath(string $moduleName, string $templateFile) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::getTemplatePath()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>The module name</p></div>
+<div class="subelement argument">
+<h4>$templateFile</h4>
+<code>string</code><p>The template file</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>A template path</div>
+</div></div>
+</div>
+<a id="method_guessRootDir"></a><div class="element clickable method public method_guessRootDir" data-toggle="collapse" data-target=".method_guessRootDir .collapse">
+<h2>Guesses the project root directory.</h2>
+<pre>guessRootDir() : string</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::guessRootDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::guessRootDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::guessRootDir()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The project root directory</div>
+</div></div>
+</div>
+<a id="method_hasActive"></a><div class="element clickable method public method_hasActive" data-toggle="collapse" data-target=".method_hasActive .collapse">
+<h2>Returns true if these is an active configuration.</h2>
+<pre>hasActive() : boolean</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::hasActive()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::hasActive()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::hasActive()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_initConfiguration"></a><div class="element clickable method public method_initConfiguration" data-toggle="collapse" data-target=".method_initConfiguration .collapse">
+<h2>Various initializations.</h2>
+<pre>initConfiguration() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::initConfiguration()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_initialize"></a><div class="element clickable method public method_initialize" data-toggle="collapse" data-target=".method_initialize .collapse">
+<h2>Initialized the current configuration.</h2>
+<pre>initialize() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Override this method if you want to customize your application initialization.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::initialize()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_isDebug"></a><div class="element clickable method public method_isDebug" data-toggle="collapse" data-target=".method_isDebug .collapse">
+<h2>Returns true if this configuration has debug enabled.</h2>
+<pre>isDebug() : Boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::isDebug()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Boolean</code>true if the configuration has debug enabled, false otherwise</div>
+</div></div>
+</div>
+<a id="method_loadHelpers"></a><div class="element clickable method public method_loadHelpers" data-toggle="collapse" data-target=".method_loadHelpers .collapse">
+<h2>Loads helpers.</h2>
+<pre>loadHelpers(array $helpers, string $moduleName) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::loadHelpers()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$helpers</h4>
+<code>array</code><p>An array of helpers to load</p></div>
+<div class="subelement argument">
+<h4>$moduleName</h4>
+<code>string</code><p>A module name (optional)</p>
+</div>
+</div></div>
+</div>
+<a id="method_loadPlugins"></a><div class="element clickable method public method_loadPlugins" data-toggle="collapse" data-target=".method_loadPlugins .collapse">
+<h2>Loads the project's plugin configurations.</h2>
+<pre>loadPlugins() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::loadPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::loadPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::loadPlugins()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_setAppDir"></a><div class="element clickable method public method_setAppDir" data-toggle="collapse" data-target=".method_setAppDir .collapse">
+<h2>Sets the app directory.</h2>
+<pre>setAppDir(string $appDir) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setAppDir()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$appDir</h4>
+<code>string</code><p>The absolute path to the app dir.</p></div>
+</div></div>
+</div>
+<a id="method_setCacheDir"></a><div class="element clickable method public method_setCacheDir" data-toggle="collapse" data-target=".method_setCacheDir .collapse">
+<h2>Sets the cache root directory.</h2>
+<pre>setCacheDir(string $cacheDir) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\sfProjectConfiguration</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setCacheDir()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cacheDir</h4>
+<code>string</code><p>The absolute path to the cache dir.</p></div>
+</div></div>
+</div>
+<a id="method_setLogDir"></a><div class="element clickable method public method_setLogDir" data-toggle="collapse" data-target=".method_setLogDir .collapse">
+<h2>Sets the log directory.</h2>
+<pre>setLogDir(string $logDir) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setLogDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setLogDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setLogDir()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$logDir</h4>
+<code>string</code><p>The absolute path to the log dir.</p></div>
+</div></div>
+</div>
+<a id="method_setPluginPath"></a><div class="element clickable method public method_setPluginPath" data-toggle="collapse" data-target=".method_setPluginPath .collapse">
+<h2>Manually sets the location of a particular plugin.</h2>
+<pre>setPluginPath(string $plugin, string $path) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This method can be used to ease functional testing of plugins. It is not
+intended to support sharing plugins between projects, as many plugins
+save project specific code (to /lib/form/base, for example).</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setPluginPath()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setPluginPath()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setPluginPath()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugin</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$path</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setPlugins"></a><div class="element clickable method public method_setPlugins" data-toggle="collapse" data-target=".method_setPlugins .collapse">
+<h2>Sets the enabled plugins.</h2>
+<pre>setPlugins(array $plugins) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setPlugins()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugins</h4>
+<code>array</code><p>An array of plugin names</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.logicexception.php">\LogicException</a></code></th>
+<td>If plugins have already been loaded</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setRootDir"></a><div class="element clickable method public method_setRootDir" data-toggle="collapse" data-target=".method_setRootDir .collapse">
+<h2>Sets the project root directory.</h2>
+<pre>setRootDir(string $rootDir) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setRootDir()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rootDir</h4>
+<code>string</code><p>The project root directory</p></div>
+</div></div>
+</div>
+<a id="method_setWebDir"></a><div class="element clickable method public method_setWebDir" data-toggle="collapse" data-target=".method_setWebDir .collapse">
+<h2>Sets the web root directory.</h2>
+<pre>setWebDir(string $webDir) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setWebDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setWebDir()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setWebDir()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$webDir</h4>
+<code>string</code><p>The absolute path to the web dir.</p></div>
+</div></div>
+</div>
+<a id="method_setup"></a><div class="element clickable method public method_setup" data-toggle="collapse" data-target=".method_setup .collapse">
+<h2>Setups the current configuration.</h2>
+<pre>setup() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Override this method if you want to customize your project configuration.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setup()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setup()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setup()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_setupPlugins"></a><div class="element clickable method public method_setupPlugins" data-toggle="collapse" data-target=".method_setupPlugins .collapse">
+<h2>Sets up plugin configurations.</h2>
+<pre>setupPlugins() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Override this method if you want to customize plugin configurations.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::setupPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::setupPlugins()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::setupPlugins()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_hasLockFile"></a><div class="element clickable method protected method_hasLockFile" data-toggle="collapse" data-target=".method_hasLockFile .collapse">
+<h2>Determines if a lock file is present.</h2>
+<pre>hasLockFile(string $lockFile, integer $maxLockFileLifeTime) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::hasLockFile()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$lockFile</h4>
+<code>string</code><p>Name of the lock file.</p></div>
+<div class="subelement argument">
+<h4>$maxLockFileLifeTime</h4>
+<code>integer</code><p>A max amount of life time for the lock file.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>true, if the lock file is present, otherwise false.</div>
+</div></div>
+</div>
+<a id="method_initializePlugins"></a><div class="element clickable method protected method_initializePlugins" data-toggle="collapse" data-target=".method_initializePlugins .collapse">
+<h2>Initializes plugin configuration objects.</h2>
+<pre>initializePlugins() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::initializePlugins()</td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_active"> </a><div class="element clickable property protected property_active" data-toggle="collapse" data-target=".property_active .collapse">
+<h2>$active</h2>
+<pre>$active </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$active</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$active</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$active</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_application"> </a><div class="element clickable property protected property_application" data-toggle="collapse" data-target=".property_application .collapse">
+<h2>$application</h2>
+<pre>$application </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$application</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_cache"> </a><div class="element clickable property protected property_cache" data-toggle="collapse" data-target=".property_cache .collapse">
+<h2>$cache</h2>
+<pre>$cache </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$cache</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_config"> </a><div class="element clickable property protected property_config" data-toggle="collapse" data-target=".property_config .collapse">
+<h2>$config</h2>
+<pre>$config </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$config</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_configCache"> </a><div class="element clickable property protected property_configCache" data-toggle="collapse" data-target=".property_configCache .collapse">
+<h2>$configCache</h2>
+<pre>$configCache </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$configCache</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_coreLoaded"> </a><div class="element clickable property protected property_coreLoaded" data-toggle="collapse" data-target=".property_coreLoaded .collapse">
+<h2>$coreLoaded</h2>
+<pre>$coreLoaded </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$coreLoaded</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_debug"> </a><div class="element clickable property protected property_debug" data-toggle="collapse" data-target=".property_debug .collapse">
+<h2>$debug</h2>
+<pre>$debug </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$debug</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_dispatcher"> </a><div class="element clickable property protected property_dispatcher" data-toggle="collapse" data-target=".property_dispatcher .collapse">
+<h2>$dispatcher</h2>
+<pre>$dispatcher </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$dispatcher</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$dispatcher</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$dispatcher</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_environment"> </a><div class="element clickable property protected property_environment" data-toggle="collapse" data-target=".property_environment .collapse">
+<h2>$environment</h2>
+<pre>$environment </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$environment</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_loadedHelpers"> </a><div class="element clickable property protected property_loadedHelpers" data-toggle="collapse" data-target=".property_loadedHelpers .collapse">
+<h2>$loadedHelpers</h2>
+<pre>$loadedHelpers </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$loadedHelpers</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_overriddenPluginPaths"> </a><div class="element clickable property protected property_overriddenPluginPaths" data-toggle="collapse" data-target=".property_overriddenPluginPaths .collapse">
+<h2>$overriddenPluginPaths</h2>
+<pre>$overriddenPluginPaths </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$overriddenPluginPaths</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$overriddenPluginPaths</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$overriddenPluginPaths</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_pluginConfigurations"> </a><div class="element clickable property protected property_pluginConfigurations" data-toggle="collapse" data-target=".property_pluginConfigurations .collapse">
+<h2>$pluginConfigurations</h2>
+<pre>$pluginConfigurations </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$pluginConfigurations</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$pluginConfigurations</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$pluginConfigurations</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_pluginPaths"> </a><div class="element clickable property protected property_pluginPaths" data-toggle="collapse" data-target=".property_pluginPaths .collapse">
+<h2>$pluginPaths</h2>
+<pre>$pluginPaths </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$pluginPaths</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$pluginPaths</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$pluginPaths</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_plugins"> </a><div class="element clickable property protected property_plugins" data-toggle="collapse" data-target=".property_plugins .collapse">
+<h2>$plugins</h2>
+<pre>$plugins </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$plugins</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$plugins</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$plugins</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_pluginsLoaded"> </a><div class="element clickable property protected property_pluginsLoaded" data-toggle="collapse" data-target=".property_pluginsLoaded .collapse">
+<h2>$pluginsLoaded</h2>
+<pre>$pluginsLoaded </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$pluginsLoaded</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$pluginsLoaded</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$pluginsLoaded</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_rootDir"> </a><div class="element clickable property protected property_rootDir" data-toggle="collapse" data-target=".property_rootDir .collapse">
+<h2>$rootDir</h2>
+<pre>$rootDir </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$rootDir</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$rootDir</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$rootDir</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_symfonyLibDir"> </a><div class="element clickable property protected property_symfonyLibDir" data-toggle="collapse" data-target=".property_symfonyLibDir .collapse">
+<h2>$symfonyLibDir</h2>
+<pre>$symfonyLibDir </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfProjectConfiguration::$$symfonyLibDir</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\ProjectConfiguration::$$symfonyLibDir</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfApplicationConfiguration::$$symfonyLibDir</td>
+</tr>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:45:35+05:00.<br></footer></div>
+</div>
+</body>
+</html>

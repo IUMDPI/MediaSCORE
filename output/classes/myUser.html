@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \myUser</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/##PACKAGE##.html"><i class="icon-folder-open"></i> ##PACKAGE##</a></li>
+<li><a href="../packages/##PROJECT.html"><i class="icon-folder-open"></i> ##PROJECT</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Doctrine.html"><i class="icon-folder-open"></i> Doctrine</a></li>
+<li><a href="../packages/Swift.html"><i class="icon-folder-open"></i> Swift</a></li>
+<li><a href="../packages/System.html"><i class="icon-folder-open"></i> System</a></li>
+<li><a href="../packages/filters.html"><i class="icon-folder-open"></i> filters</a></li>
+<li><a href="../packages/form.html"><i class="icon-folder-open"></i> form</a></li>
+<li><a href="../packages/guard.html"><i class="icon-folder-open"></i> guard</a></li>
+<li><a href="../packages/lib.html"><i class="icon-folder-open"></i> lib</a></li>
+<li><a href="../packages/lime.html"><i class="icon-folder-open"></i> lime</a></li>
+<li><a href="../packages/mediaSCORE.html"><i class="icon-folder-open"></i> mediaSCORE</a></li>
+<li><a href="../packages/phing.html"><i class="icon-folder-open"></i> phing</a></li>
+<li><a href="../packages/project.html"><i class="icon-folder-open"></i> project</a></li>
+<li><a href="../packages/propel.html"><i class="icon-folder-open"></i> propel</a></li>
+<li><a href="../packages/sfDoctrineGuardPlugin.html"><i class="icon-folder-open"></i> sfDoctrineGuardPlugin</a></li>
+<li><a href="../packages/sfDoctrinePlugin.html"><i class="icon-folder-open"></i> sfDoctrinePlugin</a></li>
+<li><a href="../packages/sfGuardForgotPasswordPlugin.html"><i class="icon-folder-open"></i> sfGuardForgotPasswordPlugin</a></li>
+<li><a href="../packages/sfGuardPlugin.html"><i class="icon-folder-open"></i> sfGuardPlugin</a></li>
+<li><a href="../packages/sfPropelPlugin.html"><i class="icon-folder-open"></i> sfPropelPlugin</a></li>
+<li><a href="../packages/symfony.html"><i class="icon-folder-open"></i> symfony</a></li>
+<li><a href="../packages/symfony12.html"><i class="icon-folder-open"></i> symfony12</a></li>
+<li><a href="../packages/test.html"><i class="icon-folder-open"></i> test</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">11988</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">91</span>
+</li>
+<li>fixme 
+                <span class="label label-info">22</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">59</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul><li class="method public "><a href="#method_setUp" title="setUp :: "><span class="description">setUp()
+        </span><pre>setUp()</pre></a></li></ul>
+</li></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"></ul>
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method_addCredential" title="addCredential :: Adds a credential."><span class="description">Adds a credential.</span><pre>addCredential()</pre></a></li>
+<li class="method public inherited"><a href="#method_addCredentials" title="addCredentials :: Adds several credential at once."><span class="description">Adds several credential at once.</span><pre>addCredentials()</pre></a></li>
+<li class="method public inherited"><a href="#method_clearCredentials" title="clearCredentials :: Clears all credentials."><span class="description">Clears all credentials.</span><pre>clearCredentials()</pre></a></li>
+<li class="method public inherited"><a href="#method_getCredentials" title="getCredentials :: Returns the current user's credentials."><span class="description">Returns the current user's credentials.</span><pre>getCredentials()</pre></a></li>
+<li class="method public inherited"><a href="#method_getCulture" title="getCulture :: "><span class="description">getCulture()
+        </span><pre>getCulture()</pre></a></li>
+<li class="method public inherited"><a href="#method_getLastRequestTime" title="getLastRequestTime :: Returns the timestamp of the last user request."><span class="description">Returns the timestamp of the last user request.</span><pre>getLastRequestTime()</pre></a></li>
+<li class="method public inherited"><a href="#method_hasCredential" title="hasCredential :: Returns true if user has credential."><span class="description">Returns true if user has credential.</span><pre>hasCredential()</pre></a></li>
+<li class="method public inherited"><a href="#method_initialize" title="initialize :: Available options:"><span class="description">Available options:</span><pre>initialize()</pre></a></li>
+<li class="method public inherited"><a href="#method_isAuthenticated" title="isAuthenticated :: Returns true if user is authenticated."><span class="description">Returns true if user is authenticated.</span><pre>isAuthenticated()</pre></a></li>
+<li class="method public inherited"><a href="#method_isTimedOut" title="isTimedOut :: "><span class="description">isTimedOut()
+        </span><pre>isTimedOut()</pre></a></li>
+<li class="method public inherited"><a href="#method_removeCredential" title="removeCredential :: Removes a credential."><span class="description">Removes a credential.</span><pre>removeCredential()</pre></a></li>
+<li class="method public inherited"><a href="#method_setAuthenticated" title="setAuthenticated :: Sets authentication for user."><span class="description">Sets authentication for user.</span><pre>setAuthenticated()</pre></a></li>
+<li class="method public inherited"><a href="#method_setTimedOut" title="setTimedOut :: "><span class="description">setTimedOut()
+        </span><pre>setTimedOut()</pre></a></li>
+<li class="method public inherited"><a href="#method_shutdown" title="shutdown :: "><span class="description">shutdown()
+        </span><pre>shutdown()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul><li class="property public inherited"><a href="#property_culture" title="$culture :: "><span class="description">$culture</span><pre>$culture</pre></a></li></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_authenticated" title="$authenticated :: "><span class="description">$authenticated</span><pre>$authenticated</pre></a></li>
+<li class="property protected inherited"><a href="#property_credentials" title="$credentials :: "><span class="description">$credentials</span><pre>$credentials</pre></a></li>
+<li class="property protected inherited"><a href="#property_lastRequest" title="$lastRequest :: "><span class="description">$lastRequest</span><pre>$lastRequest</pre></a></li>
+<li class="property protected inherited"><a href="#property_timedout" title="$timedout :: "><span class="description">$timedout</span><pre>$timedout</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  inherited"><a href="#constant_AUTH_NAMESPACE" title="AUTH_NAMESPACE :: "><span class="description">AUTH_NAMESPACE</span><pre>AUTH_NAMESPACE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_CREDENTIAL_NAMESPACE" title="CREDENTIAL_NAMESPACE :: "><span class="description">CREDENTIAL_NAMESPACE</span><pre>CREDENTIAL_NAMESPACE</pre></a></li>
+<li class="constant  inherited"><a href="#constant_LAST_REQUEST_NAMESPACE" title="LAST_REQUEST_NAMESPACE :: "><span class="description">LAST_REQUEST_NAMESPACE</span><pre>LAST_REQUEST_NAMESPACE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details">
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_setUp"></a><div class="element clickable method public method_setUp" data-toggle="collapse" data-target=".method_setUp .collapse">
+<h2>setUp()
+        </h2>
+<pre>setUp() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class"><div class="details"></div></div>
+<a id="\myUser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/myUser.html">myUser</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">sfBasicSecurityUser will handle any type of data as a credential.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Default.html">symfony</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:fabien.potencier@symfony-project.com">Fabien Potencier</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:sean@code-box.org">Sean Kerr</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>SVN: $Id: sfBasicSecurityUser.class.php 29528 2010-05-19 13:12:27Z fabien $</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_addCredential"></a><div class="element clickable method public method_addCredential" data-toggle="collapse" data-target=".method_addCredential .collapse">
+<h2>Adds a credential.</h2>
+<pre>addCredential(mixed $credential) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::addCredential()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$credential</h4>
+<code>mixed</code>
+</div>
+</div></div>
+</div>
+<a id="method_addCredentials"></a><div class="element clickable method public method_addCredentials" data-toggle="collapse" data-target=".method_addCredentials .collapse">
+<h2>Adds several credential at once.</h2>
+<pre>addCredentials() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::addCredentials()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_clearCredentials"></a><div class="element clickable method public method_clearCredentials" data-toggle="collapse" data-target=".method_clearCredentials .collapse">
+<h2>Clears all credentials.</h2>
+<pre>clearCredentials() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::clearCredentials()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getCredentials"></a><div class="element clickable method public method_getCredentials" data-toggle="collapse" data-target=".method_getCredentials .collapse">
+<h2>Returns the current user's credentials.</h2>
+<pre>getCredentials() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::getCredentials()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getCulture"></a><div class="element clickable method public method_getCulture" data-toggle="collapse" data-target=".method_getCulture .collapse">
+<h2>getCulture()
+        </h2>
+<pre>getCulture() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfUser::getCulture()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::getCulture()</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="method_getLastRequestTime"></a><div class="element clickable method public method_getLastRequestTime" data-toggle="collapse" data-target=".method_getLastRequestTime .collapse">
+<h2>Returns the timestamp of the last user request.</h2>
+<pre>getLastRequestTime() : int</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::getLastRequestTime()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_hasCredential"></a><div class="element clickable method public method_hasCredential" data-toggle="collapse" data-target=".method_hasCredential .collapse">
+<h2>Returns true if user has credential.</h2>
+<pre>hasCredential(mixed $credentials, bool $useAnd) : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Olivier Verdier &lt;Olivier.Verdier@free.fr&gt;</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::hasCredential()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$credentials</h4>
+<code>mixed</code>
+</div>
+<div class="subelement argument">
+<h4>$useAnd</h4>
+<code>bool</code><p>specify the mode, either AND or OR</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_initialize"></a><div class="element clickable method public method_initialize" data-toggle="collapse" data-target=".method_initialize .collapse">
+<h2>Available options:</h2>
+<pre>initialize(\sfEventDispatcher $dispatcher, \sfStorage $storage, array $options) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><ul>
+<li>timeout: Timeout to automatically log out the user in seconds (1800 by default)
+        Set to false to disable</li>
+</ul></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\global\sfUser</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::initialize()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$dispatcher</h4>
+<code><a href="../classes/sfEventDispatcher.html">\sfEventDispatcher</a></code><p>An sfEventDispatcher instance.</p></div>
+<div class="subelement argument">
+<h4>$storage</h4>
+<code><a href="../classes/sfStorage.html">\sfStorage</a></code><p>An sfStorage instance.</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>An associative array of options.</p></div>
+</div></div>
+</div>
+<a id="method_isAuthenticated"></a><div class="element clickable method public method_isAuthenticated" data-toggle="collapse" data-target=".method_isAuthenticated .collapse">
+<h2>Returns true if user is authenticated.</h2>
+<pre>isAuthenticated() : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::isAuthenticated()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_isTimedOut"></a><div class="element clickable method public method_isTimedOut" data-toggle="collapse" data-target=".method_isTimedOut .collapse">
+<h2>isTimedOut()
+        </h2>
+<pre>isTimedOut() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::isTimedOut()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_removeCredential"></a><div class="element clickable method public method_removeCredential" data-toggle="collapse" data-target=".method_removeCredential .collapse">
+<h2>Removes a credential.</h2>
+<pre>removeCredential(mixed $credential) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::removeCredential()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$credential</h4>
+<code>mixed</code><p>credential</p></div>
+</div></div>
+</div>
+<a id="method_setAuthenticated"></a><div class="element clickable method public method_setAuthenticated" data-toggle="collapse" data-target=".method_setAuthenticated .collapse">
+<h2>Sets authentication for user.</h2>
+<pre>setAuthenticated(bool $authenticated) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::setAuthenticated()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$authenticated</h4>
+<code>bool</code>
+</div>
+</div></div>
+</div>
+<a id="method_setTimedOut"></a><div class="element clickable method public method_setTimedOut" data-toggle="collapse" data-target=".method_setTimedOut .collapse">
+<h2>setTimedOut()
+        </h2>
+<pre>setTimedOut() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::setTimedOut()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_shutdown"></a><div class="element clickable method public method_shutdown" data-toggle="collapse" data-target=".method_shutdown .collapse">
+<h2>shutdown()
+        </h2>
+<pre>shutdown() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::shutdown()</td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_culture"> </a><div class="element clickable property public property_culture" data-toggle="collapse" data-target=".property_culture .collapse">
+<h2>$culture</h2>
+<pre>$culture </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\sfUser::$$culture</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::$$culture</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_authenticated"> </a><div class="element clickable property protected property_authenticated" data-toggle="collapse" data-target=".property_authenticated .collapse">
+<h2>$authenticated</h2>
+<pre>$authenticated </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::$$authenticated</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_credentials"> </a><div class="element clickable property protected property_credentials" data-toggle="collapse" data-target=".property_credentials .collapse">
+<h2>$credentials</h2>
+<pre>$credentials </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::$$credentials</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_lastRequest"> </a><div class="element clickable property protected property_lastRequest" data-toggle="collapse" data-target=".property_lastRequest .collapse">
+<h2>$lastRequest</h2>
+<pre>$lastRequest </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::$$lastRequest</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_timedout"> </a><div class="element clickable property protected property_timedout" data-toggle="collapse" data-target=".property_timedout .collapse">
+<h2>$timedout</h2>
+<pre>$timedout </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::$$timedout</td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_AUTH_NAMESPACE"> </a><div class="element clickable constant  constant_AUTH_NAMESPACE" data-toggle="collapse" data-target=".constant_AUTH_NAMESPACE .collapse">
+<h2>AUTH_NAMESPACE</h2>
+<pre>AUTH_NAMESPACE </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::AUTH_NAMESPACE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_CREDENTIAL_NAMESPACE"> </a><div class="element clickable constant  constant_CREDENTIAL_NAMESPACE" data-toggle="collapse" data-target=".constant_CREDENTIAL_NAMESPACE .collapse">
+<h2>CREDENTIAL_NAMESPACE</h2>
+<pre>CREDENTIAL_NAMESPACE </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::CREDENTIAL_NAMESPACE</td>
+</tr></table>
+</div></div>
+</div>
+<a id="constant_LAST_REQUEST_NAMESPACE"> </a><div class="element clickable constant  constant_LAST_REQUEST_NAMESPACE" data-toggle="collapse" data-target=".constant_LAST_REQUEST_NAMESPACE .collapse">
+<h2>LAST_REQUEST_NAMESPACE</h2>
+<pre>LAST_REQUEST_NAMESPACE </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sfBasicSecurityUser::LAST_REQUEST_NAMESPACE</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-09T15:46:11+05:00.<br></footer></div>
+</div>
+</body>
+</html>

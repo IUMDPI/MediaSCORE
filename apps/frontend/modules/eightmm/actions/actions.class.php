@@ -10,21 +10,20 @@
  */
 class eightmmActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-        $this->eight_m_ms = Doctrine_Core::getTable('EightMM')
-                ->createQuery('a')
-                ->execute();
-    }
-
-    public function executeShow(sfWebRequest $request) {
-        $this->eight_mm = Doctrine_Core::getTable('EightMM')->find(array($request->getParameter('id')));
-        $this->forward404Unless($this->eight_mm);
-    }
-
+    /**
+     * Generate EightMM form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeNew(sfWebRequest $request) {
         $this->form = new EightMMForm();
     }
 
+    /**
+     * EightMM Post form process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
@@ -35,11 +34,21 @@ class eightmmActions extends sfActions {
         $this->setTemplate('new');
     }
 
+    /**
+     * EightMM edit Form
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($eight_mm = Doctrine_Core::getTable('EightMM')->find(array($request->getParameter('id'))), sprintf('Object eight_mm does not exist (%s).', $request->getParameter('id')));
         $this->form = new EightMMForm($eight_mm);
     }
 
+    /**
+     * EightMM Post Edit form Process
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
         $this->forward404Unless($eight_mm = Doctrine_Core::getTable('FormatType')->find(array($request->getParameter('id'))), sprintf('Object eight_mm does not exist (%s).', $request->getParameter('id')));
@@ -49,7 +58,7 @@ class eightmmActions extends sfActions {
         $eight_mm = Doctrine_Core::getTable('EightMM')->find(array($request->getParameter('id')));
         $this->form = new EightMMForm($eight_mm);
 
-        
+
         $validateForm = $this->processForm($request, $this->form);
         // form is valid then return the id;
         if ($validateForm && isset($validateForm['form']) && $validateForm['form'] == true) {
@@ -60,22 +69,20 @@ class eightmmActions extends sfActions {
         }
     }
 
-    public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
-        $this->forward404Unless($eight_mm = Doctrine_Core::getTable('EightMM')->find(array($request->getParameter('id'))), sprintf('Object eight_mm does not exist (%s).', $request->getParameter('id')));
-        $eight_mm->delete();
-
-        $this->redirect('eightmm/index');
-    }
-
+    /**
+     * Process and Validate Form
+     * 
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     * @return boolean if form is not validated
+     * @return integer if form is validated then return id
+     */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $eight_mm = $form->save();
             $saveReturnId = array('form' => true, 'id' => $eight_mm->getId());
             return $saveReturnId;
-//      $this->redirect('eightmm/edit?id='.$eight_mm->getId());
         }
         return false;
     }

@@ -7,275 +7,87 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class FormatType extends BaseFormatType
-{
-	public static $constants = array(0 => 'Original',1 => 'Copy',2 => 'Unknown');
+class FormatType extends BaseFormatType {
 
-	public function getTypeValue() {
-		$inheritanceMap = $this->getTable()->getOption('inheritanceMap');
-		return isset($inheritanceMap['type']) ? $inheritanceMap['type'] : 0;
-	}
+    public static $constants = array(0 => 'Original', 1 => 'Copy', 2 => 'Unknown');
 
-	//public static $subclasses = Doctrine_Core::getTable('FormatType')->getOption('subclasses');
+    public function getTypeValue() {
+        $inheritanceMap = $this->getTable()->getOption('inheritanceMap');
+        return isset($inheritanceMap['type']) ? $inheritanceMap['type'] : 0;
+    }
 
-	/*public static $typeIDs = array(
-             'MetalDisc' => 
-             array(
-              'type' => 1,
-             ),
-             'ReelCassetteFormatType' => 
-             array(
-              'type' => 2,
-             ),
-             'AudiotapeFormatType' => 
-             array(
-              'type' => 3,
-             ),
-             'AnalogAudiocassette' => 
-             array(
-              'type' => 4,
-             ),
-             'Film' => 
-             array(
-              'type' => 5,
-             ),
-             'DAT' => 
-             array(
-              'type' => 6,
-             ),
-             'SoundWireReel' => 
-             array(
-              'type' => 7,
-             ),
-             'OpenReelAudioTapeFormatType' => 
-             array(
-              'type' => 8,
-             ),
-             'OpenReelAudiotapePolyster' => 
-             array(
-              'type' => 9,
-             ),
-             'OpenReelAudiotapeAcetate' => 
-             array(
-              'type' => 10,
-             ),
-             'OpenReelAudiotapePaper' => 
-             array(
-              'type' => 11,
-             ),
-             'OpenReelAudiotapePVC' => 
-             array(
-              'type' => 12,
-             ),
-             'DiskFormatType' => 
-             array(
-              'type' => 13,
-             ),
-             'SoftDiskFormatType' => 
-             array(
-              'type' => 14,
-             ),
-             'LacquerDisc' => 
-             array(
-              'type' => 15,
-             ),
-             'MiniDisc' => 
-             array(
-              'type' => 16,
-             ),
-             'Cylinder' => 
-             array(
-              'type' => 17,
-             ),
-             'OpticalDiscFormatType' => 
-             array(
-              'type' => 18,
-             ),
-             'SoundOpticalDisk' => 
-             array(
-              'type' => 19,
-             ),
-             'OpticalVideo' => 
-             array(
-              'type' => 20,
-             ),
-             'PressedAudioDiscFormatType' => 
-             array(
-              'type' => 21,
-             ),
-             'PressedSeventyEightRPMDisc' => 
-             array(
-              'type' => 22,
-             ),
-             'PressedLPDisc' => 
-             array(
-              'type' => 23,
-             ),
-             'PressedFortyFiveRPMDisc' => 
-             array(
-              'type' => 24,
-             ),
-             'StandardizedRecordingFormatType' => 
-             array(
-              'type' => 25,
-             ),
-             'Laserdisc' => 
-             array(
-              'type' => 26,
-             ),
-             'XDCamOptical' => 
-             array(
-              'type' => 27,
-             ),
-             'VideoRecordingFormatType' => 
-             array(
-              'type' => 28,
-             ),
-             'Betamax' => 
-             array(
-              'type' => 29,
-             ),
-             'ReelVideoRecordingFormatType' => 
-             array(
-              'type' => 30,
-             ),
-             'EightMM' => 
-             array(
-              'type' => 31,
-             ),
-             'OpenReelVideoFormatType' => 
-             array(
-              'type' => 32,
-             ),
-             'TwoInchOpenReelVideo' => 
-             array(
-              'type' => 33,
-             ),
-             'OneInchOpenReelVideo' => 
-             array(
-              'type' => 34,
-             ),
-             'HalfInchOpenReelVideo' => 
-             array(
-              'type' => 35,
-             ),
-             'SizedVideoRecordingFormatType' => 
-             array(
-              'type' => 36,
-             ),
-             'DV' => 
-             array(
-              'type' => 37,
-             ),
-             'DVCam' => 
-             array(
-              'type' => 38,
-             ),
-             'FormatTypedVideoRecording' => 
-             array(
-              'type' => 39,
-             ),
-             'Betacam' => 
-             array(
-              'type' => 40,
-             ),
-             'VHS' => 
-             array(
-              'type' => 41,
-             ),
-             'DigitalBetacam' => 
-             array(
-              'type' => 42,
-             ),
-             'FormatVersionedVideoRecordingType' => 
-             array(
-              'type' => 43,
-             ),
-             'Umatic' => 
-             array(
-              'type' => 44,
-             ),
-             'HDCam' => 
-             array(
-              'type' => 45,
-             ),
-             'DVCPro' => 
-             array(
-              'type' => 46,
-      ));*/
-
-	// Key values are for the UI
-	// Purposely nested arrays for extension into other character sets
-	public static $typeNames = array(
-						array('MetalDisc' => 'Metal Disc'),
-						array('Film' => 'Film'),
-						array('DAT' => 'DAT'),
-						array('SoundWireReel' => 'Sound Wire Reel'),
-						array('AnalogAudiocassette' => 'Analog Audio Cassette'),
-						array('OpenReelAudiotapePolyster' => 'Polyster Open Reel Audio Tape'),
-						array('OpenReelAudiotapeAcetate' => 'Acetate Open Reel Audio Tape'),
-						array('OpenReelAudiotapePaper' => 'Paper Open Reel Audio Tape'),
-						array('OpenReelAudiotapePVC' => 'PVC Open Reel Audio Tape'),
-						array('LacquerDisc' => 'Lacquer Disc'),
-						array('MiniDisc' => 'MiniDisc'),
-						array('Cylinder' => 'Cylinder'),
-						array('SoundOpticalDisc' => 'Sound Optical Disc'),
-						array('OpticalVideo' => 'Optical Video'),
-						array('PressedSeventyEightRPMDisc' => 'Pressed 78RPM Disc'),
-						array('PressedLPDisc' => 'Pressed LP Disc'),
-						array('PressedFortyFiveRPMDisc' => 'Pressed 45RPM Disc'),
-						array('Laserdisc' => 'LaserDisc'),
-						array('XDCamOptical' => 'XDCAM Optical'),
-						array('Betamax' => 'Betamax'),
-						array('EightMM' => '8MM'),
-						array('TwoInchOpenReelVideo' => '2" Open Reel Video'),
-						array('OneInchOpenReelVideo' => '1" Open Reel Video'),
-						array('HalfInchOpenReelVideo' => '½" Open Reel Video'),
-						array('DV' => 'DV'),
-						array('DVCam' => 'DVCAM'),
-						array('Betacam' => 'Betacam'),
-						array('VHS' => 'VHS'),
-						array('DigitalBetacam' => 'Digital Betacam'),
-						array('Umatic' => 'U-matic'),
-						array('HDCam' => 'HDCAM'),
-						array('DVCPro' => 'DVCPro')
-					);
-	public static $formatTypesValue = array(
-						array('1' => 'Metal Disc'),
-						array('5' => 'Film'),
-						array('6' => 'DAT'),
-						array('7' => 'Sound Wire Reel'),
-						array('4' => 'Analog Audio Cassette'),
-						array('9' => 'Polyster Open Reel Audio Tape'),
-						array('10' => 'Acetate Open Reel Audio Tape'),
-						array('11' => 'Paper Open Reel Audio Tape'),
-						array('12' => 'PVC Open Reel Audio Tape'),
-						array('15' => 'Lacquer Disc'),
-						array('16' => 'MiniDisc'),
-						array('17' => 'Cylinder'),
-						array('19' => 'Sound Optical Disc'),
-						array('20' => 'Optical Video'),
-						array('22' => 'Pressed 78RPM Disc'),
-						array('23' => 'Pressed LP Disc'),
-						array('24' => 'Pressed 45RPM Disc'),
-						array('26' => 'LaserDisc'),
-						array('27' => 'XDCAM Optical'),
-						array('29' => 'Betamax'),
-						array('31' => '8MM'),
-						array('33' => '2" Open Reel Video'),
-						array('34' => '1" Open Reel Video'),
-						array('35' => '½" Open Reel Video'),
-						array('37' => 'DV'),
-						array('38' => 'DVCAM'),
-						array('40' => 'Betacam'),
-						array('41' => 'VHS'),
-						array('42' => 'Digital Betacam'),
-						array('44' => 'U-matic'),
-						array('45' => 'HDCAM'),
-						array('46' => 'DVCPro')
-					);
+    // Key values are for the UI
+    // Purposely nested arrays for extension into other character sets
+    public static $typeNames = array(
+        array('MetalDisc' => 'Metal Disc'),
+        array('Film' => 'Film'),
+        array('DAT' => 'DAT'),
+        array('SoundWireReel' => 'Sound Wire Reel'),
+        array('AnalogAudiocassette' => 'Analog Audio Cassette'),
+        array('OpenReelAudiotapePolyster' => 'Polyster Open Reel Audio Tape'),
+        array('OpenReelAudiotapeAcetate' => 'Acetate Open Reel Audio Tape'),
+        array('OpenReelAudiotapePaper' => 'Paper Open Reel Audio Tape'),
+        array('OpenReelAudiotapePVC' => 'PVC Open Reel Audio Tape'),
+        array('LacquerDisc' => 'Lacquer Disc'),
+        array('MiniDisc' => 'MiniDisc'),
+        array('Cylinder' => 'Cylinder'),
+        array('SoundOpticalDisc' => 'Sound Optical Disc'),
+        array('OpticalVideo' => 'Optical Video'),
+        array('PressedSeventyEightRPMDisc' => 'Pressed 78RPM Disc'),
+        array('PressedLPDisc' => 'Pressed LP Disc'),
+        array('PressedFortyFiveRPMDisc' => 'Pressed 45RPM Disc'),
+        array('Laserdisc' => 'LaserDisc'),
+        array('XDCamOptical' => 'XDCAM Optical'),
+        array('Betamax' => 'Betamax'),
+        array('EightMM' => '8MM'),
+        array('TwoInchOpenReelVideo' => '2" Open Reel Video'),
+        array('OneInchOpenReelVideo' => '1" Open Reel Video'),
+        array('HalfInchOpenReelVideo' => '½" Open Reel Video'),
+        array('DV' => 'DV'),
+        array('DVCam' => 'DVCAM'),
+        array('Betacam' => 'Betacam'),
+        array('VHS' => 'VHS'),
+        array('DigitalBetacam' => 'Digital Betacam'),
+        array('Umatic' => 'U-matic'),
+        array('HDCam' => 'HDCAM'),
+        array('DVCPro' => 'DVCPro')
+    );
+    public static $formatTypesValue = array(
+        array('1' => 'Metal Disc'),
+        array('5' => 'Film'),
+        array('6' => 'DAT'),
+        array('7' => 'Sound Wire Reel'),
+        array('4' => 'Analog Audio Cassette'),
+        array('9' => 'Polyster Open Reel Audio Tape'),
+        array('10' => 'Acetate Open Reel Audio Tape'),
+        array('11' => 'Paper Open Reel Audio Tape'),
+        array('12' => 'PVC Open Reel Audio Tape'),
+        array('15' => 'Lacquer Disc'),
+        array('16' => 'MiniDisc'),
+        array('17' => 'Cylinder'),
+        array('19' => 'Sound Optical Disc'),
+        array('20' => 'Optical Video'),
+        array('22' => 'Pressed 78RPM Disc'),
+        array('23' => 'Pressed LP Disc'),
+        array('24' => 'Pressed 45RPM Disc'),
+        array('26' => 'LaserDisc'),
+        array('27' => 'XDCAM Optical'),
+        array('29' => 'Betamax'),
+        array('31' => '8MM'),
+        array('33' => '2" Open Reel Video'),
+        array('34' => '1" Open Reel Video'),
+        array('35' => '½" Open Reel Video'),
+        array('37' => 'DV'),
+        array('38' => 'DVCAM'),
+        array('40' => 'Betacam'),
+        array('41' => 'VHS'),
+        array('42' => 'Digital Betacam'),
+        array('44' => 'U-matic'),
+        array('45' => 'HDCAM'),
+        array('46' => 'DVCPro')
+    );
 
 }
