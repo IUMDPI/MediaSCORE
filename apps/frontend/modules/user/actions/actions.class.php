@@ -131,8 +131,8 @@ class userActions extends sfActions {
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')
                         ->setTo($user->getEmailAddress())
-                        ->setSubject('Active your account ' . $user->getUsername())
-                        ->setBody('To Active your account click on the link.<br/> ' . sfConfig::get('app_url') . '/sfGuardAuth/activateAccount?key=' . $key)
+                        ->setSubject('Activate your account ' . $user->getUsername())
+                        ->setBody('To Activate your account click on the link.<br/> ' . sfConfig::get('app_url') . '/sfGuardAuth/activateAccount?key=' . $key)
                         ->setContentType('text/html');
 
                 $this->getMailer()->send($message);
