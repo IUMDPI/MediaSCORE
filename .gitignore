@@ -20,3 +20,5 @@ web/sfDoctrinePlugin
 log/*.log
 config/databases.yml
 config/ProjectConfiguration.class.php
+output/*
+output
