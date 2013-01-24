@@ -118,6 +118,8 @@ class userActions extends sfActions {
      */
     protected function processForm(sfWebRequest $request, sfForm $form, $new = null) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+								echo sfConfig::get('app_url');
+								echo sfConfig::get('app_base');exit;
         if ($form->isValid()) {
             $user = $form->save();
             if ($new) {
@@ -132,7 +134,7 @@ class userActions extends sfActions {
                         ->setFrom('support@indiana.edu')
                         ->setTo($user->getEmailAddress())
                         ->setSubject('Activate your account ' . $user->getUsername())
-                        ->setBody('To Activate your account click on the link.<br/> ' . sfConfig::get('app_url') . '/sfGuardAuth/activateAccount?key=' . $key)
+                        ->setBody('To Activate your account click on the following link.<br/><br/> ' . sfConfig::get('app_url') . '/sfGuardAuth/activateAccount?key=' . $key)
                         ->setContentType('text/html');
 
                 $this->getMailer()->send($message);
