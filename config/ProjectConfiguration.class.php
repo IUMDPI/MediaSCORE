@@ -1,4 +1,6 @@
 <?php
+echo 'in';
+exit;
 require_once '/usr/share/pear/symfony/autoload/sfCoreAutoload.class.php'; 
 sfCoreAutoload::register();
 @date_default_timezone_set('America/New_York');
