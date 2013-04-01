@@ -8,7 +8,7 @@
 }*/
 
 require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
-echo 'om122111';
+echo 'om1221111';
 exit;
 $configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'testing', true);
 
