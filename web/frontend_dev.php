@@ -8,8 +8,7 @@ error_reporting(E_ALL);
   {
   die('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
   } */
-echo 'om1221111';
-exit;
+
 require_once(dirname(__FILE__) . '/../config/ProjectConfiguration.class.php');
 
 $configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'testing', true);
