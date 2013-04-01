@@ -5,6 +5,6 @@ all:
       #dsn: mysql:host=localhost;dbname=indiana
       #username: indiana 
       #password: pl@123
-      dsn: mysql:host=localhost;dbname=mediascore1_0a
+      dsn: mysql:host=localhost;dbname=nyc_score
       username: root 
-      password: 
+      password: avp#123
