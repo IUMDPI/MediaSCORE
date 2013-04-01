@@ -7,7 +7,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BasesfGuardUserForm extends BaseFormDoctrine
@@ -24,6 +24,8 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'salt'             => new sfWidgetFormInputText(),
       'password'         => new sfWidgetFormInputText(),
       'is_active'        => new sfWidgetFormInputCheckbox(),
+      'activation_key'   => new sfWidgetFormInputText(),
+      'forgot_password'  => new sfWidgetFormInputText(),
       'is_super_admin'   => new sfWidgetFormInputCheckbox(),
       'last_login'       => new sfWidgetFormDateTime(),
       'type'             => new sfWidgetFormInputText(),
@@ -47,6 +49,8 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'salt'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'password'         => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'is_active'        => new sfValidatorBoolean(array('required' => false)),
+      'activation_key'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'forgot_password'  => new sfValidatorPass(array('required' => false)),
       'is_super_admin'   => new sfValidatorBoolean(array('required' => false)),
       'last_login'       => new sfValidatorDateTime(array('required' => false)),
       'type'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),

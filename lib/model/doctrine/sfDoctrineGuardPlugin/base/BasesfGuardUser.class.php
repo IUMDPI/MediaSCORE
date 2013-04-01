@@ -13,6 +13,8 @@
  * @property string $salt
  * @property string $password
  * @property boolean $is_active
+ * @property string $activation_key
+ * @property boolean, $forgot_password
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property string $type
@@ -38,6 +40,7 @@
  * @method string                getSalt()                  Returns the current record's "salt" value
  * @method string                getPassword()              Returns the current record's "password" value
  * @method boolean               getIsActive()              Returns the current record's "is_active" value
+ * @method string                getActivationKey()         Returns the current record's "activation_key" value
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
  * @method string                getType()                  Returns the current record's "type" value
@@ -62,6 +65,7 @@
  * @method sfGuardUser           setSalt()                  Sets the current record's "salt" value
  * @method sfGuardUser           setPassword()              Sets the current record's "password" value
  * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
+ * @method sfGuardUser           setActivationKey()         Sets the current record's "activation_key" value
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser           setType()                  Sets the current record's "type" value
@@ -81,7 +85,7 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardUser extends sfDoctrineRecord
@@ -125,7 +129,16 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              ));
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => 1,
+             'default' => true,
+             ));
+        $this->hasColumn('activation_key', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('forgot_password', 'boolean,', null, array(
+             'type' => 'boolean,',
+             'default' => 'false,',
+             'notnull' => true,
              ));
         $this->hasColumn('is_super_admin', 'boolean', null, array(
              'type' => 'boolean',

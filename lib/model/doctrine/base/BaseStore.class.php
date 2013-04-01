@@ -141,7 +141,9 @@ abstract class BaseStore extends sfDoctrineRecord
              array(
               0 => 'name',
              ),
-             'indexName' => 'name_slug',
+             'name' => 'name_slug',
+             'type' => 'string',
+             'length' => 255,
              'canUpdate' => true,
              'unique' => true,
              ));

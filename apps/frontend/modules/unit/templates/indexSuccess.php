@@ -1,5 +1,5 @@
 
-<!--<a class="button" href="<?php //echo url_for('unit/new')   ?>">Create Unit</a>-->
+<!--<a class="button" href="<?php //echo url_for('unit/new')    ?>">Create Unit</a>-->
 <a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -92,13 +92,13 @@
                             <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $unit->getId(); ?>)"/></a>
                         </div>
                     </td>
-                             <td><a href="<?php echo url_for('collection',$unit)  ?>"><?php echo $unit->getName() ?></a></td>
+                    <td><a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unit->getName() ?></a></td>
                     <td><?php echo $unit->getCreatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
                     <td><?php echo $unit->getUpdatedAt() ?></td>
-                    <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName();?></td>
-                    <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId());?></td>
-                    
+                    <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
+                    <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
+
                 </tr>
             <?php endforeach; ?>
         </tbody>

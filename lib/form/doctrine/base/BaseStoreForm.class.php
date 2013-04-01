@@ -7,7 +7,7 @@
  *
  * @package    mediaSCORE
  * @subpackage form
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BaseStoreForm extends BaseFormDoctrine
@@ -29,6 +29,7 @@ abstract class BaseStoreForm extends BaseFormDoctrine
       'format_id'                      => new sfWidgetFormInputText(),
       'created_at'                     => new sfWidgetFormDateTime(),
       'updated_at'                     => new sfWidgetFormDateTime(),
+      'name_slug'                      => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -46,7 +47,12 @@ abstract class BaseStoreForm extends BaseFormDoctrine
       'format_id'                      => new sfValidatorInteger(array('required' => false)),
       'created_at'                     => new sfValidatorDateTime(),
       'updated_at'                     => new sfValidatorDateTime(),
+      'name_slug'                      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Store', 'column' => array('name_slug')))
+    );
 
     $this->widgetSchema->setNameFormat('store[%s]');
 

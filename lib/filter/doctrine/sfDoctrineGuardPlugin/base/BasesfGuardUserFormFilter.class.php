@@ -5,7 +5,7 @@
  *
  * @package    mediaSCORE
  * @subpackage filter
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
@@ -21,6 +21,8 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'salt'             => new sfWidgetFormFilterInput(),
       'password'         => new sfWidgetFormFilterInput(),
       'is_active'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'activation_key'   => new sfWidgetFormFilterInput(),
+      'forgot_password'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'is_super_admin'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'last_login'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'type'             => new sfWidgetFormFilterInput(),
@@ -43,6 +45,8 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'salt'             => new sfValidatorPass(array('required' => false)),
       'password'         => new sfValidatorPass(array('required' => false)),
       'is_active'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'activation_key'   => new sfValidatorPass(array('required' => false)),
+      'forgot_password'  => new sfValidatorPass(array('required' => false)),
       'is_super_admin'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'last_login'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'type'             => new sfValidatorPass(array('required' => false)),
@@ -118,6 +122,8 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'salt'             => 'Text',
       'password'         => 'Text',
       'is_active'        => 'Boolean',
+      'activation_key'   => 'Text',
+      'forgot_password'  => 'Text',
       'is_super_admin'   => 'Boolean',
       'last_login'       => 'Date',
       'type'             => 'Text',

@@ -13,8 +13,10 @@
  * @property boolean $off_brand
  * @property boolean $fungus
  * @property boolean $other_contaminants
- * @property integer $duration
+ * @property string $duration
  * @property string $duration_type
+ * @property string $duration_type_methodology
+ * @property text $format_notes
  * @property string $type
  * @property integer $material
  * @property boolean $oxidationCorrosion
@@ -24,9 +26,9 @@
  * @property boolean $thin_tape
  * @property boolean $slow_speed
  * @property integer $sound_field
- * @property boolean $soft_binder_syndrome
+ * @property integer $soft_binder_syndrome
  * @property integer $gauge
- * @property boolean $color
+ * @property integer $color
  * @property boolean $colorFade
  * @property integer $soundtrackFormat
  * @property integer $substrate
@@ -47,8 +49,8 @@
  * @property boolean $nonStandardBrand
  * @property integer $trackConfiguration
  * @property integer $tapeThickness
- * @property integer $speed
- * @property integer $softBinderSyndrome
+ * @property string $speed
+ * @property boolean $softBinderSyndrome
  * @property boolean $materialsBreakdown
  * @property integer $physicalDamage
  * @property boolean $delamination
@@ -56,24 +58,24 @@
  * @property integer $recordingLayer
  * @property integer $recordingSpeed
  * @property integer $cylinderType
- * @property integer $reflectiveLayer
- * @property integer $dataLayer
+ * @property string $reflectiveLayer
+ * @property string $dataLayer
  * @property integer $opticalDiscType
  * @property integer $format
  * @property integer $recordingStandard
  * @property date $publicationYear
  * @property integer $capacityLayers
- * @property integer $codec
- * @property integer $dataRate
+ * @property string $codec
+ * @property string $dataRate
  * @property boolean $sheddingSoftBinder
  * @property integer $formatVersion
  * @property integer $oxide
- * @property boolean $binderSystem
- * @property integer $reelSize
+ * @property integer $binderSystem
+ * @property string $reelSize
  * @property boolean $whiteResidue
- * @property boolean $size
+ * @property integer $size
  * @property integer $formatTypedVideoRecordingFormat
- * @property integer $bitrate
+ * @property string $bitrate
  * @property integer $scanning
  * @property Doctrine_Collection $heldByAssetGroups
  * 
@@ -85,8 +87,10 @@
  * @method boolean             getOffBrand()                        Returns the current record's "off_brand" value
  * @method boolean             getFungus()                          Returns the current record's "fungus" value
  * @method boolean             getOtherContaminants()               Returns the current record's "other_contaminants" value
- * @method integer             getDuration()                        Returns the current record's "duration" value
+ * @method string              getDuration()                        Returns the current record's "duration" value
  * @method string              getDurationType()                    Returns the current record's "duration_type" value
+ * @method string              getDurationTypeMethodology()         Returns the current record's "duration_type_methodology" value
+ * @method text                getFormatNotes()                     Returns the current record's "format_notes" value
  * @method string              getType()                            Returns the current record's "type" value
  * @method integer             getMaterial()                        Returns the current record's "material" value
  * @method boolean             getOxidationCorrosion()              Returns the current record's "oxidationCorrosion" value
@@ -96,9 +100,9 @@
  * @method boolean             getThinTape()                        Returns the current record's "thin_tape" value
  * @method boolean             getSlowSpeed()                       Returns the current record's "slow_speed" value
  * @method integer             getSoundField()                      Returns the current record's "sound_field" value
- * @method boolean             getSoftBinderSyndrome()              Returns the current record's "soft_binder_syndrome" value
+ * @method integer             getSoftBinderSyndrome()              Returns the current record's "soft_binder_syndrome" value
  * @method integer             getGauge()                           Returns the current record's "gauge" value
- * @method boolean             getColor()                           Returns the current record's "color" value
+ * @method integer             getColor()                           Returns the current record's "color" value
  * @method boolean             getColorFade()                       Returns the current record's "colorFade" value
  * @method integer             getSoundtrackFormat()                Returns the current record's "soundtrackFormat" value
  * @method integer             getSubstrate()                       Returns the current record's "substrate" value
@@ -119,8 +123,8 @@
  * @method boolean             getNonStandardBrand()                Returns the current record's "nonStandardBrand" value
  * @method integer             getTrackConfiguration()              Returns the current record's "trackConfiguration" value
  * @method integer             getTapeThickness()                   Returns the current record's "tapeThickness" value
- * @method integer             getSpeed()                           Returns the current record's "speed" value
- * @method integer             getSoftBinderSyndrome()              Returns the current record's "softBinderSyndrome" value
+ * @method string              getSpeed()                           Returns the current record's "speed" value
+ * @method boolean             getSoftBinderSyndrome()              Returns the current record's "softBinderSyndrome" value
  * @method boolean             getMaterialsBreakdown()              Returns the current record's "materialsBreakdown" value
  * @method integer             getPhysicalDamage()                  Returns the current record's "physicalDamage" value
  * @method boolean             getDelamination()                    Returns the current record's "delamination" value
@@ -128,24 +132,24 @@
  * @method integer             getRecordingLayer()                  Returns the current record's "recordingLayer" value
  * @method integer             getRecordingSpeed()                  Returns the current record's "recordingSpeed" value
  * @method integer             getCylinderType()                    Returns the current record's "cylinderType" value
- * @method integer             getReflectiveLayer()                 Returns the current record's "reflectiveLayer" value
- * @method integer             getDataLayer()                       Returns the current record's "dataLayer" value
+ * @method string              getReflectiveLayer()                 Returns the current record's "reflectiveLayer" value
+ * @method string              getDataLayer()                       Returns the current record's "dataLayer" value
  * @method integer             getOpticalDiscType()                 Returns the current record's "opticalDiscType" value
  * @method integer             getFormat()                          Returns the current record's "format" value
  * @method integer             getRecordingStandard()               Returns the current record's "recordingStandard" value
  * @method date                getPublicationYear()                 Returns the current record's "publicationYear" value
  * @method integer             getCapacityLayers()                  Returns the current record's "capacityLayers" value
- * @method integer             getCodec()                           Returns the current record's "codec" value
- * @method integer             getDataRate()                        Returns the current record's "dataRate" value
+ * @method string              getCodec()                           Returns the current record's "codec" value
+ * @method string              getDataRate()                        Returns the current record's "dataRate" value
  * @method boolean             getSheddingSoftBinder()              Returns the current record's "sheddingSoftBinder" value
  * @method integer             getFormatVersion()                   Returns the current record's "formatVersion" value
  * @method integer             getOxide()                           Returns the current record's "oxide" value
- * @method boolean             getBinderSystem()                    Returns the current record's "binderSystem" value
- * @method integer             getReelSize()                        Returns the current record's "reelSize" value
+ * @method integer             getBinderSystem()                    Returns the current record's "binderSystem" value
+ * @method string              getReelSize()                        Returns the current record's "reelSize" value
  * @method boolean             getWhiteResidue()                    Returns the current record's "whiteResidue" value
- * @method boolean             getSize()                            Returns the current record's "size" value
+ * @method integer             getSize()                            Returns the current record's "size" value
  * @method integer             getFormatTypedVideoRecordingFormat() Returns the current record's "formatTypedVideoRecordingFormat" value
- * @method integer             getBitrate()                         Returns the current record's "bitrate" value
+ * @method string              getBitrate()                         Returns the current record's "bitrate" value
  * @method integer             getScanning()                        Returns the current record's "scanning" value
  * @method Doctrine_Collection getHeldByAssetGroups()               Returns the current record's "heldByAssetGroups" collection
  * @method FormatType          setQuantity()                        Sets the current record's "quantity" value
@@ -158,6 +162,8 @@
  * @method FormatType          setOtherContaminants()               Sets the current record's "other_contaminants" value
  * @method FormatType          setDuration()                        Sets the current record's "duration" value
  * @method FormatType          setDurationType()                    Sets the current record's "duration_type" value
+ * @method FormatType          setDurationTypeMethodology()         Sets the current record's "duration_type_methodology" value
+ * @method FormatType          setFormatNotes()                     Sets the current record's "format_notes" value
  * @method FormatType          setType()                            Sets the current record's "type" value
  * @method FormatType          setMaterial()                        Sets the current record's "material" value
  * @method FormatType          setOxidationCorrosion()              Sets the current record's "oxidationCorrosion" value
@@ -222,7 +228,7 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseFormatType extends sfDoctrineRecord
@@ -259,13 +265,21 @@ abstract class BaseFormatType extends sfDoctrineRecord
         $this->hasColumn('other_contaminants', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('duration', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('duration', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('duration_type', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('duration_type_methodology', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('format_notes', 'text', null, array(
+             'type' => 'text',
              ));
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
@@ -300,15 +314,15 @@ abstract class BaseFormatType extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('soft_binder_syndrome', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('soft_binder_syndrome', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('gauge', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('color', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('color', 'integer', null, array(
+             'type' => 'integer',
              'notnull' => true,
              ));
         $this->hasColumn('colorFade', 'boolean', null, array(
@@ -373,12 +387,13 @@ abstract class BaseFormatType extends sfDoctrineRecord
         $this->hasColumn('tapeThickness', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('speed', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('speed', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
-        $this->hasColumn('softBinderSyndrome', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('softBinderSyndrome', 'boolean', null, array(
+             'type' => 'boolean',
              ));
         $this->hasColumn('materialsBreakdown', 'boolean', null, array(
              'type' => 'boolean',
@@ -404,13 +419,15 @@ abstract class BaseFormatType extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('reflectiveLayer', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('reflectiveLayer', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
-        $this->hasColumn('dataLayer', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('dataLayer', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('opticalDiscType', 'integer', null, array(
              'type' => 'integer',
@@ -432,13 +449,15 @@ abstract class BaseFormatType extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('codec', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('codec', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
-        $this->hasColumn('dataRate', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('dataRate', 'string', 255, array(
+             'type' => 'string',
              'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('sheddingSoftBinder', 'boolean', null, array(
              'type' => 'boolean',
@@ -451,27 +470,29 @@ abstract class BaseFormatType extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('binderSystem', 'boolean', null, array(
-             'type' => 'boolean',
-             'notnull' => true,
-             ));
-        $this->hasColumn('reelSize', 'integer', null, array(
+        $this->hasColumn('binderSystem', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('reelSize', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
              ));
         $this->hasColumn('whiteResidue', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('size', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('size', 'integer', null, array(
+             'type' => 'integer',
              'notnull' => true,
              ));
         $this->hasColumn('formatTypedVideoRecordingFormat', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('bitrate', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('bitrate', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
         $this->hasColumn('scanning', 'integer', null, array(
              'type' => 'integer',

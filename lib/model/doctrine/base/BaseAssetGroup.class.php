@@ -15,7 +15,7 @@
  * 
  * @package    mediaSCORE
  * @subpackage model
- * @author     Your name here
+ * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseAssetGroup extends SubUnit
@@ -25,10 +25,12 @@ abstract class BaseAssetGroup extends SubUnit
         parent::setUp();
         $this->hasOne('FormatType', array(
              'local' => 'format_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('EvaluatorHistory', array(
              'local' => 'id',
-             'foreign' => 'asset_group_id'));
+             'foreign' => 'asset_group_id',
+             'onDelete' => 'CASCADE'));
     }
 }
