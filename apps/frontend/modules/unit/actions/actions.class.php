@@ -224,6 +224,7 @@ class unitActions extends sfActions {
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+                echo 'in';
             }
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
