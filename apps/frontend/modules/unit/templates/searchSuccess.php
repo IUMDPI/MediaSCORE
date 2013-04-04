@@ -12,7 +12,7 @@
                 <?php } ?>
 
             </div>
-            
+
             <input type="hidden" id="search_values" name="search_values" value="<?php echo $searchValues; ?>"/>
             <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
             <div class="container">
@@ -64,12 +64,12 @@
         <?php if (isset($formatsResult) && sizeof($formatsResult) > 0) { ?>
             <?php foreach ($formatsResult as $result): ?>
                 <tr>
-                     <td class="invisible">
+                    <td class="invisible">
                         <div class="options">
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
                         </div>
                     </td>
-                    <td><a href="assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
+                    <td><a href="/assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
                         <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
@@ -82,7 +82,7 @@
                         <?php echo $result->getDuration($result->getFormatId()); ?>
                     </td>
 
-                   
+
                 </tr>
                 <?php
             endforeach;
@@ -90,84 +90,37 @@
         ?>
         <?php if (isset($storeResult) && sizeof($storeResult) > 0) { ?>
             <?php
-            foreach ($storeResult as $result):
-                if ($result->getType() == 1) {
-                    $text = 'Unit';
-                    $urlOnName = url_for('collection',$result);
-                    $urlonEdit = 'unit/edit/id/' . $result->getId();
-                    $parentId=0;
-                    $duration=$result->getDuration($result->getId());
-                }
-                if ($result->getType() == 3) {
-                    $text = 'Collection';
-                    $urlOnName = url_for('assetgroup',$result);
-                    $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
-                    $parentId=$result->getParentNodeId();
-                    $duration=$result->getDuration($result->getId());
-                }
-                if ($result->getType() == 4) {
-                    $text = 'Asset Group';
-                    $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
-                    $parentId=$result->getParentNodeId();
-                    $duration=$result->getDuration($result->getFormatId());
-                }
-                ?>
-                <tr>
-                     <td class="invisible">
-                        <div class="options">
-                            <?php if ($result->getType() != 4) { ?>
-                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                            <?php } ?>
-                           <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
-                        </div>
-                    </td>
-                    <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
-                    <td><?php echo $result->getCreatedAt() ?></td>
-                    <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
-                    </td>
-                    <td><?php echo $result->getUpdatedAt() ?></td>
-                    <td>
-                        <?php echo $result->getEditor()->getName(); ?>
-                    </td>
-                    <td>
-                        <?php echo $duration.' minute' ?>
-                    </td>
+            foreach ($storeResult as $key => $result):
 
-                   
-                </tr>
-                <?php
-            endforeach;
-        }
-        ?>
-        <?php if (isset($randomSearch) && sizeof($randomSearch) > 0) { ?>
-            <?php
-            foreach ($randomSearch as $result):
                 if ($result->getType() == 1) {
                     $text = 'Unit';
-                    $urlOnName = url_for('collection',$result);
+                    $urlOnName = url_for('collection', $result);
                     $urlonEdit = 'unit/edit/id/' . $result->getId();
-                    $parentId=0;
-                    $duration=$result->getDuration($result->getId());
+                    $parentId = 0;
+                    $duration = $result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
-                     $urlOnName = url_for('assetgroup',$result);
+                    $urlOnName = url_for('assetgroup', $result);
+
+//                    $urlOnName='';
+
                     $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
-                    $parentId=$result->getParentNodeId();
-                    $duration=$result->getDuration($result->getId());
+
+                    $parentId = $result->getParentNodeId();
+                    $duration = $result->getDuration($result->getId());
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
-                    $parentId=$result->getParentNodeId();
-                    $duration=$result->getDuration($result->getFormatId());
+                    $parentId = $result->getParentNodeId();
+                    $duration = $result->getDuration($result->getFormatId());
                 }
                 ?>
                 <tr>
                     <td class="invisible">
                         <div class="options">
-                            <?php if ($result->getType() != 4) { ?>
+        <?php if ($result->getType() != 4) { ?>
                                 <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
@@ -176,24 +129,76 @@
                     <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
+        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
                     </td>
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
-                        <?php echo $result->getEditor()->getName(); ?>
+        <?php echo $result->getEditor()->getName(); ?>
                     </td>
                     <td>
-                        <?php echo $duration.' minute'; ?>
+        <?php echo $duration . ' minute' ?>
                     </td>
 
-                    
+
                 </tr>
-                <?php
-            endforeach;
-        }
-        ?>
+        <?php
+    endforeach;
+}
+?>
+        <?php if (isset($randomSearch) && sizeof($randomSearch) > 0) { ?>
+            <?php
+            foreach ($randomSearch as $result):
+                if ($result->getType() == 1) {
+                    $text = 'Unit';
+                    $urlOnName = url_for('collection', $result);
+                    $urlonEdit = 'unit/edit/id/' . $result->getId();
+                    $parentId = 0;
+                    $duration = $result->getDuration($result->getId());
+                }
+                if ($result->getType() == 3) {
+                    $text = 'Collection';
+                    $urlOnName = url_for('assetgroup', $result);
+                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+                    $parentId = $result->getParentNodeId();
+                    $duration = $result->getDuration($result->getId());
+                }
+                if ($result->getType() == 4) {
+                    $text = 'Asset Group';
+                    $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+                    $parentId = $result->getParentNodeId();
+                    $duration = $result->getDuration($result->getFormatId());
+                }
+                ?>
+                <tr>
+                    <td class="invisible">
+                        <div class="options">
+        <?php if ($result->getType() != 4) { ?>
+                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                            <?php } ?>
+                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
+                        </div>
+                    </td>
+                    <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
+                    <td><?php echo $result->getCreatedAt() ?></td>
+                    <td>
+        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
+                    </td>
+                    <td><?php echo $result->getUpdatedAt() ?></td>
+                    <td>
+        <?php echo $result->getEditor()->getName(); ?>
+                    </td>
+                    <td>
+        <?php echo $duration . ' minute'; ?>
+                    </td>
+
+
+                </tr>
+        <?php
+    endforeach;
+}
+?>
     </tbody>
-    <?php ?>
+        <?php ?>
 </table>
 <script type="text/javascript">
     var token=0;
@@ -230,7 +235,7 @@
     function deleteUCAG(){
         console.log(deleteType);
         if(deleteType==1){
-             window.location.href='/unit/delete?id='+ucagId;
+            window.location.href='/unit/delete?id='+ucagId;
         }
         else if(deleteType==3){
             window.location.href='/collection/delete?id='+ucagId+'&u='+ParentDeletionId;
@@ -344,17 +349,17 @@
     }
 </script>
 <div style="display: none;"> 
-        <div id="fancyboxUCAG" style="background-color: #F4F4F4;width: 600px;" >
-            <header>
-                <h5  class="fancybox-heading">Warning!</h5>
-            </header>
-            <div style="margin: 10px;">
-                <h3>Careful!</h3>
-            </div>
-            <div style="margin: 10px;font-size: 0.8em;" id="msg_UCAG">
-                You are about to delete a Unit which will permanently erase all information associated with it.<br/>
-                Are you sure you want to proceed?
-            </div>
-            <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a  href="javascript:void(0);" onclick="deleteUCAG();">YES</a></div>
+    <div id="fancyboxUCAG" style="background-color: #F4F4F4;width: 600px;" >
+        <header>
+            <h5  class="fancybox-heading">Warning!</h5>
+        </header>
+        <div style="margin: 10px;">
+            <h3>Careful!</h3>
         </div>
+        <div style="margin: 10px;font-size: 0.8em;" id="msg_UCAG">
+            You are about to delete a Unit which will permanently erase all information associated with it.<br/>
+            Are you sure you want to proceed?
+        </div>
+        <div style="margin: 10px;"><a class="button" href="javascript://" onclick="$.fancybox.close();">NO</a>&nbsp;&nbsp;&nbsp;<a  href="javascript:void(0);" onclick="deleteUCAG();">YES</a></div>
     </div>
+</div>

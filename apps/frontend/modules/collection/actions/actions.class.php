@@ -198,6 +198,7 @@ class collectionActions extends sfActions {
             $this->setTemplate('edit');
         }
     }
+
     /**
      * delete collection
      * 
@@ -225,6 +226,7 @@ class collectionActions extends sfActions {
         }
         $this->redirect('/' . $unit->getNameSlug());
     }
+
     /**
      * process and validate form. And also manage and validate storage location
      * 

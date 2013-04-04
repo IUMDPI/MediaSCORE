@@ -9,6 +9,7 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class unitActions extends sfActions {
+
     /**
      * global search method
      * 
@@ -102,6 +103,7 @@ class unitActions extends sfActions {
             }
         }
     }
+
     /**
      * get list of unit for asset group
      * 
@@ -140,6 +142,7 @@ class unitActions extends sfActions {
             echo json_encode(array_pop($units));
         }
     }
+
     /**
      * get unit personnel
      * 
@@ -167,6 +170,7 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode(array('success' => true, 'unit' => $unit, 'location' => $location)));
         }
     }
+
     /**
      * get user detail of unit
      * 
@@ -186,6 +190,7 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode(array('success' => true, 'id' => $request->getParameter('id'), 'records' => $user)));
         }
     }
+
     /**
      * list and filter unit
      * 
@@ -265,6 +270,7 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         }
     }
+
     /**
      * detail of specific unit
      * 
@@ -287,6 +293,7 @@ class unitActions extends sfActions {
             $this->forward404Unless($this->unit);
         }
     }
+
     /**
      * Unit new form
      * 
@@ -298,6 +305,7 @@ class unitActions extends sfActions {
                         array('userID' => $this->getUser()->getGuardUser()->getId()
                 ));
     }
+
     /**
      * Unit Post form process
      * 
@@ -318,6 +326,7 @@ class unitActions extends sfActions {
             $this->setTemplate('new');
         }
     }
+
     /**
      * Unit edit form
      * 
@@ -332,6 +341,7 @@ class unitActions extends sfActions {
                             'action' => 'edit'
                 ));
     }
+
     /**
      * Unit Post edit form process
      * 
@@ -359,6 +369,7 @@ class unitActions extends sfActions {
             $this->setTemplate('edit');
         }
     }
+
     /**
      * delete method
      * 
@@ -381,6 +392,7 @@ class unitActions extends sfActions {
         }
         $this->redirect('unit/index');
     }
+
     /**
      * process and validate form
      * 
