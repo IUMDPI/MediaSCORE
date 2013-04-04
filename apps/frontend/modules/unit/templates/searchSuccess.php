@@ -64,7 +64,7 @@
         <?php if (isset($formatsResult) && sizeof($formatsResult) > 0) { ?>
             <?php foreach ($formatsResult as $result): ?>
                 <tr>
-                    <td class="invisible">
+                    <td class="invisible"> 
                         <div class="options">
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
                         </div>
@@ -72,7 +72,7 @@
                     <td><a href="assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?> 
+                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>   
                     </td>
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
