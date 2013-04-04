@@ -224,7 +224,6 @@ class unitActions extends sfActions {
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit->andWhere('name like "%' . $searchInpout . '%"');
-                echo 'in';
             }
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
@@ -258,9 +257,9 @@ class unitActions extends sfActions {
             }
 
             // after applying the parametes get units.
-            $this->unit = $this->unit->fetchArray();
+            $check = $this->unit->fetchArray();
             // get duration for each unit
-            foreach ($this->unit as $key => $value) {
+            foreach ($check as $key => $value) {
                 $duration = new Unit();
                 $this->unit[$key]['duration'] = $duration->getDuration($value['id']);
             }
