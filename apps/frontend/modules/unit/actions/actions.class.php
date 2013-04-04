@@ -258,8 +258,6 @@ class unitActions extends sfActions {
 
             // after applying the parametes get units.
             $this->unit = $this->unit->fetchArray();
-            var_dump($this->unit);
-            exit;
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
