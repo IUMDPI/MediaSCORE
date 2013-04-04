@@ -193,9 +193,10 @@
     }
    
     function filterUnits(){
+        
         $.ajax({
             method: 'POST', 
-            url: '/frontend_dev.php/unit/index',
+            url: '/unit/index',
             data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
             dataType: 'json',
             cache: false,
