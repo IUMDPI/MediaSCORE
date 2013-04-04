@@ -151,14 +151,14 @@
                 if ($result->getType() == 1) {
                     $text = 'Unit';
                     $urlOnName = url_for('collection', $result);
-                    $urlonEdit = 'unit/edit/id/' . $result->getId();
+                    $urlonEdit = 'unit/edit/id/' . $result->getId(); 
                     $parentId = 0;
                     $duration = $result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = url_for('assetgroup', $result);
-                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId(); 
                     $parentId = $result->getParentNodeId();
                     $duration = $result->getDuration($result->getId());
                 }
