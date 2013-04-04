@@ -223,7 +223,7 @@ class unitActions extends sfActions {
                     ->innerJoin('u.Editor eu');
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
-                $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+                $this->unit->andWhere('name like "%' . $searchInpout . '%"');
             }
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
@@ -258,13 +258,6 @@ class unitActions extends sfActions {
 
             // after applying the parametes get units.
             $this->unit = $this->unit->fetchArray();
-
-            echo $query = $this->unit->getQuery();
-            print_r(array(
-                'sql' => $query->getSQL(),
-                'parameters' => $query->getParameters(),
-            ));
-            exit;
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
