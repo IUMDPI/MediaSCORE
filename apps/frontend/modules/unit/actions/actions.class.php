@@ -223,7 +223,7 @@ class unitActions extends sfActions {
                     ->innerJoin('u.Editor eu');
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
-                $this->unit = $this->unit->andWhere("name like '%' . $searchInpout . '%");
+                $this->unit = $this->unit->andWhere('name like ?',"%$searchInpout%");
             }
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
