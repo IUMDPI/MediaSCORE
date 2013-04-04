@@ -72,7 +72,7 @@
                     <td><a href="assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
+                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?> 
                     </td>
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
