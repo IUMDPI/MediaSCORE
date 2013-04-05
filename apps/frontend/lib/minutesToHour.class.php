@@ -26,11 +26,13 @@ class minutesToHour {
 
     static function ConvertHoursToMin($time) {
         $duration = explode(':', $time);
+
         $SecondsPerHour = 3600;
         $SecondsPerMinute = 60;
-        $hrs_to_second = $duration[0] * $SecondsPerHour;
-        $min_to_second = $duration[1] * $SecondsPerMinute;
-        $sec = $duration[2];
+        $hrs_to_second = (int) $duration[0] * (int) $SecondsPerHour;
+        $min_to_second = (int) $duration[1] * (int) $SecondsPerMinute;
+        $sec = (int) $duration[2];
+
         return $total_duration_in_seconds = $hrs_to_second + $min_to_second + $sec;
     }
 

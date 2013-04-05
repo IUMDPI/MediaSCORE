@@ -87,7 +87,7 @@
         <?php /* print_r($persons)->toArray() */ ?>
         <?php foreach ($asset_groups as $asset_group): ?>
             <tr>
-                 <td class="invisible">
+                <td class="invisible">
                     <div class="options">
                         <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
                     </div>
@@ -97,8 +97,9 @@
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
+                <td ><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span></td>
                 <td style="text-align: right;"><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
-               
+
             </tr>
         <?php endforeach; ?>
     </tbody>

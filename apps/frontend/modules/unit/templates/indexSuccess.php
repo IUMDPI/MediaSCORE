@@ -1,5 +1,5 @@
 
-<!--<a class="button" href="<?php //echo url_for('unit/new')    ?>">Create Unit</a>-->
+<!--<a class="button" href="<?php //echo url_for('unit/new')        ?>">Create Unit</a>-->
 <a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -97,6 +97,7 @@
                     <td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
                     <td><?php echo $unit->getUpdatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
+                    <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($unit->getDuration($unit->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
 
                 </tr>
