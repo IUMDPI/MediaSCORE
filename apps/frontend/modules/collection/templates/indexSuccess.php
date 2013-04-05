@@ -1,4 +1,4 @@
-<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)     ?>">Create Collection</a>-->
+<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)                       ?>">Create Collection</a>-->
 <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
@@ -101,15 +101,26 @@
                         </div>
 
                     </td>
-                    
+
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?></a></td>
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                     <td><?php echo $collection->getUpdatedAt() ?></td>
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
-                    <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
+                    <?php
                     
+                    $duration = explode(':', $collection->getDuration($collection->getId()));
+                    $hrs_to_second = $duration[0] * (60 * 60);
+                    $min_to_second = $duration[1] * 60;
+                    $sec = $duration[2];
+                    $total_duration_in_seconds = $hrs_to_second + $min_to_second + $sec;
+                    
+                    ?>
+                    <td style="display: none;"><span style="display: none;"><?php echo (int) $total_duration_in_seconds ?></span></td>
+                    <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
+
+
 
                 </tr>
             <?php endforeach; ?>
