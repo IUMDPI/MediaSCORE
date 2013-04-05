@@ -97,7 +97,7 @@
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><?php echo $asset_group->getUpdatedAt() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
-                <td ><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span></td>
+                <td  style="display: none;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span></td>
                 <td style="text-align: right;"><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
 
             </tr>
