@@ -16,7 +16,7 @@ class CollectionForm extends BaseCollectionForm {
     public function configure() {
         parent::configure(); // SubUnitForm invocation
 
-        $voidFields = array('created_at', 'resident_structure_description','name_slug');
+        $voidFields = array('created_at', 'resident_structure_description', 'name_slug');
         if ($this->getOption('action') == 'edit') {
             $voidFields[] = 'creator_id';
             $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
