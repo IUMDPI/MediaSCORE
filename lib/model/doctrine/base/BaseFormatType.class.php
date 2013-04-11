@@ -78,6 +78,8 @@
  * @property string $bitrate
  * @property integer $scanning
  * @property Doctrine_Collection $heldByAssetGroups
+ * @property Doctrine_Collection $CharacteristicsFormat
+ * @property Doctrine_Collection $CharacteristicsValues
  * 
  * @method integer             getQuantity()                        Returns the current record's "quantity" value
  * @method integer             getGeneration()                      Returns the current record's "generation" value
@@ -152,6 +154,8 @@
  * @method string              getBitrate()                         Returns the current record's "bitrate" value
  * @method integer             getScanning()                        Returns the current record's "scanning" value
  * @method Doctrine_Collection getHeldByAssetGroups()               Returns the current record's "heldByAssetGroups" collection
+ * @method Doctrine_Collection getCharacteristicsFormat()           Returns the current record's "CharacteristicsFormat" collection
+ * @method Doctrine_Collection getCharacteristicsValues()           Returns the current record's "CharacteristicsValues" collection
  * @method FormatType          setQuantity()                        Sets the current record's "quantity" value
  * @method FormatType          setGeneration()                      Sets the current record's "generation" value
  * @method FormatType          setYearRecorded()                    Sets the current record's "year_recorded" value
@@ -225,6 +229,8 @@
  * @method FormatType          setBitrate()                         Sets the current record's "bitrate" value
  * @method FormatType          setScanning()                        Sets the current record's "scanning" value
  * @method FormatType          setHeldByAssetGroups()               Sets the current record's "heldByAssetGroups" collection
+ * @method FormatType          setCharacteristicsFormat()           Sets the current record's "CharacteristicsFormat" collection
+ * @method FormatType          setCharacteristicsValues()           Sets the current record's "CharacteristicsValues" collection
  * 
  * @package    mediaSCORE
  * @subpackage model
@@ -684,6 +690,10 @@ abstract class BaseFormatType extends sfDoctrineRecord
              array(
               'type' => 46,
              ),
+             'CharacteristicsFormatExtended' => 
+             array(
+              'type' => 46,
+             ),
              ));
     }
 
@@ -691,6 +701,14 @@ abstract class BaseFormatType extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('AssetGroup as heldByAssetGroups', array(
+             'local' => 'id',
+             'foreign' => 'format_id'));
+
+        $this->hasMany('CharacteristicsFormat', array(
+             'local' => 'id',
+             'foreign' => 'format_id'));
+
+        $this->hasMany('CharacteristicsValues', array(
              'local' => 'id',
              'foreign' => 'format_id'));
 

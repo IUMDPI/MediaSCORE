@@ -711,3 +711,82 @@ DVCPro:
   columns:
     recordingSpeed: { type: integer, notnull: true }
 
+##################################### format_charactristics ####################################
+CharacteristicsFormat:
+  actAs: { Timestampable: ~ }
+  columns:
+    format_id: { type: integer }
+    format_c_name: { type: string(255), notnull: ture }
+  relations:
+    FormatType:
+      local: format_id
+      foreign: id
+      type: one
+      
+      
+CharacteristicsFormatExtended: #Abstract
+   inheritance:
+     extends: FormatType
+     #type: concrete
+     type: column_aggregation
+     keyField: type
+     keyValue: 46 # All are aggregated within the FormatType table
+   columns:
+    recordingSpeed: { type: integer, notnull: true }
+    material: { type: integer, notnull: true }
+    oxidationCorrosion: { type: boolean, notnull: true }
+    pack_deformation: { type: integer }
+    materialsBreakdown: { type: boolean }
+    recordingStandard: { type: integer, notnull: true }
+    sheddingSoftBinder: { type: boolean }
+##################################### charactristics_constraints ################################   
+CharacteristicsConstraints:
+  actAs: { Timestampable: ~ }
+  columns:
+    constraint_name: { type: string(255) }
+    constraint_value: { type: string(255) }
+      
+##################################### constraints_value #########################################     
+CharacteristicsValues:
+  actAs: { Timestampable: ~ }
+  columns:
+    c_name:  { type: string(255) }
+    c_score:  { type: float }
+    format_id: { type: integer }  
+    constraint_id:  { type: integer }
+    parent_characteristic_id: { type: integer }
+  relations:
+    CharacteristicsFormat:
+      local: parent_characteristic_id
+      foreign: id
+      type: one
+    FormatType:
+      local: format_id
+      foreign: id
+      type: one
+    CharacteristicsConstraints:
+      local: constraint_id
+      foreign: id
+      type:  one
+       
+#################################### charactristics_value ######################################
+#CharacteristicsFormatConstraints: # For the one-to-many relationship between Charactristics , Format and Constraints entities
+#  columns:
+#    format_id: { type: integer }
+#    characteristic_id: { type: integer }
+#    characteristic_constraint_id: { type: integer }
+#  relations:
+#    CharacteristicsFormat:
+#      local: characteristic_id
+#      foreign: id
+#      type: one
+#    FormatType:
+#      local: format_id
+#      foreign: id
+#      type: one
+#    CharacteristicsConstraints:
+#      local: characteristic_constraint_id
+#      foreign: id
+#      type:  one
+################################################################################################
+################################################################################################

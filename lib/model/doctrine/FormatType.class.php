@@ -90,4 +90,8 @@ class FormatType extends BaseFormatType {
         array('46' => 'DVCPro')
     );
 
+    static function getFormatTypesValue() {
+        return $this->formatTypesValue;
+    }
+
 }
