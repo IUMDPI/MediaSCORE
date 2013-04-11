@@ -11,7 +11,7 @@
 class CharacteristicsValuesForm extends BaseCharacteristicsValuesForm {
 
     public function configure() {
-        $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue, 'default' => 1, 'add_empty' => true)));
+        $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue, 'default' => 1)));
         $this->setWidget('constraint_id', new sfWidgetFormDoctrineChoice(array('model' => 'CharacteristicsConstraints', method => 'getConstraintName', 'add_empty' => true)));
         $this->setWidget('parent_characteristic_id', new sfWidgetFormDoctrineChoice(array('model' => 'CharacteristicsFormat', method => 'getFormatCName', 'add_empty' => true)));
 
