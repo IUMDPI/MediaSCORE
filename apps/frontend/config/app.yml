@@ -19,6 +19,7 @@ testing:
     .settings:
         base:     http://avp.localhost/frontend_dev.php
         url: http://avp.localhost
+        base_path : checking/
         
 all:
   .settings:

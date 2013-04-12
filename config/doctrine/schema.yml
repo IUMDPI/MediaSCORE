@@ -768,7 +768,9 @@ CharacteristicsValues:
       local: constraint_id
       foreign: id
       type:  one
-       
+Reports: #Abstract
+   inheritance:
+   columns:
 #################################### charactristics_value ######################################
 #CharacteristicsFormatConstraints: # For the one-to-many relationship between Charactristics , Format and Constraints entities
 #  columns:

@@ -31,12 +31,15 @@
                         echo '<div class="assess"><a href="' . url_for("@homepage") . '"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>Assess</h2></a></div>';
                     }
                     ?>
-
-                    <div class="report"><a href="#"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></a></div>
+                    <?php if (($sf_context->getInstance()->getModuleName() == "reports")) { ?>
+                        <div class="report selected"><a href="<?php echo url_for('reports/index') ?>"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></a></div>
+                    <?php } else { ?>
+                        <div class="report"><a href="<?php echo url_for('reports/index') ?>"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></a></div>
+                    <?php } ?>
 
                     <?php
                     if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) {
-                        
+
                         echo '<div class="settings selected"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
                     } else {
                         echo '<div class="settings"><a href="' . url_for('storagelocation/index') . '"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></a></div>';
@@ -55,18 +58,18 @@
 
 
         <div id="main-container">
-            
+
             <div id="main" class="clearfix">
-                <?php if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) {?>
-                <ul id="settings-navigation">
-                     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getRole() ==1 ) { ?>
-			<li class=""><a class="menu-link" href="<?php echo  url_for('user/index') ?>">Users</a></li>
-                        <?php }?>
-			<li class=""><a class="menu-link" href="<?php echo  url_for('person/index') ?>">Unit Personnel</a></li>
-			<li class=""><a class="menu-link" href="<?php echo  url_for('storagelocation/index') ?>">Storage Locations</a></li>
-			<li class=""><a class="menu-link" href="<?php echo  url_for('user/edit?id=').$sf_user->getGuardUser()->getId() ?>">Edit Profile </a></li>
-<!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link')) ?></li>-->
-			</ul>
+                <?php if (($sf_context->getInstance()->getModuleName() == "storagelocation") || ($sf_context->getInstance()->getModuleName() == "person") || ($sf_context->getInstance()->getModuleName() == "user")) { ?>
+                    <ul id="settings-navigation">
+                        <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getRole() == 1) { ?>
+                            <li class=""><a class="menu-link" href="<?php echo url_for('user/index') ?>">Users</a></li>
+                        <?php } ?>
+                        <li class=""><a class="menu-link" href="<?php echo url_for('person/index') ?>">Unit Personnel</a></li>
+                        <li class=""><a class="menu-link" href="<?php echo url_for('storagelocation/index') ?>">Storage Locations</a></li>
+                        <li class=""><a class="menu-link" href="<?php echo url_for('user/edit?id=') . $sf_user->getGuardUser()->getId() ?>">Edit Profile </a></li>
+    <!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link'))        ?></li>-->
+                    </ul>
                 <?php } ?>
                 <?php echo $sf_content ?>
             </div>

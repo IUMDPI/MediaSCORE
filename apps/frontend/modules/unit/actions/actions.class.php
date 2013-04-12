@@ -204,9 +204,9 @@ class unitActions extends sfActions {
 
         // get the list of all the units 
         $this->units = Doctrine_Core::getTable('Unit')
-                ->createQuery('a')
-                ->orderBy('name')
-                ->execute();
+                                ->createQuery('a')
+                                ->orderBy('name')
+                                ->execute();
 
         // get all the request parameters
         $searchInpout = $request->getParameter('s');
@@ -258,6 +258,7 @@ class unitActions extends sfActions {
 
             // after applying the parametes get units.
             $this->unit = $this->unit->fetchArray();
+
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
@@ -267,8 +268,14 @@ class unitActions extends sfActions {
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
+
             return $this->renderText(json_encode($this->unit));
         }
+
+        foreach ($this->units as $unit) {
+            var_dump($unit->getLocation());
+        }
+//        exit;
     }
 
     /**
