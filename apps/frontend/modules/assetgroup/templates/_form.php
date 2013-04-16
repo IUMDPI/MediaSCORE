@@ -1,5 +1,5 @@
 <?php use_stylesheets_for_form($form) ?>
-<?php use_javascripts_for_form($form) ?>
+<?php use_javascripts_for_form($form)  ?>
 <?php
 if (!$form->getObject()->isNew())
     $id = 'asset-group-div';

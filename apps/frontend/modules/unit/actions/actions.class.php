@@ -272,9 +272,9 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         }
 
-        foreach ($this->units as $unit) {
-            var_dump($unit->getLocation());
-        }
+//        foreach ($this->units as $unit) {
+//            var_dump($unit->getLocation());
+//        }
 //        exit;
     }
 
