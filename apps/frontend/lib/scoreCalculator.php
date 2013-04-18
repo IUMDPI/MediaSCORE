@@ -479,7 +479,8 @@ class scoreCalculator {
             if ($characteristicsValue['c_name'] == 'base_score') {
                 echo ' <br/> base_score =';
                 echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
-                echo '<br/>';   echo '<br/>';
+                echo '<br/>';
+                echo '<br/>';
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
@@ -487,7 +488,7 @@ class scoreCalculator {
                     $year = date('Y');
                     echo 'year_rec =';
                     echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
-                       echo '<br/>';
+                    echo '<br/>';
                     echo '<br/>';
                 } else {
                     $this->score = (float) $this->score + 0.0;
@@ -514,7 +515,7 @@ class scoreCalculator {
                         echo $tapeThickness = $characteristicsValue['c_score'];
                         echo '<br/>';
                         $this->score = (float) $this->score + (float) $tapeThickness;
-                        
+
                         echo '<br/>';
                     }
                 }
@@ -556,7 +557,7 @@ class scoreCalculator {
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             echo '<br/>';
                             $this->score = (float) $this->score + (float) $pack_deformation;
-                               echo '<br/>';
+                            echo '<br/>';
                             echo '<br/>';
                         }
                     }
@@ -578,7 +579,7 @@ class scoreCalculator {
                         echo '<br/>';
                         $this->score = (float) $this->score + (float) $off_brand;
 
-                           echo '<br/>';
+                        echo '<br/>';
                         echo '<br/>';
                     }
                 }
