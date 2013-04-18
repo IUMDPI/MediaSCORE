@@ -50,7 +50,7 @@ class scoreCalculator {
             '6' => 'DATCalc',
             '7' => 'SoundWireReelCalc',
             '9' => 'PolysterOpenReelAudioTapeCalc',
-            '10' => 'Acetate Open Reel Audio Tape',
+            '10' => 'AcetateOpenReelAudioTapeCalc',
             '11' => 'Paper Open Reel Audio Tape',
             '12' => 'PVC Open Reel Audio Tape',
             '15' => 'Lacquer Disc',
@@ -585,7 +585,164 @@ class scoreCalculator {
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
+        foreach ($characteristicsValues as $characteristicsValue) {
+            if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
+                echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
+                echo '<br/>';
+                echo '<br/>';
+                continue;
+            }
+
+            if ($characteristicsValue['c_name'] == 'base_score') {
+                echo ' <br/> base_score =';
+                echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo '<br/>';
+                echo '<br/>';
+            }
+
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
+                if ($characteristicsValue['CharacteristicsConstraints']['constraint_name'] == 'per year') {
+                    $year = date('Y');
+                    echo 'year_rec =';
+                    echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo '<br/>';
+                    echo '<br/>';
+                } else {
+                    $this->score = (float) $this->score + 0.0;
+                }
+            }
+
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
+                if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
+                    echo 'copies =';
+                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo '<br/>';
+                    $this->score = (float) $this->score + (float) $copies;
+
+                    echo '<br/>';
+                }
+            }
+
+
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'tapeThickness')) {
+
+                if (isset($AssetInformatoin[0]['FormatType']['tapeThickness'])) {
+                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        echo 'tapeThickness =';
+                        echo $tapeThickness = $characteristicsValue['c_score'];
+                        echo '<br/>';
+                        $this->score = (float) $this->score + (float) $tapeThickness;
+
+                        echo '<br/>';
+                    }
+                }
+            }
+
+//            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
+//                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
+//                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+//                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
+//                }
+//            }
+            if (!$constraint_will_be_applied) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
+                        echo 'fungus = ';
+                        echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+
+                        $this->score = (float) $this->score + $fungus;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
+                        echo 'other_contaminants = ';
+                        echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + $other_contaminants;
+
+                        echo '<br/>';
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'pack_deformation = ';
+                            echo $pack_deformation = $characteristicsValue['c_score'];
+                            echo '<br/>';
+                            $this->score = (float) $this->score + (float) $pack_deformation;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'noise_reduction')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['noise_reduction'])) {
+                        echo 'noise_reduction = ';
+                        echo $noise_reduction = (($AssetInformatoin[0]['FormatType']['noise_reduction'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + $noise_reduction;
+
+                        echo '<br/>';
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
+                        echo 'off_brand = ';
+                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + (float) $off_brand;
+
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'trackConfiguration')) {
+
+                    if (isset($AssetInformatoin[0]['FormatType']['trackConfiguration'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'trackConfiguration = ';
+                            echo $trackConfiguration = $characteristicsValue['c_score'];
+                            echo '<br/>';
+                            $this->score = (float) $this->score + (float) $trackConfiguration;
+
+                            echo '<br/>';
+                        }
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'speed')) {
+
+                    if (isset($AssetInformatoin[0]['FormatType']['speed'])) {
+                        $speed_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
+
+                        foreach ($speed_array as $speed_one) {
+                            if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$speed_one]), strtolower($characteristicsValue['c_name']))) {
+                                echo 'speed = ';
+                                echo $Speed = $characteristicsValue['c_score'];
+
+                                $this->score = (float) $this->score + (float) $Speed;
+                                echo '<br/>';
+                                echo '<br/>';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $this->score;
+    }
+
+    public function AcetateOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
+
         $constraint_will_be_applied = FALSE;
+
+        if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
+            $constraint_will_be_applied = TRUE;
+        }
+
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
