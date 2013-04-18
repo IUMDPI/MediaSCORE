@@ -585,6 +585,7 @@ class scoreCalculator {
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
+        
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
@@ -638,12 +639,12 @@ class scoreCalculator {
                 }
             }
 
-//            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
-//                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
-//                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-//                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
-//                }
-//            }
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
+                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
+                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
+                }
+            }
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                     if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
@@ -742,7 +743,7 @@ class scoreCalculator {
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
-
+        
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
@@ -796,12 +797,12 @@ class scoreCalculator {
                 }
             }
 
-//            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
-//                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
-//                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-//                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
-//                }
-//            }
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
+                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
+                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
+                }
+            }
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                     if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
