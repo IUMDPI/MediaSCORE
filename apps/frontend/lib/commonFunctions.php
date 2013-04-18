@@ -23,7 +23,7 @@ class commonFunctions {
      * 
      * @return Array Sorted_Array()
      */
-    function aasort(&$array, $key) {
+    static function aasort(&$array, $key) {
         $sorter = array();
         $ret = array();
         reset($array);

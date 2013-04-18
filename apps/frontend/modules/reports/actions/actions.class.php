@@ -147,7 +147,12 @@ class reportsActions extends sfActions {
                     break;
             }
         }
-//         thin_tape ,tapethickness , year_recorded , delamination , tapethickness ,other_contaminants , base_score , whiteresidue , vinegarodor ,tape_type, 
+//         surfaceblisteringbubbling , strongodor , stock_brand , 'soundtrackformat' , softbindersyndrome 'slow_speed'
+//         
+//         
+//         
+//         thin_tape ,tapethickness , year_recorded , delamination , tapethickness ,other_contaminants ,  'shrinkage',sheddingsoftbinder',
+//         base_score , whiteresidue , vinegarodor ,tape_type,trackconfiguration ,tape_type , substrate ,  'speed' 'size','rust' 'reflectivelayer'
 
         array('year_recorded', 'year_recorded', 'whiteresidue', 'vinegarodor', 'type', 'trackconfiguration', 'thintape', 'thin_tape', 'tapethickness', 'tape_type'
             , 'surfaceblisteringbubbling', 'substrate', 'strongodor', 'stock_brand', 'speed', 'soundtrackformat', 'sound_field', 'softbindersyndrome', 'soft_binder_syndrome', 'slow_speed',
@@ -158,9 +163,8 @@ class reportsActions extends sfActions {
             'color', 'codec', 'capacitylayers', 'bindersystem', 'base_score', 'adstriplevel', '1993orearlier');
 
 
-        array('trackconfiguration', 'tapethickness', 'tape_type'
-            , 'surfaceblisteringbubbling', 'substrate', 'strongodor', 'stock_brand', 'speed', 'soundtrackformat', 'sound_field', 'softbindersyndrome', 'soft_binder_syndrome', 'slow_speed',
-            'size', 'shrinkage', 'sheddingsoftbinder', 'scanning', 'rust', 'reflectivelayer', 'reelsize', 'recordingstandard', 'recordingspeed', 'recordinglayer', 'quantity', 'publicationyear',
+        array(
+            'reelsize', 'recordingstandard', 'recordingspeed', 'recordinglayer', 'quantity', 'publicationyear',
             'plasticizerexudation', 'physicaldamage', 'pack_deformation', 'oxide', 'oxidationCorrosion', 'other_contaminants', 'opticaldisctype', 'off_brand', 'off-brand', 'nonstandardbrand', 'noise_reduction',
             'materialsbreakdown', 'material', 'longplay32k96k', 'levelofshrinkage', 'generation', 'gauge', 'fungus', 'formatversion', 'format_notes', 'format', 'duration_type_methodology', 'duration_type',
             'duration', 'discoloration', 'delamination', 'datarate', 'datalayer', 'datagradetape', 'cylindertype', 'corrosionrustoxidation', 'copies', 'copies', 'composition', 'colorfade',
@@ -197,11 +201,18 @@ class reportsActions extends sfActions {
             'speed' => OpenReelAudioTapeFormatType::$constants[2],
             'tape_thickness' => OpenReelAudioTapeFormatType::$constants[3],
             'tape_type' => AnalogAudiocassette::$constants[0],
-            '1' => AnalogAudiocassette::$constants[1],
+            'sound_field' => AnalogAudiocassette::$constants[1],
             'b' => MetalDisc::$generation,
             'c' => MetalDisc::$damage,
-            'd' => MetalDisc::$constants,
-            'copies' =>'0-1' ,
+            'Material' => MetalDisc::$constants,
+            'substrate' => LacquerDisc::$constants,
+            'copies' => '0-1',
+            'thin_tape' => '0-1',
+            'off_brand' => 'same',
+            'soft_binder_syndrome' => 'same',
+            'size' => SizedVideoRecordingFormatType::$constants,
+            'scanning' => HDCam::$constants[2],
+            'reflectivelayer' => OpticalDiscFormatType::$constants[0],
         );
         if ($constraints_exists) {
             $score = $score + $Assets_characteristics[$constraints_exists_index]['c_score'];
@@ -307,12 +318,18 @@ class reportsActions extends sfActions {
                     }
                 } elseif (strstr($Assets_characteristic['CharacteristicsFormat']['format_c_name'], 'trackconfiguration')) {
                     if ($Assets[0]['FormatType']['trackconfiguration']) {
-                        if (strstr($multiselection_value['trackconfiguration'][$Assets[0]['FormatType']['trackconfiguration']], $Assets_characteristic['c_name'])) {
+                        if (strstr($multiselection_value[$Assets_characteristic['CharacteristicsFormat']['format_c_name']][$Assets[0]['FormatType']['trackconfiguration']], $Assets_characteristic['c_name'])) {
                             $tape_type = (($Assets[0]['FormatType']['trackconfiguration'] == 1) ? (float) $Assets_characteristic['c_score'] : (float) 0);
                             $score = (float) $score + (float) $tape_type;
                         }
                     }
                 } else {
+                    if ($Assets[0]['FormatType'][$Assets_characteristic['CharacteristicsFormat']['format_c_name']]) {
+                        if (strstr($multiselection_value[$Assets_characteristic['CharacteristicsFormat']['format_c_name']][$Assets[0]['FormatType'][$Assets_characteristic['CharacteristicsFormat']['format_c_name']]], $Assets_characteristic['c_name'])) {
+                            $tape_type = (($Assets[0]['FormatType'][$Assets_characteristic['CharacteristicsFormat']['format_c_name']] == 1) ? (float) $Assets_characteristic['c_score'] : (float) 0);
+                            $score = (float) $score + (float) $tape_type;
+                        }
+                    }
                     #for non multiple values
                     if (!empty($Assets[0]['FormatType'][$Assets_characteristic['CharacteristicsFormat']['format_c_name']]) && $Assets[0]['FormatType'][$Assets_characteristic['CharacteristicsFormat']['format_c_name']]) {
                         $score = (float) $score + (float) $Assets_characteristic['c_score'];

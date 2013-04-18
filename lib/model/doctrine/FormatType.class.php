@@ -89,6 +89,40 @@ class FormatType extends BaseFormatType {
         array('45' => 'HDCAM'),
         array('46' => 'DVCPro')
     );
+    public static $formatTypesValue1d = array(
+        '1' => 'Metal Disc',
+        '5' => 'Film',
+        '6' => 'DAT',
+        '7' => 'Sound Wire Reel',
+        '4' => 'Analog Audio Cassette',
+        '9' => 'Polyster Open Reel Audio Tape',
+        '10' => 'Acetate Open Reel Audio Tape',
+        '11' => 'Paper Open Reel Audio Tape',
+        '12' => 'PVC Open Reel Audio Tape',
+        '15' => 'Lacquer Disc',
+        '16' => 'MiniDisc',
+        '17' => 'Cylinder',
+        '19' => 'Sound Optical Disc',
+        '20' => 'Optical Video',
+        '22' => 'Pressed 78RPM Disc',
+        '23' => 'Pressed LP Disc',
+        '24' => 'Pressed 45RPM Disc',
+        '26' => 'LaserDisc',
+        '27' => 'XDCAM Optical',
+        '29' => 'Betamax',
+        '31' => '8MM',
+        '33' => '2" Open Reel Video',
+        '34' => '1" Open Reel Video',
+        '35' => '½" Open Reel Video',
+        '37' => 'DV',
+        '38' => 'DVCAM',
+        '40' => 'Betacam',
+        '41' => 'VHS',
+        '42' => 'Digital Betacam',
+        '44' => 'U-matic',
+        '45' => 'HDCAM',
+        '46' => 'DVCPro'
+    );
 
     static function getFormatTypesValue() {
         return $this->formatTypesValue;

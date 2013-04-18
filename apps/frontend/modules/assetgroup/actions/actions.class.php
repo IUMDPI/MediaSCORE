@@ -294,6 +294,39 @@ class assetgroupActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $asset_group = $form->save();
+            $PostParams = $request->getPostParameters();
+
+            $AssetInformatoin = Doctrine_Query::Create()
+                    ->from('AssetGroup a')
+                    ->select('a.*,ft.*')
+                    ->leftJoin('a.FormatType ft WITH ft.id=a.format_id')
+                    ->addWhere("ft.id = '" . $PostParams['asset_group']['format_id'] . "'")
+                    ->fetchArray();
+
+            $characteristicsValue = Doctrine_Query::Create()
+                    ->from('CharacteristicsValues cv')
+                    ->select('cv.*,cc.*,cf.*')
+                    ->leftJoin('cv.CharacteristicsConstraints cc')
+                    ->leftJoin('cv.CharacteristicsFormat cf')
+                    ->addWhere("cv.format_id = '" . $AssetInformatoin[0]['FormatType']['type'] . "'")
+                    ->fetchArray();
+            echo 'in1';
+            #to caliculate socre 
+            $ScoreCalculator = new scoreCalculator();
+            
+            $score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
+            exit;
+            if ($score != FALSE) {
+                $update = Doctrine_Query::create()
+                        ->update('FormatType ')
+                        ->set('asset_score', '?', $score)
+                        ->where('id = ?', $AssetInformatoin[0]['FormatType']['id'])
+                        ->execute();
+                echo 'Done';
+            } else {
+                echo 'calculator not found for this format type';
+            }
+            exit;
             return true;
         }
         return false;
