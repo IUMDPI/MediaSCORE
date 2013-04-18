@@ -121,37 +121,53 @@ class scoreCalculator {
             }
 
             if ($characteristicsValue['c_name'] == 'base_score') {
-                $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo 'base_score = ';
+                echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo '<br/>';
+                echo '<br/>';
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
                 if ($characteristicsValue['CharacteristicsConstraints']['constraint_name'] == 'per year') {
+                    echo 'year_rec = ';
                     $year = date('Y');
-                    $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo '<br/>';
+                    echo '<br/>';
                 } else {
                     $this->score = (float) $this->score + 0.0;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
                 if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-
-                    $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'copies = ';
+                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + (float) $copies;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
+                echo 'fungus = ';
                 if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
-                    $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $fungus;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
                 if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                    $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'other_contaminants = ';
+                    echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $other_contaminants;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
@@ -159,24 +175,33 @@ class scoreCalculator {
 
                 if (isset($AssetInformatoin[0]['FormatType']['material'])) {
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        $material = $characteristicsValue['c_score'];
+                        echo 'material = ';
+                        echo $material = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $material;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'oxidationCorrosion')) {
                 if (isset($AssetInformatoin[0]['FormatType']['oxidationCorrosion'])) {
-                    $oxidationCorrosion = (($AssetInformatoin[0]['FormatType']['oxidationCorrosion'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'oxidationCorrosion = ';
+                    echo $oxidationCorrosion = (($AssetInformatoin[0]['FormatType']['oxidationCorrosion'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $oxidationCorrosion;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'physicalDamage')) {
                 if (isset($AssetInformatoin[0]['FormatType']['physicalDamage'])) {
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        $physicalDamage = $characteristicsValue['c_score'];
+                        echo 'physicalDamage = ';
+                        echo $physicalDamage = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $physicalDamage;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
@@ -191,15 +216,24 @@ class scoreCalculator {
             }
 
             if ($characteristicsValue['c_name'] == 'base_score') {
-                $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo 'base_score = ';
+                echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo '<br/>';
+                echo '<br/>';
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
                 if ($characteristicsValue['CharacteristicsConstraints']['constraint_name'] == 'per year') {
+                    echo 'year_rec = ';
                     $year = date('Y');
-                    $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo '<br/>';
+                    echo '<br/>';
                 } else {
+
                     $this->score = (float) $this->score + 0.0;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
@@ -207,31 +241,41 @@ class scoreCalculator {
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
                 if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-
-                    $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'copies = ';
+                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + (float) $copies;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                 if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
-                    $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'fungus = ';
+                    echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $fungus;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
                 if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                    $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'other_contaminants = ';
+                    echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $other_contaminants;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                 if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-
-                        $pack_deformation = $characteristicsValue['c_score'];
+                        echo 'pack_deformation = ';
+                        echo $pack_deformation = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $pack_deformation;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
@@ -239,27 +283,39 @@ class scoreCalculator {
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'thin_tape')) {
                 if (isset($AssetInformatoin[0]['FormatType']['thin_tape'])) {
-                    $thin_tape = (($AssetInformatoin[0]['FormatType']['thin_tape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'thin_tape = ';
+                    echo $thin_tape = (($AssetInformatoin[0]['FormatType']['thin_tape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $thin_tape;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], '1993OrEarlier')) {
                 if (isset($AssetInformatoin[0]['FormatType']['1993OrEarlier'])) {
-                    $a_1993OrEarlier = (($AssetInformatoin[0]['FormatType']['1993OrEarlier'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo '1993OrEarlier = ';
+                    echo $a_1993OrEarlier = (($AssetInformatoin[0]['FormatType']['1993OrEarlier'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $a_1993OrEarlier;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'dataGradeTape')) {
                 if (isset($AssetInformatoin[0]['FormatType']['dataGradeTape'])) {
-                    $dataGradeTape = (($AssetInformatoin[0]['FormatType']['dataGradeTape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'dataGradeTape = ';
+                    echo $dataGradeTape = (($AssetInformatoin[0]['FormatType']['dataGradeTape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $dataGradeTape;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'longPlay32K96K')) {
                 if (isset($AssetInformatoin[0]['FormatType']['longPlay32K96K'])) {
-                    $longPlay32K96K = (($AssetInformatoin[0]['FormatType']['longPlay32K96K'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'longPlay32K96K = ';
+                    echo $longPlay32K96K = (($AssetInformatoin[0]['FormatType']['longPlay32K96K'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $longPlay32K96K;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
         }
@@ -278,60 +334,85 @@ class scoreCalculator {
             }
 
             if ($characteristicsValue['c_name'] == 'base_score') {
-                $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo 'base_score = ';
+                echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo '<br/>';
+                echo '<br/>';
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
                 if ($characteristicsValue['CharacteristicsConstraints']['constraint_name'] == 'per year') {
                     $year = date('Y');
-                    $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo 'year_rec = ';
+                    echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo '<br/>';
+                    echo '<br/>';
                 } else {
                     $this->score = (float) $this->score + 0.0;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'corrosionRustOxidation')) {
                 if (isset($AssetInformatoin[0]['FormatType']['corrosionRustOxidation'])) {
-                    $oxidationCorrosion = (($AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'corrosionRustOxidation = ';
+                    echo $oxidationCorrosion = (($AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + $oxidationCorrosion;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
                     if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-
-                        $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'copies = ';
+                        echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + (float) $copies;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
                     if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                        $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'other_contaminants = ';
+                        echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $other_contaminants;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                            $pack_deformation = $characteristicsValue['c_score'];
-                            $this->score = (float) $this->score + (float) $pack_deformation;
+                            echo 'pack_deformation = ';
+                            echo $pack_deformation = $characteristicsValue['c_score'];
+                            $this->sc0ore = (float) $this->score + (float) $pack_deformation;
+                            echo '<br/>';
+                            echo '<br/>';
                         }
                     }
                 }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'composition')) {
                     if (isset($AssetInformatoin[0]['FormatType']['composition'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                            $composition = $characteristicsValue['c_score'];
+                            echo 'composition = ';
+                            echo $composition = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $composition;
+                            echo '<br/>';
+                            echo '<br/>';
                         }
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'nonStandardBrand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['nonStandardBrand'])) {
-                        $nonStandardBrand = (($AssetInformatoin[0]['FormatType']['nonStandardBrand'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'nonStandardBrand = ';
+                        echo $nonStandardBrand = (($AssetInformatoin[0]['FormatType']['nonStandardBrand'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $nonStandardBrand;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
@@ -352,70 +433,96 @@ class scoreCalculator {
             }
 
             if ($characteristicsValue['c_name'] == 'base_score') {
-                $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo 'Base_score= ';
+                echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
+                echo '<br/>';
+                echo '<br/>';
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'year_rec')) {
                 if ($characteristicsValue['CharacteristicsConstraints']['constraint_name'] == 'per year') {
+                    echo 'year_rec= ';
                     $year = date('Y');
-                    $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo $this->score = (float) $this->score + (float) (($year - $AssetInformatoin[0]['FormatType']['year_recorded']) * .1);
+                    echo '<br/>';
+                    echo '<br/>';
                 } else {
                     $this->score = (float) $this->score + 0.0;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'thin_tape')) {
                 if (isset($AssetInformatoin[0]['FormatType']['thin_tape'])) {
-                    $thin_tape = (($AssetInformatoin[0]['FormatType']['thin_tape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score;
+                    echo 'thin_tape = ';
+                    echo $thin_tape = (($AssetInformatoin[0]['FormatType']['thin_tape'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + (float) $thin_tape;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
-                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    echo 'softBinderSyndrome = ';
+                    echo $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
                     $this->score = (float) $this->score + (float) $softBinderSyndrome;
+                    echo '<br/>';
+                    echo '<br/>';
                 }
             }
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
 
                     if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-
-                        $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'copies = ';
+                        echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + (float) $copies;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
-
-                        $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'off_brand = ';
+                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + (float) $off_brand;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                     if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
-                        $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'fungus = ';
+                        echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $fungus;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
                     if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                        $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'other_contaminants = ';
+                        echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $other_contaminants;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'tape_type')) {
                     if (isset($AssetInformatoin[0]['FormatType']['tape_type'])) {
                         if ($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]] == $characteristicsValue['c_name']) {
-                            $tape_type = $characteristicsValue['c_score'];
+                            echo 'tape_type = ';
+                            echo $tape_type = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $tape_type;
+                            echo '<br/>';
+                            echo '<br/>';
                         }
                     }
                 }
@@ -423,8 +530,11 @@ class scoreCalculator {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'slow_speed')) {
                     if (isset($AssetInformatoin[0]['FormatType']['slow_speed'])) {
-                        $slow_speed = (($AssetInformatoin[0]['FormatType']['slow_speed'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'slow_speed = ';
+                        echo $slow_speed = (($AssetInformatoin[0]['FormatType']['slow_speed'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $slow_speed;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
@@ -432,30 +542,38 @@ class scoreCalculator {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'sound_field')) {
                     if (isset($AssetInformatoin[0]['FormatType']['sound_field'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                            $sound_field = $characteristicsValue['c_score'];
+                            echo 'sound_field = ';
+                            echo $sound_field = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $sound_field;
+                            echo '<br/>';
+                            echo '<br/>';
                         }
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'noise_reduction')) {
                     if (isset($AssetInformatoin[0]['FormatType']['noise_reduction'])) {
-                        $noise_reduction = (($AssetInformatoin[0]['FormatType']['noise_reduction'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'noise_reduction = ';
+                        echo $noise_reduction = (($AssetInformatoin[0]['FormatType']['noise_reduction'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $noise_reduction;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                            $pack_deformation = $characteristicsValue['c_score'];
+                            echo 'pack_deformation = ';
+                            echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
+                            echo '<br/>';
+                            echo '<br/>';
                         }
                     }
                 }
             }
         }
-        $this->score;
 
         return $this->score;
     }
@@ -635,4 +753,5 @@ class scoreCalculator {
     }
 
 }
+
 ?>
