@@ -333,7 +333,7 @@ class scoreCalculator extends scoreCalculator_extended {
         if ($AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] != '' && $AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
-        var_dump($constraint_will_be_applied);
+
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 continue;
@@ -394,15 +394,21 @@ class scoreCalculator extends scoreCalculator_extended {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
-                            $this->sc0ore = (float) $this->score + (float) $pack_deformation;
+                            $this->score = (float) $this->score + (float) $pack_deformation;
                             echo '<br/>';
                             echo '<br/>';
                         }
                     }
                 }
+
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'composition')) {
+
                     if (isset($AssetInformatoin[0]['FormatType']['composition'])) {
+//                        var_dump($characteristicsValue);
+//                        var_dump($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
+//                        exit;
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+
                             echo 'composition = ';
                             echo $composition = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $composition;
@@ -808,16 +814,23 @@ class scoreCalculator extends scoreCalculator_extended {
             if ($constraint_will_be_applied && !$precedence_flag) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
                     if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
-                        $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'softBinderSyndrome = ';
+                        echo $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + (float) $softBinderSyndrome;
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
             if ($precedence_flag) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'vinegarOdor')) {
                     if (isset($AssetInformatoin[0]['FormatType']['vinegarOdor'])) {
-                        $vinegarOdor = (($AssetInformatoin[0]['FormatType']['vinegarOdor'] != '' && $AssetInformatoin[0]['FormatType']['vinegarOdor'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo 'vinegarOdor = ';
+                        echo $vinegarOdor = (($AssetInformatoin[0]['FormatType']['vinegarOdor'] != '' && $AssetInformatoin[0]['FormatType']['vinegarOdor'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + (float) $vinegarOdor;
+
+                        echo '<br/>';
+                        echo '<br/>';
                     }
                 }
             }
@@ -923,7 +936,7 @@ class scoreCalculator extends scoreCalculator_extended {
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
         echo '<pre>';
         print_r($AssetInformatoin);
-        print_r($characteristicsValues);
+//        print_r($characteristicsValues);
         echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
         echo '<pre>';
         echo $this->$funcationName($AssetInformatoin, $characteristicsValues);

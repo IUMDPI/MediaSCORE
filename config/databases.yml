@@ -5,6 +5,6 @@ all:
       #dsn: mysql:host=localhost;dbname=indiana
       #username: indiana 
       #password: pl@123
-      dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
-      username: symfony
-      password: sYmF0nYd3v
+      dsn: mysql:host=localhost;dbname=mediascore
+      username: root
+      password: 
