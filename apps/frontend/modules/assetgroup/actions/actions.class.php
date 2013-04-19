@@ -310,10 +310,8 @@ class assetgroupActions extends sfActions {
                     ->leftJoin('cv.CharacteristicsFormat cf')
                     ->addWhere("cv.format_id = '" . $AssetInformatoin[0]['FormatType']['type'] . "'")
                     ->fetchArray();
-            echo 'in1';
             #to caliculate socre 
             $ScoreCalculator = new scoreCalculator();
-            
             $score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
             exit;
             if ($score != FALSE) {

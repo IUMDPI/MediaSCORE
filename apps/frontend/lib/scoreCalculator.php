@@ -1,5 +1,6 @@
 <?php
 
+include('scoreCalculator_extended.php');
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -10,7 +11,7 @@
  *
  * @author Furqan
  */
-class scoreCalculator {
+class scoreCalculator extends scoreCalculator_extended {
 
     //put your code here
     protected $score;
@@ -32,6 +33,11 @@ class scoreCalculator {
             'material' => MetalDisc::$constants,
             'substrate' => LacquerDisc::$constants,
             'composition' => SoundWireReel::$constants,
+            'recordingLayer' => MiniDisc::$constants[0],
+            'recordingSpeed' => MiniDisc::$constants[1],
+            'opticalDiscType' => OpticalVideo::$constants[0],
+            'soundOpticalDiscType' => SoundOpticalDisk::$constants,
+            'formatVersion' => OpticalVideo::$constants[1],
             'copies' => '0-1',
             'thin_tape' => '0-1',
             'oxidationCorrosion' => '0-1',
@@ -51,14 +57,14 @@ class scoreCalculator {
             '7' => 'SoundWireReelCalc',
             '9' => 'PolysterOpenReelAudioTapeCalc',
             '10' => 'AcetateOpenReelAudioTapeCalc',
-            '11' => 'Paper Open Reel Audio Tape',
-            '12' => 'PVC Open Reel Audio Tape',
-            '15' => 'Lacquer Disc',
-            '16' => 'MiniDisc',
-            '17' => 'Cylinder',
-            '19' => 'Sound Optical Disc',
-            '20' => 'Optical Video',
-            '22' => 'Pressed 78RPM Disc',
+            '11' => 'PaperOpenReelAudioTapeCalc',
+            '12' => 'PVCOpenReelAudioTapeCalc',
+            '15' => 'LacquerDiscCalc',
+            '16' => 'MiniDiscCalc',
+            '17' => 'CylinderCalc',
+            '19' => 'SoundOpticalDiscCalc',
+            '20' => 'OpticalVideoCalc',
+            '22' => 'Pressed78RPMDiscCalc',
             '23' => 'Pressed LP Disc',
             '24' => 'Pressed 45RPM Disc',
             '26' => 'LaserDisc',
@@ -585,7 +591,7 @@ class scoreCalculator {
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
-        
+
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
@@ -739,12 +745,17 @@ class scoreCalculator {
     public function AcetateOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         $constraint_will_be_applied = FALSE;
-
+        $precedence_flag = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
             $constraint_will_be_applied = TRUE;
         }
-        
+        if ($AssetInformatoin[0]['FormatType']['vinegarOdor'] != '' && $AssetInformatoin[0]['FormatType']['vinegarOdor'] != NULL) {
+            $constraint_will_be_applied = TRUE;
+            $precedence_flag = TRUE;
+        }
+
         foreach ($characteristicsValues as $characteristicsValue) {
+
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
                 echo '<br/>';
@@ -782,7 +793,6 @@ class scoreCalculator {
                 }
             }
 
-
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'tapeThickness')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['tapeThickness'])) {
@@ -791,19 +801,40 @@ class scoreCalculator {
                         echo $tapeThickness = $characteristicsValue['c_score'];
                         echo '<br/>';
                         $this->score = (float) $this->score + (float) $tapeThickness;
-
                         echo '<br/>';
                     }
                 }
             }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
-                if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
-                    $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + (float) $softBinderSyndrome;
+            if ($constraint_will_be_applied && !$precedence_flag) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
+                        $softBinderSyndrome = (($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + (float) $softBinderSyndrome;
+                    }
                 }
             }
+            if ($precedence_flag) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'vinegarOdor')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['vinegarOdor'])) {
+                        $vinegarOdor = (($AssetInformatoin[0]['FormatType']['vinegarOdor'] != '' && $AssetInformatoin[0]['FormatType']['vinegarOdor'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + (float) $vinegarOdor;
+                    }
+                }
+            }
+
             if (!$constraint_will_be_applied) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
+                        echo 'off_brand = ';
+                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + (float) $off_brand;
+
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                     if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
                         echo 'fungus = ';
@@ -815,7 +846,6 @@ class scoreCalculator {
                     }
                 }
 
-
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
                     if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
                         echo 'other_contaminants = ';
@@ -826,6 +856,7 @@ class scoreCalculator {
                         echo '<br/>';
                     }
                 }
+
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
@@ -838,6 +869,7 @@ class scoreCalculator {
                         }
                     }
                 }
+
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'noise_reduction')) {
                     if (isset($AssetInformatoin[0]['FormatType']['noise_reduction'])) {
                         echo 'noise_reduction = ';
@@ -848,17 +880,7 @@ class scoreCalculator {
                         echo '<br/>';
                     }
                 }
-                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
-                    if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
-                        echo 'off_brand = ';
-                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                        echo '<br/>';
-                        $this->score = (float) $this->score + (float) $off_brand;
 
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'trackConfiguration')) {
 
                     if (isset($AssetInformatoin[0]['FormatType']['trackConfiguration'])) {
@@ -900,8 +922,8 @@ class scoreCalculator {
 
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
         echo '<pre>';
-//        print_r($AssetInformatoin);
-//        print_r($characteristicsValues);
+        print_r($AssetInformatoin);
+        print_r($characteristicsValues);
         echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
         echo '<pre>';
         echo $this->$funcationName($AssetInformatoin, $characteristicsValues);
