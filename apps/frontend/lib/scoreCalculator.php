@@ -38,6 +38,7 @@ class scoreCalculator extends scoreCalculator_extended {
             'opticalDiscType' => OpticalVideo::$constants[0],
             'soundOpticalDiscType' => SoundOpticalDisk::$constants,
             'formatVersion' => OpticalVideo::$constants[1],
+            'cylinderType' => Cylinder::$constants,
             'copies' => '0-1',
             'thin_tape' => '0-1',
             'oxidationCorrosion' => '0-1',
@@ -46,7 +47,8 @@ class scoreCalculator extends scoreCalculator_extended {
             'softBinderSyndrome' => 'same',
             'size' => SizedVideoRecordingFormatType::$constants,
             'scanning' => HDCam::$constants[2],
-            'reflectivelayer' => OpticalDiscFormatType::$constants[0],
+            'reflectiveLayer' => OpticalDiscFormatType::$constants[0],
+            'dataLayer' => OpticalDiscFormatType::$constants[1],
             'GlobalFormatType' => FormatType::$formatTypesValue1d,
         );
         $this->formatTypesFunctionCalls = array(
@@ -930,7 +932,7 @@ class scoreCalculator extends scoreCalculator_extended {
     }
 
 //    public function check() {
-//        echo 'i am in ';
+//        echo 'i am in ';1q9B
 //    }
 
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
