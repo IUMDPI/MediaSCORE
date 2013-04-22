@@ -1,5 +1,6 @@
 <?php
 
+include('scoreCalculator_extended_ultimate.php');
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -10,7 +11,7 @@
  *
  * @author Furqan
  */
-class scoreCalculator_extended {
+class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
 
 //put your code here
     public function PaperOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
@@ -360,7 +361,7 @@ class scoreCalculator_extended {
 
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'delamination')) {
-                if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
+                if (isset($AssetInformatoin[0]['FormatType']['delamination'])) {
                     echo 'delamination = ';
                     if ($AssetInformatoin[0]['FormatType']['delamination'] == 1 || $AssetInformatoin[0]['FormatType']['delamination'] == TRUE) {
                         return $this->score = 100;
@@ -1000,7 +1001,6 @@ class scoreCalculator_extended {
                 }
             }
         }
-
 
         return $this->score;
     }
