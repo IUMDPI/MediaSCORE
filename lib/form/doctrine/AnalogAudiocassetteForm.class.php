@@ -19,6 +19,8 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm {
         $this->setWidget('sound_field', new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[1])));
         $this->setWidget('softBinderSyndrome', new sfWidgetFormInputCheckbox());
 
+
+
         $this->getWidget('tape_type')->setLabel('<span class="required">*</span>Tape Type:&nbsp;');
         $this->getWidget('thin_tape')->setLabel('Thin Tape:&nbsp;');
         $this->getWidget('slow_speed')->setLabel('Slow Speed:&nbsp;');
@@ -33,7 +35,16 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm {
         $this->setValidator('tape_type', new sfValidatorString(array('required' => true)));
         $this->setValidator('sound_field', new sfValidatorString(array('required' => true)));
 
+
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
+
+
+//        Constraint applyed 
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(0 => 'None', 1 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
+        $this->setDefault('pack_deformation', 0);
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
+        $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
+
 
 
         foreach (array('corrosionRustOxidation',

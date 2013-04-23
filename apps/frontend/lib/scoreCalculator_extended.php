@@ -218,15 +218,12 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'tapeThickness')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['tapeThickness'])) {
-                    var_dump($characteristicsValue);
-                    var_dump($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]);
-                    var_dump($characteristicsValue['c_name']);
-                    var_dump(strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name'])));
+
+
+
+
 
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        var_dump($characteristicsValue);
-                        var_dump($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]);
-                        exit;
                         echo 'tapeThickness =';
                         echo $tapeThickness = $characteristicsValue['c_score'];
                         echo '<br/>';

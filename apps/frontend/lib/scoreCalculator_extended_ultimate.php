@@ -467,7 +467,9 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'capacityLayers')) {
+
                 if (isset($AssetInformatoin[0]['FormatType']['recordingSpeed'])) {
+
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'capacityLayers = ';
                         echo $capacityLayers = $characteristicsValue['c_score'];
@@ -730,7 +732,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingSpeed')) {
                 if (isset($AssetInformatoin[0]['FormatType']['recordingSpeed'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['EightMMrecordingSpeed'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'recordingSpeed = ';
                         echo $recordingSpeed = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $recordingSpeed;
@@ -877,7 +879,9 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
                     }
                 }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'reelSize')) {
+
                     if (isset($AssetInformatoin[0]['FormatType']['reelSize'])) {
+
                         if (strstr(strtolower($this->multiselection_value['TwoInchReelSize'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'reelSize = ';
                             echo $reelSize = $characteristicsValue['c_score'];

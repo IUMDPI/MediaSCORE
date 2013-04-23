@@ -12,7 +12,7 @@
  */
 class TwoInchOpenReelVideo extends BaseTwoInchOpenReelVideo {
 
-    public static $constants = array(0 => array('' => 'Select', 0 => 'Quad', 1 => 'IVC', 2 => 'Unknown'),
-                                     1 => array('' => 'Select', 0 => 'Spot',1 => 'Cartridge',2 => '10.5"',3 => '14"'));
+    public static $constants = array(0 => array('' => 'Select', 0 => 'Quad', 1 => 'IVC', 2 => 'UnCartridgeknown'),
+                                     1 => array('' => 'Select', 0 => 'Spot',1 => '',2 => '10.5"',3 => '14"'));
 
 }

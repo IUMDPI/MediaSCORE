@@ -29,13 +29,16 @@ class scoreCalculator extends scoreCalculator_extended {
             'sound_field' => AnalogAudiocassette::$constants[1],
             'b' => MetalDisc::$generation,
             'pack_deformation' => Film::$constants[4],
+            'AnalogAudiocassettePack_deformation' => array(0 => 'None', 1 => 'Misc. damage'),
             'physicalDamage' => MetalDisc::$damage,
             'material' => MetalDisc::$constants,
             'substrate' => LacquerDisc::$constants,
+            'SoundWireReelcomposition' => array('' => 'Select', 0 => 'Stainless steel', 1 => ' Composition-other', 2 => 'Unknown'),
             'composition' => SoundWireReel::$constants,
             'recordingLayer' => MiniDisc::$constants[0],
             'recordingSpeed' => MiniDisc::$constants[1],
             'LaserdiscrecordingSpeed' => Laserdisc::$constants,
+            'DVrecordingSpeed' => DV::$constants,
             'recordingStandard' => StandardizedRecordingFormatType::$constants,
             'opticalDiscType' => OpticalVideo::$constants[0],
             'soundOpticalDiscType' => SoundOpticalDisk::$constants,
@@ -46,20 +49,24 @@ class scoreCalculator extends scoreCalculator_extended {
             'BetamaxformatVersion' => Betamax::$constants[0],
             'oxide' => Betamax::$constants[1],
             'EightMMformatVersion' => EightMM::$constants[0],
+            'EightMMrecordingSpeed' => EightMM::$constants[1],
             'OpenReelVideo2formatVersion' => Film::$constants[5],
             'OpenReelVideo1formatVersion' => OneInchOpenReelVideo::$constants[0],
             'OpenReelVideoHALFformatVersion' => HalfInchOpenReelVideo::$constants[0],
-            'BetaCamformatVersion' => HalfInchOpenReelVideo::$constants[0],
+            'BetaCamformatVersion' => Betacam::$constants[1],
             'DigitalBetacamformatVersion' => DigitalBetacam::$constants[1],
+            'VHSSize' => VHS::$constants[0],
             'VHSformatVersion' => VHS::$constants[1],
-            'UmaticformatVersion' => VHS::$constants[1],
+            'VHSrecordingSpeed' => VHS::$constants[2],
+            'UmaticformatVersion' => Umatic::$constants[1],
             'HDCAMformatVersion' => HDCam::$constants[0],
             'DVCProformatVersion' => DVCPro::$constants[0],
+            'DVCProrecordingSpeed' => DVCPro::$constants[1],
             'scanning' => HDCam::$constants[2],
             'format' => TwoInchOpenReelVideo::$constants[0],
             'TwoInchReelSize' => TwoInchOpenReelVideo::$constants[1],
             'OneInchReelSize' => OneInchOpenReelVideo::$constants[1],
-            'HalfInchReelSize' => OneInchOpenReelVideo::$constants[1],
+            'HalfInchReelSize' => HalfInchOpenReelVideo::$constants[1],
             'copies' => '0-1',
             'thin_tape' => '0-1',
             'oxidationCorrosion' => '0-1',
@@ -67,6 +74,8 @@ class scoreCalculator extends scoreCalculator_extended {
             'soft_binder_syndrome' => 'same',
             'softBinderSyndrome' => 'same',
             'size' => SizedVideoRecordingFormatType::$constants,
+            'DigitalBetacamsize' => DigitalBetacam::$constants[0],
+            'U-maticsize' => Umatic::$constants[0],
             'reflectiveLayer' => OpticalDiscFormatType::$constants[0],
             'dataLayer' => OpticalDiscFormatType::$constants[1],
             'GlobalFormatType' => FormatType::$formatTypesValue1d,
@@ -429,7 +438,7 @@ class scoreCalculator extends scoreCalculator_extended {
 //                        var_dump($characteristicsValue);
 //                        var_dump($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
 //                        exit;
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['SoundWireReelcomposition'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
 
                             echo 'composition = ';
                             echo $composition = $characteristicsValue['c_score'];
@@ -597,7 +606,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['AnalogAudiocassettePack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -984,6 +993,16 @@ class scoreCalculator extends scoreCalculator_extended {
             }
 
 
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
+                if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
+                    echo 'copies = ';
+                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    $this->score = (float) $this->score + (float) $copies;
+                    echo '<br/>';
+                    echo '<br/>';
+                }
+            }
+
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
@@ -994,6 +1013,8 @@ class scoreCalculator extends scoreCalculator_extended {
                     echo '<br/>';
                 }
             }
+
+
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
@@ -1006,15 +1027,7 @@ class scoreCalculator extends scoreCalculator_extended {
                     }
                 }
 
-                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
-                    if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-                        echo 'copies = ';
-                        echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                        $this->score = (float) $this->score + (float) $copies;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
+
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
                     echo 'fungus = ';
@@ -1051,7 +1064,7 @@ class scoreCalculator extends scoreCalculator_extended {
                 }
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'size')) {
                     if (isset($AssetInformatoin[0]['FormatType']['size'])) {
-                        if (strstr(strtolower($this->multiselection_value['size'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['DigitalBetacamsize'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'size = ';
                             echo $size = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $size;
@@ -1122,15 +1135,6 @@ class scoreCalculator extends scoreCalculator_extended {
                     echo '<br/>';
                 }
             }
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
-                if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-                    echo 'copies = ';
-                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + (float) $copies;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
 
@@ -1145,6 +1149,16 @@ class scoreCalculator extends scoreCalculator_extended {
 
 
             if (!$constraint_will_be_applied) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
+                        echo 'copies = ';
+                        echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + (float) $copies;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
                         echo 'off_brand = ';
@@ -1195,7 +1209,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'size')) {
                     if (isset($AssetInformatoin[0]['FormatType']['size'])) {
-                        if (strstr(strtolower($this->multiselection_value['size'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['U-maticsize'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'size = ';
                             echo $size = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $size;
