@@ -29,7 +29,8 @@ class scoreCalculator extends scoreCalculator_extended {
             'sound_field' => AnalogAudiocassette::$constants[1],
             'b' => MetalDisc::$generation,
             'pack_deformation' => Film::$constants[4],
-            'AnalogAudiocassettePack_deformation' => array(0 => 'None', 1 => 'Misc. damage'),
+            'AnalogAudiocassettePack_deformation' => array(1 => 'Misc. damage'),
+            'NewPack_deformation' => array(1 => 'Misc. damage'),
             'physicalDamage' => MetalDisc::$damage,
             'material' => MetalDisc::$constants,
             'substrate' => LacquerDisc::$constants,
@@ -54,12 +55,12 @@ class scoreCalculator extends scoreCalculator_extended {
             'OpenReelVideo1formatVersion' => OneInchOpenReelVideo::$constants[0],
             'OpenReelVideoHALFformatVersion' => HalfInchOpenReelVideo::$constants[0],
             'BetaCamformatVersion' => Betacam::$constants[1],
-            'DigitalBetacamformatVersion' => DigitalBetacam::$constants[1],
+            'DigitalBetacamformatVersion' => array('' => 'Select', 'Digital', 'Format Version Betacam SX', 'Format Version IMX'),
             'VHSSize' => VHS::$constants[0],
             'VHSformatVersion' => VHS::$constants[1],
             'VHSrecordingSpeed' => VHS::$constants[2],
             'UmaticformatVersion' => Umatic::$constants[1],
-            'HDCAMformatVersion' => HDCam::$constants[0],
+            'HDCAMformatVersion' => array('' => 'Select', 0 => 'Standard', 1 => 'Format Version SR'),
             'DVCProformatVersion' => DVCPro::$constants[0],
             'DVCProrecordingSpeed' => DVCPro::$constants[1],
             'scanning' => HDCam::$constants[2],
@@ -1090,7 +1091,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -1235,7 +1236,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;

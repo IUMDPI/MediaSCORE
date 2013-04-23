@@ -33,7 +33,7 @@ DVCPRO HD has a red tape-door', 'class' => 'override_required')));
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(1 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');

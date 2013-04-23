@@ -139,7 +139,7 @@ class scoreCalculator_extended_moderate {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -271,7 +271,7 @@ class scoreCalculator_extended_moderate {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -398,7 +398,7 @@ class scoreCalculator_extended_moderate {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -546,7 +546,7 @@ class scoreCalculator_extended_moderate {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                     if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'pack_deformation = ';
                             echo $pack_deformation = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $pack_deformation;
@@ -854,7 +854,7 @@ class scoreCalculator_extended_moderate {
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'pack_deformation')) {
                 if (isset($AssetInformatoin[0]['FormatType']['pack_deformation'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['NewPack_deformation'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'pack_deformation = ';
                         echo $pack_deformation = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $pack_deformation;

@@ -15,7 +15,8 @@ class HDCamForm extends BaseHDCamForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => HDCam::$constants[0]), array('title' => 'HDCAM tapes are black with an orange lid, and HDCAM SR tapes black with a cyan lid.', 'onchange' => 'checkFormat();', 'class' => 'override_required')));
+//        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Standard', 1 => 'SR')), array('title' => 'HDCAM tapes are black with an orange lid, and HDCAM SR tapes black with a cyan lid.', 'onchange' => 'checkFormat();', 'class' => 'override_required')));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Standard', 1 => 'Format Version SR')), array('title' => 'HDCAM tapes are black with an orange lid, and HDCAM SR tapes black with a cyan lid.', 'onchange' => 'checkFormat();', 'class' => 'override_required')));
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
@@ -35,7 +36,8 @@ class HDCamForm extends BaseHDCamForm {
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
+//        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(1 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');

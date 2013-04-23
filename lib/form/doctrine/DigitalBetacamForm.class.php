@@ -20,7 +20,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
 
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => DigitalBetacam::$constants[1]), array('onchange' => 'checkFormat();', 'class' => 'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 'Digital', 'Format Version Betacam SX', 'Format Version IMX')), array('onchange' => 'checkFormat();', 'class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
@@ -33,7 +33,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->setValidator('softBinderSyndrome', new sfValidatorBoolean());
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(1 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
