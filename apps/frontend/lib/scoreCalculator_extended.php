@@ -497,6 +497,19 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                     echo '<br/>';
                 }
             }
+
+
+
+            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
+                if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
+                    echo 'materialsBreakdown = ';
+                    echo $materialsBreakdown = (($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                    $this->score = (float) $this->score + $materialsBreakdown;
+                    echo '<br/>';
+                    echo '<br/>';
+                }
+            }
+
             if (!$constraint_will_be_applied) {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
@@ -524,16 +537,6 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                         echo 'other_contaminants = ';
                         echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $other_contaminants;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
-
-                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
-                    if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
-                        echo 'materialsBreakdown = ';
-                        echo $materialsBreakdown = (($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                        $this->score = (float) $this->score + $materialsBreakdown;
                         echo '<br/>';
                         echo '<br/>';
                     }
