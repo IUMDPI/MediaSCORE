@@ -841,7 +841,11 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
     }
 
     public function OpticalVideoCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
+        $constraint_will_be_applied = FALSE;
 
+        if ($AssetInformatoin[0]['FormatType']['materialsBreakdown'] != '' && $AssetInformatoin[0]['FormatType']['materialsBreakdown'] != NULL) {
+            $constraint_will_be_applied = TRUE;
+        }
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 continue;
@@ -878,116 +882,6 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                     echo '<br/>';
                 }
             }
-
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
-                if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
-                    echo 'off_brand = ';
-                    echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    echo '<br/>';
-                    $this->score = (float) $this->score + (float) $off_brand;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
-                echo 'fungus = ';
-                if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
-                    echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + $fungus;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
-                if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                    echo 'other_contaminants = ';
-                    echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + $other_contaminants;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-
-
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'formatVersion')) {
-                if (isset($AssetInformatoin[0]['FormatType']['formatVersion'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'formatVersion = ';
-                        echo $formatVersion = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $formatVersion;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'opticalDiscType')) {
-                if (isset($AssetInformatoin[0]['FormatType']['opticalDiscType'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'opticalDiscType = ';
-                        echo $opticalDiscType = $characteristicsValue['c_score'];
-                        $this->score = (float) $tshis->score + (float) $opticalDiscType;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'reflectiveLayer')) {
-
-                if (isset($AssetInformatoin[0]['FormatType']['reflectiveLayer'])) {
-                    $reflectiveLayer_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-
-                    foreach ($reflectiveLayer_array as $reflectiveLayer_one) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$reflectiveLayer_one]), strtolower($characteristicsValue['c_name']))) {
-                            echo 'reflectiveLayer = ';
-                            echo $reflectiveLayer = $characteristicsValue['c_score'];
-
-                            $this->score = (float) $this->score + (float) $reflectiveLayer;
-                            echo '<br/>';
-                            echo '<br/>';
-                        }
-                    }
-                }
-            }
-
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'dataLayer')) {
-
-                if (isset($AssetInformatoin[0]['FormatType']['dataLayer'])) {
-                    $dataLayer_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-
-                    foreach ($dataLayer_array as $dataLayer_one) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$dataLayer_one]), strtolower($characteristicsValue['c_name']))) {
-                            echo 'reflectiveLayer = ';
-                            echo $dataLayer = $characteristicsValue['c_score'];
-
-                            $this->score = (float) $this->score + (float) $dataLayer;
-                            echo '<br/>';
-                            echo '<br/>';
-                        }
-                    }
-                }
-            }
-
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'physicalDamage')) {
-                if (isset($AssetInformatoin[0]['FormatType']['physicalDamage'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'physicalDamage = ';
-                        echo $physicalDamage = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $physicalDamage;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
-            }
-
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
                 if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
                     echo 'materialsBreakdown = ';
@@ -997,8 +891,117 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                     echo '<br/>';
                 }
             }
-        }
+            if (!$constraint_will_be_applied) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
+                        echo 'off_brand = ';
+                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + (float) $off_brand;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
 
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
+                    echo 'fungus = ';
+                    if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
+                        echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + $fungus;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
+                        echo 'other_contaminants = ';
+                        echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + $other_contaminants;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
+
+
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'formatVersion')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['formatVersion'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'formatVersion = ';
+                            echo $formatVersion = $characteristicsValue['c_score'];
+                            $this->score = (float) $this->score + (float) $formatVersion;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'opticalDiscType')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['opticalDiscType'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'opticalDiscType = ';
+                            echo $opticalDiscType = $characteristicsValue['c_score'];
+                            $this->score = (float) $tshis->score + (float) $opticalDiscType;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'reflectiveLayer')) {
+
+                    if (isset($AssetInformatoin[0]['FormatType']['reflectiveLayer'])) {
+                        $reflectiveLayer_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
+
+                        foreach ($reflectiveLayer_array as $reflectiveLayer_one) {
+                            if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$reflectiveLayer_one]), strtolower($characteristicsValue['c_name']))) {
+                                echo 'reflectiveLayer = ';
+                                echo $reflectiveLayer = $characteristicsValue['c_score'];
+
+                                $this->score = (float) $this->score + (float) $reflectiveLayer;
+                                echo '<br/>';
+                                echo '<br/>';
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'dataLayer')) {
+
+                    if (isset($AssetInformatoin[0]['FormatType']['dataLayer'])) {
+                        $dataLayer_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
+
+                        foreach ($dataLayer_array as $dataLayer_one) {
+                            if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$dataLayer_one]), strtolower($characteristicsValue['c_name']))) {
+                                echo 'dataLayer = ';
+                                echo $dataLayer = $characteristicsValue['c_score'];
+
+                                $this->score = (float) $this->score + (float) $dataLayer;
+                                echo '<br/>';
+                                echo '<br/>';
+                            }
+                        }
+                    }
+                }
+
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'physicalDamage')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['physicalDamage'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'physicalDamage = ';
+                            echo $physicalDamage = $characteristicsValue['c_score'];
+                            $this->score = (float) $this->score + (float) $physicalDamage;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+            }
+        }
         return $this->score;
     }
 
