@@ -532,7 +532,6 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
                     if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
                         echo 'materialsBreakdown = ';
-                        var_dump($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1);
                         echo $materialsBreakdown = (($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
                         $this->score = (float) $this->score + $materialsBreakdown;
                         echo '<br/>';
