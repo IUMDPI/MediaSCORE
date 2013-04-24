@@ -140,7 +140,7 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
 
                 if (isset($AssetInformatoin[0]['FormatType']['speed'])) {
                     $speed_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-                    
+
                     foreach ($speed_array as $speed_one) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$speed_one]), strtolower($characteristicsValue['c_name']))) {
                             echo 'speed = ';
@@ -218,11 +218,6 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'tapeThickness')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['tapeThickness'])) {
-
-
-
-
-
                     if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'tapeThickness =';
                         echo $tapeThickness = $characteristicsValue['c_score'];
@@ -463,14 +458,15 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
     }
 
     public function MiniDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
+        $constraint_will_be_applied = FALSE;
 
+        if ($AssetInformatoin[0]['FormatType']['materialsBreakdown'] != '' && $AssetInformatoin[0]['FormatType']['materialsBreakdown'] != NULL) {
+            $constraint_will_be_applied = TRUE;
+        }
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 continue;
             }
-
-
-
             if ($characteristicsValue['c_name'] == 'base_score') {
                 echo 'base_score = ';
                 echo $this->score = (float) $this->score + (float) $characteristicsValue['c_score'];
@@ -501,79 +497,81 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                     echo '<br/>';
                 }
             }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
-                if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
-                    echo 'off_brand = ';
-                    echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    echo '<br/>';
-                    $this->score = (float) $this->score + (float) $off_brand;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
-                echo 'fungus = ';
-                if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
-                    echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + $fungus;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
-                if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
-                    echo 'other_contaminants = ';
-                    echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + $other_contaminants;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
-                if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
-                    echo 'materialsBreakdown = ';
-                    echo $materialsBreakdown = (($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + $materialsBreakdown;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
-
-
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'physicalDamage')) {
-                if (isset($AssetInformatoin[0]['FormatType']['physicalDamage'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'physicalDamage = ';
-                        echo $physicalDamage = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $physicalDamage;
+            if (!$constraint_will_be_applied) {
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
+                        echo 'off_brand = ';
+                        echo $off_brand = (($AssetInformatoin[0]['FormatType']['off_brand'] != '' && $AssetInformatoin[0]['FormatType']['off_brand'] != NULL) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        echo '<br/>';
+                        $this->score = (float) $this->score + (float) $off_brand;
                         echo '<br/>';
                         echo '<br/>';
                     }
                 }
-            }
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingLayer')) {
-                if (isset($AssetInformatoin[0]['FormatType']['recordingLayer'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'recordingLayer = ';
-                        echo $recordingLayer = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $recordingLayer;
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus')) {
+                    echo 'fungus = ';
+                    if (isset($AssetInformatoin[0]['FormatType']['fungus'])) {
+                        echo $fungus = (($AssetInformatoin[0]['FormatType']['fungus'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + $fungus;
                         echo '<br/>';
                         echo '<br/>';
                     }
                 }
-            }
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingSpeed')) {
-                if (isset($AssetInformatoin[0]['FormatType']['recordingSpeed'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'recordingSpeed = ';
-                        echo $recordingSpeed = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $recordingSpeed;
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'other_contaminants')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['other_contaminants'])) {
+                        echo 'other_contaminants = ';
+                        echo $other_contaminants = (($AssetInformatoin[0]['FormatType']['other_contaminants'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + $other_contaminants;
                         echo '<br/>';
                         echo '<br/>';
+                    }
+                }
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'materialsBreakdown')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['materialsBreakdown'])) {
+                        echo 'materialsBreakdown = ';
+                        var_dump($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1);
+                        echo $materialsBreakdown = (($AssetInformatoin[0]['FormatType']['materialsBreakdown'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + $materialsBreakdown;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
+
+
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'physicalDamage')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['physicalDamage'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'physicalDamage = ';
+                            echo $physicalDamage = $characteristicsValue['c_score'];
+                            $this->score = (float) $this->score + (float) $physicalDamage;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingLayer')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['recordingLayer'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'recordingLayer = ';
+                            echo $recordingLayer = $characteristicsValue['c_score'];
+                            $this->score = (float) $this->score + (float) $recordingLayer;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
+                    }
+                }
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingSpeed')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['recordingSpeed'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                            echo 'recordingSpeed = ';
+                            echo $recordingSpeed = $characteristicsValue['c_score'];
+                            $this->score = (float) $this->score + (float) $recordingSpeed;
+                            echo '<br/>';
+                            echo '<br/>';
+                        }
                     }
                 }
             }
