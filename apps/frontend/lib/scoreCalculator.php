@@ -49,6 +49,7 @@ class scoreCalculator extends scoreCalculator_extended {
             'XDCAMformatVersion' => XDCamOptical::$constants[0],
             'BetamaxformatVersion' => Betamax::$constants[0],
             'oxide' => Betamax::$constants[1],
+            'BetaMaxoxide' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide',3=>'Non-native'),
             'EightMMformatVersion' => EightMM::$constants[0],
             'EightMMrecordingSpeed' => EightMM::$constants[1],
             'OpenReelVideo2formatVersion' => Film::$constants[5],

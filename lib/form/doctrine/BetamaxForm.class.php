@@ -15,12 +15,12 @@ class BetamaxForm extends BaseBetamaxForm {
      */
     public function configure() {
         parent::configure();
-        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Betamax::$constants[0]),array('class'=>'override_required')));
-        $this->setWidget('oxide', new sfWidgetFormChoice(array('choices' => Betamax::$constants[1]),array('class'=>'override_required')));
+        $this->setWidget('formatVersion', new sfWidgetFormChoice(array('choices' => Betamax::$constants[0]), array('class' => 'override_required')));
+        $this->setWidget('oxide', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide', 3 => 'Non-native')), array('class' => 'override_required')));
 //        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class'=>'override_required')));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(3 => 'Misc. damage'), 'expanded' => true), array('class'=>'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(3 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
 
-        
+
 
 
         $this->setValidator('formatVersion', new sfValidatorString(array('required' => true)));
