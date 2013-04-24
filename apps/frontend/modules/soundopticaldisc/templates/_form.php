@@ -36,3 +36,12 @@
         
     });
 </script>
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#format_type_off_brand").parents(".row").show();
+        $("#format_type_fungus").parents(".row").show();
+    });
+</script>

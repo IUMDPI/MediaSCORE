@@ -26,7 +26,7 @@
             'id':'codec'
         });
         checkFormat();
-         checkCodec();
+        checkCodec();
     });
     function checkFormat(){
         if($('#xd_cam_optical_format').val()=='0'){
@@ -60,4 +60,12 @@
         }
     }
 
+</script>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#format_type_off_brand").parents(".row").show();
+        $("#format_type_fungus").parents(".row").show();
+    });
 </script>

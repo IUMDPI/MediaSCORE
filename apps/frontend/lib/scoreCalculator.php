@@ -29,8 +29,8 @@ class scoreCalculator extends scoreCalculator_extended {
             'sound_field' => AnalogAudiocassette::$constants[1],
             'b' => MetalDisc::$generation,
             'pack_deformation' => Film::$constants[4],
-            'AnalogAudiocassettePack_deformation' => array(1 => 'Misc. damage'),
-            'NewPack_deformation' => array(1 => 'Misc. damage'),
+            'AnalogAudiocassettePack_deformation' => array(3 => 'Misc. damage'),
+            'NewPack_deformation' => array(3 => 'Misc. damage'),
             'physicalDamage' => MetalDisc::$damage,
             'material' => MetalDisc::$constants,
             'substrate' => LacquerDisc::$constants,
@@ -1250,12 +1250,12 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
-//    public function check() {
-//        echo 'i am in ';1q9B
-//    }
+    public function check() {
+        echo 'i am in ';
+    }
 
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
-        echo '<pre>';
+        echo '<pre style="color:red;font-weight:bold;">';
         print_r($AssetInformatoin);
         print_r($characteristicsValues);
         echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];

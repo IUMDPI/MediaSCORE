@@ -140,7 +140,7 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
 
                 if (isset($AssetInformatoin[0]['FormatType']['speed'])) {
                     $speed_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-
+                    
                     foreach ($speed_array as $speed_one) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$speed_one]), strtolower($characteristicsValue['c_name']))) {
                             echo 'speed = ';
