@@ -27,7 +27,7 @@
                 </th>
                 <td>
                     <?php echo $form['delamination']->render(); ?> 
-                    
+
                     <?php echo $form['delamination']->renderError(); ?>
                 </td>
 
@@ -57,3 +57,11 @@
         </tbody>
     </table>
 </form>
+<script type="text/javascript">
+    $(function(){
+        $("#format_type_off_brand").parents(".row").hide();
+        $("#format_type_off_brand").prop('checked', false);
+   
+    });
+    
+</script>
