@@ -88,7 +88,18 @@ class reportsActions extends sfActions {
             $intial_dicrectory = '\reports\\';
 
             $file_name_with_directory = $intial_dicrectory . $file_name;
+            $excel = new excel();
+            $excel->getActiveSheetIndex();
+            $excel->getActiveSheet()->setTitle('Catalog');
+            $excel->getActiveSheet()->setCellValueExplicitByColumnAndRow(1, 1, 'check');
+            $filename = 'Test-' . date('MDY-His', time()) . '.xlsx';
+            $path = sfConfig::get('sf_upload_dir') . '/' . $filename;
+            $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+            $objWriter->save($path); // save the
+            $excel->disconnectWorksheets();
 
+
+            exit;
             $csvHandler->CreateCSV($ExportArray, $file_name_with_directory);
             $csvHandler->DownloadCSV($file_name_with_directory);
             $csvHandler->DeleteFile($file_name_with_directory);

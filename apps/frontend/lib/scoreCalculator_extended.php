@@ -923,12 +923,11 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                     }
                 }
 
-
-
-
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'formatVersion')) {
-                    if (isset($AssetInformatoin[0]['FormatType']['formatVersion'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+
+                    if (isset($AssetInformatoin[0]['FormatType']['format'])) {
+                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType']['format']]), strtolower($characteristicsValue['c_name']))) {
+
                             echo 'formatVersion = ';
                             echo $formatVersion = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $formatVersion;
