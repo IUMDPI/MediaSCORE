@@ -26,7 +26,7 @@ class XDCamOpticalForm extends BaseXDCamOpticalForm {
 
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->setValidator('capacityLayers', new sfValidatorString(array('required' => true)));
-        $this->setValidator('codec', new sfValidatorString(array('required' => true)));
+        $this->setValidator('codec', new sfValidatorString(array('required' => false)));
         $this->setValidator('dataRate', new sfValidatorString(array('required' => false)));
         $this->setValidator('physicalDamage', new sfValidatorString(array('required' => true)));
 
