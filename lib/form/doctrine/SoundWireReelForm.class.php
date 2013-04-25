@@ -17,7 +17,7 @@ class SoundWireReelForm extends BaseSoundWireReelForm {
         parent::configure();
         $this->setWidget('corrosionRustOxidation', new sfWidgetFormInputCheckbox());
 //        $this->setWidget('composition', new sfWidgetFormChoice(array('choices' => SoundWireReel::$constants), array('class' => 'override_required')));
-        $this->setWidget('composition', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Stainless steel', 1 => ' Composition-other', 2 => 'Iron', 3 => 'Unknown')), array('class' => 'override_required')));
+        $this->setWidget('composition', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Stainless steel', 1 => ' Composition-other', 3 => 'Unknown')), array('class' => 'override_required')));
         $this->setWidget('nonStandardBrand', new sfWidgetFormInputCheckbox());
 
         $this->getWidget('corrosionRustOxidation')->setLabel('Corrosion, rust or oxidation:&nbsp;');
