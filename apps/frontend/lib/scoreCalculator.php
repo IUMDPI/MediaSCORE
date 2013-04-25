@@ -41,6 +41,7 @@ class scoreCalculator extends scoreCalculator_extended {
             'LaserdiscrecordingSpeed' => Laserdisc::$constants,
             'DVrecordingSpeed' => DV::$constants,
             'recordingStandard' => StandardizedRecordingFormatType::$constants,
+            'NewrecordingStandard' => array('' => 'Select', 0 => 'NTSC', 1 => 'PAL', 2 => 'SECAM', 3 => 'Unknown', 4 => 'Non-native'),
             'opticalDiscType' => OpticalVideo::$constants[0],
             'soundOpticalDiscType' => SoundOpticalDisk::$constants,
             'formatVersion' => OpticalVideo::$constants[1],
@@ -49,7 +50,7 @@ class scoreCalculator extends scoreCalculator_extended {
             'XDCAMformatVersion' => XDCamOptical::$constants[0],
             'BetamaxformatVersion' => Betamax::$constants[0],
             'oxide' => Betamax::$constants[1],
-            'BetaMaxoxide' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide',3=>'Non-native'),
+            'Newoxide' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide', 3 => 'Unknown'),
             'EightMMformatVersion' => EightMM::$constants[0],
             'EightMMrecordingSpeed' => EightMM::$constants[1],
             'OpenReelVideo2formatVersion' => Film::$constants[5],
@@ -1055,7 +1056,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                     if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'recordingStandard = ';
                             echo $recordingStandard = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $recordingStandard;
@@ -1198,7 +1199,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                     if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'recordingStandard = ';
                             echo $recordingStandard = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $recordingStandard;

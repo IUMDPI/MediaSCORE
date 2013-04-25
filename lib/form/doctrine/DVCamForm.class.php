@@ -26,7 +26,8 @@ class DVCamForm extends BaseDVCamForm {
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
-
+        //constaints applyed
+        $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
         foreach (array('noise_reduction',
     'duration_type_methodology',
     'format_notes',

@@ -455,7 +455,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                 if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'recordingStandard = ';
                         echo $recordingStandard = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $recordingStandard;
@@ -594,7 +594,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                     if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'recordingStandard = ';
                             echo $recordingStandard = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $recordingStandard;
@@ -608,7 +608,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'oxide')) {
                     if (isset($AssetInformatoin[0]['FormatType']['oxide'])) {
-                        if (strstr(strtolower($this->multiselection_value['BetaMaxoxide'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['Newoxide'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'oxide = ';
                             echo $oxide = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $oxide;
@@ -719,7 +719,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                 if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'recordingStandard = ';
                         echo $recordingStandard = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $recordingStandard;
@@ -856,7 +856,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                     if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                        if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                        if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'recordingStandard = ';
                             echo $recordingStandard = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $recordingStandard;
@@ -1003,7 +1003,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'recordingStandard')) {
                 if (isset($AssetInformatoin[0]['FormatType']['recordingStandard'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['NewrecordingStandard'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                         echo 'recordingStandard = ';
                         echo $recordingStandard = $characteristicsValue['c_score'];
                         $this->score = (float) $this->score + (float) $recordingStandard;

@@ -31,6 +31,8 @@ class DVForm extends BaseDVForm {
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
+        //constaints applyed
+        $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
 
         foreach (array('noise_reduction',
     'duration_type_methodology',

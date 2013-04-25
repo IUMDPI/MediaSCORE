@@ -10,6 +10,10 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class FormatTypedVideoRecording extends BaseFormatTypedVideoRecording
-{
+class FormatTypedVideoRecording extends BaseFormatTypedVideoRecording {
+
+    public static $constants = array(
+        0 => array('' => 'Select', 0 => 'NTSC', 1 => 'PAL', 2 => 'SECAM', 3 => 'Unknown', 4 => 'Non-native')
+    );
+
 }
