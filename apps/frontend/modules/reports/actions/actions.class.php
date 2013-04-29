@@ -36,8 +36,8 @@ class reportsActions extends sfActions {
                 $Units = Doctrine_Query::Create()
                         ->from('Unit u')
                         ->select('u.* ,p.*,sl.*')
-                        ->innerJoin('u.Personnel p ')
-                        ->innerJoin('u.StorageLocations sl ')
+                        ->LeftJoin('u.Personnel p ')
+                        ->LeftJoin('u.StorageLocations sl ')
                         ->where('u.id  = ?', $listUnits_RRD)
                         ->fetchArray();
             } else {
@@ -45,8 +45,8 @@ class reportsActions extends sfActions {
                 $Units = Doctrine_Query::Create()
                         ->from('Unit u')
                         ->select('u.* ,p.*,sl.*')
-                        ->innerJoin('u.Personnel p ')
-                        ->innerJoin('u.StorageLocations sl ')
+                        ->LeftJoin('u.Personnel p ')
+                        ->LeftJoin('u.StorageLocations sl ')
                         ->fetchArray();
             }
             foreach ($Units as $Unit) {
@@ -60,7 +60,7 @@ class reportsActions extends sfActions {
                         $Asset = Doctrine_Query::Create()
                                 ->from('AssetGroup a')
                                 ->select('a.*, ft.*')
-                                ->innerJoin("a.FormatType ft")
+                                ->LeftJoin("a.FormatType ft")
                                 ->where('a.parent_node_id  = ?', $Collection['id'])
                                 ->where('ft.type  = ?', $format_id)
                                 ->addOrderBy('ft.asset_score DESC')
@@ -70,7 +70,7 @@ class reportsActions extends sfActions {
                         $Asset = Doctrine_Query::Create()
                                 ->from('AssetGroup a')
                                 ->select('a.*, ft.*')
-                                ->innerJoin("a.FormatType ft")
+                                ->LeftJoin("a.FormatType ft")
                                 ->where('a.parent_node_id  = ?', $Collection['id'])
                                 ->addOrderBy('ft.asset_score DESC')
                                 ->fetchArray();
