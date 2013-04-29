@@ -83,6 +83,8 @@ class reportsActions extends sfActions {
                     $Assets[] = $SolutionArray;
                 }
             }
+            var_dump($Assets);
+            exit;
             if ($Assets) {
                 foreach ($Assets as $Asset) {
                     $FormatType = FormatType::$formatTypesValue1d[$Asset['AssetGroup']['type']];
