@@ -117,6 +117,10 @@ abstract class BaseStore extends sfDoctrineRecord
              array(
               'type' => 4,
              ),
+             'SimpleSubUnit' => 
+             array(
+              'type' => 'SimpleSubUnit',
+             ),
              ));
     }
 

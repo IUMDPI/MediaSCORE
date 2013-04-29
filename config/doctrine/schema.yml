@@ -221,6 +221,7 @@ FormatType:
     duration_type: { type: string(255) }
     duration_type_methodology: { type: string(255) }
     format_notes: { type:text }
+    asset_score: { type:float }
 
 # The Specific Format Types
 
@@ -768,9 +769,7 @@ CharacteristicsValues:
       local: constraint_id
       foreign: id
       type:  one
-Reports: #Abstract
-   inheritance:
-   columns:
+
 #################################### charactristics_value ######################################
 #CharacteristicsFormatConstraints: # For the one-to-many relationship between Charactristics , Format and Constraints entities
 #  columns:
@@ -792,3 +791,10 @@ Reports: #Abstract
 #      type:  one
 ################################################################################################
 ################################################################################################
+
+SimpleSubUnit: # Abstract
+  inheritance:
+    extends: Unit
+    type: column_aggregation
+  columns:
+    parent_node_id: { type: integer }

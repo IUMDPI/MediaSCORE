@@ -11,6 +11,7 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Unit extends BaseUnit {
+
     /**
      * get the duration
      * 
@@ -46,6 +47,32 @@ class Unit extends BaseUnit {
         }
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
+    }
+
+    /**
+     * get the Units Custome
+     * 
+     * @param  Array of adding custome values
+     * @return Array of Units
+     */
+    static public function getUnitNameCustome($add_values = NULL) {
+        $Units = Doctrine_Query::Create()
+                ->from('Unit c')
+                ->select('c.*')
+                ->fetchArray();
+        $UnitsArray = array();
+        
+        foreach ($Units as $Unit) {
+//            var_dump($Unit);
+//            exit;
+            $UnitsArray[$Unit['id']] = $Unit['name'];
+        }
+
+        if ($add_values) {
+            $UnitsArray[0] = $add_values;
+        }
+        ksort($UnitsArray);        
+        return $UnitsArray;
     }
 
 }

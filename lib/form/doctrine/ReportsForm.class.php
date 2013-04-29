@@ -11,7 +11,20 @@
 class ReportsForm extends BaseReportsForm {
 
     public function configure() {
-        $this->setWidget('listUnits', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'add_empty' => true)));
+        $Units = Unit::getUnitNameCustome('All Units');
+
+//        $this->setWidget('listUnits', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'add_empty' => true)));
+        $this->setWidget('listUnits_RRD', new sfWidgetFormChoice(array('choices' => $Units)));
+        $this->setWidget('ExportType', new sfWidgetFormChoice(array('choices' => array('csv' => 'CSV', 'xls' => 'XLS'))));
+
+
+        $array = FormatType::$formatTypesValue1d;
+        array_unshift($array, 'All Formats');
+
+        
+
+        $this->setWidget('listUnits', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName')));
+        $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => $array, 'default' => 0)));
     }
 
 }

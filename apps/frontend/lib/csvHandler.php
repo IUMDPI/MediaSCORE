@@ -77,27 +77,7 @@ class csvHandler {
         header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
         $file_url = $this->getUploadDicrectoryPath() . $file_name;
         readfile($file_url);
-    }
-
-    /**
-     * CSV File Downloader of CSV Handler
-     * 
-     * @param String CSV_File_Name_with_its_dicrectory_name 
-     */
-    function DownloadXLSX($file_name) {
-
-        header("Pragma: public");
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header("Content-Type: application/force-download");
-        header("Content-Disposition: attachment; filename=" . $file_name . "\"");
-        header("Content-Type: application/vnd.ms-excel");
-
-//        header('Content-Type: application/octet-stream');
-//        header("Content-Transfer-Encoding: Binary");
-//        header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
-        $file_url = $this->getUploadDicrectoryPath() . $file_name;
-        readfile($file_url);
+        return;
     }
 
     /**
