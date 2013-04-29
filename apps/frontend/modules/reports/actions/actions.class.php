@@ -23,6 +23,7 @@ class reportsActions extends sfActions {
         $this->form = new ReportsForm();
 
         if ($request->isMethod(sfRequest::POST)) {
+            $FlagForReport = FALSE;
 
             $AssetScoreReportArray = array();
             $Assets = array();
@@ -77,15 +78,17 @@ class reportsActions extends sfActions {
                     }
 
                     $SolutionArray = array();
-                    $SolutionArray['AssetGroup'] = $Asset[0];
-                    $SolutionArray['Collection'] = $Collection;
-                    $SolutionArray['Unit'] = $Unit;
+                    if ($Asset) {
+                        $SolutionArray['AssetGroup'] = $Asset[0];
+                        $SolutionArray['Collection'] = $Collection;
+                        $SolutionArray['Unit'] = $Unit;
+                        $FlagForReport = TRUE;
+                    }
                     $Assets[] = $SolutionArray;
                 }
             }
-            var_dump($Assets);
-            exit;
-            if ($Assets) {
+
+            if ($Assets && $FlagForReport) {
                 foreach ($Assets as $Asset) {
                     $FormatType = FormatType::$formatTypesValue1d[$Asset['AssetGroup']['type']];
                     foreach (FormatType::$typeNames as $typeNames) {
@@ -112,12 +115,12 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
                     $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
                     $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
-                    $AssetScoreReport['Collection Name'] = $Asset['Collection']['name']; #
-                    $AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id']; #
+                    $AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
+                    $AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id'];
                     $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
-                    $AssetScoreReport['Location'] = $Asset['AssetGroup']['location']; #
+                    $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
                     $AssetScoreReport['Format'] = $Asset['AssetGroup']['FormatType']['format'];
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
                     $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
@@ -155,7 +158,7 @@ class reportsActions extends sfActions {
 
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
-//                $excel->DeleteFile($file_name_with_directory);
+                    $excel->DeleteFile($file_name_with_directory);
                     exit;
                 } else {
 
@@ -167,7 +170,7 @@ class reportsActions extends sfActions {
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
                     $csvHandler->DownloadCSV($file_name_with_directory);
-//                $csvHandler->DeleteFile($file_name_with_directory);
+                    $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
             }
