@@ -19,7 +19,7 @@ class reportsActions extends sfActions {
      * 
      * @param sfWebRequest $request 
      */
-    public function executeAssetsGroupsScoringReports(sfWebRequest $request) {
+    public function executeAssetsgroupsscoringreports(sfWebRequest $request) {
         $this->form = new ReportsForm();
 
         if ($request->isMethod(sfRequest::POST)) {
