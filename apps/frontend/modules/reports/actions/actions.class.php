@@ -139,7 +139,8 @@ class reportsActions extends sfActions {
                 $excel->extractHeadings();
                 $filename = 'Asset_Group_Score_Report_' . date('M D Y-His', time()) . '.xlsx';
                 $Sheettitle = 'Asset_Group_Score_Report';
-                $intial_dicrectory = '\AssetsScore\xls\\';
+//                $intial_dicrectory = '\AssetsScore\xls\\';
+                $intial_dicrectory = '/AssetsScore/xls/';
                 $file_name_with_directory = $intial_dicrectory . $filename;
 
 
@@ -159,7 +160,8 @@ class reportsActions extends sfActions {
                 $csvHandler = new csvHandler();
 
                 $file_name = 'Recording_Date_Report_' . date('M D Y-His', time()) . '.csv';
-                $intial_dicrectory = '\RecordingDate\csv\\';
+//                $intial_dicrectory = '\RecordingDate\csv\\';
+                $intial_dicrectory = '/RecordingDate/csv/';
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory);
@@ -244,7 +246,8 @@ class reportsActions extends sfActions {
 
                 $filename = 'Recording_Date_Report_' . date('M D Y-His', time()) . '.xlsx';
                 $Sheettitle = 'Recording_Date_Report';
-                $intial_dicrectory = '\RecordingDate\xls\\';
+//                $intial_dicrectory = '\RecordingDate\xls\\';
+                $intial_dicrectory = '/RecordingDate/xls/';
                 $file_name_with_directory = $intial_dicrectory . $filename;
 
                 $excel->setDataArray($ExportArray);
@@ -259,7 +262,8 @@ class reportsActions extends sfActions {
 
                 $csvHandler = new csvHandler();
                 $file_name = 'Recording_Date_Report_' . date('M D Y-His', time()) . '.csv';
-                $intial_dicrectory = '\RecordingDate\csv\\';
+//                $intial_dicrectory = '\RecordingDate\csv\\';
+                $intial_dicrectory = '/RecordingDate/csv/';
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($ExportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory);
