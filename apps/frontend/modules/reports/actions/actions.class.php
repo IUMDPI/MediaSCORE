@@ -173,6 +173,8 @@ class reportsActions extends sfActions {
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
+            } else {
+                echo '<h1> no Record Found</h1> ';
             }
         }
     }

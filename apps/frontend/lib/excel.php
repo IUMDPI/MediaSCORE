@@ -205,7 +205,6 @@ class excel extends PHPExcel {
      */
     public function SaveFile() {
         $path = sfConfig::get('sf_upload_dir') . '/' . $this->filename;
-        
         $objWriter = PHPExcel_IOFactory::createWriter($this, 'Excel2007');
         $objWriter->save($path);
         $this->disconnectWorksheets();
