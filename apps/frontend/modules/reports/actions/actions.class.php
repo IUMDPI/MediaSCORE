@@ -177,7 +177,6 @@ class reportsActions extends sfActions {
                 echo '<script type="text/javascript"> $(function(){
                 alert("no Record Found")                    
                 });
-                    
                     </script>';
             }
         }
