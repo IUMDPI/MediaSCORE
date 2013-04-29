@@ -152,7 +152,7 @@ class reportsActions extends sfActions {
 
                 $excel->SaveFile();
                 $excel->DownloadXLSX($file_name_with_directory, $filename);
-                $excel->DeleteFile($file_name_with_directory);
+//                $excel->DeleteFile($file_name_with_directory);
                 exit;
             } else {
 
@@ -163,7 +163,7 @@ class reportsActions extends sfActions {
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory);
-                $csvHandler->DeleteFile($file_name_with_directory);
+//                $csvHandler->DeleteFile($file_name_with_directory);
                 exit;
             }
         }
