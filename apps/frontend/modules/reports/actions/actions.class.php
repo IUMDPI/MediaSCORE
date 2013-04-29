@@ -174,9 +174,11 @@ class reportsActions extends sfActions {
                     exit;
                 }
             } else {
-                echo '<script> $(function(){
-                    alert("no Record Found")
-                    });</script>';
+                echo '<script type="text/javascript"> $(function(){
+                alert("no Record Found")                    
+                });
+                    
+                    </script>';
             }
         }
     }
