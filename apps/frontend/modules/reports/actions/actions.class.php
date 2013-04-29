@@ -83,90 +83,91 @@ class reportsActions extends sfActions {
                     $Assets[] = $SolutionArray;
                 }
             }
-
-            foreach ($Assets as $Asset) {
-                $FormatType = FormatType::$formatTypesValue1d[$Asset['AssetGroup']['type']];
-                foreach (FormatType::$typeNames as $typeNames) {
-                    foreach ($typeNames as $key => $type) {
-                        if ($type == $FormatType) {
-                            $value = $key;
+            if ($Assets) {
+                foreach ($Assets as $Asset) {
+                    $FormatType = FormatType::$formatTypesValue1d[$Asset['AssetGroup']['type']];
+                    foreach (FormatType::$typeNames as $typeNames) {
+                        foreach ($typeNames as $key => $type) {
+                            if ($type == $FormatType) {
+                                $value = $key;
+                            }
                         }
                     }
+                    $value::$constants;
+                    $AssetScoreReport = array();
+                    $AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
+                    $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
+                    $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
+                    $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
+                    $AssetScoreReport['Unit Personnel First Name'] = $Asset['Unit']['Personnel'][0]['first_name'];
+                    $AssetScoreReport['Unit Personnel Last Name'] = $Asset['Unit']['Personnel'][0]['last_name'];
+                    $AssetScoreReport['Unit Personnel Phone'] = $Asset['Unit']['Personnel'][0]['phone'];
+                    $AssetScoreReport['Unit Personnel Email'] = $Asset['Unit']['Personnel'][0]['email_address'];
+                    $AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
+                    $AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
+                    $AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
+                    $AssetScoreReport['Building name/Room number'] = $Asset['Unit']['resident_structure_description']; #resident_structure_description
+                    $AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
+                    $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
+                    $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
+                    $AssetScoreReport['Collection Name'] = $Asset['Collection']['name']; #
+                    $AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id']; #
+                    $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
+                    $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
+                    $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
+                    $AssetScoreReport['Location'] = $Asset['AssetGroup']['location']; #
+                    $AssetScoreReport['Format'] = $Asset['AssetGroup']['FormatType']['format'];
+                    $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
+                    $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
+                    $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
+                    $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
+                    $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['Fungus'] = ($Asset['AssetGroup']['FormatType']['fungus'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['Other Contaminants'] = ($Asset['AssetGroup']['FormatType']['other_contaminants'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
+                    $AssetScoreReport['Duration type'] = FormatTypeForm::$durationtype[$Asset['AssetGroup']['FormatType']['duration_type']];
+                    $AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
+                    $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
+                    $AssetScoreReportArray[] = $AssetScoreReport;
                 }
-                $value::$constants;
-                $AssetScoreReport = array();
-                $AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
-                $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
-                $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
-                $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
-                $AssetScoreReport['Unit Personnel First Name'] = $Asset['Unit']['Personnel'][0]['first_name'];
-                $AssetScoreReport['Unit Personnel Last Name'] = $Asset['Unit']['Personnel'][0]['last_name'];
-                $AssetScoreReport['Unit Personnel Phone'] = $Asset['Unit']['Personnel'][0]['phone'];
-                $AssetScoreReport['Unit Personnel Email'] = $Asset['Unit']['Personnel'][0]['email_address'];
-                $AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
-                $AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
-                $AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
-                $AssetScoreReport['Building name/Room number'] = $Asset['Unit']['resident_structure_description']; #resident_structure_description
-                $AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
-                $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
-                $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
-                $AssetScoreReport['Collection Name'] = $Asset['Collection']['name']; #
-                $AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id']; #
-                $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
-                $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
-                $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
-                $AssetScoreReport['Location'] = $Asset['AssetGroup']['location']; #
-                $AssetScoreReport['Format'] = $Asset['AssetGroup']['FormatType']['format'];
-                $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
-                $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
-                $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
-                $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
-                $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
-                $AssetScoreReport['Fungus'] = ($Asset['AssetGroup']['FormatType']['fungus'] == '1') ? 'Yes' : 'No';
-                $AssetScoreReport['Other Contaminants'] = ($Asset['AssetGroup']['FormatType']['other_contaminants'] == '1') ? 'Yes' : 'No';
-                $AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
-                $AssetScoreReport['Duration type'] = FormatTypeForm::$durationtype[$Asset['AssetGroup']['FormatType']['duration_type']];
-                $AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
-                $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-                $AssetScoreReportArray[] = $AssetScoreReport;
-            }
-            $AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'score');
+                $AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'score');
 
-            if ($ExportType == 'xls') {
-                $excel = new excel();
-                $excel->setDataArray($AssetScoreReportArray);
-                $excel->extractHeadings();
-                $filename = 'Asset_Group_Score_Report_' . date('M D Y-His', time()) . '.xlsx';
-                $Sheettitle = 'Asset_Group_Score_Report';
+                if ($ExportType == 'xls') {
+                    $excel = new excel();
+                    $excel->setDataArray($AssetScoreReportArray);
+                    $excel->extractHeadings();
+                    $filename = 'Asset_Group_Score_Report_' . date('M D Y-His', time()) . '.xlsx';
+                    $Sheettitle = 'Asset_Group_Score_Report';
 //                $intial_dicrectory = '\AssetsScore\xls\\';
-                $intial_dicrectory = '/AssetsScore/xls/';
-                $file_name_with_directory = $intial_dicrectory . $filename;
+                    $intial_dicrectory = '/AssetsScore/xls/';
+                    $file_name_with_directory = $intial_dicrectory . $filename;
 
 
-                $excel->setDataArray($AssetScoreReportArray);
-                $excel->extractHeadings();
-                $excel->setFileName($file_name_with_directory);
-                $excel->setSheetTitle($Sheettitle);
+                    $excel->setDataArray($AssetScoreReportArray);
+                    $excel->extractHeadings();
+                    $excel->setFileName($file_name_with_directory);
+                    $excel->setSheetTitle($Sheettitle);
 
-                $excel->createExcel();
+                    $excel->createExcel();
 
-                $excel->SaveFile();
-                $excel->DownloadXLSX($file_name_with_directory, $filename);
+                    $excel->SaveFile();
+                    $excel->DownloadXLSX($file_name_with_directory, $filename);
 //                $excel->DeleteFile($file_name_with_directory);
-                exit;
-            } else {
+                    exit;
+                } else {
 
-                $csvHandler = new csvHandler();
+                    $csvHandler = new csvHandler();
 
-                $file_name = 'Recording_Date_Report_' . date('M D Y-His', time()) . '.csv';
+                    $file_name = 'Recording_Date_Report_' . date('M D Y-His', time()) . '.csv';
 //                $intial_dicrectory = '\RecordingDate\csv\\';
-                $intial_dicrectory = '/RecordingDate/csv/';
-                $file_name_with_directory = $intial_dicrectory . $file_name;
-                $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
-                $csvHandler->DownloadCSV($file_name_with_directory);
+                    $intial_dicrectory = '/RecordingDate/csv/';
+                    $file_name_with_directory = $intial_dicrectory . $file_name;
+                    $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory);
 //                $csvHandler->DeleteFile($file_name_with_directory);
-                exit;
+                    exit;
+                }
             }
         }
     }
