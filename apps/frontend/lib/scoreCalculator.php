@@ -1259,7 +1259,7 @@ class scoreCalculator extends scoreCalculator_extended {
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
         echo '<pre style="color:red;font-weight:bold;">';
         print_r($AssetInformatoin);
-        print_r($characteristicsValues);
+//        print_r($characteristicsValues);
         echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
         echo '<pre>';
         echo $this->$funcationName($AssetInformatoin, $characteristicsValues);
