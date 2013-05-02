@@ -359,7 +359,7 @@ class reportsActions extends sfActions {
                             ->leftJoin('c.Editor eu')
                             ->where('c.parent_node_id  = ?', $Unit['id'])
                             ->whereIn('c.id', $Collection_id)
-                            ->fetchArray();
+                            ->getSqlQuery();
                 }
 
                 $SolutionArray = array();
