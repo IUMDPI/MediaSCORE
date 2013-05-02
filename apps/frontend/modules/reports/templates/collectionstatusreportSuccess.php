@@ -5,28 +5,28 @@ echo $NoRecordFound = get_slot('my_slot');
 ?>
 
 <form action="<?php echo url_for('reports/collectionstatusreport') ?>" method="post">
-    <span style="margin: 10px;"><?php echo $form['listUnits_RRD']->renderLabel(); ?></span>
+    <span ><?php echo $form['listUnits_RRD']->renderLabel(); ?></span>
     <br/>
     <br/>
     <?php echo $form['listUnits_RRD']->render(); ?>
     <br/>
     <br/>
     <br/>
-    <span style="margin: 10px;"><?php echo $form['listCollection_RRD']->renderLabel(); ?></span>
+    <span ><?php echo $form['listCollection_RRD']->renderLabel(); ?></span>
     <br/>
     <br/>
     <?php echo $form['listCollection_RRD']->render(); ?>
     <br/>
     <br/>
     <br/>
-    <span style="margin: 10px;"><?php echo $form['collectionStatus']->renderLabel(); ?></span>
+    <span ><?php echo $form['collectionStatus']->renderLabel(); ?></span>
     <br/>
     <br/>
     <?php echo $form['collectionStatus']->render(); ?>
     <br/>
     <br/>
     <br/>
-    <span style="margin: 10px;"><?php echo $form['ExportType']->renderLabel(); ?></span>
+    <span ><?php echo $form['ExportType']->renderLabel(); ?></span>
     <br/>
     <br/>
     <?php echo $form['ExportType']->render(); ?>

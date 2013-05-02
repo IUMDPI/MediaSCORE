@@ -385,9 +385,9 @@ class reportsActions extends sfActions {
                     $collectionStatusReport['Collection Name'] = $collection['Collection']['name'];
                     $collectionStatusReport['Status'] = Collection::$statusConstants[$collection['Collection']['status']];
                     $collectionStatusReport['Collection Created On Date'] = $collection['Unit']['created_at'];
-                    $collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . $collection['Collection']['Creator']['last_name'];
+                    $collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
                     $collectionStatusReport['Collection Updated On Date'] = $collection['Collection']['updated_at'];
-                    $collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . $collection['Collection']['Editor']['last_name'];
+                    $collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
                     $collectionStatusReports[] = $collectionStatusReport;
                 }
                 $collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Uuit ID');
@@ -778,7 +778,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['User Role'] = $Asset['Unit']['Editor']['role'];
                         $AssetScoreReport['Asset Group In consultation With'] = $Asset['Unit']['Editor']['role'];
 
-                        
+
                         $AssetScoreReport['Unit Personnel ID'] = $Asset['Unit']['Editor']['role'];
                         $AssetScoreReport['Unit Personnel First Name'] = $Asset['Unit']['Editor']['role'];
                         $AssetScoreReport['Unit Personnel Last Name'] = $Asset['Unit']['Editor']['role'];
