@@ -204,9 +204,9 @@ class unitActions extends sfActions {
 
         // get the list of all the units 
         $this->units = Doctrine_Core::getTable('Unit')
-                                ->createQuery('a')
-                                ->orderBy('name')
-                                ->execute();
+                ->createQuery('a')
+                ->orderBy('name')
+                ->execute();
 
         // get all the request parameters
         $searchInpout = $request->getParameter('s');

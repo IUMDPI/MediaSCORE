@@ -13,6 +13,7 @@
 class Collection extends BaseCollection {
 
     public static $statusConstants = array('' => 'Select', 0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed');
+
     /**
      * get slug of a unit 
      * 
@@ -26,6 +27,7 @@ class Collection extends BaseCollection {
                 ->fetchOne();
         return $unit->getNameSlug();
     }
+
     /**
      *
      * 
@@ -34,6 +36,7 @@ class Collection extends BaseCollection {
     public function getCollectionSlug() {
         return urlSlug::slugify($this->getName());
     }
+
     /**
      *
      * 
@@ -62,6 +65,26 @@ class Collection extends BaseCollection {
 
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
+    }
+
+    static public function getCollectionNameCustom($add_values = NULL) {
+        $Collections = Doctrine_Query::Create()
+                ->from('Collection c')
+                ->select('c.*,sl.*')
+                ->fetchArray();
+        $CollectionArray = array();
+
+        foreach ($Collections as $Collection) {
+//            var_dump($Unit);
+//            exit;
+            $CollectionArray[$Collection['id']] = $Collection['name'];
+        }
+
+        if ($add_values) {
+            $CollectionArray[0] = $add_values;
+        }
+        ksort($CollectionArray);
+        return $CollectionArray;
     }
 
 }

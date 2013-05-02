@@ -61,7 +61,7 @@ class Unit extends BaseUnit {
                 ->select('c.*')
                 ->fetchArray();
         $UnitsArray = array();
-        
+
         foreach ($Units as $Unit) {
 //            var_dump($Unit);
 //            exit;
@@ -71,7 +71,7 @@ class Unit extends BaseUnit {
         if ($add_values) {
             $UnitsArray[0] = $add_values;
         }
-        ksort($UnitsArray);        
+        ksort($UnitsArray);
         return $UnitsArray;
     }
 
