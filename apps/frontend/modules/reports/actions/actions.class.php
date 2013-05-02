@@ -371,7 +371,8 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-
+            print_r($collections);
+            exit;
             if ($collections) {
                 foreach ($collections as $collection) {
                     $collectionStatusReport = array();
@@ -432,6 +433,9 @@ class reportsActions extends sfActions {
 //                    </script>';
 //                $this->getResponse()->setSlot('my_slot', $Bug);
 //            }
+            }else{
+                 $Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
+                $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
     }
