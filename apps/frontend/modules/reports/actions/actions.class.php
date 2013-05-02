@@ -361,9 +361,6 @@ class reportsActions extends sfActions {
 //                            ->whereIn('c.id', $Collection_id)
                             ->fetchArray();
                 }
-                echo '<pre>';
-                print_r($Collections);
-                exit;
                 $SolutionArray = array();
                 foreach ($Collections as $Collection) {
                     if (in_array($Collection['status'], $collectionStatus)) {
