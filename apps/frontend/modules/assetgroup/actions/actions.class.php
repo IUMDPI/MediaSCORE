@@ -313,7 +313,7 @@ class assetgroupActions extends sfActions {
             #to caliculate socre 
             $ScoreCalculator = new scoreCalculator();
             $score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
-            exit;
+
             if ($score != FALSE) {
                 $update = Doctrine_Query::create()
                         ->update('FormatType ')
