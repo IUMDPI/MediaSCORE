@@ -706,7 +706,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'formatVersion')) {
                 if (isset($AssetInformatoin[0]['FormatType']['formatVersion'])) {
-                    if (strstr(strtolower($this->multiselection_value['EightMMformatVersion'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+                    if (strstr(strtolower($this->multiselection_value['EightMMformatVersion'][$AssetInformatoin[0]['FormatType']['format']]), strtolower($characteristicsValue['c_name']))) {
                         echo 'formatVersion = ';
                         echo $characteristicsValue['c_name'];
                         echo $formatVersion = $characteristicsValue['c_score'];
