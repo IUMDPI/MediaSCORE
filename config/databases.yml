@@ -10,7 +10,7 @@ all:
       #password: 
       dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
       username: symfony
-      assword: sYmF0nYd3v
+      password: sYmF0nYd3v
 
 
 
