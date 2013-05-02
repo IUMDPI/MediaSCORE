@@ -361,7 +361,9 @@ class reportsActions extends sfActions {
                             ->whereIn('c.id', $Collection_id)
                             ->getSqlQuery();
                 }
-
+                echo '<pre>';
+                print_r($Collections);
+                exit;
                 $SolutionArray = array();
                 foreach ($Collections as $Collection) {
                     if (in_array($Collection['status'], $collectionStatus)) {
@@ -371,9 +373,7 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-            echo '<pre>';
-            print_r($collections);
-            exit;
+
             if ($collections) {
                 foreach ($collections as $collection) {
                     $collectionStatusReport = array();
@@ -434,8 +434,8 @@ class reportsActions extends sfActions {
 //                    </script>';
 //                $this->getResponse()->setSlot('my_slot', $Bug);
 //            }
-            }else{
-                 $Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
+            } else {
+                $Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
