@@ -409,8 +409,9 @@ class reportsActions extends sfActions {
             $ExportType = $params['ExportType'];
 
 
-            $EvaluatorsStartDate = $params['reports']['EvaluatorsStartDate'];
-            $EvaluatorsEndDate = $params['reports']['EvaluatorsEndDate'];
+            $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+            
+            $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
 
 
             $collectionStatusReports = array();
@@ -431,10 +432,11 @@ class reportsActions extends sfActions {
                             ->leftJoin('c.Creator cu')
                             ->leftJoin('c.Editor eu')
                             ->where('c.parent_node_id  = ?', $Unit['id'])
-//                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", date('YYYY-m-d', strtotime($EvaluatorsStartDate)))
-//                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", date('YYYY-m-d', strtotime($EvaluatorsEndDate)))
+                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
+                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
                             ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
+                   
                 }
                 $SolutionArray = array();
                 foreach ($Collections as $Collection) {
@@ -1182,7 +1184,6 @@ class reportsActions extends sfActions {
                     $excel->DeleteFile($file_name_with_directory);
                     exit;
                 } else {
-
                     $csvHandler = new csvHandler();
 
                     $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
@@ -1194,7 +1195,6 @@ class reportsActions extends sfActions {
                     exit;
                 }
             } else {
-
                 $Bug = '<script type="text/javascript"> $(function(){
                                 alert("No Record Found To Export!")                    
                         });

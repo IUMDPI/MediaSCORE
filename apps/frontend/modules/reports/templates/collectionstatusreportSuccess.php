@@ -88,18 +88,19 @@ echo $NoRecordFound = get_slot('my_slot');
             defaultDate: "+1w",
             changeMonth: true,
             changeYear: true,
-            numberOfMonths: 2,
+            numberOfMonths: 1,
             'dateFormat':'yy-mm-dd',
             minDate: $("#date_depart").val(),
             onSelect: function( selectedDate ) {
                 $( "#reports_EvaluatorsStartDate" ).datepicker('hide');
             }
         });
+        
         var dates = $( "#reports_EvaluatorsEndDate" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
             changeYear: true,
-            numberOfMonths: 2,
+            numberOfMonths: 1,
             'dateFormat':'yy-mm-dd',
             onSelect: function( selectedDate ) {
                 if((new Date($("#reports_EvaluatorsStartDate").val()).getTime() > new Date($( "#reports_EvaluatorsEndDate" ).val()).getTime())){
