@@ -80,10 +80,10 @@ echo $NoRecordFound = get_slot('my_slot');
 <script type="text/javascript">
 
     $(document).ready(function() {
-        $( "#reports_EvaluatorsStartDate" ).attr('readonly','readonly');
-        $( "#reports_EvaluatorsEndDate" ).attr('readonly','readonly');
-        $( "#reports_EvaluatorsStartDate" ).attr('style','background:#d7d7d2;');
-        $( "#reports_EvaluatorsEndDate" ).attr('style','background:#d7d7d2;');
+//        $( "#reports_EvaluatorsStartDate" ).attr('readonly','readonly');
+//        $( "#reports_EvaluatorsEndDate" ).attr('readonly','readonly');
+//        $( "#reports_EvaluatorsStartDate" ).attr('style','background:#d7d7d2;');
+//        $( "#reports_EvaluatorsEndDate" ).attr('style','background:#d7d7d2;');
         var dates = $( "#reports_EvaluatorsStartDate" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,

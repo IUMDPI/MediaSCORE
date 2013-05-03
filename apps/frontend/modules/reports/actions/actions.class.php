@@ -431,6 +431,8 @@ class reportsActions extends sfActions {
                             ->leftJoin('c.Creator cu')
                             ->leftJoin('c.Editor eu')
                             ->where('c.parent_node_id  = ?', $Unit['id'])
+//                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", date('YYYY-m-d', strtotime($EvaluatorsStartDate)))
+//                            ->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", date('YYYY-m-d', strtotime($EvaluatorsEndDate)))
                             ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
                 }
@@ -1098,11 +1100,12 @@ class reportsActions extends sfActions {
                     ->leftJoin('as.EvaluatorHistory eh')
                     ->leftJoin('as.FormatType ft')
                     ->whereIn('eh.evaluator_id', $ListEvaluators)
-                    ->andWhereIn('ft.type', $format_id)
-                    ->andWhere('eh.updated_at >= ?', $EvaluatorsStartDate)
-                    ->andWhere('eh.updated_at <= ?', $EvaluatorsEndDate)
+                    ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
+                    ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
                     ->fetchArray();
-
+            echo '<pre>';
+            print_r($EvaluatorHistorys);
+            exit;
             foreach ($EvaluatorHistorys as $EvaluatorHistory) {
 
                 $Collection = Doctrine_Query::Create()
