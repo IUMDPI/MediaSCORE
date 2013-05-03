@@ -1100,12 +1100,13 @@ class reportsActions extends sfActions {
                     ->leftJoin('as.EvaluatorHistory eh')
                     ->leftJoin('as.FormatType ft')
                     ->whereIn('eh.evaluator_id', $ListEvaluators)
+                    ->whereIn('ft.type', $format_id)
                     ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
                     ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
                     ->fetchArray();
-            echo '<pre>';
-            print_r($EvaluatorHistorys);
-            exit;
+
+
+
             foreach ($EvaluatorHistorys as $EvaluatorHistory) {
 
                 $Collection = Doctrine_Query::Create()
@@ -1158,41 +1159,48 @@ class reportsActions extends sfActions {
 
                     $DataDumpReportArray[] = $AssetScoreReport;
                 }
-            }
-            if ($ExportType == 'xls') {
-                $excel = new excel();
 
-                $excel->setDataArray($DataDumpReportArray);
-                $excel->extractHeadings();
-                $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                $Sheettitle = 'Asset_Group_Score_Report';
-                $intial_dicrectory = '/AssetsScore/xls/';
-                $file_name_with_directory = $intial_dicrectory . $filename;
+                if ($ExportType == 'xls') {
+                    $excel = new excel();
 
-                $excel->setDataArray($DataDumpReportArray);
-                $excel->extractHeadings();
-                $excel->setFileName($file_name_with_directory);
-                $excel->setSheetTitle($Sheettitle);
+                    $excel->setDataArray($DataDumpReportArray);
+                    $excel->extractHeadings();
+                    $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Asset_Group_Score_Report';
+                    $intial_dicrectory = '/AssetsScore/xls/';
+                    $file_name_with_directory = $intial_dicrectory . $filename;
 
-                $excel->createExcel();
+                    $excel->setDataArray($DataDumpReportArray);
+                    $excel->extractHeadings();
+                    $excel->setFileName($file_name_with_directory);
+                    $excel->setSheetTitle($Sheettitle);
 
-                $excel->SaveFile();
-                $excel->DownloadXLSX($file_name_with_directory, $filename);
-                $excel->DeleteFile($file_name_with_directory);
-                exit;
+                    $excel->createExcel();
+
+                    $excel->SaveFile();
+                    $excel->DownloadXLSX($file_name_with_directory, $filename);
+                    $excel->DeleteFile($file_name_with_directory);
+                    exit;
+                } else {
+
+                    $csvHandler = new csvHandler();
+
+                    $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                    $file_name_with_directory = $intial_dicrectory . $file_name;
+                    $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DeleteFile($file_name_with_directory);
+                    exit;
+                }
             } else {
 
-                $csvHandler = new csvHandler();
-
-                $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
-                $intial_dicrectory = '/AssetsScore/csv/';
-                $file_name_with_directory = $intial_dicrectory . $file_name;
-                $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
-                $csvHandler->DownloadCSV($file_name_with_directory);
-                $csvHandler->DeleteFile($file_name_with_directory);
-                exit;
+                $Bug = '<script type="text/javascript"> $(function(){
+                                alert("No Record Found To Export!")                    
+                        });
+                    </script>';
+                $this->getResponse()->setSlot('my_slot', $Bug);
             }
-            exit;
         }
     }
 

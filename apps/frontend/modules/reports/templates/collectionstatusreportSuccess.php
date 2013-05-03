@@ -12,10 +12,10 @@ echo $NoRecordFound = get_slot('my_slot');
     <br/>
     <br/>
     <br/>
-    <span ><?php echo $form['listCollection_RRD']->renderLabel(); ?></span>
+    <span><?php echo $form['listCollection_RRD']->renderLabel(); ?></span>
     <br/>
     <br/>
-    
+
     <?php echo $form['listCollection_RRD']->render(); ?>
     <br/>
     <br/>
@@ -80,13 +80,14 @@ echo $NoRecordFound = get_slot('my_slot');
 <script type="text/javascript">
 
     $(document).ready(function() {
-//        $( "#reports_EvaluatorsStartDate" ).attr('readonly','readonly');
-//        $( "#reports_EvaluatorsEndDate" ).attr('readonly','readonly');
-//        $( "#reports_EvaluatorsStartDate" ).attr('style','background:#d7d7d2;');
-//        $( "#reports_EvaluatorsEndDate" ).attr('style','background:#d7d7d2;');
+        //        $( "#reports_EvaluatorsStartDate" ).attr('readonly','readonly');
+        //        $( "#reports_EvaluatorsEndDate" ).attr('readonly','readonly');
+        //        $( "#reports_EvaluatorsStartDate" ).attr('style','background:#d7d7d2;');
+        //        $( "#reports_EvaluatorsEndDate" ).attr('style','background:#d7d7d2;');
         var dates = $( "#reports_EvaluatorsStartDate" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
+            changeYear: true,
             numberOfMonths: 2,
             'dateFormat':'yy-mm-dd',
             minDate: $("#date_depart").val(),
@@ -97,6 +98,7 @@ echo $NoRecordFound = get_slot('my_slot');
         var dates = $( "#reports_EvaluatorsEndDate" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
+            changeYear: true,
             numberOfMonths: 2,
             'dateFormat':'yy-mm-dd',
             onSelect: function( selectedDate ) {
