@@ -14,5 +14,5 @@ class EvaluatorHistory extends BaseEvaluatorHistory {
 
     public static $actions = array('Evaluated',
         'Edited');
-
+    
 }

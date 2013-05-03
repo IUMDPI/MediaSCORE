@@ -16,8 +16,13 @@
     <li>
         <h3><a href="<?php echo url_for('reports/problemmediareport') ?>">Problem Media Report</a></h3>
     </li>
+
     <li>
         <h3><a href="<?php echo url_for('reports/alldataoutputreport') ?>">All Data output</a></h3>
+    </li>
+
+    <li>
+        <h3><a href="<?php echo url_for('reports/evaluatorsreport') ?>">Evaluator's Report</a></h3>
     </li>
 </ol>
 

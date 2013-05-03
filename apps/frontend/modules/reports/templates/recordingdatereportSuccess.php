@@ -1,10 +1,13 @@
 Recording Date Report
 <br/><br/>
+
 <form action="<?php echo url_for('reports/recordingdatereport') ?>" method="post">
-    <?php echo $form['listUnits_RRD']->renderLabel(); ?>
+    <?php 
+    print_r($form->renderGlobalErrors());
+    echo $form['listUnits_RRD']->renderLabel(); ?>
     <br/>
     <br/>
-    
+    <?php echo $form['listUnits_RRD']->renderError(); ?>
     <?php echo $form['listUnits_RRD']->render(); ?>
     <div style="clear: both;"></div>
     <br/>
@@ -13,6 +16,7 @@ Recording Date Report
     <?php echo $form['ExportType']->renderLabel(); ?>
     <br/>
     <br/>
+    <?php echo $form['ExportType']->renderError(); ?>
     <?php echo $form['ExportType']->render(); ?>
     <br/>
     <br/>   
