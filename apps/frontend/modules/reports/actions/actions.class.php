@@ -1308,14 +1308,12 @@ class reportsActions extends sfActions {
             $Assets = array();
             $quantity = 0;
             $duration = 0;
-            
+
             $Collection_id = $params['reports']['listCollection_RRD'];
             $Units_id = $params['reports']['listUnits_RRD'];
             $format_id = $params['reports']['format_id'];
             $ExportType = $params['reports']['ExportType'];
             $ReportType = $params['reports']['ReportType'];
-
-
 
             if ($ReportType == '0') {
                 $Units = Doctrine_Query::Create()
@@ -1413,12 +1411,18 @@ class reportsActions extends sfActions {
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
                     }
+                } else {
+                    $Bug = '<script type="text/javascript"> $(function(){
+                                alert("No Record Found To Export!")                    
+                        });
+                    </script>';
+                    $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else if ($ReportType == '1') {
                 $Units = Doctrine_Query::Create()
                         ->from('Unit u')
                         ->select('u.*')
-                        ->whereIn('u.id', $Units_id)
+//                        ->whereIn('u.id', $Units_id)
                         ->fetchArray();
 
                 foreach ($Units as $Unit) {
@@ -1437,7 +1441,125 @@ class reportsActions extends sfActions {
                                 ->select('a.*, ft.*')
                                 ->leftJoin("a.FormatType ft")
                                 ->where('a.parent_node_id  = ?', $Collection['id'])
-//                                ->andWhereIn('ft.type', $format_id)
+                                ->andWhereIn('ft.type', $format_id)
+                                ->fetchArray();
+
+                        if ($Asset) {
+                            $SolutionArray = array();
+                            $SolutionArray[$Unit['id']]['Collection'] = $Collection;
+                            $SolutionArray[$Unit['id']]['Unit'] = $Unit;
+
+                            foreach ($Asset as $key => $A) {
+
+                                $SolutionArray[$Unit['id']]['Collection']['AssetGroup'][] = $A;
+                            }
+                            $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
+                        }
+                    }
+                }
+
+                if ($Assets) {
+                    foreach ($Assets as $Asset) {
+                        $AssetScoreReport = array();
+                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
+                        foreach ($Asset as $key_reportGen => $reportGen) {
+                            $quantity_collection = 0;
+                            $duration_collection = 0;
+
+                            foreach ($reportGen['Collection']['AssetGroup'] as $report) {
+
+                                $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
+                                $duration_collection = $duration_collection + $report['FormatType']['duration'];
+                            }
+                            foreach ($reportGen['Collection']['AssetGroup'] as $key => $report) {
+
+                                $AssetScoreReport['Collection ID'] = $reportGen['Collection']['id'];
+                                $AssetScoreReport['Collection Name'] = $reportGen['Collection']['name'];
+                                $AssetScoreReport['Format ' . ($key + 1)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $report['FormatType']['type']);
+                                $AssetScoreReport['Percentage by duration that Format ' . ($key + 1) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection) . ' % ';
+                                $AssetScoreReport['Percentage by quantity that Format ' . ($key_reportGen + 1) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection) . ' % ';
+                            }
+                        }
+
+                        $DataDumpReportArray[] = $AssetScoreReport;
+                    }
+
+                    $maxCountElementsCount = count($DataDumpReportArray[0]);
+                    $maxCountElementsIndex = 0;
+
+                    foreach ($DataDumpReportArray as $key => $DataDump) {
+
+                        if ($maxCountElementsCount < count($DataDump)) {
+                            $maxCountElementsIndex = $key;
+                            $maxCountElementsCount = count($DataDump);
+                        }
+                    }
+
+                    if ($ExportType == 'xls') {
+                        $excel = new excel();
+
+                        $excel->setDataArray($DataDumpReportArray);
+                        $excel->extractHeadings();
+                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $intial_dicrectory = '/AssetsScore/xls/';
+                        $file_name_with_directory = $intial_dicrectory . $filename;
+
+                        $excel->setDataArray($DataDumpReportArray);
+
+                        $excel->extractHeadings($maxCountElementsIndex);
+                        $excel->setFileName($file_name_with_directory);
+                        $excel->setSheetTitle($Sheettitle);
+
+                        $excel->createExcel();
+
+                        $excel->SaveFile();
+                        $excel->DownloadXLSX($file_name_with_directory, $filename);
+                        $excel->DeleteFile($file_name_with_directory);
+                        exit;
+                    } else {
+                        $csvHandler = new csvHandler();
+
+                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $intial_dicrectory = '/AssetsScore/csv/';
+                        $file_name_with_directory = $intial_dicrectory . $file_name;
+                        $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
+                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DeleteFile($file_name_with_directory);
+                        exit;
+                    }
+                } else {
+                    $Bug = '<script type="text/javascript"> $(function(){
+                                alert("No Record Found To Export!")                    
+                        });
+                    </script>';
+                    $this->getResponse()->setSlot('my_slot', $Bug);
+                }
+            } else if ($ReportType == '2') {
+                $Units = Doctrine_Query::Create()
+                        ->from('Unit u')
+                        ->select('u.*')
+                        ->whereIn('u.id', $Units_id)
+                        ->fetchArray();
+
+                foreach ($Units as $Unit) {
+
+                    $Collections = Doctrine_Query::Create()
+                            ->from('Collection c')
+                            ->select('c.*')
+                            ->where('c.parent_node_id = ?', $Unit['id'])
+                            ->andWhereIn('c.id', $Collection_id)
+                            ->fetchArray();
+
+
+                    foreach ($Collections as $Collection) {
+                        $Asset = Doctrine_Query::Create()
+                                ->from('AssetGroup a')
+                                ->select('a.*, ft.*')
+                                ->leftJoin("a.FormatType ft")
+                                ->where('a.parent_node_id = ?', $Collection['id'])
+                                ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
 
                         if ($Asset) {
@@ -1471,9 +1593,9 @@ class reportsActions extends sfActions {
                                 $duration_collection = $duration_collection + $report['FormatType']['duration'];
                             }
 
-                            $AssetScoreReport['Collection ID for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['id'];
-                            $AssetScoreReport['Collection Name for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['name'];
-                            $AssetScoreReport['Percentage by duration that Collection  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($duration_collection * 100) / $duration) . ' % ';
+                            $AssetScoreReport['Collection ID for Collection ' . ($key_reportGen + 1)] = $reportGen['Collection']['id'];
+                            $AssetScoreReport['Collection Name for Collection ' . ($key_reportGen + 1)] = $reportGen['Collection']['name'];
+                            $AssetScoreReport['Percentage by duration that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($duration_collection * 100) / $duration) . ' % ';
                             $AssetScoreReport['Percentage by quantity that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($quantity_collection * 100) / $quantity) . ' % ';
                         }
 
@@ -1524,6 +1646,12 @@ class reportsActions extends sfActions {
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
                     }
+                } else {
+                    $Bug = '<script type="text/javascript"> $(function(){
+                                alert("No Record Found To Export!")                    
+                        });
+                    </script>';
+                    $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             }
         }
