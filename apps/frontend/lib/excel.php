@@ -130,8 +130,8 @@ class excel extends PHPExcel {
      * 
      * 
      */
-    public function extractHeadings() {
-        return $this->headings = array_keys($this->dataArray[0]);
+    public function extractHeadings($using_index = 0) {
+        return $this->headings = array_keys($this->dataArray[$using_index]);
     }
 
     /**
@@ -217,7 +217,7 @@ class excel extends PHPExcel {
      */
     function DownloadXLSX($file_name_with_directory, $file_name) {
         $file_url = $this->getUploadDicrectoryPath() . $file_name_with_directory;
-        
+
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");

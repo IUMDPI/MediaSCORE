@@ -1,6 +1,6 @@
 <h1>Reports List</h1>
 
-<ol>
+<ul>
     <li>
         <h3><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></h3>
     </li>
@@ -24,5 +24,9 @@
     <li>
         <h3><a href="<?php echo url_for('reports/evaluatorsreport') ?>">Evaluator's Report</a></h3>
     </li>
-</ol>
+
+    <li>
+        <h3><a href="<?php echo url_for('reports/percentageofholdings') ?>">Percentage of holdings</a></h3>
+    </li>
+</ul>
 

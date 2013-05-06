@@ -1295,6 +1295,230 @@ class reportsActions extends sfActions {
      * 
      * @param sfWebRequest $request 
      */
+    public function executePercentageofholdings(sfWebRequest $request) {
+        $this->form = new ReportsForm(null, array('from' => 'percentageofholdings'));
+        if ($request->getMethod() == 'POST') {
+
+            $DataDumpReportArray = array();
+            $Assets = array();
+            $quantity = 0;
+            $duration = 0;
+            $params = $request->getPostParameters();
+            $formatTypeValuesManager = new formatTypeValuesManager();
+            $Collection_id = $params['reports']['listCollection_RRD'];
+            $Units_id = $params['reports']['listUnits_RRD'];
+            $format_id = $params['reports']['format_id'];
+            $ExportType = $params['reports']['ExportType'];
+            $ReportType = $params['reports']['ReportType'];
+            if ($ReportType == '0') {
+                $Units = Doctrine_Query::Create()
+                        ->from('Unit u')
+                        ->select('u.*,sl.*,p.*,cu.*,eu.*')
+                        ->whereIn('u.id', $Units_id)
+                        ->fetchArray();
+
+                foreach ($Units as $Unit) {
+
+                    $Collections = Doctrine_Query::Create()
+                            ->from('Collection c')
+                            ->select('c.*')
+                            ->where('c.parent_node_id  = ?', $Unit['id'])
+                            ->fetchArray();
+
+
+                    foreach ($Collections as $Collection) {
+                        $Asset = Doctrine_Query::Create()
+                                ->from('AssetGroup a')
+                                ->select('a.*, ft.*')
+                                ->leftJoin("a.FormatType ft")
+                                ->where('a.parent_node_id  = ?', $Collection['id'])
+                                ->fetchArray();
+
+                        if ($Asset) {
+                            foreach ($Asset as $key => $A) {
+                                $quantity = $quantity + $A['FormatType']['quantity'];
+                                $duration = $duration + $A['FormatType']['duration'];
+                                $SolutionArray = array();
+                                $SolutionArray[$Unit['id']]['AssetGroup'] = $A;
+                                $SolutionArray[$Unit['id']]['Collection'] = $Collection;
+                                $SolutionArray[$Unit['id']]['Unit'] = $Unit;
+                            }
+                            $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
+                        }
+                    }
+                }
+                if ($Assets) {
+                    foreach ($Assets as $Asset) {
+                        $AssetScoreReport = array();
+                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
+                        foreach ($Asset as $key_reportGen => $reportGen) {
+                            $AssetScoreReport['Format ' . ($key_reportGen + 1)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
+                            $AssetScoreReport['Percentage by duration that Format  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $duration) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Format ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $quantity) . ' % ';
+                        }
+
+                        $DataDumpReportArray[] = $AssetScoreReport;
+                    }
+                    $maxCountElementsCount = count($DataDumpReportArray[0]);
+                    $maxCountElementsIndex = 0;
+
+                    foreach ($DataDumpReportArray as $key => $DataDump) {
+
+                        if ($maxCountElementsCount < count($DataDump)) {
+                            $maxCountElementsIndex = $key;
+                            $maxCountElementsCount = count($DataDump);
+                        }
+                    }
+
+                    if ($ExportType == 'xls') {
+                        $excel = new excel();
+
+                        $excel->setDataArray($DataDumpReportArray);
+                        $excel->extractHeadings();
+                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $intial_dicrectory = '/AssetsScore/xls/';
+                        $file_name_with_directory = $intial_dicrectory . $filename;
+
+                        $excel->setDataArray($DataDumpReportArray);
+
+                        $excel->extractHeadings($maxCountElementsIndex);
+                        $excel->setFileName($file_name_with_directory);
+                        $excel->setSheetTitle($Sheettitle);
+
+                        $excel->createExcel();
+
+                        $excel->SaveFile();
+                        $excel->DownloadXLSX($file_name_with_directory, $filename);
+                        $excel->DeleteFile($file_name_with_directory);
+                        exit;
+                    } else {
+                        $csvHandler = new csvHandler();
+
+                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $intial_dicrectory = '/AssetsScore/csv/';
+                        $file_name_with_directory = $intial_dicrectory . $file_name;
+                        $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
+                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DeleteFile($file_name_with_directory);
+                        exit;
+                    }
+                }
+            } else if ($ReportType == '1') {
+                $Units = Doctrine_Query::Create()
+                        ->from('Unit u')
+                        ->select('u.*')
+                        ->whereIn('u.id', $Units_id)
+                        ->fetchArray();
+                echo '<pre>';
+                foreach ($Units as $Unit) {
+
+                    $Collections = Doctrine_Query::Create()
+                            ->from('Collection c')
+                            ->select('c.*')
+                            ->where('c.parent_node_id  = ?', $Unit['id'])
+                            ->fetchArray();
+
+
+                    foreach ($Collections as $Collection) {
+                        $Asset = Doctrine_Query::Create()
+                                ->from('AssetGroup a')
+                                ->select('a.*, ft.*')
+                                ->leftJoin("a.FormatType ft")
+                                ->where('a.parent_node_id  = ?', $Collection['id'])
+                                ->fetchArray();
+
+                        if ($Asset) {
+                            $SolutionArray = array();
+                            $SolutionArray[$Unit['id']]['Collection'] = $Collection;
+                            $SolutionArray[$Unit['id']]['Unit'] = $Unit;
+
+                            foreach ($Asset as $key => $A) {
+                                $quantity = $quantity + $A['FormatType']['quantity'];
+                                $duration = $duration + $A['FormatType']['duration'];
+                                $SolutionArray[$Unit['id']]['Collection']['AssetGroup'][] = $A;
+                            }
+                            $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
+                        }
+                    }
+                }
+
+                print_r($Assets);
+                exit;
+                if ($Assets) {
+                    foreach ($Assets as $Asset) {
+                        $AssetScoreReport = array();
+                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
+                        foreach ($Asset as $key_reportGen => $reportGen) {
+                            foreach ($reportGen['Collection']['AssetGroup'] as $key_report => $report) {
+                                $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
+                                $duration_collection = $duration_collection + $report['FormatType']['duration'];
+                            }
+
+                            $AssetScoreReport['Collection ID for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['id'];
+                            $AssetScoreReport['Collection Name for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['name'];
+                            $AssetScoreReport['Percentage by duration that Collection  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $duration) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $quantity) . ' % ';
+                        }
+
+                        $DataDumpReportArray[] = $AssetScoreReport;
+                    }
+                    $maxCountElementsCount = count($DataDumpReportArray[0]);
+                    $maxCountElementsIndex = 0;
+
+                    foreach ($DataDumpReportArray as $key => $DataDump) {
+
+                        if ($maxCountElementsCount < count($DataDump)) {
+                            $maxCountElementsIndex = $key;
+                            $maxCountElementsCount = count($DataDump);
+                        }
+                    }
+
+                    if ($ExportType == 'xls') {
+                        $excel = new excel();
+
+                        $excel->setDataArray($DataDumpReportArray);
+                        $excel->extractHeadings();
+                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $intial_dicrectory = '/AssetsScore/xls/';
+                        $file_name_with_directory = $intial_dicrectory . $filename;
+
+                        $excel->setDataArray($DataDumpReportArray);
+
+                        $excel->extractHeadings($maxCountElementsIndex);
+                        $excel->setFileName($file_name_with_directory);
+                        $excel->setSheetTitle($Sheettitle);
+
+                        $excel->createExcel();
+
+                        $excel->SaveFile();
+                        $excel->DownloadXLSX($file_name_with_directory, $filename);
+                        $excel->DeleteFile($file_name_with_directory);
+                        exit;
+                    } else {
+                        $csvHandler = new csvHandler();
+
+                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $intial_dicrectory = '/AssetsScore/csv/';
+                        $file_name_with_directory = $intial_dicrectory . $file_name;
+                        $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
+                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DeleteFile($file_name_with_directory);
+                        exit;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Problem Media Report Report From reporting module
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeDurationandquantitysearch(sfWebRequest $request) {
         $this->form = new ReportsForm(null, array('from' => 'durationandquantitysearch'));
     }

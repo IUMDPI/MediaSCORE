@@ -51,13 +51,18 @@ class csvHandler {
      * 
      * @return Boolean
      */
-    function CreateCSV(array &$array, $filename) {
+    function CreateCSV(array &$array, $filename, $isHeadingDynamic = false, $DynamicHeadingIndex = 0) {
         if (count($array) == 0) {
             return null;
         }
         ob_start();
         $df = fopen($this->getUploadDicrectoryPath() . $filename, 'w');
-        fputcsv($df, array_keys(reset($array)));
+        if ($isHeadingDynamic) {
+            fputcsv($df, array_keys($array[$DynamicHeadingIndex]));
+        } else {
+            fputcsv($df, array_keys(reset($array)));
+        }
+
         foreach ($array as $row) {
             fputcsv($df, $row);
         }
