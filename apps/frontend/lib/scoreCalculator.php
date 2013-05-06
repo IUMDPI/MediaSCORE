@@ -1262,9 +1262,8 @@ class scoreCalculator extends scoreCalculator_extended {
 //        print_r($characteristicsValues);
         echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
         echo '<pre>';
-        echo $this->$funcationName($AssetInformatoin, $characteristicsValues);
-
-        return TRUE;
+        echo $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
+        return $score;
     }
 
 }
