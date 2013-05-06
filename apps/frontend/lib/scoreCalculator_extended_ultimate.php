@@ -1015,17 +1015,17 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
             }
 
 
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'format')) {
-                if (isset($AssetInformatoin[0]['FormatType']['format'])) {
-                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-                        echo 'format = ';
-                        echo $format = $characteristicsValue['c_score'];
-                        $this->score = (float) $this->score + (float) $format;
-                        echo '<br/>';
-                        echo '<br/>';
-                    }
-                }
-            }
+//            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'format')) {
+//                if (isset($AssetInformatoin[0]['FormatType']['format'])) {
+//                    if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
+//                        echo 'format = ';
+//                        echo $format = $characteristicsValue['c_score'];
+//                        $this->score = (float) $this->score + (float) $format;
+//                        echo '<br/>';
+//                        echo '<br/>';
+//                    }
+//                }
+//            }
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'reelSize')) {
                 if (isset($AssetInformatoin[0]['FormatType']['reelSize'])) {
                     if (strstr(strtolower($this->multiselection_value['OneInchReelSize'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
