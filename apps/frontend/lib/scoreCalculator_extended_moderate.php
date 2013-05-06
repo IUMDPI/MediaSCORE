@@ -186,15 +186,7 @@ class scoreCalculator_extended_moderate {
                     echo '<br/>';
                 }
             }
-            if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
-                if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
-                    echo 'copies = ';
-                    echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-                    $this->score = (float) $this->score + (float) $copies;
-                    echo '<br/>';
-                    echo '<br/>';
-                }
-            }
+
             if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'softBinderSyndrome')) {
 
                 if (isset($AssetInformatoin[0]['FormatType']['softBinderSyndrome'])) {
@@ -206,7 +198,15 @@ class scoreCalculator_extended_moderate {
                 }
             }
             if (!$constraint_will_be_applied) {
-
+                if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies')) {
+                    if (isset($AssetInformatoin[0]['FormatType']['copies'])) {
+                        echo 'copies = ';
+                        echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+                        $this->score = (float) $this->score + (float) $copies;
+                        echo '<br/>';
+                        echo '<br/>';
+                    }
+                }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'off_brand')) {
                     if (isset($AssetInformatoin[0]['FormatType']['off_brand'])) {
@@ -874,8 +874,6 @@ class scoreCalculator_extended_moderate {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 continue;
             }
-
-
 
             if ($characteristicsValue['c_name'] == 'base_score') {
                 echo 'base_score = ';
