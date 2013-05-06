@@ -1299,17 +1299,24 @@ class reportsActions extends sfActions {
         $this->form = new ReportsForm(null, array('from' => 'percentageofholdings'));
         if ($request->getMethod() == 'POST') {
 
+
+            $params = $request->getPostParameters();
+
+            $formatTypeValuesManager = new formatTypeValuesManager();
+
             $DataDumpReportArray = array();
             $Assets = array();
             $quantity = 0;
             $duration = 0;
-            $params = $request->getPostParameters();
-            $formatTypeValuesManager = new formatTypeValuesManager();
+            
             $Collection_id = $params['reports']['listCollection_RRD'];
             $Units_id = $params['reports']['listUnits_RRD'];
             $format_id = $params['reports']['format_id'];
             $ExportType = $params['reports']['ExportType'];
             $ReportType = $params['reports']['ReportType'];
+
+
+
             if ($ReportType == '0') {
                 $Units = Doctrine_Query::Create()
                         ->from('Unit u')
@@ -1323,6 +1330,7 @@ class reportsActions extends sfActions {
                             ->from('Collection c')
                             ->select('c.*')
                             ->where('c.parent_node_id  = ?', $Unit['id'])
+                            ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
 
 
@@ -1332,6 +1340,7 @@ class reportsActions extends sfActions {
                                 ->select('a.*, ft.*')
                                 ->leftJoin("a.FormatType ft")
                                 ->where('a.parent_node_id  = ?', $Collection['id'])
+                                ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
 
                         if ($Asset) {
@@ -1411,13 +1420,14 @@ class reportsActions extends sfActions {
                         ->select('u.*')
                         ->whereIn('u.id', $Units_id)
                         ->fetchArray();
-                echo '<pre>';
+
                 foreach ($Units as $Unit) {
 
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
                             ->select('c.*')
                             ->where('c.parent_node_id  = ?', $Unit['id'])
+                            ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
 
 
@@ -1427,6 +1437,7 @@ class reportsActions extends sfActions {
                                 ->select('a.*, ft.*')
                                 ->leftJoin("a.FormatType ft")
                                 ->where('a.parent_node_id  = ?', $Collection['id'])
+//                                ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
 
                         if ($Asset) {
@@ -1444,27 +1455,31 @@ class reportsActions extends sfActions {
                     }
                 }
 
-                print_r($Assets);
-                exit;
+
                 if ($Assets) {
                     foreach ($Assets as $Asset) {
                         $AssetScoreReport = array();
                         $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
                         $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
                         foreach ($Asset as $key_reportGen => $reportGen) {
-                            foreach ($reportGen['Collection']['AssetGroup'] as $key_report => $report) {
+                            $quantity_collection = 0;
+                            $duration_collection = 0;
+
+                            foreach ($reportGen['Collection']['AssetGroup'] as $report) {
+
                                 $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
                                 $duration_collection = $duration_collection + $report['FormatType']['duration'];
                             }
 
                             $AssetScoreReport['Collection ID for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['id'];
                             $AssetScoreReport['Collection Name for Collection  ' . ($key_reportGen + 1)] = $reportGen['Collection']['name'];
-                            $AssetScoreReport['Percentage by duration that Collection  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $duration) . ' % ';
-                            $AssetScoreReport['Percentage by quantity that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $quantity) . ' % ';
+                            $AssetScoreReport['Percentage by duration that Collection  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($duration_collection * 100) / $duration) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($quantity_collection * 100) / $quantity) . ' % ';
                         }
 
                         $DataDumpReportArray[] = $AssetScoreReport;
                     }
+
                     $maxCountElementsCount = count($DataDumpReportArray[0]);
                     $maxCountElementsIndex = 0;
 
