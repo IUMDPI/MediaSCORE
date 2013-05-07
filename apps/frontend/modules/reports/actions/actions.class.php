@@ -229,7 +229,7 @@ class reportsActions extends sfActions {
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
-                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
@@ -442,7 +442,7 @@ class reportsActions extends sfActions {
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
-                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
@@ -560,7 +560,7 @@ class reportsActions extends sfActions {
                     $intial_dicrectory = '/CollectionStatusReport/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($collectionStatusReports, $file_name_with_directory);
-                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
@@ -744,7 +744,7 @@ class reportsActions extends sfActions {
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory, FALSE, 0, TRUE, $filters);
-                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
@@ -1184,7 +1184,7 @@ class reportsActions extends sfActions {
 
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
-                $csvHandler->DownloadCSV($file_name_with_directory);
+                $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                 $csvHandler->DeleteFile($file_name_with_directory);
                 exit;
             }
@@ -1306,7 +1306,7 @@ class reportsActions extends sfActions {
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
-                    $csvHandler->DownloadCSV($file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
@@ -1361,7 +1361,6 @@ class reportsActions extends sfActions {
                             ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
 
-
                     foreach ($Collections as $Collection) {
                         $Asset = Doctrine_Query::Create()
                                 ->from('AssetGroup a')
@@ -1379,24 +1378,40 @@ class reportsActions extends sfActions {
                                 $SolutionArray[$Unit['id']]['AssetGroup'] = $A;
                                 $SolutionArray[$Unit['id']]['Collection'] = $Collection;
                                 $SolutionArray[$Unit['id']]['Unit'] = $Unit;
+                                $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
                             }
-                            $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
                         }
                     }
+                    if ($Assets) {
+                        $Assets[$Unit['id']]['Totals']['QuantityTotal'] = $quantity;
+                        $Assets[$Unit['id']]['Totals']['DurationTotal'] = $duration;
+                    }
+                    $quantity = 0;
+                    $duration = 0;
                 }
+
+
                 if ($Assets) {
+                    $j = 1;
                     foreach ($Assets as $Asset) {
+                        $i = 1;
                         $AssetScoreReport = array();
-                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
-                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
+                        $AssetScoreReport['User ID ' . $j] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
+
                         foreach ($Asset as $key_reportGen => $reportGen) {
-                            $AssetScoreReport['Format ' . ($key_reportGen + 1)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
-                            $AssetScoreReport['Percentage by duration that Format  ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $duration) . ' % ';
-                            $AssetScoreReport['Percentage by quantity that Format ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $quantity) . ' % ';
+
+                            $AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
+                            $AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = (($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal']) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = (($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal']) . ' % ';
+
+                            $i++;
                         }
 
+                        $j++;
                         $DataDumpReportArray[] = $AssetScoreReport;
                     }
+
                     $maxCountElementsCount = count($DataDumpReportArray[0]);
                     $maxCountElementsIndex = 0;
 
@@ -1437,7 +1452,7 @@ class reportsActions extends sfActions {
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
-                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
                     }
@@ -1452,7 +1467,6 @@ class reportsActions extends sfActions {
                 $Units = Doctrine_Query::Create()
                         ->from('Unit u')
                         ->select('u.*')
-//                        ->whereIn('u.id', $Units_id)
                         ->fetchArray();
 
                 foreach ($Units as $Unit) {
@@ -1465,7 +1479,9 @@ class reportsActions extends sfActions {
                             ->fetchArray();
 
 
+
                     foreach ($Collections as $Collection) {
+
                         $Asset = Doctrine_Query::Create()
                                 ->from('AssetGroup a')
                                 ->select('a.*, ft.*')
@@ -1476,40 +1492,38 @@ class reportsActions extends sfActions {
 
                         if ($Asset) {
                             $SolutionArray = array();
-                            $SolutionArray[$Unit['id']]['Collection'] = $Collection;
-                            $SolutionArray[$Unit['id']]['Unit'] = $Unit;
+                            $SolutionArray[$Collection['id']]['Collection'] = $Collection;
+                            $SolutionArray[$Collection['id']]['Unit'] = $Unit;
 
                             foreach ($Asset as $key => $A) {
-
-                                $SolutionArray[$Unit['id']]['Collection']['AssetGroup'][] = $A;
+                                $SolutionArray[$Collection['id']]['Collection']['AssetGroup'][] = $A;
                             }
-                            $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
+                            $Assets[$Collection['id']] = $SolutionArray[$Collection['id']];
                         }
                     }
                 }
-
                 if ($Assets) {
+                    $j = 1;
                     foreach ($Assets as $Asset) {
                         $AssetScoreReport = array();
-                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
-                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
-                        foreach ($Asset as $key_reportGen => $reportGen) {
-                            $quantity_collection = 0;
-                            $duration_collection = 0;
+                        $AssetScoreReport['User ID ' . $j] = $Asset['Unit']['id'];
+                        $AssetScoreReport['Unit Name ' . $j] = $Asset['Unit']['name'];
 
-                            foreach ($reportGen['Collection']['AssetGroup'] as $report) {
+                        $quantity_collection = 0;
+                        $duration_collection = 0;
+                        $i = 1;
+                        foreach ($Asset['Collection']['AssetGroup'] as $report) {
+                            $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
+                            $duration_collection = $duration_collection + $report['FormatType']['duration'];
+                        }
 
-                                $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
-                                $duration_collection = $duration_collection + $report['FormatType']['duration'];
-                            }
-                            foreach ($reportGen['Collection']['AssetGroup'] as $key => $report) {
-
-                                $AssetScoreReport['Collection ID'] = $reportGen['Collection']['id'];
-                                $AssetScoreReport['Collection Name'] = $reportGen['Collection']['name'];
-                                $AssetScoreReport['Format ' . ($key + 1)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $report['FormatType']['type']);
-                                $AssetScoreReport['Percentage by duration that Format ' . ($key + 1) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection) . ' % ';
-                                $AssetScoreReport['Percentage by quantity that Format ' . ($key_reportGen + 1) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection) . ' % ';
-                            }
+                        foreach ($Asset['Collection']['AssetGroup'] as $key => $report) {
+                            $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
+                            $AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
+                            $AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $report['FormatType']['type']);
+                            $AssetScoreReport['Percentage by duration that Format ' . ($i) . ' makes up of Collection'] = (($report['FormatType']['duration'] * 100) / $duration_collection) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Collection'] = (($report['FormatType']['quantity'] * 100) / $quantity_collection) . ' % ';
+                            $i++;
                         }
 
                         $DataDumpReportArray[] = $AssetScoreReport;
@@ -1555,7 +1569,7 @@ class reportsActions extends sfActions {
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
-                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
                     }
@@ -1605,38 +1619,46 @@ class reportsActions extends sfActions {
                             $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
                         }
                     }
+                    if ($Assets[$Unit['id']]) {
+                        $Assets[$Unit['id']]['Totals']['QuantityTotal'] = $quantity;
+                        $Assets[$Unit['id']]['Totals']['DurationTotal'] = $duration;
+                    }
+
+                    $quantity = 0;
+                    $duration = 0;
                 }
-
-
                 if ($Assets) {
+                    $j = 1;
                     foreach ($Assets as $Asset) {
                         $AssetScoreReport = array();
-                        $AssetScoreReport['User ID'] = $Asset[0]['Unit']['id'];
-                        $AssetScoreReport['Unit Name'] = $Asset[0]['Unit']['name'];
+
+                        $AssetScoreReport['User ID ' . $j] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
+                        $i = 1;
                         foreach ($Asset as $key_reportGen => $reportGen) {
                             $quantity_collection = 0;
                             $duration_collection = 0;
-
                             foreach ($reportGen['Collection']['AssetGroup'] as $report) {
-
                                 $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
                                 $duration_collection = $duration_collection + $report['FormatType']['duration'];
                             }
 
-                            $AssetScoreReport['Collection ID for Collection ' . ($key_reportGen + 1)] = $reportGen['Collection']['id'];
-                            $AssetScoreReport['Collection Name for Collection ' . ($key_reportGen + 1)] = $reportGen['Collection']['name'];
-                            $AssetScoreReport['Percentage by duration that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($duration_collection * 100) / $duration) . ' % ';
-                            $AssetScoreReport['Percentage by quantity that Collection ' . ($key_reportGen + 1) . ' makes up of Unit'] = round(($quantity_collection * 100) / $quantity) . ' % ';
+                            $AssetScoreReport['Collection ID for Collection ' . ($i)] = $reportGen['Collection']['id'];
+                            $AssetScoreReport['Collection Name for Collection ' . ($i)] = $reportGen['Collection']['name'];
+                            $AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = (($duration_collection * 100) / $Asset['Totals']['DurationTotal']) . ' % ';
+                            $AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = (($quantity_collection * 100) / $Asset['Totals']['QuantityTotal']) . ' % ';
+
+                            $i++;
                         }
 
                         $DataDumpReportArray[] = $AssetScoreReport;
+                        $j++;
                     }
 
                     $maxCountElementsCount = count($DataDumpReportArray[0]);
                     $maxCountElementsIndex = 0;
 
                     foreach ($DataDumpReportArray as $key => $DataDump) {
-
                         if ($maxCountElementsCount < count($DataDump)) {
                             $maxCountElementsIndex = $key;
                             $maxCountElementsCount = count($DataDump);
@@ -1672,7 +1694,7 @@ class reportsActions extends sfActions {
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
-                        $csvHandler->DownloadCSV($file_name_with_directory);
+                        $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
                     }
@@ -1745,9 +1767,6 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-            echo '<pre>';
-            print_r($Assets);
-            exit;
         }
     }
 

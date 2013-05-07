@@ -58,7 +58,7 @@ class csvHandler {
         }
         ob_start();
         $df = fopen($this->getUploadDicrectoryPath() . $filename, 'w');
-        fputcsv($df, array('Reported Date',' - '.date('Y-m-d').' - '));
+        fputcsv($df, array('Reported Date', ' - ' . date('Y-m-d') . ' - '));
         if ($showAppliedFilters) {
             fputcsv($df, array('Filters Applied'));
             foreach ($filters as $key => $filter) {
@@ -85,12 +85,12 @@ class csvHandler {
      * 
      * @param String CSV_File_Name_with_its_dicrectory_name 
      */
-    function DownloadCSV($file_name) {
+    function DownloadCSV($file_name_with_directory, $file_name = '') {
 
         header('Content-Type: application/octet-stream');
         header("Content-Transfer-Encoding: Binary");
         header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
-        $file_url = $this->getUploadDicrectoryPath() . $file_name;
+        $file_url = $this->getUploadDicrectoryPath() . $file_name_with_directory;
         readfile($file_url);
         return;
     }

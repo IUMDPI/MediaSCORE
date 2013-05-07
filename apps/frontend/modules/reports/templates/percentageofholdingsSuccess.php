@@ -1,5 +1,9 @@
-Recording Date Report
+
+Percentage of holdings Report
 <br/><br/>
+<?php
+echo $NoRecordFound = get_slot('my_slot');
+?>
 
 <form action="<?php echo url_for('reports/percentageofholdings') ?>" method="post">
     <span ><?php echo $form['listUnits_RRD']->renderLabel(); ?></span>

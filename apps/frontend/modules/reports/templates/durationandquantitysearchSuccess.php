@@ -1,5 +1,8 @@
-Recording Date Report
+Duration Report
 <br/><br/>
+<?php
+echo $NoRecordFound = get_slot('my_slot');
+?>
 
 <form action="<?php echo url_for('reports/durationandquantitysearch') ?>" method="post">
     <b ><?php echo $form['listUnits_RRD']->renderLabel(); ?></b>

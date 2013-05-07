@@ -1,4 +1,4 @@
-Recording Date Report
+Asset Groups Scoring Reports
 <br/><br/>
 <?php
 echo $NoRecordFound = get_slot('my_slot');

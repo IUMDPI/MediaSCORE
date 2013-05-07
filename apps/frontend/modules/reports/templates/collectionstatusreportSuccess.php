@@ -1,4 +1,4 @@
-Problem  Status Report 
+Collection  Status Report 
 <br/><br/>
 <?php
 echo $NoRecordFound = get_slot('my_slot');
