@@ -51,12 +51,22 @@ class csvHandler {
      * 
      * @return Boolean
      */
-    function CreateCSV(array &$array, $filename, $isHeadingDynamic = false, $DynamicHeadingIndex = 0) {
+    function CreateCSV(array &$array, $filename, $isHeadingDynamic = false, $DynamicHeadingIndex = 0, $showAppliedFilters = FALSE, $filters = array()) {
+
         if (count($array) == 0) {
             return null;
         }
         ob_start();
         $df = fopen($this->getUploadDicrectoryPath() . $filename, 'w');
+        fputcsv($df, array('Reported Date',' - '.date('Y-m-d').' - '));
+        if ($showAppliedFilters) {
+            fputcsv($df, array('Filters Applied'));
+            foreach ($filters as $key => $filter) {
+                array_unshift($filter, $key);
+                fputcsv($df, $filter);
+            }
+        }
+
         if ($isHeadingDynamic) {
             fputcsv($df, array_keys($array[$DynamicHeadingIndex]));
         } else {

@@ -28,7 +28,7 @@ class ReportsForm extends BaseReportsForm {
     public function configure() {
         $ListReports = array(
             0 => 'Output All Asset Groups Report',
-            1 => 'Output All Asset Storage_ Locations',
+            1 => 'Output All Asset Storage Locations',
             2 => 'Output All Unit Personnel',
             3 => 'Output All Users Report',
         );
@@ -82,6 +82,17 @@ class ReportsForm extends BaseReportsForm {
             $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true), array('required' => true)));
             $this->getWidget('listUnits_RRD')->setLabel('Units : &nbsp;');
         } elseif ($actionName == 'percentageofholdings') {
+
+            $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+            $this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
+            $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true)
+
+            $this->setWidget('ReportType', new sfWidgetFormChoice(array('choices' => array('0' => 'Unit Format Makeup Report', '1' => 'Collection Format Makeup Report', '2' => 'Unit Collection Makeup Report'))));
+            $this->getWidget('ReportType')->setLabel('Report Type : &nbsp;');
+            $this->getWidget('listUnits_RRD')->setLabel('Units : &nbsp;');
+            $this->getWidget('listCollection_RRD')->setLabel('Collection: &nbsp;');
+            $this->getWidget('format_id')->setLabel('Format Type : &nbsp;');
+        } elseif ($actionName == 'durationandquantitysearch') {
 
             $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
             $this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));

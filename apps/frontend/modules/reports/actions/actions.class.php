@@ -80,8 +80,10 @@ class reportsActions extends sfActions {
             if ($Assets && $FlagForReport) {
                 foreach ($Assets as $Asset) {
 
-                    $formatTypeValuesManager = new formatTypeValuesManager();
                     $AssetScoreReport = array();
+                    $formatTypeValuesManager = new formatTypeValuesManager();
+
+
                     $AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
                     $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
                     $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
@@ -103,27 +105,9 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                     $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
-                    $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
-                    $format = '';
-                    foreach ($FormatArray as $formatValue) {
-                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
-                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
-                    }
 
-                    $AssetScoreReport['Format'] = $format;
-                    $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                    $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
-                    $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
-                    $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
-                    $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['Fungus'] = ($Asset['AssetGroup']['FormatType']['fungus'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['Other Contaminants'] = ($Asset['AssetGroup']['FormatType']['other_contaminants'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
-                    $AssetScoreReport['Duration type'] = FormatTypeForm::$durationtype[$Asset['AssetGroup']['FormatType']['duration_type']];
-                    $AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
-                    $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-                    $AssetScoreReport['Format Type'] = $Asset['AssetGroup']['type'];
+
+
 
                     $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
                     $format = '';
@@ -131,6 +115,7 @@ class reportsActions extends sfActions {
                         if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
                             $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
                     }
+
                     $AssetScoreReport['Format'] = $format;
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
                     $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
@@ -145,6 +130,9 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
                     $AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
+//                    $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
+
+                    $AssetScoreReport['Format Type'] = $Asset['AssetGroup']['type'];
                     $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
                     $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
                     $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationcorrosion'] == '1') ? 'Yes' : 'No';
@@ -216,8 +204,8 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                    $Sheettitle = 'Asset_Group_Score_Report';
+                    $filename = 'Asset_Group_Scoring_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Asset_Group_Scoring_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -237,7 +225,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                    $file_name = 'Asset_Group_Scoring_Report_' . time() . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -429,8 +417,8 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                    $Sheettitle = 'Asset_Group_Score_Report';
+                    $filename = 'Recording_Date_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Recording_Date_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -450,7 +438,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                    $file_name = 'Recording_Date_Report_' . time() . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -535,9 +523,9 @@ class reportsActions extends sfActions {
                     $collectionStatusReport['Collection Primary ID'] = $collection['Collection']['inst_id'];
                     $collectionStatusReport['Collection Name'] = $collection['Collection']['name'];
                     $collectionStatusReport['Status'] = Collection::$statusConstants[$collection['Collection']['status']];
-                    $collectionStatusReport['Collection Created On Date'] = $collection['Unit']['created_at'];
+                    $collectionStatusReport['Collection Created On Date'] = date('Y-d-m H:i:s', strtotime($collection['Unit']['created_at']));
                     $collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
-                    $collectionStatusReport['Collection Updated On Date'] = $collection['Collection']['updated_at'];
+                    $collectionStatusReport['Collection Updated On Date'] = date('Y-d-m H:i:s', strtotime($collection['Collection']['updated_at']));
                     $collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
                     $collectionStatusReports[] = $collectionStatusReport;
                 }
@@ -607,7 +595,8 @@ class reportsActions extends sfActions {
             $Collection_id = $params['listCollection_RRD'];
             $Constraints = $params['Constraints'];
             $ExportType = $params['ExportType'];
-
+            $collection_filter = array();
+            $Constraint_filters = array();
 
             $Units = Doctrine_Query::Create()
                     ->from('Unit u')
@@ -626,6 +615,7 @@ class reportsActions extends sfActions {
 
 
                 foreach ($Collections as $Collection) {
+                    $collection_filter[$Collection['id']] = $Collection['name'];
                     $Asset = Doctrine_Query::Create()
                             ->from('AssetGroup a')
                             ->select('a.*, ft.*')
@@ -636,15 +626,23 @@ class reportsActions extends sfActions {
                     if ($Asset) {
                         foreach ($Asset as $A) {
                             foreach ($Constraints as $Constraint) {
-                                if (strstr($Constraint, 'pack_deformation')) {
-                                    $pack_deforemation = explode('-', $Constraint);
+                                if (!in_array($Constraint, $Constraint_filters)) {
+                                    if (strstr($Constraint, 'pack_deformation')) {
+                                        $pack_deforemation = explode('-', $Constraint);
 
-                                    if ($A['FormatType'][$pack_deforemation[0]] == $pack_deforemation[1]) {
-                                        $addAssetFlag = TRUE;
-                                    }
-                                } else {
-                                    if ($A['FormatType'][$Constraint] != '') {
-                                        $addAssetFlag = TRUE;
+                                        if ($A['FormatType'][$pack_deforemation[0]] == $pack_deforemation[1]) {
+                                            $addAssetFlag = TRUE;
+                                        }
+                                        if (!in_array(('pack_deformation-' . $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $pack_deforemation[1])), $Constraint_filters)) {
+                                            $Constraint_filters[] = 'pack_deformation-' . $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $pack_deforemation[1]);
+                                        }
+                                    } else {
+                                        if ($A['FormatType'][$Constraint] != '') {
+                                            $addAssetFlag = TRUE;
+                                        }
+                                        if (!in_array($Constraint, $Constraint_filters)) {
+                                            $Constraint_filters[] = $Constraint;
+                                        }
                                     }
                                 }
                             }
@@ -660,6 +658,10 @@ class reportsActions extends sfActions {
                     }
                 }
             }
+            $filters = array(
+                'collection-Filter(s)' => $collection_filter,
+                'Problem-Filter(s)' => $Constraint_filters,
+            );
 
             if ($Assets) {
                 foreach ($Assets as $Asset) {
@@ -715,8 +717,8 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                    $Sheettitle = 'Asset_Group_Score_Report';
+                    $filename = 'Problem_Media_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Problem_Media_Report';
 //                $intial_dicrectory = '\AssetsScore\xls\\';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
@@ -727,7 +729,7 @@ class reportsActions extends sfActions {
                     $excel->setFileName($file_name_with_directory);
                     $excel->setSheetTitle($Sheettitle);
 
-                    $excel->createExcel();
+                    $excel->createExcel(TRUE, $filters);
 
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
@@ -737,11 +739,11 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                    $file_name = 'Problem_Media_Report_' . time() . '.csv';
 //                $intial_dicrectory = '\RecordingDate\csv\\';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
-                    $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
+                    $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory, FALSE, 0, TRUE, $filters);
                     $csvHandler->DownloadCSV($file_name_with_directory);
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
@@ -832,7 +834,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Unit Personnel Email.'] = $Asset['Unit']['Personnel'][0]['email_address'];
                         $AssetScoreReport['Unit Personnel Phone.'] = $Asset['Unit']['Personnel'][0]['phone'];
 
-                        $AssetScoreReport['Unit Created'] = $Asset['Unit']['created_at'];
+                        $AssetScoreReport['Unit Created'] = date('Y-d-m H:i:s', strtotime($Asset['Unit']['created_at']));
                         $AssetScoreReport['Creator Unit Created By'] = $Asset['Unit']['Creator']['first_name'] . ' ' . $Asset['Unit']['Creator']['last_name']; #
                         $AssetScoreReport['CreatorUser ID.'] = $Asset['Unit']['Creator']['id'];
                         $AssetScoreReport['Creator User First Name.'] = $Asset['Unit']['Creator']['first_name'];
@@ -841,7 +843,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Creator User Phone.'] = $Asset['Unit']['Creator']['phone'];
                         $AssetScoreReport['Creator User Role.'] = $Asset['Unit']['Creator']['role'];
 
-                        $AssetScoreReport['Unit Updated On'] = $Asset['Unit']['updated_at'];
+                        $AssetScoreReport['Unit Updated On'] = date('Y-d-m H:i:s', strtotime($Asset['Unit']['updated_at']));
                         $AssetScoreReport['Unit Updated By'] = $Asset['Unit']['Editor']['first_name'] . ' ' . $Asset['Unit']['Editor']['last_name'];
                         $AssetScoreReport['Editor User ID ,'] = $Asset['Unit']['Editor']['id'];
                         $AssetScoreReport['Unit Editor User First Name ,'] = $Asset['Unit']['Editor']['first_name'];
@@ -871,7 +873,7 @@ class reportsActions extends sfActions {
 
 
 
-                        $AssetScoreReport['Collection Created'] = $Asset['Collection']['created_at'];
+                        $AssetScoreReport['Collection Created'] = date('Y-d-m H:i:s', strtotime($Asset['Collection']['created_at']));
                         $AssetScoreReport['Collection Created By'] = $Asset['Collection']['Creator']['first_name'] . ' ' . $Asset['Collection']['Creator']['last_name']; #
                         $AssetScoreReport['Collection Creator User ID -'] = $Asset['Collection']['Creator']['id'];
                         $AssetScoreReport['Collection Creator User First Name -'] = $Asset['Collection']['Creator']['first_name'];
@@ -881,7 +883,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Collection Creator User Role -'] = $Asset['Collection']['Creator']['role'];
 
                         $AssetScoreReport['Collection'] = $Asset['Collection']['name'];
-                        $AssetScoreReport['Updated On'] = $Asset['Collection']['updated_at'];
+                        $AssetScoreReport['Updated On'] = date('Y-d-m H:i:s', strtotime($Asset['Collection']['updated_at']));
                         $AssetScoreReport['Collection Updated By'] = $Asset['Collection']['Editor']['first_name'] . ' ' . $Asset['Collection']['Editor']['last_name'];
                         $AssetScoreReport['Collection Editor User ID -'] = $Asset['Collection']['Editor']['id'];
                         $AssetScoreReport['Collection Editor User First Name-'] = $Asset['Collection']['Editor']['first_name'];
@@ -898,7 +900,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Asset Group Description Location'] = $Asset['AssetGroup']['resident_structure_description'];
 
 
-                        $AssetScoreReport['Asset Group Created'] = $Asset['AssetGroup']['created_at'];
+                        $AssetScoreReport['Asset Group Created'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
 
                         $AssetScoreReport['Asset Group Created By User ID _'] = $Asset['AssetGroup']['Creator']['id'];
                         $AssetScoreReport['AssetGroup User First Name _'] = $Asset['AssetGroup']['Creator']['first_name'];
@@ -919,7 +921,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['AssetGroup User Editor User Role * '] = $Asset['AssetGroup']['Editor']['role'];
 
 
-                        $AssetScoreReport['Asset Group Date'] = $Asset['AssetGroup']['created_at'];
+                        $AssetScoreReport['Asset Group Date'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
                         $AssetScoreReport['Asset Group Person'] = $Asset['Unit']['Personnel']['role'];
                         $AssetScoreReport['Asset Group Personnel User ID  *'] = $Asset['Unit']['Personnel']['role'];
                         $AssetScoreReport['Asset Group Personnel User First Name *'] = $Asset['Unit']['Personnel'][0]['first_name'];
@@ -1130,8 +1132,20 @@ class reportsActions extends sfActions {
 
                 $excel->setDataArray($DataDumpReportArray);
                 $excel->extractHeadings();
-                $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                $Sheettitle = 'Asset_Group_Score_Report';
+                if ($param['reports']['listReports'] == '0') {
+                    $filename = 'Output_All_Asset_Groups_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Output_All_Asset_Groups_Report';
+                } else if ($param['reports']['listReports'] == '1') {
+                    $filename = 'Output_All_Asset_Storage_Locations_' . time() . '.xlsx';
+                    $Sheettitle = 'Output_All_Asset_Storage_Locations';
+                } else if ($param['reports']['listReports'] == '2') {
+                    $filename = 'Output_All_Unit_Personnel_' . time() . '.xlsx';
+                    $Sheettitle = 'Output_All_Unit_Personnel';
+                } else {
+                    $filename = 'Output_All_Users_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'Output_All_Users_Report';
+                }
+
                 $intial_dicrectory = '/AssetsScore/xls/';
                 $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1150,8 +1164,24 @@ class reportsActions extends sfActions {
 
                 $csvHandler = new csvHandler();
 
-                $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
-                $intial_dicrectory = '/AssetsScore/csv/';
+                if ($param['reports']['listReports'] == '0') {
+
+                    $file_name = 'Output_All_Asset_Groups_Report_' . time() . '.xlsx';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                } else if ($param['reports']['listReports'] == '1') {
+
+                    $filename = 'Output_All_Asset_Storage_Locations_' . time() . '.xlsx';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                } else if ($param['reports']['listReports'] == '2') {
+
+                    $filename = 'Output_All_Unit_Personnel_' . time() . '.xlsx';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                } else {
+
+                    $filename = 'Output_All_Users_Report_' . time() . '.xlsx';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                }
+
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory);
@@ -1242,8 +1272,8 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
                     $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
-                    $AssetScoreReport['Date User Created Asset Group'] = $Asset['AssetGroup']['created_at'];
-                    $AssetScoreReport['Date User Updated Asset Group'] = $Asset['AssetGroup']['updated_at'];
+                    $AssetScoreReport['Date User Created Asset Group'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
+                    $AssetScoreReport['Date User Updated Asset Group'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['updated_at']));
 
                     $DataDumpReportArray[] = $AssetScoreReport;
                 }
@@ -1253,8 +1283,8 @@ class reportsActions extends sfActions {
 
                     $excel->setDataArray($DataDumpReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                    $Sheettitle = 'Asset_Group_Score_Report';
+                    $filename = 'User_Report_' . time() . '.xlsx';
+                    $Sheettitle = 'User_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1272,7 +1302,7 @@ class reportsActions extends sfActions {
                 } else {
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                    $file_name = 'User_Report_' . time() . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
@@ -1383,8 +1413,8 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $filename = 'Unit_Format_Makeup_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Unit_Format_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
                         $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1403,7 +1433,7 @@ class reportsActions extends sfActions {
                     } else {
                         $csvHandler = new csvHandler();
 
-                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $file_name = 'Unit_Format_Makeup_Report_' . time() . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1501,8 +1531,8 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $filename = 'Collection_Format_Makeup_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Collection_Format_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
                         $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1521,7 +1551,7 @@ class reportsActions extends sfActions {
                     } else {
                         $csvHandler = new csvHandler();
 
-                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $file_name = 'Collection_Format_Makeup_Report_' . time() . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1618,8 +1648,8 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Asset_Group_Score_Report_' . time() . '.xlsx';
-                        $Sheettitle = 'Asset_Group_Score_Report';
+                        $filename = 'Unit_Collection_Makeup_Report_' . time() . '.xlsx';
+                        $Sheettitle = 'Unit_Collection_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
                         $file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1638,7 +1668,7 @@ class reportsActions extends sfActions {
                     } else {
                         $csvHandler = new csvHandler();
 
-                        $file_name = 'Asset_Group_Score_Report_' . time() . '.csv';
+                        $file_name = 'Unit_Collection_Makeup_Report_' . time() . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1664,6 +1694,61 @@ class reportsActions extends sfActions {
      */
     public function executeDurationandquantitysearch(sfWebRequest $request) {
         $this->form = new ReportsForm(null, array('from' => 'durationandquantitysearch'));
+        if ($request->getMethod() == 'POST') {
+            $params = $request->getPostParameters();
+
+            $formatTypeValuesManager = new formatTypeValuesManager();
+
+            $DataDumpReportArray = array();
+            $Assets = array();
+            $quantity = 0;
+            $duration = 0;
+
+            $Collection_id = $params['reports']['listCollection_RRD'];
+            $Units_id = $params['reports']['listUnits_RRD'];
+            $format_id = $params['reports']['format_id'];
+            $ExportType = $params['reports']['ExportType'];
+            $ReportType = $params['reports']['ReportType'];
+
+            $Units = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.*')
+                    ->whereIn('u.id', $Units_id)
+                    ->fetchArray();
+
+            foreach ($Units as $Unit) {
+
+                $Collections = Doctrine_Query::Create()
+                        ->from('Collection c')
+                        ->select('c.*')
+                        ->where('c.parent_node_id = ?', $Unit['id'])
+                        ->andWhereIn('c.id', $Collection_id)
+                        ->fetchArray();
+
+
+                foreach ($Collections as $Collection) {
+                    $Asset = Doctrine_Query::Create()
+                            ->from('AssetGroup a')
+                            ->select('a.*, ft.*')
+                            ->leftJoin("a.FormatType ft")
+                            ->where('a.parent_node_id = ?', $Collection['id'])
+                            ->andWhereIn('ft.type', $format_id)
+                            ->fetchArray();
+                    if ($Asset) {
+                        foreach ($Asset as $A) {
+                            $SolutionArray = array();
+                            $SolutionArray['AssetGroup'] = $A;
+                            $SolutionArray['Collection'] = $Collection;
+                            $SolutionArray['Unit'] = $Unit;
+                            $Assets[] = $SolutionArray;
+                        }
+                    }
+                }
+            }
+            echo '<pre>';
+            print_r($Assets);
+            exit;
+        }
     }
 
 }

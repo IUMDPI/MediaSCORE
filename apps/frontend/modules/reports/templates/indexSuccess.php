@@ -28,5 +28,9 @@
     <li>
         <h3><a href="<?php echo url_for('reports/percentageofholdings') ?>">Percentage of holdings</a></h3>
     </li>
+
+    <li>
+        <h3><a href="<?php echo url_for('reports/durationandquantitysearch') ?>">Duration Reports</a></h3>
+    </li>
 </ul>
 

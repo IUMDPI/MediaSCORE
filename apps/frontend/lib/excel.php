@@ -143,7 +143,7 @@ class excel extends PHPExcel {
     function SetDataTypeExcel($element, $dataType = PHPExcel_Cell_DataType::TYPE_STRING) {
 
         if (is_numeric($element)) {
-            $dataType = PHPExcel_Cell_DataType::TYPE_NUMERIC;
+//            $dataType = PHPExcel_Cell_DataType::TYPE_NUMERIC;
         }
         return $dataType;
     }
@@ -151,8 +151,11 @@ class excel extends PHPExcel {
     /**
      *  Generates the content of the excel file
      * 
+     * @param Boolean $addFilters
+     * @param Array $FiltersApplied
+     * 
      */
-    function createExcel() {
+    function createExcel($addFilters = FALSE, $Filters = array()) {
         $this->getActiveSheetIndex();
         $this->getActiveSheet()->setTitle($this->getSheetTitle());
         $ThisStyleSheet = $this->getActiveSheet();
@@ -179,20 +182,66 @@ class excel extends PHPExcel {
                 ),
             ),
         );
+        $styleArrayFilters = array(
+            'font' => array(
+                'bold' => true,
+            ),
+            'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            ),
+            'borders' => array(
+                'top' => array(
+                    'style' => PHPExcel_Style_Border::BORDER_THIN,
+                ),
+            ),
+            'fill' => array(
+                'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+                'rotation' => 90,
+                'startcolor' => array(
+                    'argb' => '1639292',
+                ),
+                'endcolor' => array(
+                    'argb' => 'FFFFFFFF',
+                ),
+            ),
+        );
+        $headingRow = 1;
 
+        $ThisStyleSheet->getStyleByColumnAndRow(0, $headingRow)->applyFromArray($styleArrayFilters);
+        $ThisStyleSheet->getColumnDimensionByColumn(0)->setWidth(40);
+        $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow, 'Reported Date');
+        $ThisStyleSheet->getColumnDimensionByColumn(1)->setWidth(40);
+        $ThisStyleSheet->setCellValueExplicitByColumnAndRow(1, $headingRow, date('Y-m-d'));
+        $headingRow++;
+        if ($addFilters) {
+            $ThisStyleSheet->getStyleByColumnAndRow(0, $headingRow)->applyFromArray($styleArrayFilters);
+            $ThisStyleSheet->getColumnDimensionByColumn(0)->setWidth(40);
+            $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow, 'Filters Applied');
+            $headingRow++;
+            foreach ($Filters as $key => $Filter) {
+                $headingRow++;
+                $ThisStyleSheet->getStyleByColumnAndRow(0, $headingRow - 1)->applyFromArray($styleArrayFilters);
+                $ThisStyleSheet->getColumnDimensionByColumn(0)->setWidth(40);
+                $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow - 1, $key);
+
+                $ThisStyleSheet->getColumnDimensionByColumn(1)->setWidth(40);
+                $ThisStyleSheet->setCellValueExplicitByColumnAndRow(1, $headingRow - 1, implode('  ||  ', $Filter));
+            }
+        }
+        $headingRow++;
         foreach ($this->headings as $key => $heading) {
 
-            $ThisStyleSheet->getStyleByColumnAndRow($key, 1)->applyFromArray($styleArray);
+            $ThisStyleSheet->getStyleByColumnAndRow($key, $headingRow)->applyFromArray($styleArray);
             $ThisStyleSheet->getColumnDimensionByColumn($key)->setWidth(40);
-            $ThisStyleSheet->setCellValueExplicitByColumnAndRow($key, 1, ucfirst($heading));
+            $ThisStyleSheet->setCellValueExplicitByColumnAndRow($key, $headingRow, ucfirst($heading));
         }
+        $headingRow++;
         $j = 0;
         foreach ($this->dataArray as $dataRow) {
             $i = 0;
-
             foreach ($dataRow as $element) {
                 $dataType = $this->SetDataTypeExcel($element);
-                $ThisStyleSheet->setCellValueExplicitByColumnAndRow($i, ($j + 2), $element, $dataType);
+                $ThisStyleSheet->setCellValueExplicitByColumnAndRow($i, ($j + ($headingRow + 1)), $element, $dataType);
                 $i++;
             }
             $j++;
