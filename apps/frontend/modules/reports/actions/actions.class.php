@@ -77,12 +77,10 @@ class reportsActions extends sfActions {
             }
 
 
+            $formatTypeValuesManager = new formatTypeValuesManager();
             if ($Assets && $FlagForReport) {
                 foreach ($Assets as $Asset) {
-
                     $AssetScoreReport = array();
-                    $formatTypeValuesManager = new formatTypeValuesManager();
-
 
                     $AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
                     $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
@@ -100,25 +98,26 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
                     $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
                     $AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
-                    $AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id'];
+                    $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
                     $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                     $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
 
-
-
-
                     $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
                     $format = '';
+
                     foreach ($FormatArray as $formatValue) {
-                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
                             $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
+                        } else {
+                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
+                        }
                     }
 
                     $AssetScoreReport['Format'] = $format;
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                    $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
+                    $AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
                     $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
                     $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
@@ -130,12 +129,9 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
                     $AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
-//                    $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-
-                    $AssetScoreReport['Format Type'] = $Asset['AssetGroup']['type'];
                     $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
                     $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
-                    $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationcorrosion'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
                     $AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['tape_type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tape_type', $Asset['AssetGroup']['FormatType']['tape_type']);
@@ -146,52 +142,102 @@ class reportsActions extends sfActions {
 
                     $AssetScoreReport['gauge'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'gauge', $Asset['AssetGroup']['FormatType']['gauge']);
                     $AssetScoreReport['color'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'color', $Asset['AssetGroup']['FormatType']['color']);
-                    $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorfade'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackformat', $Asset['AssetGroup']['FormatType']['soundtrackformat']);
+                    $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorFade'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackFormat', $Asset['AssetGroup']['FormatType']['soundtrackFormat']);
                     $AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'substrate', $Asset['AssetGroup']['FormatType']['substrate']);
-                    $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongodor'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarodor'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['adstriplevel'];
+                    $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['ADStripLevel'];
                     $AssetScoreReport['shrinkage'] = ($Asset['AssetGroup']['FormatType']['shrinkage'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelofshrinkage'];
+                    $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelOfShrinkage'];
                     $AssetScoreReport['rust'] = ($Asset['AssetGroup']['FormatType']['rust'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['discoloration'] = ($Asset['AssetGroup']['FormatType']['discoloration'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceblisteringbubbling'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thintape'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993orearlier'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['datagradetape'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longplay32k96k'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionrustoxidation'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
-                    $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonstandardbrand'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackconfiguration', $Asset['AssetGroup']['FormatType']['trackconfiguration']);
-                    $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapethickness', $Asset['AssetGroup']['FormatType']['tapethickness']);
-                    $AssetScoreReport['speed'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Asset['AssetGroup']['FormatType']['speed']);
-                    $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softbindersyndrome'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsbreakdown'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicaldamage', $Asset['AssetGroup']['FormatType']['physicaldamage']);
-                    $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceBlisteringBubbling'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thinTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993OrEarlier'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['dataGradeTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longPlay32K96K'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionRustOxidation'] == '1') ? 'Yes' : 'No';
+                    if ($formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition'])) {
+                        $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
+                    } else {
+                        $AssetScoreReport['composition'] = '';
+                    }
 
-                    $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerexudation'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordinglayer', $Asset['AssetGroup']['FormatType']['recordinglayer']);
-                    $AssetScoreReport['recordingspeed'] = $Asset['AssetGroup']['FormatType']['recordingspeed']; #
-                    $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylindertype', $Asset['AssetGroup']['FormatType']['cylindertype']);
-                    $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectivelayer', $Asset['AssetGroup']['FormatType']['reflectivelayer']);
-                    $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datalayer', $Asset['AssetGroup']['FormatType']['datalayer']);
-                    $AssetScoreReport['opticaldisctype'] = $Asset['AssetGroup']['FormatType']['opticaldisctype']; #
-                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
-                    $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingstandard', $Asset['AssetGroup']['FormatType']['recordingstandard']);
-                    $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationyear'];
-                    $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacitylayers', $Asset['AssetGroup']['FormatType']['capacitylayers']);
+                    $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonStandardBrand'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackConfiguration', $Asset['AssetGroup']['FormatType']['trackConfiguration']);
+                    $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapeThickness', $Asset['AssetGroup']['FormatType']['tapeThickness']);
+
+                    $SpeedArray = explode(',', $Asset['AssetGroup']['FormatType']['speed']);
+                    $SpeedText = '';
+
+                    foreach ($SpeedArray as $Speed) {
+                        $SpeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Speed) . ' , ';
+                    }
+                    $AssetScoreReport['speed'] = $SpeedText;
+
+                    $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softBinderSyndrome'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsBreakdown'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicalDamage', $Asset['AssetGroup']['FormatType']['physicalDamage']);
+                    $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerExudation'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingLayer', $Asset['AssetGroup']['FormatType']['recordingLayer']);
+
+                    $recordingspeedArray = explode(',', $Asset['AssetGroup']['FormatType']['recordingSpeed']);
+                    $recordingspeedText = '';
+
+                    foreach ($recordingspeedArray as $recordingspeed) {
+                        $recordingspeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingSpeed', $recordingspeed) . ' , ';
+                    }
+
+                    $AssetScoreReport['recordingspeed'] = $recordingspeedText;
+                    $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylinderType', $Asset['AssetGroup']['FormatType']['cylinderType']);
+                    $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectiveLayer', $Asset['AssetGroup']['FormatType']['reflectiveLayer']);
+                    $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataLayer', $Asset['AssetGroup']['FormatType']['dataLayer']);
+
+
+                    $opticalDiscTypeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $opticalDiscTypeText = '';
+
+                    foreach ($opticalDiscTypeArray as $opticalDiscType) {
+                        $opticalDiscTypeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'opticalDiscType', $opticalDiscType) . ' , ';
+                    }
+
+                    $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
+
+//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
+                    $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
+                    $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
+                    $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
                     $AssetScoreReport['codec'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'codec', $Asset['AssetGroup']['FormatType']['codec']);
-                    $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datarate', $Asset['AssetGroup']['FormatType']['datarate']);
-                    $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingsoftbinder'];
+                    $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataRate', $Asset['AssetGroup']['FormatType']['dataRate']);
+                    $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingSoftBinder'];
                     $AssetScoreReport['oxide'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'oxide', $Asset['AssetGroup']['FormatType']['oxide']);
-                    $AssetScoreReport['bindersystem'] = $Asset['AssetGroup']['FormatType']['bindersystem'];
-                    $AssetScoreReport['reelsize'] = $Asset['AssetGroup']['FormatType']['reelsize']; #
-                    $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteresidue'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['size'] = $Asset['AssetGroup']['FormatType']['size']; #
-                    $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formattypedvideorecordingformat'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['bindersystem'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'binderSystem', $Asset['AssetGroup']['FormatType']['binderSystem']);
+
+
+                    $reelsizeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $reelsizeText = '';
+
+                    foreach ($reelsizeArray as $reelsize) {
+                        $reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'size', $reelsize) . ' , ';
+                    }
+                    $AssetScoreReport['reelsize'] = $reelsizeText;
+                    $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
+
+
+
+
+
+                    $sizeArray = explode(',', $Asset['AssetGroup']['FormatType']['size']);
+                    $sizeText = '';
+                    foreach ($sizeArray as $size) {
+                        $sizeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'size', $size) . ' , ';
+                    }
+                    $AssetScoreReport['size'] = $sizeText;
+
+
+                    $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
 
                     $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
                     $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
@@ -204,7 +250,7 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Asset_Group_Scoring_Report_' . time() . '.xlsx';
+                    $filename = 'Asset_Group_Scoring_Report_' . date('Y-m-d_H-i-s') . '_' . time() . '.xlsx';
                     $Sheettitle = 'Asset_Group_Scoring_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
@@ -225,7 +271,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Asset_Group_Scoring_Report_' . time() . '.csv';
+                    $file_name = 'Asset_Group_Scoring_Report_' . date('Y-m-d_H-i-s') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -326,15 +372,21 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                     $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
+
                     $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
                     $format = '';
+
                     foreach ($FormatArray as $formatValue) {
-                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
                             $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
+                        } else {
+                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
+                        }
                     }
+
                     $AssetScoreReport['Format'] = $format;
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                    $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
+                    $AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
                     $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
                     $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
@@ -348,7 +400,7 @@ class reportsActions extends sfActions {
 
                     $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
                     $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
-                    $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationcorrosion'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
                     $AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['tape_type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tape_type', $Asset['AssetGroup']['FormatType']['tape_type']);
@@ -359,55 +411,98 @@ class reportsActions extends sfActions {
 
                     $AssetScoreReport['gauge'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'gauge', $Asset['AssetGroup']['FormatType']['gauge']);
                     $AssetScoreReport['color'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'color', $Asset['AssetGroup']['FormatType']['color']);
-                    $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorfade'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackformat', $Asset['AssetGroup']['FormatType']['soundtrackformat']);
+                    $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorFade'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackFormat', $Asset['AssetGroup']['FormatType']['soundtrackFormat']);
                     $AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'substrate', $Asset['AssetGroup']['FormatType']['substrate']);
-                    $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongodor'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarodor'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['adstriplevel'];
+                    $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['ADStripLevel'];
                     $AssetScoreReport['shrinkage'] = ($Asset['AssetGroup']['FormatType']['shrinkage'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelofshrinkage'];
+                    $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelOfShrinkage'];
                     $AssetScoreReport['rust'] = ($Asset['AssetGroup']['FormatType']['rust'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['discoloration'] = ($Asset['AssetGroup']['FormatType']['discoloration'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceblisteringbubbling'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thintape'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993orearlier'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['datagradetape'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longplay32k96k'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionrustoxidation'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
-                    $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonstandardbrand'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackconfiguration', $Asset['AssetGroup']['FormatType']['trackconfiguration']);
-                    $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapethickness', $Asset['AssetGroup']['FormatType']['tapethickness']);
-                    $AssetScoreReport['speed'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Asset['AssetGroup']['FormatType']['speed']);
-                    $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softbindersyndrome'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsbreakdown'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicaldamage', $Asset['AssetGroup']['FormatType']['physicaldamage']);
+                    $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceBlisteringBubbling'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thinTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993OrEarlier'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['dataGradeTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longPlay32K96K'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionRustOxidation'] == '1') ? 'Yes' : 'No';
+                    if ($formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition'])) {
+                        $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
+                    } else {
+                        $AssetScoreReport['composition'] = '';
+                    }
+
+                    $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonStandardBrand'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackConfiguration', $Asset['AssetGroup']['FormatType']['trackConfiguration']);
+                    $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapeThickness', $Asset['AssetGroup']['FormatType']['tapeThickness']);
+
+                    $SpeedArray = explode(',', $Asset['AssetGroup']['FormatType']['speed']);
+                    $SpeedText = '';
+
+                    foreach ($SpeedArray as $Speed) {
+                        $SpeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Speed) . ' , ';
+                    }
+                    $AssetScoreReport['speed'] = $SpeedText;
+
+                    $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softBinderSyndrome'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsBreakdown'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicalDamage', $Asset['AssetGroup']['FormatType']['physicalDamage']);
                     $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerExudation'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingLayer', $Asset['AssetGroup']['FormatType']['recordingLayer']);
 
-                    $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerexudation'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordinglayer', $Asset['AssetGroup']['FormatType']['recordinglayer']);
-                    $AssetScoreReport['recordingspeed'] = $Asset['AssetGroup']['FormatType']['recordingspeed']; #
-                    $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylindertype', $Asset['AssetGroup']['FormatType']['cylindertype']);
-                    $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectivelayer', $Asset['AssetGroup']['FormatType']['reflectivelayer']);
-                    $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datalayer', $Asset['AssetGroup']['FormatType']['datalayer']);
-                    $AssetScoreReport['opticaldisctype'] = $Asset['AssetGroup']['FormatType']['opticaldisctype']; #
-                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
-                    $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingstandard', $Asset['AssetGroup']['FormatType']['recordingstandard']);
-                    $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationyear'];
-                    $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacitylayers', $Asset['AssetGroup']['FormatType']['capacitylayers']);
+                    $recordingspeedArray = explode(',', $Asset['AssetGroup']['FormatType']['recordingSpeed']);
+                    $recordingspeedText = '';
+
+                    foreach ($recordingspeedArray as $recordingspeed) {
+                        $recordingspeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingSpeed', $recordingspeed) . ' , ';
+                    }
+
+                    $AssetScoreReport['recordingspeed'] = $recordingspeedText;
+                    $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylinderType', $Asset['AssetGroup']['FormatType']['cylinderType']);
+                    $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectiveLayer', $Asset['AssetGroup']['FormatType']['reflectiveLayer']);
+                    $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataLayer', $Asset['AssetGroup']['FormatType']['dataLayer']);
+
+
+                    $opticalDiscTypeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $opticalDiscTypeText = '';
+
+                    foreach ($opticalDiscTypeArray as $opticalDiscType) {
+                        $opticalDiscTypeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'opticalDiscType', $opticalDiscType) . ' , ';
+                    }
+
+                    $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
+
+//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
+                    $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
+                    $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
+                    $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
                     $AssetScoreReport['codec'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'codec', $Asset['AssetGroup']['FormatType']['codec']);
-                    $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datarate', $Asset['AssetGroup']['FormatType']['datarate']);
-                    $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingsoftbinder'];
+                    $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataRate', $Asset['AssetGroup']['FormatType']['dataRate']);
+                    $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingSoftBinder'];
                     $AssetScoreReport['oxide'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'oxide', $Asset['AssetGroup']['FormatType']['oxide']);
-                    $AssetScoreReport['bindersystem'] = $Asset['AssetGroup']['FormatType']['bindersystem'];
-                    $AssetScoreReport['reelsize'] = $Asset['AssetGroup']['FormatType']['reelsize']; #
-                    $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteresidue'] == '1') ? 'Yes' : 'No';
-                    $AssetScoreReport['size'] = $Asset['AssetGroup']['FormatType']['size']; #
-                    $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formattypedvideorecordingformat'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['bindersystem'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'binderSystem', $Asset['AssetGroup']['FormatType']['binderSystem']);
 
+                    $reelsizeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $reelsizeText = '';
+
+                    foreach ($reelsizeArray as $reelsize) {
+                        $reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'size', $reelsize) . ' , ';
+                    }
+                    $AssetScoreReport['reelsize'] = $reelsizeText;
+                    $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
+
+                    $sizeArray = explode(',', $Asset['AssetGroup']['FormatType']['size']);
+                    $sizeText = '';
+                    foreach ($sizeArray as $size) {
+                        $sizeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'size', $size) . ' , ';
+                    }
+                    $AssetScoreReport['size'] = $sizeText;
+                    $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
                     $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
+
                     if ($AssetScoreReport['score'] != '')
                         $AssetScoreReportArray[] = $AssetScoreReport;
                 }
@@ -417,7 +512,7 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Recording_Date_Report_' . time() . '.xlsx';
+                    $filename = 'Recording_Date_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Recording_Date_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
@@ -438,7 +533,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Recording_Date_Report_' . time() . '.csv';
+                    $file_name = 'Recording_Date_Report_' . date('Y-m-d_H-i-s') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -513,6 +608,7 @@ class reportsActions extends sfActions {
 
             if ($collections) {
                 foreach ($collections as $collection) {
+
                     $collectionStatusReport = array();
                     $collectionStatusReport['Uuit ID'] = $collection['Unit']['id'];
                     $collectionStatusReport['Unit Primary ID'] = $collection['Unit']['inst_id'];
@@ -535,7 +631,7 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($collectionStatusReports);
                     $excel->extractHeadings();
-                    $filename = 'Collection_Status_Report_' . time() . '.xlsx';
+                    $filename = 'Collection_Status_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Collection_Status_Report';
                     $intial_dicrectory = '/CollectionStatusReport/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
@@ -555,7 +651,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Collection_Status_Report_' . time() . '.csv';
+                    $file_name = 'Collection_Status_Report_' . date('Y-m-d_H-i-s') . '.csv';
 
                     $intial_dicrectory = '/CollectionStatusReport/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
@@ -688,27 +784,145 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                     $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
+
+
                     $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
                     $format = '';
+
                     foreach ($FormatArray as $formatValue) {
-                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
                             $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
+                        } else {
+                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
+                        }
                     }
 
                     $AssetScoreReport['Format'] = $format;
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                    $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
-                    $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
+                    $AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
                     $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
                     $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Fungus'] = ($Asset['AssetGroup']['FormatType']['fungus'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Other Contaminants'] = ($Asset['AssetGroup']['FormatType']['other_contaminants'] == '1') ? 'Yes' : 'No';
                     $AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
-                    $AssetScoreReport['Duration type'] = FormatTypeForm::$durationtype[$Asset['AssetGroup']['FormatType']['duration_type']];
+                    $AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
                     $AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
-                    $AssetScoreReport['Asset Group format detal fields populate to the right, aligning repetitive fields'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-                    $AssetScoreReport['Format Type'] = $Asset['AssetGroup']['type'];
+                    $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
+                    $AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
+
+                    $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
+                    $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+                    $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
+                    $AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['tape_type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tape_type', $Asset['AssetGroup']['FormatType']['tape_type']);
+                    $AssetScoreReport['thin_tape'] = ($Asset['AssetGroup']['FormatType']['thin_tape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['slow_speed'] = ($Asset['AssetGroup']['FormatType']['slow_speed'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['sound_field'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'sound_field', $Asset['AssetGroup']['FormatType']['sound_field']);
+                    $AssetScoreReport['soft_binder_syndrome'] = ($Asset['AssetGroup']['FormatType']['soft_binder_syndrome'] == '1') ? 'Yes' : 'No';
+
+                    $AssetScoreReport['gauge'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'gauge', $Asset['AssetGroup']['FormatType']['gauge']);
+                    $AssetScoreReport['color'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'color', $Asset['AssetGroup']['FormatType']['color']);
+                    $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorFade'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackFormat', $Asset['AssetGroup']['FormatType']['soundtrackFormat']);
+                    $AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'substrate', $Asset['AssetGroup']['FormatType']['substrate']);
+                    $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarOdor'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['ADStripLevel'];
+                    $AssetScoreReport['shrinkage'] = ($Asset['AssetGroup']['FormatType']['shrinkage'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelOfShrinkage'];
+                    $AssetScoreReport['rust'] = ($Asset['AssetGroup']['FormatType']['rust'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['discoloration'] = ($Asset['AssetGroup']['FormatType']['discoloration'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceBlisteringBubbling'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thinTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993OrEarlier'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['dataGradeTape'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longPlay32K96K'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionRustOxidation'] == '1') ? 'Yes' : 'No';
+                    if ($formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition'])) {
+                        $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
+                    } else {
+                        $AssetScoreReport['composition'] = '';
+                    }
+
+                    $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonStandardBrand'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackConfiguration', $Asset['AssetGroup']['FormatType']['trackConfiguration']);
+                    $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapeThickness', $Asset['AssetGroup']['FormatType']['tapeThickness']);
+
+                    $SpeedArray = explode(',', $Asset['AssetGroup']['FormatType']['speed']);
+                    $SpeedText = '';
+
+                    foreach ($SpeedArray as $Speed) {
+                        $SpeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Speed) . ' , ';
+                    }
+                    $AssetScoreReport['speed'] = $SpeedText;
+
+                    $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softBinderSyndrome'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsBreakdown'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicalDamage', $Asset['AssetGroup']['FormatType']['physicalDamage']);
+                    $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerExudation'] == '1') ? 'Yes' : 'No';
+                    $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingLayer', $Asset['AssetGroup']['FormatType']['recordingLayer']);
+
+                    $recordingspeedArray = explode(',', $Asset['AssetGroup']['FormatType']['recordingSpeed']);
+                    $recordingspeedText = '';
+
+                    foreach ($recordingspeedArray as $recordingspeed) {
+                        $recordingspeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingSpeed', $recordingspeed) . ' , ';
+                    }
+
+                    $AssetScoreReport['recordingspeed'] = $recordingspeedText;
+                    $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylinderType', $Asset['AssetGroup']['FormatType']['cylinderType']);
+                    $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectiveLayer', $Asset['AssetGroup']['FormatType']['reflectiveLayer']);
+                    $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataLayer', $Asset['AssetGroup']['FormatType']['dataLayer']);
+
+
+                    $opticalDiscTypeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $opticalDiscTypeText = '';
+
+                    foreach ($opticalDiscTypeArray as $opticalDiscType) {
+                        $opticalDiscTypeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'opticalDiscType', $opticalDiscType) . ' , ';
+                    }
+
+                    $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
+
+//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
+                    $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
+                    $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
+                    $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
+                    $AssetScoreReport['codec'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'codec', $Asset['AssetGroup']['FormatType']['codec']);
+                    $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataRate', $Asset['AssetGroup']['FormatType']['dataRate']);
+                    $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingSoftBinder'];
+                    $AssetScoreReport['oxide'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'oxide', $Asset['AssetGroup']['FormatType']['oxide']);
+                    $AssetScoreReport['bindersystem'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'binderSystem', $Asset['AssetGroup']['FormatType']['binderSystem']);
+
+
+                    $reelsizeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                    $reelsizeText = '';
+
+                    foreach ($reelsizeArray as $reelsize) {
+                        $reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'size', $reelsize) . ' , ';
+                    }
+                    $AssetScoreReport['reelsize'] = $reelsizeText;
+                    $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
+
+
+
+
+
+                    $sizeArray = explode(',', $Asset['AssetGroup']['FormatType']['size']);
+                    $sizeText = '';
+                    foreach ($sizeArray as $size) {
+                        $sizeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'size', $size) . ' , ';
+                    }
+                    $AssetScoreReport['size'] = $sizeText;
+
+
+                    $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
+
+                    $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
+                    $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
                     if ($AssetScoreReport['score'] != '')
                         $AssetScoreReportArray[] = $AssetScoreReport;
                 }
@@ -717,7 +931,7 @@ class reportsActions extends sfActions {
                     $excel = new excel();
                     $excel->setDataArray($AssetScoreReportArray);
                     $excel->extractHeadings();
-                    $filename = 'Problem_Media_Report_' . time() . '.xlsx';
+                    $filename = 'Problem_Media_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Problem_Media_Report';
 //                $intial_dicrectory = '\AssetsScore\xls\\';
                     $intial_dicrectory = '/AssetsScore/xls/';
@@ -739,7 +953,7 @@ class reportsActions extends sfActions {
 
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'Problem_Media_Report_' . time() . '.csv';
+                    $file_name = 'Problem_Media_Report_' . date('Y-m-d_H-i-s') . '.csv';
 //                $intial_dicrectory = '\RecordingDate\csv\\';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
@@ -939,15 +1153,21 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Unit Asset Group Personnel Email *'] = $Asset['Unit']['Personnel'][0]['email_address'];
                         $AssetScoreReport['Unit Asset Group Personnel Phone *'] = $Asset['Unit']['Personnel'][0]['phone'];
 
+
                         $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
                         $format = '';
+
                         foreach ($FormatArray as $formatValue) {
-                            if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != '' && $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) != NULL)
+                            if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
                                 $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
+                            } else {
+                                $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
+                            }
                         }
+
                         $AssetScoreReport['Format'] = $format;
                         $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-                        $AssetScoreReport['Generation'] = $Asset['AssetGroup']['FormatType']['generation'];
+                        $AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
                         $AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
                         $AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
                         $AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
@@ -961,7 +1181,7 @@ class reportsActions extends sfActions {
 
                         $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
                         $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
-                        $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationcorrosion'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
                         $AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
                         $AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
                         $AssetScoreReport['tape_type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tape_type', $Asset['AssetGroup']['FormatType']['tape_type']);
@@ -972,52 +1192,102 @@ class reportsActions extends sfActions {
 
                         $AssetScoreReport['gauge'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'gauge', $Asset['AssetGroup']['FormatType']['gauge']);
                         $AssetScoreReport['color'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'color', $Asset['AssetGroup']['FormatType']['color']);
-                        $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorfade'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackformat', $Asset['AssetGroup']['FormatType']['soundtrackformat']);
+                        $AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorFade'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackFormat', $Asset['AssetGroup']['FormatType']['soundtrackFormat']);
                         $AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'substrate', $Asset['AssetGroup']['FormatType']['substrate']);
-                        $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongodor'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarodor'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['adstriplevel'];
+                        $AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongOdor'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarOdor'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['ADStripLevel'];
                         $AssetScoreReport['shrinkage'] = ($Asset['AssetGroup']['FormatType']['shrinkage'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelofshrinkage'];
+                        $AssetScoreReport['levelofshrinkage'] = $Asset['AssetGroup']['FormatType']['levelOfShrinkage'];
                         $AssetScoreReport['rust'] = ($Asset['AssetGroup']['FormatType']['rust'] == '1') ? 'Yes' : 'No';
                         $AssetScoreReport['discoloration'] = ($Asset['AssetGroup']['FormatType']['discoloration'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceblisteringbubbling'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thintape'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993orearlier'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['datagradetape'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longplay32k96k'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionrustoxidation'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
-                        $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonstandardbrand'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackconfiguration', $Asset['AssetGroup']['FormatType']['trackconfiguration']);
-                        $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapethickness', $Asset['AssetGroup']['FormatType']['tapethickness']);
-                        $AssetScoreReport['speed'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Asset['AssetGroup']['FormatType']['speed']);
-                        $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softbindersyndrome'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsbreakdown'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicaldamage', $Asset['AssetGroup']['FormatType']['physicaldamage']);
-                        $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['surfaceblisteringbubbling'] = ($Asset['AssetGroup']['FormatType']['surfaceBlisteringBubbling'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['thintape'] = ($Asset['AssetGroup']['FormatType']['thinTape'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['1993orearlier'] = ($Asset['AssetGroup']['FormatType']['1993OrEarlier'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['datagradetape'] = ($Asset['AssetGroup']['FormatType']['dataGradeTape'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['longplay32k96k'] = ($Asset['AssetGroup']['FormatType']['longPlay32K96K'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['corrosionrustoxidation'] = ($Asset['AssetGroup']['FormatType']['corrosionRustOxidation'] == '1') ? 'Yes' : 'No';
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition'])) {
+                            $AssetScoreReport['composition'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'composition', $Asset['AssetGroup']['FormatType']['composition']);
+                        } else {
+                            $AssetScoreReport['composition'] = '';
+                        }
 
-                        $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerexudation'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordinglayer', $Asset['AssetGroup']['FormatType']['recordinglayer']);
-                        $AssetScoreReport['recordingspeed'] = $Asset['AssetGroup']['FormatType']['recordingspeed']; #
-                        $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylindertype', $Asset['AssetGroup']['FormatType']['cylindertype']);
-                        $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectivelayer', $Asset['AssetGroup']['FormatType']['reflectivelayer']);
-                        $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datalayer', $Asset['AssetGroup']['FormatType']['datalayer']);
-                        $AssetScoreReport['opticaldisctype'] = $Asset['AssetGroup']['FormatType']['opticaldisctype']; #
-                        $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
-                        $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingstandard', $Asset['AssetGroup']['FormatType']['recordingstandard']);
-                        $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationyear'];
-                        $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacitylayers', $Asset['AssetGroup']['FormatType']['capacitylayers']);
+                        $AssetScoreReport['nonstandardbrand'] = ($Asset['AssetGroup']['FormatType']['nonStandardBrand'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['trackconfiguration'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'trackConfiguration', $Asset['AssetGroup']['FormatType']['trackConfiguration']);
+                        $AssetScoreReport['tapethickness'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'tapeThickness', $Asset['AssetGroup']['FormatType']['tapeThickness']);
+
+                        $SpeedArray = explode(',', $Asset['AssetGroup']['FormatType']['speed']);
+                        $SpeedText = '';
+
+                        foreach ($SpeedArray as $Speed) {
+                            $SpeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Speed) . ' , ';
+                        }
+                        $AssetScoreReport['speed'] = $SpeedText;
+
+                        $AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softBinderSyndrome'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsBreakdown'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['physicaldamage'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'physicalDamage', $Asset['AssetGroup']['FormatType']['physicalDamage']);
+                        $AssetScoreReport['delamination'] = ($Asset['AssetGroup']['FormatType']['delamination'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['plasticizerexudation'] = ($Asset['AssetGroup']['FormatType']['plasticizerExudation'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['recordinglayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingLayer', $Asset['AssetGroup']['FormatType']['recordingLayer']);
+
+                        $recordingspeedArray = explode(',', $Asset['AssetGroup']['FormatType']['recordingSpeed']);
+                        $recordingspeedText = '';
+
+                        foreach ($recordingspeedArray as $recordingspeed) {
+                            $recordingspeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingSpeed', $recordingspeed) . ' , ';
+                        }
+
+                        $AssetScoreReport['recordingspeed'] = $recordingspeedText;
+                        $AssetScoreReport['cylindertype'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'cylinderType', $Asset['AssetGroup']['FormatType']['cylinderType']);
+                        $AssetScoreReport['reflectivelayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'reflectiveLayer', $Asset['AssetGroup']['FormatType']['reflectiveLayer']);
+                        $AssetScoreReport['datalayer'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataLayer', $Asset['AssetGroup']['FormatType']['dataLayer']);
+
+
+                        $opticalDiscTypeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                        $opticalDiscTypeText = '';
+
+                        foreach ($opticalDiscTypeArray as $opticalDiscType) {
+                            $opticalDiscTypeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'opticalDiscType', $opticalDiscType) . ' , ';
+                        }
+
+                        $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
+
+//                        $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
+                        $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
+                        $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
+                        $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
                         $AssetScoreReport['codec'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'codec', $Asset['AssetGroup']['FormatType']['codec']);
-                        $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'datarate', $Asset['AssetGroup']['FormatType']['datarate']);
-                        $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingsoftbinder'];
+                        $AssetScoreReport['datarate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'dataRate', $Asset['AssetGroup']['FormatType']['dataRate']);
+                        $AssetScoreReport['sheddingsoftbinder'] = $Asset['AssetGroup']['FormatType']['sheddingSoftBinder'];
                         $AssetScoreReport['oxide'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'oxide', $Asset['AssetGroup']['FormatType']['oxide']);
-                        $AssetScoreReport['bindersystem'] = $Asset['AssetGroup']['FormatType']['bindersystem'];
-                        $AssetScoreReport['reelsize'] = $Asset['AssetGroup']['FormatType']['reelsize']; #
-                        $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteresidue'] == '1') ? 'Yes' : 'No';
-                        $AssetScoreReport['size'] = $Asset['AssetGroup']['FormatType']['size']; #
-                        $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formattypedvideorecordingformat'] == '1') ? 'Yes' : 'No';
+                        $AssetScoreReport['bindersystem'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'binderSystem', $Asset['AssetGroup']['FormatType']['binderSystem']);
+
+
+                        $reelsizeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
+                        $reelsizeText = '';
+
+                        foreach ($reelsizeArray as $reelsize) {
+                            $reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'size', $reelsize) . ' , ';
+                        }
+                        $AssetScoreReport['reelsize'] = $reelsizeText;
+                        $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
+
+
+
+
+
+                        $sizeArray = explode(',', $Asset['AssetGroup']['FormatType']['size']);
+                        $sizeText = '';
+                        foreach ($sizeArray as $size) {
+                            $sizeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'size', $size) . ' , ';
+                        }
+                        $AssetScoreReport['size'] = $sizeText;
+
+
+                        $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
 
                         $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
                         $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
@@ -1133,16 +1403,16 @@ class reportsActions extends sfActions {
                 $excel->setDataArray($DataDumpReportArray);
                 $excel->extractHeadings();
                 if ($param['reports']['listReports'] == '0') {
-                    $filename = 'Output_All_Asset_Groups_Report_' . time() . '.xlsx';
+                    $filename = 'Output_All_Asset_Groups_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Output_All_Asset_Groups_Report';
                 } else if ($param['reports']['listReports'] == '1') {
-                    $filename = 'Output_All_Asset_Storage_Locations_' . time() . '.xlsx';
+                    $filename = 'Output_All_Asset_Storage_Locations_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Output_All_Asset_Storage_Locations';
                 } else if ($param['reports']['listReports'] == '2') {
-                    $filename = 'Output_All_Unit_Personnel_' . time() . '.xlsx';
+                    $filename = 'Output_All_Unit_Personnel_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Output_All_Unit_Personnel';
                 } else {
-                    $filename = 'Output_All_Users_Report_' . time() . '.xlsx';
+                    $filename = 'Output_All_Users_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'Output_All_Users_Report';
                 }
 
@@ -1166,19 +1436,19 @@ class reportsActions extends sfActions {
 
                 if ($param['reports']['listReports'] == '0') {
 
-                    $file_name = 'Output_All_Asset_Groups_Report_' . time() . '.xlsx';
+                    $file_name = 'Output_All_Asset_Groups_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '1') {
 
-                    $filename = 'Output_All_Asset_Storage_Locations_' . time() . '.xlsx';
+                    $filename = 'Output_All_Asset_Storage_Locations_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '2') {
 
-                    $filename = 'Output_All_Unit_Personnel_' . time() . '.xlsx';
+                    $filename = 'Output_All_Unit_Personnel_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else {
 
-                    $filename = 'Output_All_Users_Report_' . time() . '.xlsx';
+                    $filename = 'Output_All_Users_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 }
 
@@ -1218,11 +1488,10 @@ class reportsActions extends sfActions {
                     ->leftJoin('as.EvaluatorHistory eh')
                     ->leftJoin('as.FormatType ft')
                     ->whereIn('eh.evaluator_id', $ListEvaluators)
-                    ->whereIn('ft.type', $format_id)
+                    ->andwhereIn('ft.type', $format_id)
                     ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
                     ->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
                     ->fetchArray();
-
 
 
             foreach ($EvaluatorHistorys as $EvaluatorHistory) {
@@ -1264,9 +1533,9 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['User Last Name'] = $Asset['User'][0]['last_name'];
                     $AssetScoreReport['User e-mail'] = $Asset['User'][0]['email_address'];
                     $AssetScoreReport['User Phone'] = $Asset['User'][0]['phone'];
-                    $AssetScoreReport['User Role'] = $Asset['User'][0]['role'];
-                    $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
-                    $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
+                    $AssetScoreReport['User Role'] = ($Asset['User'][0]['role'] == 0) ? 'User' : 'Admin';
+                    $AssetScoreReport['Unit ID'] = $Asset['Unit'][0]['id'];
+                    $AssetScoreReport['Unit Name'] = $Asset['Unit'][0]['name'];
                     $AssetScoreReport['Collection ID'] = $Asset['Collection'][0]['id'];
                     $AssetScoreReport['Collection Name'] = $Asset['Collection'][0]['name'];
                     $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
@@ -1277,13 +1546,12 @@ class reportsActions extends sfActions {
 
                     $DataDumpReportArray[] = $AssetScoreReport;
                 }
-
                 if ($ExportType == 'xls') {
                     $excel = new excel();
 
                     $excel->setDataArray($DataDumpReportArray);
                     $excel->extractHeadings();
-                    $filename = 'User_Report_' . time() . '.xlsx';
+                    $filename = 'User_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                     $Sheettitle = 'User_Report';
                     $intial_dicrectory = '/AssetsScore/xls/';
                     $file_name_with_directory = $intial_dicrectory . $filename;
@@ -1302,7 +1570,7 @@ class reportsActions extends sfActions {
                 } else {
                     $csvHandler = new csvHandler();
 
-                    $file_name = 'User_Report_' . time() . '.csv';
+                    $file_name = 'User_Report_' . date('Y-m-d_H-i-s') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                     $file_name_with_directory = $intial_dicrectory . $file_name;
                     $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
@@ -1396,7 +1664,7 @@ class reportsActions extends sfActions {
                     foreach ($Assets as $Asset) {
                         $i = 1;
                         $AssetScoreReport = array();
-                        $AssetScoreReport['User ID ' . $j] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
                         $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
 
                         foreach ($Asset as $key_reportGen => $reportGen) {
@@ -1428,7 +1696,7 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Unit_Format_Makeup_Report_' . time() . '.xlsx';
+                        $filename = 'Unit_Format_Makeup_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                         $Sheettitle = 'Unit_Format_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
                         $file_name_with_directory = $intial_dicrectory . $filename;
@@ -1448,7 +1716,7 @@ class reportsActions extends sfActions {
                     } else {
                         $csvHandler = new csvHandler();
 
-                        $file_name = 'Unit_Format_Makeup_Report_' . time() . '.csv';
+                        $file_name = 'Unit_Format_Makeup_Report_' . date('Y-m-d_H-i-s') . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1506,7 +1774,7 @@ class reportsActions extends sfActions {
                     $j = 1;
                     foreach ($Assets as $Asset) {
                         $AssetScoreReport = array();
-                        $AssetScoreReport['User ID ' . $j] = $Asset['Unit']['id'];
+                        $AssetScoreReport['Unit ID ' . $j] = $Asset['Unit']['id'];
                         $AssetScoreReport['Unit Name ' . $j] = $Asset['Unit']['name'];
 
                         $quantity_collection = 0;
@@ -1545,7 +1813,7 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Collection_Format_Makeup_Report_' . time() . '.xlsx';
+                        $filename = 'Collection_Format_Makeup_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                         $Sheettitle = 'Collection_Format_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
                         $file_name_with_directory = $intial_dicrectory . $filename;
@@ -1565,7 +1833,7 @@ class reportsActions extends sfActions {
                     } else {
                         $csvHandler = new csvHandler();
 
-                        $file_name = 'Collection_Format_Makeup_Report_' . time() . '.csv';
+                        $file_name = 'Collection_Format_Makeup_Report_' . date('Y-m-d_H-i-s') . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1630,9 +1898,10 @@ class reportsActions extends sfActions {
                 if ($Assets) {
                     $j = 1;
                     foreach ($Assets as $Asset) {
+
                         $AssetScoreReport = array();
 
-                        $AssetScoreReport['User ID ' . $j] = $Asset[0]['Unit']['id'];
+                        $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
                         $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
                         $i = 1;
                         foreach ($Asset as $key_reportGen => $reportGen) {
@@ -1670,11 +1939,11 @@ class reportsActions extends sfActions {
 
                         $excel->setDataArray($DataDumpReportArray);
                         $excel->extractHeadings();
-                        $filename = 'Unit_Collection_Makeup_Report_' . time() . '.xlsx';
+                        $filename = 'Unit_Collection_Makeup_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
                         $Sheettitle = 'Unit_Collection_Makeup_Report';
                         $intial_dicrectory = '/AssetsScore/xls/';
-                        $file_name_with_directory = $intial_dicrectory . $filename;
 
+                        $file_name_with_directory = $intial_dicrectory . $filename;
                         $excel->setDataArray($DataDumpReportArray);
 
                         $excel->extractHeadings($maxCountElementsIndex);
@@ -1689,8 +1958,7 @@ class reportsActions extends sfActions {
                         exit;
                     } else {
                         $csvHandler = new csvHandler();
-
-                        $file_name = 'Unit_Collection_Makeup_Report_' . time() . '.csv';
+                        $file_name = 'Unit_Collection_Makeup_Report_' . date('Y-m-d_H-i-s') . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
                         $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -1723,6 +1991,9 @@ class reportsActions extends sfActions {
 
             $DataDumpReportArray = array();
             $Assets = array();
+            $Collection_Filter = array();
+            $Unit_Filter = array();
+            $Format_Filter = array();
             $quantity = 0;
             $duration = 0;
 
@@ -1730,34 +2001,38 @@ class reportsActions extends sfActions {
             $Units_id = $params['reports']['listUnits_RRD'];
             $format_id = $params['reports']['format_id'];
             $ExportType = $params['reports']['ExportType'];
-            $ReportType = $params['reports']['ReportType'];
+
 
             $Units = Doctrine_Query::Create()
                     ->from('Unit u')
-                    ->select('u.*')
+                    ->select('u.*,sl.*,p.*,cu.*,eu.*')
                     ->whereIn('u.id', $Units_id)
                     ->fetchArray();
 
             foreach ($Units as $Unit) {
-
+                $Unit_Filter[$Unit['id']] = $Unit['name'];
                 $Collections = Doctrine_Query::Create()
                         ->from('Collection c')
                         ->select('c.*')
-                        ->where('c.parent_node_id = ?', $Unit['id'])
+                        ->where('c.parent_node_id  = ?', $Unit['id'])
                         ->andWhereIn('c.id', $Collection_id)
                         ->fetchArray();
 
-
                 foreach ($Collections as $Collection) {
+
+                    $Collection_Filter[$Collection['id']] = $Collection['name'];
                     $Asset = Doctrine_Query::Create()
                             ->from('AssetGroup a')
                             ->select('a.*, ft.*')
                             ->leftJoin("a.FormatType ft")
-                            ->where('a.parent_node_id = ?', $Collection['id'])
+                            ->where('a.parent_node_id  = ?', $Collection['id'])
                             ->andWhereIn('ft.type', $format_id)
                             ->fetchArray();
+
                     if ($Asset) {
-                        foreach ($Asset as $A) {
+                        foreach ($Asset as $key => $A) {
+                            $quantity = $quantity + $A['FormatType']['quantity'];
+                            $duration = $duration + $A['FormatType']['duration'];
                             $SolutionArray = array();
                             $SolutionArray['AssetGroup'] = $A;
                             $SolutionArray['Collection'] = $Collection;
@@ -1766,6 +2041,78 @@ class reportsActions extends sfActions {
                         }
                     }
                 }
+            }
+//            echo '<pre>';
+            foreach ($format_id as $formats) {
+                $Format_Filter[$formats] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $formats);
+            }
+            $filters = array(
+                'Unit-Filter(s)' => $Unit_Filter,
+                'Collection-Filter(s)' => $Collection_Filter,
+                'Format-Filter(s)' => $Format_Filter,
+                ' ' => ' ',
+                'TotalDuration' => array($duration),
+                'TotalQuantity' => array($quantity),
+            );
+
+            if ($Assets) {
+
+                foreach ($Assets as $Asset) {
+
+                    $AssetScoreReport = array();
+                    $AssetScoreReport['Unit ID ' . $j] = $Asset['Unit']['id'];
+                    $AssetScoreReport['Unit Name ' . $j] = $Asset['Unit']['name'];
+                    $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
+                    $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
+                    $AssetScoreReport['Collection Name'] = $Asset['Unit']['name'];
+                    $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
+                    $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
+                    $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
+                    $AssetScoreReport['Score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
+                    $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
+                    $AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
+                    $DataDumpReportArray[] = $AssetScoreReport;
+                }
+
+                if ($ExportType == 'xls') {
+                    $excel = new excel();
+
+                    $excel->setDataArray($DataDumpReportArray);
+                    $excel->extractHeadings();
+                    $filename = 'Duration_Report_' . date('Y-m-d_H-i-s') . '.xlsx';
+                    $Sheettitle = 'Duration_Report';
+                    $intial_dicrectory = '/AssetsScore/xls/';
+                    $file_name_with_directory = $intial_dicrectory . $filename;
+
+                    $excel->setDataArray($DataDumpReportArray);
+
+                    $excel->extractHeadings();
+                    $excel->setFileName($file_name_with_directory);
+                    $excel->setSheetTitle($Sheettitle);
+
+                    $excel->createExcel(TRUE, $filters);
+
+                    $excel->SaveFile();
+                    $excel->DownloadXLSX($file_name_with_directory, $filename);
+                    $excel->DeleteFile($file_name_with_directory);
+                    exit;
+                } else {
+                    $csvHandler = new csvHandler();
+
+                    $file_name = 'Duration_Report_' . date('Y-m-d_H-i-s') . '.csv';
+                    $intial_dicrectory = '/AssetsScore/csv/';
+                    $file_name_with_directory = $intial_dicrectory . $file_name;
+                    $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
+                    $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
+                    $csvHandler->DeleteFile($file_name_with_directory);
+                    exit;
+                }
+            } else {
+                $Bug = '<script type="text/javascript"> $(function(){
+                                alert("No Record Found To Export!")                    
+                        });
+                    </script>';
+                $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
     }

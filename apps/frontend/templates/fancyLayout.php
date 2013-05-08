@@ -7,9 +7,14 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
+        <script type="text/javascript">
+            $(function(){
+                $('.ui-multiselect-checkboxes li label span').attr('style','margin-left:5px') 
+            });
+        </script>
     </head>
     <body>
         <div id="main-container">
-        <?php echo $sf_content ?></div>
+            <?php echo $sf_content ?></div>
     </body>
 </html>

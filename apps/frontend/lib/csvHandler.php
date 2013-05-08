@@ -62,8 +62,7 @@ class csvHandler {
         if ($showAppliedFilters) {
             fputcsv($df, array('Filters Applied'));
             foreach ($filters as $key => $filter) {
-                array_unshift($filter, $key);
-                fputcsv($df, $filter);
+                fputcsv($df, array($key, implode(' | ', $filter)));
             }
         }
 

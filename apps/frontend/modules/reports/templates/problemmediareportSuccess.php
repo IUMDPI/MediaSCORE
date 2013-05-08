@@ -48,11 +48,13 @@ echo $NoRecordFound = get_slot('my_slot');
     
     $('#reports_collectionStatus').multiselect({
         'height':'auto',
-        'multiple':true
+        'multiple':true,
+        'height':200
     });
     $('#reports_Constraints').multiselect({
         'height':'auto',
-        'multiple':true
+        'multiple':true,
+        'height':200
     });
   
 </script>

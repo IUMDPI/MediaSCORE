@@ -20,6 +20,13 @@ echo $NoRecordFound = get_slot('my_slot');
     <br/>
     <br/>
     <br/>
+    <b><?php echo $form['format_id']->renderLabel(); ?></b>
+    <br/>
+    <br/>
+    <?php echo $form['format_id']->render(); ?>
+    <br/>
+    <br/>
+    <br/>
     <b><?php echo $form['ExportType']->renderLabel(); ?></b>
     <br/>
     <br/>
@@ -40,12 +47,19 @@ echo $NoRecordFound = get_slot('my_slot');
         'height':'auto',
         'multiple':true,
         'height':200
-        
+
     });
-    
+
     $('#reports_collectionStatus').multiselect({
         'height':'auto',
-        'multiple':true
+        'multiple':true,
+        'height':200
     });
-  
+
+    $('#reports_format_id').multiselect({
+        'height':'auto',
+        'multiple':true,
+        'height':200
+    });
+
 </script>

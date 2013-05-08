@@ -88,11 +88,13 @@ class formatTypeValuesManager {
             ),
             '45' => array(#HDCAMCalc
                 'formatVersion' => HDCam::$constants[0]
-            ),
+            )
+            ,
             '46' => array(#DVCProCalc
                 'formatVersion' => DVCPro::$constants[0],
                 'recordingSpeed' => DVCPro::$constants[1],
-            ),
+            )
+            ,
             'general' => array(
                 'trackConfiguration' => OpenReelAudioTapeFormatType::$constants[0],
                 'duration_type' => FormatTypeForm::$durationtype,
@@ -117,6 +119,7 @@ class formatTypeValuesManager {
                 'opticalDiscType' => OpticalVideo::$constants[0],
                 'formatVersion' => OpticalVideo::$constants[1],
                 'cylinderType' => Cylinder::$constants,
+                'binderSystem' => EightMM::$constants[2],
                 'capacityLayers' => XDCamOptical::$constants[1],
                 'codec' => XDCamOptical::$constants[2],
                 'scanning' => HDCam::$constants[2],
@@ -124,9 +127,10 @@ class formatTypeValuesManager {
                 'size' => SizedVideoRecordingFormatType::$constants,
                 'reflectiveLayer' => OpticalDiscFormatType::$constants[0],
                 'dataLayer' => OpticalDiscFormatType::$constants[1],
-                'datarate' => XDCamOptical::$constants[3],
+                'dataRate' => XDCamOptical::$constants[3],
                 'oxide' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide', 3 => 'Unknown'),
                 'bitrate' => DigitalBetacam::$constants[2],
+                'generation' => array(0 => 'Orignal', 1 => 'Copy', 2 => 'Unknown'),
                 'GlobalFormatType' => FormatType::$formatTypesValue1d,
             )
         );
@@ -184,7 +188,7 @@ class formatTypeValuesManager {
      */
     public function getArrayOfValueTargeted($FormatTypekey, $ValueKey, $index) {
 
-        return ($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) ? $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] : '';
+        return ($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] && strtolower($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) != 'select') ? $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] : 'NULL';
     }
 
 }

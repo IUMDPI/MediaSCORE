@@ -143,7 +143,7 @@ class excel extends PHPExcel {
     function SetDataTypeExcel($element, $dataType = PHPExcel_Cell_DataType::TYPE_STRING) {
 
         if (is_numeric($element)) {
-//            $dataType = PHPExcel_Cell_DataType::TYPE_NUMERIC;
+            $dataType = PHPExcel_Cell_DataType::TYPE_NUMERIC;
         }
         return $dataType;
     }
@@ -225,7 +225,7 @@ class excel extends PHPExcel {
                 $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow - 1, $key);
 
                 $ThisStyleSheet->getColumnDimensionByColumn(1)->setWidth(40);
-                $ThisStyleSheet->setCellValueExplicitByColumnAndRow(1, $headingRow - 1, implode('  ||  ', $Filter));
+                $ThisStyleSheet->setCellValueExplicitByColumnAndRow(1, $headingRow - 1, implode('  |  ', $Filter));
             }
         }
         $headingRow++;

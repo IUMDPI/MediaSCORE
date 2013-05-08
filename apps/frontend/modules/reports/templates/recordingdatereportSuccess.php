@@ -22,6 +22,7 @@ Recording Date Report
     <input type="submit" value="Export" />
 </form>
 <script type="text/javascript">
+   
     $('#reports_listUnits_RRD').multiselect({
         'height':'auto',
         'multiple':true,
@@ -36,7 +37,8 @@ Recording Date Report
     
     $('#reports_collectionStatus').multiselect({
         'height':'auto',
-        'multiple':true
+        'multiple':true,
+        'height':200
     });
   
 </script>

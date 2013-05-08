@@ -7,6 +7,11 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
+        <script type="text/javascript">
+            $(function(){
+                $('.ui-multiselect-checkboxes li label span').attr('style','margin-left:5px') 
+            });
+        </script>
     </head>
     <body>
 
@@ -68,7 +73,7 @@
                         <li class=""><a class="menu-link" href="<?php echo url_for('person/index') ?>">Unit Personnel</a></li>
                         <li class=""><a class="menu-link" href="<?php echo url_for('storagelocation/index') ?>">Storage Locations</a></li>
                         <li class=""><a class="menu-link" href="<?php echo url_for('user/edit?id=') . $sf_user->getGuardUser()->getId() ?>">Edit Profile </a></li>
-    <!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link'))        ?></li>-->
+    <!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link'))         ?></li>-->
                     </ul>
                 <?php } ?>
                 <?php echo $sf_content ?>
