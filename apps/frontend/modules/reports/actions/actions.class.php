@@ -607,8 +607,7 @@ class reportsActions extends sfActions {
                             ->andWhereIn('c.id', $Collection_id)
                             ->fetchArray();
                 }
-                print_r($Collections);
-                exit;
+
                 $SolutionArray = array();
                 foreach ($Collections as $Collection) {
                     if (in_array($Collection['status'], $collectionStatus)) {
@@ -618,7 +617,9 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-
+            echo '<pre>';
+            print_r($collections);
+            exit;
             if ($collections) {
                 foreach ($collections as $collection) {
 
