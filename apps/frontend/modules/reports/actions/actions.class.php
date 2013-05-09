@@ -104,17 +104,33 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                     $AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
                     $FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
-                    $format = '';
+                    $formattext = '';
 
                     foreach ($FormatArray as $formatValue) {
-                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
-                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
-                        } else {
-                            $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'format', $formatValue)) {
+                            $formattext .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'format', $formatValue) . ' , ';
                         }
                     }
 
-                    $AssetScoreReport['Format'] = $format;
+
+
+                    $AssetScoreReport['Format'] = $formattext;
+
+
+                    $FormatVersionArray = explode(',', $Asset['AssetGroup']['FormatType']['formatVersion']);
+                    $formatVersionText = '';
+
+                    foreach ($FormatVersionArray as $FormatVersion) {
+                        if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion)) {
+                            $formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion) . ' , ';
+                        } else {
+                            $formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $FormatVersion) . ' , ';
+                        }
+                    }
+
+
+                    $AssetScoreReport['Format Version'] = $formatVersionText;
+
                     $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
                     $AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
                     $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
@@ -615,9 +631,9 @@ class reportsActions extends sfActions {
                     $collectionStatusReport['Collection Primary ID'] = $collection['Collection']['inst_id'];
                     $collectionStatusReport['Collection Name'] = $collection['Collection']['name'];
                     $collectionStatusReport['Status'] = Collection::$statusConstants[$collection['Collection']['status']];
-                    $collectionStatusReport['Collection Created On Date'] = date('Y-d-m H:i:s', strtotime($collection['Unit']['created_at']));
+                    $collectionStatusReport['Collection Created On Date'] = date('Y-m-d H:i:s', strtotime($collection['Unit']['created_at']));
                     $collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
-                    $collectionStatusReport['Collection Updated On Date'] = date('Y-d-m H:i:s', strtotime($collection['Collection']['updated_at']));
+                    $collectionStatusReport['Collection Updated On Date'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['updated_at']));
                     $collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
                     $collectionStatusReports[] = $collectionStatusReport;
                 }
@@ -1038,7 +1054,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Unit Personnel Email.'] = $Asset['Unit']['Personnel'][0]['email_address'];
                         $AssetScoreReport['Unit Personnel Phone.'] = $Asset['Unit']['Personnel'][0]['phone'];
 
-                        $AssetScoreReport['Unit Created'] = date('Y-d-m H:i:s', strtotime($Asset['Unit']['created_at']));
+                        $AssetScoreReport['Unit Created'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['created_at']));
                         $AssetScoreReport['Creator Unit Created By'] = $Asset['Unit']['Creator']['first_name'] . ' ' . $Asset['Unit']['Creator']['last_name']; #
                         $AssetScoreReport['CreatorUser ID.'] = $Asset['Unit']['Creator']['id'];
                         $AssetScoreReport['Creator User First Name.'] = $Asset['Unit']['Creator']['first_name'];
@@ -1047,7 +1063,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Creator User Phone.'] = $Asset['Unit']['Creator']['phone'];
                         $AssetScoreReport['Creator User Role.'] = $Asset['Unit']['Creator']['role'];
 
-                        $AssetScoreReport['Unit Updated On'] = date('Y-d-m H:i:s', strtotime($Asset['Unit']['updated_at']));
+                        $AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['updated_at']));
                         $AssetScoreReport['Unit Updated By'] = $Asset['Unit']['Editor']['first_name'] . ' ' . $Asset['Unit']['Editor']['last_name'];
                         $AssetScoreReport['Editor User ID ,'] = $Asset['Unit']['Editor']['id'];
                         $AssetScoreReport['Unit Editor User First Name ,'] = $Asset['Unit']['Editor']['first_name'];
@@ -1077,7 +1093,7 @@ class reportsActions extends sfActions {
 
 
 
-                        $AssetScoreReport['Collection Created'] = date('Y-d-m H:i:s', strtotime($Asset['Collection']['created_at']));
+                        $AssetScoreReport['Collection Created'] = date('Y-m-d H:i:s', strtotime($Asset['Collection']['created_at']));
                         $AssetScoreReport['Collection Created By'] = $Asset['Collection']['Creator']['first_name'] . ' ' . $Asset['Collection']['Creator']['last_name']; #
                         $AssetScoreReport['Collection Creator User ID -'] = $Asset['Collection']['Creator']['id'];
                         $AssetScoreReport['Collection Creator User First Name -'] = $Asset['Collection']['Creator']['first_name'];
@@ -1087,7 +1103,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Collection Creator User Role -'] = $Asset['Collection']['Creator']['role'];
 
                         $AssetScoreReport['Collection'] = $Asset['Collection']['name'];
-                        $AssetScoreReport['Updated On'] = date('Y-d-m H:i:s', strtotime($Asset['Collection']['updated_at']));
+                        $AssetScoreReport['Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Collection']['updated_at']));
                         $AssetScoreReport['Collection Updated By'] = $Asset['Collection']['Editor']['first_name'] . ' ' . $Asset['Collection']['Editor']['last_name'];
                         $AssetScoreReport['Collection Editor User ID -'] = $Asset['Collection']['Editor']['id'];
                         $AssetScoreReport['Collection Editor User First Name-'] = $Asset['Collection']['Editor']['first_name'];
@@ -1104,7 +1120,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Asset Group Description Location'] = $Asset['AssetGroup']['resident_structure_description'];
 
 
-                        $AssetScoreReport['Asset Group Created'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
+                        $AssetScoreReport['Asset Group Created'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
 
                         $AssetScoreReport['Asset Group Created By User ID _'] = $Asset['AssetGroup']['Creator']['id'];
                         $AssetScoreReport['AssetGroup User First Name _'] = $Asset['AssetGroup']['Creator']['first_name'];
@@ -1125,7 +1141,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['AssetGroup User Editor User Role * '] = $Asset['AssetGroup']['Editor']['role'];
 
 
-                        $AssetScoreReport['Asset Group Date'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
+                        $AssetScoreReport['Asset Group Date'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
                         $AssetScoreReport['Asset Group Person'] = $Asset['Unit']['Personnel']['role'];
                         $AssetScoreReport['Asset Group Personnel User ID  *'] = $Asset['Unit']['Personnel']['role'];
                         $AssetScoreReport['Asset Group Personnel User First Name *'] = $Asset['Unit']['Personnel'][0]['first_name'];
@@ -1524,8 +1540,8 @@ class reportsActions extends sfActions {
                     $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
                     $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
                     $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
-                    $AssetScoreReport['Date User Created Asset Group'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['created_at']));
-                    $AssetScoreReport['Date User Updated Asset Group'] = date('Y-d-m H:i:s', strtotime($Asset['AssetGroup']['updated_at']));
+                    $AssetScoreReport['Date User Created Asset Group'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
+                    $AssetScoreReport['Date User Updated Asset Group'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['updated_at']));
 
                     $DataDumpReportArray[] = $AssetScoreReport;
                 }

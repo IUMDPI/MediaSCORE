@@ -1268,7 +1268,7 @@ class scoreCalculator extends scoreCalculator_extended {
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
 
 
-        $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
+        echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
         echo '<br/>';
         $score = 0;
         if (method_exists($this, $funcationName)) {
