@@ -617,6 +617,7 @@ class reportsActions extends sfActions {
                     }
                 }
             }
+
             if ($collections) {
                 foreach ($collections as $collection) {
 
@@ -671,13 +672,7 @@ class reportsActions extends sfActions {
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
-//            } else {
-//                $Bug = '<script type="text/javascript"> $(function(){
-//                alert("No Record Found To Export!")                    
-//                });
-//                    </script>';
-//                $this->getResponse()->setSlot('my_slot', $Bug);
-//            }
+
             } else {
                 $Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
