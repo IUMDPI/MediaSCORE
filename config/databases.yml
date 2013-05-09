@@ -8,7 +8,7 @@ all:
       #dsn: mysql:host=localhost;dbname=mediascore
       #username: root
       #password: 
-      dsn: mysql:host=localhost;dbname=mediaSCORE1_0a 
+      dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
       username: symfony
       password: sYmF0nYd3v
 

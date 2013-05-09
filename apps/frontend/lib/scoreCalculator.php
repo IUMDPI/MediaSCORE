@@ -445,13 +445,8 @@ class scoreCalculator extends scoreCalculator_extended {
                 }
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'composition')) {
-
                     if (isset($AssetInformatoin[0]['FormatType']['composition'])) {
-//                        var_dump($characteristicsValue);
-//                        var_dump($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-//                        exit;
                         if (strstr(strtolower($this->multiselection_value['SoundWireReelcomposition'][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
-
                             echo 'composition = ';
                             echo $composition = $characteristicsValue['c_score'];
                             $this->score = (float) $this->score + (float) $composition;
@@ -595,11 +590,6 @@ class scoreCalculator extends scoreCalculator_extended {
 
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'sound_field')) {
-                    echo '<pre>';
-                    print_r($AssetInformatoin[0]['FormatType']['sound_field']);
-                    print_r($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]);
-                    print_r($characteristicsValue);
-
                     if (isset($AssetInformatoin[0]['FormatType']['sound_field'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'sound_field = ';
