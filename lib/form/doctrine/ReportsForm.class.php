@@ -98,15 +98,13 @@ class ReportsForm extends BaseReportsForm {
             $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true)
             $this->setWidget('ReportType', new sfWidgetFormChoice(array('choices' => array('0' => 'Unit Format Makeup Report', '1' => 'Collection Format Makeup Report', '2' => 'Unit Collection Makeup Report'))));
 
-
             $this->getWidget('ReportType')->setLabel('Report Type : &nbsp;');
             $this->getWidget('listUnits_RRD')->setLabel('Units : &nbsp;');
             $this->getWidget('listCollection_RRD')->setLabel('Collection: &nbsp;');
             $this->getWidget('format_id')->setLabel('Format Type : &nbsp;');
         }
 
-
-        $this->setWidget('ExportType', new sfWidgetFormChoice(array('choices' => array('csv' => 'CSV', 'xls' => 'XLSX'))));
+        $this->setWidget('ExportType', new sfWidgetFormChoice(array('choices' => array('csv' => '.CSV', 'xls' => '.XLSX'))));
         $this->getWidget('ExportType')->setLabel('Export Type : &nbsp;');
     }
 
