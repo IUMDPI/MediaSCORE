@@ -292,9 +292,9 @@ abstract class BaseFormatType extends sfDoctrineRecord {
         $this->hasColumn('format_notes', 'text', null, array(
             'type' => 'text',
         ));
-        $this->hasColumn('asset_score', 'float', null, array(
-            'type' => 'float',
-        ));
+//        $this->hasColumn('asset_score', 'float', null, array(
+//            'type' => 'float',
+//        )); 
         $this->hasColumn('type', 'string', 255, array(
             'type' => 'string',
             'length' => 255,
