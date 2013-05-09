@@ -106,7 +106,7 @@ class ReportsForm extends BaseReportsForm {
         }
 
 
-        $this->setWidget('ExportType', new sfWidgetFormChoice(array('choices' => array('csv' => 'CSV', 'xls' => 'XLS'))));
+        $this->setWidget('ExportType', new sfWidgetFormChoice(array('choices' => array('csv' => 'CSV', 'xls' => 'XLSX'))));
         $this->getWidget('ExportType')->setLabel('Export Type : &nbsp;');
     }
 
