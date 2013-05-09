@@ -55,23 +55,23 @@ class formatTypeValuesManager {
                 'recordingSpeed' => EightMM::$constants[1],
             ),
             '33' => array(#OpenReelVideo2Calc
-                'size' => TwoInchOpenReelVideo::$constants[1],
+                'reelsize' => TwoInchOpenReelVideo::$constants[1],
                 'formatVersion' => Film::$constants[5]
             ),
             '34' => array(#OpenReelVideo1Calc
                 'formatVersion' => OneInchOpenReelVideo::$constants[0],
-                'size' => OneInchOpenReelVideo::$constants[1],
+                'reelsize' => OneInchOpenReelVideo::$constants[1],
             ),
             '35' => array(#OpenReelVideoHalfCalc
                 'formatVersion' => HalfInchOpenReelVideo::$constants[0],
-                'size' => HalfInchOpenReelVideo::$constants[1],
+                'reelsize' => HalfInchOpenReelVideo::$constants[1],
             ),
             '37' => array(
                 'recordingSpeed' => DV::$constants,
             ), #'DVCalc'
             '38' => array(), #'DVCAMCalc'
             '40' => array(#BetaCamCalc
-                'formatVersion' => Betacam::$constants[1]
+                'formatVersion' => Betacam::$constants[1],
             ),
             '41' => array(#VHSCalc
                 'formatVersion' => VHS::$constants[1],
@@ -187,7 +187,6 @@ class formatTypeValuesManager {
      * 
      */
     public function getArrayOfValueTargeted($FormatTypekey, $ValueKey, $index) {
-
         return ($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] && strtolower($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) != 'select') ? $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] : 'NULL';
     }
 

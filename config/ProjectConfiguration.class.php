@@ -14,6 +14,8 @@ class ProjectConfiguration extends sfProjectConfiguration {
             // 04/29/12
             'sfDoctrineGuardPlugin',
         ));
+        
+        
     }
 
 }

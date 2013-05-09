@@ -29,12 +29,12 @@ class scoreCalculator extends scoreCalculator_extended {
             'sound_field' => AnalogAudiocassette::$constants[1],
             'b' => MetalDisc::$generation,
             'pack_deformation' => Film::$constants[4],
-            'AnalogAudiocassettePack_deformation' => array(3 => 'Misc. damage'),
-            'NewPack_deformation' => array(3 => 'Misc. damage'),
+            'AnalogAudiocassettePack_deformation' => array('0' => 'None', '1' => 'Minor', '2' => 'Moderate', 3 => 'Misc. damage'),
+            'NewPack_deformation' => array('0' => 'None', '1' => 'Minor', '2' => 'Moderate', 3 => 'Misc. damage'),
             'physicalDamage' => MetalDisc::$damage,
             'material' => MetalDisc::$constants,
             'substrate' => LacquerDisc::$constants,
-            'SoundWireReelcomposition' => array('' => 'Select', 0 => 'Stainless steel', 1 => ' Composition-other', 2 => 'Unknown'),
+            'SoundWireReelcomposition' => array('' => 'Select', 0 => 'Stainless steel', 1 => ' Composition-other', 2 => 'Iron', 3 => 'Unknown'),
             'composition' => SoundWireReel::$constants,
             'recordingLayer' => MiniDisc::$constants[0],
             'recordingSpeed' => MiniDisc::$constants[1],
@@ -144,6 +144,15 @@ class scoreCalculator extends scoreCalculator_extended {
      * */
     public function addScore($score) {
         $this->score = $this->score + $score;
+    }
+
+    /**
+     * Get Array of All Multi Selection Value of Different Assets 
+     * 
+     * @return type
+     */
+    public function getMultiSelectionValues() {
+        return $this->multiselection_value;
     }
 
     /**
@@ -1257,15 +1266,17 @@ class scoreCalculator extends scoreCalculator_extended {
     }
 
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
-        echo '<pre style="color:red;font-weight:bold;">';
-        print_r($AssetInformatoin);
 
-        echo $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
-        echo '<pre>';
 
-        echo $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
-        echo '<br/>';
+        $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
 
+        $score = 0;
+        if (method_exists($this, $funcationName)) {
+            $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
+//            echo "function $funcationName dose exists ";
+        } else {
+            echo "function $funcationName dose not exists ";
+        }
         return $score;
     }
 

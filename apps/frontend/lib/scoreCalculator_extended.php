@@ -18,7 +18,6 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
 
 
         foreach ($characteristicsValues as $characteristicsValue) {
-
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
                 echo 'remove <br/> ' . $characteristicsValue['CharacteristicsFormat']['format_c_name'];
                 echo '<br/>';
@@ -171,6 +170,7 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
     }
 
     public function PVCOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
+
         $constraint_will_be_applied = FALSE;
 
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -975,13 +975,16 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
                         $dataLayer_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
 
                         foreach ($dataLayer_array as $dataLayer_one) {
-                            if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$dataLayer_one]), strtolower($characteristicsValue['c_name']))) {
-                                echo 'dataLayer = ';
-                                echo $dataLayer = $characteristicsValue['c_score'];
+                            if ($dataLayer_one != '') {
+                                if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$dataLayer_one])
+                                                , strtolower($characteristicsValue['c_name']))) {
+                                    echo 'dataLayer = ';
+                                    echo $dataLayer = $characteristicsValue['c_score'];
 
-                                $this->score = (float) $this->score + (float) $dataLayer;
-                                echo '<br/>';
-                                echo '<br/>';
+                                    $this->score = (float) $this->score + (float) $dataLayer;
+                                    echo '<br/>';
+                                    echo '<br/>';
+                                }
                             }
                         }
                     }
