@@ -595,6 +595,7 @@ class scoreCalculator extends scoreCalculator_extended {
 
 
                 if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'sound_field')) {
+                    print_r();
                     if (isset($AssetInformatoin[0]['FormatType']['sound_field'])) {
                         if (strstr(strtolower($this->multiselection_value[$characteristicsValue['CharacteristicsFormat']['format_c_name']][$AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]]), strtolower($characteristicsValue['c_name']))) {
                             echo 'sound_field = ';
