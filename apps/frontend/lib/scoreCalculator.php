@@ -1269,11 +1269,10 @@ class scoreCalculator extends scoreCalculator_extended {
 
 
         $funcationName = $this->formatTypesFunctionCalls[$AssetInformatoin[0]['FormatType']['type']];
-
+        echo '<br/>';
         $score = 0;
         if (method_exists($this, $funcationName)) {
-            $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
-//            echo "function $funcationName dose exists ";
+            echo $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
         } else {
             echo "function $funcationName dose not exists ";
         }
