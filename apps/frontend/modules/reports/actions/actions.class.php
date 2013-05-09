@@ -617,9 +617,6 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-            echo '<pre>';
-            print_r($collections);
-            exit;
             if ($collections) {
                 foreach ($collections as $collection) {
 
