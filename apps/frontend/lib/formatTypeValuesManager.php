@@ -105,7 +105,7 @@ class formatTypeValuesManager {
                 'sound_field' => AnalogAudiocassette::$constants[1],
                 'gauge' => Film::$constants[0],
                 'color' => Film::$constants[1],
-                'pack_deformation' => Film::$constants[4],
+                'pack_deformation' => array(0 => 'None', 1 => 'Minor', 2 => 'Moderate', 3 => 'Misc. damage'),
                 'physicalDamage' => MetalDisc::$damage,
                 'material' => MetalDisc::$constants,
                 'substrate' => LacquerDisc::$constants,
@@ -138,7 +138,7 @@ class formatTypeValuesManager {
 
     /**
      * 
-     * @param Array $ArrayOfValues
+     * @param Array $FullArrayOfValues
      * 
      */
     public function setArrayOfValues($ArrayOfValues) {
@@ -147,7 +147,7 @@ class formatTypeValuesManager {
 
     /**
      * 
-     * @return Array 
+     * @return Array $FullArrayOfValues
      * 
      */
     public function getArrayOfValues() {

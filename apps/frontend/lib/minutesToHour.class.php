@@ -2,6 +2,11 @@
 
 class minutesToHour {
 
+    /**
+     * 
+     * @param int $Minutes
+     * @return string
+     */
     static public function ConvertMinutes2Hours($Minutes) {
 
 
@@ -24,6 +29,13 @@ class minutesToHour {
         return $hh . ':' . $mm . ':' . $ss;
     }
 
+    /**
+     * 
+     * @param String $time
+     * @return int $TotalDurationinSeconds 
+     * 
+     * 
+     */
     static function ConvertHoursToMin($time) {
         $duration = explode(':', $time);
 

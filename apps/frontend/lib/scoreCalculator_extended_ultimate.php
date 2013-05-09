@@ -1,20 +1,22 @@
 <?php
 
 include('scoreCalculator_extended_moderate.php');
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of scoreCalculator_extended_1
+ * Description of scoreCalculator_extended_ultimate
  *
  * @author Furqan
  */
 class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderate {
-
-    //put your code here
-
+    
+    /**
+     * PressedLPDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function PressedLPDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -121,6 +123,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * Pressed45RPMDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function Pressed45RPMDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -224,6 +234,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * LaserDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function LaserDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
@@ -356,6 +374,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * XDCAMOptical Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function XDCAMOpticalCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
@@ -496,6 +522,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * Betamax Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function BetamaxCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -635,6 +669,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * EightMM Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function EightMMCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         foreach ($characteristicsValues as $characteristicsValue) {
@@ -758,6 +800,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * OpenReelVideo2 Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function OpenReelVideo2Calc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -918,6 +968,14 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
         return $this->score;
     }
 
+    /**
+     * OpenReelVideo1 Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function OpenReelVideo1Calc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         foreach ($characteristicsValues as $characteristicsValue) {

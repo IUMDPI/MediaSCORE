@@ -221,7 +221,7 @@ class reportsActions extends sfActions {
 
                     $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
 
-//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
+
                     $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
                     $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
                     $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
@@ -298,6 +298,11 @@ class reportsActions extends sfActions {
         }
     }
 
+    /**
+     * Assets Groups Recorded Date Report For reporting module
+     * 
+     * @param sfWebRequest $request 
+     */
     public function executeRecordingdatereport(sfWebRequest $request) {
         $this->form = new ReportsForm(null, array('from' => 'recordingdatereport'));
 
@@ -484,8 +489,6 @@ class reportsActions extends sfActions {
                     }
 
                     $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
-
-//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
                     $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
                     $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
                     $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
@@ -672,7 +675,6 @@ class reportsActions extends sfActions {
                     $csvHandler->DeleteFile($file_name_with_directory);
                     exit;
                 }
-
             } else {
                 $Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
@@ -681,7 +683,7 @@ class reportsActions extends sfActions {
     }
 
     /**
-     * Problem Media Report Report From reporting module
+     * Problem Media Report  From reporting module
      * 
      * @param sfWebRequest $request 
      */
@@ -894,7 +896,6 @@ class reportsActions extends sfActions {
 
                     $AssetScoreReport['opticaldisctype'] = $opticalDiscTypeText;
 
-//                    $AssetScoreReport['format'] = $Asset['AssetGroup']['FormatType']['format']; #
                     $AssetScoreReport['recordingstandard'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']);
                     $AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
                     $AssetScoreReport['capacitylayers'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'capacityLayers', $Asset['AssetGroup']['FormatType']['capacityLayers']);
@@ -906,11 +907,11 @@ class reportsActions extends sfActions {
 
                     $reelsizeArray = explode(',', $Asset['AssetGroup']['FormatType']['opticalDiscType']);
                     $reelsizeText = '';
-
                     foreach ($reelsizeArray as $reelsize) {
                         $reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'reelsize', $reelsize) . ' , ';
                     }
                     $AssetScoreReport['reelsize'] = $reelsizeText;
+
                     $reelsizeText = '';
                     $AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
 
@@ -973,7 +974,7 @@ class reportsActions extends sfActions {
     }
 
     /**
-     * Problem Media Report Report From reporting module
+     * All Data Outpul Report for All  Collection, Units ,Formats and Asset Groups 
      * 
      * @param sfWebRequest $request 
      */
@@ -1455,7 +1456,7 @@ class reportsActions extends sfActions {
     }
 
     /**
-     * Problem Media Report Report From reporting module
+     * User Ealuator Report From reporting module
      * 
      * @param sfWebRequest $request 
      */
@@ -1582,7 +1583,7 @@ class reportsActions extends sfActions {
     }
 
     /**
-     * Problem Media Report Report From reporting module
+     * Percentage Of Holding Report From reporting module
      * 
      * @param sfWebRequest $request 
      */
@@ -1971,7 +1972,7 @@ class reportsActions extends sfActions {
     }
 
     /**
-     * Problem Media Report Report From reporting module
+     * Asset Groups Duration Report From reporting module
      * 
      * @param sfWebRequest $request 
      */

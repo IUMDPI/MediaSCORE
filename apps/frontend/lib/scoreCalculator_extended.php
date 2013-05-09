@@ -1,10 +1,7 @@
 <?php
 
 include('scoreCalculator_extended_ultimate.php');
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  * Description of scoreCalculator_extended
@@ -13,7 +10,14 @@ include('scoreCalculator_extended_ultimate.php');
  */
 class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
 
-//put your code here
+    /**
+     * Paper Open Reel Audio Tape Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function PaperOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
 
@@ -169,6 +173,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * PVCOpenReelAudioTape Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function PVCOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         $constraint_will_be_applied = FALSE;
@@ -339,6 +351,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * LacquerDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function LacquerDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -457,6 +477,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * MiniDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function MiniDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -581,6 +609,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * Cylinder Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function CylinderCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -685,6 +721,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * SoundOpticalDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function SoundOpticalDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -840,6 +884,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * OpticalVideo Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function OpticalVideoCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -1007,6 +1059,14 @@ class scoreCalculator_extended extends scoreCalculator_extended_ultimate {
         return $this->score;
     }
 
+    /**
+     * Pressed78RPMDisc Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function Pressed78RPMDiscCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 

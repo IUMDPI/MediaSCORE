@@ -1,9 +1,6 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  * Description of scoreCalculator_extended_moderate
@@ -12,6 +9,14 @@
  */
 class scoreCalculator_extended_moderate {
 
+    /**
+     * DV Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function DVCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -153,6 +158,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * DVCAM Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function DVCAMCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -283,6 +296,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * BetaCam Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function BetaCamCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -410,6 +431,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * VHS Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function VHSCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -558,6 +587,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * HDCAM Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function HDCAMCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -702,6 +739,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * DVCPro Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function DVCProCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
 
@@ -865,6 +910,14 @@ class scoreCalculator_extended_moderate {
         return $this->score;
     }
 
+    /**
+     * OpenReelVideoHalf Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function OpenReelVideoHalfCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {

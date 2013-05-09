@@ -1,10 +1,6 @@
 <?php
 
 include('scoreCalculator_extended.php');
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of ScoreCalculator
@@ -13,7 +9,7 @@ include('scoreCalculator_extended.php');
  */
 class scoreCalculator extends scoreCalculator_extended {
 
-    //put your code here
+    
     protected $score;
     protected $multiselection_value;
     protected $formatTypesFunctionCalls;
@@ -258,6 +254,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * DAT Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function DATCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         foreach ($characteristicsValues as $characteristicsValue) {
             if (strstr($characteristicsValue['CharacteristicsConstraints']['constraint_name'], 'remove')) {
@@ -371,6 +375,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * SoundWireReel Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function SoundWireReelCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] != '' && $AssetInformatoin[0]['FormatType']['corrosionRustOxidation'] != NULL) {
@@ -470,6 +482,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * AnalogAudioCassette Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function AnalogAudioCassetteCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
 
@@ -628,6 +648,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * PolysterOpenReelAudioTape Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function PolysterOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         $constraint_will_be_applied = FALSE;
@@ -786,6 +814,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * AcetateOpenReelAudioTape Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function AcetateOpenReelAudioTapeCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
 
         $constraint_will_be_applied = FALSE;
@@ -967,6 +1003,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * DigitalBetaCam Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function DigitalBetaCamCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -1111,6 +1155,14 @@ class scoreCalculator extends scoreCalculator_extended {
         return $this->score;
     }
 
+    /**
+     * Umatic Score Calculator
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function UmaticCalc($AssetInformatoin = array(), $characteristicsValues = array()) {
         $constraint_will_be_applied = FALSE;
         if ($AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != '' && $AssetInformatoin[0]['FormatType']['softBinderSyndrome'] != NULL) {
@@ -1260,6 +1312,15 @@ class scoreCalculator extends scoreCalculator_extended {
         echo 'i am in ';
     }
 
+    /**
+     * callFormatCalculator Calls Function related to its format Type and information provided and reture caliculated score 
+     * 
+     * @param Array $AssetInformatoin
+     * @param Array $characteristicsValues
+     * 
+     * 
+     * @return int $CaliculatedScore
+     */
     public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array()) {
 
 
