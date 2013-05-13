@@ -101,7 +101,7 @@
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
-                    $urlOnName = url_for('assetgroup', $result);
+//                    $urlOnName = url_for('assetgroup', $result);
                     $UnitOfCollection = Doctrine_Query::create()
                             ->from('Unit u')
                             ->select('u.*')
