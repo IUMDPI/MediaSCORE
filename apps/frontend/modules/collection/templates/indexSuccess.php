@@ -87,7 +87,7 @@
             <th>Updated On</th>
             <th>Updated By</th>
             <th style="text-align: center;">Duration</th>
-            <th style="text-align: center;">Storage Location</th>
+<!--            <th style="text-align: center;">Storage Location</th>-->
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -109,8 +109,8 @@
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
-                    <?php $storagelocationCol = $collection->getStorageLocations() ?>
-                    <td style="text-align: right;"><?php echo $storagelocationCol[0]->getResidentStructureDescription(); ?></td>
+                    <?php // $storagelocationCol = $collection->getStorageLocations() ?>
+<!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription(); ?></td>-->
                 </tr>
             <?php endforeach; ?>
 

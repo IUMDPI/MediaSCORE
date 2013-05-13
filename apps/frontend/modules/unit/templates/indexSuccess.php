@@ -86,7 +86,7 @@
                 <th><span>Updated On</span></th>
                 <th><span>Updated By</span></th>
                 <th style="text-align: center;"><span>Duration</span></th>
-                <th style="text-align: center;"><span>Storage Locations</span></th>
+        <!--                <th style="text-align: center;"><span>Storage Locations</span></th>-->
             </tr>
         </thead>
         <tbody id="unitResult">
@@ -105,7 +105,7 @@
                     <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($unit->getDuration($unit->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
-                    <td style="text-align: right;"><?php echo $unit->getResidentStructureDescription() ?></td>
+<!--                    <td style="text-align: right;"><?php // echo $unit->getResidentStructureDescription() ?></td>-->
 
                 </tr>
             <?php endforeach; ?>
