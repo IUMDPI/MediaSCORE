@@ -228,7 +228,7 @@
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>');
                         if(result[collection].StorageLocations[0]){
-                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+//                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
                         }
                     }
                     $(".delete_unit").fancybox({
