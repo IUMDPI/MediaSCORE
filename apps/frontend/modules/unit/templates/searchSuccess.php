@@ -102,13 +102,22 @@
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = url_for('assetgroup', $result);
+                    $UnitOfCollection = Doctrine_Query::create()
+                            ->from('Unit u')
+                            ->select('u.*')
+                            ->where('id =?', $result->getParentNodeId())
+                            ->fetchOne();
 
-//                    $urlOnName='';
 
-                    $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
-
-                    $parentId = $result->getParentNodeId();
-                    $duration = $result->getDuration($result->getId());
+                    if ($UnitOfCollection) {
+                        $urlOnName = '/' . $UnitOfCollection['name_slug'] . '/' . $result->getNameSlug() . '/';
+                        $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+                        $parentId = $result->getParentNodeId();
+                        $duration = $result->getDuration($result->getId());
+                    } else {
+                        echo '<pre>';
+                        print_r($result->getId());
+                    }
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
@@ -120,7 +129,7 @@
                 <tr>
                     <td class="invisible">
                         <div class="options">
-        <?php if ($result->getType() != 4) { ?>
+                            <?php if ($result->getType() != 4) { ?>
                                 <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
@@ -129,36 +138,36 @@
                     <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
-        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
+                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
                     </td>
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
-        <?php echo $result->getEditor()->getName(); ?>
+                        <?php echo $result->getEditor()->getName(); ?>
                     </td>
                     <td>
-        <?php echo $duration . ' minute' ?>
+                        <?php echo $duration . ' minute' ?>
                     </td>
 
 
                 </tr>
-        <?php
-    endforeach;
-}
-?>
+                <?php
+            endforeach;
+        }
+        ?>
         <?php if (isset($randomSearch) && sizeof($randomSearch) > 0) { ?>
             <?php
             foreach ($randomSearch as $result):
                 if ($result->getType() == 1) {
                     $text = 'Unit';
                     $urlOnName = url_for('collection', $result);
-                    $urlonEdit = 'unit/edit/id/' . $result->getId(); 
+                    $urlonEdit = 'unit/edit/id/' . $result->getId();
                     $parentId = 0;
                     $duration = $result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = url_for('assetgroup', $result);
-                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId(); 
+                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
                     $parentId = $result->getParentNodeId();
                     $duration = $result->getDuration($result->getId());
                 }
@@ -172,7 +181,7 @@
                 <tr>
                     <td class="invisible">
                         <div class="options">
-        <?php if ($result->getType() != 4) { ?>
+                            <?php if ($result->getType() != 4) { ?>
                                 <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
@@ -181,24 +190,24 @@
                     <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
                     <td><?php echo $result->getCreatedAt() ?></td>
                     <td>
-        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
+                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
                     </td>
                     <td><?php echo $result->getUpdatedAt() ?></td>
                     <td>
-        <?php echo $result->getEditor()->getName(); ?>
+                        <?php echo $result->getEditor()->getName(); ?>
                     </td>
                     <td>
-        <?php echo $duration . ' minute'; ?>
+                        <?php echo $duration . ' minute'; ?>
                     </td>
 
 
                 </tr>
-        <?php
-    endforeach;
-}
-?>
+                <?php
+            endforeach;
+        }
+        ?>
     </tbody>
-        <?php ?>
+    <?php ?>
 </table>
 <script type="text/javascript">
     var token=0;
