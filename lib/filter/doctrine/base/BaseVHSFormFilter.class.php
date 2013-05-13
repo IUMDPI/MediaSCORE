@@ -8,17 +8,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseVHSFormFilter extends FormatTypedVideoRecordingFormFilter
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseVHSFormFilter extends FormatTypedVideoRecordingFormFilter {
 
-    $this->widgetSchema->setNameFormat('vhs_filters[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'VHS';
-  }
+        $this->widgetSchema->setNameFormat('vhs_filters[%s]');
+    }
+
+    public function getModelName() {
+        return 'VHS';
+    }
+
 }

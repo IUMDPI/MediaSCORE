@@ -8,25 +8,33 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(7);
 
-class sfMessageSource_Simple extends sfMessageSource_File
-{
-  protected $dataExt = '.xml';
+class sfMessageSource_Simple extends sfMessageSource_File {
 
-  function delete($message, $catalogue = 'messages') {}
-  function update($text, $target, $comments, $catalogue = 'messages') {}
-  function save($catalogue = 'messages') {}
+    protected $dataExt = '.xml';
 
-  public function getCatalogueByDir($catalogue)
-  {
-    return parent::getCatalogueByDir($catalogue);
-  }
+    function delete($message, $catalogue = 'messages') {
+        
+    }
+
+    function update($text, $target, $comments, $catalogue = 'messages') {
+        
+    }
+
+    function save($catalogue = 'messages') {
+        
+    }
+
+    public function getCatalogueByDir($catalogue) {
+        return parent::getCatalogueByDir($catalogue);
+    }
+
 }
 
-$source = sfMessageSource::factory('Simple', dirname(__FILE__).'/fixtures');
+$source = sfMessageSource::factory('Simple', dirname(__FILE__) . '/fixtures');
 $source->setCulture('fr_FR');
 
 // ->getCatalogueByDir()
@@ -39,7 +47,7 @@ $t->is($source->getCatalogueList('messages'), array('fr_FR/messages.xml', 'fr/me
 
 // ->getSource()
 $t->diag('->getSource()');
-$t->is($source->getSource('fr_FR/messages.xml'), dirname(__FILE__).'/fixtures/fr_FR/messages.xml', '->getSource() returns the full path name to a specific variant');
+$t->is($source->getSource('fr_FR/messages.xml'), dirname(__FILE__) . '/fixtures/fr_FR/messages.xml', '->getSource() returns the full path name to a specific variant');
 
 // ->isValidSource()
 $t->diag('->isValidSource()');

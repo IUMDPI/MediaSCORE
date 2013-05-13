@@ -8,8 +8,8 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once(dirname(__FILE__).'/sfCacheDriverTests.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/sfCacheDriverTests.class.php');
 
 $t = new lime_test(65);
 
@@ -21,14 +21,11 @@ mkdir($temp);
 
 // ->initialize()
 $t->diag('->initialize()');
-try
-{
-  $cache = new sfFileCache();
-  $t->fail('->initialize() throws an sfInitializationException exception if you don\'t pass a "cache_dir" parameter');
-}
-catch (sfInitializationException $e)
-{
-  $t->pass('->initialize() throws an sfInitializationException exception if you don\'t pass a "cache_dir" parameter');
+try {
+    $cache = new sfFileCache();
+    $t->fail('->initialize() throws an sfInitializationException exception if you don\'t pass a "cache_dir" parameter');
+} catch (sfInitializationException $e) {
+    $t->pass('->initialize() throws an sfInitializationException exception if you don\'t pass a "cache_dir" parameter');
 }
 
 $cache = new sfFileCache(array('cache_dir' => $temp));

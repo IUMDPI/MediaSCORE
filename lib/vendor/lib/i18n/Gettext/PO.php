@@ -20,10 +20,9 @@
  * @author      Michael Wallner <mike@php.net>
  * @license     PHP License
  */
- 
-require_once dirname(__FILE__).'/TGettext.class.php';
+require_once dirname(__FILE__) . '/TGettext.class.php';
 
-/** 
+/**
  * File_Gettext_PO
  *
  * GNU PO file reader and writer.
@@ -33,8 +32,8 @@ require_once dirname(__FILE__).'/TGettext.class.php';
  * @access      public
  * @package System.I18N.core 
  */
-class TGettext_PO extends TGettext
-{
+class TGettext_PO extends TGettext {
+
     /**
      * Constructor
      *
@@ -42,8 +41,7 @@ class TGettext_PO extends TGettext
      * @return  object      File_Gettext_PO
      * @param   string      path to GNU PO file
      */
-    function TGettext_PO($file = '')
-    {
+    function TGettext_PO($file = '') {
         $this->file = $file;
     }
 
@@ -54,48 +52,46 @@ class TGettext_PO extends TGettext
      * @return  mixed   Returns true on success or PEAR_Error on failure.
      * @param   string  $file
      */
-    function load($file = null)
-    {
+    function load($file = null) {
         if (!isset($file)) {
             $file = $this->file;
         }
-        
+
         // load file
         if (!$contents = @file($file)) {
             return false;
         }
         $contents = implode('', $contents);
-        
+
         // match all msgid/msgstr entries
         $matched = preg_match_all(
-            '/(msgid\s+("([^"]|\\\\")*?"\s*)+)\s+' .
-            '(msgstr\s+("([^"]|\\\\")*?"\s*)+)/',
-            $contents, $matches
+                '/(msgid\s+("([^"]|\\\\")*?"\s*)+)\s+' .
+                '(msgstr\s+("([^"]|\\\\")*?"\s*)+)/', $contents, $matches
         );
         unset($contents);
-        
+
         if (!$matched) {
             return false;
         }
-        
+
         // get all msgids and msgtrs
         for ($i = 0; $i < $matched; $i++) {
             $msgid = preg_replace(
-                '/\s*msgid\s*"(.*)"\s*/s', '\\1', $matches[1][$i]);
-            $msgstr= preg_replace(
-                '/\s*msgstr\s*"(.*)"\s*/s', '\\1', $matches[4][$i]);
+                    '/\s*msgid\s*"(.*)"\s*/s', '\\1', $matches[1][$i]);
+            $msgstr = preg_replace(
+                    '/\s*msgstr\s*"(.*)"\s*/s', '\\1', $matches[4][$i]);
             $this->strings[parent::prepare($msgid)] = parent::prepare($msgstr);
         }
-        
+
         // check for meta info
         if (isset($this->strings[''])) {
             $this->meta = parent::meta2array($this->strings['']);
             unset($this->strings['']);
         }
-        
+
         return true;
     }
-    
+
     /**
      * Save PO file
      *
@@ -103,8 +99,7 @@ class TGettext_PO extends TGettext
      * @return  mixed   Returns true on success or PEAR_Error on failure.
      * @param   string  $file
      */
-    function save($file = null)
-    {
+    function save($file = null) {
         if (!isset($file)) {
             $file = $this->file;
         }
@@ -129,15 +124,15 @@ class TGettext_PO extends TGettext
         }
         // write strings
         foreach ($this->strings as $o => $t) {
-            fwrite($fh,
-                'msgid "'  . parent::prepare($o, true) . '"' . "\n" .
-                'msgstr "' . parent::prepare($t, true) . '"' . "\n\n"
+            fwrite($fh, 'msgid "' . parent::prepare($o, true) . '"' . "\n" .
+                    'msgstr "' . parent::prepare($t, true) . '"' . "\n\n"
             );
         }
-        
+
         //done
         @flock($fh, LOCK_UN);
         @fclose($fh);
         return true;
     }
+
 }

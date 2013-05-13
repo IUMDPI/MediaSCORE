@@ -16,6 +16,6 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfPluginRecursiveDependencyException.class.php 5250 2007-09-24 08:11:50Z fabien $
  */
-class sfPluginRecursiveDependencyException extends sfPluginException
-{
+class sfPluginRecursiveDependencyException extends sfPluginException {
+    
 }

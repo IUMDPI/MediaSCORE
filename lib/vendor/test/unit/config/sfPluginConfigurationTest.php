@@ -8,21 +8,21 @@
  * file that was distributed with this source code.
  */
 
-require_once dirname(__FILE__).'/../../bootstrap/unit.php';
+require_once dirname(__FILE__) . '/../../bootstrap/unit.php';
 
-$rootDir = realpath(dirname(__FILE__).'/../../functional/fixtures');
-$pluginRoot = realpath($rootDir.'/plugins/sfAutoloadPlugin');
+$rootDir = realpath(dirname(__FILE__) . '/../../functional/fixtures');
+$pluginRoot = realpath($rootDir . '/plugins/sfAutoloadPlugin');
 
-require_once $pluginRoot.'/config/sfAutoloadPluginConfiguration.class.php';
+require_once $pluginRoot . '/config/sfAutoloadPluginConfiguration.class.php';
 
 $t = new lime_test(9);
 
-class ProjectConfiguration extends sfProjectConfiguration
-{
-  public function setup()
-  {
-    $this->enablePlugins('sfAutoloadPlugin');
-  }
+class ProjectConfiguration extends sfProjectConfiguration {
+
+    public function setup() {
+        $this->enablePlugins('sfAutoloadPlugin');
+    }
+
 }
 
 // ->guessRootDir() ->guessName()

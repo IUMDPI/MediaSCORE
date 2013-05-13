@@ -8,18 +8,36 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(3);
 
-class sfMessageSource_Simple extends sfMessageSource
-{
-  function __construct($source) {}
-  function delete($message, $catalogue = 'messages') {}
-  function update($text, $target, $comments, $catalogue = 'messages') {}
-  function catalogues() {}
-  function save($catalogue = 'messages') {}
-  function getId() {}
+class sfMessageSource_Simple extends sfMessageSource {
+
+    function __construct($source) {
+        
+    }
+
+    function delete($message, $catalogue = 'messages') {
+        
+    }
+
+    function update($text, $target, $comments, $catalogue = 'messages') {
+        
+    }
+
+    function catalogues() {
+        
+    }
+
+    function save($catalogue = 'messages') {
+        
+    }
+
+    function getId() {
+        
+    }
+
 }
 
 // ::factory()

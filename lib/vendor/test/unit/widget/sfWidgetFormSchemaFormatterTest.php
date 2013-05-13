@@ -8,26 +8,25 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(28);
 
-class MyFormatter extends sfWidgetFormSchemaFormatter
-{
-  protected
-    $rowFormat       = "<li>\n  %error%%label%\n  %field%%help%\n%hidden_fields%</li>\n",
-    $errorRowFormat  = "<li>\n%errors%</li>\n",
-    $decoratorFormat = "<ul>\n  %content%</ul>";
+class MyFormatter extends sfWidgetFormSchemaFormatter {
 
-  public function unnestErrors($errors, $prefix = '')
-  {
-    return parent::unnestErrors($errors, $prefix);
-  }
-  
-  static public function dropTranslationCallable()
-  {
-    self::$translationCallable = null;
-  }
+    protected
+            $rowFormat = "<li>\n  %error%%label%\n  %field%%help%\n%hidden_fields%</li>\n",
+            $errorRowFormat = "<li>\n%errors%</li>\n",
+            $decoratorFormat = "<ul>\n  %content%</ul>";
+
+    public function unnestErrors($errors, $prefix = '') {
+        return parent::unnestErrors($errors, $prefix);
+    }
+
+    static public function dropTranslationCallable() {
+        self::$translationCallable = null;
+    }
+
 }
 
 $w1 = new sfWidgetFormInputText();
@@ -69,28 +68,28 @@ $t->is($f->unnestErrors($errors), array('<li>foo</li>', '<li>bar</li>', '<li>foo
 $errors = array('foo', 'bar' => array('foo', 'foobar' => 'foobar'));
 $t->is($f->unnestErrors($errors), array('<li>foo</li>', '<li>foo</li>', '<li>bar > foobar: foobar</li>'), '->unnestErrors() unnests errors');
 
-foreach (array('RowFormat', 'ErrorRowFormat', 'ErrorListFormatInARow', 'ErrorRowFormatInARow', 'NamedErrorRowFormatInARow', 'DecoratorFormat') as $method)
-{
-  $getter = sprintf('get%s', $method);
-  $setter = sprintf('set%s', $method);
-  $t->diag(sprintf('->%s() ->%s()', $getter, $setter));
-  $f->$setter($value = rand(1, 99999));
-  $t->is($f->$getter(), $value, sprintf('->%s() ->%s()', $getter, $setter));
+foreach (array('RowFormat', 'ErrorRowFormat', 'ErrorListFormatInARow', 'ErrorRowFormatInARow', 'NamedErrorRowFormatInARow', 'DecoratorFormat') as $method) {
+    $getter = sprintf('get%s', $method);
+    $setter = sprintf('set%s', $method);
+    $t->diag(sprintf('->%s() ->%s()', $getter, $setter));
+    $f->$setter($value = rand(1, 99999));
+    $t->is($f->$getter(), $value, sprintf('->%s() ->%s()', $getter, $setter));
 }
 
 $t->diag('::setTranslationCallable() ::getTranslationCallable()');
-function my__($string)
-{
-  return sprintf('[%s]', $string);
+
+function my__($string) {
+    return sprintf('[%s]', $string);
 }
 
-class myI18n
-{
-  static public function __($string)
-  {
-    return my__($string);
-  }
+class myI18n {
+
+    static public function __($string) {
+        return my__($string);
+    }
+
 }
+
 MyFormatter::setTranslationCallable('my__');
 
 $t->is(MyFormatter::getTranslationCallable(), 'my__', 'get18nCallable() retrieves i18n callable correctly');
@@ -98,18 +97,13 @@ $t->is(MyFormatter::getTranslationCallable(), 'my__', 'get18nCallable() retrieve
 MyFormatter::setTranslationCallable(new sfCallable('my__'));
 $t->isa_ok(MyFormatter::getTranslationCallable(), 'sfCallable', 'get18nCallable() retrieves i18n sfCallable correctly');
 
-try
-{
-  $f->setTranslationCallable('foo');
-  $t->fail('setTranslationCallable() does not throw InvalidException when i18n callable is invalid');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('setTranslationCallable() throws InvalidException if i18n callable is not a valid callable');
-}
-catch (Exception $e)
-{
-  $t->fail('setTranslationCallable() throws unexpected exception');
+try {
+    $f->setTranslationCallable('foo');
+    $t->fail('setTranslationCallable() does not throw InvalidException when i18n callable is invalid');
+} catch (InvalidArgumentException $e) {
+    $t->pass('setTranslationCallable() throws InvalidException if i18n callable is not a valid callable');
+} catch (Exception $e) {
+    $t->fail('setTranslationCallable() throws unexpected exception');
 }
 
 $t->diag('->translate()');
@@ -122,10 +116,10 @@ $t->is($f->translate('label'), '[label]', 'translate() call i18n callable as exp
 $t->diag('->generateLabel() ->generateLabelName() ->setLabel() ->setLabels()');
 MyFormatter::dropTranslationCallable();
 $w = new sfWidgetFormSchema(array(
-  'author_id'  => new sfWidgetFormInputText(),
-  'first_name' => new sfWidgetFormInputText(),
-  'last_name'  => new sfWidgetFormInputText(),
-));
+            'author_id' => new sfWidgetFormInputText(),
+            'first_name' => new sfWidgetFormInputText(),
+            'last_name' => new sfWidgetFormInputText(),
+        ));
 $f = new MyFormatter($w);
 $t->is($f->generateLabelName('first_name'), 'First name', '->generateLabelName() generates a label value from a label name');
 $t->is($f->generateLabelName('author_id'), 'Author', '->generateLabelName() removes _id from auto-generated labels');
@@ -150,28 +144,23 @@ MyFormatter::setTranslationCallable('my__');
 $t->is($f->generateLabel('last_name'), '<label for="last_name">[Your Last Name]</label>', '->generateLabelName() returns a i18ned label tag');
 
 // ->setTranslationCatalogue() ->getTranslationCatalogue()
-class MyFormatter2 extends sfWidgetFormSchemaFormatter
-{
-  
+class MyFormatter2 extends sfWidgetFormSchemaFormatter {
+    
 }
 
 $f = new MyFormatter2(new sfWidgetFormSchema(array()));
 $f->setTranslationCatalogue('foo');
 $t->is($f->getTranslationCatalogue(), 'foo', 'setTranslationCatalogue() has set the i18n catalogue correctly');
 $t->diag('->setTranslationCatalogue() ->getTranslationCatalogue()');
-try
-{
-  $f->setTranslationCatalogue(array('foo'));
-  $t->fail('setTranslationCatalogue() does not throw an exception when catalogue name is incorrectly typed');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('setTranslationCatalogue() throws an exception when catalogue name is incorrectly typed');
+try {
+    $f->setTranslationCatalogue(array('foo'));
+    $t->fail('setTranslationCatalogue() does not throw an exception when catalogue name is incorrectly typed');
+} catch (InvalidArgumentException $e) {
+    $t->pass('setTranslationCatalogue() throws an exception when catalogue name is incorrectly typed');
 }
 
-function ___my($s, $p, $c)
-{
-  return $c;
+function ___my($s, $p, $c) {
+    return $c;
 }
 
 $f = new MyFormatter2(new sfWidgetFormSchema());

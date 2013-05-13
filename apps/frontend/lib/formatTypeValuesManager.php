@@ -12,6 +12,10 @@
  */
 class formatTypeValuesManager {
 
+    /**
+     *
+     * @var Array 
+     */
     protected $ArrayOfValues = array();
 
     function __construct() {

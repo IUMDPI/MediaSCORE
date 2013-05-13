@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseUserForm extends sfGuardUserForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseUserForm extends sfGuardUserForm {
 
-    $this->widgetSchema->setNameFormat('user[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'User';
-  }
+        $this->widgetSchema->setNameFormat('user[%s]');
+    }
+
+    public function getModelName() {
+        return 'User';
+    }
 
 }

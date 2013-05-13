@@ -8,26 +8,26 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(2);
 
-class myLogger implements sfLoggerInterface
-{
-  public $log = '';
+class myLogger implements sfLoggerInterface {
 
-  public function log($message, $priority = null)
-  {
-    $this->log = $message;
-  }
+    public $log = '';
+
+    public function log($message, $priority = null) {
+        $this->log = $message;
+    }
+
 }
 
-class myLoggerWrapper extends sfLoggerWrapper
-{
-  public function getLogger()
-  {
-    return $this->logger;
-  }
+class myLoggerWrapper extends sfLoggerWrapper {
+
+    public function getLogger() {
+        return $this->logger;
+    }
+
 }
 
 $myLogger = new myLogger();

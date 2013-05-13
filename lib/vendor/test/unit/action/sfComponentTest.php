@@ -8,21 +8,24 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
-require_once($_test_dir.'/unit/sfNoRouting.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once($_test_dir . '/unit/sfContextMock.class.php');
+require_once($_test_dir . '/unit/sfNoRouting.class.php');
 
 $t = new lime_test(8);
 
-class myComponent extends sfComponent
-{
-  function execute($request) {}
+class myComponent extends sfComponent {
+
+    function execute($request) {
+        
+    }
+
 }
 
 $context = sfContext::getInstance(array(
-  'routing' => 'sfNoRouting',
-  'request' => 'sfWebRequest',
-));
+            'routing' => 'sfNoRouting',
+            'request' => 'sfWebRequest',
+        ));
 
 // ->initialize()
 $t->diag('->initialize()');
@@ -53,6 +56,6 @@ $component->foo[] = 'bar';
 $t->is($component->foo, array('bar'), '__set() populates component variables');
 
 // new methods via sfEventDispatcher
-require_once($_test_dir.'/unit/sfEventDispatcherTest.class.php');
+require_once($_test_dir . '/unit/sfEventDispatcherTest.class.php');
 $dispatcherTest = new sfEventDispatcherTest($t);
 $dispatcherTest->launchTests($context->getEventDispatcher(), $component, 'component');

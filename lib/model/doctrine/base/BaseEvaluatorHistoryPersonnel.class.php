@@ -24,32 +24,31 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseEvaluatorHistoryPersonnel extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BaseEvaluatorHistoryPersonnel extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('evaluator_history_personnel');
         $this->hasColumn('evaluator_history_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('person_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasOne('EvaluatorHistory', array(
-             'local' => 'evaluator_history_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE',
-             'onUpdate' => 'CASCADE'));
+            'local' => 'evaluator_history_id',
+            'foreign' => 'id',
+            'onDelete' => 'CASCADE',
+            'onUpdate' => 'CASCADE'));
 
         $this->hasOne('Person', array(
-             'local' => 'person_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE',
-             'onUpdate' => 'CASCADE'));
+            'local' => 'person_id',
+            'foreign' => 'id',
+            'onDelete' => 'CASCADE',
+            'onUpdate' => 'CASCADE'));
     }
+
 }

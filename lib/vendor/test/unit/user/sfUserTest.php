@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(32);
 
 $_SERVER['session_id'] = 'test';
 
 $dispatcher = new sfEventDispatcher();
-$sessionPath = sys_get_temp_dir().'/sessions_'.rand(11111, 99999);
+$sessionPath = sys_get_temp_dir() . '/sessions_' . rand(11111, 99999);
 $storage = new sfSessionTestStorage(array('session_path' => $sessionPath));
 
 $user = new sfUser($dispatcher, $storage);
@@ -77,24 +77,23 @@ $t->is(isset($user['foo2']), false, '->offsetUnset() unsets attribute by name');
 $user = new sfUser($dispatcher, $storage);
 
 // attribute holder proxy
-require_once($_test_dir.'/unit/sfParameterHolderTest.class.php');
+require_once($_test_dir . '/unit/sfParameterHolderTest.class.php');
 $pht = new sfParameterHolderProxyTest($t);
 $pht->launchTests($user, 'attribute');
 
 // new methods via sfEventDispatcher
-require_once($_test_dir.'/unit/sfEventDispatcherTest.class.php');
+require_once($_test_dir . '/unit/sfEventDispatcherTest.class.php');
 $dispatcherTest = new sfEventDispatcherTest($t);
 $dispatcherTest->launchTests($dispatcher, $user, 'user');
 
 $storage->clear();
 
-function user_flush($dispatcher, $user, $storage, $options = array())
-{
-  $user->shutdown();
-  $user->initialize($dispatcher, $storage, $options);
-  $parameters = $storage->getOptions();
-  $storage->shutdown();
-  $storage->initialize($parameters);
+function user_flush($dispatcher, $user, $storage, $options = array()) {
+    $user->shutdown();
+    $user->initialize($dispatcher, $storage, $options);
+    $parameters = $storage->getOptions();
+    $storage->shutdown();
+    $storage->initialize($parameters);
 }
 
 sfToolkit::clearDirectory($sessionPath);

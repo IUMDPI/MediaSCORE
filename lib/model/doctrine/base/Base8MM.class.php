@@ -18,23 +18,21 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class Base8MM extends ReelVideoRecordingFormatType
-{
-    public function setTableDefinition()
-    {
+abstract class Base8MM extends ReelVideoRecordingFormatType {
+
+    public function setTableDefinition() {
         parent::setTableDefinition();
         $this->setTableName('8_m_m');
         $this->hasColumn('recordingSpeed', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('binderSystem', 'boolean', null, array(
-             'type' => 'boolean',
-             ));
+            'type' => 'boolean',
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
-        
     }
+
 }

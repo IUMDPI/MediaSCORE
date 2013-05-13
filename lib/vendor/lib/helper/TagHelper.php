@@ -27,29 +27,24 @@
  * @param  bool   $open     true to leave tag open
  * @return string
  */
-function tag($name, $options = array(), $open = false)
-{
-  if (!$name)
-  {
-    return '';
-  }
+function tag($name, $options = array(), $open = false) {
+    if (!$name) {
+        return '';
+    }
 
-  return '<'.$name._tag_options($options).(($open) ? '>' : ' />');
+    return '<' . $name . _tag_options($options) . (($open) ? '>' : ' />');
 }
 
-function content_tag($name, $content = '', $options = array())
-{
-  if (!$name)
-  {
-    return '';
-  }
+function content_tag($name, $content = '', $options = array()) {
+    if (!$name) {
+        return '';
+    }
 
-  return '<'.$name._tag_options($options).'>'.$content.'</'.$name.'>';
+    return '<' . $name . _tag_options($options) . '>' . $content . '</' . $name . '>';
 }
 
-function cdata_section($content)
-{
-  return "<![CDATA[$content]]>";
+function cdata_section($content) {
+    return "<![CDATA[$content]]>";
 }
 
 /**
@@ -62,20 +57,18 @@ function cdata_section($content)
  *
  * @see http://msdn.microsoft.com/en-us/library/ms537512(VS.85).aspx
  */
-function comment_as_conditional($condition, $content)
-{
-  return "<!--[if $condition]>$content<![endif]-->";
+function comment_as_conditional($condition, $content) {
+    return "<!--[if $condition]>$content<![endif]-->";
 }
 
 /**
  * Escape carrier returns and single and double quotes for Javascript segments.
  */
-function escape_javascript($javascript = '')
-{
-  $javascript = preg_replace('/\r\n|\n|\r/', "\\n", $javascript);
-  $javascript = preg_replace('/(["\'])/', '\\\\\1', $javascript);
+function escape_javascript($javascript = '') {
+    $javascript = preg_replace('/\r\n|\n|\r/', "\\n", $javascript);
+    $javascript = preg_replace('/(["\'])/', '\\\\\1', $javascript);
 
-  return $javascript;
+    return $javascript;
 }
 
 /**
@@ -84,9 +77,8 @@ function escape_javascript($javascript = '')
  * @param  string $html HTML string to escape
  * @return string escaped string
  */
-function escape_once($html)
-{
-  return fix_double_escape(htmlspecialchars($html, ENT_COMPAT, sfConfig::get('sf_charset')));
+function escape_once($html) {
+    return fix_double_escape(htmlspecialchars($html, ENT_COMPAT, sfConfig::get('sf_charset')));
 }
 
 /**
@@ -95,42 +87,34 @@ function escape_once($html)
  * @param  string $escaped HTML string to fix
  * @return string fixed escaped string
  */
-function fix_double_escape($escaped)
-{
-  return preg_replace('/&amp;([a-z]+|(#\d+)|(#x[\da-f]+));/i', '&$1;', $escaped);
+function fix_double_escape($escaped) {
+    return preg_replace('/&amp;([a-z]+|(#\d+)|(#x[\da-f]+));/i', '&$1;', $escaped);
 }
 
-function _tag_options($options = array())
-{
-  $options = _parse_attributes($options);
+function _tag_options($options = array()) {
+    $options = _parse_attributes($options);
 
-  $html = '';
-  foreach ($options as $key => $value)
-  {
-    $html .= ' '.$key.'="'.escape_once($value).'"';
-  }
+    $html = '';
+    foreach ($options as $key => $value) {
+        $html .= ' ' . $key . '="' . escape_once($value) . '"';
+    }
 
-  return $html;
+    return $html;
 }
 
-function _parse_attributes($string)
-{
-  return is_array($string) ? $string : sfToolkit::stringToArray($string);
+function _parse_attributes($string) {
+    return is_array($string) ? $string : sfToolkit::stringToArray($string);
 }
 
-function _get_option(&$options, $name, $default = null)
-{
-  if (array_key_exists($name, $options))
-  {
-    $value = $options[$name];
-    unset($options[$name]);
-  }
-  else
-  {
-    $value = $default;
-  }
+function _get_option(&$options, $name, $default = null) {
+    if (array_key_exists($name, $options)) {
+        $value = $options[$name];
+        unset($options[$name]);
+    } else {
+        $value = $default;
+    }
 
-  return $value;
+    return $value;
 }
 
 /**
@@ -155,15 +139,13 @@ function _get_option(&$options, $name, $default = null)
  *
  * @return string <select> tag populated with all the languages in the world.
  */
-function get_id_from_name($name, $value = null)
-{
-  // check to see if we have an array variable for a field name
-  if (strstr($name, '['))
-  {
-    $name = str_replace(array('[]', '][', '[', ']'), array((($value != null) ? '_'.$value : ''), '_', '_', ''), $name);
-  }
+function get_id_from_name($name, $value = null) {
+    // check to see if we have an array variable for a field name
+    if (strstr($name, '[')) {
+        $name = str_replace(array('[]', '][', '[', ']'), array((($value != null) ? '_' . $value : ''), '_', '_', ''), $name);
+    }
 
-  return $name;
+    return $name;
 }
 
 /**
@@ -172,24 +154,18 @@ function get_id_from_name($name, $value = null)
  * @param  array $options
  * @return array returns properly formatted options
  */
-function _convert_options($options)
-{
-  $options = _parse_attributes($options);
+function _convert_options($options) {
+    $options = _parse_attributes($options);
 
-  foreach (array('disabled', 'readonly', 'multiple') as $attribute)
-  {
-    if (array_key_exists($attribute, $options))
-    {
-      if ($options[$attribute])
-      {
-        $options[$attribute] = $attribute;
-      }
-      else
-      {
-        unset($options[$attribute]);
-      }
+    foreach (array('disabled', 'readonly', 'multiple') as $attribute) {
+        if (array_key_exists($attribute, $options)) {
+            if ($options[$attribute]) {
+                $options[$attribute] = $attribute;
+            } else {
+                unset($options[$attribute]);
+            }
+        }
     }
-  }
 
-  return $options;
+    return $options;
 }

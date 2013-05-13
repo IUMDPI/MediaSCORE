@@ -8,16 +8,15 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 ob_start();
 $plan = 15;
 $t = new lime_test($plan);
 
-if (!extension_loaded('SQLite') && !extension_loaded('pdo_SQLite'))
-{
-  $t->skip('SQLite needed to run these tests', $plan);
-  return;
+if (!extension_loaded('SQLite') && !extension_loaded('pdo_SQLite')) {
+    $t->skip('SQLite needed to run these tests', $plan);
+    return;
 }
 
 // initialize the storage
@@ -56,52 +55,40 @@ $t->is($data[0]['sess_data'], $newSessionData, 'regenerate() has created a new r
 $session_id = session_id();
 
 // sessionRead()
-try
-{
-  $retrieved_data = $storage->sessionRead($session_id);
-  $t->pass('sessionRead() does not throw an exception');
-}
-catch (Exception $e)
-{
-  $t->fail('sessionRead() does not throw an exception');
+try {
+    $retrieved_data = $storage->sessionRead($session_id);
+    $t->pass('sessionRead() does not throw an exception');
+} catch (Exception $e) {
+    $t->fail('sessionRead() does not throw an exception');
 }
 $t->is($retrieved_data, $newSessionData, 'sessionRead() reads session data');
 
 // sessionWrite()
 $otherSessionData = 'foo:foo:foo';
-try
-{
-  $write = $storage->sessionWrite($session_id, $otherSessionData);
-  $t->pass('sessionWrite() does not throw an exception');
-}
-catch (Exception $e)
-{
-  $t->fail('sessionWrite() does not throw an exception');
+try {
+    $write = $storage->sessionWrite($session_id, $otherSessionData);
+    $t->pass('sessionWrite() does not throw an exception');
+} catch (Exception $e) {
+    $t->fail('sessionWrite() does not throw an exception');
 }
 
 $t->ok($write, 'sessionWrite() returns true');
 $t->is($storage->sessionRead($session_id), $otherSessionData, 'sessionWrite() wrote session data');
 
 // sessionGC()
-try
-{
-  $storage->sessionGC(0);
-  $t->pass('sessionGC() does not throw an exception');
-}
-catch (Exception $e)
-{
-  $t->fail('sessionGC() does not throw an exception');
+try {
+    $storage->sessionGC(0);
+    $t->pass('sessionGC() does not throw an exception');
+} catch (Exception $e) {
+    $t->fail('sessionGC() does not throw an exception');
 }
 
 // destroy the session
-try
-{
-  $storage->sessionDestroy($session_id);
-  $t->pass('sessionDestroy() does not throw an exception');
-}
-catch (Exception $e)
-{
-  $t->fail('sessionClose() does not throw an exception');
+try {
+    $storage->sessionDestroy($session_id);
+    $t->pass('sessionDestroy() does not throw an exception');
+} catch (Exception $e) {
+    $t->fail('sessionClose() does not throw an exception');
 }
 $result = $connection->query(sprintf('SELECT sess_id, sess_data FROM session WHERE sess_id = "%s"', $session_id));
 $data = $result->fetchAll();

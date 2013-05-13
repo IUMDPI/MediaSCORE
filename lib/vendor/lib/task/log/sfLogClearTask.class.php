@@ -16,30 +16,29 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfLogClearTask.class.php 23922 2009-11-14 14:58:38Z fabien $
  */
-class sfLogClearTask extends sfBaseTask
-{
-  /**
-   * @see sfTask
-   */
-  protected function configure()
-  {
-    $this->namespace = 'log';
-    $this->name = 'clear';
-    $this->briefDescription = 'Clears log files';
+class sfLogClearTask extends sfBaseTask {
 
-    $this->detailedDescription = <<<EOF
+    /**
+     * @see sfTask
+     */
+    protected function configure() {
+        $this->namespace = 'log';
+        $this->name = 'clear';
+        $this->briefDescription = 'Clears log files';
+
+        $this->detailedDescription = <<<EOF
 The [log:clear|INFO] task clears all symfony log files:
 
   [./symfony log:clear|INFO]
 EOF;
-  }
+    }
 
-  /**
-   * @see sfTask
-   */
-  protected function execute($arguments = array(), $options = array())
-  {
-    $logs = sfFinder::type('file')->in(sfConfig::get('sf_log_dir'));
-    $this->getFilesystem()->remove($logs);
-  }
+    /**
+     * @see sfTask
+     */
+    protected function execute($arguments = array(), $options = array()) {
+        $logs = sfFinder::type('file')->in(sfConfig::get('sf_log_dir'));
+        $this->getFilesystem()->remove($logs);
+    }
+
 }

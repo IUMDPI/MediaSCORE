@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseTwoInchOpenReelVideoForm extends OpenReelVideoFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseTwoInchOpenReelVideoForm extends OpenReelVideoFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('two_inch_open_reel_video[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'TwoInchOpenReelVideo';
-  }
+        $this->widgetSchema->setNameFormat('two_inch_open_reel_video[%s]');
+    }
+
+    public function getModelName() {
+        return 'TwoInchOpenReelVideo';
+    }
 
 }

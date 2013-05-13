@@ -8,70 +8,63 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(93);
 
 // ::stringToArray()
 $t->diag('::stringToArray()');
 $tests = array(
-  'foo=bar' => array('foo' => 'bar'),
-  'foo1=bar1 foo=bar   ' => array('foo1' => 'bar1', 'foo' => 'bar'),
-  'foo1="bar1 foo1"' => array('foo1' => 'bar1 foo1'),
-  'foo1="bar1 foo1" foo=bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
-  'foo1 = "bar1=foo1" foo=bar' => array('foo1' => 'bar1=foo1', 'foo' => 'bar'),
-  'foo1= \'bar1 foo1\'    foo  =     bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
-  'foo1=\'bar1=foo1\' foo = bar' => array('foo1' => 'bar1=foo1', 'foo' => 'bar'),
-  'foo1=  bar1 foo1 foo=bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
-  'foo1="l\'autre" foo=bar' => array('foo1' => 'l\'autre', 'foo' => 'bar'),
-  'foo1="l"autre" foo=bar' => array('foo1' => 'l"autre', 'foo' => 'bar'),
-  'foo_1=bar_1' => array('foo_1' => 'bar_1'),
+    'foo=bar' => array('foo' => 'bar'),
+    'foo1=bar1 foo=bar   ' => array('foo1' => 'bar1', 'foo' => 'bar'),
+    'foo1="bar1 foo1"' => array('foo1' => 'bar1 foo1'),
+    'foo1="bar1 foo1" foo=bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
+    'foo1 = "bar1=foo1" foo=bar' => array('foo1' => 'bar1=foo1', 'foo' => 'bar'),
+    'foo1= \'bar1 foo1\'    foo  =     bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
+    'foo1=\'bar1=foo1\' foo = bar' => array('foo1' => 'bar1=foo1', 'foo' => 'bar'),
+    'foo1=  bar1 foo1 foo=bar' => array('foo1' => 'bar1 foo1', 'foo' => 'bar'),
+    'foo1="l\'autre" foo=bar' => array('foo1' => 'l\'autre', 'foo' => 'bar'),
+    'foo1="l"autre" foo=bar' => array('foo1' => 'l"autre', 'foo' => 'bar'),
+    'foo_1=bar_1' => array('foo_1' => 'bar_1'),
 );
 
-foreach ($tests as $string => $attributes)
-{
-  $t->is(sfToolkit::stringToArray($string), $attributes, '->stringToArray()');
+foreach ($tests as $string => $attributes) {
+    $t->is(sfToolkit::stringToArray($string), $attributes, '->stringToArray()');
 }
 
 // ::isUTF8()
 $t->diag('::isUTF8()');
 $t->is('été', true, '::isUTF8() returns true if the parameter is an UTF-8 encoded string');
 $t->is(sfToolkit::isUTF8('AZERTYazerty1234-_'), true, '::isUTF8() returns true if the parameter is an UTF-8 encoded string');
-$t->is(sfToolkit::isUTF8('AZERTYazerty1234-_'.chr(254)), false, '::isUTF8() returns false if the parameter is not an UTF-8 encoded string');
+$t->is(sfToolkit::isUTF8('AZERTYazerty1234-_' . chr(254)), false, '::isUTF8() returns false if the parameter is not an UTF-8 encoded string');
 // check a very long string
 $string = str_repeat('Here is an UTF8 string avec du français.', 1000);
 $t->is(sfToolkit::isUTF8($string), true, '::isUTF8() can operate on very large strings');
 
 // ::literalize()
 $t->diag('::literalize()');
-foreach (array('true', 'on', '+', 'yes') as $param)
-{
-  $t->is(sfToolkit::literalize($param), true, sprintf('::literalize() returns true with "%s"', $param));
-  if (strtoupper($param) != $param)
-  {
-    $t->is(sfToolkit::literalize(strtoupper($param)), true, sprintf('::literalize() returns true with "%s"', strtoupper($param)));
-  }
-  $t->is(sfToolkit::literalize(' '.$param.' '), true, sprintf('::literalize() returns true with "%s"', ' '.$param.' '));
+foreach (array('true', 'on', '+', 'yes') as $param) {
+    $t->is(sfToolkit::literalize($param), true, sprintf('::literalize() returns true with "%s"', $param));
+    if (strtoupper($param) != $param) {
+        $t->is(sfToolkit::literalize(strtoupper($param)), true, sprintf('::literalize() returns true with "%s"', strtoupper($param)));
+    }
+    $t->is(sfToolkit::literalize(' ' . $param . ' '), true, sprintf('::literalize() returns true with "%s"', ' ' . $param . ' '));
 }
 
-foreach (array('false', 'off', '-', 'no') as $param)
-{
-  $t->is(sfToolkit::literalize($param), false, sprintf('::literalize() returns false with "%s"', $param));
-  if (strtoupper($param) != $param)
-  {
-    $t->is(sfToolkit::literalize(strtoupper($param)), false, sprintf('::literalize() returns false with "%s"', strtoupper($param)));
-  }
-  $t->is(sfToolkit::literalize(' '.$param.' '), false, sprintf('::literalize() returns false with "%s"', ' '.$param.' '));
+foreach (array('false', 'off', '-', 'no') as $param) {
+    $t->is(sfToolkit::literalize($param), false, sprintf('::literalize() returns false with "%s"', $param));
+    if (strtoupper($param) != $param) {
+        $t->is(sfToolkit::literalize(strtoupper($param)), false, sprintf('::literalize() returns false with "%s"', strtoupper($param)));
+    }
+    $t->is(sfToolkit::literalize(' ' . $param . ' '), false, sprintf('::literalize() returns false with "%s"', ' ' . $param . ' '));
 }
 
-foreach (array('null', '~', '') as $param)
-{
-  $t->is(sfToolkit::literalize($param), null, sprintf('::literalize() returns null with "%s"', $param));
-  if (strtoupper($param) != $param)
-  {
-    $t->is(sfToolkit::literalize(strtoupper($param)), null, sprintf('::literalize() returns null with "%s"', strtoupper($param)));
-  }
-  $t->is(sfToolkit::literalize(' '.$param.' '), null, sprintf('::literalize() returns null with "%s"', ' '.$param.' '));
+foreach (array('null', '~', '') as $param) {
+    $t->is(sfToolkit::literalize($param), null, sprintf('::literalize() returns null with "%s"', $param));
+    if (strtoupper($param) != $param) {
+        $t->is(sfToolkit::literalize(strtoupper($param)), null, sprintf('::literalize() returns null with "%s"', strtoupper($param)));
+    }
+    $t->is(sfToolkit::literalize(' ' . $param . ' '), null, sprintf('::literalize() returns null with "%s"', ' ' . $param . ' '));
 }
 
 // ::replaceConstants()
@@ -134,68 +127,60 @@ $t->is(sfToolkit::stripslashesDeep(array(array('foo' => addslashes("foo's bar"))
 
 // ::clearDirectory()
 $t->diag('::clearDirectory()');
-$tmp_dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'symfony_tests_'.rand(1, 999);
+$tmp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'symfony_tests_' . rand(1, 999);
 mkdir($tmp_dir);
-file_put_contents($tmp_dir.DIRECTORY_SEPARATOR.'test', 'ok');
-mkdir($tmp_dir.DIRECTORY_SEPARATOR.'foo');
-file_put_contents($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', 'ok');
+file_put_contents($tmp_dir . DIRECTORY_SEPARATOR . 'test', 'ok');
+mkdir($tmp_dir . DIRECTORY_SEPARATOR . 'foo');
+file_put_contents($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar', 'ok');
 sfToolkit::clearDirectory($tmp_dir);
-$t->ok(!is_dir($tmp_dir.DIRECTORY_SEPARATOR.'foo'), '::clearDirectory() removes all directories from the directory parameter');
-$t->ok(!is_file($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar'), '::clearDirectory() removes all directories from the directory parameter');
-$t->ok(!is_file($tmp_dir.DIRECTORY_SEPARATOR.'test'), '::clearDirectory() removes all directories from the directory parameter');
+$t->ok(!is_dir($tmp_dir . DIRECTORY_SEPARATOR . 'foo'), '::clearDirectory() removes all directories from the directory parameter');
+$t->ok(!is_file($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar'), '::clearDirectory() removes all directories from the directory parameter');
+$t->ok(!is_file($tmp_dir . DIRECTORY_SEPARATOR . 'test'), '::clearDirectory() removes all directories from the directory parameter');
 rmdir($tmp_dir);
 
 // ::clearGlob()
 $t->diag('::clearGlob()');
-$tmp_dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'symfony_tests_'.rand(1, 999);
+$tmp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'symfony_tests_' . rand(1, 999);
 mkdir($tmp_dir);
-mkdir($tmp_dir.DIRECTORY_SEPARATOR.'foo');
-mkdir($tmp_dir.DIRECTORY_SEPARATOR.'bar');
-file_put_contents($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', 'ok');
-file_put_contents($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'foo', 'ok');
-file_put_contents($tmp_dir.DIRECTORY_SEPARATOR.'bar'.DIRECTORY_SEPARATOR.'bar', 'ok');
-sfToolkit::clearGlob($tmp_dir.'/*/bar');
-$t->ok(!is_file($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar'), '::clearGlob() removes all files and directories matching the pattern parameter');
-$t->ok(!is_file($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar'), '::clearGlob() removes all files and directories matching the pattern parameter');
-$t->ok(is_file($tmp_dir.DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'foo'), '::clearGlob() removes all files and directories matching the pattern parameter');
+mkdir($tmp_dir . DIRECTORY_SEPARATOR . 'foo');
+mkdir($tmp_dir . DIRECTORY_SEPARATOR . 'bar');
+file_put_contents($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar', 'ok');
+file_put_contents($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'foo', 'ok');
+file_put_contents($tmp_dir . DIRECTORY_SEPARATOR . 'bar' . DIRECTORY_SEPARATOR . 'bar', 'ok');
+sfToolkit::clearGlob($tmp_dir . '/*/bar');
+$t->ok(!is_file($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar'), '::clearGlob() removes all files and directories matching the pattern parameter');
+$t->ok(!is_file($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar'), '::clearGlob() removes all files and directories matching the pattern parameter');
+$t->ok(is_file($tmp_dir . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'foo'), '::clearGlob() removes all files and directories matching the pattern parameter');
 sfToolkit::clearDirectory($tmp_dir);
 rmdir($tmp_dir);
 
 // ::arrayDeepMerge()
 $t->diag('::arrayDeepMerge()');
 $t->is(
-  sfToolkit::arrayDeepMerge(array('d' => 'due', 't' => 'tre'), array('d' => 'bis', 'q' => 'quattro')),
-  array('d' => 'bis', 't' => 'tre', 'q' => 'quattro'),
-  '::arrayDeepMerge() merges linear arrays preserving literal keys'
+        sfToolkit::arrayDeepMerge(array('d' => 'due', 't' => 'tre'), array('d' => 'bis', 'q' => 'quattro')), array('d' => 'bis', 't' => 'tre', 'q' => 'quattro'), '::arrayDeepMerge() merges linear arrays preserving literal keys'
 );
 $t->is(
-  sfToolkit::arrayDeepMerge(array('d' => 'due', 't' => 'tre', 'c' => array('c' => 'cinco')), array('d' => array('due', 'bis'), 'q' => 'quattro', 'c' => array('c' => 'cinque', 'c2' => 'cinco'))),
-  array('d' => array('due', 'bis'), 't' => 'tre', 'q' => 'quattro', 'c' => array('c' => 'cinque', 'c2' => 'cinco')),
-  '::arrayDeepMerge() recursively merges arrays preserving literal keys'
+        sfToolkit::arrayDeepMerge(array('d' => 'due', 't' => 'tre', 'c' => array('c' => 'cinco')), array('d' => array('due', 'bis'), 'q' => 'quattro', 'c' => array('c' => 'cinque', 'c2' => 'cinco'))), array('d' => array('due', 'bis'), 't' => 'tre', 'q' => 'quattro', 'c' => array('c' => 'cinque', 'c2' => 'cinco')), '::arrayDeepMerge() recursively merges arrays preserving literal keys'
 );
 $t->is(
-  sfToolkit::arrayDeepMerge(array(2 => 'due', 3 => 'tre'), array(2 => 'bis', 4 => 'quattro')),
-  array(2 => 'bis', 3 => 'tre', 4 => 'quattro'),
-  '::arrayDeepMerge() merges linear arrays preserving numerical keys'
+        sfToolkit::arrayDeepMerge(array(2 => 'due', 3 => 'tre'), array(2 => 'bis', 4 => 'quattro')), array(2 => 'bis', 3 => 'tre', 4 => 'quattro'), '::arrayDeepMerge() merges linear arrays preserving numerical keys'
 );
 $t->is(
-  sfToolkit::arrayDeepMerge(array(2 => array('due'), 3 => 'tre'), array(2 => array('bis', 'bes'), 4 => 'quattro')),
-  array(2 => array('bis', 'bes'), 3 => 'tre', 4 => 'quattro'),
-  '::arrayDeepMerge() recursively merges arrays preserving numerical keys'
+        sfToolkit::arrayDeepMerge(array(2 => array('due'), 3 => 'tre'), array(2 => array('bis', 'bes'), 4 => 'quattro')), array(2 => array('bis', 'bes'), 3 => 'tre', 4 => 'quattro'), '::arrayDeepMerge() recursively merges arrays preserving numerical keys'
 );
 
 $arr = array(
-  'foobar' => 'foo',
-  'foo' => array(
-    'bar' => array(
-      'baz' => 'foo bar',
+    'foobar' => 'foo',
+    'foo' => array(
+        'bar' => array(
+            'baz' => 'foo bar',
+        ),
     ),
-  ),
-  'bar' => array(
-    'foo',
-    'bar',
-  ),
-  'simple' => 'string',
+    'bar' => array(
+        'foo',
+        'bar',
+    ),
+    'simple' => 'string',
 );
 
 // ::getArrayValueForPath()
@@ -224,30 +209,27 @@ $t->is(sfToolkit::getArrayValueForPath($arr, 'foo[bar][baz][booze]'), null, '::g
 $t->diag('::addIncludePath()');
 $path = get_include_path();
 $t->is(sfToolkit::addIncludePath(dirname(__FILE__)), $path, '::addIncludePath() returns the previous include_path');
-$t->is(get_include_path(), dirname(__FILE__).PATH_SEPARATOR.$path, '::addIncludePath() adds a path to the front of include_path');
+$t->is(get_include_path(), dirname(__FILE__) . PATH_SEPARATOR . $path, '::addIncludePath() adds a path to the front of include_path');
 
 sfToolkit::addIncludePath(dirname(__FILE__), 'back');
-$t->is(get_include_path(), $path.PATH_SEPARATOR.dirname(__FILE__), '::addIncludePath() moves a path to the end of include_path');
+$t->is(get_include_path(), $path . PATH_SEPARATOR . dirname(__FILE__), '::addIncludePath() moves a path to the end of include_path');
 
 sfToolkit::addIncludePath(array(
-  dirname(__FILE__),
-  dirname(__FILE__).'/..',
+    dirname(__FILE__),
+    dirname(__FILE__) . '/..',
 ));
-$t->is(get_include_path(), dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).'/..'.PATH_SEPARATOR.$path, '::addIncludePath() adds multiple paths the the front of include_path');
+$t->is(get_include_path(), dirname(__FILE__) . PATH_SEPARATOR . dirname(__FILE__) . '/..' . PATH_SEPARATOR . $path, '::addIncludePath() adds multiple paths the the front of include_path');
 
 sfToolkit::addIncludePath(array(
-  dirname(__FILE__),
-  dirname(__FILE__).'/..',
-), 'back');
-$t->is(get_include_path(), $path.PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).'/..', '::addIncludePath() adds multiple paths the the back of include_path');
+    dirname(__FILE__),
+    dirname(__FILE__) . '/..',
+        ), 'back');
+$t->is(get_include_path(), $path . PATH_SEPARATOR . dirname(__FILE__) . PATH_SEPARATOR . dirname(__FILE__) . '/..', '::addIncludePath() adds multiple paths the the back of include_path');
 
-try
-{
-  sfToolkit::addIncludePath(dirname(__FILE__), 'foobar');
-  $t->fail('::addIncludePath() throws an exception if position is not valid');
-}
-catch (Exception $e)
-{
-  $t->pass('::addIncludePath() throws an exception if position is not valid');
+try {
+    sfToolkit::addIncludePath(dirname(__FILE__), 'foobar');
+    $t->fail('::addIncludePath() throws an exception if position is not valid');
+} catch (Exception $e) {
+    $t->pass('::addIncludePath() throws an exception if position is not valid');
 }
 

@@ -8,21 +8,20 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(34);
 
-class MyWidgetForm extends sfWidgetForm
-{
-  public function render($name, $value = null, $attributes = array(), $errors = array())
-  {
-    return $this->renderTag('input', array_merge(array('name' => $name), $attributes)).$this->renderContentTag('textarea', null, array_merge(array('name' => $name), $attributes));
-  }
+class MyWidgetForm extends sfWidgetForm {
 
-  public function generateId($name, $value = null)
-  {
-    return parent::generateId($name, $value);
-  }
+    public function render($name, $value = null, $attributes = array(), $errors = array()) {
+        return $this->renderTag('input', array_merge(array('name' => $name), $attributes)) . $this->renderContentTag('textarea', null, array_merge(array('name' => $name), $attributes));
+    }
+
+    public function generateId($name, $value = null) {
+        return parent::generateId($name, $value);
+    }
+
 }
 
 // __construct()
@@ -106,12 +105,13 @@ $t->is($w->generateId('foo'), 'id_for_foo_works', '->setIdFormat() sets the form
 $t->is($w->generateId('foo[]'), 'id_for_foo_works', '->generateId() removes the [] from the name');
 $t->is($w->generateId('foo[bar][]'), 'id_for_foo_bar_works', '->generateId() replaces [] with _');
 $t->is($w->generateId('foo[bar][]', 'test'), 'id_for_foo_bar_test_works', '->generateId() takes the value into account if provided');
-$t->is($w->generateId('_foo[bar][]', 'test'), 'id_for__foo_bar_test_works', '->generateId() leaves valid ids'); 
+$t->is($w->generateId('_foo[bar][]', 'test'), 'id_for__foo_bar_test_works', '->generateId() leaves valid ids');
 
 $w->setIdFormat('id');
 $t->is($w->generateId('foo[bar][]', 'test'), 'foo_bar_test', '->generateId() returns the name if the id format does not contain %s');
 
 $w->setIdFormat('%s');
-$t->is($w->generateId('_foo[bar][]', 'test'), 'foo_bar_test', '->generateId() removes invalid characters'); 
-$t->is($w->generateId('_foo@bar'), 'foo_bar', '->generateId() removes invalid characters'); 
-$t->is($w->generateId('_____foo@bar'), 'foo_bar', '->generateId() removes invalid characters'); 
+$t->is($w->generateId('_foo[bar][]', 'test'), 'foo_bar_test', '->generateId() removes invalid characters');
+$t->is($w->generateId('_foo@bar'), 'foo_bar', '->generateId() removes invalid characters');
+$t->is($w->generateId('_____foo@bar'), 'foo_bar', '->generateId() removes invalid characters');
+

@@ -8,17 +8,20 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(0);
 
-class myGenerator extends sfGenerator
-{
-  public function generate($params = array()) {}
+class myGenerator extends sfGenerator {
+
+    public function generate($params = array()) {
+        
+    }
+
 }
 
-class ProjectConfiguration extends sfProjectConfiguration
-{
+class ProjectConfiguration extends sfProjectConfiguration {
+    
 }
 
 $manager = new sfGeneratorManager(new ProjectConfiguration());

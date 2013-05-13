@@ -16,174 +16,143 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfMessageSource_Aggregate.class.php 33249 2011-12-12 15:50:45Z fabien $
  */
-class sfMessageSource_Aggregate extends sfMessageSource
-{
-  protected
+class sfMessageSource_Aggregate extends sfMessageSource {
+
+    protected
     $messageSources = array();
 
-  /**
-   * Constructor.
-   *
-   * The order of the messages sources in the array is important.
-   * This class will take the first translation found in the message sources.
-   *
-   * @param array $messageSources An array of message sources.
-   *
-   * @see   MessageSource::factory();
-   */
-  function __construct($messageSources)
-  {
-    $this->messageSources = $messageSources;
-  }
-
-  public function setCulture($culture)
-  {
-    parent::setCulture($culture);
-
-    foreach ($this->messageSources as $messageSource)
-    {
-      $messageSource->setCulture($culture);
-    }
-  }
-
-  protected function getLastModified($sources)
-  {
-    $lastModified = time();
-    foreach ($sources as $source)
-    {
-      if (0 !== $sourceLastModified = $source[0]->getLastModified($source[1]))
-      {
-        $lastModified = min($lastModified, $sourceLastModified);
-      }
+    /**
+     * Constructor.
+     *
+     * The order of the messages sources in the array is important.
+     * This class will take the first translation found in the message sources.
+     *
+     * @param array $messageSources An array of message sources.
+     *
+     * @see   MessageSource::factory();
+     */
+    function __construct($messageSources) {
+        $this->messageSources = $messageSources;
     }
 
-    return $lastModified;
-  }
+    public function setCulture($culture) {
+        parent::setCulture($culture);
 
-  public function isValidSource($sources)
-  {
-    foreach ($sources as $source)
-    {
-      if (false === $source[0]->isValidSource($source[1]))
-      {
-        continue;
-      }
-
-      return true;
+        foreach ($this->messageSources as $messageSource) {
+            $messageSource->setCulture($culture);
+        }
     }
 
-    return false;
-  }
+    protected function getLastModified($sources) {
+        $lastModified = time();
+        foreach ($sources as $source) {
+            if (0 !== $sourceLastModified = $source[0]->getLastModified($source[1])) {
+                $lastModified = min($lastModified, $sourceLastModified);
+            }
+        }
 
-  public function getSource($variant)
-  {
-    $sources = array();
-    foreach ($this->messageSources as $messageSource)
-    {
-      $sources[] = array($messageSource, $messageSource->getSource(str_replace($messageSource->getId(), '', $variant)));
+        return $lastModified;
     }
 
-    return $sources;
-  }
+    public function isValidSource($sources) {
+        foreach ($sources as $source) {
+            if (false === $source[0]->isValidSource($source[1])) {
+                continue;
+            }
 
-  public function &loadData($sources)
-  {
-    $messages = array();
-    foreach ($sources as $source)
-    {
-      if (false === $source[0]->isValidSource($source[1]))
-      {
-        continue;
-      }
+            return true;
+        }
 
-      $data = $source[0]->loadData($source[1]);
-      if (is_array($data))
-      {
-        $messages = array_merge($data, $messages);
-      }
+        return false;
     }
 
-    return $messages;
-  }
+    public function getSource($variant) {
+        $sources = array();
+        foreach ($this->messageSources as $messageSource) {
+            $sources[] = array($messageSource, $messageSource->getSource(str_replace($messageSource->getId(), '', $variant)));
+        }
 
-  public function getCatalogueList($catalogue)
-  {
-    $variants = array();
-    foreach ($this->messageSources as $messageSource)
-    {
-      foreach ($messageSource->getCatalogueList($catalogue) as $variant)
-      {
-        $variants[] = $messageSource->getId().$variant;
-      }
+        return $sources;
     }
 
-    return $variants;
-  }
+    public function &loadData($sources) {
+        $messages = array();
+        foreach ($sources as $source) {
+            if (false === $source[0]->isValidSource($source[1])) {
+                continue;
+            }
 
-  public function append($message)
-  {
-    // Append to the first message source only
-    if (count($this->messageSources))
-    {
-      $this->messageSources[0]->append($message);
-    }
-  }
+            $data = $source[0]->loadData($source[1]);
+            if (is_array($data)) {
+                $messages = array_merge($data, $messages);
+            }
+        }
 
-  public function update($text, $target, $comments, $catalogue = 'messages')
-  {
-    // Only update one message source
-    foreach ($this->messageSources as $messageSource)
-    {
-      if ($messageSource->update($text, $target, $comments, $catalogue))
-      {
-        return true;
-      }
+        return $messages;
     }
 
-    return false;
-  }
+    public function getCatalogueList($catalogue) {
+        $variants = array();
+        foreach ($this->messageSources as $messageSource) {
+            foreach ($messageSource->getCatalogueList($catalogue) as $variant) {
+                $variants[] = $messageSource->getId() . $variant;
+            }
+        }
 
-  public function delete($message, $catalogue = 'messages')
-  {
-    $retval = false;
-    foreach ($this->messageSources as $messageSource)
-    {
-      if ($messageSource->delete($message, $catalogue))
-      {
-        $retval = true;
-      }
+        return $variants;
     }
 
-    return $retval;
-  }
-
-  public function save($catalogue = 'messages')
-  {
-    $retval = false;
-    foreach ($this->messageSources as $messageSource)
-    {
-      if ($messageSource->save($catalogue))
-      {
-        $retval = true;
-      }
+    public function append($message) {
+        // Append to the first message source only
+        if (count($this->messageSources)) {
+            $this->messageSources[0]->append($message);
+        }
     }
 
-    return $retval;
-  }
+    public function update($text, $target, $comments, $catalogue = 'messages') {
+        // Only update one message source
+        foreach ($this->messageSources as $messageSource) {
+            if ($messageSource->update($text, $target, $comments, $catalogue)) {
+                return true;
+            }
+        }
 
-  public function getId()
-  {
-    $id = '';
-    foreach ($this->messageSources as $messageSource)
-    {
-      $id .= $messageSource->getId();
+        return false;
     }
 
-    return md5($id);
-  }
+    public function delete($message, $catalogue = 'messages') {
+        $retval = false;
+        foreach ($this->messageSources as $messageSource) {
+            if ($messageSource->delete($message, $catalogue)) {
+                $retval = true;
+            }
+        }
 
-  public function catalogues()
-  {
-    throw new sfException('The "catalogues()" method is not implemented for this message source.');
-  }
+        return $retval;
+    }
+
+    public function save($catalogue = 'messages') {
+        $retval = false;
+        foreach ($this->messageSources as $messageSource) {
+            if ($messageSource->save($catalogue)) {
+                $retval = true;
+            }
+        }
+
+        return $retval;
+    }
+
+    public function getId() {
+        $id = '';
+        foreach ($this->messageSources as $messageSource) {
+            $id .= $messageSource->getId();
+        }
+
+        return md5($id);
+    }
+
+    public function catalogues() {
+        throw new sfException('The "catalogues()" method is not implemented for this message source.');
+    }
+
 }

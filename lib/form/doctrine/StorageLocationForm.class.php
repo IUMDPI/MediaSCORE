@@ -11,7 +11,7 @@
 class StorageLocationForm extends BaseStorageLocationForm {
 
     public function configure() {
-        
+
 
         $this->setWidget('env_rating', new sfWidgetFormChoice(array('choices' => StorageLocation::$constants)));
         $this->getWidget('env_rating')->setLabel('Location Environmental Rating:&nbsp;');

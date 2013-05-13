@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseAssetGroupForm extends SubUnitForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseAssetGroupForm extends SubUnitForm {
 
-    $this->widgetSchema->setNameFormat('asset_group[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'AssetGroup';
-  }
+        $this->widgetSchema->setNameFormat('asset_group[%s]');
+    }
+
+    public function getModelName() {
+        return 'AssetGroup';
+    }
 
 }

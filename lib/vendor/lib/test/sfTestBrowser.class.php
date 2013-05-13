@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__).'/../vendor/lime/lime.php');
+require_once(dirname(__FILE__) . '/../vendor/lime/lime.php');
 
 /*
  * This file is part of the symfony package.
@@ -21,36 +21,30 @@ require_once(dirname(__FILE__).'/../vendor/lime/lime.php');
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfTestBrowser.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfTestBrowser extends sfTestFunctional
-{
-  /**
-   * Initializes the browser tester instance.
-   *
-   * @param string $hostname  Hostname to browse
-   * @param string $remote    Remote address to spook
-   * @param array  $options   Options for sfBrowser
-   */
-  public function __construct($hostname = null, $remote = null, $options = array())
-  {
-    if (is_object($hostname))
-    {
-      // new signature
-      parent::__construct($hostname, $remote);
-    }
-    else
-    {
-      $browser = new sfBrowser($hostname, $remote, $options);
+class sfTestBrowser extends sfTestFunctional {
 
-      if (null === self::$test)
-      {
-        $lime = new lime_test(null, isset($options['output']) ? $options['output'] : null);
-      }
-      else
-      {
-        $lime = null;
-      }
+    /**
+     * Initializes the browser tester instance.
+     *
+     * @param string $hostname  Hostname to browse
+     * @param string $remote    Remote address to spook
+     * @param array  $options   Options for sfBrowser
+     */
+    public function __construct($hostname = null, $remote = null, $options = array()) {
+        if (is_object($hostname)) {
+            // new signature
+            parent::__construct($hostname, $remote);
+        } else {
+            $browser = new sfBrowser($hostname, $remote, $options);
 
-      parent::__construct($browser, $lime);
+            if (null === self::$test) {
+                $lime = new lime_test(null, isset($options['output']) ? $options['output'] : null);
+            } else {
+                $lime = null;
+            }
+
+            parent::__construct($browser, $lime);
+        }
     }
-  }
+
 }

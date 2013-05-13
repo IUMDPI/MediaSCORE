@@ -8,15 +8,21 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once($_test_dir . '/unit/sfContextMock.class.php');
 
 $t = new lime_test(10);
 
-class myDatabase extends sfDatabase
-{
-  function connect () {}
-  function shutdown () {}
+class myDatabase extends sfDatabase {
+
+    function connect() {
+        
+    }
+
+    function shutdown() {
+        
+    }
+
 }
 
 $context = sfContext::getInstance();
@@ -25,6 +31,6 @@ $database = new myDatabase();
 $database->initialize($context);
 
 // parameter holder proxy
-require_once($_test_dir.'/unit/sfParameterHolderTest.class.php');
+require_once($_test_dir . '/unit/sfParameterHolderTest.class.php');
 $pht = new sfParameterHolderProxyTest($t);
 $pht->launchTests($database, 'parameter');

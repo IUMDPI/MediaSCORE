@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseEightMMForm extends ReelVideoRecordingFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseEightMMForm extends ReelVideoRecordingFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('eight_mm[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'EightMM';
-  }
+        $this->widgetSchema->setNameFormat('eight_mm[%s]');
+    }
+
+    public function getModelName() {
+        return 'EightMM';
+    }
 
 }

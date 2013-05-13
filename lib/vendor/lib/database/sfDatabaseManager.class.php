@@ -20,118 +20,105 @@
  * @author     Sean Kerr <sean@code-box.org>
  * @version    SVN: $Id: sfDatabaseManager.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfDatabaseManager
-{
-  protected
-    $configuration = null,
-    $databases     = array();
+class sfDatabaseManager {
 
-  /**
-   * Class constructor.
-   *
-   * @see initialize()
-   */
-  public function __construct(sfProjectConfiguration $configuration, $options = array())
-  {
-    $this->initialize($configuration);
+    protected
+            $configuration = null,
+            $databases = array();
 
-    if (!isset($options['auto_shutdown']) || $options['auto_shutdown'])
-    {
-      register_shutdown_function(array($this, 'shutdown'));
-    }
-  }
+    /**
+     * Class constructor.
+     *
+     * @see initialize()
+     */
+    public function __construct(sfProjectConfiguration $configuration, $options = array()) {
+        $this->initialize($configuration);
 
-  /**
-   * Initializes this sfDatabaseManager object
-   *
-   * @param sfProjectConfiguration $configuration A sfProjectConfiguration instance
-   *
-   * @return bool true, if initialization completes successfully, otherwise false
-   *
-   * @throws <b>sfInitializationException</b> If an error occurs while initializing this sfDatabaseManager object
-   */
-  public function initialize(sfProjectConfiguration $configuration)
-  {
-    $this->configuration = $configuration;
-
-    $this->loadConfiguration();
-  }
-
-  /**
-   * Loads database configuration.
-   */
-  public function loadConfiguration()
-  {
-    if ($this->configuration instanceof sfApplicationConfiguration)
-    {
-      $databases = include($this->configuration->getConfigCache()->checkConfig('config/databases.yml'));
-    }
-    else
-    {
-      $configHandler = new sfDatabaseConfigHandler();
-      $databases = $configHandler->evaluate(array($this->configuration->getRootDir().'/config/databases.yml'));
+        if (!isset($options['auto_shutdown']) || $options['auto_shutdown']) {
+            register_shutdown_function(array($this, 'shutdown'));
+        }
     }
 
-    foreach ($databases as $name => $database)
-    {
-      $this->setDatabase($name, $database);
-    }
-  }
+    /**
+     * Initializes this sfDatabaseManager object
+     *
+     * @param sfProjectConfiguration $configuration A sfProjectConfiguration instance
+     *
+     * @return bool true, if initialization completes successfully, otherwise false
+     *
+     * @throws <b>sfInitializationException</b> If an error occurs while initializing this sfDatabaseManager object
+     */
+    public function initialize(sfProjectConfiguration $configuration) {
+        $this->configuration = $configuration;
 
-  /**
-   * Sets a database connection.
-   *
-   * @param string     $name     The database name
-   * @param sfDatabase $database A sfDatabase instance
-   */
-  public function setDatabase($name, sfDatabase $database)
-  {
-    $this->databases[$name] = $database;
-  }
-
-  /**
-   * Retrieves the database connection associated with this sfDatabase implementation.
-   *
-   * @param string $name A database name
-   *
-   * @return mixed A Database instance
-   *
-   * @throws <b>sfDatabaseException</b> If the requested database name does not exist
-   */
-  public function getDatabase($name = 'default')
-  {
-    if (isset($this->databases[$name]))
-    {
-      return $this->databases[$name];
+        $this->loadConfiguration();
     }
 
-    // nonexistent database name
-    throw new sfDatabaseException(sprintf('Database "%s" does not exist.', $name));
-  }
+    /**
+     * Loads database configuration.
+     */
+    public function loadConfiguration() {
+        if ($this->configuration instanceof sfApplicationConfiguration) {
+            $databases = include($this->configuration->getConfigCache()->checkConfig('config/databases.yml'));
+        } else {
+            $configHandler = new sfDatabaseConfigHandler();
+            $databases = $configHandler->evaluate(array($this->configuration->getRootDir() . '/config/databases.yml'));
+        }
 
-  /**
-   * Returns the names of all database connections.
-   *
-   * @return array An array containing all database connection names
-   */
-  public function getNames()
-  {
-    return array_keys($this->databases);
-  }
-
-  /**
-   * Executes the shutdown procedure
-   *
-   * @return void
-   *
-   * @throws <b>sfDatabaseException</b> If an error occurs while shutting down this DatabaseManager
-   */
-  public function shutdown()
-  {
-    // loop through databases and shutdown connections
-    foreach ($this->databases as $database)
-    {
-      $database->shutdown();
+        foreach ($databases as $name => $database) {
+            $this->setDatabase($name, $database);
+        }
     }
-  }
+
+    /**
+     * Sets a database connection.
+     *
+     * @param string     $name     The database name
+     * @param sfDatabase $database A sfDatabase instance
+     */
+    public function setDatabase($name, sfDatabase $database) {
+        $this->databases[$name] = $database;
+    }
+
+    /**
+     * Retrieves the database connection associated with this sfDatabase implementation.
+     *
+     * @param string $name A database name
+     *
+     * @return mixed A Database instance
+     *
+     * @throws <b>sfDatabaseException</b> If the requested database name does not exist
+     */
+    public function getDatabase($name = 'default') {
+        if (isset($this->databases[$name])) {
+            return $this->databases[$name];
+        }
+
+        // nonexistent database name
+        throw new sfDatabaseException(sprintf('Database "%s" does not exist.', $name));
+    }
+
+    /**
+     * Returns the names of all database connections.
+     *
+     * @return array An array containing all database connection names
+     */
+    public function getNames() {
+        return array_keys($this->databases);
+    }
+
+    /**
+     * Executes the shutdown procedure
+     *
+     * @return void
+     *
+     * @throws <b>sfDatabaseException</b> If an error occurs while shutting down this DatabaseManager
+     */
+    public function shutdown() {
+        // loop through databases and shutdown connections
+        foreach ($this->databases as $database) {
+            $database->shutdown();
+        }
+    }
+
 }

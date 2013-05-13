@@ -8,46 +8,43 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(145);
 
-class sfPatternRoutingTest extends sfPatternRouting
-{
-  public function initialize(sfEventDispatcher $dispatcher, sfCache $cache = null, $options = array())
-  {
-    parent::initialize($dispatcher, $cache, $options);
+class sfPatternRoutingTest extends sfPatternRouting {
 
-    $this->options['context']['host'] = 'localhost';
-  }
+    public function initialize(sfEventDispatcher $dispatcher, sfCache $cache = null, $options = array()) {
+        parent::initialize($dispatcher, $cache, $options);
 
-  public function parse($url)
-  {
-    $parameters = parent::parse($url);
-    unset($parameters['_sf_route']);
+        $this->options['context']['host'] = 'localhost';
+    }
 
-    return $parameters;
-  }
+    public function parse($url) {
+        $parameters = parent::parse($url);
+        unset($parameters['_sf_route']);
 
-  public function getCurrentRouteName()
-  {
-    return $this->currentRouteName;
-  }
+        return $parameters;
+    }
 
-  public function isRouteLoaded($name)
-  {
-    return isset($this->routes[$name]) && is_object($this->routes[$name]);
-  }
+    public function getCurrentRouteName() {
+        return $this->currentRouteName;
+    }
+
+    public function isRouteLoaded($name) {
+        return isset($this->routes[$name]) && is_object($this->routes[$name]);
+    }
+
 }
 
-class sfAlwaysAbsoluteRoute extends sfRoute
-{
-  public function generate($params, $context = array(), $absolute = false)
-  {
-    $url = parent::generate($params, $context, $absolute);
+class sfAlwaysAbsoluteRoute extends sfRoute {
 
-    return 'http://'.$context['host'].$url;
-  }
+    public function generate($params, $context = array(), $absolute = false) {
+        $url = parent::generate($params, $context, $absolute);
+
+        return 'http://' . $context['host'] . $url;
+    }
+
 }
 
 $options = array('generate_shortest_url' => false, 'extra_parameters_as_query_string' => false);
@@ -156,14 +153,14 @@ $url4 = '/foo4/default/index4/foo.bar';
 $t->is($r->generate('', array('module' => 'default', 'action' => 'index0', 'param0' => 'foo0')), $url0, '->generate() creates URL suffixed by "sf_suffix" parameter');
 $t->is($r->generate('', array('module' => 'default', 'action' => 'index1', 'param1' => 'foo1')), $url1, '->generate() creates URL with no suffix when route ends with .');
 $t->is($r->generate('', array('module' => 'default', 'action' => 'index2', 'param2' => 'foo2')), $url2, '->generate() creates URL with no suffix when route ends with /');
-$t->is($r->generate('', array('module' => 'default', 'action' => 'index3', 'param3'  => 'foo3')), $url3,  '->generate() creates URL with special suffix when route ends with .suffix');
+$t->is($r->generate('', array('module' => 'default', 'action' => 'index3', 'param3' => 'foo3')), $url3, '->generate() creates URL with special suffix when route ends with .suffix');
 $t->is($r->generate('', array('module' => 'default', 'action' => 'index4', 'param4' => 'foo', 'param_5' => 'bar')), $url4, '->generate() creates URL with no special suffix when route ends with .:suffix');
 
 $t->is($r->parse($url0), array('module' => 'default', 'action' => 'index0', 'param0' => 'foo0'), '->parse() finds route from URL suffixed by "sf_suffix"');
 $t->is($r->parse($url1), array('module' => 'default', 'action' => 'index1', 'param1' => 'foo1'), '->parse() finds route with no suffix when route ends with .');
 $t->is($r->parse($url2), array('module' => 'default', 'action' => 'index2', 'param2' => 'foo2'), '->parse() finds route with no suffix when route ends with /');
-$t->is($r->parse($url3),  array('module' => 'default', 'action' => 'index3',  'param3'  => 'foo3'),  '->parse() finds route with special suffix when route ends with .suffix');
-$t->is($r->parse($url4),  array('module' => 'default', 'action' => 'index4',  'param4'  => 'foo', 'param_5' => 'bar'),  '->parse() finds route with special suffix when route ends with .:suffix');
+$t->is($r->parse($url3), array('module' => 'default', 'action' => 'index3', 'param3' => 'foo3'), '->parse() finds route with special suffix when route ends with .suffix');
+$t->is($r->parse($url4), array('module' => 'default', 'action' => 'index4', 'param4' => 'foo', 'param_5' => 'bar'), '->parse() finds route with special suffix when route ends with .:suffix');
 
 $r = new sfPatternRoutingTest(new sfEventDispatcher(), null, $options);
 
@@ -179,17 +176,13 @@ $t->is($r->parse($url), $params, '->parse() does not take query string into acco
 $t->diag('default values');
 $r->clearRoutes();
 $r->connect('test', new sfRoute('/:module/:action', array('module' => 'default', 'action' => 'index')));
-$t->is($r->generate('', array('module' => 'default')), '/default/index',
-    '->generate() creates URL for route with missing parameter if parameter is set in the default values');
-$t->is($r->parse('/default'), array('module' => 'default', 'action' => 'index'),
-    '->parse() finds route for URL   with missing parameter if parameter is set in the default values');
+$t->is($r->generate('', array('module' => 'default')), '/default/index', '->generate() creates URL for route with missing parameter if parameter is set in the default values');
+$t->is($r->parse('/default'), array('module' => 'default', 'action' => 'index'), '->parse() finds route for URL   with missing parameter if parameter is set in the default values');
 
 $r->clearRoutes();
 $r->connect('test', new sfRoute('/:module/:action/:foo', array('module' => 'default', 'action' => 'index', 'foo' => 'bar')));
-$t->is($r->generate('', array('module' => 'default')), '/default/index/bar',
-    '->generate() creates URL for route with more than one missing parameter if default values are set');
-$t->is($r->parse('/default'), array('module' => 'default', 'action' => 'index', 'foo' => 'bar'),
-    '->parse() finds route for URL   with more than one missing parameter if default values are set');
+$t->is($r->generate('', array('module' => 'default')), '/default/index/bar', '->generate() creates URL for route with more than one missing parameter if default values are set');
+$t->is($r->parse('/default'), array('module' => 'default', 'action' => 'index', 'foo' => 'bar'), '->parse() finds route for URL   with more than one missing parameter if default values are set');
 
 $r->clearRoutes();
 $r->connect('test', new sfRoute('/:module/:action', array('module' => 'default', 'action' => 'index')));
@@ -258,7 +251,7 @@ $t->is($r->parse('/default/index/test/page/4.html////toto//1/titi//toto//OK/1'),
 
 // unnamed wildcard * after a token
 $r->clearRoutes();
-$r->connect('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->connect('test', new sfRoute('/:module', array('action' => 'index')));
 $r->connect('test1', new sfRoute('/:module/:action/*', array()));
 $params = array('module' => 'default', 'action' => 'index', 'toto' => 'titi');
 $url = '/default/index/toto/titi';
@@ -325,7 +318,7 @@ $t->is($r->generate('', $params), $url, '->generate() creates URL for route when
 // separators
 $t->diag('separators');
 $r = new sfPatternRoutingTest(new sfEventDispatcher(), null, array_merge($options, array('segment_separators' => array('/', ';', ':', '|', '.', '-', '+'))));
-$r->connect('test',  new sfRoute('/:module/:action;:foo::baz+static+:toto|:hip-:zozo.:format', array()));
+$r->connect('test', new sfRoute('/:module/:action;:foo::baz+static+:toto|:hip-:zozo.:format', array()));
 $r->connect('test0', new sfRoute('/:module/:action0', array()));
 $r->connect('test1', new sfRoute('/:module;:action1', array()));
 $r->connect('test2', new sfRoute('/:module::action2', array()));
@@ -431,22 +424,22 @@ $t->is($r->generate('test', $named_params), $url, '->generate() with named route
 // ->appendRoute()
 $t->diag('->appendRoute()');
 $r->clearRoutes();
-$r->connect('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->connect('test', new sfRoute('/:module', array('action' => 'index')));
 $r->connect('test1', new sfRoute('/:module/:action/*', array()));
 $routes = $r->getRoutes();
 $r->clearRoutes();
-$r->appendRoute('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->appendRoute('test', new sfRoute('/:module', array('action' => 'index')));
 $r->appendRoute('test1', new sfRoute('/:module/:action/*', array()));
 $t->is($r->getRoutes(), $routes, '->appendRoute() is an alias for ->connect()');
 
 // ->prependRoute()
 $t->diag('->prependRoute()');
 $r->clearRoutes();
-$r->connect('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->connect('test', new sfRoute('/:module', array('action' => 'index')));
 $r->connect('test1', new sfRoute('/:module/:action/*', array()));
 $route_names = array_keys($r->getRoutes());
 $r->clearRoutes();
-$r->prependRoute('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->prependRoute('test', new sfRoute('/:module', array('action' => 'index')));
 $r->prependRoute('test1', new sfRoute('/:module/:action/*', array()));
 $p_route_names = array_keys($r->getRoutes());
 $t->is(implode('-', $p_route_names), implode('-', array_reverse($route_names)), '->prependRoute() adds new routes at the beginning of the existings ones');
@@ -466,21 +459,18 @@ $test_route_names = array_keys($r->getRoutes());
 $t->is(implode('-', $test_route_names), implode('-', $route_names), '->insertRouteBefore() adds a new route before another existings one');
 $r->clearRoutes();
 $msg = '->insertRouteBefore() throws an sfConfigurationException when trying to insert a route before a non existent one';
-try
-{
-  $r->insertRouteBefore('test2', 'test', new sfRoute('/index.php/:module/:action', array('module' => 'default', 'action' => 'index')));
-  $t->fail($msg);
-}
-catch (sfConfigurationException $e)
-{
-  $t->pass($msg);
+try {
+    $r->insertRouteBefore('test2', 'test', new sfRoute('/index.php/:module/:action', array('module' => 'default', 'action' => 'index')));
+    $t->fail($msg);
+} catch (sfConfigurationException $e) {
+    $t->pass($msg);
 }
 
 // ->getCurrentInternalUri()
 $t->diag('->getCurrentInternalUri()');
 $r->clearRoutes();
 $r->connect('test2', new sfRoute('/module/action/:id', array('module' => 'foo', 'action' => 'bar')));
-$r->connect('test',  new sfRoute('/:module', array('action' => 'index')));
+$r->connect('test', new sfRoute('/:module', array('action' => 'index')));
 $r->connect('test1', new sfRoute('/:module/:action/*', array()));
 $r->connect('test3', new sfRoute('/', array()));
 $r->parse('/');
@@ -494,9 +484,9 @@ $t->is($r->getCurrentInternalUri(true), '@test2?id=2', '->getCurrentInternalUri(
 $t->diag('Lazy Routes Config Cache');
 $dispatcher = new sfEventDispatcher();
 $dispatcher->connect('routing.load_configuration', 'configureRouting');
-function configureRouting($event)
-{
-    $event->getSubject()->connect('first',  new sfRoute('/first'));
+
+function configureRouting($event) {
+    $event->getSubject()->connect('first', new sfRoute('/first'));
     $event->getSubject()->connect('second', new sfRoute('/', array()));
 }
 
@@ -507,7 +497,7 @@ $t->is($r->getCurrentInternalUri(false), 'foo/bar?id=2', '->getCurrentInternalUr
 
 // regression for ticket #3423  occuring when cache is used. (for the test its enough to have it non null)
 $rCached = new sfPatternRoutingTest(new sfEventDispatcher(), new sfNoCache(), $options);
-$rCached->connect('test',  new sfRoute('/:module', array('action' => 'index')));
+$rCached->connect('test', new sfRoute('/:module', array('action' => 'index')));
 $rCached->connect('test2', new sfRoute('/', array()));
 $rCached->parse('/');
 $t->is($rCached->getCurrentInternalUri(), 'default/index', '->getCurrentInternalUri() returns the internal URI for last parsed URL using cache');
@@ -517,9 +507,7 @@ $rCached->parse('/');
 $t->is($rCached->getCurrentInternalUri(), 'default/index', '->getCurrentInternalUri() returns the internal URI for last parsed URL using cache');
 // findRoute was added to be the side effectless version to check an uri
 $parameters = $rCached->findRoute('/test');
-$t->is($parameters,
-       array('name' => 'test', 'pattern' => '/:module', 'parameters' => array('action' => 'index', 'module' => 'test')),
-       '->findRoute() returns information about matching route');
+$t->is($parameters, array('name' => 'test', 'pattern' => '/:module', 'parameters' => array('action' => 'index', 'module' => 'test')), '->findRoute() returns information about matching route');
 $t->is($rCached->getCurrentInternalUri(), 'default/index', '->findRoute() does not change the internal URI of sfPatternRouting');
 $t->is($rCached->findRoute('/no/match/found'), null, '->findRoute() returns null on non-matching route');
 
@@ -541,14 +529,11 @@ $t->is($r->generate('', $params), $url, '->generate() routes takes default value
 $params = array('module' => 'default', 'action' => 'index', 'bar' => 'foo');
 $t->is($r->generate('', $params), $url, '->generate() routes takes default values into account when matching a route');
 $params = array('module' => 'default', 'action' => 'index', 'bar' => 'bar');
-try
-{
-  $r->generate('', $params);
-  $t->fail('->generate() throws a sfConfigurationException if no route matches the params');
-}
-catch (sfConfigurationException $e)
-{
-  $t->pass('->generate() throws a sfConfigurationException if no route matches the params');
+try {
+    $r->generate('', $params);
+    $t->fail('->generate() throws a sfConfigurationException if no route matches the params');
+} catch (sfConfigurationException $e) {
+    $t->pass('->generate() throws a sfConfigurationException if no route matches the params');
 }
 
 // mandatory parameters
@@ -556,14 +541,11 @@ $t->diag('mandatory parameters');
 $r->clearRoutes();
 $r->connect('test', new sfRoute('/test/:foo/:bar'));
 $params = array('foo' => 'bar');
-try
-{
-  $r->generate('test', $params);
-  $t->fail('->generate() throws a InvalidArgumentException if some mandatory parameters are not provided');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('->generate() throws a InvalidArgumentException if some mandatory parameters are not provided');
+try {
+    $r->generate('test', $params);
+    $t->fail('->generate() throws a InvalidArgumentException if some mandatory parameters are not provided');
+} catch (InvalidArgumentException $e) {
+    $t->pass('->generate() throws a InvalidArgumentException if some mandatory parameters are not provided');
 }
 
 // default module/action overriding

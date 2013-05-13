@@ -8,35 +8,34 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(7);
 
-class myConfigHandler extends sfYamlConfigHandler
-{
-  public $yamlConfig = null;
+class myConfigHandler extends sfYamlConfigHandler {
 
-  public function execute($configFiles) {}
+    public $yamlConfig = null;
 
-  static public function parseYamls($configFiles)
-  {
-    return parent::parseYamls($configFiles);
-  }
+    public function execute($configFiles) {
+        
+    }
 
-  static public function parseYaml($configFile)
-  {
-    return parent::parseYaml($configFile);
-  }
+    static public function parseYamls($configFiles) {
+        return parent::parseYamls($configFiles);
+    }
 
-  public function mergeConfigValue($keyName, $category)
-  {
-    return parent::mergeConfigValue($keyName, $category);
-  }
+    static public function parseYaml($configFile) {
+        return parent::parseYaml($configFile);
+    }
 
-  public function getConfigValue($keyName, $category, $defaultValue = null)
-  {
-    return parent::getConfigValue($keyName, $category, $defaultValue);
-  }
+    public function mergeConfigValue($keyName, $category) {
+        return parent::mergeConfigValue($keyName, $category);
+    }
+
+    public function getConfigValue($keyName, $category, $defaultValue = null) {
+        return parent::getConfigValue($keyName, $category, $defaultValue);
+    }
+
 }
 
 $config = new myConfigHandler();
@@ -51,18 +50,18 @@ $t->diag('->parseYaml()');
 // ->mergeConfigValue()
 $t->diag('->mergeConfigValue()');
 $config->yamlConfig = array(
-  'bar' => array(
-    'foo' => array(
-      'foo' => 'foobar',
-      'bar' => 'bar',
+    'bar' => array(
+        'foo' => array(
+            'foo' => 'foobar',
+            'bar' => 'bar',
+        ),
     ),
-  ),
-  'all' => array(
-    'foo' => array(
-      'foo' => 'fooall',
-      'barall' => 'barall',
+    'all' => array(
+        'foo' => array(
+            'foo' => 'fooall',
+            'barall' => 'barall',
+        ),
     ),
-  ),
 );
 $values = $config->mergeConfigValue('foo', 'bar');
 $t->is($values['foo'], 'foobar', '->mergeConfigValue() merges values for a given key under a given category');
@@ -72,12 +71,12 @@ $t->is($values['barall'], 'barall', '->mergeConfigValue() merges values for a gi
 // ->getConfigValue()
 $t->diag('->getConfigValue()');
 $config->yamlConfig = array(
-  'bar' => array(
-    'foo' => 'foobar'
-  ),
-  'all' => array(
-    'foo' => 'fooall'
-  ),
+    'bar' => array(
+        'foo' => 'foobar'
+    ),
+    'all' => array(
+        'foo' => 'fooall'
+    ),
 );
 $t->is($config->getConfigValue('foo', 'bar'), 'foobar', '->getConfigValue() returns the value for the key in the given category');
 $t->is($config->getConfigValue('foo', 'all'), 'fooall', '->getConfigValue() returns the value for the key in the given category');

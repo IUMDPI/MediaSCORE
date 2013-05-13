@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseOpticalDiscFormatTypeForm extends SoftDiskFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseOpticalDiscFormatTypeForm extends SoftDiskFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('optical_disc_format_type[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'OpticalDiscFormatType';
-  }
+        $this->widgetSchema->setNameFormat('optical_disc_format_type[%s]');
+    }
+
+    public function getModelName() {
+        return 'OpticalDiscFormatType';
+    }
 
 }

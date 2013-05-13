@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseSubUnitForm extends StoreForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseSubUnitForm extends StoreForm {
 
-    $this->widgetSchema->setNameFormat('sub_unit[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'SubUnit';
-  }
+        $this->widgetSchema->setNameFormat('sub_unit[%s]');
+    }
+
+    public function getModelName() {
+        return 'SubUnit';
+    }
 
 }

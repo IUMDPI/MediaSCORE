@@ -8,42 +8,37 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(72);
 
-class myRequest extends sfWebRequest
-{
-  static protected $initialPathArrayKeys;
+class myRequest extends sfWebRequest {
 
-  public $languages = null;
-  public $charsets = null;
-  public $acceptableContentTypes = null;
+    static protected $initialPathArrayKeys;
+    public $languages = null;
+    public $charsets = null;
+    public $acceptableContentTypes = null;
 
-  public function initialize(sfEventDispatcher $dispatcher, $parameters = array(), $attributes = array(), $options = array())
-  {
-    parent::initialize($dispatcher, $parameters, $attributes, $options);
+    public function initialize(sfEventDispatcher $dispatcher, $parameters = array(), $attributes = array(), $options = array()) {
+        parent::initialize($dispatcher, $parameters, $attributes, $options);
 
-    if (null === self::$initialPathArrayKeys)
-    {
-      self::$initialPathArrayKeys = array_keys($this->getPathInfoArray());
+        if (null === self::$initialPathArrayKeys) {
+            self::$initialPathArrayKeys = array_keys($this->getPathInfoArray());
+        }
+
+        $this->resetPathInfoArray();
     }
 
-    $this->resetPathInfoArray();
-  }
-
-  public function setOption($key, $value)
-  {
-    $this->options[$key] = $value;
-  }
-
-  public function resetPathInfoArray()
-  {
-    foreach (array_diff(array_keys($this->getPathInfoArray()), self::$initialPathArrayKeys) as $key)
-    {
-      unset($this->pathInfoArray[$key]);
+    public function setOption($key, $value) {
+        $this->options[$key] = $value;
     }
-  }
+
+    public function resetPathInfoArray() {
+        foreach (array_diff(array_keys($this->getPathInfoArray()), self::$initialPathArrayKeys) as $key) {
+            unset($this->pathInfoArray[$key]);
+        }
+    }
+
 }
 
 $dispatcher = new sfEventDispatcher();
@@ -298,7 +293,7 @@ $t->is($request->getPathInfo(), '/test/klaus2', '->getPathInfo() returns the url
 
 $request = new myRequest($dispatcher);
 $_SERVER['QUERY_STRING'] = 'test';
-$_SERVER['REQUEST_URI']  = '/frontend_test.php/test/klaus2?test';
+$_SERVER['REQUEST_URI'] = '/frontend_test.php/test/klaus2?test';
 $t->is($request->getPathInfo(), '/test/klaus2', '->getPathInfo() returns the url path value if it not exists use default REQUEST_URI without query');
 
 $request->resetPathInfoArray();
@@ -324,37 +319,31 @@ $t->is($request->getAttribute('sf_ignore_cache'), 1, '->getAttribute() check spe
 // ->checkCSRFProtection()
 $t->diag('->checkCSRFProtection()');
 
-class BaseForm extends sfForm
-{
-  public function getCSRFToken($secret = null)
-  {
-    return '==TOKEN==';
-  }
+class BaseForm extends sfForm {
+
+    public function getCSRFToken($secret = null) {
+        return '==TOKEN==';
+    }
+
 }
 
 sfForm::enableCSRFProtection();
 
 $request = new myRequest($dispatcher);
-try
-{
-  $request->checkCSRFProtection();
-  $t->fail('->checkCSRFProtection() throws a validator error if CSRF protection fails');
-}
-catch (sfValidatorErrorSchema $error)
-{
-  $t->pass('->checkCSRFProtection() throws a validator error if CSRF protection fails');
+try {
+    $request->checkCSRFProtection();
+    $t->fail('->checkCSRFProtection() throws a validator error if CSRF protection fails');
+} catch (sfValidatorErrorSchema $error) {
+    $t->pass('->checkCSRFProtection() throws a validator error if CSRF protection fails');
 }
 
 $request = new myRequest($dispatcher);
 $request->setParameter('_csrf_token', '==TOKEN==');
-try
-{
-  $request->checkCSRFProtection();
-  $t->pass('->checkCSRFProtection() checks token from BaseForm');
-}
-catch (sfValidatorErrorSchema $error)
-{
-  $t->fail('->checkCSRFProtection() checks token from BaseForm');
+try {
+    $request->checkCSRFProtection();
+    $t->pass('->checkCSRFProtection() checks token from BaseForm');
+} catch (sfValidatorErrorSchema $error) {
+    $t->fail('->checkCSRFProtection() checks token from BaseForm');
 }
 
 // ->getContentType()

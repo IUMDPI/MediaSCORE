@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseDATForm extends ReelCassetteFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseDATForm extends ReelCassetteFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('dat[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'DAT';
-  }
+        $this->widgetSchema->setNameFormat('dat[%s]');
+    }
+
+    public function getModelName() {
+        return 'DAT';
+    }
 
 }

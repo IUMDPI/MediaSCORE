@@ -24,41 +24,40 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardUserGroup extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BasesfGuardUserGroup extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('sf_guard_user_group');
         $this->hasColumn('user_id', 'integer', null, array(
-             'type' => 'integer',
-             'primary' => true,
-             ));
+            'type' => 'integer',
+            'primary' => true,
+        ));
         $this->hasColumn('group_id', 'integer', null, array(
-             'type' => 'integer',
-             'primary' => true,
-             ));
+            'type' => 'integer',
+            'primary' => true,
+        ));
 
         $this->option('symfony', array(
-             'form' => false,
-             'filter' => false,
-             ));
+            'form' => false,
+            'filter' => false,
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
-             'local' => 'user_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+            'local' => 'user_id',
+            'foreign' => 'id',
+            'onDelete' => 'CASCADE'));
 
         $this->hasOne('sfGuardGroup as Group', array(
-             'local' => 'group_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+            'local' => 'group_id',
+            'foreign' => 'id',
+            'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-             ));
+                ));
         $this->actAs($timestampable0);
     }
+
 }

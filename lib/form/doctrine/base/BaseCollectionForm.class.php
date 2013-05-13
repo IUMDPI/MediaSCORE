@@ -10,77 +10,64 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseCollectionForm extends SubUnitForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseCollectionForm extends SubUnitForm {
 
-    $this->widgetSchema   ['storage_locations_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'StorageLocation'));
-    $this->validatorSchema['storage_locations_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'StorageLocation', 'required' => false));
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-    $this->widgetSchema->setNameFormat('collection[%s]');
-  }
+        $this->widgetSchema ['storage_locations_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'StorageLocation'));
+        $this->validatorSchema['storage_locations_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'StorageLocation', 'required' => false));
 
-  public function getModelName()
-  {
-    return 'Collection';
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    if (isset($this->widgetSchema['storage_locations_list']))
-    {
-      $this->setDefault('storage_locations_list', $this->object->StorageLocations->getPrimaryKeys());
+        $this->widgetSchema->setNameFormat('collection[%s]');
     }
 
-  }
-
-  protected function doSave($con = null)
-  {
-    $this->saveStorageLocationsList($con);
-
-    parent::doSave($con);
-  }
-
-  public function saveStorageLocationsList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
+    public function getModelName() {
+        return 'Collection';
     }
 
-    if (!isset($this->widgetSchema['storage_locations_list']))
-    {
-      // somebody has unset this widget
-      return;
+    public function updateDefaultsFromObject() {
+        parent::updateDefaultsFromObject();
+
+        if (isset($this->widgetSchema['storage_locations_list'])) {
+            $this->setDefault('storage_locations_list', $this->object->StorageLocations->getPrimaryKeys());
+        }
     }
 
-    if (null === $con)
-    {
-      $con = $this->getConnection();
+    protected function doSave($con = null) {
+        $this->saveStorageLocationsList($con);
+
+        parent::doSave($con);
     }
 
-    $existing = $this->object->StorageLocations->getPrimaryKeys();
-    $values = $this->getValue('storage_locations_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
+    public function saveStorageLocationsList($con = null) {
+        if (!$this->isValid()) {
+            throw $this->getErrorSchema();
+        }
 
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('StorageLocations', array_values($unlink));
-    }
+        if (!isset($this->widgetSchema['storage_locations_list'])) {
+            // somebody has unset this widget
+            return;
+        }
 
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('StorageLocations', array_values($link));
+        if (null === $con) {
+            $con = $this->getConnection();
+        }
+
+        $existing = $this->object->StorageLocations->getPrimaryKeys();
+        $values = $this->getValue('storage_locations_list');
+        if (!is_array($values)) {
+            $values = array();
+        }
+
+        $unlink = array_diff($existing, $values);
+        if (count($unlink)) {
+            $this->object->unlink('StorageLocations', array_values($unlink));
+        }
+
+        $link = array_diff($values, $existing);
+        if (count($link)) {
+            $this->object->link('StorageLocations', array_values($link));
+        }
     }
-  }
 
 }

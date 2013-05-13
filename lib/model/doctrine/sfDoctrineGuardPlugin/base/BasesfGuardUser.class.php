@@ -88,151 +88,150 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardUser extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BasesfGuardUser extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('sf_guard_user');
         $this->hasColumn('first_name', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('last_name', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('email_address', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'unique' => true,
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'unique' => true,
+            'length' => 255,
+        ));
         $this->hasColumn('username', 'string', 128, array(
-             'type' => 'string',
-             'notnull' => true,
-             'unique' => true,
-             'length' => 128,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'unique' => true,
+            'length' => 128,
+        ));
         $this->hasColumn('algorithm', 'string', 128, array(
-             'type' => 'string',
-             'default' => 'sha1',
-             'notnull' => true,
-             'length' => 128,
-             ));
+            'type' => 'string',
+            'default' => 'sha1',
+            'notnull' => true,
+            'length' => 128,
+        ));
         $this->hasColumn('salt', 'string', 128, array(
-             'type' => 'string',
-             'length' => 128,
-             ));
+            'type' => 'string',
+            'length' => 128,
+        ));
         $this->hasColumn('password', 'string', 128, array(
-             'type' => 'string',
-             'length' => 128,
-             ));
+            'type' => 'string',
+            'length' => 128,
+        ));
         $this->hasColumn('is_active', 'boolean', null, array(
-             'type' => 'boolean',
-             'default' => true,
-             ));
+            'type' => 'boolean',
+            'default' => true,
+        ));
         $this->hasColumn('activation_key', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('forgot_password', 'boolean,', null, array(
-             'type' => 'boolean,',
-             'default' => 'false,',
-             'notnull' => true,
-             ));
+            'type' => 'boolean,',
+            'default' => 'false,',
+            'notnull' => true,
+        ));
         $this->hasColumn('is_super_admin', 'boolean', null, array(
-             'type' => 'boolean',
-             'default' => false,
-             ));
+            'type' => 'boolean',
+            'default' => false,
+        ));
         $this->hasColumn('last_login', 'timestamp', null, array(
-             'type' => 'timestamp',
-             ));
+            'type' => 'timestamp',
+        ));
         $this->hasColumn('type', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('phone', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('role', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => 255,
+        ));
         $this->hasColumn('contact_info', 'text', null, array(
-             'type' => 'text',
-             ));
+            'type' => 'text',
+        ));
         $this->hasColumn('unit_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
 
 
         $this->index('is_active_idx', array(
-             'fields' => 
-             array(
-              0 => 'is_active',
-             ),
-             ));
+            'fields' =>
+            array(
+                0 => 'is_active',
+            ),
+        ));
         $this->setSubClasses(array(
-             'User' => 
-             array(
-              'type' => 1,
-             ),
-             'Evaluator' => 
-             array(
-              'type' => 2,
-             ),
-             'Person' => 
-             array(
-              'type' => 3,
-             ),
-             ));
+            'User' =>
+            array(
+                'type' => 1,
+            ),
+            'Evaluator' =>
+            array(
+                'type' => 2,
+            ),
+            'Person' =>
+            array(
+                'type' => 3,
+            ),
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasMany('sfGuardGroup as Groups', array(
-             'refClass' => 'sfGuardUserGroup',
-             'local' => 'user_id',
-             'foreign' => 'group_id'));
+            'refClass' => 'sfGuardUserGroup',
+            'local' => 'user_id',
+            'foreign' => 'group_id'));
 
         $this->hasMany('sfGuardPermission as Permissions', array(
-             'refClass' => 'sfGuardUserPermission',
-             'local' => 'user_id',
-             'foreign' => 'permission_id'));
+            'refClass' => 'sfGuardUserPermission',
+            'local' => 'user_id',
+            'foreign' => 'permission_id'));
 
         $this->hasMany('sfGuardUserPermission', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+            'local' => 'id',
+            'foreign' => 'user_id'));
 
         $this->hasMany('sfGuardUserGroup', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+            'local' => 'id',
+            'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardRememberKey as RememberKeys', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+            'local' => 'id',
+            'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+            'local' => 'id',
+            'foreign' => 'user_id'));
 
         $this->hasMany('Store as createdUnits', array(
-             'local' => 'id',
-             'foreign' => 'creator_id'));
+            'local' => 'id',
+            'foreign' => 'creator_id'));
 
         $this->hasMany('Store as editedUnits', array(
-             'local' => 'id',
-             'foreign' => 'last_editor_id'));
+            'local' => 'id',
+            'foreign' => 'last_editor_id'));
 
         $this->hasMany('EvaluatorHistory as HistoryInstances', array(
-             'local' => 'id',
-             'foreign' => 'evaluator_id'));
+            'local' => 'id',
+            'foreign' => 'evaluator_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-             ));
+                ));
         $this->actAs($timestampable0);
     }
+
 }

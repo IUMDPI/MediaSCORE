@@ -8,27 +8,27 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../lib/vendor/lime/lime.php');
-require_once(dirname(__FILE__).'/../../lib/util/sfFinder.class.php');
+require_once(dirname(__FILE__) . '/../../lib/vendor/lime/lime.php');
+require_once(dirname(__FILE__) . '/../../lib/util/sfFinder.class.php');
 
 $h = new lime_harness();
-$h->base_dir = realpath(dirname(__FILE__).'/..');
+$h->base_dir = realpath(dirname(__FILE__) . '/..');
 
 // unit tests
-$h->register_glob($h->base_dir.'/unit/*/*Test.php');
-$h->register_glob($h->base_dir.'/unit/*/*/*Test.php');
-$h->register_glob($h->base_dir.'/../lib/plugins/*/unit/*Test.php');
-$h->register_glob($h->base_dir.'/../lib/plugins/*/unit/*/*Test.php');
+$h->register_glob($h->base_dir . '/unit/*/*Test.php');
+$h->register_glob($h->base_dir . '/unit/*/*/*Test.php');
+$h->register_glob($h->base_dir . '/../lib/plugins/*/unit/*Test.php');
+$h->register_glob($h->base_dir . '/../lib/plugins/*/unit/*/*Test.php');
 
 // functional tests
-$h->register_glob($h->base_dir.'/functional/*Test.php');
-$h->register_glob($h->base_dir.'/functional/*/*Test.php');
-$h->register_glob($h->base_dir.'/../lib/plugins/*/functional/*Test.php');
+$h->register_glob($h->base_dir . '/functional/*Test.php');
+$h->register_glob($h->base_dir . '/functional/*/*Test.php');
+$h->register_glob($h->base_dir . '/../lib/plugins/*/functional/*Test.php');
 
 $c = new lime_coverage($h);
 $c->extension = '.class.php';
 $c->verbose = false;
-$c->base_dir = realpath(dirname(__FILE__).'/../../lib');
+$c->base_dir = realpath(dirname(__FILE__) . '/../../lib');
 
 $finder = sfFinder::type('file')->name('*.php')->prune('vendor')->prune('test')->prune('data');
 $c->register($finder->in($c->base_dir));

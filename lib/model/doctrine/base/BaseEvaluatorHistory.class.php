@@ -39,49 +39,48 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseEvaluatorHistory extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BaseEvaluatorHistory extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('evaluator_history');
         $this->hasColumn('type', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
-             ));
+            'type' => 'integer',
+            'notnull' => true,
+        ));
         $this->hasColumn('evaluator_id', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
-             ));
+            'type' => 'integer',
+            'notnull' => true,
+        ));
         $this->hasColumn('asset_group_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('updated_at', 'date', null, array(
-             'type' => 'date',
-             ));
+            'type' => 'date',
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasOne('sfGuardUser as Evaluator', array(
-             'local' => 'evaluator_id',
-             'foreign' => 'id'));
+            'local' => 'evaluator_id',
+            'foreign' => 'id'));
 
         $this->hasMany('Person as consultedPersonnel', array(
-             'refClass' => 'EvaluatorHistoryPersonnel',
-             'local' => 'evaluator_history_id',
-             'foreign' => 'person_id'));
+            'refClass' => 'EvaluatorHistoryPersonnel',
+            'local' => 'evaluator_history_id',
+            'foreign' => 'person_id'));
 
         $this->hasOne('Store', array(
-             'local' => 'asset_group_id',
-             'foreign' => 'id'));
+            'local' => 'asset_group_id',
+            'foreign' => 'id'));
 
         $this->hasOne('AssetGroup', array(
-             'local' => 'asset_group_id',
-             'foreign' => 'id'));
+            'local' => 'asset_group_id',
+            'foreign' => 'id'));
 
         $this->hasMany('EvaluatorHistoryPersonnel', array(
-             'local' => 'id',
-             'foreign' => 'evaluator_history_id'));
+            'local' => 'id',
+            'foreign' => 'evaluator_history_id'));
     }
+
 }

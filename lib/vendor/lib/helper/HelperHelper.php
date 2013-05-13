@@ -16,10 +16,8 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: HelperHelper.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
+function use_helper() {
+    $context = sfContext::getInstance();
 
-function use_helper()
-{
-  $context = sfContext::getInstance();
-
-  $context->getConfiguration()->loadHelpers(func_get_args(), $context->getModuleName());
+    $context->getConfiguration()->loadHelpers(func_get_args(), $context->getModuleName());
 }

@@ -57,90 +57,89 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseSet extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BaseSet extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('set');
         $this->hasColumn('name', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => 255,
+        ));
         $this->hasColumn('inst_id', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('notes', 'text', null, array(
-             'type' => 'text',
-             ));
+            'type' => 'text',
+        ));
         $this->hasColumn('creator_id', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
-             ));
+            'type' => 'integer',
+            'notnull' => true,
+        ));
         $this->hasColumn('last_editor_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('type', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('resident_structure_description', 'text', null, array(
-             'type' => 'text',
-             ));
+            'type' => 'text',
+        ));
         $this->hasColumn('storage_location_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('unit_personnel', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('parent_node_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('status', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('location', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('format_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
 
         $this->setSubClasses(array(
-             'Unit' => 
-             array(
-              'type' => 1,
-             ),
-             'SubUnit' => 
-             array(
-              'type' => 2,
-             ),
-             'Collection' => 
-             array(
-              'type' => 1,
-             ),
-             'AssetGroup' => 
-             array(
-              'type' => 2,
-             ),
-             ));
+            'Unit' =>
+            array(
+                'type' => 1,
+            ),
+            'SubUnit' =>
+            array(
+                'type' => 2,
+            ),
+            'Collection' =>
+            array(
+                'type' => 1,
+            ),
+            'AssetGroup' =>
+            array(
+                'type' => 2,
+            ),
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasOne('Evaluator', array(
-             'local' => 'creator_id',
-             'foreign' => 'id'));
+            'local' => 'creator_id',
+            'foreign' => 'id'));
 
         $this->hasOne('User', array(
-             'local' => 'last_editor_id',
-             'foreign' => 'id'));
+            'local' => 'last_editor_id',
+            'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
+
 }

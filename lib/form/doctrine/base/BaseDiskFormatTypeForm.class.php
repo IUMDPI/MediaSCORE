@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseDiskFormatTypeForm extends FormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseDiskFormatTypeForm extends FormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('disk_format_type[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'DiskFormatType';
-  }
+        $this->widgetSchema->setNameFormat('disk_format_type[%s]');
+    }
+
+    public function getModelName() {
+        return 'DiskFormatType';
+    }
 
 }

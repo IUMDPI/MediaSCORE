@@ -8,27 +8,26 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(24);
 
 foreach (array(
-  'cache', 'configuration', 'controller', 'database', 
-  'error404', 'factory', 'file', 'filter', 'forward', 'initialization', 'parse', 'render', 'security',
-  'stop', 'storage', 'view'
-) as $class)
-{
-  $class = sprintf('sf%sException', ucfirst($class));
-  $e = new $class();
-  $t->ok($e instanceof sfException, sprintf('"%s" inherits from sfException', $class));
+'cache', 'configuration', 'controller', 'database',
+ 'error404', 'factory', 'file', 'filter', 'forward', 'initialization', 'parse', 'render', 'security',
+ 'stop', 'storage', 'view'
+) as $class) {
+    $class = sprintf('sf%sException', ucfirst($class));
+    $e = new $class();
+    $t->ok($e instanceof sfException, sprintf('"%s" inherits from sfException', $class));
 }
 
-class myException extends sfException
-{
-  static public function formatArgsTest($args, $single = false, $format = 'html')
-  {
-    return parent::formatArgs($args, $single, $format);
-  }
+class myException extends sfException {
+
+    static public function formatArgsTest($args, $single = false, $format = 'html') {
+        return parent::formatArgs($args, $single, $format);
+    }
+
 }
 
 // sfException::formatArgs()

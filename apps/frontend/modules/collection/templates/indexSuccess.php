@@ -1,4 +1,4 @@
-<!--<a class="button" href="<?php //echo url_for('collection/new?u=' . $unitID)                           ?>">Create Collection</a>-->
+
 <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
 
 <div id="search-box">
@@ -23,7 +23,6 @@
                             foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
                                 ?>
                                 <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
-
                                 <?php
                             endforeach;
                         endforeach
@@ -65,6 +64,10 @@
                 <option value="1">In Progress</option>
                 <option value="2">Completed</option>
             </select>
+            <br/>
+            <br/>
+            <strong>Storage Location : </strong>
+            <input type="text" class="text" onkeyup="filterCollection();" id="searchStorageLocation"/>
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterCollection');"><span>R</span> Reset</a></div>
     </div>
@@ -84,6 +87,7 @@
             <th>Updated On</th>
             <th>Updated By</th>
             <th style="text-align: center;">Duration</th>
+            <th style="text-align: center;">Storage Location</th>
 <!--            <th></th>-->
         </tr>
     </thead>
@@ -91,17 +95,12 @@
         <?php if (sizeof($collections) > 0) { ?>
             <?php foreach ($collections as $collection): ?>
                 <tr>
-                    <?php //echo url_for('assetgroup', $collection) ?>
                     <td class="invisible">
-
                         <div class="options">
                             <a  class="new_edit_collection" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
-
                         </div>
-
                     </td>
-
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?></a></td>
                     <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
                     <td><?php echo $collection->getCreatedAt() ?></td>
@@ -110,9 +109,8 @@
                     <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
-
-
-
+                    <?php $storagelocationCol = $collection->getStorageLocations() ?>
+                    <td style="text-align: right;"><?php echo $storagelocationCol[0]->getResidentStructureDescription(); ?></td>
                 </tr>
             <?php endforeach; ?>
 
@@ -209,7 +207,7 @@
         $.ajax({
             method: 'POST', 
             url: '/frontend_dev.php/collection/index',
-            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -217,7 +215,6 @@
                 if(result!=undefined && result.length>0){
                     $('#collectionResult').html('');
                     for(collection in result){
-                        
                         $('#collectionResult').append('<tr><td class="invisible">'+
                             '<div class="options">'+
                             '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
@@ -229,9 +226,10 @@
                             '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
-                            '<td style="text-align: right;">'+result[collection].duration+'</td>'+
-                            
-                            '</tr>'); 
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>');
+                        if(result[collection].StorageLocations[0]){
+                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+                        }
                     }
                     $(".delete_unit").fancybox({
                         'width': '100%',

@@ -17,15 +17,13 @@ class OpenReelAudiotapeAcetateForm extends BaseOpenReelAudiotapeAcetateForm {
         parent::configure();
         $this->setWidget('vinegarOdor', new sfWidgetFormInputCheckbox());
 //        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[3]), array('class' => 'override_required')));
-        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Standard Play', 1 => 'Long Play',  4 => 'Unknown')), array('class' => 'override_required')));
+        $this->setWidget('tapeThickness', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Standard Play', 1 => 'Long Play', 4 => 'Unknown')), array('class' => 'override_required')));
         $this->setWidget('speed', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[2], 'multiple' => true), array('class' => 'override_required')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
 //        $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => OpenReelAudioTapeFormatType::$constants[0]), array('class' => 'override_required')));
-        
-        
         //constraints applyed for score
-      
-        
+
+
         $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Full Track', 2 => 'Half-Track Mono', 3 => 'Half-Track Stereo', 4 => 'Quarter-Track Mono', 5 => 'Quarter-Track Stereo', 6 => 'Unknown')), array('class' => 'override_required')));
         $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
 

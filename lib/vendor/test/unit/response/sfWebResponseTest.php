@@ -8,21 +8,20 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(83);
 
-class myWebResponse extends sfWebResponse
-{
-  public function getStatusText()
-  {
-    return $this->statusText;
-  }
+class myWebResponse extends sfWebResponse {
 
-  public function normalizeHeaderName($name)
-  {
-    return parent::normalizeHeaderName($name);
-  }
+    public function getStatusText() {
+        return $this->statusText;
+    }
+
+    public function normalizeHeaderName($name) {
+        return parent::normalizeHeaderName($name);
+    }
+
 }
 
 $dispatcher = new sfEventDispatcher();
@@ -89,18 +88,17 @@ $t->is($response->getHttpHeaders(), array('My-Header' => 'foo, bar', 'Another' =
 // ->normalizeHeaderName()
 $t->diag('->normalizeHeaderName()');
 foreach (array(
-  array('header', 'Header'),
-  array('HEADER', 'Header'),
-  array('hEaDeR', 'Header'),
-  array('my-header', 'My-Header'),
-  array('my_header', 'My-Header'),
-  array('MY_HEADER', 'My-Header'),
-  array('my-header_is_very-long', 'My-Header-Is-Very-Long'),
-  array('Content-Type', 'Content-Type'),
-  array('content-type', 'Content-Type'),
-) as $test)
-{
-  $t->is($response->normalizeHeaderName($test[0]), $test[1], '->normalizeHeaderName() normalizes http header name');
+array('header', 'Header'),
+ array('HEADER', 'Header'),
+ array('hEaDeR', 'Header'),
+ array('my-header', 'My-Header'),
+ array('my_header', 'My-Header'),
+ array('MY_HEADER', 'My-Header'),
+ array('my-header_is_very-long', 'My-Header-Is-Very-Long'),
+ array('Content-Type', 'Content-Type'),
+ array('content-type', 'Content-Type'),
+) as $test) {
+    $t->is($response->normalizeHeaderName($test[0]), $test[1], '->normalizeHeaderName() normalizes http header name');
 }
 
 // ->getContentType() ->setContentType()
@@ -207,14 +205,11 @@ $response->addStylesheet('bar', '', array('media' => 'print'));
 $stylesheets = $response->getStylesheets();
 $t->is($stylesheets['bar'], array('media' => 'print'), '->addStylesheet() takes an array of parameters as its third argument');
 
-try
-{
-  $response->addStylesheet('last', 'none');
-  $t->fail('->addStylesheet() throws an InvalidArgumentException if the position is not first, the empty string, or last');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('->addStylesheet() throws an InvalidArgumentException if the position is not first, the empty string, or last');
+try {
+    $response->addStylesheet('last', 'none');
+    $t->fail('->addStylesheet() throws an InvalidArgumentException if the position is not first, the empty string, or last');
+} catch (InvalidArgumentException $e) {
+    $t->pass('->addStylesheet() throws an InvalidArgumentException if the position is not first, the empty string, or last');
 }
 
 // ->getStylesheets()
@@ -243,14 +238,11 @@ $t->ok(array_key_exists('first_js', $response->getJavascripts('first')), '->addJ
 $response->addJavascript('last_js', 'last');
 $t->ok(array_key_exists('last_js', $response->getJavascripts('last')), '->addJavascript() takes a position as its second argument');
 
-try
-{
-  $response->addJavascript('last_js', 'none');
-  $t->fail('->addJavascript() throws an InvalidArgumentException if the position is not first, the empty string, or last');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('->addJavascript() throws an InvalidArgumentException if the position is not first, the empty string, or last');
+try {
+    $response->addJavascript('last_js', 'none');
+    $t->fail('->addJavascript() throws an InvalidArgumentException if the position is not first, the empty string, or last');
+} catch (InvalidArgumentException $e) {
+    $t->pass('->addJavascript() throws an InvalidArgumentException if the position is not first, the empty string, or last');
 }
 
 // ->getJavascripts()

@@ -18,19 +18,19 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseAssetGroup extends SubUnit
-{
-    public function setUp()
-    {
+abstract class BaseAssetGroup extends SubUnit {
+
+    public function setUp() {
         parent::setUp();
         $this->hasOne('FormatType', array(
-             'local' => 'format_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+            'local' => 'format_id',
+            'foreign' => 'id',
+            'onDelete' => 'CASCADE'));
 
         $this->hasMany('EvaluatorHistory', array(
-             'local' => 'id',
-             'foreign' => 'asset_group_id',
-             'onDelete' => 'CASCADE'));
+            'local' => 'id',
+            'foreign' => 'asset_group_id',
+            'onDelete' => 'CASCADE'));
     }
+
 }

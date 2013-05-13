@@ -19,101 +19,93 @@
  * @author     Sean Kerr <sean@code-box.org>
  * @version    SVN: $Id: sfActionStack.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfActionStack
-{
-  protected
+class sfActionStack {
+
+    protected
     $stack = array();
 
-  /**
-   * Adds an entry to the action stack.
-   *
-   * @param string   $moduleName     A module name
-   * @param string   $actionName     An action name
-   * @param sfAction $actionInstance An sfAction implementation instance
-   *
-   * @return sfActionStackEntry sfActionStackEntry instance
-   */
-  public function addEntry($moduleName, $actionName, $actionInstance)
-  {
-    // create our action stack entry and add it to our stack
-    $actionEntry = new sfActionStackEntry($moduleName, $actionName, $actionInstance);
+    /**
+     * Adds an entry to the action stack.
+     *
+     * @param string   $moduleName     A module name
+     * @param string   $actionName     An action name
+     * @param sfAction $actionInstance An sfAction implementation instance
+     *
+     * @return sfActionStackEntry sfActionStackEntry instance
+     */
+    public function addEntry($moduleName, $actionName, $actionInstance) {
+        // create our action stack entry and add it to our stack
+        $actionEntry = new sfActionStackEntry($moduleName, $actionName, $actionInstance);
 
-    $this->stack[] = $actionEntry;
+        $this->stack[] = $actionEntry;
 
-    return $actionEntry;
-  }
-
-  /**
-   * Retrieves the entry at a specific index.
-   *
-   * @param int $index An entry index
-   *
-   * @return sfActionStackEntry An action stack entry implementation.
-   */
-  public function getEntry($index)
-  {
-    $retval = null;
-
-    if ($index > -1 && $index < count($this->stack))
-    {
-      $retval = $this->stack[$index];
+        return $actionEntry;
     }
 
-    return $retval;
-  }
+    /**
+     * Retrieves the entry at a specific index.
+     *
+     * @param int $index An entry index
+     *
+     * @return sfActionStackEntry An action stack entry implementation.
+     */
+    public function getEntry($index) {
+        $retval = null;
 
-  /**
-   * Removes the entry at a specific index.
-   *
-   * @return sfActionStackEntry An action stack entry implementation.
-   */
-  public function popEntry()
-  {
-    return array_pop($this->stack);
-  }
+        if ($index > -1 && $index < count($this->stack)) {
+            $retval = $this->stack[$index];
+        }
 
-  /**
-   * Retrieves the first entry.
-   *
-   * @return mixed An action stack entry implementation or null if there is no sfAction instance in the stack
-   */
-  public function getFirstEntry()
-  {
-    $retval = null;
-
-    if (isset($this->stack[0]))
-    {
-      $retval = $this->stack[0];
+        return $retval;
     }
 
-    return $retval;
-  }
-
-  /**
-   * Retrieves the last entry.
-   *
-   * @return mixed An action stack entry implementation or null if there is no sfAction instance in the stack
-   */
-  public function getLastEntry()
-  {
-    $count  = count($this->stack);
-    $retval = null;
-
-    if (isset($this->stack[0]))
-    {
-      $retval = $this->stack[$count - 1];
+    /**
+     * Removes the entry at a specific index.
+     *
+     * @return sfActionStackEntry An action stack entry implementation.
+     */
+    public function popEntry() {
+        return array_pop($this->stack);
     }
 
-    return $retval;
-  }
+    /**
+     * Retrieves the first entry.
+     *
+     * @return mixed An action stack entry implementation or null if there is no sfAction instance in the stack
+     */
+    public function getFirstEntry() {
+        $retval = null;
 
-  /**
-   * Retrieves the size of this stack.
-   *
-   * @return int The size of this stack.
-   */
-  public function getSize()
-  {
-    return count($this->stack);
-  }
+        if (isset($this->stack[0])) {
+            $retval = $this->stack[0];
+        }
+
+        return $retval;
+    }
+
+    /**
+     * Retrieves the last entry.
+     *
+     * @return mixed An action stack entry implementation or null if there is no sfAction instance in the stack
+     */
+    public function getLastEntry() {
+        $count = count($this->stack);
+        $retval = null;
+
+        if (isset($this->stack[0])) {
+            $retval = $this->stack[$count - 1];
+        }
+
+        return $retval;
+    }
+
+    /**
+     * Retrieves the size of this stack.
+     *
+     * @return int The size of this stack.
+     */
+    public function getSize() {
+        return count($this->stack);
+    }
+
 }

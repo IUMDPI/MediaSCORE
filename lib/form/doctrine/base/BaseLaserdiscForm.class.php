@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseLaserdiscForm extends StandardizedRecordingFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseLaserdiscForm extends StandardizedRecordingFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('laserdisc[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'Laserdisc';
-  }
+        $this->widgetSchema->setNameFormat('laserdisc[%s]');
+    }
+
+    public function getModelName() {
+        return 'Laserdisc';
+    }
 
 }

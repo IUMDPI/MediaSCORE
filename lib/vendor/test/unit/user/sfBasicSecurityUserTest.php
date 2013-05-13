@@ -8,22 +8,22 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(47);
 
-class MySessionStorage extends sfSessionTestStorage
-{
-  public function regenerate($destroy = false)
-  {
-    $this->sessionId = rand(1, 9999);
+class MySessionStorage extends sfSessionTestStorage {
 
-    return true;
-  }
+    public function regenerate($destroy = false) {
+        $this->sessionId = rand(1, 9999);
+
+        return true;
+    }
+
 }
 
 $dispatcher = new sfEventDispatcher();
-$sessionPath = sys_get_temp_dir().'/sessions_'.rand(11111, 99999);
+$sessionPath = sys_get_temp_dir() . '/sessions_' . rand(11111, 99999);
 $storage = new MySessionStorage(array('session_path' => $sessionPath));
 
 $user = new sfBasicSecurityUser($dispatcher, $storage);

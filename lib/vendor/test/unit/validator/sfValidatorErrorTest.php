@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(14);
 
@@ -54,34 +54,29 @@ $t->diag('implements Serializable');
 // we test with non serializable objects
 // to ensure that the errors are always serializable
 // even if you use PDO as a session handler
-class NotSerializable implements Serializable
-{
-  public function serialize()
-  {
-    throw new Exception('Not serializable');
-  }
+class NotSerializable implements Serializable {
 
-  public function unserialize($serialized)
-  {
-    throw new Exception('Not serializable');
-  }
+    public function serialize() {
+        throw new Exception('Not serializable');
+    }
+
+    public function unserialize($serialized) {
+        throw new Exception('Not serializable');
+    }
+
 }
 
-function will_crash($a)
-{
-  return serialize(new sfValidatorError(new sfValidatorString(), 'max_length', array('value' => 'foo<br />', 'max_length' => 1)));
+function will_crash($a) {
+    return serialize(new sfValidatorError(new sfValidatorString(), 'max_length', array('value' => 'foo<br />', 'max_length' => 1)));
 }
 
 $a = new NotSerializable();
 
-try
-{
-  $serialized = will_crash($a);
-  $t->pass('sfValidatorError implements Serializable');
-}
-catch (Exception $e)
-{
-  $t->fail('sfValidatorError implements Serializable');
+try {
+    $serialized = will_crash($a);
+    $t->pass('sfValidatorError implements Serializable');
+} catch (Exception $e) {
+    $t->fail('sfValidatorError implements Serializable');
 }
 
 $e1 = unserialize($serialized);

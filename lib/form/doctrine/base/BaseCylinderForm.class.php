@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseCylinderForm extends SoftDiskFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseCylinderForm extends SoftDiskFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('cylinder[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'Cylinder';
-  }
+        $this->widgetSchema->setNameFormat('cylinder[%s]');
+    }
+
+    public function getModelName() {
+        return 'Cylinder';
+    }
 
 }

@@ -8,17 +8,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseSubUnitFormFilter extends StoreFormFilter
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseSubUnitFormFilter extends StoreFormFilter {
 
-    $this->widgetSchema->setNameFormat('sub_unit_filters[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'SubUnit';
-  }
+        $this->widgetSchema->setNameFormat('sub_unit_filters[%s]');
+    }
+
+    public function getModelName() {
+        return 'SubUnit';
+    }
+
 }

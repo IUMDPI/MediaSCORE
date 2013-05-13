@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BasePressedFortyFiveRPMDiscForm extends PressedAudioDiscFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BasePressedFortyFiveRPMDiscForm extends PressedAudioDiscFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('pressed_forty_five_rpm_disc[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'PressedFortyFiveRPMDisc';
-  }
+        $this->widgetSchema->setNameFormat('pressed_forty_five_rpm_disc[%s]');
+    }
+
+    public function getModelName() {
+        return 'PressedFortyFiveRPMDisc';
+    }
 
 }

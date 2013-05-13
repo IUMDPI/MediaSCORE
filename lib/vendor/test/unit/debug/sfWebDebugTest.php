@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-require_once dirname(__FILE__).'/../../bootstrap/unit.php';
+require_once dirname(__FILE__) . '/../../bootstrap/unit.php';
 
 $t = new lime_test(10);
 
-class sfWebDebugTest extends sfWebDebug
-{
-  public function __construct()
-  {
-    $this->options['image_root_path'] = '';
-    $this->options['request_parameters'] = array();
-  }
+class sfWebDebugTest extends sfWebDebug {
+
+    public function __construct() {
+        $this->options['image_root_path'] = '';
+        $this->options['request_parameters'] = array();
+    }
+
 }
 
 $debug = new sfWebDebugTest();

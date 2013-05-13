@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseAudiotapeFormatTypeForm extends ReelCassetteFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseAudiotapeFormatTypeForm extends ReelCassetteFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('audiotape_format_type[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'AudiotapeFormatType';
-  }
+        $this->widgetSchema->setNameFormat('audiotape_format_type[%s]');
+    }
+
+    public function getModelName() {
+        return 'AudiotapeFormatType';
+    }
 
 }

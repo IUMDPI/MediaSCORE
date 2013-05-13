@@ -19,6 +19,6 @@
  * @author     Sean Kerr <sean@code-box.org>
  * @version    SVN: $Id: sfConfigurationException.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfConfigurationException extends sfException
-{
+class sfConfigurationException extends sfException {
+    
 }

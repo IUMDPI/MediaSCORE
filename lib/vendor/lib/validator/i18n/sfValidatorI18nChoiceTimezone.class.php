@@ -16,22 +16,22 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfValidatorI18nChoiceTimezone.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfValidatorI18nChoiceTimezone extends sfValidatorChoice
-{
-  /**
-   * Configures the current validator.
-   *
-   * Available options:
-   *
-   * @param array $options   An array of options
-   * @param array $messages  An array of error messages
-   *
-   * @see sfValidatorChoice
-   */
-  protected function configure($options = array(), $messages = array())
-  {
-    parent::configure($options, $messages);
+class sfValidatorI18nChoiceTimezone extends sfValidatorChoice {
 
-    $this->setOption('choices', array_keys(sfCultureInfo::getInstance()->getTimeZones()));
-  }
+    /**
+     * Configures the current validator.
+     *
+     * Available options:
+     *
+     * @param array $options   An array of options
+     * @param array $messages  An array of error messages
+     *
+     * @see sfValidatorChoice
+     */
+    protected function configure($options = array(), $messages = array()) {
+        parent::configure($options, $messages);
+
+        $this->setOption('choices', array_keys(sfCultureInfo::getInstance()->getTimeZones()));
+    }
+
 }

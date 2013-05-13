@@ -34,7 +34,7 @@ class BetacamForm extends BaseBetacamForm {
 
         $this->setDefault('pack_deformation', -1);
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
-        
+
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');

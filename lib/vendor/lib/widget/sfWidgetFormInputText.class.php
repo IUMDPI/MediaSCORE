@@ -16,20 +16,20 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfWidgetFormInputText.class.php 30762 2010-08-25 12:33:33Z fabien $
  */
-class sfWidgetFormInputText extends sfWidgetFormInput
-{
-  /**
-   * Configures the current widget.
-   *
-   * @param array $options     An array of options
-   * @param array $attributes  An array of default HTML attributes
-   *
-   * @see sfWidgetForm
-   */
-  protected function configure($options = array(), $attributes = array())
-  {
-    parent::configure($options, $attributes);
+class sfWidgetFormInputText extends sfWidgetFormInput {
 
-    $this->setOption('type', 'text');
-  }
+    /**
+     * Configures the current widget.
+     *
+     * @param array $options     An array of options
+     * @param array $attributes  An array of default HTML attributes
+     *
+     * @see sfWidgetForm
+     */
+    protected function configure($options = array(), $attributes = array()) {
+        parent::configure($options, $attributes);
+
+        $this->setOption('type', 'text');
+    }
+
 }

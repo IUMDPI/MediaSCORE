@@ -26,99 +26,86 @@
  * @author     Sean Kerr <sean@code-box.org>
  * @version    SVN: $Id: sfMySQLDatabase.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfMySQLDatabase extends sfDatabase
-{
-  /**
-   * Connects to the database.
-   *
-   * @throws <b>sfDatabaseException</b> If a connection could not be created
-   */
-  public function connect()
-  {
-    $database = $this->getParameter('database');
-    $host     = $this->getParameter('host', 'localhost');
-    $password = $this->getParameter('password');
-    $username = $this->getParameter('username');
-    $encoding = $this->getParameter('encoding');
+class sfMySQLDatabase extends sfDatabase {
 
-    // let's see if we need a persistent connection
-    $connect = $this->getConnectMethod($this->getParameter('persistent', false));
-    if ($password == null)
-    {
-      if ($username == null)
-      {
-        $this->connection = @$connect($host);
-      }
-      else
-      {
-        $this->connection = @$connect($host, $username);
-      }
-    }
-    else
-    {
-      $this->connection = @$connect($host, $username, $password);
-    }
+    /**
+     * Connects to the database.
+     *
+     * @throws <b>sfDatabaseException</b> If a connection could not be created
+     */
+    public function connect() {
+        $database = $this->getParameter('database');
+        $host = $this->getParameter('host', 'localhost');
+        $password = $this->getParameter('password');
+        $username = $this->getParameter('username');
+        $encoding = $this->getParameter('encoding');
 
-    // make sure the connection went through
-    if ($this->connection === false)
-    {
-      // the connection's foobar'd
-      throw new sfDatabaseException('Failed to create a MySQLDatabase connection.');
-    }
+        // let's see if we need a persistent connection
+        $connect = $this->getConnectMethod($this->getParameter('persistent', false));
+        if ($password == null) {
+            if ($username == null) {
+                $this->connection = @$connect($host);
+            } else {
+                $this->connection = @$connect($host, $username);
+            }
+        } else {
+            $this->connection = @$connect($host, $username, $password);
+        }
 
-    // select our database
-    if ($this->selectDatabase($database))
-    {
-      // can't select the database
-      throw new sfDatabaseException(sprintf('Failed to select MySQLDatabase "%s".', $database));
-    }
+        // make sure the connection went through
+        if ($this->connection === false) {
+            // the connection's foobar'd
+            throw new sfDatabaseException('Failed to create a MySQLDatabase connection.');
+        }
 
-    // set encoding if specified
-    if ($encoding)
-    {
-      @mysql_query("SET NAMES '".$encoding."'", $this->connection);
+        // select our database
+        if ($this->selectDatabase($database)) {
+            // can't select the database
+            throw new sfDatabaseException(sprintf('Failed to select MySQLDatabase "%s".', $database));
+        }
+
+        // set encoding if specified
+        if ($encoding) {
+            @mysql_query("SET NAMES '" . $encoding . "'", $this->connection);
+        }
+
+        // since we're not an abstraction layer, we copy the connection
+        // to the resource
+        $this->resource = $this->connection;
     }
 
-    // since we're not an abstraction layer, we copy the connection
-    // to the resource
-    $this->resource = $this->connection;
-  }
-
-  /**
-   * Returns the appropriate connect method.
-   * 
-   * @param bool $persistent wether persistent connections are use or not
-   * @return string name of connect method.
-   */
-  protected function getConnectMethod($persistent)
-  {
-    return $persistent ? 'mysql_pconnect' : 'mysql_connect';
-  }
-  
-  /**
-   * Selects the database to be used in this connection
-   * 
-   * @param string $database Name of database to be connected
-   *
-   * @return bool true if this was successful
-   */
-  protected function selectDatabase($database)
-  {
-   return ($database != null && !@mysql_select_db($database, $this->connection));
-  }
-
-  /**
-   * Execute the shutdown procedure
-   *
-   * @return void
-   *
-   * @throws <b>sfDatabaseException</b> If an error occurs while shutting down this database
-   */
-  public function shutdown()
-  {
-    if ($this->connection != null)
-    {
-      @mysql_close($this->connection);
+    /**
+     * Returns the appropriate connect method.
+     * 
+     * @param bool $persistent wether persistent connections are use or not
+     * @return string name of connect method.
+     */
+    protected function getConnectMethod($persistent) {
+        return $persistent ? 'mysql_pconnect' : 'mysql_connect';
     }
-  }
+
+    /**
+     * Selects the database to be used in this connection
+     * 
+     * @param string $database Name of database to be connected
+     *
+     * @return bool true if this was successful
+     */
+    protected function selectDatabase($database) {
+        return ($database != null && !@mysql_select_db($database, $this->connection));
+    }
+
+    /**
+     * Execute the shutdown procedure
+     *
+     * @return void
+     *
+     * @throws <b>sfDatabaseException</b> If an error occurs while shutting down this database
+     */
+    public function shutdown() {
+        if ($this->connection != null) {
+            @mysql_close($this->connection);
+        }
+    }
+
 }

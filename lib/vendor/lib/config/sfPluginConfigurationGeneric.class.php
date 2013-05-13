@@ -16,13 +16,13 @@
  * @author     Kris Wallsmith <kris.wallsmith@symfony-project.com>
  * @version    SVN: $Id: sfPluginConfigurationGeneric.class.php 12503 2008-10-31 16:58:52Z Kris.Wallsmith $
  */
-class sfPluginConfigurationGeneric extends sfPluginConfiguration
-{
-  /**
-   * @see sfPluginConfiguration
-   */
-  public function initialize()
-  {
-    return false;
-  }
+class sfPluginConfigurationGeneric extends sfPluginConfiguration {
+
+    /**
+     * @see sfPluginConfiguration
+     */
+    public function initialize() {
+        return false;
+    }
+
 }

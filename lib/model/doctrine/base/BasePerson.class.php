@@ -24,27 +24,27 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasePerson extends User
-{
-    public function setUp()
-    {
+abstract class BasePerson extends User {
+
+    public function setUp() {
         parent::setUp();
         $this->hasMany('Unit as Units', array(
-             'refClass' => 'UnitPerson',
-             'local' => 'person_id',
-             'foreign' => 'unit_id'));
+            'refClass' => 'UnitPerson',
+            'local' => 'person_id',
+            'foreign' => 'unit_id'));
 
         $this->hasMany('EvaluatorHistory as consultationRecords', array(
-             'refClass' => 'EvaluatorHistoryPersonnel',
-             'local' => 'person_id',
-             'foreign' => 'evaluator_history_id'));
+            'refClass' => 'EvaluatorHistoryPersonnel',
+            'local' => 'person_id',
+            'foreign' => 'evaluator_history_id'));
 
         $this->hasMany('UnitPerson', array(
-             'local' => 'id',
-             'foreign' => 'person_id'));
+            'local' => 'id',
+            'foreign' => 'person_id'));
 
         $this->hasMany('EvaluatorHistoryPersonnel', array(
-             'local' => 'id',
-             'foreign' => 'person_id'));
+            'local' => 'id',
+            'foreign' => 'person_id'));
     }
+
 }

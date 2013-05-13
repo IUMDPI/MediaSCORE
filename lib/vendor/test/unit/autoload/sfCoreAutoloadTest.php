@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-require_once dirname(__FILE__).'/../../bootstrap/unit.php';
+require_once dirname(__FILE__) . '/../../bootstrap/unit.php';
 
 $t = new lime_test(1);
 
 $autoload = sfCoreAutoload::getInstance();
-$t->is($autoload->getClassPath('sfaction'), $autoload->getBaseDir().'/action/sfAction.class.php', '"sfCoreAutoload" is case-insensitive');
+$t->is($autoload->getClassPath('sfaction'), $autoload->getBaseDir() . '/action/sfAction.class.php', '"sfCoreAutoload" is case-insensitive');

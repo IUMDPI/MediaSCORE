@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(5);
 
@@ -24,15 +24,12 @@ $t->is($v->getFields(), array($v1, $v1, $v1, $v1, $v1, $v1), '->__construct() ta
 
 // ->clean()
 $t->diag('->clean()');
-try
-{
-  $v->clean(array('f', 'a', 'b', 'i', 'e', 'n'));
-  $t->fail('->clean() throws an sfValidatorError');
-  $t->skip('', 2);
-}
-catch (sfValidatorError $e)
-{
-  $t->pass('->clean() throws an sfValidatorError');
-  $t->is(count($e->getGlobalErrors()), 0, '->clean() does not throw global errors');
-  $t->is(count($e->getNamedErrors()), 6, '->clean() throws named errors');
+try {
+    $v->clean(array('f', 'a', 'b', 'i', 'e', 'n'));
+    $t->fail('->clean() throws an sfValidatorError');
+    $t->skip('', 2);
+} catch (sfValidatorError $e) {
+    $t->pass('->clean() throws an sfValidatorError');
+    $t->is(count($e->getGlobalErrors()), 0, '->clean() does not throw global errors');
+    $t->is(count($e->getNamedErrors()), 6, '->clean() throws named errors');
 }

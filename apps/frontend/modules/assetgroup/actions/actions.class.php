@@ -24,14 +24,17 @@ class assetgroupActions extends sfActions {
         $from = $request->getParameter('from');
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
+        $AssetScore = $request->getParameter('searchScore');
+//        $StorageLocation = $request->getParameter('searchStorageLocation');
 
         // Get collections for a specific Asset Group
         if ($request->isXmlHttpRequest()) {
             $this->assets = Doctrine_Query::Create()
                     ->from('AssetGroup c')
-                    ->select('c.*,cu.*,eu.*')
+                    ->select('c.*,cu.*,eu.*,ft.*')
                     ->innerJoin('c.Creator cu')
                     ->innerJoin('c.Editor eu')
+                    ->innerJoin('c.FormatType ft')
                     ->where('c.parent_node_id  = ?', $collectionId);
             // apply the filters for assets group
             if ($searchInpout && trim($searchInpout) != '') {
@@ -39,6 +42,9 @@ class assetgroupActions extends sfActions {
             }
             if (trim($status) != '') {
                 $this->assets = $this->assets->andWhere('status =?', $status);
+            }
+            if ($AssetScore != '') {
+                $this->assets = $this->assets->andWhere('asset_score =?', $AssetScore);
             }
             if ($dateType != '') {
                 if ($dateType == 0) {
@@ -69,7 +75,11 @@ class assetgroupActions extends sfActions {
             }
 
             // fetch the assets groups
+//            $this->assets = $this->assets->fetchArray();
             $this->assets = $this->assets->fetchArray();
+//            echo '<pre>';
+//            print_r($this->assets);
+//            exit;
             // get durations for assets groups respectively
             if (sizeof($this->assets) > 0) {
                 foreach ($this->assets as $key => $value) {

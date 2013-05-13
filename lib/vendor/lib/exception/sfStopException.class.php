@@ -16,12 +16,13 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfStopException.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfStopException extends sfException
-{
-  /**
-   * Stops the current action.
-   */
-  public function printStackTrace()
-  {
-  }
+class sfStopException extends sfException {
+
+    /**
+     * Stops the current action.
+     */
+    public function printStackTrace() {
+        
+    }
+
 }

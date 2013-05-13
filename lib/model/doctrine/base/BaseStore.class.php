@@ -54,104 +54,103 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseStore extends sfDoctrineRecord
-{
-    public function setTableDefinition()
-    {
+abstract class BaseStore extends sfDoctrineRecord {
+
+    public function setTableDefinition() {
         $this->setTableName('store');
         $this->hasColumn('name', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => 255,
+        ));
         $this->hasColumn('inst_id', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'notnull' => true,
+            'length' => 255,
+        ));
         $this->hasColumn('notes', 'text', null, array(
-             'type' => 'text',
-             ));
+            'type' => 'text',
+        ));
         $this->hasColumn('creator_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('last_editor_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('type', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('resident_structure_description', 'text', null, array(
-             'type' => 'text',
-             ));
+            'type' => 'text',
+        ));
         $this->hasColumn('parent_node_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
         $this->hasColumn('status', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('location', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
+            'type' => 'string',
+            'length' => 255,
+        ));
         $this->hasColumn('format_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
+            'type' => 'integer',
+        ));
 
         $this->setSubClasses(array(
-             'Unit' => 
-             array(
-              'type' => 1,
-             ),
-             'SubUnit' => 
-             array(
-              'type' => 2,
-             ),
-             'Collection' => 
-             array(
-              'type' => 3,
-             ),
-             'AssetGroup' => 
-             array(
-              'type' => 4,
-             ),
-             'SimpleSubUnit' => 
-             array(
-              'type' => 'SimpleSubUnit',
-             ),
-             ));
+            'Unit' =>
+            array(
+                'type' => 1,
+            ),
+            'SubUnit' =>
+            array(
+                'type' => 2,
+            ),
+            'Collection' =>
+            array(
+                'type' => 3,
+            ),
+            'AssetGroup' =>
+            array(
+                'type' => 4,
+            ),
+            'SimpleSubUnit' =>
+            array(
+                'type' => 'SimpleSubUnit',
+            ),
+        ));
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'creator_id',
-             'foreign' => 'id'));
+            'local' => 'creator_id',
+            'foreign' => 'id'));
 
         $this->hasOne('sfGuardUser as Editor', array(
-             'local' => 'last_editor_id',
-             'foreign' => 'id'));
+            'local' => 'last_editor_id',
+            'foreign' => 'id'));
 
         $this->hasMany('EvaluatorHistory as EvaluatorActions', array(
-             'local' => 'id',
-             'foreign' => 'asset_group_id'));
+            'local' => 'id',
+            'foreign' => 'asset_group_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
-             'fields' => 
-             array(
-              0 => 'name',
-             ),
-             'name' => 'name_slug',
-             'type' => 'string',
-             'length' => 255,
-             'canUpdate' => true,
-             'unique' => true,
-             ));
+                    'fields' =>
+                    array(
+                        0 => 'name',
+                    ),
+                    'name' => 'name_slug',
+                    'type' => 'string',
+                    'length' => 255,
+                    'canUpdate' => true,
+                    'unique' => true,
+                ));
         $this->actAs($timestampable0);
         $this->actAs($sluggable0);
     }
+
 }

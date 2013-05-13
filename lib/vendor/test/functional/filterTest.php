@@ -9,37 +9,36 @@
  */
 
 $app = 'frontend';
-if (!include(dirname(__FILE__).'/../bootstrap/functional.php'))
-{
-  return;
+if (!include(dirname(__FILE__) . '/../bootstrap/functional.php')) {
+    return;
 }
 
 $b = new sfTestBrowser();
 
 // filter
 $b->
-  get('/filter')->
-  with('request')->begin()->
-    isParameter('module', 'filter')->
-    isParameter('action', 'index')->
-  end()->
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('div[class="before"]', 1)->
-    checkElement('div[class="after"]', 1)->
-  end()
+        get('/filter')->
+        with('request')->begin()->
+        isParameter('module', 'filter')->
+        isParameter('action', 'index')->
+        end()->
+        with('response')->begin()->
+        isStatusCode(200)->
+        checkElement('div[class="before"]', 1)->
+        checkElement('div[class="after"]', 1)->
+        end()
 ;
 
 // filter with a forward in the same module
 $b->
-  get('/filter/indexWithForward')->
-  with('request')->begin()->
-    isParameter('module', 'filter')->
-    isParameter('action', 'indexWithForward')->
-  end()->
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('div[class="before"]', 2)->
-    checkElement('div[class="after"]', 1)->
-  end()
+        get('/filter/indexWithForward')->
+        with('request')->begin()->
+        isParameter('module', 'filter')->
+        isParameter('action', 'indexWithForward')->
+        end()->
+        with('response')->begin()->
+        isStatusCode(200)->
+        checkElement('div[class="before"]', 2)->
+        checkElement('div[class="after"]', 1)->
+        end()
 ;

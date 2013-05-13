@@ -8,17 +8,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseOneInchOpenReelVideoFormFilter extends OpenReelVideoFormatTypeFormFilter
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseOneInchOpenReelVideoFormFilter extends OpenReelVideoFormatTypeFormFilter {
 
-    $this->widgetSchema->setNameFormat('one_inch_open_reel_video_filters[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'OneInchOpenReelVideo';
-  }
+        $this->widgetSchema->setNameFormat('one_inch_open_reel_video_filters[%s]');
+    }
+
+    public function getModelName() {
+        return 'OneInchOpenReelVideo';
+    }
+
 }

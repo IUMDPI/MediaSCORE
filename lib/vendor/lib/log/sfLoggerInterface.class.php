@@ -16,13 +16,13 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfLoggerInterface.class.php 9081 2008-05-20 00:47:12Z Carl.Vondrick $
  */
-interface sfLoggerInterface
-{
-  /**
-   * Logs a message.
-   *
-   * @param string $message   Message
-   * @param string $priority  Message priority
-   */
-  public function log($message, $priority = null);
+interface sfLoggerInterface {
+
+    /**
+     * Logs a message.
+     *
+     * @param string $message   Message
+     * @param string $priority  Message priority
+     */
+    public function log($message, $priority = null);
 }

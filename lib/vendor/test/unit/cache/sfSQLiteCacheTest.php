@@ -8,38 +8,31 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once(dirname(__FILE__).'/sfCacheDriverTests.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/sfCacheDriverTests.class.php');
 
 $plan = 129;
 $t = new lime_test($plan);
 
-if (!extension_loaded('SQLite') && !extension_loaded('pdo_SQLite')) 
-{
-  $t->skip('SQLite extension not loaded, skipping tests', $plan);
-  return;
+if (!extension_loaded('SQLite') && !extension_loaded('pdo_SQLite')) {
+    $t->skip('SQLite extension not loaded, skipping tests', $plan);
+    return;
 }
 
-try
-{
-  new sfSQLiteCache(array('database' => ':memory:'));
-}
-catch (sfInitializationException $e)
-{
-  $t->skip($e->getMessage(), $plan);
-  return;
+try {
+    new sfSQLiteCache(array('database' => ':memory:'));
+} catch (sfInitializationException $e) {
+    $t->skip($e->getMessage(), $plan);
+    return;
 }
 
 // ->initialize()
 $t->diag('->initialize()');
-try
-{
-  $cache = new sfSQLiteCache();
-  $t->fail('->initialize() throws an sfInitializationException exception if you don\'t pass a "database" parameter');
-}
-catch (sfInitializationException $e)
-{
-  $t->pass('->initialize() throws an sfInitializationException exception if you don\'t pass a "database" parameter');
+try {
+    $cache = new sfSQLiteCache();
+    $t->fail('->initialize() throws an sfInitializationException exception if you don\'t pass a "database" parameter');
+} catch (sfInitializationException $e) {
+    $t->pass('->initialize() throws an sfInitializationException exception if you don\'t pass a "database" parameter');
 }
 
 // database in memory

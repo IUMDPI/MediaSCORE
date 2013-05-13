@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once($_test_dir . '/unit/sfContextMock.class.php');
 
 $t = new lime_test(17);
 
-class myFilter extends sfFilter
-{
-  public function isFirstCall()
-  {
-    return parent::isFirstCall();
-  }
+class myFilter extends sfFilter {
+
+    public function isFirstCall() {
+        return parent::isFirstCall();
+    }
+
 }
 
 $context = sfContext::getInstance();
@@ -47,6 +47,6 @@ $filter->initialize($context);
 $t->is($filter->isFirstCall('beforeExecution'), false, '->isFirstCall() returns false if this is not the first call with this argument');
 
 // parameter holder proxy
-require_once($_test_dir.'/unit/sfParameterHolderTest.class.php');
+require_once($_test_dir . '/unit/sfParameterHolderTest.class.php');
 $pht = new sfParameterHolderProxyTest($t);
 $pht->launchTests($filter, 'parameter');

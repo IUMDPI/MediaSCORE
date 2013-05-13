@@ -18,13 +18,13 @@ require_once 'PEAR/Downloader.php';
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfPearDownloader.class.php 5250 2007-09-24 08:11:50Z fabien $
  */
-class sfPearDownloader extends PEAR_Downloader
-{
-  /**
-   * @see PEAR_REST::downloadHttp()
-   */
-  public function downloadHttp($url, &$ui, $save_dir = '.', $callback = null, $lastmodified = null, $accept = false, $channel = false)
-  {
-    return parent::downloadHttp($url, $ui, $save_dir, $callback, $lastmodified, $accept, $channel);
-  }
+class sfPearDownloader extends PEAR_Downloader {
+
+    /**
+     * @see PEAR_REST::downloadHttp()
+     */
+    public function downloadHttp($url, &$ui, $save_dir = '.', $callback = null, $lastmodified = null, $accept = false, $channel = false) {
+        return parent::downloadHttp($url, $ui, $save_dir, $callback, $lastmodified, $accept, $channel);
+    }
+
 }

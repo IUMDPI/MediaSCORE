@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(16);
 
@@ -37,18 +37,16 @@ $t->is($w->render(null), fix_linebreaks($output), '->render() decorates the widg
 // implements ArrayAccess
 $t->diag('implements ArrayAccess');
 $w['w2'] = $w2;
-$w1->setParent($ws); $w2->setParent($ws);
+$w1->setParent($ws);
+$w2->setParent($ws);
 $t->ok($w->getFields() == array('w1' => $w1, 'w2' => $w2), 'sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
 $t->ok($ws->getFields() == array('w1' => $w1, 'w2' => $w2), 'sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
 
-try
-{
-  $w['w1'] = 'string';
-  $t->fail('sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
-}
-catch (LogicException $e)
-{
-  $t->pass('sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
+try {
+    $w['w1'] = 'string';
+    $t->fail('sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
+} catch (LogicException $e) {
+    $t->pass('sfWidgetFormSchemaDecorator implements the ArrayAccess interface for the fields');
 }
 
 $w = new sfWidgetFormSchemaDecorator($ws, "<table>\n%content%</table>");

@@ -8,28 +8,28 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
-require_once(dirname(__FILE__).'/../../../lib/helper/PartialHelper.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once($_test_dir . '/unit/sfContextMock.class.php');
+require_once(dirname(__FILE__) . '/../../../lib/helper/PartialHelper.php');
 
 // Fixme: make this test more beautiful and extend it
 
 $t = new lime_test(9);
 
-class MyTestPartialView extends sfPartialView
-{
-  public function render()
-  {
-    return '==RENDERED==';
-  }
+class MyTestPartialView extends sfPartialView {
 
-  public function initialize($context, $moduleName, $actionName, $viewName)
-  {
-  }
+    public function render() {
+        return '==RENDERED==';
+    }
 
-  public function setPartialVars(array $partialVars)
-  {
-  }
+    public function initialize($context, $moduleName, $actionName, $viewName) {
+        
+    }
+
+    public function setPartialVars(array $partialVars) {
+        
+    }
+
 }
 
 $t->diag('get_partial()');

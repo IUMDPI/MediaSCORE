@@ -45,20 +45,25 @@ class collectionActions extends sfActions {
         $from = $request->getParameter('from');
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
+        $StorageLocation = $request->getParameter('searchStorageLocation');
 
         // Get collections for a specific Unit
         if ($request->isXmlHttpRequest()) {
             $this->collections = Doctrine_Query::Create()
                     ->from('Collection c')
-                    ->select('c.*,cu.*,eu.*')
+                    ->select('c.*,cu.*,eu.*,sl.*')
                     ->innerJoin('c.Creator cu')
                     ->innerJoin('c.Editor eu')
+                    ->leftJoin('c.StorageLocations sl')
                     ->where('c.parent_node_id  = ?', $unitID);
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->collections = $this->collections->andWhere('name like "%' . $searchInpout . '%"');
             }
             if (trim($status) != '') {
                 $this->collections = $this->collections->andWhere('status =?', $status);
+            }
+            if ($StorageLocation && trim($StorageLocation) != '') {
+                $this->collections = $this->collections->andWhere('resident_structure_description like "%' . $StorageLocation . '%"');
             }
             if ($dateType != '') {
                 if ($dateType == 0) {
@@ -88,7 +93,6 @@ class collectionActions extends sfActions {
                 }
             }
             $this->collections = $this->collections->fetchArray();
-
             foreach ($this->collections as $key => $value) {
                 $duration = new Collection();
                 $duration = $duration->getDuration($value['id']);
@@ -114,9 +118,18 @@ class collectionActions extends sfActions {
             $this->collections = Doctrine_Query::Create()
                     ->from('Collection c')
                     ->select('c.*')
+                    ->leftJoin('c.StorageLocations sl')
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
         }
+         $test = Doctrine_Query::Create()
+                    ->from('Collection c')
+                    ->select('c.*,cu.*,eu.*,sl.*')
+                    ->leftJoin('c.StorageLocations sl')
+                    ->fetchArray();
+//         echo '<pre>';
+//         print_r($test);
+//         exit;
     }
 
     /**

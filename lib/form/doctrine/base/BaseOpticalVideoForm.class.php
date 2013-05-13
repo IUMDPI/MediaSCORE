@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseOpticalVideoForm extends OpticalDiscFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseOpticalVideoForm extends OpticalDiscFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('optical_video[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'OpticalVideo';
-  }
+        $this->widgetSchema->setNameFormat('optical_video[%s]');
+    }
+
+    public function getModelName() {
+        return 'OpticalVideo';
+    }
 
 }

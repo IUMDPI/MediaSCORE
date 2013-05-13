@@ -18,15 +18,15 @@ require_once 'PEAR/REST/10.php';
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfPearRest10.class.php 5250 2007-09-24 08:11:50Z fabien $
  */
-class sfPearRest10 extends PEAR_REST_10
-{
-  /**
-   * @see PEAR_REST_10
-   */
-  public function __construct($config, $options = array())
-  {
-    $class = isset($options['base_class']) ? $options['base_class'] : 'sfPearRest';
+class sfPearRest10 extends PEAR_REST_10 {
 
-    $this->_rest = new $class($config, $options);
-  }
+    /**
+     * @see PEAR_REST_10
+     */
+    public function __construct($config, $options = array()) {
+        $class = isset($options['base_class']) ? $options['base_class'] : 'sfPearRest';
+
+        $this->_rest = new $class($config, $options);
+    }
+
 }

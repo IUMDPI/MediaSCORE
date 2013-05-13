@@ -7,41 +7,40 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-require_once dirname(__FILE__).'/../../bootstrap/unit.php';
+require_once dirname(__FILE__) . '/../../bootstrap/unit.php';
 
 $t = new lime_test(15);
 
-abstract class BaseTestTask extends sfTask
-{
-  public
-    $lastArguments = array(),
-    $lastOptions   = array();
+abstract class BaseTestTask extends sfTask {
 
-  public function __construct()
-  {
-    // lazy constructor
-    parent::__construct(new sfEventDispatcher(), new sfFormatter());
-  }
+    public
+            $lastArguments = array(),
+            $lastOptions = array();
 
-  protected function execute($arguments = array(), $options = array())
-  {
-    $this->lastArguments = $arguments;
-    $this->lastOptions = $options;
-  }
+    public function __construct() {
+        // lazy constructor
+        parent::__construct(new sfEventDispatcher(), new sfFormatter());
+    }
+
+    protected function execute($arguments = array(), $options = array()) {
+        $this->lastArguments = $arguments;
+        $this->lastOptions = $options;
+    }
+
 }
 
 // ->run()
 $t->diag('->run()');
 
-class ArgumentsTest1Task extends BaseTestTask
-{
-  protected function configure()
-  {
-    $this->addArguments(array(
-      new sfCommandArgument('foo', sfCommandArgument::REQUIRED),
-      new sfCommandArgument('bar', sfCommandArgument::OPTIONAL),
-    ));
-  }
+class ArgumentsTest1Task extends BaseTestTask {
+
+    protected function configure() {
+        $this->addArguments(array(
+            new sfCommandArgument('foo', sfCommandArgument::REQUIRED),
+            new sfCommandArgument('bar', sfCommandArgument::OPTIONAL),
+        ));
+    }
+
 }
 
 $task = new ArgumentsTest1Task();
@@ -63,14 +62,14 @@ $t->is_deeply($task->lastArguments, array('foo' => 'FOO', 'bar' => null), '->run
 $task->run(array('bar' => null, 'foo' => 'FOO'));
 $t->is_deeply($task->lastArguments, array('foo' => 'FOO', 'bar' => null), '->run() accepts an unordered associative array of arguments when optional arguments are passed as null');
 
-class ArgumentsTest2Task extends BaseTestTask
-{
-  protected function configure()
-  {
-    $this->addArguments(array(
-      new sfCommandArgument('foo', sfCommandArgument::OPTIONAL | sfCommandArgument::IS_ARRAY),
-    ));
-  }
+class ArgumentsTest2Task extends BaseTestTask {
+
+    protected function configure() {
+        $this->addArguments(array(
+            new sfCommandArgument('foo', sfCommandArgument::OPTIONAL | sfCommandArgument::IS_ARRAY),
+        ));
+    }
+
 }
 
 $task = new ArgumentsTest2Task();
@@ -80,17 +79,17 @@ $t->is_deeply($task->lastArguments, array('foo' => array('arg1', 'arg2', 'arg3')
 $task->run(array('foo' => array('arg1', 'arg2', 'arg3')));
 $t->is_deeply($task->lastArguments, array('foo' => array('arg1', 'arg2', 'arg3')), '->run() accepts an associative array of an IS_ARRAY argument');
 
-class OptionsTest1Task extends BaseTestTask
-{
-  protected function configure()
-  {
-    $this->addOptions(array(
-      new sfCommandOption('none', null, sfCommandOption::PARAMETER_NONE),
-      new sfCommandOption('required', null, sfCommandOption::PARAMETER_REQUIRED),
-      new sfCommandOption('optional', null, sfCommandOption::PARAMETER_OPTIONAL),
-      new sfCommandOption('array', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY),
-    ));
-  }
+class OptionsTest1Task extends BaseTestTask {
+
+    protected function configure() {
+        $this->addOptions(array(
+            new sfCommandOption('none', null, sfCommandOption::PARAMETER_NONE),
+            new sfCommandOption('required', null, sfCommandOption::PARAMETER_REQUIRED),
+            new sfCommandOption('optional', null, sfCommandOption::PARAMETER_OPTIONAL),
+            new sfCommandOption('array', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY),
+        ));
+    }
+
 }
 
 $task = new OptionsTest1Task();

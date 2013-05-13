@@ -1,6 +1,5 @@
 <?php
 
-
 class sfValidatorMobilePhone extends sfValidatorBase {
 
     protected function doClean($value) {

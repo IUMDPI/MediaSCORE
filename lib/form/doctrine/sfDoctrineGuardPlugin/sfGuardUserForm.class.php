@@ -11,7 +11,7 @@
 class sfGuardUserForm extends PluginsfGuardUserForm {
 
     static public $role = array('' => 'Select', 0 => 'User', 1 => 'Admin');
-    
+
     public function configure() {
         unset(
                 $this['last_login'], $this['created_at'], $this['updated_at'], $this['salt'], $this['groups_list'], $this['permissions_list'], $this['salt'], $this['algorithm'], $this['is_super_admin'], $this['contact_info'], $this['unit_id']
@@ -53,7 +53,7 @@ class sfGuardUserForm extends PluginsfGuardUserForm {
         $this->setValidator('role', new sfValidatorString(array('required' => true)));
 //        $this->setValidator('phone', new sfValidatorInteger(array('required' => false)));
         $this->setValidator('phone', new sfValidatorRegex(array('pattern' => "/^[\s-.()0-9]*$/i"),
-                                array('invalid' => 'Phone # must be numeric only.'))  
+                        array('invalid' => 'Phone # must be numeric only.'))
         );
 
         $this->getValidator('first_name')->setMessages(array('required' => 'This is a required field.',

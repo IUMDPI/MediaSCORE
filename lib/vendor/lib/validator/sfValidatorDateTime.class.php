@@ -16,15 +16,15 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfValidatorDateTime.class.php 5581 2007-10-18 13:56:14Z fabien $
  */
-class sfValidatorDateTime extends sfValidatorDate
-{
-  /**
-   * @see sfValidatorDate
-   */
-  protected function configure($options = array(), $messages = array())
-  {
-    parent::configure($options, $messages);
+class sfValidatorDateTime extends sfValidatorDate {
 
-    $this->setOption('with_time', true);
-  }
+    /**
+     * @see sfValidatorDate
+     */
+    protected function configure($options = array(), $messages = array()) {
+        parent::configure($options, $messages);
+
+        $this->setOption('with_time', true);
+    }
+
 }

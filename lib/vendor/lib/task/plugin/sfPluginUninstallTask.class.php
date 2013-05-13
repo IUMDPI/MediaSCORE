@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/sfPluginBaseTask.class.php');
+require_once(dirname(__FILE__) . '/sfPluginBaseTask.class.php');
 
 /**
  * Uninstall a plugin.
@@ -18,28 +18,27 @@ require_once(dirname(__FILE__).'/sfPluginBaseTask.class.php');
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfPluginUninstallTask.class.php 23922 2009-11-14 14:58:38Z fabien $
  */
-class sfPluginUninstallTask extends sfPluginBaseTask
-{
-  /**
-   * @see sfTask
-   */
-  protected function configure()
-  {
-    $this->addArguments(array(
-      new sfCommandArgument('name', sfCommandArgument::REQUIRED, 'The plugin name'),
-    ));
+class sfPluginUninstallTask extends sfPluginBaseTask {
 
-    $this->addOptions(array(
-      new sfCommandOption('channel', 'c', sfCommandOption::PARAMETER_REQUIRED, 'The PEAR channel name', null),
-      new sfCommandOption('install_deps', 'd', sfCommandOption::PARAMETER_NONE, 'Whether to force installation of dependencies', null),
-    ));
+    /**
+     * @see sfTask
+     */
+    protected function configure() {
+        $this->addArguments(array(
+            new sfCommandArgument('name', sfCommandArgument::REQUIRED, 'The plugin name'),
+        ));
 
-    $this->namespace = 'plugin';
-    $this->name = 'uninstall';
+        $this->addOptions(array(
+            new sfCommandOption('channel', 'c', sfCommandOption::PARAMETER_REQUIRED, 'The PEAR channel name', null),
+            new sfCommandOption('install_deps', 'd', sfCommandOption::PARAMETER_NONE, 'Whether to force installation of dependencies', null),
+        ));
 
-    $this->briefDescription = 'Uninstalls a plugin';
+        $this->namespace = 'plugin';
+        $this->name = 'uninstall';
 
-    $this->detailedDescription = <<<EOF
+        $this->briefDescription = 'Uninstalls a plugin';
+
+        $this->detailedDescription = <<<EOF
 The [plugin:uninstall|INFO] task uninstalls a plugin:
 
   [./symfony plugin:uninstall sfGuardPlugin|INFO]
@@ -63,15 +62,15 @@ If the plugin contains some web content (images, stylesheets or javascripts),
 the task also removes the [web/%name%|COMMENT] symbolic link (on *nix)
 or directory (on Windows).
 EOF;
-  }
+    }
 
-  /**
-   * @see sfTask
-   */
-  protected function execute($arguments = array(), $options = array())
-  {
-    $this->logSection('plugin', sprintf('uninstalling plugin "%s"', $arguments['name']));
+    /**
+     * @see sfTask
+     */
+    protected function execute($arguments = array(), $options = array()) {
+        $this->logSection('plugin', sprintf('uninstalling plugin "%s"', $arguments['name']));
 
-    $this->getPluginManager()->uninstallPlugin($arguments['name'], $options['channel']);
-  }
+        $this->getPluginManager()->uninstallPlugin($arguments['name'], $options['channel']);
+    }
+
 }

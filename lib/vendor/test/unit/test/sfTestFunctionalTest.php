@@ -8,36 +8,37 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(2);
 
-class mockBrowser extends sfBrowser
-{
-  public function setResponseContent($content)
-  {
-    $this->dom = new DomDocument('1.0');
-    $this->dom->validateOnParse = true;
-    @$this->dom->loadHTML($content);
-    $this->domCssSelector = new sfDomCssSelector($this->dom);
-  }
+class mockBrowser extends sfBrowser {
+
+    public function setResponseContent($content) {
+        $this->dom = new DomDocument('1.0');
+        $this->dom->validateOnParse = true;
+        @$this->dom->loadHTML($content);
+        $this->domCssSelector = new sfDomCssSelector($this->dom);
+    }
+
 }
 
-class mockLime extends lime_test
-{
-  public function __destruct()
-  {
-  }
+class mockLime extends lime_test {
+
+    public function __destruct() {
+        
+    }
+
 }
 
-class mockTestFunctional extends sfTestFunctional
-{
-  public $called = array();
+class mockTestFunctional extends sfTestFunctional {
 
-  public function call($uri, $method = 'get', $parameters = array(), $changeStack = true)
-  {
-    $this->called[] = func_get_args();
-  }
+    public $called = array();
+
+    public function call($uri, $method = 'get', $parameters = array(), $changeStack = true) {
+        $this->called[] = func_get_args();
+    }
+
 }
 
 $html = <<<HTML
@@ -56,15 +57,12 @@ $browser->setResponseContent($html);
 $lime = new mockLime();
 $tester = new mockTestFunctional($browser, $lime);
 
-try
-{
-  $tester->click('a.clickme');
-  $t->pass('->click() accepts a CSS selector');
-}
-catch (Exception $e)
-{
-  $t->diag($e->getMessage());
-  $t->fail('->click() accepts a CSS selector');
+try {
+    $tester->click('a.clickme');
+    $t->pass('->click() accepts a CSS selector');
+} catch (Exception $e) {
+    $t->diag($e->getMessage());
+    $t->fail('->click() accepts a CSS selector');
 }
 
 $t->is_deeply($tester->called, array(array('/somewhere', 'get', array())), '->click() parses a CSS selector');

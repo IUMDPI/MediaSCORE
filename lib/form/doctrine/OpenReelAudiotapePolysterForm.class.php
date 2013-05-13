@@ -34,7 +34,7 @@ class OpenReelAudiotapePolysterForm extends BaseOpenReelAudiotapePolysterForm {
 // Constraints applyed for score 
         $this->setWidget('trackConfiguration', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 0 => 'Full Track', 2 => 'Half-Track Mono', 3 => 'Half-Track Stereo', 4 => 'Quarter-Track Mono', 5 => 'Quarter-Track Stereo', 6 => 'Unknown')), array('class' => 'override_required')));
         $this->setValidator('trackConfiguration', new sfValidatorString(array('required' => true)));
-        
+
         foreach (array('tape_type',
     'duration_type_methodology',
     'format_notes',

@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once($_test_dir.'/unit/sfContextMock.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once($_test_dir . '/unit/sfContextMock.class.php');
 
 $t = new lime_test(21);
 
 $context = sfContext::getInstance();
 
-require_once(dirname(__FILE__).'/../../../lib/helper/TagHelper.php');
+require_once(dirname(__FILE__) . '/../../../lib/helper/TagHelper.php');
 
 // tag()
 $t->diag('tag()');
@@ -26,7 +26,6 @@ $t->is(tag('br', array('class' => 'foo'), false), '<br class="foo" />', 'tag() t
 $t->is(tag('br', 'class=foo', false), '<br class="foo" />', 'tag() takes a string of options as its second parameters');
 $t->is(tag('p', array('class' => 'foo', 'id' => 'bar'), true), '<p class="foo" id="bar">', 'tag() takes a boolean parameter as its third parameter');
 //$t->is(tag('br', array('class' => '"foo"')), '<br class="&quot;foo&quot;" />');
-
 // content_tag()
 $t->diag('content_tag()');
 $t->is(content_tag(''), '', 'content_tag() returns an empty string with empty input');
@@ -46,8 +45,8 @@ $t->is(escape_javascript("alert('foo');\nalert(\"bar\");"), 'alert(\\\'foo\\\');
 // _get_option()
 $t->diag('_get_option()');
 $options = array(
-  'foo' => 'bar',
-  'bar' => 'foo',
+    'foo' => 'bar',
+    'bar' => 'foo',
 );
 $t->is(_get_option($options, 'foo'), 'bar', '_get_option() returns the value for the given key');
 $t->ok(!isset($options['foo']), '_get_option() removes the key from the original array');

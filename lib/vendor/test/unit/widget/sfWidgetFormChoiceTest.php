@@ -8,16 +8,18 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
-class FormFormatterStub extends sfWidgetFormSchemaFormatter
-{
-  public function __construct() {}
+class FormFormatterStub extends sfWidgetFormSchemaFormatter {
 
-  public function translate($subject, $parameters = array())
-  {
-    return sprintf('translation[%s]', $subject);
-  }
+    public function __construct() {
+        
+    }
+
+    public function translate($subject, $parameters = array()) {
+        return sprintf('translation[%s]', $subject);
+    }
+
 }
 
 $t = new lime_test(19);
@@ -36,22 +38,20 @@ $t->is(get_class($w->getRenderer()), 'sfWidgetFormSelectCheckbox', '->getRendere
 $w->setOption('multiple', false);
 $t->is(get_class($w->getRenderer()), 'sfWidgetFormSelectRadio', '->getRenderer() guesses the renderer class to use');
 
-class MyWidget extends sfWidgetFormChoice
-{
-  public function render($name, $value = null, $attributes = array(), $errors = array())
-  {
-    return null;
-  }
+class MyWidget extends sfWidgetFormChoice {
 
-  public function getJavaScripts()
-  {
-    return array('/path/to/a/file.js');
-  }
+    public function render($name, $value = null, $attributes = array(), $errors = array()) {
+        return null;
+    }
 
-  public function getStylesheets()
-  {
-    return array('/path/to/a/file.css' => 'all');
-  }
+    public function getJavaScripts() {
+        return array('/path/to/a/file.js');
+    }
+
+    public function getStylesheets() {
+        return array('/path/to/a/file.css' => 'all');
+    }
+
 }
 
 $w->setOption('renderer_class', 'MyWidget');

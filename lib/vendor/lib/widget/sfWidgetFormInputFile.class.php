@@ -16,21 +16,21 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfWidgetFormInputFile.class.php 30762 2010-08-25 12:33:33Z fabien $
  */
-class sfWidgetFormInputFile extends sfWidgetFormInput
-{
-  /**
-   * Configures the current widget.
-   *
-   * @param array $options     An array of options
-   * @param array $attributes  An array of default HTML attributes
-   *
-   * @see sfWidgetFormInput
-   */
-  protected function configure($options = array(), $attributes = array())
-  {
-    parent::configure($options, $attributes);
+class sfWidgetFormInputFile extends sfWidgetFormInput {
 
-    $this->setOption('type', 'file');
-    $this->setOption('needs_multipart', true);
-  }
+    /**
+     * Configures the current widget.
+     *
+     * @param array $options     An array of options
+     * @param array $attributes  An array of default HTML attributes
+     *
+     * @see sfWidgetFormInput
+     */
+    protected function configure($options = array(), $attributes = array()) {
+        parent::configure($options, $attributes);
+
+        $this->setOption('type', 'file');
+        $this->setOption('needs_multipart', true);
+    }
+
 }

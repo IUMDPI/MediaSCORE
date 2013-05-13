@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(33);
 
@@ -104,9 +104,8 @@ $t->diag('implements Iterator');
 $e = new sfValidatorErrorSchema($v1, array('e1' => $e1, $e2));
 $e->addError($e2, '2');
 $errors = array();
-foreach ($e as $name => $error)
-{
-  $errors[$name] = $error;
+foreach ($e as $name => $error) {
+    $errors[$name] = $error;
 }
 $t->is($errors, array('e1' => $e1, 0 => $e2, '2' => $e2), 'sfValidatorErrorSchema implements the Iterator interface');
 
@@ -119,47 +118,39 @@ $t->is($e[0], $e2, 'sfValidatorErrorSchema implements the ArrayAccess interface'
 $t->is($e['2'], $e2, 'sfValidatorErrorSchema implements the ArrayAccess interface');
 $t->is(isset($e['e1']), true, 'sfValidatorErrorSchema implements the ArrayAccess interface');
 $t->is(isset($e['e2']), false, 'sfValidatorErrorSchema implements the ArrayAccess interface');
-try
-{
-  $e['e1'] = $e2;
-  $t->fail('sfValidatorErrorSchema implements the ArrayAccess interface');
-}
-catch (LogicException $e)
-{
-  $t->pass('sfValidatorErrorSchema implements the ArrayAccess interface');
+try {
+    $e['e1'] = $e2;
+    $t->fail('sfValidatorErrorSchema implements the ArrayAccess interface');
+} catch (LogicException $e) {
+    $t->pass('sfValidatorErrorSchema implements the ArrayAccess interface');
 }
 
 // implements Serializable
 $t->diag('implements Serializable');
 
-class NotSerializable implements Serializable
-{
-  public function serialize()
-  {
-    throw new Exception('Not serializable');
-  }
+class NotSerializable implements Serializable {
 
-  public function unserialize($serialized)
-  {
-    throw new Exception('Not serializable');
-  }
+    public function serialize() {
+        throw new Exception('Not serializable');
+    }
+
+    public function unserialize($serialized) {
+        throw new Exception('Not serializable');
+    }
+
 }
 
-function will_crash($a)
-{
-  return serialize(new sfValidatorErrorSchema(new sfValidatorString()));
+function will_crash($a) {
+    return serialize(new sfValidatorErrorSchema(new sfValidatorString()));
 }
 
 $a = new NotSerializable();
 
-try
-{
-  $serialized = will_crash($a);
-  $t->pass('sfValidatorErrorSchema implements Serializable');
-}
-catch (Exception $e)
-{
-  $t->fail('sfValidatorErrorSchema implements Serializable');
+try {
+    $serialized = will_crash($a);
+    $t->pass('sfValidatorErrorSchema implements Serializable');
+} catch (Exception $e) {
+    $t->fail('sfValidatorErrorSchema implements Serializable');
 }
 
 $e = new sfValidatorErrorSchema($v1);

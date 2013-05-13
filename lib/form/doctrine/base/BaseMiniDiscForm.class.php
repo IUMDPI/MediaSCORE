@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseMiniDiscForm extends SoftDiskFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseMiniDiscForm extends SoftDiskFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('mini_disc[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'MiniDisc';
-  }
+        $this->widgetSchema->setNameFormat('mini_disc[%s]');
+    }
+
+    public function getModelName() {
+        return 'MiniDisc';
+    }
 
 }

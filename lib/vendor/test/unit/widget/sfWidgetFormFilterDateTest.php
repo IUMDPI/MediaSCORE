@@ -8,26 +8,30 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
-class FormFormatterStub extends sfWidgetFormSchemaFormatter
-{
-  public function __construct() {}
+class FormFormatterStub extends sfWidgetFormSchemaFormatter {
 
-  public function translate($subject, $parameters = array())
-  {
-    return sprintf('translation[%s]', $subject);
-  }
+    public function __construct() {
+        
+    }
+
+    public function translate($subject, $parameters = array()) {
+        return sprintf('translation[%s]', $subject);
+    }
+
 }
 
-class WidgetFormStub extends sfWidget
-{
-  public function __construct() {}
+class WidgetFormStub extends sfWidget {
 
-  public function render($name, $value = null, $attributes = array(), $errors = array())
-  {
-    return sprintf('##%s##', __CLASS__);
-  }
+    public function __construct() {
+        
+    }
+
+    public function render($name, $value = null, $attributes = array(), $errors = array()) {
+        return sprintf('##%s##', __CLASS__);
+    }
+
 }
 
 $t = new lime_test(1);

@@ -16,6 +16,6 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfCommandArgumentsException.class.php 5175 2007-09-18 12:07:14Z fabien $
  */
-class sfCommandArgumentsException extends sfCommandException
-{
+class sfCommandArgumentsException extends sfCommandException {
+    
 }

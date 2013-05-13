@@ -8,32 +8,33 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(17);
 
-class myContext extends sfContext
-{
-  public function initialize(sfApplicationConfiguration $configuration)
-  {
-  }
+class myContext extends sfContext {
+
+    public function initialize(sfApplicationConfiguration $configuration) {
+        
+    }
+
 }
 
 /*
-// unit testing sfContext requires mock configuration / app
-// this test requires the functional project configurations
+  // unit testing sfContext requires mock configuration / app
+  // this test requires the functional project configurations
 
-class ProjectConfiguration extends sfProjectConfiguration
-{
-}
+  class ProjectConfiguration extends sfProjectConfiguration
+  {
+  }
 
-class frontendConfiguration extends sfApplicationConfiguration
-{
-}
-*/
+  class frontendConfiguration extends sfApplicationConfiguration
+  {
+  }
+ */
 
 // use functional project configruration
-require_once realpath(dirname(__FILE__).'/../../functional/fixtures/config/ProjectConfiguration.class.php');
+require_once realpath(dirname(__FILE__) . '/../../functional/fixtures/config/ProjectConfiguration.class.php');
 
 $frontend_context = sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true));
 $i18n_context = sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('i18n', 'test', true));
@@ -63,14 +64,11 @@ $object = new stdClass();
 $context1->set('object', $object, '->set() stores an object in the current context instance');
 $t->is($context1->has('object'), true, '->has() returns true if an object is stored for the given name');
 $t->is($context1->get('object'), $object, '->get() returns the object associated with the given name');
-try
-{
-  $context1->get('object1');
-  $t->fail('->get() throws an sfException if no object is stored for the given name');
-}
-catch (sfException $e)
-{
-  $t->pass('->get() throws an sfException if no object is stored for the given name');
+try {
+    $context1->get('object1');
+    $t->fail('->get() throws an sfException if no object is stored for the given name');
+} catch (sfException $e) {
+    $t->pass('->get() throws an sfException if no object is stored for the given name');
 }
 
 $context['foo'] = $frontend_context;
@@ -91,12 +89,9 @@ $context->setFoo4($i18n_context);
 $t->is($context->has('foo4'), true, '->__call() sets context objects by name using setName()');
 $t->isa_ok($context->getFoo4(), 'sfContext', '->__call() returns context objects by name using getName()');
 
-try
-{
-  $context->unknown();
-  $t->fail('->__call() throws an sfException if factory / method does not exist');
-}
-catch (sfException $e)
-{
-  $t->pass('->__call() throws an sfException if factory / method does not exist');
+try {
+    $context->unknown();
+    $t->fail('->__call() throws an sfException if factory / method does not exist');
+} catch (sfException $e) {
+    $t->pass('->__call() throws an sfException if factory / method does not exist');
 }

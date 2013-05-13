@@ -8,76 +8,69 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
-require_once(dirname(__FILE__).'/sfCacheDriverTests.class.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/sfCacheDriverTests.class.php');
 
 $t = new lime_test(15);
 
-class sfSimpleCache extends sfCache
-{
-  public $data = array();
+class sfSimpleCache extends sfCache {
 
-  public function get($key, $default = null)
-  {
-    return isset($this->data[$key]) ? $this->data[$key] : $default;
-  }
+    public $data = array();
 
-  public function set($key, $data, $lifetime = null)
-  {
-    $this->data[$key] = $data;
-  }
+    public function get($key, $default = null) {
+        return isset($this->data[$key]) ? $this->data[$key] : $default;
+    }
 
-  public function remove($key)
-  {
-    unset($this->data[$key]);
-  }
+    public function set($key, $data, $lifetime = null) {
+        $this->data[$key] = $data;
+    }
 
-  public function removePattern($pattern, $delimiter = ':')
-  {
-    $this->data = array();
-  }
+    public function remove($key) {
+        unset($this->data[$key]);
+    }
 
-  public function has($key)
-  {
-    return isset($this->data[$key]);
-  }
+    public function removePattern($pattern, $delimiter = ':') {
+        $this->data = array();
+    }
 
-  public function clean($mode = sfCache::ALL)
-  {
-    $this->data = array();
-  }
+    public function has($key) {
+        return isset($this->data[$key]);
+    }
 
-  public function getLastModified($key)
-  {
-    return 0;
-  }
+    public function clean($mode = sfCache::ALL) {
+        $this->data = array();
+    }
 
-  public function getTimeout($key)
-  {
-    return 0;
-  }
+    public function getLastModified($key) {
+        return 0;
+    }
+
+    public function getTimeout($key) {
+        return 0;
+    }
+
 }
 
-class testFunctionCache
-{
-  static $count = 0;
+class testFunctionCache {
 
-  static function test($arg1, $arg2)
-  {
-    ++self::$count;
+    static $count = 0;
 
-    return $arg1.$arg2;
-  }
+    static function test($arg1, $arg2) {
+        ++self::$count;
+
+        return $arg1 . $arg2;
+    }
+
 }
 
 $count = 0;
-function testFunctionCache($arg1, $arg2)
-{
-  global $count;
 
-  ++$count;
+function testFunctionCache($arg1, $arg2) {
+    global $count;
 
-  return $arg1.$arg2;
+    ++$count;
+
+    return $arg1 . $arg2;
 }
 
 // ->call()

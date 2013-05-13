@@ -10,53 +10,51 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Store extends BaseStore
-{
-/*    public function setUp()
-    {
-	    parent::setUp();
+class Store extends BaseStore {
+    /*    public function setUp()
+      {
+      parent::setUp();
 
-	    $this->hasOne('Evaluator', array(
-		    'alias' => 'creator',
-             'local' => 'creator_id',
-             'foreign' => 'id'));
+      $this->hasOne('Evaluator', array(
+      'alias' => 'creator',
+      'local' => 'creator_id',
+      'foreign' => 'id'));
 
-        $this->hasOne('User', array(
-             'local' => 'last_editor_id',
-	     'foreign' => 'id'));
+      $this->hasOne('User', array(
+      'local' => 'last_editor_id',
+      'foreign' => 'id'));
 
-        $this->hasMany('EvaluatorHistory as EvaluatorActions', array(
-             'local' => 'id',
-             'foreign' => 'asset_group_id'));
+      $this->hasMany('EvaluatorHistory as EvaluatorActions', array(
+      'local' => 'id',
+      'foreign' => 'asset_group_id'));
 
-        $timestampable = new Doctrine_Template_Timestampable();
-        $this->actAs($timestampable0);
-    }*/
+      $timestampable = new Doctrine_Template_Timestampable();
+      $this->actAs($timestampable0);
+      } */
 
-	/*public function setUp() {
-		parent::setUp();
-		$this->hasOne('sfGuardUser as Creator', array(
-			'local' => 'creator_id',
-			'foreign' => 'id'
-		));
+    /* public function setUp() {
+      parent::setUp();
+      $this->hasOne('sfGuardUser as Creator', array(
+      'local' => 'creator_id',
+      'foreign' => 'id'
+      ));
 
-		$this->hasOne('sfGuardUser as Editor', array(
-			'local' => 'last_editor_id',
-			'foreign' => 'id'
-		));
-	}
+      $this->hasOne('sfGuardUser as Editor', array(
+      'local' => 'last_editor_id',
+      'foreign' => 'id'
+      ));
+      }
 
-	public function getCreator() {
-		$creator = Doctrine_Core::getTable('sfGuardUser')->find( $this->getCreatorId() );
-		if($creator)
-			return $creator;
-	}
+      public function getCreator() {
+      $creator = Doctrine_Core::getTable('sfGuardUser')->find( $this->getCreatorId() );
+      if($creator)
+      return $creator;
+      }
 
-	public function getEditor() {
-		$editor = Doctrine_Core::getTable('sfGuardUser')->find( $this->getLastEditorId() );
-		if($editor)
-			return $editor;
-	}*/
-
+      public function getEditor() {
+      $editor = Doctrine_Core::getTable('sfGuardUser')->find( $this->getLastEditorId() );
+      if($editor)
+      return $editor;
+      } */
 }
 

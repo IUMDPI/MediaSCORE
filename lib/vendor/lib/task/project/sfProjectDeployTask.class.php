@@ -16,32 +16,31 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfProjectDeployTask.class.php 33125 2011-10-08 21:02:31Z fabien $
  */
-class sfProjectDeployTask extends sfBaseTask
-{
-  protected
-    $outputBuffer = '',
-    $errorBuffer = '';
+class sfProjectDeployTask extends sfBaseTask {
 
-  /**
-   * @see sfTask
-   */
-  protected function configure()
-  {
-    $this->addArguments(array(
-      new sfCommandArgument('server', sfCommandArgument::REQUIRED, 'The server name'),
-    ));
+    protected
+            $outputBuffer = '',
+            $errorBuffer = '';
 
-    $this->addOptions(array(
-      new sfCommandOption('go', null, sfCommandOption::PARAMETER_NONE, 'Do the deployment'),
-      new sfCommandOption('rsync-dir', null, sfCommandOption::PARAMETER_REQUIRED, 'The directory where to look for rsync*.txt files', 'config'),
-      new sfCommandOption('rsync-options', null, sfCommandOption::PARAMETER_OPTIONAL, 'To options to pass to the rsync executable', '-azC --force --delete --progress'),
-    ));
+    /**
+     * @see sfTask
+     */
+    protected function configure() {
+        $this->addArguments(array(
+            new sfCommandArgument('server', sfCommandArgument::REQUIRED, 'The server name'),
+        ));
 
-    $this->namespace = 'project';
-    $this->name = 'deploy';
-    $this->briefDescription = 'Deploys a project to another server';
+        $this->addOptions(array(
+            new sfCommandOption('go', null, sfCommandOption::PARAMETER_NONE, 'Do the deployment'),
+            new sfCommandOption('rsync-dir', null, sfCommandOption::PARAMETER_REQUIRED, 'The directory where to look for rsync*.txt files', 'config'),
+            new sfCommandOption('rsync-options', null, sfCommandOption::PARAMETER_OPTIONAL, 'To options to pass to the rsync executable', '-azC --force --delete --progress'),
+        ));
 
-    $this->detailedDescription = <<<EOF
+        $this->namespace = 'project';
+        $this->name = 'deploy';
+        $this->briefDescription = 'Deploys a project to another server';
+
+        $this->detailedDescription = <<<EOF
 The [project:deploy|INFO] task deploys a project on a server:
 
   [./symfony project:deploy production|INFO]
@@ -84,128 +83,105 @@ Last, you can specify the options passed to the rsync executable, using the
 
   [./symfony project:deploy --go --rsync-options=-avz|INFO]
 EOF;
-  }
-
-  /**
-   * @see sfTask
-   */
-  protected function execute($arguments = array(), $options = array())
-  {
-    $env = $arguments['server'];
-
-    $ini = sfConfig::get('sf_config_dir').'/properties.ini';
-    if (!file_exists($ini))
-    {
-      throw new sfCommandException('You must create a config/properties.ini file');
     }
 
-    $properties = parse_ini_file($ini, true);
+    /**
+     * @see sfTask
+     */
+    protected function execute($arguments = array(), $options = array()) {
+        $env = $arguments['server'];
 
-    if (!isset($properties[$env]))
-    {
-      throw new sfCommandException(sprintf('You must define the configuration for server "%s" in config/properties.ini', $env));
+        $ini = sfConfig::get('sf_config_dir') . '/properties.ini';
+        if (!file_exists($ini)) {
+            throw new sfCommandException('You must create a config/properties.ini file');
+        }
+
+        $properties = parse_ini_file($ini, true);
+
+        if (!isset($properties[$env])) {
+            throw new sfCommandException(sprintf('You must define the configuration for server "%s" in config/properties.ini', $env));
+        }
+
+        $properties = $properties[$env];
+
+        if (!isset($properties['host'])) {
+            throw new sfCommandException('You must define a "host" entry.');
+        }
+
+        if (!isset($properties['dir'])) {
+            throw new sfCommandException('You must define a "dir" entry.');
+        }
+
+        $host = $properties['host'];
+        $dir = $properties['dir'];
+        $user = isset($properties['user']) ? $properties['user'] . '@' : '';
+
+        if (substr($dir, -1) != '/') {
+            $dir .= '/';
+        }
+
+        $ssh = 'ssh';
+
+        if (isset($properties['port'])) {
+            $port = $properties['port'];
+            $ssh = '"ssh -p' . $port . '"';
+        }
+
+        if (isset($properties['parameters'])) {
+            $parameters = $properties['parameters'];
+        } else {
+            $parameters = $options['rsync-options'];
+            if (file_exists($options['rsync-dir'] . '/rsync_include.txt')) {
+                $parameters .= sprintf(' --include-from=%s/rsync_include.txt', $options['rsync-dir']);
+            }
+
+            if (file_exists($options['rsync-dir'] . '/rsync_exclude.txt')) {
+                $parameters .= sprintf(' --exclude-from=%s/rsync_exclude.txt', $options['rsync-dir']);
+            }
+
+            if (file_exists($options['rsync-dir'] . '/rsync.txt')) {
+                $parameters .= sprintf(' --files-from=%s/rsync.txt', $options['rsync-dir']);
+            }
+        }
+
+        $dryRun = $options['go'] ? '' : '--dry-run';
+        $command = "rsync $dryRun $parameters -e $ssh ./ $user$host:$dir";
+
+        $this->getFilesystem()->execute($command, $options['trace'] ? array($this, 'logOutput') : null, array($this, 'logErrors'));
+
+        $this->clearBuffers();
     }
 
-    $properties = $properties[$env];
-
-    if (!isset($properties['host']))
-    {
-      throw new sfCommandException('You must define a "host" entry.');
+    public function logOutput($output) {
+        if (false !== $pos = strpos($output, "\n")) {
+            $this->outputBuffer .= substr($output, 0, $pos);
+            $this->log($this->outputBuffer);
+            $this->outputBuffer = substr($output, $pos + 1);
+        } else {
+            $this->outputBuffer .= $output;
+        }
     }
 
-    if (!isset($properties['dir']))
-    {
-      throw new sfCommandException('You must define a "dir" entry.');
+    public function logErrors($output) {
+        if (false !== $pos = strpos($output, "\n")) {
+            $this->errorBuffer .= substr($output, 0, $pos);
+            $this->log($this->formatter->format($this->errorBuffer, 'ERROR'));
+            $this->errorBuffer = substr($output, $pos + 1);
+        } else {
+            $this->errorBuffer .= $output;
+        }
     }
 
-    $host = $properties['host'];
-    $dir  = $properties['dir'];
-    $user = isset($properties['user']) ? $properties['user'].'@' : '';
+    protected function clearBuffers() {
+        if ($this->outputBuffer) {
+            $this->log($this->outputBuffer);
+            $this->outputBuffer = '';
+        }
 
-    if (substr($dir, -1) != '/')
-    {
-      $dir .= '/';
+        if ($this->errorBuffer) {
+            $this->log($this->formatter->format($this->errorBuffer, 'ERROR'));
+            $this->errorBuffer = '';
+        }
     }
 
-    $ssh = 'ssh';
-
-    if (isset($properties['port']))
-    {
-      $port = $properties['port'];
-      $ssh = '"ssh -p'.$port.'"';
-    }
-
-    if (isset($properties['parameters']))
-    {
-      $parameters = $properties['parameters'];
-    }
-    else
-    {
-      $parameters = $options['rsync-options'];
-      if (file_exists($options['rsync-dir'].'/rsync_include.txt'))
-      {
-        $parameters .= sprintf(' --include-from=%s/rsync_include.txt', $options['rsync-dir']);
-      }
-
-      if (file_exists($options['rsync-dir'].'/rsync_exclude.txt'))
-      {
-        $parameters .= sprintf(' --exclude-from=%s/rsync_exclude.txt', $options['rsync-dir']);
-      }
-
-      if (file_exists($options['rsync-dir'].'/rsync.txt'))
-      {
-        $parameters .= sprintf(' --files-from=%s/rsync.txt', $options['rsync-dir']);
-      }
-    }
-
-    $dryRun = $options['go'] ? '' : '--dry-run';
-    $command = "rsync $dryRun $parameters -e $ssh ./ $user$host:$dir";
-
-    $this->getFilesystem()->execute($command, $options['trace'] ? array($this, 'logOutput') : null, array($this, 'logErrors'));
-
-    $this->clearBuffers();
-  }
-
-  public function logOutput($output)
-  {
-    if (false !== $pos = strpos($output, "\n"))
-    {
-      $this->outputBuffer .= substr($output, 0, $pos);
-      $this->log($this->outputBuffer);
-      $this->outputBuffer = substr($output, $pos + 1);
-    }
-    else
-    {
-      $this->outputBuffer .= $output;
-    }
-  }
-
-  public function logErrors($output)
-  {
-    if (false !== $pos = strpos($output, "\n"))
-    {
-      $this->errorBuffer .= substr($output, 0, $pos);
-      $this->log($this->formatter->format($this->errorBuffer, 'ERROR'));
-      $this->errorBuffer = substr($output, $pos + 1);
-    }
-    else
-    {
-      $this->errorBuffer .= $output;
-    }
-  }
-
-  protected function clearBuffers()
-  {
-    if ($this->outputBuffer)
-    {
-      $this->log($this->outputBuffer);
-      $this->outputBuffer = '';
-    }
-
-    if ($this->errorBuffer)
-    {
-      $this->log($this->formatter->format($this->errorBuffer, 'ERROR'));
-      $this->errorBuffer = '';
-    }
-  }
 }

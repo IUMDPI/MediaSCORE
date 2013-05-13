@@ -63,6 +63,9 @@
                 <option value="1">In Progress</option>
                 <option value="2">Completed</option>
             </select>
+            <strong>Score:</strong>
+            <input type="text" class="text" onkeyup="filterAssets();" id="searchScore"/>
+          
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
     </div>
@@ -80,12 +83,14 @@
             <th>Updated On</th>
             <th>Updated By</th>
             <th style="text-align: center;">Duration</th>
-<!--            <th></th>-->
+            <th>Score:</th>
+
         </tr>
     </thead>
     <tbody id="assetsResult">
-        <?php /* print_r($persons)->toArray() */ ?>
+
         <?php foreach ($asset_groups as $asset_group): ?>
+
             <tr>
                 <td class="invisible">
                     <div class="options">
@@ -99,6 +104,7 @@
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
                 <td  style="display: none;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span></td>
                 <td style="text-align: right;"><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
+                <td style="text-align: right;"><?php echo (float) $asset_group->getFormatType()->getAssetScore(); ?></td>
 
             </tr>
         <?php endforeach; ?>
@@ -178,7 +184,7 @@
         $.ajax({
             method: 'POST', 
             url: '/frontend_dev.php/assetgroup/index',
-            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchScore:$('#searchScore').val(),searchStorageLocation:$('#searchStorageLocation').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -198,7 +204,7 @@
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>'+
-                            
+                            '<td style="text-align: right;">'+result[collection].FormatType.asset_score+'</td>'+                            
                             '</tr>');
                     }
                     $(".delete_unit").fancybox({

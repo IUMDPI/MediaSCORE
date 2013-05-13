@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-
 /*
  * This file is part of the symfony package.
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
@@ -10,6 +9,6 @@
  */
 
 chdir(dirname(__FILE__));
-require_once(dirname(__FILE__).'/config/ProjectConfiguration.class.php');
+require_once(dirname(__FILE__) . '/config/ProjectConfiguration.class.php');
 $configuration = new ProjectConfiguration();
-include($configuration->getSymfonyLibDir().'/command/cli.php');
+include($configuration->getSymfonyLibDir() . '/command/cli.php');

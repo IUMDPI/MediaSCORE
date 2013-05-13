@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 require_once dirname(__FILE__) . '/../../bootstrap/unit.php';
-require_once sfConfig::get('sf_symfony_lib_dir').'/vendor/swiftmailer/classes/Swift.php';
+require_once sfConfig::get('sf_symfony_lib_dir') . '/vendor/swiftmailer/classes/Swift.php';
 Swift::registerAutoload();
 sfMailer::initialize();
-require_once dirname(__FILE__).'/fixtures/TestMailerTransport.class.php';
-require_once dirname(__FILE__).'/fixtures/TestSpool.class.php';
-require_once dirname(__FILE__).'/fixtures/TestMailMessage.class.php';
+require_once dirname(__FILE__) . '/fixtures/TestMailerTransport.class.php';
+require_once dirname(__FILE__) . '/fixtures/TestSpool.class.php';
+require_once dirname(__FILE__) . '/fixtures/TestMailMessage.class.php';
 
 $t = new lime_test(34);
 
@@ -21,44 +21,38 @@ $dispatcher = new sfEventDispatcher();
 
 // __construct()
 $t->diag('__construct()');
-try
-{
-  new sfMailer($dispatcher, array('delivery_strategy' => 'foo'));
+try {
+    new sfMailer($dispatcher, array('delivery_strategy' => 'foo'));
 
-  $t->fail('__construct() throws an InvalidArgumentException exception if the strategy is not valid');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('__construct() throws an InvalidArgumentException exception if the strategy is not valid');
+    $t->fail('__construct() throws an InvalidArgumentException exception if the strategy is not valid');
+} catch (InvalidArgumentException $e) {
+    $t->pass('__construct() throws an InvalidArgumentException exception if the strategy is not valid');
 }
 
 // main transport
 $mailer = new sfMailer($dispatcher, array(
-  'logging'           => true,
-  'delivery_strategy' => 'realtime',
-  'transport'         => array('class' => 'TestMailerTransport', 'param' => array('foo' => 'bar', 'bar' => 'foo')),
-));
+            'logging' => true,
+            'delivery_strategy' => 'realtime',
+            'transport' => array('class' => 'TestMailerTransport', 'param' => array('foo' => 'bar', 'bar' => 'foo')),
+        ));
 $t->is($mailer->getTransport()->getFoo(), 'bar', '__construct() passes the parameters to the main transport');
 
 // spool
 $mailer = new sfMailer($dispatcher, array(
-  'logging'           => true,
-  'delivery_strategy' => 'spool',
-  'spool_class'       => 'TestSpool',
-  'spool_arguments'   => array('TestMailMessage'),
-  'transport'         => array('class' => 'Swift_SmtpTransport', 'param' => array('username' => 'foo')),
-));
+            'logging' => true,
+            'delivery_strategy' => 'spool',
+            'spool_class' => 'TestSpool',
+            'spool_arguments' => array('TestMailMessage'),
+            'transport' => array('class' => 'Swift_SmtpTransport', 'param' => array('username' => 'foo')),
+        ));
 $t->is($mailer->getRealTimeTransport()->getUsername(), 'foo', '__construct() passes the parameters to the main transport');
 
-try
-{
-  $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'spool'));
+try {
+    $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'spool'));
 
-  $t->fail('__construct() throws an InvalidArgumentException exception if the spool_class option is not set with the spool delivery strategy');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('__construct() throws an InvalidArgumentException exception if the spool_class option is not set with the spool delivery strategy');
+    $t->fail('__construct() throws an InvalidArgumentException exception if the spool_class option is not set with the spool delivery strategy');
+} catch (InvalidArgumentException $e) {
+    $t->pass('__construct() throws an InvalidArgumentException exception if the spool_class option is not set with the spool delivery strategy');
 }
 
 $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'spool', 'spool_class' => 'TestSpool'));
@@ -66,15 +60,12 @@ $t->is(get_class($mailer->getTransport()), 'Swift_SpoolTransport', '__construct(
 $t->is(get_class($mailer->getTransport()->getSpool()), 'TestSpool', '__construct() recognizes the spool delivery strategy');
 
 // single address
-try
-{
-  $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'single_address'));
+try {
+    $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'single_address'));
 
-  $t->fail('__construct() throws an InvalidArgumentException exception if the delivery_address option is not set with the spool single_address strategy');
-}
-catch (InvalidArgumentException $e)
-{
-  $t->pass('__construct() throws an InvalidArgumentException exception if the delivery_address option is not set with the spool single_address strategy');
+    $t->fail('__construct() throws an InvalidArgumentException exception if the delivery_address option is not set with the spool single_address strategy');
+} catch (InvalidArgumentException $e) {
+    $t->pass('__construct() throws an InvalidArgumentException exception if the delivery_address option is not set with the spool single_address strategy');
 }
 
 $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'single_address', 'delivery_address' => 'foo@example.com'));
@@ -111,23 +102,20 @@ $t->is($messages[0]->getBody(), 'Body', '->composeAndSend() takes the body as it
 $t->diag('->flushQueue()');
 $mailer = new sfMailer($dispatcher, array('delivery_strategy' => 'none'));
 $mailer->composeAndSend('from@example.com', 'to@example.com', 'Subject', 'Body');
-try
-{
-  $mailer->flushQueue();
+try {
+    $mailer->flushQueue();
 
-  $t->fail('->flushQueue() throws a LogicException exception if the delivery_strategy is not spool');
-}
-catch (LogicException $e)
-{
-  $t->pass('->flushQueue() throws a LogicException exception if the delivery_strategy is not spool');
+    $t->fail('->flushQueue() throws a LogicException exception if the delivery_strategy is not spool');
+} catch (LogicException $e) {
+    $t->pass('->flushQueue() throws a LogicException exception if the delivery_strategy is not spool');
 }
 
 $mailer = new sfMailer($dispatcher, array(
-  'delivery_strategy' => 'spool',
-  'spool_class'       => 'TestSpool',
-  'spool_arguments'   => array('TestMailMessage'),
-  'transport'         => array('class' => 'TestMailerTransport'),
-));
+            'delivery_strategy' => 'spool',
+            'spool_class' => 'TestSpool',
+            'spool_arguments' => array('TestMailMessage'),
+            'transport' => array('class' => 'TestMailerTransport'),
+        ));
 $transport = $mailer->getRealtimeTransport();
 $spool = $mailer->getTransport()->getSpool();
 
@@ -141,12 +129,12 @@ $t->is($transport->getSentCount(), 1, '->flushQueue() sends messages in the spoo
 // ->sendNextImmediately()
 $t->diag('->sendNextImmediately()');
 $mailer = new sfMailer($dispatcher, array(
-  'logging'           => true,
-  'delivery_strategy' => 'spool',
-  'spool_class'       => 'TestSpool',
-  'spool_arguments'   => array('TestMailMessage'),
-  'transport'         => array('class' => 'TestMailerTransport'),
-));
+            'logging' => true,
+            'delivery_strategy' => 'spool',
+            'spool_class' => 'TestSpool',
+            'spool_arguments' => array('TestMailMessage'),
+            'transport' => array('class' => 'TestMailerTransport'),
+        ));
 $transport = $mailer->getRealtimeTransport();
 $spool = $mailer->getTransport()->getSpool();
 $t->is($mailer->sendNextImmediately(), $mailer, '->sendNextImmediately() implements a fluid interface');

@@ -8,16 +8,22 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
-class myResponse extends sfResponse
-{
-  function serialize() {}
-  function unserialize($serialized) {}
+class myResponse extends sfResponse {
+
+    function serialize() {
+        
+    }
+
+    function unserialize($serialized) {
+        
+    }
+
 }
 
-class fakeResponse
-{
+class fakeResponse {
+    
 }
 
 $t = new lime_test(8);
@@ -49,6 +55,6 @@ $t->diag('->serialize() ->unserialize()');
 $t->ok(new myResponse($dispatcher) instanceof Serializable, 'sfResponse implements the Serializable interface');
 
 // new methods via sfEventDispatcher
-require_once($_test_dir.'/unit/sfEventDispatcherTest.class.php');
+require_once($_test_dir . '/unit/sfEventDispatcherTest.class.php');
 $dispatcherTest = new sfEventDispatcherTest($t);
 $dispatcherTest->launchTests($dispatcher, $response, 'response');

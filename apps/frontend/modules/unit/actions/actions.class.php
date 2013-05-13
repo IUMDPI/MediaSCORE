@@ -206,6 +206,7 @@ class unitActions extends sfActions {
         $this->units = Doctrine_Core::getTable('Unit')
                 ->createQuery('a')
                 ->orderBy('name')
+                ->leftJoin('a.StorageLocations sl')
                 ->execute();
 
         // get all the request parameters
@@ -214,13 +215,17 @@ class unitActions extends sfActions {
         $from = $request->getParameter('from');
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
+        $StorageLocation = $request->getParameter('searchStorageLocation');
+
+//        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
             $this->unit = Doctrine_Query::Create()
                     ->from('Unit u')
-                    ->select('u.*,cu.*,eu.*')
+                    ->select('u.*,cu.*,eu.*,sl.resident_structure_description')
                     ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
-                    ->innerJoin('u.Editor eu');
+                    ->innerJoin('u.Editor eu')
+                    ->leftJoin('u.StorageLocations sl');
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
@@ -228,6 +233,11 @@ class unitActions extends sfActions {
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('status =?', $status);
             }
+
+            if ($StorageLocation && trim($StorageLocation) != '') {
+                $this->unit = $this->unit->andWhere('resident_structure_description like "%' . $StorageLocation . '%"');
+            }
+
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
@@ -255,10 +265,8 @@ class unitActions extends sfActions {
                     }
                 }
             }
-
-            // after applying the parametes get units.
             $this->unit = $this->unit->fetchArray();
-
+            // after applying the parametes get units.
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(24);
 
@@ -35,7 +35,7 @@ $ph->set('ref', $ref);
 $ref2 = null;
 $ref2 &= $ph->get('ref'); // obtain the very same reference and modify it
 $ref2 &= 'barfoo';
-$t->is($ref2 , $ref, '->get() returns a reference for the given key');
+$t->is($ref2, $ref, '->get() returns a reference for the given key');
 
 $ph = new sfParameterHolder();
 $t->is('default_value', $ph->get('foo1', 'default_value'), '->get() takes the default value as its second argument');

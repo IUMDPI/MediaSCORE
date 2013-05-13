@@ -9,43 +9,38 @@
  */
 
 // helper class to test the event dispatcher
-class sfEventDispatcherTest
-{
-  protected $t = null;
+class sfEventDispatcherTest {
 
-  public function __construct($testObject)
-  {
-    $this->t = $testObject;
-  }
+    protected $t = null;
 
-  public function launchTests($dispatcher, $object, $class)
-  {
-    $this->t->diag('New methods via sfEventDispatcher');
-    $dispatcher->connect($class.'.method_not_found', array('myEventDispatcherTest', 'newMethod'));
-    $this->t->is($object->newMethod('ok'), 'ok', '__call() accepts new methods via sfEventDispatcher');
-
-    try
-    {
-      $object->nonexistantmethodname();
-      $this->t->fail('__call() throws an exception if the method does not exist as a sfEventDispatcher listener');
+    public function __construct($testObject) {
+        $this->t = $testObject;
     }
-    catch (sfException $e)
-    {
-      $this->t->pass('__call() throws an exception if the method does not exist as a sfEventDispatcher listener');
+
+    public function launchTests($dispatcher, $object, $class) {
+        $this->t->diag('New methods via sfEventDispatcher');
+        $dispatcher->connect($class . '.method_not_found', array('myEventDispatcherTest', 'newMethod'));
+        $this->t->is($object->newMethod('ok'), 'ok', '__call() accepts new methods via sfEventDispatcher');
+
+        try {
+            $object->nonexistantmethodname();
+            $this->t->fail('__call() throws an exception if the method does not exist as a sfEventDispatcher listener');
+        } catch (sfException $e) {
+            $this->t->pass('__call() throws an exception if the method does not exist as a sfEventDispatcher listener');
+        }
     }
-  }
+
 }
 
-class myEventDispatcherTest
-{
-  static public function newMethod(sfEvent $event)
-  {
-    if ($event['method'] == 'newMethod')
-    {
-      $arguments = $event['arguments'];
-      $event->setReturnValue($arguments[0]);
+class myEventDispatcherTest {
 
-      return true;
+    static public function newMethod(sfEvent $event) {
+        if ($event['method'] == 'newMethod') {
+            $arguments = $event['arguments'];
+            $event->setReturnValue($arguments[0]);
+
+            return true;
+        }
     }
-  }
+
 }

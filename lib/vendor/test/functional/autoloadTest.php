@@ -9,23 +9,22 @@
  */
 
 $app = 'frontend';
-if (!include(dirname(__FILE__).'/../bootstrap/functional.php'))
-{
-  return;
+if (!include(dirname(__FILE__) . '/../bootstrap/functional.php')) {
+    return;
 }
 
 $b = new sfTestBrowser();
 
 $b->
-  get('/autoload/myAutoload')->
-  with('request')->begin()->
-    isParameter('module', 'autoload')->
-    isParameter('action', 'myAutoload')->
-  end()->
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body div', 'foo')->
-  end()
+        get('/autoload/myAutoload')->
+        with('request')->begin()->
+        isParameter('module', 'autoload')->
+        isParameter('action', 'myAutoload')->
+        end()->
+        with('response')->begin()->
+        isStatusCode(200)->
+        checkElement('body div', 'foo')->
+        end()
 ;
 
 $t = $b->test();

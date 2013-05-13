@@ -16,21 +16,20 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfValidatorPass.class.php 7902 2008-03-15 13:17:33Z fabien $
  */
-class sfValidatorPass extends sfValidatorBase
-{
-  /**
-   * @see sfValidatorBase
-   */
-  public function clean($value)
-  {
-    return $this->doClean($value);
-  }
+class sfValidatorPass extends sfValidatorBase {
 
-  /**
-   * @see sfValidatorBase
-   */
-  protected function doClean($value)
-  {
-    return $value;
-  }
+    /**
+     * @see sfValidatorBase
+     */
+    public function clean($value) {
+        return $this->doClean($value);
+    }
+
+    /**
+     * @see sfValidatorBase
+     */
+    protected function doClean($value) {
+        return $value;
+    }
+
 }

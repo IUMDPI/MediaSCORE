@@ -18,18 +18,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseCollection extends SubUnit
-{
-    public function setUp()
-    {
+abstract class BaseCollection extends SubUnit {
+
+    public function setUp() {
         parent::setUp();
         $this->hasMany('StorageLocation as StorageLocations', array(
-             'refClass' => 'CollectionStorageLocation',
-             'local' => 'collection_id',
-             'foreign' => 'storage_location_id'));
+            'refClass' => 'CollectionStorageLocation',
+            'local' => 'collection_id',
+            'foreign' => 'storage_location_id'));
 
         $this->hasMany('CollectionStorageLocation', array(
-             'local' => 'id',
-             'foreign' => 'collection_id'));
+            'local' => 'id',
+            'foreign' => 'collection_id'));
     }
+
 }

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/sfPluginBaseTask.class.php');
+require_once(dirname(__FILE__) . '/sfPluginBaseTask.class.php');
 
 /**
  * Publishes Web Assets for Core and third party plugins
@@ -18,27 +18,26 @@ require_once(dirname(__FILE__).'/sfPluginBaseTask.class.php');
  * @author     Fabian Lange <fabian.lange@symfony-project.com>
  * @version    SVN: $Id: sfPluginPublishAssetsTask.class.php 23922 2009-11-14 14:58:38Z fabien $
  */
-class sfPluginPublishAssetsTask extends sfPluginBaseTask
-{
-  /**
-   * @see sfTask
-   */
-  protected function configure()
-  {
-    $this->addArguments(array(
-      new sfCommandArgument('plugins', sfCommandArgument::OPTIONAL | sfCommandArgument::IS_ARRAY, 'Publish this plugin\'s assets'),
-    ));
+class sfPluginPublishAssetsTask extends sfPluginBaseTask {
 
-    $this->addOptions(array(
-      new sfCommandOption('core-only', '', sfCommandOption::PARAMETER_NONE, 'If set only core plugins will publish their assets'),
-    ));
+    /**
+     * @see sfTask
+     */
+    protected function configure() {
+        $this->addArguments(array(
+            new sfCommandArgument('plugins', sfCommandArgument::OPTIONAL | sfCommandArgument::IS_ARRAY, 'Publish this plugin\'s assets'),
+        ));
 
-    $this->namespace = 'plugin';
-    $this->name = 'publish-assets';
+        $this->addOptions(array(
+            new sfCommandOption('core-only', '', sfCommandOption::PARAMETER_NONE, 'If set only core plugins will publish their assets'),
+        ));
 
-    $this->briefDescription = 'Publishes web assets for all plugins';
+        $this->namespace = 'plugin';
+        $this->name = 'publish-assets';
 
-    $this->detailedDescription = <<<EOF
+        $this->briefDescription = 'Publishes web assets for all plugins';
+
+        $this->detailedDescription = <<<EOF
 The [plugin:publish-assets|INFO] task will publish web assets from all plugins.
 
   [./symfony plugin:publish-assets|INFO]
@@ -50,52 +49,45 @@ those plugins' names as arguments:
 
   [./symfony plugin:publish-assets sfDoctrinePlugin|INFO]
 EOF;
-  }
-
-  /**
-   * @see sfTask
-   */
-  protected function execute($arguments = array(), $options = array())
-  {
-    $enabledPlugins = $this->configuration->getPlugins();
-
-    if ($diff = array_diff($arguments['plugins'], $enabledPlugins))
-    {
-      throw new InvalidArgumentException('Plugin(s) not found: '.join(', ', $diff));
     }
 
-    if ($options['core-only'])
-    {
-      $corePlugins = sfFinder::type('dir')->relative()->maxdepth(0)->in($this->configuration->getSymfonyLibDir().'/plugins');
-      $arguments['plugins'] = array_unique(array_merge($arguments['plugins'], array_intersect($enabledPlugins, $corePlugins)));
-    }
-    else if (!count($arguments['plugins']))
-    {
-      $arguments['plugins'] = $enabledPlugins;
+    /**
+     * @see sfTask
+     */
+    protected function execute($arguments = array(), $options = array()) {
+        $enabledPlugins = $this->configuration->getPlugins();
+
+        if ($diff = array_diff($arguments['plugins'], $enabledPlugins)) {
+            throw new InvalidArgumentException('Plugin(s) not found: ' . join(', ', $diff));
+        }
+
+        if ($options['core-only']) {
+            $corePlugins = sfFinder::type('dir')->relative()->maxdepth(0)->in($this->configuration->getSymfonyLibDir() . '/plugins');
+            $arguments['plugins'] = array_unique(array_merge($arguments['plugins'], array_intersect($enabledPlugins, $corePlugins)));
+        } else if (!count($arguments['plugins'])) {
+            $arguments['plugins'] = $enabledPlugins;
+        }
+
+        foreach ($arguments['plugins'] as $plugin) {
+            $pluginConfiguration = $this->configuration->getPluginConfiguration($plugin);
+
+            $this->logSection('plugin', 'Configuring plugin - ' . $plugin);
+            $this->installPluginAssets($plugin, $pluginConfiguration->getRootDir());
+        }
     }
 
-    foreach ($arguments['plugins'] as $plugin)
-    {
-      $pluginConfiguration = $this->configuration->getPluginConfiguration($plugin);
+    /**
+     * Installs web content for a plugin.
+     *
+     * @param string $plugin The plugin name
+     * @param string $dir    The plugin directory
+     */
+    protected function installPluginAssets($plugin, $dir) {
+        $webDir = $dir . DIRECTORY_SEPARATOR . 'web';
 
-      $this->logSection('plugin', 'Configuring plugin - '.$plugin);
-      $this->installPluginAssets($plugin, $pluginConfiguration->getRootDir());
+        if (is_dir($webDir)) {
+            $this->getFilesystem()->relativeSymlink($webDir, sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . $plugin, true);
+        }
     }
-  }
 
-  /**
-   * Installs web content for a plugin.
-   *
-   * @param string $plugin The plugin name
-   * @param string $dir    The plugin directory
-   */
-  protected function installPluginAssets($plugin, $dir)
-  {
-    $webDir = $dir.DIRECTORY_SEPARATOR.'web';
-
-    if (is_dir($webDir))
-    {
-      $this->getFilesystem()->relativeSymlink($webDir, sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.$plugin, true);
-    }
-  }
 }

@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BasePressedAudioDiscFormatTypeForm extends SoftDiskFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BasePressedAudioDiscFormatTypeForm extends SoftDiskFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('pressed_audio_disc_format_type[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'PressedAudioDiscFormatType';
-  }
+        $this->widgetSchema->setNameFormat('pressed_audio_disc_format_type[%s]');
+    }
+
+    public function getModelName() {
+        return 'PressedAudioDiscFormatType';
+    }
 
 }

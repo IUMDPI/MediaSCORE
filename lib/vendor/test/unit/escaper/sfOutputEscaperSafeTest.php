@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../../lib/vendor/lime/lime.php');
-require_once(dirname(__FILE__).'/../../../lib/helper/EscapingHelper.php');
-require_once(dirname(__FILE__).'/../../../lib/escaper/sfOutputEscaperSafe.class.php');
+require_once(dirname(__FILE__) . '/../../../lib/vendor/lime/lime.php');
+require_once(dirname(__FILE__) . '/../../../lib/helper/EscapingHelper.php');
+require_once(dirname(__FILE__) . '/../../../lib/escaper/sfOutputEscaperSafe.class.php');
 
 $t = new lime_test(13);
 
@@ -22,9 +22,10 @@ $t->is($safe->getValue(), 'foo', '->getValue() returns the embedded value');
 // ->__set() ->__get()
 $t->diag('->__set() ->__get()');
 
-class TestClass1
-{
-  public $foo = 'bar';
+class TestClass1 {
+
+    public $foo = 'bar';
+
 }
 
 $safe = new sfOutputEscaperSafe(new TestClass1());
@@ -36,12 +37,12 @@ $t->is($safe->foo, 'baz', '->__set() sets the object parameter');
 // ->__call()
 $t->diag('->__call()');
 
-class TestClass2
-{
-  public function doSomething()
-  {
-    return 'ok';
-  }
+class TestClass2 {
+
+    public function doSomething() {
+        return 'ok';
+    }
+
 }
 
 $safe = new sfOutputEscaperSafe(new TestClass2());
@@ -50,11 +51,12 @@ $t->is($safe->doSomething(), 'ok', '->__call() invokes the embedded method');
 // ->__isset() ->__unset()
 $t->diag('->__isset() ->__unset()');
 
-class TestClass3
-{
-  public
-    $boolValue = true,
-    $nullValue = null;
+class TestClass3 {
+
+    public
+            $boolValue = true,
+            $nullValue = null;
+
 }
 
 $safe = new sfOutputEscaperSafe(new TestClass3());
@@ -73,9 +75,8 @@ $input = array('one' => 1, 'two' => 2, 'three' => 3, 'children' => array(1, 2, 3
 $output = array();
 
 $safe = new sfOutputEscaperSafe($input);
-foreach ($safe as $key => $value)
-{
-  $output[$key] = $value;
+foreach ($safe as $key => $value) {
+    $output[$key] = $value;
 }
 $t->is_deeply($output, $input, '"Iterator" implementation imitates an array');
 

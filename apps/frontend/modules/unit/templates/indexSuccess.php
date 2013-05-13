@@ -1,5 +1,5 @@
 
-<!--<a class="button" href="<?php //echo url_for('unit/new')        ?>">Create Unit</a>-->
+<!--<a class="button" href="<?php //echo url_for('unit/new')                                ?>">Create Unit</a>-->
 <a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -64,6 +64,11 @@
                 <option value="1">In Progress</option>
                 <option value="2">Completed</option>
             </select>
+            <br/>
+            <br/>
+            <strong>Storage Location : </strong>
+            <input type="text" class="text" onkeyup="filterUnits();" id="searchStorageLocation"/>
+<!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
     </div>
@@ -81,6 +86,7 @@
                 <th><span>Updated On</span></th>
                 <th><span>Updated By</span></th>
                 <th style="text-align: center;"><span>Duration</span></th>
+                <th style="text-align: center;"><span>Storage Locations</span></th>
             </tr>
         </thead>
         <tbody id="unitResult">
@@ -99,6 +105,7 @@
                     <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($unit->getDuration($unit->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
+                    <td style="text-align: right;"><?php echo $unit->getResidentStructureDescription() ?></td>
 
                 </tr>
             <?php endforeach; ?>
@@ -197,7 +204,7 @@
         $.ajax({
             method: 'POST', 
             url: '/unit/index',
-            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -205,6 +212,7 @@
                 if(result!=undefined && result.length>0){
                     $('#unitResult').html('');
                     for(collection in result){
+                        
                         $('#unitResult').append('<tr><td class="invisible">'+
                             '<div class="options">'+
                             '<a class="create_new_unit" href="/unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
@@ -216,9 +224,14 @@
                             '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
-                            '<td style="text-align: right;">'+result[collection].duration+'</td>'+
-                            
-                            '</tr>'); 
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>');
+                        if(result[collection].StorageLocations[0]){
+                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
+                        }else{
+                            $('#unitResult').append(
+                            '<td style="text-align: right;"> None </td>'+
+                                '</tr>'); 
+                        }
                     }
                     $(".delete_unit").fancybox({
                         'width': '100%',

@@ -14,68 +14,61 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfI18nApplicationExtract.class.php 14872 2009-01-19 08:32:06Z fabien $
  */
-class sfI18nApplicationExtract extends sfI18nExtract
-{
-  protected $extractObjects = array();
+class sfI18nApplicationExtract extends sfI18nExtract {
 
-  /**
-   * Configures the current extract object.
-   */
-  public function configure()
-  {
-    $this->extractObjects = array();
+    protected $extractObjects = array();
 
-    // Modules
-    $moduleNames = sfFinder::type('dir')->maxdepth(0)->relative()->in(sfConfig::get('sf_app_module_dir'));
-    foreach ($moduleNames as $moduleName)
-    {
-      $this->extractObjects[] = new sfI18nModuleExtract($this->i18n, $this->culture, array('module' => $moduleName));
-    }
-  }
+    /**
+     * Configures the current extract object.
+     */
+    public function configure() {
+        $this->extractObjects = array();
 
-  /**
-   * Extracts i18n strings.
-   *
-   * This class must be implemented by subclasses.
-   */
-  public function extract()
-  {
-    foreach ($this->extractObjects as $extractObject)
-    {
-      $extractObject->extract();
+        // Modules
+        $moduleNames = sfFinder::type('dir')->maxdepth(0)->relative()->in(sfConfig::get('sf_app_module_dir'));
+        foreach ($moduleNames as $moduleName) {
+            $this->extractObjects[] = new sfI18nModuleExtract($this->i18n, $this->culture, array('module' => $moduleName));
+        }
     }
 
-    // Add global templates
-    $this->extractFromPhpFiles(sfConfig::get('sf_app_template_dir'));
+    /**
+     * Extracts i18n strings.
+     *
+     * This class must be implemented by subclasses.
+     */
+    public function extract() {
+        foreach ($this->extractObjects as $extractObject) {
+            $extractObject->extract();
+        }
 
-    // Add global librairies
-    $this->extractFromPhpFiles(sfConfig::get('sf_app_lib_dir'));
-  }
+        // Add global templates
+        $this->extractFromPhpFiles(sfConfig::get('sf_app_template_dir'));
 
-  /**
-   * Gets the current i18n strings.
-   */
-  public function getCurrentMessages()
-  {
-    return array_unique(array_merge($this->currentMessages, $this->aggregateMessages('getCurrentMessages')));
-  }
-
-  /**
-   * Gets all i18n strings seen during the extraction process.
-   */
-  public function getAllSeenMessages()
-  {
-    return array_unique(array_merge($this->allSeenMessages, $this->aggregateMessages('getAllSeenMessages')));
-  }
-
-  protected function aggregateMessages($method)
-  {
-    $messages = array();
-    foreach ($this->extractObjects as $extractObject)
-    {
-      $messages = array_merge($messages, $extractObject->$method());
+        // Add global librairies
+        $this->extractFromPhpFiles(sfConfig::get('sf_app_lib_dir'));
     }
 
-    return array_unique($messages);
-  }
+    /**
+     * Gets the current i18n strings.
+     */
+    public function getCurrentMessages() {
+        return array_unique(array_merge($this->currentMessages, $this->aggregateMessages('getCurrentMessages')));
+    }
+
+    /**
+     * Gets all i18n strings seen during the extraction process.
+     */
+    public function getAllSeenMessages() {
+        return array_unique(array_merge($this->allSeenMessages, $this->aggregateMessages('getAllSeenMessages')));
+    }
+
+    protected function aggregateMessages($method) {
+        $messages = array();
+        foreach ($this->extractObjects as $extractObject) {
+            $messages = array_merge($messages, $extractObject->$method());
+        }
+
+        return array_unique($messages);
+    }
+
 }

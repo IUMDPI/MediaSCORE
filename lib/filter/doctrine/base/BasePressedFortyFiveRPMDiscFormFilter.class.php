@@ -8,17 +8,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BasePressedFortyFiveRPMDiscFormFilter extends PressedAudioDiscFormatTypeFormFilter
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BasePressedFortyFiveRPMDiscFormFilter extends PressedAudioDiscFormatTypeFormFilter {
 
-    $this->widgetSchema->setNameFormat('pressed_forty_five_rpm_disc_filters[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'PressedFortyFiveRPMDisc';
-  }
+        $this->widgetSchema->setNameFormat('pressed_forty_five_rpm_disc_filters[%s]');
+    }
+
+    public function getModelName() {
+        return 'PressedFortyFiveRPMDisc';
+    }
+
 }

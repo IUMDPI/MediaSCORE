@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseFilmForm extends ReelCassetteFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseFilmForm extends ReelCassetteFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('film[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'Film';
-  }
+        $this->widgetSchema->setNameFormat('film[%s]');
+    }
+
+    public function getModelName() {
+        return 'Film';
+    }
 
 }

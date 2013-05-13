@@ -8,16 +8,18 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
-class FormFormatterStub extends sfWidgetFormSchemaFormatter
-{
-  public function __construct() {}
+class FormFormatterStub extends sfWidgetFormSchemaFormatter {
 
-  public function translate($subject, $parameters = array())
-  {
-    return sprintf('translation[%s]', $subject);
-  }
+    public function __construct() {
+        
+    }
+
+    public function translate($subject, $parameters = array()) {
+        return sprintf('translation[%s]', $subject);
+    }
+
 }
 
 $t = new lime_test(22);
@@ -64,14 +66,11 @@ $dom->loadHTML($w->render('foo', array('foo', 'foobar')));
 $css = new sfDomCssSelector($dom);
 $t->is(count($css->matchAll('#foo optgroup[label="foo"] option')->getNodes()), 2, '->render() has support for optgroups tags');
 
-try
-{
-  $w = new sfWidgetFormSelect();
-  $t->fail('__construct() throws an RuntimeException if you don\'t pass a choices option');
-}
-catch (RuntimeException $e)
-{
-  $t->pass('__construct() throws an RuntimeException if you don\'t pass a choices option');
+try {
+    $w = new sfWidgetFormSelect();
+    $t->fail('__construct() throws an RuntimeException if you don\'t pass a choices option');
+} catch (RuntimeException $e) {
+    $t->pass('__construct() throws an RuntimeException if you don\'t pass a choices option');
 }
 
 // choices are translated
@@ -103,10 +102,10 @@ $t->is($css->matchSingle('#foo optgroup[label="translation[group]"] option[value
 // choices as a callable
 $t->diag('choices as a callable');
 
-function choice_callable()
-{
-  return array(1, 2, 3);
+function choice_callable() {
+    return array(1, 2, 3);
 }
+
 $w = new sfWidgetFormSelect(array('choices' => new sfCallable('choice_callable')));
 $dom->loadHTML($w->render('foo'));
 $css = new sfDomCssSelector($dom);

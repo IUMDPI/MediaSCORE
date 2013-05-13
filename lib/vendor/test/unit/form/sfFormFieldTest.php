@@ -8,21 +8,21 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(31);
 
 // widgets
 $authorSchema = new sfWidgetFormSchema(array(
-  'id'   => new sfWidgetFormInputHidden(),
-  'name' => $nameWidget = new sfWidgetFormInputText(),
-));
+            'id' => new sfWidgetFormInputHidden(),
+            'name' => $nameWidget = new sfWidgetFormInputText(),
+        ));
 $authorSchema->setNameFormat('article[author][%s]');
 
 $schema = new sfWidgetFormSchema(array(
-  'title'  => $titleWidget = new sfWidgetFormInputText(),
-  'author' => $authorSchema,
-));
+            'title' => $titleWidget = new sfWidgetFormInputText(),
+            'author' => $authorSchema,
+        ));
 $schema->setNameFormat('article[%s]');
 $titleWidget->setParent($schema);
 
@@ -127,41 +127,32 @@ $output = <<<EOF
 EOF;
 $t->is($child->renderRow(), fix_linebreaks($output), '->renderRow() renders a row when the widget has a parent');
 
-try
-{
-  $parent->renderRow();
-  $t->fail('->renderRow() throws an LogicException if the form field has no parent');
-}
-catch (LogicException $e)
-{
-  $t->pass('->renderRow() throws an LogicException if the form field has no parent');
+try {
+    $parent->renderRow();
+    $t->fail('->renderRow() throws an LogicException if the form field has no parent');
+} catch (LogicException $e) {
+    $t->pass('->renderRow() throws an LogicException if the form field has no parent');
 }
 
 // ->renderLabel()
 $t->diag('->renderLabel()');
 $t->is($f->renderLabel(), '<label for="article_title">Title</label>', '->renderLabel() renders the label as HTML');
 $t->is($f->renderLabel(null, array('class' => 'foo')), '<label class="foo" for="article_title">Title</label>', '->renderLabel() renders optional HTML attributes');
-try
-{
-  $parent->renderLabel();
-  $t->fail('->renderLabel() throws an LogicException if the form field has no parent');
-}
-catch (LogicException $e)
-{
-  $t->pass('->renderLabel() throws an LogicException if the form field has no parent');
+try {
+    $parent->renderLabel();
+    $t->fail('->renderLabel() throws an LogicException if the form field has no parent');
+} catch (LogicException $e) {
+    $t->pass('->renderLabel() throws an LogicException if the form field has no parent');
 }
 
 // ->renderLabelName()
 $t->diag('->renderLabelName()');
 $t->is($f->renderLabelName(), 'Title', '->renderLabelName() renders the label name');
-try
-{
-  $parent->renderLabelName();
-  $t->fail('->renderLabelName() throws an LogicException if the form field has no parent');
-}
-catch (LogicException $e)
-{
-  $t->pass('->renderLabelName() throws an LogicException if the form field has no parent');
+try {
+    $parent->renderLabelName();
+    $t->fail('->renderLabelName() throws an LogicException if the form field has no parent');
+} catch (LogicException $e) {
+    $t->pass('->renderLabelName() throws an LogicException if the form field has no parent');
 }
 
 // ->renderName()
@@ -196,14 +187,11 @@ $output = <<<EOF
 EOF;
 $t->is($child['name']->renderError(), fix_linebreaks($output), '->renderRow() renders errors as HTML when the widget has a parent');
 
-try
-{
-  $parent->renderError();
-  $t->fail('->renderError() throws an LogicException if the form field has no parent');
-}
-catch (LogicException $e)
-{
-  $t->pass('->renderError() throws an LogicException if the form field has no parent');
+try {
+    $parent->renderError();
+    $t->fail('->renderError() throws an LogicException if the form field has no parent');
+} catch (LogicException $e) {
+    $t->pass('->renderError() throws an LogicException if the form field has no parent');
 }
 
 // global errors

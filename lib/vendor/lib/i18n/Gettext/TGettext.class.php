@@ -20,13 +20,12 @@
  * @author      Michael Wallner <mike@php.net>
  * @license     PHP License
  */
-
 /**
  * Use PHPs builtin error messages
  */
 //ini_set('track_errors', true);
 
-/** 
+/**
  * File_Gettext
  * 
  * GNU gettext file reader and writer.
@@ -40,8 +39,8 @@
  * @access      public
  * @package System.I18N.core 
  */
-class TGettext
-{
+class TGettext {
+
     /**
      * strings
      * 
@@ -49,7 +48,7 @@ class TGettext
      * 
      * @access  protected
      * @var     array
-    */
+     */
     protected $strings = array();
 
     /**
@@ -62,7 +61,7 @@ class TGettext
      * @var     array
      */
     protected $meta = array();
-    
+
     /**
      * file path
      * 
@@ -70,7 +69,7 @@ class TGettext
      * @var     string
      */
     protected $file = '';
-    
+
     /**
      * Factory
      *
@@ -81,13 +80,12 @@ class TGettext
      * @param   string  $format MO or PO
      * @param   string  $file   path to GNU gettext file
      */
-    static function factory($format, $file = '')
-    {
+    static function factory($format, $file = '') {
         $format = strToUpper($format);
-        $filename = dirname(__FILE__).'/'.$format.'.php';
+        $filename = dirname(__FILE__) . '/' . $format . '.php';
         if (is_file($filename) == false)
-        	throw new Exception ("Class file $file not found");
-        	
+            throw new Exception("Class file $file not found");
+
         include_once $filename;
         $class = 'TGettext_' . $format;
 
@@ -106,28 +104,27 @@ class TGettext
      * @param   string  $pofile path to GNU PO file
      * @param   string  $mofile path to GNU MO file
      */
-    function poFile2moFile($pofile, $mofile)
-    {
+    function poFile2moFile($pofile, $mofile) {
         if (!is_file($pofile)) {
             throw new Exception("File $pofile doesn't exist.");
         }
-        
-        include_once dirname(__FILE__).'/PO.php';
-        
+
+        include_once dirname(__FILE__) . '/PO.php';
+
         $PO = new TGettext_PO($pofile);
         if (true !== ($e = $PO->load())) {
             return $e;
         }
-        
+
         $MO = $PO->toMO();
         if (true !== ($e = $MO->save($mofile))) {
             return $e;
         }
         unset($PO, $MO);
-        
+
         return true;
     }
-    
+
     /**
      * prepare
      *
@@ -137,20 +134,19 @@ class TGettext
      * @param   string  $string
      * @param   bool    $reverse
      */
-    function prepare($string, $reverse = false)
-    {
+    function prepare($string, $reverse = false) {
         if ($reverse) {
             $smap = array('"', "\n", "\t", "\r");
             $rmap = array('\"', '\\n"' . "\n" . '"', '\\t', '\\r');
             return (string) str_replace($smap, $rmap, $string);
         } else {
-        	$string = preg_replace('/"\s+"/', '', $string);
+            $string = preg_replace('/"\s+"/', '', $string);
             $smap = array('\\n', '\\r', '\\t', '\"');
             $rmap = array("\n", "\r", "\t", '"');
             return (string) str_replace($smap, $rmap, $string);
         }
     }
-    
+
     /**
      * meta2array
      *
@@ -159,8 +155,7 @@ class TGettext
      * @return  array
      * @param   string  $meta
      */
-    function meta2array($meta)
-    {
+    function meta2array($meta) {
         $array = array();
         foreach (explode("\n", $meta) as $info) {
             if ($info = trim($info)) {
@@ -195,11 +190,10 @@ class TGettext
      * @access  protected
      * @return  array
      */
-    function toArray()
-    {
-    	return array('meta' => $this->meta, 'strings' => $this->strings);
+    function toArray() {
+        return array('meta' => $this->meta, 'strings' => $this->strings);
     }
-    
+
     /**
      * fromArray
      * 
@@ -225,46 +219,44 @@ class TGettext
      * @return  bool
      * @param   array       $array
      */
-    function fromArray($array)
-    {
-    	if (!array_key_exists('strings', $array)) {
-    	    if (count($array) != 2) {
+    function fromArray($array) {
+        if (!array_key_exists('strings', $array)) {
+            if (count($array) != 2) {
                 return false;
-    	    } else {
-    	        list($this->meta, $this->strings) = $array;
+            } else {
+                list($this->meta, $this->strings) = $array;
             }
-    	} else {
+        } else {
             $this->meta = @$array['meta'];
             $this->strings = @$array['strings'];
         }
         return true;
     }
-    
+
     /**
      * toMO
      *
      * @access  protected
      * @return  object  File_Gettext_MO
      */
-    function toMO()
-    {
-        include_once dirname(__FILE__).'/MO.php';
+    function toMO() {
+        include_once dirname(__FILE__) . '/MO.php';
         $MO = new TGettext_MO;
         $MO->fromArray($this->toArray());
         return $MO;
     }
-    
+
     /**
      * toPO
      *
      * @access  protected
      * @return  object      File_Gettext_PO
      */
-    function toPO()
-    {
-        include_once dirname(__FILE__).'/PO.php';
+    function toPO() {
+        include_once dirname(__FILE__) . '/PO.php';
         $PO = new TGettext_PO;
         $PO->fromArray($this->toArray());
         return $PO;
     }
+
 }

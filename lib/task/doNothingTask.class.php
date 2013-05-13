@@ -59,7 +59,7 @@ EOF;
                 $AssetInformatoin = array(0 => array('FormatType' => $FormatType));
                 $scoreCalculator = new scoreCalculator();
                 $score = $scoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
-                
+
 
 
                 $response = Doctrine_Query::create()
@@ -67,7 +67,7 @@ EOF;
                         ->set('ft.asset_score', "'$score'")
                         ->where('ft.id = ?', $FormatType['id'])
                         ->execute();
-                
+
 //                if ($i == 3)
 //                    break;
             }

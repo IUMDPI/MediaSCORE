@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(65);
 
@@ -83,10 +83,10 @@ $t->is($route->matchesParameters(array('foo' => '')), true, '->matchesParameters
 $t->is($route->matchesParameters(array('foo' => null)), true, '->matchesParameters() matches if optional parameters empty');
 
 /*
-$route = new sfRoute('/:foo/bar');
-$t->is($route->matchesParameters(array('foo' => '')), false, '->matchesParameters() does not match is required parameters are empty');
-$t->is($route->matchesParameters(array('foo' => null)), false, '->matchesParameters() does not match is required parameters are empty');
-*/
+  $route = new sfRoute('/:foo/bar');
+  $t->is($route->matchesParameters(array('foo' => '')), false, '->matchesParameters() does not match is required parameters are empty');
+  $t->is($route->matchesParameters(array('foo' => null)), false, '->matchesParameters() does not match is required parameters are empty');
+ */
 
 $route = new sfRoute('/:foo');
 $route->setDefaultParameters(array('foo' => 'bar'));
@@ -124,26 +124,26 @@ $route = new sfRoute('/:foo');
 $t->is($route->generate(array('foo' => '')), '/', '->generate() generates a route if a variable is empty');
 $t->is($route->generate(array('foo' => null)), '/', '->generate() generates a route if a variable is empty');
 /*
-$route = new sfRoute('/:foo/bar');
-try
-{
+  $route = new sfRoute('/:foo/bar');
+  try
+  {
   $route->generate(array('foo' => ''));
   $t->fail('->generate() cannot generate a route if a variable is empty and mandatory');
-}
-catch (Exception $e)
-{
+  }
+  catch (Exception $e)
+  {
   $t->pass('->generate() cannot generate a route if a variable is empty and mandatory');
-}
-try
-{
+  }
+  try
+  {
   $route->generate(array('foo' => null));
   $t->fail('->generate() cannot generate a route if a variable is empty and mandatory');
-}
-catch (Exception $e)
-{
+  }
+  catch (Exception $e)
+  {
   $t->pass('->generate() cannot generate a route if a variable is empty and mandatory');
-}
-*/
+  }
+ */
 $route = new sfRoute('/:foo');
 $t->is($route->generate(array('foo' => 'bar', 'bar' => 'foo')), '/bar?bar=foo', '->generate() generates extra parameters as a query string');
 
@@ -188,60 +188,52 @@ $t->is($route->generate(array('foo' => 'bar', 'bar' => 'foo')), '/foo/bar/bar/fo
 // custom token
 $t->diag('custom token');
 
-class MyRoute extends sfRoute
-{
-  protected function tokenizeBufferBefore(&$buffer, &$tokens, &$afterASeparator, &$currentSeparator)
-  {
-    if ($afterASeparator && preg_match('#^=('.$this->options['variable_regex'].')#', $buffer, $match))
-    {
-      // a labelled variable
-      $this->tokens[] = array('label', $currentSeparator, $match[0], $match[1]);
+class MyRoute extends sfRoute {
 
-      $currentSeparator = '';
-      $buffer = substr($buffer, strlen($match[0]));
-      $afterASeparator = false;
-    }
-    else
-    {
-      return false;
-    }
-  }
+    protected function tokenizeBufferBefore(&$buffer, &$tokens, &$afterASeparator, &$currentSeparator) {
+        if ($afterASeparator && preg_match('#^=(' . $this->options['variable_regex'] . ')#', $buffer, $match)) {
+            // a labelled variable
+            $this->tokens[] = array('label', $currentSeparator, $match[0], $match[1]);
 
-  protected function compileForLabel($separator, $name, $variable)
-  {
-    if (!isset($this->requirements[$variable]))
-    {
-      $this->requirements[$variable] = $this->options['variable_content_regex'];
+            $currentSeparator = '';
+            $buffer = substr($buffer, strlen($match[0]));
+            $afterASeparator = false;
+        } else {
+            return false;
+        }
     }
 
-    $this->segments[] = preg_quote($separator, '#').$variable.$separator.'(?P<'.$variable.'>'.$this->requirements[$variable].')';
-    $this->variables[$variable] = $name;
+    protected function compileForLabel($separator, $name, $variable) {
+        if (!isset($this->requirements[$variable])) {
+            $this->requirements[$variable] = $this->options['variable_content_regex'];
+        }
 
-    if (!isset($this->defaults[$variable]))
-    {
-      $this->firstOptional = count($this->segments);
-    }
-  }
+        $this->segments[] = preg_quote($separator, '#') . $variable . $separator . '(?P<' . $variable . '>' . $this->requirements[$variable] . ')';
+        $this->variables[$variable] = $name;
 
-  protected function generateForLabel($optional, $tparams, $separator, $name, $variable)
-  {
-    if (!empty($tparams[$variable]) && (!$optional || !isset($this->defaults[$variable]) || $tparams[$variable] != $this->defaults[$variable]))
-    {
-      return $variable . '/' . urlencode($tparams[$variable]);
+        if (!isset($this->defaults[$variable])) {
+            $this->firstOptional = count($this->segments);
+        }
     }
-  }
+
+    protected function generateForLabel($optional, $tparams, $separator, $name, $variable) {
+        if (!empty($tparams[$variable]) && (!$optional || !isset($this->defaults[$variable]) || $tparams[$variable] != $this->defaults[$variable])) {
+            return $variable . '/' . urlencode($tparams[$variable]);
+        }
+    }
+
 }
 
 $route = new MyRoute('/=foo');
 $t->is($route->matchesUrl('/foo/bar'), array('foo' => 'bar'), '->tokenizeBufferBefore() allows to add a custom token');
 $t->is($route->generate(array('foo' => 'bar')), '/foo/bar', '->compileForLabel() adds logic to generate a route for a custom token');
 
-class CompileCheckRoute extends sfRoute
-{
-  public function isCompiled()
-  {
-    return $this->compiled;
-  }
+class CompileCheckRoute extends sfRoute {
+
+    public function isCompiled() {
+        return $this->compiled;
+    }
+
 }
 
 // state checking

@@ -8,20 +8,20 @@
  * file that was distributed with this source code.
  */
 
-require_once(dirname(__FILE__).'/../../bootstrap/unit.php');
+require_once(dirname(__FILE__) . '/../../bootstrap/unit.php');
 
 $t = new lime_test(34);
 
-class ProjectConfiguration extends sfProjectConfiguration
-{
+class ProjectConfiguration extends sfProjectConfiguration {
+    
 }
 
-class TestConfiguration extends sfApplicationConfiguration
-{
-  public function getI18NGlobalDirs()
-  {
-    return array(dirname(__FILE__).'/fixtures');
-  }
+class TestConfiguration extends sfApplicationConfiguration {
+
+    public function getI18NGlobalDirs() {
+        return array(dirname(__FILE__) . '/fixtures');
+    }
+
 }
 
 $configuration = new TestConfiguration('test', true, sfConfig::get('sf_test_cache_dir', sys_get_temp_dir()));
@@ -35,17 +35,14 @@ $dispatcher->notify(new sfEvent(null, 'user.change_culture', array('culture' => 
 $t->is($i18n->getCulture(), 'fr', '->initialize() connects to the user.change_culture event');
 
 // passing a "culture" option to initialize() should set PHP locale
-if (class_exists('Locale') && ($en = Locale::lookup(array('en-US'), 'en-US', true)) && ($fr = Locale::lookup(array('fr-FR'), 'fr-FR', true)))
-{
-  $i18n = new sfI18N($configuration, $cache, array('culture' => $fr));
-  $frLocale = localeconv();
-  $i18n = new sfI18N($configuration, $cache, array('culture' => $en));
-  $enLocale = localeconv();
-  $t->isnt(serialize($frLocale), serialize($enLocale), '->initialize() sets the PHP locale when a "culture" option is provided');
-}
-else
-{
-  $t->skip('Locale class or English and French locales are not installed');
+if (class_exists('Locale') && ($en = Locale::lookup(array('en-US'), 'en-US', true)) && ($fr = Locale::lookup(array('fr-FR'), 'fr-FR', true))) {
+    $i18n = new sfI18N($configuration, $cache, array('culture' => $fr));
+    $frLocale = localeconv();
+    $i18n = new sfI18N($configuration, $cache, array('culture' => $en));
+    $enLocale = localeconv();
+    $t->isnt(serialize($frLocale), serialize($enLocale), '->initialize() sets the PHP locale when a "culture" option is provided');
+} else {
+    $t->skip('Locale class or English and French locales are not installed');
 }
 
 // ->getCulture() ->setCulture()
@@ -60,13 +57,15 @@ $t->diag('->__()');
 sfConfig::set('sf_charset', 'UTF-8');
 $i18n = new sfI18N($configuration, $cache, array('culture' => 'fr'));
 $t->is($i18n->__('an english sentence'), 'une phrase en français', '->__() translates a string');
-class EnglishSentence
-{
-  public function __toString()
-  {
-    return 'an english sentence';
-  }
+
+class EnglishSentence {
+
+    public function __toString() {
+        return 'an english sentence';
+    }
+
 }
+
 $t->is($i18n->__(new EnglishSentence()), 'une phrase en français', '->__() translates an object with __toString()');
 $args = array('%timestamp%' => $timestamp = time());
 $t->is($i18n->__('Current timestamp is %timestamp%', $args), strtr('Le timestamp courant est %timestamp%', $args), '->__() takes an array of arguments as its second argument');

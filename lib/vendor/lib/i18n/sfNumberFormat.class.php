@@ -61,282 +61,236 @@
  * @package    symfony
  * @subpackage i18n
  */
-class sfNumberFormat
-{
-  /**
-   * The DateTimeFormatInfo, containing culture specific patterns and names.
-   * @var DateTimeFormatInfo
-   */
-  protected $formatInfo;
+class sfNumberFormat {
 
-  /**
-   * Creates a new number format instance. The constructor can be instantiated
-   * with a string that represent a culture/locale. Similarly, passing
-   * a sfCultureInfo or sfNumberFormatInfo instance will instantiated a instance
-   * for that particular culture.
-   *
-   * @param mixed $formatInfo either null, a sfCultureInfo, a sfNumberFormatInfo, or string
-   * @return sfNumberFormat
-   */
-  function __construct($formatInfo = null)
-  {
-    if (null === $formatInfo)
-    {
-      $this->formatInfo = sfNumberFormatInfo::getInvariantInfo();
-    }
-    else if ($formatInfo instanceof sfCultureInfo)
-    {
-      $this->formatInfo = $formatInfo->getNumberFormat();
-    }
-    else if ($formatInfo instanceof sfNumberFormatInfo)
-    {
-      $this->formatInfo = $formatInfo;
-    }
-    else
-    {
-      $this->formatInfo = sfNumberFormatInfo::getInstance($formatInfo);
-    }
-  }
+    /**
+     * The DateTimeFormatInfo, containing culture specific patterns and names.
+     * @var DateTimeFormatInfo
+     */
+    protected $formatInfo;
 
-  /**
-   * Formats the number for a certain pattern. The valid patterns are
-   * 'c', 'd', 'e', 'p' or a custom pattern, such as "#.000" for
-   * 3 decimal places.
-   *
-   * @param mixed   $number   the number to format.
-   * @param string  $pattern  the format pattern, either, 'c', 'd', 'e', 'p'
-   * or a custom pattern. E.g. "#.000" will format the number to 
-   * 3 decimal places.
-   * @param string  $currency 3-letter ISO 4217 code. For example, the code 
-   * "USD" represents the US Dollar and "EUR" represents the Euro currency.
-   * @param string  $charset  The charset
-   * @return string formatted number string 
-   */
-  function format($number, $pattern = 'd', $currency = 'USD', $charset = 'UTF-8')
-  {
-    $this->setPattern($pattern);
-
-    if (strtolower($pattern) == 'p')
-    {
-      $number = $number * 100;
-    }
-
-    // avoid conversion with exponents
-    // see http://trac.symfony-project.org/ticket/5715
-    $precision = ini_set('precision', 14);
-    $string = $this->fixFloat($number);
-    ini_set('precision', $precision);
-
-    $decimal = $this->formatDecimal($string);
-    $integer = $this->formatInteger($this->fixFloat(abs($number)));
-
-    $result = (strlen($decimal) > 0) ? $integer.$decimal : $integer;
-
-    // get the suffix
-    if ($number >= 0)
-    {
-      $suffix = $this->formatInfo->PositivePattern;
-    }
-    else if ($number < 0)
-    {
-      $suffix = $this->formatInfo->NegativePattern;
-    }
-
-    // append and prepend suffix
-    $result = $suffix[0].$result.$suffix[1];
-
-    // replace currency sign
-    $symbol = @$this->formatInfo->getCurrencySymbol($currency);
-    if (null === $symbol)
-    {
-      $symbol = $currency;
-    }
-
-    $result = str_replace('¤', $symbol, $result);
-
-    return sfToolkit::I18N_toEncoding($result, $charset);
-  }
-
-  /**
-   * Formats the integer, perform groupings and string padding.
-   *
-   * @param string  $string the decimal number in string form.
-   * @return string  formatted integer string with grouping
-   */
-  protected function formatInteger($string)
-  {
-    $string = (string) $string;
-
-    $dp = strpos($string, '.');
-
-    if (is_int($dp))
-    {
-      $string = substr($string, 0, $dp);
-    }
-
-    $integer = '';
-
-    $digitSize = $this->formatInfo->getDigitSize();
-    $string = str_pad($string, $digitSize, '0', STR_PAD_LEFT);
-
-    $len = strlen($string);
-
-    $groupSeparator = $this->formatInfo->GroupSeparator;
-    $groupSize = $this->formatInfo->GroupSizes;
-
-    $firstGroup = true;
-    $multiGroup = is_int($groupSize[1]);
-    $count = 0;
-
-    if (is_int($groupSize[0]))
-    {
-      // now for the integer groupings
-      for ($i = 0; $i < $len; $i++)
-      {
-        $char = $string{$len - $i - 1};
-
-        if ($multiGroup && $count == 0)
-        {
-          if ($i != 0 && $i % $groupSize[0] == 0)
-          {
-            $integer = $groupSeparator.$integer;
-            $count++;
-          }
+    /**
+     * Creates a new number format instance. The constructor can be instantiated
+     * with a string that represent a culture/locale. Similarly, passing
+     * a sfCultureInfo or sfNumberFormatInfo instance will instantiated a instance
+     * for that particular culture.
+     *
+     * @param mixed $formatInfo either null, a sfCultureInfo, a sfNumberFormatInfo, or string
+     * @return sfNumberFormat
+     */
+    function __construct($formatInfo = null) {
+        if (null === $formatInfo) {
+            $this->formatInfo = sfNumberFormatInfo::getInvariantInfo();
+        } else if ($formatInfo instanceof sfCultureInfo) {
+            $this->formatInfo = $formatInfo->getNumberFormat();
+        } else if ($formatInfo instanceof sfNumberFormatInfo) {
+            $this->formatInfo = $formatInfo;
+        } else {
+            $this->formatInfo = sfNumberFormatInfo::getInstance($formatInfo);
         }
-        else if ($multiGroup && $count >= 1)
-        {
-          if ($i != 0 && ($i - $groupSize[0]) % $groupSize[1] == 0)
-          {
-            $integer = $groupSeparator.$integer;
-            $count++;
-          }
-        }
-        else
-        {
-          if ($i != 0 && $i % $groupSize[0] == 0)
-          {
-            $integer = $groupSeparator.$integer;
-            $count++;
-          }
+    }
+
+    /**
+     * Formats the number for a certain pattern. The valid patterns are
+     * 'c', 'd', 'e', 'p' or a custom pattern, such as "#.000" for
+     * 3 decimal places.
+     *
+     * @param mixed   $number   the number to format.
+     * @param string  $pattern  the format pattern, either, 'c', 'd', 'e', 'p'
+     * or a custom pattern. E.g. "#.000" will format the number to 
+     * 3 decimal places.
+     * @param string  $currency 3-letter ISO 4217 code. For example, the code 
+     * "USD" represents the US Dollar and "EUR" represents the Euro currency.
+     * @param string  $charset  The charset
+     * @return string formatted number string 
+     */
+    function format($number, $pattern = 'd', $currency = 'USD', $charset = 'UTF-8') {
+        $this->setPattern($pattern);
+
+        if (strtolower($pattern) == 'p') {
+            $number = $number * 100;
         }
 
-        $integer = $char.$integer;
-      }
-    }
-    else
-    {
-      $integer = $string;
-    }
+        // avoid conversion with exponents
+        // see http://trac.symfony-project.org/ticket/5715
+        $precision = ini_set('precision', 14);
+        $string = $this->fixFloat($number);
+        ini_set('precision', $precision);
 
-    return $integer;
-  }
+        $decimal = $this->formatDecimal($string);
+        $integer = $this->formatInteger($this->fixFloat(abs($number)));
 
-  /**
-   * Formats the decimal places.
-   *
-   * @param string $string the decimal number in string form.
-   * @return string formatted decimal places.
-   */
-  protected function formatDecimal($string)
-  {
-    $dp = strpos($string, '.');
-    $decimal = '';
+        $result = (strlen($decimal) > 0) ? $integer . $decimal : $integer;
 
-    $decimalDigits = $this->formatInfo->DecimalDigits;
-    $decimalSeparator = $this->formatInfo->DecimalSeparator;
-
-    if (is_int($dp))
-    {
-      if ($decimalDigits == -1)
-      {
-        $decimal = substr($string, $dp + 1);
-      }
-      else if (is_int($decimalDigits))
-      {
-        if (false === $pos = strpos($string, '.'))
-        {
-          $decimal = str_pad($decimal, $decimalDigits, '0');
+        // get the suffix
+        if ($number >= 0) {
+            $suffix = $this->formatInfo->PositivePattern;
+        } else if ($number < 0) {
+            $suffix = $this->formatInfo->NegativePattern;
         }
-        else
-        {
-          $decimal = substr($string, $pos + 1);
-          if (strlen($decimal) <= $decimalDigits)
-          {
-            $decimal = str_pad($decimal, $decimalDigits, '0');
-          }
-          else
-          {
-            $decimal = substr($decimal, 0, $decimalDigits);
-          }
+
+        // append and prepend suffix
+        $result = $suffix[0] . $result . $suffix[1];
+
+        // replace currency sign
+        $symbol = @$this->formatInfo->getCurrencySymbol($currency);
+        if (null === $symbol) {
+            $symbol = $currency;
         }
-      }
-      else
-      {
+
+        $result = str_replace('¤', $symbol, $result);
+
+        return sfToolkit::I18N_toEncoding($result, $charset);
+    }
+
+    /**
+     * Formats the integer, perform groupings and string padding.
+     *
+     * @param string  $string the decimal number in string form.
+     * @return string  formatted integer string with grouping
+     */
+    protected function formatInteger($string) {
+        $string = (string) $string;
+
+        $dp = strpos($string, '.');
+
+        if (is_int($dp)) {
+            $string = substr($string, 0, $dp);
+        }
+
+        $integer = '';
+
+        $digitSize = $this->formatInfo->getDigitSize();
+        $string = str_pad($string, $digitSize, '0', STR_PAD_LEFT);
+
+        $len = strlen($string);
+
+        $groupSeparator = $this->formatInfo->GroupSeparator;
+        $groupSize = $this->formatInfo->GroupSizes;
+
+        $firstGroup = true;
+        $multiGroup = is_int($groupSize[1]);
+        $count = 0;
+
+        if (is_int($groupSize[0])) {
+            // now for the integer groupings
+            for ($i = 0; $i < $len; $i++) {
+                $char = $string{$len - $i - 1};
+
+                if ($multiGroup && $count == 0) {
+                    if ($i != 0 && $i % $groupSize[0] == 0) {
+                        $integer = $groupSeparator . $integer;
+                        $count++;
+                    }
+                } else if ($multiGroup && $count >= 1) {
+                    if ($i != 0 && ($i - $groupSize[0]) % $groupSize[1] == 0) {
+                        $integer = $groupSeparator . $integer;
+                        $count++;
+                    }
+                } else {
+                    if ($i != 0 && $i % $groupSize[0] == 0) {
+                        $integer = $groupSeparator . $integer;
+                        $count++;
+                    }
+                }
+
+                $integer = $char . $integer;
+            }
+        } else {
+            $integer = $string;
+        }
+
+        return $integer;
+    }
+
+    /**
+     * Formats the decimal places.
+     *
+     * @param string $string the decimal number in string form.
+     * @return string formatted decimal places.
+     */
+    protected function formatDecimal($string) {
+        $dp = strpos($string, '.');
+        $decimal = '';
+
+        $decimalDigits = $this->formatInfo->DecimalDigits;
+        $decimalSeparator = $this->formatInfo->DecimalSeparator;
+
+        if (is_int($dp)) {
+            if ($decimalDigits == -1) {
+                $decimal = substr($string, $dp + 1);
+            } else if (is_int($decimalDigits)) {
+                if (false === $pos = strpos($string, '.')) {
+                    $decimal = str_pad($decimal, $decimalDigits, '0');
+                } else {
+                    $decimal = substr($string, $pos + 1);
+                    if (strlen($decimal) <= $decimalDigits) {
+                        $decimal = str_pad($decimal, $decimalDigits, '0');
+                    } else {
+                        $decimal = substr($decimal, 0, $decimalDigits);
+                    }
+                }
+            } else {
+                return $decimal;
+            }
+
+            return $decimalSeparator . $decimal;
+        } else if ($decimalDigits > 0) {
+            return $decimalSeparator . str_pad($decimal, $decimalDigits, '0');
+        }
+
         return $decimal;
-      }
-
-      return $decimalSeparator.$decimal;
-    }
-    else if ($decimalDigits > 0)
-    {
-      return $decimalSeparator.str_pad($decimal, $decimalDigits, '0');
     }
 
-    return $decimal;
-  }
-
-  /**
-   * Sets the pattern to format against. The default patterns
-   * are retrieved from the sfNumberFormatInfo instance.
-   *
-   * @param string $pattern the requested patterns.
-   * @return string a number format pattern.
-   */
-  protected function setPattern($pattern)
-  {
-    switch ($pattern)
-    {
-      case 'c':
-      case 'C':
-        $this->formatInfo->setPattern(sfNumberFormatInfo::CURRENCY);
-        break;
-      case 'd':
-      case 'D':
-        $this->formatInfo->setPattern(sfNumberFormatInfo::DECIMAL);
-        break;
-      case 'e':
-      case 'E':
-        $this->formatInfo->setPattern(sfNumberFormatInfo::SCIENTIFIC);
-        break;
-      case 'p':
-      case 'P':
-        $this->formatInfo->setPattern(sfNumberFormatInfo::PERCENTAGE);
-        break;
-      default:
-        $this->formatInfo->setPattern($pattern);
-        break;
-    }
-  }
-
-  protected function fixFloat($float)
-  {
-    $string = (string) $float;
-
-    if (false === strstr($float, 'E'))
-    {
-      return $string;
+    /**
+     * Sets the pattern to format against. The default patterns
+     * are retrieved from the sfNumberFormatInfo instance.
+     *
+     * @param string $pattern the requested patterns.
+     * @return string a number format pattern.
+     */
+    protected function setPattern($pattern) {
+        switch ($pattern) {
+            case 'c':
+            case 'C':
+                $this->formatInfo->setPattern(sfNumberFormatInfo::CURRENCY);
+                break;
+            case 'd':
+            case 'D':
+                $this->formatInfo->setPattern(sfNumberFormatInfo::DECIMAL);
+                break;
+            case 'e':
+            case 'E':
+                $this->formatInfo->setPattern(sfNumberFormatInfo::SCIENTIFIC);
+                break;
+            case 'p':
+            case 'P':
+                $this->formatInfo->setPattern(sfNumberFormatInfo::PERCENTAGE);
+                break;
+            default:
+                $this->formatInfo->setPattern($pattern);
+                break;
+        }
     }
 
-    list($significand, $exp) = explode('E', $string);
-    list(, $decimal) = explode('.', $significand);
-    if ('-' === $exp[0]) {
-        $exp = str_replace('-', '', $exp);
+    protected function fixFloat($float) {
+        $string = (string) $float;
 
-        return '0.'.str_repeat('0', $exp).str_replace('.', '', $significand);
-    } else {
-        $exp = str_replace('+', '', $exp) - strlen($decimal);
+        if (false === strstr($float, 'E')) {
+            return $string;
+        }
 
-        return str_replace('.', '', $significand).str_repeat('0', $exp);
+        list($significand, $exp) = explode('E', $string);
+        list(, $decimal) = explode('.', $significand);
+        if ('-' === $exp[0]) {
+            $exp = str_replace('-', '', $exp);
+
+            return '0.' . str_repeat('0', $exp) . str_replace('.', '', $significand);
+        } else {
+            $exp = str_replace('+', '', $exp) - strlen($decimal);
+
+            return str_replace('.', '', $significand) . str_repeat('0', $exp);
+        }
     }
-  }
+
 }

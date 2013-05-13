@@ -11,6 +11,7 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class AssetGroup extends BaseAssetGroup {
+
     /**
      * calcuate the format duration
      * 
@@ -31,7 +32,7 @@ class AssetGroup extends BaseAssetGroup {
 
 
 
-       return  minutesToHour::ConvertMinutes2Hours($totalDuration);
+        return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
 
 }

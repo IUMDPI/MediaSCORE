@@ -14,6 +14,6 @@ class VHS extends BaseVHS {
 
     public static $constants = array(0 => array('' => 'Select', 0 => 'Small', 1 => 'Standard'),
         1 => array('' => 'Select', 0 => 'VHS', 1 => 'SVHS'),
-        2 =>array('' => 'Select', 0 => 'Standard',1 => 'Long Play',2 => 'Extended or Super Long Play',3 => 'Unknown'));
+        2 => array('' => 'Select', 0 => 'Standard', 1 => 'Long Play', 2 => 'Extended or Super Long Play', 3 => 'Unknown'));
 
 }

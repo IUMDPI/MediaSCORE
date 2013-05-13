@@ -41,7 +41,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
 
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
-        
+
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
 

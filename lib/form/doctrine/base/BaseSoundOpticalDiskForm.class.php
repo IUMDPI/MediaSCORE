@@ -10,18 +10,16 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseSoundOpticalDiskForm extends OpticalDiscFormatTypeForm
-{
-  protected function setupInheritance()
-  {
-    parent::setupInheritance();
+abstract class BaseSoundOpticalDiskForm extends OpticalDiscFormatTypeForm {
 
-    $this->widgetSchema->setNameFormat('sound_optical_disk[%s]');
-  }
+    protected function setupInheritance() {
+        parent::setupInheritance();
 
-  public function getModelName()
-  {
-    return 'SoundOpticalDisk';
-  }
+        $this->widgetSchema->setNameFormat('sound_optical_disk[%s]');
+    }
+
+    public function getModelName() {
+        return 'SoundOpticalDisk';
+    }
 
 }

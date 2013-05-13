@@ -8,38 +8,33 @@
  * file that was distributed with this source code.
  */
 
-class TestObject
-{
-  protected $value = 'value';
-  protected $text  = 'text';
+class TestObject {
 
-  public function getValue()
-  {
-    return $this->value;
-  }
+    protected $value = 'value';
+    protected $text = 'text';
 
-  public function getText()
-  {
-    return $this->text;
-  }
+    public function getValue() {
+        return $this->value;
+    }
 
-  public function setText($text)
-  {
-    $this->text = $text;
-  }
+    public function getText() {
+        return $this->text;
+    }
 
-  public function setValue($value)
-  {
-    $this->value = $value;
-  }
+    public function setText($text) {
+        $this->text = $text;
+    }
 
-  public function getBooleanTrue()
-  {
-    return true;
-  }
+    public function setValue($value) {
+        $this->value = $value;
+    }
 
-  public function getBooleanFalse()
-  {
-    return false;
-  }
+    public function getBooleanTrue() {
+        return true;
+    }
+
+    public function getBooleanFalse() {
+        return false;
+    }
+
 }
