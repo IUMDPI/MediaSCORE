@@ -101,23 +101,23 @@
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
-//                    $urlOnName = url_for('assetgroup', $result);
-                    $UnitOfCollection = Doctrine_Query::create()
-                            ->from('Unit u')
-                            ->select('u.*')
-                            ->where('id =?', $result->getParentNodeId())
-                            ->fetchOne();
-
-
-                    if ($UnitOfCollection) {
-                        $urlOnName = '/' . $UnitOfCollection['name_slug'] . '/' . $result->getNameSlug() . '/';
-                        $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
-                        $parentId = $result->getParentNodeId();
-                        $duration = $result->getDuration($result->getId());
-                    } else {
-                        echo '<pre>';
-                        print_r($result->getId());
-                    }
+                    $urlOnName = url_for('assetgroup', $result);
+//                    $UnitOfCollection = Doctrine_Query::create()
+//                            ->from('Unit u')
+//                            ->select('u.*')
+//                            ->where('id =?', $result->getParentNodeId())
+//                            ->fetchOne();
+//
+//
+//                    if ($UnitOfCollection) {
+//                        $urlOnName = '/' . $UnitOfCollection['name_slug'] . '/' . $result->getNameSlug() . '/';
+//                        $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+//                        $parentId = $result->getParentNodeId();
+//                        $duration = $result->getDuration($result->getId());
+//                    } else {
+//                        echo '<pre>';
+//                        print_r($result->getId());
+//                    }
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
