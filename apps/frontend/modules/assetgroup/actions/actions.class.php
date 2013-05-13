@@ -26,7 +26,6 @@ class assetgroupActions extends sfActions {
         $dateType = $request->getParameter('datetype');
         $AssetScore = $request->getParameter('searchScore');
 //        $StorageLocation = $request->getParameter('searchStorageLocation');
-
         // Get collections for a specific Asset Group
         if ($request->isXmlHttpRequest()) {
             $this->assets = Doctrine_Query::Create()
@@ -44,7 +43,7 @@ class assetgroupActions extends sfActions {
                 $this->assets = $this->assets->andWhere('status =?', $status);
             }
             if ($AssetScore != '') {
-                $this->assets = $this->assets->andWhere('asset_score =?', $AssetScore);
+                $this->assets = $this->assets->andWhere('asset_score like "%' . $AssetScore . '%"');
             }
             if ($dateType != '') {
                 if ($dateType == 0) {

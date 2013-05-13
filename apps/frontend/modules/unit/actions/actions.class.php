@@ -216,6 +216,8 @@ class unitActions extends sfActions {
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
         $StorageLocation = $request->getParameter('searchStorageLocation');
+        $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+
 
 //        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
@@ -226,6 +228,7 @@ class unitActions extends sfActions {
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu')
                     ->leftJoin('u.StorageLocations sl');
+            
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');

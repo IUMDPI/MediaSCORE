@@ -1,5 +1,3 @@
-
-<!--<a class="button" href="<?php //echo url_for('unit/new')                                 ?>">Create Unit</a>-->
 <a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
@@ -32,9 +30,20 @@
                     </ul>
                     <ul class="right-column">
                         <li><h1>Type</h1></li>
+
                         <li><a href="javascript:void(0);" onclick="makeTypeToken(0);">Unit</a></li>
                         <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
                         <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
+
+                    </ul>
+                    <br/>
+                    <ul class="right-column">
+
+                        <li><h1>Storage Location</h1></li>
+                        <?php foreach ($AllStorageLocations as $StorageLoca): ?>
+                            <li><a href="javascript:void(0);" onclick="GotoStorageLocation('<?php echo $StorageLoca['id'] ?>');"><?php echo $StorageLoca['name'] ?></a></li>
+                        <?php endforeach
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -105,7 +114,7 @@
                     <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($unit->getDuration($unit->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
-        <!--                    <td style="text-align: right;"><?php // echo $unit->getResidentStructureDescription()  ?></td>-->
+<!--                    <td style="text-align: right;"><?php // echo $unit->getStorageLocation()->getName() ?></td>-->
 
                 </tr>
             <?php endforeach; ?>
@@ -226,7 +235,7 @@
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>');
                         if(result[collection].StorageLocations[0]){
-                            //                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
+                                                        $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
                         }else{
                             //                            $('#unitResult').append('<td style="text-align: right;"> None </td>'+'</tr>'); 
                         }
