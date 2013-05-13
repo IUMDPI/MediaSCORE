@@ -114,7 +114,7 @@
                     <td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($unit->getDuration($unit->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $unit->getDuration($unit->getId()); ?></td>
-<!--                    <td style="text-align: right;"><?php // echo $unit->getStorageLocation()->getName() ?></td>-->
+        <!--                    <td style="text-align: right;"><?php // echo $unit->getStorageLocation()->getName()  ?></td>-->
 
                 </tr>
             <?php endforeach; ?>
@@ -208,12 +208,13 @@
         .removeAttr('checked').removeAttr('selected');
         filterUnits();
     }
-   
+    var Check  = new Array();
+    var i = 0;
     function filterUnits(){
-        $.ajax({
+        Check[i] = $.ajax({ 
             method: 'POST', 
             url: '/unit/index',
-            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            data:{s:$('0#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -235,7 +236,7 @@
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>');
                         if(result[collection].StorageLocations[0]){
-                                                        $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
+                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
                         }else{
                             //                            $('#unitResult').append('<td style="text-align: right;"> None </td>'+'</tr>'); 
                         }
@@ -270,6 +271,11 @@
                     
             }
         });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
+
     }
     function makeToken(event){
     
