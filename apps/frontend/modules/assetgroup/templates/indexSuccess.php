@@ -207,7 +207,7 @@
                             '<td>'+result[collection].updated_at+'</td>'+
                             '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>'+
-                            '<td style="text-align: right;">'+result[collection].FormatType.asset_score+'</td>'+                            
+//                            '<td style="text-align: right;">'+result[collection].FormatType.asset_score+'</td>'+                            
                             '</tr>');
                     }
                     $(".delete_unit").fancybox({
