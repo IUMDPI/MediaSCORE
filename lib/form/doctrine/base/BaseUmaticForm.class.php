@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseUmaticForm extends FormatVersionedVideoRecordingTypeForm {
+abstract class BaseUmaticForm extends FormatVersionedVideoRecordingTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('umatic[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('umatic[%s]');
-    }
-
-    public function getModelName() {
-        return 'Umatic';
-    }
+  public function getModelName()
+  {
+    return 'Umatic';
+  }
 
 }

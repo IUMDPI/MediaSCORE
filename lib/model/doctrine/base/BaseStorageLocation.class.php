@@ -33,46 +33,47 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseStorageLocation extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BaseStorageLocation extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('storage_location');
         $this->hasColumn('name', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
         $this->hasColumn('resident_structure_description', 'text', null, array(
-            'type' => 'text',
-            'notnull' => true,
-        ));
+             'type' => 'text',
+             'notnull' => true,
+             ));
         $this->hasColumn('env_rating', 'integer', null, array(
-            'type' => 'integer',
-        ));
+             'type' => 'integer',
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->hasMany('Unit as Units', array(
-            'refClass' => 'UnitStorageLocation',
-            'local' => 'storage_location_id',
-            'foreign' => 'unit_id'));
+             'refClass' => 'UnitStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'unit_id'));
 
         $this->hasMany('Collection as Collections', array(
-            'refClass' => 'CollectionStorageLocation',
-            'local' => 'storage_location_id',
-            'foreign' => 'collection_id'));
+             'refClass' => 'CollectionStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'collection_id'));
 
         $this->hasMany('UnitStorageLocation', array(
-            'local' => 'id',
-            'foreign' => 'storage_location_id'));
+             'local' => 'id',
+             'foreign' => 'storage_location_id'));
 
         $this->hasMany('CollectionStorageLocation', array(
-            'local' => 'id',
-            'foreign' => 'storage_location_id'));
+             'local' => 'id',
+             'foreign' => 'storage_location_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
-
 }

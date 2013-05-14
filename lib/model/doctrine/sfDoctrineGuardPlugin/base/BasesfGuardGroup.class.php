@@ -30,44 +30,45 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardGroup extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BasesfGuardGroup extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('sf_guard_group');
         $this->hasColumn('name', 'string', 255, array(
-            'type' => 'string',
-            'unique' => true,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'unique' => true,
+             'length' => 255,
+             ));
         $this->hasColumn('description', 'string', 1000, array(
-            'type' => 'string',
-            'length' => 1000,
-        ));
+             'type' => 'string',
+             'length' => 1000,
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->hasMany('sfGuardUser as Users', array(
-            'refClass' => 'sfGuardUserGroup',
-            'local' => 'group_id',
-            'foreign' => 'user_id'));
+             'refClass' => 'sfGuardUserGroup',
+             'local' => 'group_id',
+             'foreign' => 'user_id'));
 
         $this->hasMany('sfGuardPermission as Permissions', array(
-            'refClass' => 'sfGuardGroupPermission',
-            'local' => 'group_id',
-            'foreign' => 'permission_id'));
+             'refClass' => 'sfGuardGroupPermission',
+             'local' => 'group_id',
+             'foreign' => 'permission_id'));
 
         $this->hasMany('sfGuardGroupPermission', array(
-            'local' => 'id',
-            'foreign' => 'group_id'));
+             'local' => 'id',
+             'foreign' => 'group_id'));
 
         $this->hasMany('sfGuardUserGroup', array(
-            'local' => 'id',
-            'foreign' => 'group_id'));
+             'local' => 'id',
+             'foreign' => 'group_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-                ));
+             ));
         $this->actAs($timestampable0);
     }
-
 }

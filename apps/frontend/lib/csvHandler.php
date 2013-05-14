@@ -58,7 +58,7 @@ class csvHandler {
         }
         ob_start();
         $df = fopen($this->getUploadDicrectoryPath() . $filename, 'w');
-        fputcsv($df, array('Reported Date', ' - ' . date('Y-m-d') . ' - '));
+        fputcsv($df, array('Report Date', ' - ' . date('Y-m-d') . ' - '));
         if ($showAppliedFilters) {
             fputcsv($df, array('Filters Applied'));
             foreach ($filters as $key => $filter) {

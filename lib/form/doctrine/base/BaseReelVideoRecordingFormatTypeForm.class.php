@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseReelVideoRecordingFormatTypeForm extends VideoRecordingFormatTypeForm {
+abstract class BaseReelVideoRecordingFormatTypeForm extends VideoRecordingFormatTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('reel_video_recording_format_type[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('reel_video_recording_format_type[%s]');
-    }
-
-    public function getModelName() {
-        return 'ReelVideoRecordingFormatType';
-    }
+  public function getModelName()
+  {
+    return 'ReelVideoRecordingFormatType';
+  }
 
 }

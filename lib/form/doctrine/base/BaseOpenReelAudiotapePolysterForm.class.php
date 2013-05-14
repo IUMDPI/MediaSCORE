@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseOpenReelAudiotapePolysterForm extends OpenReelAudioTapeFormatTypeForm {
+abstract class BaseOpenReelAudiotapePolysterForm extends OpenReelAudioTapeFormatTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('open_reel_audiotape_polyster[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('open_reel_audiotape_polyster[%s]');
-    }
-
-    public function getModelName() {
-        return 'OpenReelAudiotapePolyster';
-    }
+  public function getModelName()
+  {
+    return 'OpenReelAudiotapePolyster';
+  }
 
 }

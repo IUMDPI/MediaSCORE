@@ -160,56 +160,56 @@ class excel extends PHPExcel {
         $this->getActiveSheet()->setTitle($this->getSheetTitle());
         $ThisStyleSheet = $this->getActiveSheet();
         $styleArray = array(
-            'font' => array(
-                'bold' => true,
-            ),
-            'alignment' => array(
-                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-            ),
-            'borders' => array(
-                'top' => array(
-                    'style' => PHPExcel_Style_Border::BORDER_THIN,
-                ),
-            ),
-            'fill' => array(
-                'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
-                'rotation' => 90,
-                'startcolor' => array(
-                    'argb' => 'FFA0A0A0',
-                ),
-                'endcolor' => array(
-                    'argb' => 'FFFFFFFF',
-                ),
-            ),
+//            'font' => array(
+//                'bold' => true,
+//            ),
+//            'alignment' => array(
+//                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+//            ),
+//            'borders' => array(
+//                'top' => array(
+//                    'style' => PHPExcel_Style_Border::BORDER_THIN,
+//                ),
+//            ),
+//            'fill' => array(
+//                'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+//                'rotation' => 90,
+//                'startcolor' => array(
+//                    'argb' => 'FFA0A0A0',
+//                ),
+//                'endcolor' => array(
+//                    'argb' => 'FFFFFFFF',
+//                ),
+//            ),
         );
         $styleArrayFilters = array(
-            'font' => array(
-                'bold' => true,
-            ),
-            'alignment' => array(
-                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-            ),
-            'borders' => array(
-                'top' => array(
-                    'style' => PHPExcel_Style_Border::BORDER_THIN,
-                ),
-            ),
-            'fill' => array(
-                'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
-                'rotation' => 90,
-                'startcolor' => array(
-                    'argb' => '1639292',
-                ),
-                'endcolor' => array(
-                    'argb' => 'FFFFFFFF',
-                ),
-            ),
+//            'font' => array(
+//                'bold' => true,
+//            ),
+//            'alignment' => array(
+//                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+//            ),
+//            'borders' => array(
+//                'top' => array(
+//                    'style' => PHPExcel_Style_Border::BORDER_THIN,
+//                ),
+//            ),
+//            'fill' => array(
+//                'type' => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+//                'rotation' => 90,
+//                'startcolor' => array(
+//                    'argb' => '1639292',
+//                ),
+//                'endcolor' => array(
+//                    'argb' => 'FFFFFFFF',
+//                ),
+//            ),
         );
         $headingRow = 1;
 
         $ThisStyleSheet->getStyleByColumnAndRow(0, $headingRow)->applyFromArray($styleArrayFilters);
         $ThisStyleSheet->getColumnDimensionByColumn(0)->setWidth(40);
-        $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow, 'Reported Date');
+        $ThisStyleSheet->setCellValueExplicitByColumnAndRow(0, $headingRow, 'Report Date');
         $ThisStyleSheet->getColumnDimensionByColumn(1)->setWidth(40);
         $ThisStyleSheet->setCellValueExplicitByColumnAndRow(1, $headingRow, date('Y-m-d'));
         $headingRow++;
@@ -241,7 +241,7 @@ class excel extends PHPExcel {
             $i = 0;
             foreach ($dataRow as $element) {
                 $dataType = $this->SetDataTypeExcel($element);
-                $ThisStyleSheet->setCellValueExplicitByColumnAndRow($i, ($j + ($headingRow + 1)), $element, $dataType);
+                $ThisStyleSheet->setCellValueExplicitByColumnAndRow($i, ($j + ($headingRow)), $element, $dataType);
                 $i++;
             }
             $j++;

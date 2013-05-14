@@ -27,31 +27,31 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseUnit extends Store {
-
-    public function setUp() {
+abstract class BaseUnit extends Store
+{
+    public function setUp()
+    {
         parent::setUp();
         $this->hasMany('StorageLocation as StorageLocations', array(
-            'refClass' => 'UnitStorageLocation',
-            'local' => 'unit_id',
-            'foreign' => 'storage_location_id'));
+             'refClass' => 'UnitStorageLocation',
+             'local' => 'unit_id',
+             'foreign' => 'storage_location_id'));
 
         $this->hasMany('Person as Personnel', array(
-            'refClass' => 'UnitPerson',
-            'local' => 'unit_id',
-            'foreign' => 'person_id'));
+             'refClass' => 'UnitPerson',
+             'local' => 'unit_id',
+             'foreign' => 'person_id'));
 
         $this->hasMany('UnitStorageLocation', array(
-            'local' => 'id',
-            'foreign' => 'unit_id'));
+             'local' => 'id',
+             'foreign' => 'unit_id'));
 
         $this->hasMany('UnitPerson', array(
-            'local' => 'id',
-            'foreign' => 'unit_id'));
+             'local' => 'id',
+             'foreign' => 'unit_id'));
 
         $this->hasOne('SubUnit as childNodes', array(
-            'local' => 'id',
-            'foreign' => 'parent_node_id'));
+             'local' => 'id',
+             'foreign' => 'parent_node_id'));
     }
-
 }

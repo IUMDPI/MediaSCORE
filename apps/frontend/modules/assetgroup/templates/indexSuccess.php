@@ -65,7 +65,7 @@
             </select>
             <strong>Score:</strong>
             <input type="text" class="text" onkeyup="filterAssets();" id="searchScore"/>
-          
+
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
     </div>
@@ -179,9 +179,12 @@
     function removeSearchText(){
         
     }
+    var Check  = new Array();
+    var i = 0;
+
     function filterAssets(){
         collectionID='<?php echo $collectionID; ?>';
-        $.ajax({
+        Check[i] = $.ajax({
             method: 'POST', 
             url: '/frontend_dev.php/assetgroup/index',
             data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchScore:$('#searchScore').val(),searchStorageLocation:$('#searchStorageLocation').val()},
@@ -228,6 +231,11 @@
                     
             }
         });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
+
     }
     function makeToken(event){
     

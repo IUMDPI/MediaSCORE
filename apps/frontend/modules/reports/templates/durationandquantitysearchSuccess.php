@@ -15,7 +15,6 @@ echo $NoRecordFound = get_slot('my_slot');
     <b><?php echo $form['listCollection_RRD']->renderLabel(); ?></b>
     <br/>
     <br/>
-
     <?php echo $form['listCollection_RRD']->render(); ?>
     <br/>
     <br/>

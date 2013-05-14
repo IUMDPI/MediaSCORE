@@ -78,7 +78,6 @@
  * @property integer $formatTypedVideoRecordingFormat
  * @property string $bitrate
  * @property integer $scanning
- * @property float $asset_score
  * @property Doctrine_Collection $heldByAssetGroups
  * @property Doctrine_Collection $CharacteristicsFormat
  * @property Doctrine_Collection $CharacteristicsValues
@@ -156,7 +155,6 @@
  * @method integer             getFormatTypedVideoRecordingFormat() Returns the current record's "formatTypedVideoRecordingFormat" value
  * @method string              getBitrate()                         Returns the current record's "bitrate" value
  * @method integer             getScanning()                        Returns the current record's "scanning" value
- * @method FormatType          getAssetScore()                      Returns the current record's "asset_score" value
  * @method Doctrine_Collection getHeldByAssetGroups()               Returns the current record's "heldByAssetGroups" collection
  * @method Doctrine_Collection getCharacteristicsFormat()           Returns the current record's "CharacteristicsFormat" collection
  * @method Doctrine_Collection getCharacteristicsValues()           Returns the current record's "CharacteristicsValues" collection
@@ -233,7 +231,6 @@
  * @method FormatType          setFormatTypedVideoRecordingFormat() Sets the current record's "formatTypedVideoRecordingFormat" value
  * @method FormatType          setBitrate()                         Sets the current record's "bitrate" value
  * @method FormatType          setScanning()                        Sets the current record's "scanning" value
- * @method FormatType          setAssetScore()                      Sets the current record's "asset_score" value
  * @method FormatType          setHeldByAssetGroups()               Sets the current record's "heldByAssetGroups" collection
  * @method FormatType          setCharacteristicsFormat()           Sets the current record's "CharacteristicsFormat" collection
  * @method FormatType          setCharacteristicsValues()           Sets the current record's "CharacteristicsValues" collection
@@ -243,488 +240,485 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseFormatType extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BaseFormatType extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('format_type');
         $this->hasColumn('quantity', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
+             'type' => 'integer',
+             'notnull' => true,
+             ));
         $this->hasColumn('generation', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
+             'type' => 'integer',
+             'notnull' => true,
+             ));
         $this->hasColumn('year_recorded', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
         $this->hasColumn('copies', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
+             'type' => 'boolean',
+             ));
         $this->hasColumn('stock_brand', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('off_brand', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
+             'type' => 'boolean',
+             ));
         $this->hasColumn('fungus', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
+             'type' => 'boolean',
+             ));
         $this->hasColumn('other_contaminants', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
+             'type' => 'boolean',
+             ));
         $this->hasColumn('duration', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
         $this->hasColumn('duration_type', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('duration_type_methodology', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('format_notes', 'text', null, array(
-            'type' => 'text',
-        ));
-//        $this->hasColumn('asset_score', 'float', null, array(
-//            'type' => 'float',
-//        )); 
-        $this->hasColumn('type', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
-        $this->hasColumn('material', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('oxidationCorrosion', 'boolean', null, array(
-            'type' => 'boolean',
-            'notnull' => true,
-        ));
-        $this->hasColumn('pack_deformation', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('noise_reduction', 'boolean', null, array(
-            'type' => 'boolean',
-            'notnull' => true,
-        ));
-        $this->hasColumn('tape_type', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('thin_tape', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('slow_speed', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('sound_field', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('soft_binder_syndrome', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('gauge', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('color', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('colorFade', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('soundtrackFormat', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('substrate', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('strongOdor', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('vinegarOdor', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('ADStripLevel', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('shrinkage', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('levelOfShrinkage', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('rust', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('discoloration', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('surfaceBlisteringBubbling', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('thinTape', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('1993OrEarlier', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('dataGradeTape', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('longPlay32K96K', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('corrosionRustOxidation', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('composition', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('nonStandardBrand', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('trackConfiguration', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('tapeThickness', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('speed', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('softBinderSyndrome', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('materialsBreakdown', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('physicalDamage', 'integer', null, array(
-            'type' => 'integer',
-        ));
-        $this->hasColumn('delamination', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('plasticizerExudation', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('recordingLayer', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('recordingSpeed', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('cylinderType', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('reflectiveLayer', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('dataLayer', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('opticalDiscType', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('format', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('recordingStandard', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('publicationYear', 'date', null, array(
-            'type' => 'date',
-            'notnull' => true,
-        ));
-        $this->hasColumn('capacityLayers', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('codec', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('dataRate', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('sheddingSoftBinder', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('formatVersion', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('oxide', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('binderSystem', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('reelSize', 'string', 255, array(
-            'type' => 'string',
-            'notnull' => true,
-            'length' => 255,
-        ));
-        $this->hasColumn('whiteResidue', 'boolean', null, array(
-            'type' => 'boolean',
-        ));
-        $this->hasColumn('size', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('formatTypedVideoRecordingFormat', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
-        $this->hasColumn('bitrate', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
-        $this->hasColumn('scanning', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
+             'type' => 'text',
+             ));
         $this->hasColumn('asset_score', 'float', null, array(
-            'type' => 'float',
-            'notnull' => true,
-        ));
+             'type' => 'float',
+             ));
+        $this->hasColumn('type', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('material', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('oxidationCorrosion', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             ));
+        $this->hasColumn('pack_deformation', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('noise_reduction', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             ));
+        $this->hasColumn('tape_type', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('thin_tape', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('slow_speed', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('sound_field', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('soft_binder_syndrome', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('gauge', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('color', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('colorFade', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('soundtrackFormat', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('substrate', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('strongOdor', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('vinegarOdor', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('ADStripLevel', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('shrinkage', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('levelOfShrinkage', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('rust', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('discoloration', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('surfaceBlisteringBubbling', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('thinTape', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('1993OrEarlier', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('dataGradeTape', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('longPlay32K96K', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('corrosionRustOxidation', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('composition', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('nonStandardBrand', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('trackConfiguration', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('tapeThickness', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('speed', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('softBinderSyndrome', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('materialsBreakdown', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('physicalDamage', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('delamination', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('plasticizerExudation', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('recordingLayer', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('recordingSpeed', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('cylinderType', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('reflectiveLayer', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('dataLayer', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('opticalDiscType', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('format', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('recordingStandard', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('publicationYear', 'date', null, array(
+             'type' => 'date',
+             'notnull' => true,
+             ));
+        $this->hasColumn('capacityLayers', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('codec', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('dataRate', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('sheddingSoftBinder', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('formatVersion', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('oxide', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('binderSystem', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('reelSize', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 255,
+             ));
+        $this->hasColumn('whiteResidue', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('size', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('formatTypedVideoRecordingFormat', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('bitrate', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('scanning', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
 
         $this->setSubClasses(array(
-            'MetalDisc' =>
-            array(
-                'type' => 1,
-            ),
-            'ReelCassetteFormatType' =>
-            array(
-                'type' => 2,
-            ),
-            'AudiotapeFormatType' =>
-            array(
-                'type' => 3,
-            ),
-            'AnalogAudiocassette' =>
-            array(
-                'type' => 4,
-            ),
-            'Film' =>
-            array(
-                'type' => 5,
-            ),
-            'DAT' =>
-            array(
-                'type' => 6,
-            ),
-            'SoundWireReel' =>
-            array(
-                'type' => 7,
-            ),
-            'OpenReelAudioTapeFormatType' =>
-            array(
-                'type' => 8,
-            ),
-            'OpenReelAudiotapePolyster' =>
-            array(
-                'type' => 9,
-            ),
-            'OpenReelAudiotapeAcetate' =>
-            array(
-                'type' => 10,
-            ),
-            'OpenReelAudiotapePaper' =>
-            array(
-                'type' => 11,
-            ),
-            'OpenReelAudiotapePVC' =>
-            array(
-                'type' => 12,
-            ),
-            'DiskFormatType' =>
-            array(
-                'type' => 13,
-            ),
-            'SoftDiskFormatType' =>
-            array(
-                'type' => 14,
-            ),
-            'LacquerDisc' =>
-            array(
-                'type' => 15,
-            ),
-            'MiniDisc' =>
-            array(
-                'type' => 16,
-            ),
-            'Cylinder' =>
-            array(
-                'type' => 17,
-            ),
-            'OpticalDiscFormatType' =>
-            array(
-                'type' => 18,
-            ),
-            'SoundOpticalDisc' =>
-            array(
-                'type' => 19,
-            ),
-            'OpticalVideo' =>
-            array(
-                'type' => 20,
-            ),
-            'PressedAudioDiscFormatType' =>
-            array(
-                'type' => 21,
-            ),
-            'PressedSeventyEightRPMDisc' =>
-            array(
-                'type' => 22,
-            ),
-            'PressedLPDisc' =>
-            array(
-                'type' => 23,
-            ),
-            'PressedFortyFiveRPMDisc' =>
-            array(
-                'type' => 24,
-            ),
-            'StandardizedRecordingFormatType' =>
-            array(
-                'type' => 25,
-            ),
-            'Laserdisc' =>
-            array(
-                'type' => 26,
-            ),
-            'XDCamOptical' =>
-            array(
-                'type' => 27,
-            ),
-            'VideoRecordingFormatType' =>
-            array(
-                'type' => 28,
-            ),
-            'Betamax' =>
-            array(
-                'type' => 29,
-            ),
-            'ReelVideoRecordingFormatType' =>
-            array(
-                'type' => 30,
-            ),
-            'EightMM' =>
-            array(
-                'type' => 31,
-            ),
-            'OpenReelVideoFormatType' =>
-            array(
-                'type' => 32,
-            ),
-            'TwoInchOpenReelVideo' =>
-            array(
-                'type' => 33,
-            ),
-            'OneInchOpenReelVideo' =>
-            array(
-                'type' => 34,
-            ),
-            'HalfInchOpenReelVideo' =>
-            array(
-                'type' => 35,
-            ),
-            'SizedVideoRecordingFormatType' =>
-            array(
-                'type' => 36,
-            ),
-            'DV' =>
-            array(
-                'type' => 37,
-            ),
-            'DVCam' =>
-            array(
-                'type' => 38,
-            ),
-            'FormatTypedVideoRecording' =>
-            array(
-                'type' => 39,
-            ),
-            'Betacam' =>
-            array(
-                'type' => 40,
-            ),
-            'VHS' =>
-            array(
-                'type' => 41,
-            ),
-            'DigitalBetacam' =>
-            array(
-                'type' => 42,
-            ),
-            'FormatVersionedVideoRecordingType' =>
-            array(
-                'type' => 43,
-            ),
-            'Umatic' =>
-            array(
-                'type' => 44,
-            ),
-            'HDCam' =>
-            array(
-                'type' => 45,
-            ),
-            'DVCPro' =>
-            array(
-                'type' => 46,
-            ),
-            'CharacteristicsFormatExtended' =>
-            array(
-                'type' => 46,
-            ),
-        ));
+             'MetalDisc' => 
+             array(
+              'type' => 1,
+             ),
+             'ReelCassetteFormatType' => 
+             array(
+              'type' => 2,
+             ),
+             'AudiotapeFormatType' => 
+             array(
+              'type' => 3,
+             ),
+             'AnalogAudiocassette' => 
+             array(
+              'type' => 4,
+             ),
+             'Film' => 
+             array(
+              'type' => 5,
+             ),
+             'DAT' => 
+             array(
+              'type' => 6,
+             ),
+             'SoundWireReel' => 
+             array(
+              'type' => 7,
+             ),
+             'OpenReelAudioTapeFormatType' => 
+             array(
+              'type' => 8,
+             ),
+             'OpenReelAudiotapePolyster' => 
+             array(
+              'type' => 9,
+             ),
+             'OpenReelAudiotapeAcetate' => 
+             array(
+              'type' => 10,
+             ),
+             'OpenReelAudiotapePaper' => 
+             array(
+              'type' => 11,
+             ),
+             'OpenReelAudiotapePVC' => 
+             array(
+              'type' => 12,
+             ),
+             'DiskFormatType' => 
+             array(
+              'type' => 13,
+             ),
+             'SoftDiskFormatType' => 
+             array(
+              'type' => 14,
+             ),
+             'LacquerDisc' => 
+             array(
+              'type' => 15,
+             ),
+             'MiniDisc' => 
+             array(
+              'type' => 16,
+             ),
+             'Cylinder' => 
+             array(
+              'type' => 17,
+             ),
+             'OpticalDiscFormatType' => 
+             array(
+              'type' => 18,
+             ),
+             'SoundOpticalDisc' => 
+             array(
+              'type' => 19,
+             ),
+             'OpticalVideo' => 
+             array(
+              'type' => 20,
+             ),
+             'PressedAudioDiscFormatType' => 
+             array(
+              'type' => 21,
+             ),
+             'PressedSeventyEightRPMDisc' => 
+             array(
+              'type' => 22,
+             ),
+             'PressedLPDisc' => 
+             array(
+              'type' => 23,
+             ),
+             'PressedFortyFiveRPMDisc' => 
+             array(
+              'type' => 24,
+             ),
+             'StandardizedRecordingFormatType' => 
+             array(
+              'type' => 25,
+             ),
+             'Laserdisc' => 
+             array(
+              'type' => 26,
+             ),
+             'XDCamOptical' => 
+             array(
+              'type' => 27,
+             ),
+             'VideoRecordingFormatType' => 
+             array(
+              'type' => 28,
+             ),
+             'Betamax' => 
+             array(
+              'type' => 29,
+             ),
+             'ReelVideoRecordingFormatType' => 
+             array(
+              'type' => 30,
+             ),
+             'EightMM' => 
+             array(
+              'type' => 31,
+             ),
+             'OpenReelVideoFormatType' => 
+             array(
+              'type' => 32,
+             ),
+             'TwoInchOpenReelVideo' => 
+             array(
+              'type' => 33,
+             ),
+             'OneInchOpenReelVideo' => 
+             array(
+              'type' => 34,
+             ),
+             'HalfInchOpenReelVideo' => 
+             array(
+              'type' => 35,
+             ),
+             'SizedVideoRecordingFormatType' => 
+             array(
+              'type' => 36,
+             ),
+             'DV' => 
+             array(
+              'type' => 37,
+             ),
+             'DVCam' => 
+             array(
+              'type' => 38,
+             ),
+             'FormatTypedVideoRecording' => 
+             array(
+              'type' => 39,
+             ),
+             'Betacam' => 
+             array(
+              'type' => 40,
+             ),
+             'VHS' => 
+             array(
+              'type' => 41,
+             ),
+             'DigitalBetacam' => 
+             array(
+              'type' => 42,
+             ),
+             'FormatVersionedVideoRecordingType' => 
+             array(
+              'type' => 43,
+             ),
+             'Umatic' => 
+             array(
+              'type' => 44,
+             ),
+             'HDCam' => 
+             array(
+              'type' => 45,
+             ),
+             'DVCPro' => 
+             array(
+              'type' => 46,
+             ),
+             'CharacteristicsFormatExtended' => 
+             array(
+              'type' => 46,
+             ),
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->hasMany('AssetGroup as heldByAssetGroups', array(
-            'local' => 'id',
-            'foreign' => 'format_id'));
+             'local' => 'id',
+             'foreign' => 'format_id'));
 
         $this->hasMany('CharacteristicsFormat', array(
-            'local' => 'id',
-            'foreign' => 'format_id'));
+             'local' => 'id',
+             'foreign' => 'format_id'));
 
         $this->hasMany('CharacteristicsValues', array(
-            'local' => 'id',
-            'foreign' => 'format_id'));
+             'local' => 'id',
+             'foreign' => 'format_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
-
 }

@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseDVCProForm extends FormatVersionedVideoRecordingTypeForm {
+abstract class BaseDVCProForm extends FormatVersionedVideoRecordingTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('dvc_pro[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('dvc_pro[%s]');
-    }
-
-    public function getModelName() {
-        return 'DVCPro';
-    }
+  public function getModelName()
+  {
+    return 'DVCPro';
+  }
 
 }

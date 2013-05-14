@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseEvaluatorForm extends UserForm {
+abstract class BaseEvaluatorForm extends UserForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('evaluator[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('evaluator[%s]');
-    }
-
-    public function getModelName() {
-        return 'Evaluator';
-    }
+  public function getModelName()
+  {
+    return 'Evaluator';
+  }
 
 }

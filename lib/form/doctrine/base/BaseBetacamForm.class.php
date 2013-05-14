@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseBetacamForm extends FormatTypedVideoRecordingForm {
+abstract class BaseBetacamForm extends FormatTypedVideoRecordingForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('betacam[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('betacam[%s]');
-    }
-
-    public function getModelName() {
-        return 'Betacam';
-    }
+  public function getModelName()
+  {
+    return 'Betacam';
+  }
 
 }

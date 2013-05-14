@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseXDCamOpticalForm extends StandardizedRecordingFormatTypeForm {
+abstract class BaseXDCamOpticalForm extends StandardizedRecordingFormatTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('xd_cam_optical[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('xd_cam_optical[%s]');
-    }
-
-    public function getModelName() {
-        return 'XDCamOptical';
-    }
+  public function getModelName()
+  {
+    return 'XDCamOptical';
+  }
 
 }

@@ -10,16 +10,18 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormGeneratedInheritanceTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseHDCamForm extends FormatVersionedVideoRecordingTypeForm {
+abstract class BaseHDCamForm extends FormatVersionedVideoRecordingTypeForm
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('hd_cam[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('hd_cam[%s]');
-    }
-
-    public function getModelName() {
-        return 'HDCam';
-    }
+  public function getModelName()
+  {
+    return 'HDCam';
+  }
 
 }

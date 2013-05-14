@@ -24,38 +24,39 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardRememberKey extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BasesfGuardRememberKey extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('sf_guard_remember_key');
         $this->hasColumn('user_id', 'integer', null, array(
-            'type' => 'integer',
-        ));
+             'type' => 'integer',
+             ));
         $this->hasColumn('remember_key', 'string', 32, array(
-            'type' => 'string',
-            'length' => 32,
-        ));
+             'type' => 'string',
+             'length' => 32,
+             ));
         $this->hasColumn('ip_address', 'string', 50, array(
-            'type' => 'string',
-            'length' => 50,
-        ));
+             'type' => 'string',
+             'length' => 50,
+             ));
 
         $this->option('symfony', array(
-            'form' => false,
-            'filter' => false,
-        ));
+             'form' => false,
+             'filter' => false,
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
-            'local' => 'user_id',
-            'foreign' => 'id',
-            'onDelete' => 'CASCADE'));
+             'local' => 'user_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-                ));
+             ));
         $this->actAs($timestampable0);
     }
-
 }

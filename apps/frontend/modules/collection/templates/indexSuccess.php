@@ -110,7 +110,7 @@
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
                     <?php // $storagelocationCol = $collection->getStorageLocations() ?>
-<!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription(); ?></td>-->
+        <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();  ?></td>-->
                 </tr>
             <?php endforeach; ?>
 
@@ -201,10 +201,12 @@
     function removeSearchText(){
         
     }
+    var Check  = new Array();
+    var i = 0;
     function filterCollection(){
         unitId='<?php echo $unitID; ?>';
        
-        $.ajax({
+        Check[i] = $.ajax({
             method: 'POST', 
             url: '/frontend_dev.php/collection/index',
             data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
@@ -228,7 +230,7 @@
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
                             '<td style="text-align: right;">'+result[collection].duration+'</td>');
                         if(result[collection].StorageLocations[0]){
-//                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+                            //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
                         }
                     }
                     $(".delete_unit").fancybox({
@@ -262,6 +264,10 @@
                     
             }
         });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
     }
     function makeToken(event){
     

@@ -24,39 +24,40 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardForgotPassword extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BasesfGuardForgotPassword extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('sf_guard_forgot_password');
         $this->hasColumn('user_id', 'integer', null, array(
-            'type' => 'integer',
-            'notnull' => true,
-        ));
+             'type' => 'integer',
+             'notnull' => true,
+             ));
         $this->hasColumn('unique_key', 'string', 255, array(
-            'type' => 'string',
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('expires_at', 'timestamp', null, array(
-            'type' => 'timestamp',
-            'notnull' => true,
-        ));
+             'type' => 'timestamp',
+             'notnull' => true,
+             ));
 
         $this->option('symfony', array(
-            'form' => false,
-            'filter' => false,
-        ));
+             'form' => false,
+             'filter' => false,
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->hasOne('sfGuardUser as User', array(
-            'local' => 'user_id',
-            'foreign' => 'id',
-            'onDelete' => 'CASCADE'));
+             'local' => 'user_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
-                ));
+             ));
         $this->actAs($timestampable0);
     }
-
 }
