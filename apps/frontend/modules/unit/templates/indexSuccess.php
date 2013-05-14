@@ -214,7 +214,7 @@
         Check[i] = $.ajax({ 
             method: 'POST', 
             url: '/unit/index',
-            data:{s:$('0#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
