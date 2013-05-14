@@ -17,89 +17,164 @@ class unitActions extends sfActions {
      */
     public function executeSearch(sfWebRequest $request) {
         // make array of all the format types that are available
-        $types = array('Metal Disc' => '1',
-            'Film' => '5',
-            'DAT' => '6',
-            'Sound Wire Reel' => '7',
-            'Analog Audio Cassette' => '4',
-            'Polyster Open Reel Audio Tape' => '9',
-            'Acetate Open Reel Audio Tape' => '10',
-            'Paper Open Reel Audio Tape' => '11',
-            'PVC Open Reel Audio Tape' => '12',
-            'Lacquer Disc' => '15',
-            'MiniDisc' => '16',
-            'Cylinder' => '17',
-            'Sound Optical Disc' => '19',
-            'Optical Video' => '20',
-            'Pressed 78RPM Disc' => '22',
-            'Pressed LP Disc' => '23',
-            'Pressed 45RPM Disc' => '24',
-            'LaserDisc' => '26',
-            'XDCAM Optical' => '27',
-            'Betamax' => '29',
-            '8MM' => '31',
-            '2" Open Reel Video' => '33',
-            '1" Open Reel Video' => '34',
-            '½" Open Reel Video' => '35',
-            'DV' => '37',
-            'DVCAM' => '38',
-            'Betacam' => '40',
-            'VHS' => '41',
-            'Digital Betacam' => '42',
-            'U-matic' => '44',
-            'HDCAM' => '45',
-            'DVCPro' => '46',
-        );
-        // make array of search parameters
-        $store = array('Unit' => '1',
-            'Collection' => '3',
-            'Asset Group' => '4');
-        // get the parameter of search
-        $this->searchValues = $request->getParameter('search_values');
-        // make array of search values
-        $this->searchString = explode(',', $this->searchValues);
-        // compare search values with the arrays ($store and $type)
-        $formatType = array();
-        $storeType = array();
-        $stringForName = '%';
+//        $unitScore = $request->getParameter('searchScore');
+        if ($request->isXmlHttpRequest()) {
+            $searchInpout = $request->getParameter('s');
+            $status = $request->getParameter('status');
+            $from = $request->getParameter('from');
+            $to = $request->getParameter('to');
+            $dateType = $request->getParameter('datetype');
+            $StorageLocation = $request->getParameter('searchStorageLocation');
+            $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+            $this->unit = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.*,cu.*,eu.*,sl.resident_structure_description')
+                    ->orderBy('u.name')
+                    ->innerJoin('u.Creator cu')
+                    ->innerJoin('u.Editor eu')
+                    ->leftJoin('u.StorageLocations sl');
 
-        foreach ($this->searchString as $value) {
-            if (isset($types[$value]))
-                $formatType[] = $types[$value];
-            else if (isset($store[$value]))
-                $storeType[] = $store[$value];
-            else
-                $stringForName.=$value . '%';
-        }
+            // apply filters for searching the unit
+            if ($searchInpout && trim($searchInpout) != '') {
+                $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+            }
+            if (trim($status) != '') {
+                $this->unit = $this->unit->andWhere('status =?', $status);
+            }
 
-        // query with the  search values that exist in our database
-        if (count($formatType) > 0) {
+            if ($StorageLocation && trim($StorageLocation) != '') {
+                $this->unit = $this->unit->andWhere('resident_structure_description like "%' . $StorageLocation . '%"');
+            }
 
-            $this->formatsResult = Doctrine_Query::Create()
-                    ->from('AssetGroup ag')
-                    ->select('ag.*')
-                    ->innerJoin('ag.FormatType f')
-                    ->whereIn('f.type', $formatType);
-            if (strlen($stringForName) > 1)
-                $this->formatsResult = $this->formatsResult->andWhere('name like "' . $stringForName . '"');
-            $this->formatsResult = $this->formatsResult->execute();
-        }
-        else if (count($storeType) > 0) {
-            $this->storeResult = Doctrine_Query::Create()
-                    ->from('Store s')
-                    ->select('s.*')
-                    ->whereIn('s.type', $storeType);
-            if (strlen($stringForName) > 1)
-                $this->storeResult = $this->storeResult->andWhere('name like "' . $stringForName . '"');
-            $this->storeResult = $this->storeResult->execute();
-        }
-        else {
-            if (strlen($stringForName) > 1) {
-                $this->randomSearch = Doctrine_Query::Create()
+            if ($dateType != '') {
+                if ($dateType == 0) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                } else if ($dateType == 1) {
+                    if (trim($from) != '' && trim($to) != '') {
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                    } else {
+                        if (trim($from) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                        }
+
+                        if (trim($to) != '') {
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                        }
+                    }
+                }
+            }
+            $this->unit = $this->unit->fetchArray();
+//            echo '<pre>';
+//            print_r($this->unit);
+//            exit;
+            // after applying the parametes get units.
+            // get duration for each unit
+            foreach ($this->unit as $key => $value) {
+                $duration = new Unit();
+                $this->unit[$key]['duration'] = $duration->getDuration($value['id']);
+            }
+
+
+            $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+            $this->setLayout('json');
+
+            return $this->renderText(json_encode($this->unit));
+        } else {
+            $types = array('Metal Disc' => '1',
+                'Film' => '5',
+                'DAT' => '6',
+                'Sound Wire Reel' => '7',
+                'Analog Audio Cassette' => '4',
+                'Polyster Open Reel Audio Tape' => '9',
+                'Acetate Open Reel Audio Tape' => '10',
+                'Paper Open Reel Audio Tape' => '11',
+                'PVC Open Reel Audio Tape' => '12',
+                'Lacquer Disc' => '15',
+                'MiniDisc' => '16',
+                'Cylinder' => '17',
+                'Sound Optical Disc' => '19',
+                'Optical Video' => '20',
+                'Pressed 78RPM Disc' => '22',
+                'Pressed LP Disc' => '23',
+                'Pressed 45RPM Disc' => '24',
+                'LaserDisc' => '26',
+                'XDCAM Optical' => '27',
+                'Betamax' => '29',
+                '8MM' => '31',
+                '2" Open Reel Video' => '33',
+                '1" Open Reel Video' => '34',
+                '½" Open Reel Video' => '35',
+                'DV' => '37',
+                'DVCAM' => '38',
+                'Betacam' => '40',
+                'VHS' => '41',
+                'Digital Betacam' => '42',
+                'U-matic' => '44',
+                'HDCAM' => '45',
+                'DVCPro' => '46',
+            );
+            // make array of search parameters
+            $store = array('Unit' => '1',
+                'Collection' => '3',
+                'Asset Group' => '4');
+            // get the parameter of search
+            $this->searchValues = $request->getParameter('search_values');
+            // make array of search values
+            $this->searchString = explode(',', $this->searchValues);
+            // compare search values with the arrays ($store and $type)
+            $formatType = array();
+            $storeType = array();
+            $stringForName = '%';
+
+            $this->storeType = $storeType;
+            foreach ($this->searchString as $value) {
+                if (isset($types[$value]))
+                    $formatType[] = $types[$value];
+                else if (isset($store[$value]))
+                    $storeType[] = $store[$value];
+                else
+                    $stringForName.=$value . '%';
+            }
+
+            // query with the  search values that exist in our database
+            if (count($formatType) > 0) {
+
+                $this->formatsResult = Doctrine_Query::Create()
+                        ->from('AssetGroup ag')
+                        ->select('ag.*')
+                        ->innerJoin('ag.FormatType f')
+                        ->whereIn('f.type', $formatType);
+                if (strlen($stringForName) > 1)
+                    $this->formatsResult = $this->formatsResult->andWhere('name like "' . $stringForName . '"');
+                $this->formatsResult = $this->formatsResult->execute();
+            }
+            else if (count($storeType) > 0) {
+                $this->storeResult = Doctrine_Query::Create()
                         ->from('Store s')
                         ->select('s.*')
-                        ->where('name like "' . $stringForName . '"')
-                        ->execute();
+                        ->whereIn('s.type', $storeType);
+                if (strlen($stringForName) > 1)
+                    $this->storeResult = $this->storeResult->andWhere('name like "' . $stringForName . '"');
+                $this->storeResult = $this->storeResult->execute();
+            }
+            else {
+                if (strlen($stringForName) > 1) {
+                    $this->randomSearch = Doctrine_Query::Create()
+                            ->from('Store s')
+                            ->select('s.*')
+                            ->where('name like "' . $stringForName . '"')
+                            ->execute();
+                }
             }
         }
     }

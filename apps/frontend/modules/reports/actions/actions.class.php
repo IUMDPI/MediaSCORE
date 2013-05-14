@@ -1417,7 +1417,7 @@ class reportsActions extends sfActions {
                     $Sheettitle = 'Output_All_Asset_Groups_Report';
                 } else if ($param['reports']['listReports'] == '1') {
                     $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Asset_Storage_Locations';
+                    $Sheettitle = 'Output_Asset_Storage_Locations';
                 } else if ($param['reports']['listReports'] == '2') {
                     $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
                     $Sheettitle = 'Output_All_Unit_Personnel';

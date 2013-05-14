@@ -110,7 +110,7 @@
                     <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                     <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
                     <?php // $storagelocationCol = $collection->getStorageLocations() ?>
-        <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();     ?></td>-->
+        <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();      ?></td>-->
                 </tr>
             <?php endforeach; ?>
 
@@ -265,9 +265,9 @@
             }
         });
         for(j=0;j<=(i-1);j++){
-Check[j].abort();
-}
-i++;
+            Check[j].abort();
+        }
+        i++;
     }
     function makeToken(event){
     

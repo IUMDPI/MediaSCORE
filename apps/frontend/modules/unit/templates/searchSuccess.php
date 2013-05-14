@@ -1,3 +1,4 @@
+
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
         <div class="search-input">
@@ -47,6 +48,51 @@
         </div>
     </form>
 </div>
+
+<?php
+$functionName = '';
+if ($StoreType == 'unit') {
+    $functionName = 'filterUnits();';
+}if ($StoreType == 'collection') {
+    $functionName = 'filterCollection();';
+}if ($StoreType == 'assetgroup') {
+    $functionName = 'filterAssets();';
+}
+?>
+<div id="filter-container">
+    <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
+        <div class="title">Filter by:</div>
+        <form id="filterUnits" action="">
+            <strong>Text:</strong> <input type="text" class="text" onkeyup="<?php echo $functionName;?>" id="searchText"/>
+            <strong>Date:</strong>
+            <div class="filter-date">
+                <select id="date_type" onchange="<?php echo $functionName;?>">
+                    <option value="">Date Type</option>
+                    <option value="0">Created On</option>
+                    <option value="1">Updated On</option>
+                </select>
+                <input type="text" id="from" onchange="<?php echo $functionName;?>" readonly="readonly"/>
+                to
+                <input type="text" id="to" onchange="<?php echo $functionName;?>" readonly="readonly"/>
+            </div>
+            <strong>Status:</strong>
+            <select id="filterStatus" onchange="<?php echo $functionName;?>">
+                <option value="">Any Status</option>
+                <option value="0">Incomplete</option>
+                <option value="1">In Progress</option>
+                <option value="2">Completed</option>
+            </select>
+            <br/>
+            <br/>
+            <strong>Storage Location : </strong>
+            <input type="text" class="text" onkeyup="<?php echo $functionName;?>" id="searchStorageLocation"/>
+<!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->
+        </form>
+        <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
+    </div>
+</div> 
+<div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div>
+<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
 
 <table id="searchTable" class="tablesorter">
     <thead>
@@ -286,6 +332,202 @@
             $('.token-count').hide();
         }
     }
+    
+    
+    
+    var Check  = new Array();
+    var i = 0;
+    function filterCollection(){
+        unitId='<?php echo $unitID; ?>';
+       
+        Check[i] = $.ajax({
+            method: 'POST', 
+            url: '/frontend_dev.php/collection/index',
+            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                if(result!=undefined && result.length>0){
+                    $('#collectionResult').html('');
+                    for(collection in result){
+                        $('#collectionResult').append('<tr><td class="invisible">'+
+                            '<div class="options">'+
+                            '<a class="new_edit_collection" href="/collection/edit/id/' +result[collection].id+ '/u/'+unitId+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId('+result[collection].id+');"/></a>'+
+                            '</div>'+
+                            '<td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].inst_id+'</a></td>'+
+                            '<td><a href="/'+unit_slug_name+'/'+result[collection].name_slug+'/">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>');
+                        if(result[collection].StorageLocations[0]){
+                            //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+                        }
+                    }
+                    $(".delete_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': false,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':false
+           
+                    });
+                    $(".new_edit_collection").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': true,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':true 
+           
+                    });
+                }
+                else{
+                    $('#collectionResult').html('<tr><td colspan="6" style="text-align:center;">No Collection found</td></tr>');
+                }
+                
+                $("#collectionTable").trigger("update");  
+                    
+            }
+        });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
+    }
+    
+    function filterAssets(){
+        collectionID='<?php echo $collectionID; ?>';
+        Check[i] = $.ajax({
+            method: 'POST', 
+            url: '/frontend_dev.php/assetgroup/index',
+            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchScore:$('#searchScore').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                if(result!=undefined && result.length>0){
+                    $('#assetsResult').html('');
+                    for(collection in result){
+                        
+                        $('#assetsResult').append('<tr><td class="invisible">'+
+                            '<div class="options">'+
+                            ' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID('+result[collection].id+');"/></a>'+
+                            '</div>'+
+                            '</td>'+
+                            '<td><a href="/assetgroup/edit/id/'+result[collection].id+'/c/'+collectionID+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td>'+result[collection].Creator.first_name+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td>'+result[collection].Editor.first_name+result[collection].Editor.last_name+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].FormatType.asset_score+'</td>'+                            
+                            '</tr>');
+                    }
+                    $(".delete_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': false,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':false
+           
+                    });
+                    
+                }
+                else{
+                    $('#assetsResult').html('<tr><td colspan="6" style="text-align:center;">No Asset Group found</td></tr>');
+                }
+                
+                $("#assetGroupTable").trigger("update");  
+                    
+            }
+        });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
+
+    }
+    function filterUnits(){
+        Check[i] = $.ajax({ 
+            method: 'POST', 
+            url: '/unit/index',
+            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            dataType: 'json',
+            cache: false,
+            success: function (result) { 
+                
+                if(result!=undefined && result.length>0){
+                    $('#unitResult').html('');
+                    for(collection in result){
+                        
+                        $('#unitResult').append('<tr><td class="invisible">'+
+                            '<div class="options">'+
+                            '<a class="create_new_unit" href="/unit/edit/id/' +result[collection].id+'"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> '+
+                            ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID('+result[collection].id+');"/></a>'+
+                            '</div>'+
+                            '</td>'+
+                            '<td><a href="/'+result[collection].name_slug+'">'+result[collection].name+'</a></td>'+
+                            '<td>'+result[collection].created_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>'+result[collection].Creator.first_name+' '+result[collection].Creator.last_name+'</td>'+
+                            '<td>'+result[collection].updated_at+'</td>'+
+                            '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>'+result[collection].Editor.first_name+' '+result[collection].Editor.last_name+'</td>'+
+                            '<td style="text-align: right;">'+result[collection].duration+'</td>');
+                        if(result[collection].StorageLocations[0]){
+                            //                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
+                        }else{
+                            //                            $('#unitResult').append('<td style="text-align: right;"> None </td>'+'</tr>'); 
+                        }
+                    }
+                    $(".delete_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': false,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':false
+           
+                    });
+                    $(".create_new_unit").fancybox({
+                        'width': '100%',
+                        'height': '100%',
+                        'autoScale': true,
+                        'transitionIn': 'none',
+                        'transitionOut': 'none',
+                        'type': 'inline',
+                        'padding': 0,
+                        'showCloseButton':true
+           
+                    });
+                }
+                else{
+                    $('#unitResult').html('<tr><td colspan="6" style="text-align:center;">No Unit found</td></tr>');
+                }
+                $("#unitTable").trigger("update");  
+                    
+            }
+        });
+        for(j=0;j<=(i-1);j++){
+            Check[j].abort();
+        }
+        i++;
+
+    }
+    
+    
     function removeTokenDiv(id){
         $('#div_'+id).remove();
         token=token-1;
