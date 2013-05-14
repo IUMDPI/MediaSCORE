@@ -228,7 +228,7 @@ class unitActions extends sfActions {
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu')
                     ->leftJoin('u.StorageLocations sl');
-            
+
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
@@ -269,6 +269,9 @@ class unitActions extends sfActions {
                 }
             }
             $this->unit = $this->unit->fetchArray();
+//            echo '<pre>';
+//            print_r($this->unit);
+//            exit;
             // after applying the parametes get units.
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
