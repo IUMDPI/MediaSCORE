@@ -296,7 +296,7 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
@@ -568,7 +568,7 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
@@ -688,7 +688,7 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
@@ -983,7 +983,7 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
@@ -1596,7 +1596,7 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
@@ -2122,14 +2122,11 @@ class reportsActions extends sfActions {
                         exit;
                     }
                 } else {
-                    $Bug = '<script type="text/javascript"> $(function(){
-                                alert("No Record Found To Export!")                    
-                        });
-                    </script>';
+                    $Bug = '<script type="text/javascript"> $(function(){alert("No Record Found To Export!")});</script>';
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
-                $Bug = '<span style="font-weight:bold;color:red;"> Please Fill the required Fields</span>';
+                $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
         }
