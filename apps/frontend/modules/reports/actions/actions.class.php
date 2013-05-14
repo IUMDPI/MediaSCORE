@@ -1491,7 +1491,8 @@ class reportsActions extends sfActions {
             $EvaluatorsEndDate = $params['reports']['EvaluatorsEndDate'];
             $ExportType = $params['reports']['ExportType'];
             if ($ListEvaluators && $format_id && $EvaluatorsStartDate && $EvaluatorsEndDate) {
-
+                echo 'in';
+                exit;
                 $EvaluatorHistorys = Doctrine_Query::Create()
                         ->from('AssetGroup as')
                         ->select('as.*,eh.*,ft.*,e.*')
@@ -1596,6 +1597,9 @@ class reportsActions extends sfActions {
                     $this->getResponse()->setSlot('my_slot', $Bug);
                 }
             } else {
+                echo 'out';
+                exit;
+                
                 $Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
                 $this->getResponse()->setSlot('my_slot', $Bug);
             }
