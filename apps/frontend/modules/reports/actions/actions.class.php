@@ -633,7 +633,7 @@ class reportsActions extends sfActions {
                     foreach ($collections as $collection) {
 
                         $collectionStatusReport = array();
-                        $collectionStatusReport['Uuit ID'] = $collection['Unit']['id'];
+                        $collectionStatusReport['Unit ID'] = $collection['Unit']['id'];
                         $collectionStatusReport['Unit Primary ID'] = $collection['Unit']['inst_id'];
                         $collectionStatusReport['Unit Name'] = $collection['Unit']['name'];
                         $collectionStatusReport['Storage Location Name'] = $collection['Collection']['StorageLocations'][0]['name'];
@@ -648,7 +648,7 @@ class reportsActions extends sfActions {
                         $collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
                         $collectionStatusReports[] = $collectionStatusReport;
                     }
-                    $collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Uuit ID');
+                    $collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Unit ID');
 
                     if ($ExportType == 'xls') {
                         $excel = new excel();
@@ -1626,7 +1626,7 @@ class reportsActions extends sfActions {
             $format_id = $params['reports']['format_id'];
             $ExportType = $params['reports']['ExportType'];
             $ReportType = $params['reports']['ReportType'];
-            if ($Collection_id && $Units_id && $format_id ) {
+            if ($Collection_id && $Units_id && $format_id) {
                 if ($ReportType == '0') {
                     $Units = Doctrine_Query::Create()
                             ->from('Unit u')
@@ -1676,6 +1676,7 @@ class reportsActions extends sfActions {
                     if ($Assets) {
                         $j = 1;
                         foreach ($Assets as $Asset) {
+                        
                             $i = 1;
                             $AssetScoreReport = array();
                             $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
@@ -1693,7 +1694,6 @@ class reportsActions extends sfActions {
                             $j++;
                             $DataDumpReportArray[] = $AssetScoreReport;
                         }
-
                         $maxCountElementsCount = count($DataDumpReportArray[0]);
                         $maxCountElementsIndex = 0;
 
