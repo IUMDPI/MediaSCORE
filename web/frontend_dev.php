@@ -1,5 +1,5 @@
 <?php
-
+$serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 if (strpos($serverName, 'mediascore.avpreserve.com') !== FALSE)
 {
 	define('ENVIRONMENT', 'production');
