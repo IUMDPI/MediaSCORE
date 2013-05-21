@@ -12,8 +12,9 @@ else
 {
 	define('ENVIRONMENT', 'local');
 }
+echo ENVIRONMENT;
 require_once(dirname(__FILE__) . '/../config/ProjectConfiguration.class.php');
 
-$configuration = ProjectConfiguration::getApplicationConfiguration('frontend_dev', ENVIRONMENT, TRUE);
+$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', ENVIRONMENT, TRUE);
 
 sfContext::createInstance($configuration)->dispatch();
