@@ -16,5 +16,5 @@ else
 {
 	define('ENVIRONMENT', 'local');
 }
-$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', ENVIRONMENT, TRUE);
+$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', ENVIRONMENT, FALSE);
 sfContext::createInstance($configuration)->dispatch();
