@@ -1,6 +1,12 @@
 #!/usr/bin/env php
 <?php
-
+$serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
+if (strpos($serverName, 'mediascore.avpreserve.com') !== FALSE)
+	define('ENVIRONMENT', 'production');
+else if (strpos($serverName, '108.166.74.254') !== FALSE)
+	define('ENVIRONMENT', 'qa');
+else
+	define('ENVIRONMENT', 'local');
 /*
  * This file is part of the symfony package.
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
