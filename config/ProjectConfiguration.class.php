@@ -1,5 +1,4 @@
 <?php
-
 if (ENVIRONMENT === 'production' || ENVIRONMENT === 'qa')
 	require_once dirname(__FILE__) . '/../lib/vendor/lib/autoload/sfCoreAutoload.class.php';
 else
