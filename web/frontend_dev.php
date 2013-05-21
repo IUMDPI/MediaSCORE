@@ -1,15 +1,19 @@
 <?php
 
-// this check prevents access to debug front controllers that are deployed by accident to production servers.
-// feel free to remove this, extend it or make something more sophisticated.
-/* if (!in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1', '192.168.2.102')))
-  {
-  die('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
-  } */
-
+if (strpos($serverName, 'mediascore.avpreserve.com') !== FALSE)
+{
+	define('ENVIRONMENT', 'production');
+}
+else if (strpos($serverName, '108.166.74.254') !== FALSE)
+{
+	define('ENVIRONMENT', 'qa');
+}
+else
+{
+	define('ENVIRONMENT', 'local');
+}
 require_once(dirname(__FILE__) . '/../config/ProjectConfiguration.class.php');
 
-//$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'dev', true);
-$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'prod', true);
+$configuration = ProjectConfiguration::getApplicationConfiguration('frontend_dev', ENVIRONMENT, FALSE);
 
 sfContext::createInstance($configuration)->dispatch();

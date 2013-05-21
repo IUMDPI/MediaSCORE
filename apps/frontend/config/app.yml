@@ -1,21 +1,14 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/11-App
-
-# default values
-#all:
-  
-  
-prod:
+production:
     .settings:
         base:       http://mediascore.avpreserve.com
         url: http://mediascore.avpreserve.com
         
-dev:
+qa:
     .settings:
         base:     http://108.166.74.254/frontend_dev.php
         url: http://108.166.74.254
  
-testing:
+local:
     .settings:
         base:     http://avp.localhost/frontend_dev.php
         url: http://avp.localhost
