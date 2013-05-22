@@ -93,7 +93,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
                         $AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
                         $AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
-                        $AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit']['resident_structure_description']; #resident_structure_description
+                        $AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit'][0]['resident_structure_description']; #resident_structure_description
                         $AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
                         $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
                         $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
