@@ -1,5 +1,5 @@
 <?php
-
+set_time_limit (10000);
 /**
  * reports actions.
  *
@@ -1425,7 +1425,7 @@ class reportsActions extends sfActions {
                     $Sheettitle = 'Unit_Personnel';
                 } else {
                     $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Users_Report';
+                    $Sheettitle = 'Users_Report';
                 }
 
                 $intial_dicrectory = '/AssetsScore/xls/';
