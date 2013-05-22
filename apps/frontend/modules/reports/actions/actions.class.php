@@ -1406,7 +1406,6 @@ class reportsActions extends sfActions {
                     }
                 }
             }
-            echo $ExportType;
 
             if ($ExportType == 'xls') {
                 $excel = new excel();
@@ -1430,12 +1429,8 @@ class reportsActions extends sfActions {
                 }
 
                 $intial_dicrectory = '/AssetsScore/xls/';
-                echo '<pre>';
+                $file_name_with_directory = $intial_dicrectory . $filename;
 
-                echo $file_name_with_directory = $intial_dicrectory . $filename;
-                echo 'i am in xls';
-                print_r($DataDumpReportArray);
-                exit;
                 $excel->setDataArray($DataDumpReportArray);
                 $excel->extractHeadings();
                 $excel->setFileName($file_name_with_directory);
@@ -1474,10 +1469,7 @@ class reportsActions extends sfActions {
 
 
 
-                echo $file_name_with_directory = $intial_dicrectory . $file_name;
-                echo 'i am in csv';
-                print_r($DataDumpReportArray);
-                exit;
+                $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                 $csvHandler->DeleteFile($file_name_with_directory);
