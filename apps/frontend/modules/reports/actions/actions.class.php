@@ -719,7 +719,8 @@ class reportsActions extends sfActions {
                         ->select('u.* ,p.*,sl.*')
                         ->leftJoin('u.Personnel p ')
                         ->leftJoin('u.StorageLocations sl ')
-                        ->fetchArray();\
+                        ->fetchArray();
+                
                 echo '<pre>';
                 print_r($Unit);
                 exit;
