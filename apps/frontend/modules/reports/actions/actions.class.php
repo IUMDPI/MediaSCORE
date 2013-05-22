@@ -1414,13 +1414,13 @@ class reportsActions extends sfActions {
                 $excel->extractHeadings();
                 if ($param['reports']['listReports'] == '0') {
                     $filename = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Asset_Groups_Report';
+                    $Sheettitle = 'Asset_Groups_Report';
                 } else if ($param['reports']['listReports'] == '1') {
                     $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
                     $Sheettitle = 'Assets_Storage_Locations';
                 } else if ($param['reports']['listReports'] == '2') {
                     $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Unit_Personnel';
+                    $Sheettitle = 'Unit_Personnel';
                 } else {
                     $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
                     $Sheettitle = 'Output_All_Users_Report';
