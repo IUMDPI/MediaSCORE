@@ -1436,6 +1436,8 @@ class reportsActions extends sfActions {
 
                 $excel->createExcel();
 
+                
+                
                 $excel->SaveFile();
                 $excel->DownloadXLSX($file_name_with_directory, $filename);
                 $excel->DeleteFile($file_name_with_directory);
@@ -1446,22 +1448,24 @@ class reportsActions extends sfActions {
 
                 if ($param['reports']['listReports'] == '0') {
 
-                    $file_name = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.xlsx';
+                    $file_name = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '1') {
 
-                    $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
+                    $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '2') {
 
-                    $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
+                    $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else {
 
-                    $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
+                    $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 }
 
+                
+                
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
                 $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
