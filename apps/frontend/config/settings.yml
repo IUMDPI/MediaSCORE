@@ -1,12 +1,12 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/04-Settings
 
-qa:
+production:
   .settings:
     no_script_name:         true
     logging_enabled:        false 
 
-production:
+qa:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              false
