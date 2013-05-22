@@ -51,6 +51,18 @@ class csvHandler {
      * 
      * @return Boolean
      */
+
+    /**
+     * 
+     * @param array $array
+     * @param String $filename
+     * @param BOOLEAN $isHeadingDynamic
+     * @param Int $DynamicHeadingIndex
+     * @param BOOLEAN $showAppliedFilters
+     * @param Array $filters
+     * 
+     * @return none
+     */
     function CreateCSV(array &$array, $filename, $isHeadingDynamic = false, $DynamicHeadingIndex = 0, $showAppliedFilters = FALSE, $filters = array()) {
 
         if (count($array) == 0) {
