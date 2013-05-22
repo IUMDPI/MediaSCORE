@@ -1059,9 +1059,9 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
                         $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
 
-                        $AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['StorageLocations']['resident_structure_description'];
+                        $AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['StorageLocations'][0]['resident_structure_description'];
                         $AssetScoreReport['Contact Notes.'] = $Asset['Unit']['notes'];
-                        $AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations']['name'];
+                        $AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations'][0]['name'];
 
                         $AssetScoreReport['Unit Personnel ID.'] = $Asset['Unit']['Personnel'][0]['id'];
                         $AssetScoreReport['Unit Personnel First Name.'] = $Asset['Unit']['Personnel'][0]['first_name'];
