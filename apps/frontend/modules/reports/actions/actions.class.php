@@ -995,6 +995,9 @@ class reportsActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeAlldataoutputreport(sfWebRequest $request) {
+        set_time_limit(0);
+        @ini_set("memory_limit", "1000M"); # 1GB
+        @ini_set("max_execution_time", 999999999999); # 1GB
         $this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
 
         if ($request->isMethod(sfRequest::POST)) {
