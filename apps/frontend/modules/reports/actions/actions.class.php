@@ -1019,9 +1019,7 @@ class reportsActions extends sfActions {
                         ->leftJoin('u.StorageLocations sl')
                         ->leftJoin('u.Personnel p')
                         ->fetchArray();
-                echo '<pre>';
-                print_r($Units);
-                exit;
+                
                 foreach ($Units as $Unit) {
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
