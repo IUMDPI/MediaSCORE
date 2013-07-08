@@ -95,10 +95,11 @@ echo $NoRecordFound = get_slot('my_slot');
 		multiple: true
 	});
 	$('#reports_ExportType').multiselect({
-		height: 'auto',
+//		height: 'auto',
 		multiple: false,
 		selectedList:1,
-		minWidth:65
+		minWidth:65,
+		minHeight:55
 
 	});
 
