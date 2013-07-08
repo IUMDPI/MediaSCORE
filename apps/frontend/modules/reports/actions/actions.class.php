@@ -20,14 +20,21 @@ class reportsActions extends sfActions
 	{
 //		if ($request->isXmlHttpRequest())
 //		{
+		
+//		SELECT sa.`format_id` 
+//FROM  `store` 
+//JOIN store AS s ON s.`parent_node_id` = store.id
+//JOIN store AS sa ON sa.`parent_node_id` = s.id
+//WHERE store.id
+//IN ( 10 ) 
+//GROUP BY sa.format_id
 			$unitIDs = $request->getParameter('u');
 			$unit_explode = explode(',', $unitIDs);
-			$unit=Doctrine::getTable('AssetGroup')->createQuery('ag')
-  ->select('ag.format_id,c.id as c_id,u.id as u_id')
-  ->innerJoin('ag.Collection c WITH c.id =ag.parent_node_id')
-			->innerJoin('c.Unit u WITH u.id =c.parent_node_id')
-  ->whereIn('u.id', $unit_explode)
-			->execute()
+			$q = new Doctrine_RawSql();
+    $unit = $q->select('sa.format_id')
+			->from('store JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
+			->whereIn('store.id', $unit_explode)
+            ->execute()
 			->toArray();
   echo '<pre>';print_r($unit);exit;
 			$unit = Doctrine_Query::Create()
