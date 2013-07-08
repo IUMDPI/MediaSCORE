@@ -20,39 +20,38 @@ class reportsActions extends sfActions
 	{
 //		if ($request->isXmlHttpRequest())
 //		{
-		
-//		SELECT sa.`format_id` 
-//FROM  `store` 
-//JOIN store AS s ON s.`parent_node_id` = store.id
-//JOIN store AS sa ON sa.`parent_node_id` = s.id
-//WHERE store.id
-//IN ( 10 ) 
-//GROUP BY sa.format_id
-			$unitIDs = $request->getParameter('u');
-			
-			$unit_explode = explode(',', $unitIDs);
-			$con = Doctrine_Manager::connection();
-        $recordSet = $con->execute("SELECT sa.`format_id` 
+
+		$unitIDs = $request->getParameter('u');
+
+		$unit_explode = explode(',', $unitIDs);
+		$con = Doctrine_Manager::connection();
+		$recordSet = $con->execute("SELECT sa.`format_id` 
                                     FROM  `store` 
                                     JOIN store AS s ON s.`parent_node_id` = store.id
                                     JOIN store AS sa ON sa.`parent_node_id` = s.id
                                     WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); // get the name of dancers who have the upcoming events same as user
-        $dancerss = $recordSet->fetchAll();
-			
-  echo '<pre>';print_r($dancerss);exit;
-			$unit = Doctrine_Query::Create()
-			->from('Store ag')
-			->select('ag.format_id,c.id as c_id,u.id as u_id')
-			->innerJoin('store c ON c.id=ag.parent_node_id')
-			->innerJoin('store u ON u.id=c.parent_node_id')
-			->whereIn('u.id', $unit_explode)
-			->execute()
-			->toArray();
-			
-			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
-			$this->setLayout('json');
+		$formats = $recordSet->fetchAll();
+		
+		foreach ($formats as $value)
+		{
+			$value['name']=FormatType::$formatTypesValue1d[$value['format_id']];
+		}
+		echo '<pre>';
+		print_r($formats);
+		exit;
+		$unit = Doctrine_Query::Create()
+		->from('Store ag')
+		->select('ag.format_id,c.id as c_id,u.id as u_id')
+		->innerJoin('store c ON c.id=ag.parent_node_id')
+		->innerJoin('store u ON u.id=c.parent_node_id')
+		->whereIn('u.id', $unit_explode)
+		->execute()
+		->toArray();
 
-			return $this->renderText(json_encode($unitIDs));
+		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+		$this->setLayout('json');
+
+		return $this->renderText(json_encode($unitIDs));
 //		}
 	}
 
