@@ -5,27 +5,49 @@ echo $NoRecordFound = get_slot('my_slot');
 ?>
 
 <form action="<?php echo url_for('reports/assetsgroupsscoringreports') ?>" method="post">
-    <span ><?php echo $form['listUnits_RRD']->renderLabel(); ?></span>
-    <br/>
-    <br/>
-	<?php echo $form['listUnits_RRD']->render(); ?>
-    <br/>
-    <br/>
-    <br/>
-    <span><?php echo $form['format_id']->renderLabel(); ?></span>
-    <br/>
-    <br/>
-	<?php echo $form['format_id']->render(); ?>
-    <br/>
-    <br/>
-    <br/>
-    <span><?php echo $form['ExportType']->renderLabel(); ?></span>
-    <br/>
-    <br/>
-	<?php echo $form['ExportType']->render(); ?>
-    <br/>
-    <br/>
-    <input type="submit" value="Export" />
+	<table>
+		<tfoot>
+            <tr>
+                <td colspan="2">
+                     <input type="submit" value="Export" />&nbsp;or&nbsp;<a href="<?php echo url_for('reports/index') ?>">Cancel</a>
+                </td>
+            </tr>
+        </tfoot>
+		 <tbody>
+            <tr>
+                <th>
+                   
+                   <?php echo $form['listUnits_RRD']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['listUnits_RRD']->render(); ?>
+                    <?php echo $form['listUnits_RRD']->renderError(); ?>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                   
+                   <?php echo $form['format_id']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['format_id']->render(); ?>
+                    <?php echo $form['format_id']->renderError(); ?>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                   
+                   <?php echo $form['ExportType']->renderLabel(); ?>
+                </th>
+                <td>
+                    <?php echo $form['ExportType']->render(); ?>
+                    <?php echo $form['ExportType']->renderError(); ?>
+                </td>
+            </tr>
+		 </tbody>
+	</table>
+  
+  
 </form>
 
 <script type="text/javascript">
