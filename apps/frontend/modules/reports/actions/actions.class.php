@@ -35,12 +35,13 @@ class reportsActions extends sfActions
 		$unit_explode = explode(',', $unitIDs);
 		$this->unit = Doctrine_Query::Create()
 		->from('AssetGroup ag')
-		->select('ag.format_id,c.id as c_id,u.id as u_id,ft.type as ft_type')
+		->select('ag.*,c.*,u.*,ft.*')
+		->innerJoin("ag.FormatType ft")
 		->innerJoin('ag.Collection c')
-		->innerJoin('c.Unit u')
-		->innerJoin("ag.FormatType ft");
+		->innerJoin('c.Unit u');
+
 		if ( ! empty($unitIDs))
-			$this->unit->whereIn('u.id', $unit_explode);
+			$this->unit=$this->unit->whereIn('u.id', $unit_explode);
 		$this->unit->fetchArray();
 
 
