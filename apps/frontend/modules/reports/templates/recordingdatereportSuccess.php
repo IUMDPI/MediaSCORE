@@ -1,4 +1,5 @@
 <h1>Recording Date Report</h1>
+<hr/>
 <?php
 echo $NoRecordFound = get_slot('my_slot');
 ?>
