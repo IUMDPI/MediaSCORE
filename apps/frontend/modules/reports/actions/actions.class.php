@@ -32,9 +32,9 @@ class reportsActions extends sfActions
                                     WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); // get the name of dancers who have the upcoming events same as user
 		$formats = $recordSet->fetchAll();
 		
-		foreach ($formats as $value)
+		foreach ($formats as $key=> $value)
 		{
-			$value['name']=FormatType::$formatTypesValue1d[$value['format_id']];
+			$formats[$key]['name']=FormatType::$formatTypesValue1d[$value['format_id']];
 		}
 		echo '<pre>';
 		print_r($formats);
