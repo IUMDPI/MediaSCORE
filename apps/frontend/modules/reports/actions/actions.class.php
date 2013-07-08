@@ -36,22 +36,12 @@ class reportsActions extends sfActions
 		{
 			$formats[$key]['name']=FormatType::$formatTypesValue1d[$value['format_id']];
 		}
-		echo '<pre>';
-		print_r($formats);
-		exit;
-		$unit = Doctrine_Query::Create()
-		->from('Store ag')
-		->select('ag.format_id,c.id as c_id,u.id as u_id')
-		->innerJoin('store c ON c.id=ag.parent_node_id')
-		->innerJoin('store u ON u.id=c.parent_node_id')
-		->whereIn('u.id', $unit_explode)
-		->execute()
-		->toArray();
+		
 
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 
-		return $this->renderText(json_encode($unitIDs));
+		return $this->renderText(json_encode($formats));
 //		}
 	}
 
