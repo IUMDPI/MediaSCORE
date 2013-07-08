@@ -18,11 +18,11 @@ class reportsActions extends sfActions
 
 	public function executeGetUnitFormats(sfWebRequest $request)
 	{
-		if ($request->isXmlHttpRequest())
-		{
+//		if ($request->isXmlHttpRequest())
+//		{
 			$unitIDs = $request->getParameter('u');
 			$unit_explode = explode(',', $unitIDs);
-			$this->unit = Doctrine_Query::Create()
+			$unit = Doctrine_Query::Create()
 			->from('AssetGroup ag')
 			->select('ag.format_id,c.id as c_id,u.id as u_id')
 			->innerJoin('ag.Collection c')
@@ -30,11 +30,12 @@ class reportsActions extends sfActions
 			->whereIn('u.id', $unit_explode)
 			->execute()
 			->toArray();
+			echo '<pre>';print_r($unit);exit;
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
 			return $this->renderText(json_encode($unitIDs));
-		}
+//		}
 	}
 
 	/**
