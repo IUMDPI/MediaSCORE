@@ -49,8 +49,8 @@ class reportsActions extends sfActions
 			->innerJoin('ag.Collection c')
 			->innerJoin('c.Unit u')
 			->whereIn('u.id', $unit_explode)
-			->execute()
-			->toArray();
+			->fetchArray();
+//			->toArray();
 			
 			echo '<pre>';print_r($this->unit);exit;
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
