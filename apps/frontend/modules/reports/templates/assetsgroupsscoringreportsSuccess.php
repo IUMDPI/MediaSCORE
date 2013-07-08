@@ -8,7 +8,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		<tfoot>
             <tr>
                 <td colspan="2">
-                     <input type="submit" value="Export" />&nbsp;or&nbsp;<a href="<?php echo url_for('reports/index') ?>">Cancel</a>
+					<input type="submit" value="Export" />&nbsp;<span>or</span>&nbsp;<a href="<?php echo url_for('reports/index') ?>">Cancel</a>
                 </td>
             </tr>
         </tfoot>
