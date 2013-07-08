@@ -1,4 +1,6 @@
-<div><h1>Reports List</h1>
+<div>
+	<h1>Reports List</h1>
+	<hr/>
 </div>
 <table>
 	<tbody>
