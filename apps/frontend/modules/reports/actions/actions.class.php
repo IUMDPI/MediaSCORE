@@ -55,7 +55,6 @@ class reportsActions extends sfActions
 
 		if ($request->isMethod(sfRequest::POST))
 		{
-			
 			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
 			if ($this->form->isValid())
 			{
@@ -326,10 +325,7 @@ class reportsActions extends sfActions
 					}
 					else
 					{
-						$Bug = '<script type="text/javascript"> $(function(){
-                alert("No Record Found To Export!")                    
-                });
-                    </script>';
+						$Bug = '<div>No Record Found To Export</div>';
 						$this->getResponse()->setSlot('my_slot', $Bug);
 					}
 				}
