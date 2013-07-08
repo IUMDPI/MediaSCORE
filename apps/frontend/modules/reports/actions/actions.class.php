@@ -38,11 +38,10 @@ class reportsActions extends sfActions
 		->select('ag.*,c.*,u.*,ft.*')
 		->innerJoin("ag.FormatType ft")
 		->innerJoin('ag.Collection c')
-		->innerJoin('c.Unit u');
+		->innerJoin('c.Unit u')
+		->whereIn('u.id', $unit_explode)
+		->fetchArray();
 
-		if ( ! empty($unitIDs))
-			$this->unit=$this->unit->whereIn('u.id', $unit_explode);
-		$this->unit->fetchArray();
 
 
 		echo '<pre>';
