@@ -48,9 +48,10 @@ class ReportsForm extends BaseReportsForm {
             $this->getWidget('EvaluatorsEndDate')->setLabel('End Date : &nbsp;');
         } elseif ($actionName == 'assetsgroupsscoringreports') {
 
-            $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true), array('required' => true)));
-            $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true), array('required' => true)));
-
+            $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
+            $this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true)));
+			$this->setValidator('format_id', new sfValidatorString(array('required' => true)));
             $this->getWidget('listUnits_RRD')->setLabel('Units : &nbsp;');
             $this->getWidget('format_id')->setLabel('Format Type : &nbsp;');
         } elseif ($actionName == 'evaluatorsreport') {

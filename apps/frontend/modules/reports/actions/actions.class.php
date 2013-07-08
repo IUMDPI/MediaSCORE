@@ -68,49 +68,7 @@ class reportsActions extends sfActions
 
 			if ($listUnits_RRD && $format_id)
 			{
-//				$Units = Doctrine_Query::Create()
-//				->from('Unit u')
-//				->select('u.* ,p.*,sl.*')
-//				->leftJoin('u.Personnel p ')
-//				->leftJoin('u.StorageLocations sl ')
-//				->whereIn('u.id', $listUnits_RRD)
-//				->fetchArray();
-//				foreach ($Units as $Unit)
-//				{
-//					$Collections = Doctrine_Query::Create()
-//					->from('Collection c')
-//					->select('c.*,sl.*')
-//					->where('c.parent_node_id  = ?', $Unit['id'])
-//					->fetchArray();
-//
-//					foreach ($Collections as $Collection)
-//					{
-//						if ($format_id)
-//						{
-//							$Asset = Doctrine_Query::Create()
-//							->from('AssetGroup a')
-//							->select('a.*, ft.*')
-//							->innerJoin("a.FormatType ft")
-//							->where('a.parent_node_id  = ?', $Collection['id'])
-//							->andWhereIn('ft.type', $format_id)
-//							->addOrderBy('ft.asset_score DESC')
-//							->fetchArray();
-//						}
-//
-//						if ($Asset)
-//						{
-//							foreach ($Asset as $A)
-//							{
-//								$SolutionArray = array();
-//								$SolutionArray['AssetGroup'] = $A;
-//								$SolutionArray['Collection'] = $Collection;
-//								$SolutionArray['Unit'] = $Unit;
-//								$FlagForReport = TRUE;
-//								$Assets[] = $SolutionArray;
-//							}
-//						}
-//					}
-//				}
+
 				$db_formats = Doctrine_Query::Create()
 				->from('AssetGroup ag')
 				->innerJoin("ag.FormatType ft")
