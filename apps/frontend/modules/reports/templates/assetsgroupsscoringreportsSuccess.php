@@ -75,7 +75,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		'height':200
 	});
 	function getUnitFormat(ids) {
-		console.log(ids)
+		
 		$.ajax({
 			method: 'POST',
 			url: '/reports/getUnitFormats?u=' + ids,
