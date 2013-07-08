@@ -117,7 +117,9 @@ class reportsActions extends sfActions
 				->from('AssetGroup ag')
 				->innerJoin("ag.FormatType ft")
 				->innerJoin('ag.Collection c')
-				->innerJoin('c.Unit u');
+				->innerJoin('c.Unit u')
+				->leftJoin('u.Personnel p ')
+				->leftJoin('u.StorageLocations sl');
 				if ( ! empty($unitIDs) && count($unit_explode) > 0)
 					$db_formats = $db_formats->whereIn('u.id', $listUnits_RRD);
 				$db_formats = $db_formats->fetchArray();
