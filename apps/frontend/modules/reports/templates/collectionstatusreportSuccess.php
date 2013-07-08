@@ -96,7 +96,8 @@ echo $NoRecordFound = get_slot('my_slot');
 	});
 	$('#reports_ExportType').multiselect({
 		height: 'auto',
-		multiple: false
+		multiple: false,
+		selectedList:1
 
 	});
 
