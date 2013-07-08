@@ -1,5 +1,4 @@
-Asset Groups Scoring Reports
-<br/><br/>
+<h1>Asset Groups Scoring Reports </h1>
 <?php
 echo $NoRecordFound = get_slot('my_slot');
 ?>
