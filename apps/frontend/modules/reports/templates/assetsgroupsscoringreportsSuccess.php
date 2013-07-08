@@ -36,8 +36,7 @@ echo $NoRecordFound = get_slot('my_slot');
 	});
 	$('#reports_format_id').multiselect({
 		'height': 'auto',
-		'multiple': true,
-		'height':200
+		'multiple': true
 
 	});
 	$("#reports_listUnits_RRD").bind("multiselectclick", function(event, ui) {
@@ -69,10 +68,8 @@ echo $NoRecordFound = get_slot('my_slot');
 				$("#reports_format_id").multiselect("destroy");
 				$("#reports_format_id").multiselect("refresh");
 				$('#reports_format_id').multiselect({
-					'height': 'auto',
-					'multiple': true
-
-
+					height: 'auto',
+					multiple: true
 				});
 			}
 		});
