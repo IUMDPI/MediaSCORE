@@ -35,7 +35,7 @@ class reportsActions extends sfActions
 		$unit_explode = explode(',', $unitIDs);
 		$formats = Doctrine_Query::Create()
 		->from('AssetGroup ag')
-		->select('ag.*,c.*,u.*,ft.*')
+//		->select('ag.*,c.*,u.*,ft.*')
 		->innerJoin("ag.FormatType ft")
 		->innerJoin('ag.Collection c')
 		->innerJoin('c.Unit u');
