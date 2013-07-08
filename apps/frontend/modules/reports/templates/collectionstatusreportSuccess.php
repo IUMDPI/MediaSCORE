@@ -94,14 +94,13 @@ echo $NoRecordFound = get_slot('my_slot');
 		height: 'auto',
 		multiple: true
 	});
-	$('#reports_ExportType').multiselect({
+//	$('#reports_ExportType').multiselect({
 //		height: 'auto',
-		multiple: false,
-		selectedList:1,
-		minWidth:65,
-		minHeight:55
-
-	});
+//		multiple: false,
+//		selectedList:1,
+//		minWidth:65
+//
+//	});
 
 </script>
 
