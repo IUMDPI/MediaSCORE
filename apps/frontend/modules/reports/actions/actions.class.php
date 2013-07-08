@@ -29,6 +29,7 @@ class reportsActions extends sfActions
 //IN ( 10 ) 
 //GROUP BY sa.format_id
 			$unitIDs = $request->getParameter('u');
+			echo '<pre>';print_r($unitIDs);exit;
 			$unit_explode = explode(',', $unitIDs);
 			$q = new Doctrine_RawSql();
     $unit = $q->select('sa.format_id')
