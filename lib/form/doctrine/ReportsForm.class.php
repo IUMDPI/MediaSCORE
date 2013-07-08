@@ -79,6 +79,7 @@ class ReportsForm extends BaseReportsForm {
             $this->getWidget('Constraints')->setLabel('Problem Type : &nbsp;');
         } elseif ($actionName == 'recordingdatereport') {
             $this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
+			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
             $this->getWidget('listUnits_RRD')->setLabel('Units : &nbsp;');
         } elseif ($actionName == 'percentageofholdings') {
 
