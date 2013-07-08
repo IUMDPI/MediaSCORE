@@ -68,6 +68,12 @@ echo $NoRecordFound = get_slot('my_slot');
 				}
 				$("#reports_format_id").multiselect("destroy");
 				$("#reports_format_id").multiselect("refresh");
+				$('#reports_format_id').multiselect({
+					'height': 'auto',
+					'multiple': true
+
+
+				});
 			}
 		});
 	}
