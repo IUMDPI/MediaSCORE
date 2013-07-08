@@ -13,8 +13,17 @@ class reportsActions extends sfActions {
     public function executeIndex(sfWebRequest $request) {
         
     }
+	public function executeGetUnitFormats(sfWebRequest $request)
+	{
+		if ($request->isXmlHttpRequest()) {
+			$unitIDs = $request->getParameter('u');
+			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+            $this->setLayout('json');
 
-    /**
+            return $this->renderText(json_encode($unitIDs));
+		}
+	}
+	/**
      * Assets Groups Scoring Reports From reporting module
      * 
      * @param sfWebRequest $request 
