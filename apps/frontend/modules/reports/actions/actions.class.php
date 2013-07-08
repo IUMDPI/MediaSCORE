@@ -33,7 +33,7 @@ class reportsActions extends sfActions
 			$formats = array();
 			foreach ($db_formats as $value)
 			{
-				$formats[] = array('format_id' => $value['format_id'], 'format_name' => FormatType::$formatTypesValue1d[$value['format_id']]);
+				$formats[] = array('format_id' => $value['type'], 'format_name' => FormatType::$formatTypesValue1d[$value['type']]);
 			}
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
