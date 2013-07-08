@@ -37,8 +37,8 @@ class reportsActions extends sfActions
 			->from('store JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
 //			->whereIn('store.id', $unit_explode)
 	
-            ->execute()
-			->toArray();
+            ->getSqlQuery();
+//			->toArray();
   echo '<pre>';print_r($unit);exit;
 			$unit = Doctrine_Query::Create()
 			->from('AssetGroup ag')
