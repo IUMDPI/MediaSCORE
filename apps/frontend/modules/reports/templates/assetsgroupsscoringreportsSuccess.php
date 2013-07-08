@@ -16,7 +16,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		 <tbody>
             <tr>
                 <th>
-                   
+                   <?php echo $form->renderHiddenFields(); ?>
                    <?php echo $form['listUnits_RRD']->renderLabel(); ?>
                 </th>
                 <td>
