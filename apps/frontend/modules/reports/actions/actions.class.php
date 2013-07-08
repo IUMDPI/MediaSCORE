@@ -35,7 +35,7 @@ class reportsActions extends sfActions
 			$q = new Doctrine_RawSql();
     $unit = $q->select('sa.format_id')
 			->from('store JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
-			->whereIn('store.id', $unit_explode)
+//			->whereIn('store.id', $unit_explode)
 	
             ->execute()
 			->toArray();
