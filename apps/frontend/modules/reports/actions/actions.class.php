@@ -35,10 +35,10 @@ class reportsActions extends sfActions
 			
   
 			$unit = Doctrine_Query::Create()
-			->from('AssetGroup ag')
+			->from('Store ag')
 			->select('ag.format_id,c.id as c_id,u.id as u_id')
-			->innerJoin('ag.store c ON c.id=ag.parent_node_id')
-			->innerJoin('c.store u ON u.id=c.parent_node_id')
+			->innerJoin('store c ON c.id=ag.parent_node_id')
+			->innerJoin('store u ON u.id=c.parent_node_id')
 			->whereIn('u.id', $unit_explode)
 			->execute()
 			->toArray();
