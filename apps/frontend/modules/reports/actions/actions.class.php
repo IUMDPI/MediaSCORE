@@ -31,7 +31,7 @@ class reportsActions extends sfActions
 			$unitIDs = $request->getParameter('u');
 			
 			$unit_explode = explode(',', $unitIDs);
-			echo '<pre>';print_r($unit_explode);exit;
+			
 			$q = new Doctrine_RawSql();
     $unit = $q->select('sa.format_id')
 			->from('store JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
