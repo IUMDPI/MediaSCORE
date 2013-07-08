@@ -5,6 +5,7 @@ echo $NoRecordFound = get_slot('my_slot');
 
 <form action="<?php echo url_for('reports/assetsgroupsscoringreports') ?>" method="post">
 	<table>
+		<?php echo $form->renderGlobalErrors(); ?>
 		<tfoot>
             <tr>
                 <td colspan="2">
