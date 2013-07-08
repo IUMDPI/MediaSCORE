@@ -35,12 +35,11 @@ class reportsActions extends sfActions
 			
   
 			$unit = Doctrine_Query::Create()
-			->from('Store')
-			->select('sa.format_id,s.id as s_id,store.id')
-			->buildSqlQuery('JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
-//			->innerJoin('ag.Collection c')
-//			->innerJoin('c.Unit u')
-			->whereIn('Store.id', $unit_explode)
+			->from('AssetGroup ag')
+			->select('ag.format_id,c.id as c_id,u.id as u_id')
+			->innerJoin('ag.store c ON c.id=ag.parent_node_id')
+			->innerJoin('c.store u ON u.id=c.parent_node_id')
+			->whereIn('u.id', $unit_explode)
 			->execute()
 			->toArray();
 			echo '<pre>';print_r($unit);exit;
