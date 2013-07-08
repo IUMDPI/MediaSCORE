@@ -27,7 +27,8 @@ class reportsActions extends sfActions
 			->from('AssetGroup ag')
 			->innerJoin("ag.FormatType ft")
 			->innerJoin('ag.Collection c')
-			->innerJoin('c.Unit u');
+			->innerJoin('c.Unit u')
+			->groupBy('ft.type');
 			if ( ! empty($unitIDs) && count($unit_explode) > 0)
 				$db_formats = $db_formats->whereIn('u.id', $unit_explode);
 			$db_formats = $db_formats->fetchArray();
