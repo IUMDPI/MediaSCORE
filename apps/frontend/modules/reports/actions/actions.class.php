@@ -33,25 +33,24 @@ class reportsActions extends sfActions
 		$unitIDs = $request->getParameter('u');
 
 		$unit_explode = explode(',', $unitIDs);
-		$formats = Doctrine_Query::Create()
+		$db_formats = Doctrine_Query::Create()
 		->from('AssetGroup ag')
-//		->select('ag.*,c.*,u.*,ft.*')
 		->innerJoin("ag.FormatType ft")
 		->innerJoin('ag.Collection c')
 		->innerJoin('c.Unit u');
 		if ( ! empty($unitIDs) && count($unit_explode) > 0)
-			$formats = $formats->whereIn('u.id', $unit_explode);
-		$formats = $formats->fetchArray();
+			$db_formats = $db_formats->whereIn('u.id', $unit_explode);
+		$db_formats = $db_formats->fetchArray();
+		$formats = array();
+		foreach ($db_formats as $value)
+		{
+			$formats[] = array('format_id' => $value['FormatType']['type'], 'format_name' => FormatType::$formatTypesValue1d[$value['FormatType']['type']]);
+		}
 
-
-
-		echo '<pre>';
-		print_r($formats);
-		exit;
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 
-		return $this->renderText(json_encode($unitIDs));
+		return $this->renderText(json_encode($formats));
 //		}
 	}
 
