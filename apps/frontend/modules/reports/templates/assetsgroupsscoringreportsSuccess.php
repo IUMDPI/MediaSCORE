@@ -46,5 +46,7 @@ echo $NoRecordFound = get_slot('my_slot');
         'multiple':true,
         'height':200
     });
-  
+	function getUnitFormat(){
+		alert(1);
+	}
 </script>
