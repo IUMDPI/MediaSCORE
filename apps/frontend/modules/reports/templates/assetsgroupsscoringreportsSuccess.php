@@ -60,15 +60,15 @@ echo $NoRecordFound = get_slot('my_slot');
 		'multiple': true
 
 	});
-//	$("#reports_listUnits_RRD").bind("multiselectclick", function(event, ui) {
-//		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
-//			return this.value;
-//		}).get();
-//
-////            if(array_of_checked_values!='')
-//		getUnitFormat(array_of_checked_values);
-//
-//	});
+	$("#reports_listUnits_RRD").bind("multiselectclick", function(event, ui) {
+		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
+			return this.value;
+		}).get();
+
+//            if(array_of_checked_values!='')
+		getUnitFormat(array_of_checked_values);
+
+	});
 	$('#reports_collectionStatus').multiselect({
 		'height': 'auto',
 		'multiple': true,
