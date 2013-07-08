@@ -13,41 +13,41 @@ echo $NoRecordFound = get_slot('my_slot');
                 </td>
             </tr>
         </tfoot>
-		 <tbody>
+		<tbody>
             <tr>
                 <th>
-                   <?php echo $form->renderHiddenFields(); ?>
-                   <?php echo $form['listUnits_RRD']->renderLabel(); ?>
+					<?php echo $form->renderHiddenFields(); ?>
+					<?php echo $form['listUnits_RRD']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['listUnits_RRD']->render(); ?>
-                    <?php echo $form['listUnits_RRD']->renderError(); ?>
+					<?php echo $form['listUnits_RRD']->render(); ?>
+					<?php echo $form['listUnits_RRD']->renderError(); ?>
                 </td>
             </tr>
             <tr>
                 <th>
-                   
-                   <?php echo $form['format_id']->renderLabel(); ?>
+
+					<?php echo $form['format_id']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['format_id']->render(); ?>
-                    <?php echo $form['format_id']->renderError(); ?>
+					<?php echo $form['format_id']->render(); ?>
+					<?php echo $form['format_id']->renderError(); ?>
                 </td>
             </tr>
             <tr>
                 <th>
-                   
-                   <?php echo $form['ExportType']->renderLabel(); ?>
+
+					<?php echo $form['ExportType']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['ExportType']->render(); ?>
-                    <?php echo $form['ExportType']->renderError(); ?>
+					<?php echo $form['ExportType']->render(); ?>
+					<?php echo $form['ExportType']->renderError(); ?>
                 </td>
             </tr>
-		 </tbody>
+		</tbody>
 	</table>
-  
-  
+
+
 </form>
 
 <script type="text/javascript">
@@ -59,8 +59,9 @@ echo $NoRecordFound = get_slot('my_slot');
 	$('#reports_format_id').multiselect({
 		'height': 'auto',
 		'multiple': true
-
 	});
+	if ($('#reports_listUnits_RRD').val() == '')
+		$("#reports_format_id").multiselect("disable");
 	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
@@ -76,7 +77,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		'height':200
 	});
 	function getUnitFormat(ids) {
-		
+		$("#reports_format_id").multiselect("disable");
 		$.ajax({
 			method: 'POST',
 			url: '/reports/getUnitFormats?u=' + ids,
@@ -93,6 +94,8 @@ echo $NoRecordFound = get_slot('my_slot');
 					height: 'auto',
 					multiple: true
 				});
+				if(result.length>0)
+					$("#reports_format_id").multiselect("enable");
 			}
 		});
 	}
