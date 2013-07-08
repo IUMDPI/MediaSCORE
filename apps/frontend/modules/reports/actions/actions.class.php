@@ -32,23 +32,18 @@ class reportsActions extends sfActions
 			
 			$unit_explode = explode(',', $unitIDs);
 			
-			$q = new Doctrine_RawSql();
-    $unit = $q->select('sa.format_id')
-			->from('store JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
-//			->whereIn('store.id', $unit_explode)
-	
-            ->getSqlQuery();
-//			->toArray();
-  echo '<pre>';print_r($unit);exit;
+			
+  
 			$unit = Doctrine_Query::Create()
-			->from('AssetGroup ag')
-			->select('ag.format_id,c.id as c_id,u.id as u_id')
-			->innerJoin('ag.Collection c')
-			->innerJoin('c.Unit u')
-			->whereIn('u.id', $unit_explode)
+			->from('Store')
+			->select('sa.format_id,s.id as s_id,store.id')
+			->buildSqlQuery('JOIN store AS s ON s.`parent_node_id` = store.id JOIN store AS sa ON sa.`parent_node_id` = s.id')
+//			->innerJoin('ag.Collection c')
+//			->innerJoin('c.Unit u')
+			->whereIn('Store.id', $unit_explode)
 			->execute()
 			->toArray();
-			
+			echo '<pre>';print_r($unit);exit;
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
