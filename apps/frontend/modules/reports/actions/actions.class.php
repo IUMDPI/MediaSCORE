@@ -31,14 +31,14 @@ class reportsActions extends sfActions
                                     JOIN store AS sa ON sa.`parent_node_id` = s.id
                                     WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); // get the name of dancers who have the upcoming events same as user
 		$db_formats = $recordSet->fetchAll();
-		echo '<pre>';print_r($db_formats);exit;
+
 		$formats=array();
 		foreach ($db_formats as  $value)
 		{
 			$formats[]=array('format_id'=>$value['format_id'],'format_name'=>FormatType::$formatTypesValue1d[$value['format_id']]);
 			
 		}
-		
+				echo '<pre>';print_r($formats);exit;
 
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
