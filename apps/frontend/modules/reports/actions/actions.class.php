@@ -18,19 +18,8 @@ class reportsActions extends sfActions
 
 	public function executeGetUnitFormats(sfWebRequest $request)
 	{
-		
+
 //		if ($request->isXmlHttpRequest())
-//		{
-//			$unitIDs = $request->getParameter('u');
-//			$unit_explode = explode(',', $unitIDs);
-//			$con = Doctrine_Manager::connection();
-//			$recordSet = $con->execute("SELECT ft.`type` 
-//                                    FROM  `store` 
-//                                    JOIN store AS s ON s.`parent_node_id` = store.id
-//                                    JOIN store AS sa ON sa.`parent_node_id` = s.id
-//                                    JOIN format_type AS ft ON ft.`id` = sa.format_id
-//                                    WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); 
-//			$db_formats = $recordSet->fetchAll();
 //			$formats = array();
 //			foreach ($db_formats as $value)
 //			{
@@ -41,22 +30,27 @@ class reportsActions extends sfActions
 //			return $this->renderText(json_encode($formats));
 //		if ($request->isXmlHttpRequest())
 //		{
-			$unitIDs = $request->getParameter('u');
-			$unit_explode = explode(',', $unitIDs);
-			$this->unit = Doctrine_Query::Create()
-			->from('AssetGroup ag')
-			->select('ag.format_id,c.id as c_id,u.id as u_id')
-			->innerJoin('ag.Collection c')
-			->innerJoin('c.Unit u')
-			->whereIn('u.id', $unit_explode)
-			->fetchArray();
-//			->toArray();
-			
-			echo '<pre>';print_r($this->unit);exit;
-			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
-			$this->setLayout('json');
+		$unitIDs = $request->getParameter('u');
 
-			return $this->renderText(json_encode($unitIDs));
+		$unit_explode = explode(',', $unitIDs);
+		$this->unit = Doctrine_Query::Create()
+		->from('AssetGroup ag')
+		->select('ag.format_id,c.id as c_id,u.id as u_id,ft.type')
+		->innerJoin('ag.Collection c')
+		->innerJoin('c.Unit u')
+		->innerJoin("ag.FormatType ft");
+		if ( ! empty($unitIDs))
+			$this->unit->whereIn('u.id', $unit_explode);
+		$this->unit->fetchArray();
+
+
+		echo '<pre>';
+		print_r($this->unit);
+		exit;
+		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+		$this->setLayout('json');
+
+		return $this->renderText(json_encode($unitIDs));
 //		}
 	}
 
