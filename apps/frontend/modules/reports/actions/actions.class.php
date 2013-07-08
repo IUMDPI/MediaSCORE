@@ -28,7 +28,7 @@ class reportsActions extends sfActions
                                     JOIN store AS s ON s.`parent_node_id` = store.id
                                     JOIN store AS sa ON sa.`parent_node_id` = s.id
                                     JOIN format_type AS ft ON ft.`id` = sa.format_id
-                                    WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); // get the name of dancers who have the upcoming events same as user
+                                    WHERE store.id IN (" . $unitIDs . ") AND sa.format_id IS NOT NULL"); 
 			$db_formats = $recordSet->fetchAll();
 			$formats = array();
 			foreach ($db_formats as $value)

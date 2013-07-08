@@ -124,7 +124,9 @@ Collection:
   columns:
     status: { type: string(255) }
   relations:
+    Unit: { local: parent_node_id, foreign: id, foreignAlias: heldByUnit ,onDelete: CASCADE}
     StorageLocations: { class: StorageLocation, local: collection_id, foreign: storage_location_id, refClass: CollectionStorageLocation }
+    
 
 CollectionStorageLocation:
   columns:
@@ -155,6 +157,7 @@ AssetGroup:
     format_id: { type: integer }
     #evaluator_history: { type: integer }
   relations:
+    Collection: { local: parent_node_id, foreign: id, foreignAlias: heldByCollection ,onDelete: CASCADE}
     FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups ,onDelete: CASCADE}
     EvaluatorHistory: { class: EvaluatorHistory, type: many, local: id, foreign: asset_group_id,onDelete: CASCADE }
 
