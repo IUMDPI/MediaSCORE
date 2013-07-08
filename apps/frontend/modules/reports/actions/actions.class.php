@@ -93,7 +93,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
                         $AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
                         $AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
-                        $AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit']['resident_structure_description']; #resident_structure_description
+                        $AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit'][0]['resident_structure_description']; #resident_structure_description
                         $AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
                         $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
                         $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
@@ -721,6 +721,7 @@ class reportsActions extends sfActions {
                         ->leftJoin('u.StorageLocations sl ')
                         ->fetchArray();
 
+
                 foreach ($Units as $Unit) {
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
@@ -995,6 +996,9 @@ class reportsActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeAlldataoutputreport(sfWebRequest $request) {
+        set_time_limit(0);
+        @ini_set("memory_limit", "1000M"); # 1GB
+        @ini_set("max_execution_time", 999999999999); # 1GB
         $this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
 
         if ($request->isMethod(sfRequest::POST)) {
@@ -1015,6 +1019,7 @@ class reportsActions extends sfActions {
                         ->leftJoin('u.StorageLocations sl')
                         ->leftJoin('u.Personnel p')
                         ->fetchArray();
+                
                 foreach ($Units as $Unit) {
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
@@ -1054,9 +1059,9 @@ class reportsActions extends sfActions {
                         $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
                         $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
 
-                        $AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['StorageLocations']['resident_structure_description'];
+                        $AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['StorageLocations'][0]['resident_structure_description'];
                         $AssetScoreReport['Contact Notes.'] = $Asset['Unit']['notes'];
-                        $AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations']['name'];
+                        $AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations'][0]['name'];
 
                         $AssetScoreReport['Unit Personnel ID.'] = $Asset['Unit']['Personnel'][0]['id'];
                         $AssetScoreReport['Unit Personnel First Name.'] = $Asset['Unit']['Personnel'][0]['first_name'];
@@ -1412,18 +1417,20 @@ class reportsActions extends sfActions {
 
                 $excel->setDataArray($DataDumpReportArray);
                 $excel->extractHeadings();
+                $filename = '';
+                $Sheettitle = '';
                 if ($param['reports']['listReports'] == '0') {
                     $filename = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Asset_Groups_Report';
+                    $Sheettitle = 'Asset_Groups_Report';
                 } else if ($param['reports']['listReports'] == '1') {
                     $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Asset_Storage_Locations';
+                    $Sheettitle = 'Assets_Storage_Locations';
                 } else if ($param['reports']['listReports'] == '2') {
                     $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Unit_Personnel';
+                    $Sheettitle = 'Unit_Personnel';
                 } else {
                     $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
-                    $Sheettitle = 'Output_All_Users_Report';
+                    $Sheettitle = 'Users_Report';
                 }
 
                 $intial_dicrectory = '/AssetsScore/xls/';
@@ -1436,6 +1443,8 @@ class reportsActions extends sfActions {
 
                 $excel->createExcel();
 
+
+
                 $excel->SaveFile();
                 $excel->DownloadXLSX($file_name_with_directory, $filename);
                 $excel->DeleteFile($file_name_with_directory);
@@ -1443,24 +1452,27 @@ class reportsActions extends sfActions {
             } else {
 
                 $csvHandler = new csvHandler();
-
+                $file_name = '';
+                $intial_dicrectory = '';
                 if ($param['reports']['listReports'] == '0') {
 
-                    $file_name = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.xlsx';
+                    $file_name = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '1') {
 
-                    $filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
+                    $file_name = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else if ($param['reports']['listReports'] == '2') {
 
-                    $filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
+                    $file_name = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 } else {
 
-                    $filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
+                    $file_name = 'Output_All_Users_Report_' . date('dmY_His') . '.csv';
                     $intial_dicrectory = '/AssetsScore/csv/';
                 }
+
+
 
                 $file_name_with_directory = $intial_dicrectory . $file_name;
                 $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
@@ -1676,7 +1688,7 @@ class reportsActions extends sfActions {
                     if ($Assets) {
                         $j = 1;
                         foreach ($Assets as $Asset) {
-                        
+
                             $i = 1;
                             $AssetScoreReport = array();
                             $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
@@ -2060,7 +2072,7 @@ class reportsActions extends sfActions {
                         }
                     }
                 }
-//            echo '<pre>';
+
                 foreach ($format_id as $formats) {
                     $Format_Filter[$formats] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $formats);
                 }
@@ -2120,7 +2132,7 @@ class reportsActions extends sfActions {
                         $file_name = 'Duration_Report_' . date('dmY_His') . '.csv';
                         $intial_dicrectory = '/AssetsScore/csv/';
                         $file_name_with_directory = $intial_dicrectory . $file_name;
-                        $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
+                        $csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, FALSE, 0, TRUE, $filters);
                         $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                         $csvHandler->DeleteFile($file_name_with_directory);
                         exit;
