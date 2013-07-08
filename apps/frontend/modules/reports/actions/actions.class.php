@@ -75,8 +75,6 @@ class reportsActions extends sfActions
 //				->leftJoin('u.StorageLocations sl ')
 //				->whereIn('u.id', $listUnits_RRD)
 //				->fetchArray();
-
-
 //				foreach ($Units as $Unit)
 //				{
 //					$Collections = Doctrine_Query::Create()
@@ -120,18 +118,18 @@ class reportsActions extends sfActions
 				->innerJoin('c.Unit u')
 				->leftJoin('u.Personnel p ')
 				->leftJoin('u.StorageLocations sl');
-				if ( ! empty($unitIDs) && count($unit_explode) > 0)
-					$db_formats = $db_formats->whereIn('u.id', $listUnits_RRD);
+
+				$db_formats = $db_formats->whereIn('u.id', $listUnits_RRD);
 				$db_formats = $db_formats->fetchArray();
 				foreach ($db_formats as $A)
-							{
-								$SolutionArray = array();
-								$SolutionArray['AssetGroup'] = $A;
-								$SolutionArray['Collection'] = $A['Collection'];
-								$SolutionArray['Unit'] = $A['Collection']['Unit'];
-								$FlagForReport = TRUE;
-								$Assets[] = $SolutionArray;
-							}
+				{
+					$SolutionArray = array();
+					$SolutionArray['AssetGroup'] = $A;
+					$SolutionArray['Collection'] = $A['Collection'];
+					$SolutionArray['Unit'] = $A['Collection']['Unit'];
+					$FlagForReport = TRUE;
+					$Assets[] = $SolutionArray;
+				}
 
 				$formatTypeValuesManager = new formatTypeValuesManager();
 				if ($Assets && $FlagForReport)
