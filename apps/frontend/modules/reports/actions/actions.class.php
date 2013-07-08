@@ -36,7 +36,7 @@ class reportsActions extends sfActions
                                     FROM  `store` 
                                     JOIN store AS s ON s.`parent_node_id` = store.id
                                     JOIN store AS sa ON sa.`parent_node_id` = s.id
-                                    WHERE store.id " . $unitIDs . ""); // get the name of dancers who have the upcoming events same as user
+                                    WHERE store.id IN (" . $unitIDs . ")"); // get the name of dancers who have the upcoming events same as user
         $dancerss = $recordSet->fetchAll();
 			
   echo '<pre>';print_r($dancerss);exit;
