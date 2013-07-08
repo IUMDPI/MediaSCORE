@@ -18,40 +18,30 @@ class reportsActions extends sfActions
 
 	public function executeGetUnitFormats(sfWebRequest $request)
 	{
-
-//		if ($request->isXmlHttpRequest())
-//			$formats = array();
-//			foreach ($db_formats as $value)
-//			{
-//				$formats[] = array('format_id' => $value['type'], 'format_name' => FormatType::$formatTypesValue1d[$value['type']]);
-//			}
-//			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
-//			$this->setLayout('json');
-//			return $this->renderText(json_encode($formats));
-//		if ($request->isXmlHttpRequest())
-//		{
-		$unitIDs = $request->getParameter('u');
-
-		$unit_explode = explode(',', $unitIDs);
-		$db_formats = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->innerJoin("ag.FormatType ft")
-		->innerJoin('ag.Collection c')
-		->innerJoin('c.Unit u');
-		if ( ! empty($unitIDs) && count($unit_explode) > 0)
-			$db_formats = $db_formats->whereIn('u.id', $unit_explode);
-		$db_formats = $db_formats->fetchArray();
-		$formats = array();
-		foreach ($db_formats as $value)
+		if ($request->isXmlHttpRequest())
 		{
-			$formats[] = array('format_id' => $value['FormatType']['type'], 'format_name' => FormatType::$formatTypesValue1d[$value['FormatType']['type']]);
+			$unitIDs = $request->getParameter('u');
+
+			$unit_explode = explode(',', $unitIDs);
+			$db_formats = Doctrine_Query::Create()
+			->from('AssetGroup ag')
+			->innerJoin("ag.FormatType ft")
+			->innerJoin('ag.Collection c')
+			->innerJoin('c.Unit u');
+			if ( ! empty($unitIDs) && count($unit_explode) > 0)
+				$db_formats = $db_formats->whereIn('u.id', $unit_explode);
+			$db_formats = $db_formats->fetchArray();
+			$formats = array();
+			foreach ($db_formats as $value)
+			{
+				$formats[] = array('format_id' => $value['FormatType']['type'], 'format_name' => FormatType::$formatTypesValue1d[$value['FormatType']['type']]);
+			}
+
+			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+			$this->setLayout('json');
+
+			return $this->renderText(json_encode($formats));
 		}
-
-		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
-		$this->setLayout('json');
-
-		return $this->renderText(json_encode($formats));
-//		}
 	}
 
 	/**
@@ -78,52 +68,68 @@ class reportsActions extends sfActions
 
 			if ($listUnits_RRD && $format_id)
 			{
-				$Units = Doctrine_Query::Create()
-				->from('Unit u')
-				->select('u.* ,p.*,sl.*')
-				->leftJoin('u.Personnel p ')
-				->leftJoin('u.StorageLocations sl ')
-				->whereIn('u.id', $listUnits_RRD)
-				->fetchArray();
+//				$Units = Doctrine_Query::Create()
+//				->from('Unit u')
+//				->select('u.* ,p.*,sl.*')
+//				->leftJoin('u.Personnel p ')
+//				->leftJoin('u.StorageLocations sl ')
+//				->whereIn('u.id', $listUnits_RRD)
+//				->fetchArray();
 
 
-				foreach ($Units as $Unit)
-				{
-					$Collections = Doctrine_Query::Create()
-					->from('Collection c')
-					->select('c.*,sl.*')
-					->where('c.parent_node_id  = ?', $Unit['id'])
-					->fetchArray();
-
-					foreach ($Collections as $Collection)
-					{
-						if ($format_id)
-						{
-							$Asset = Doctrine_Query::Create()
-							->from('AssetGroup a')
-							->select('a.*, ft.*')
-							->innerJoin("a.FormatType ft")
-							->where('a.parent_node_id  = ?', $Collection['id'])
-							->andWhereIn('ft.type', $format_id)
-							->addOrderBy('ft.asset_score DESC')
-							->fetchArray();
-						}
-
-						if ($Asset)
-						{
-							foreach ($Asset as $A)
+//				foreach ($Units as $Unit)
+//				{
+//					$Collections = Doctrine_Query::Create()
+//					->from('Collection c')
+//					->select('c.*,sl.*')
+//					->where('c.parent_node_id  = ?', $Unit['id'])
+//					->fetchArray();
+//
+//					foreach ($Collections as $Collection)
+//					{
+//						if ($format_id)
+//						{
+//							$Asset = Doctrine_Query::Create()
+//							->from('AssetGroup a')
+//							->select('a.*, ft.*')
+//							->innerJoin("a.FormatType ft")
+//							->where('a.parent_node_id  = ?', $Collection['id'])
+//							->andWhereIn('ft.type', $format_id)
+//							->addOrderBy('ft.asset_score DESC')
+//							->fetchArray();
+//						}
+//
+//						if ($Asset)
+//						{
+//							foreach ($Asset as $A)
+//							{
+//								$SolutionArray = array();
+//								$SolutionArray['AssetGroup'] = $A;
+//								$SolutionArray['Collection'] = $Collection;
+//								$SolutionArray['Unit'] = $Unit;
+//								$FlagForReport = TRUE;
+//								$Assets[] = $SolutionArray;
+//							}
+//						}
+//					}
+//				}
+				$db_formats = Doctrine_Query::Create()
+				->from('AssetGroup ag')
+				->innerJoin("ag.FormatType ft")
+				->innerJoin('ag.Collection c')
+				->innerJoin('c.Unit u');
+				if ( ! empty($unitIDs) && count($unit_explode) > 0)
+					$db_formats = $db_formats->whereIn('u.id', $listUnits_RRD);
+				$db_formats = $db_formats->fetchArray();
+				foreach ($db_formats as $A)
 							{
 								$SolutionArray = array();
 								$SolutionArray['AssetGroup'] = $A;
-								$SolutionArray['Collection'] = $Collection;
-								$SolutionArray['Unit'] = $Unit;
+								$SolutionArray['Collection'] = $A['Collection'];
+								$SolutionArray['Unit'] = $A['Collection']['Unit'];
 								$FlagForReport = TRUE;
 								$Assets[] = $SolutionArray;
 							}
-						}
-					}
-				}
-
 
 				$formatTypeValuesManager = new formatTypeValuesManager();
 				if ($Assets && $FlagForReport)
