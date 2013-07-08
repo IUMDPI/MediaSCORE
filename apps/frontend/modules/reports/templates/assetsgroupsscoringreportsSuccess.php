@@ -5,7 +5,7 @@ echo $NoRecordFound = get_slot('my_slot');
 
 <form action="<?php echo url_for('reports/assetsgroupsscoringreports') ?>" method="post">
 	<table>
-		<?php echo $form->renderGlobalErrors(); ?>
+		
 		<tfoot>
             <tr>
                 <td colspan="2">
@@ -96,7 +96,7 @@ echo $NoRecordFound = get_slot('my_slot');
 					height: 'auto',
 					multiple: true
 				});
-				if(result.length>0)
+				if (result.length > 0)
 					$("#reports_format_id").multiselect("enable");
 			}
 		});
