@@ -31,9 +31,15 @@ class reportsActions extends sfActions
 			$unitIDs = $request->getParameter('u');
 			
 			$unit_explode = explode(',', $unitIDs);
+			$con = Doctrine_Manager::connection();
+        $recordSet = $con->execute("SELECT sa.`format_id` 
+                                    FROM  `store` 
+                                    JOIN store AS s ON s.`parent_node_id` = store.id
+                                    JOIN store AS sa ON sa.`parent_node_id` = s.id
+                                    WHERE store.id " . $unitIDs . ""); // get the name of dancers who have the upcoming events same as user
+        $dancerss = $recordSet->fetchAll();
 			
-			
-  
+  echo '<pre>';print_r($dancerss);exit;
 			$unit = Doctrine_Query::Create()
 			->from('Store ag')
 			->select('ag.format_id,c.id as c_id,u.id as u_id')
@@ -42,7 +48,7 @@ class reportsActions extends sfActions
 			->whereIn('u.id', $unit_explode)
 			->execute()
 			->toArray();
-			echo '<pre>';print_r($unit);exit;
+			
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
