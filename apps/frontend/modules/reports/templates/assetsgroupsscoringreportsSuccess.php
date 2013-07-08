@@ -61,7 +61,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		'multiple': true
 
 	});
-	$("#reports_listUnits_RRD").bind("multiselectclick", function(event, ui) {
+	$("#reports_listUnits_RRD").bind("multiselectclick checkAll uncheckAll", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
 		}).get();
