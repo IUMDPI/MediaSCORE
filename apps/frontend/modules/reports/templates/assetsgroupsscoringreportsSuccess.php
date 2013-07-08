@@ -62,8 +62,13 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result);
-
-			}});
+				$('#reports_format_id').html('');
+				for (cnt in result) {
+					$('#reports_format_id').append('<option value="' + result[cnt].format_id + '">' + result[cnt].format_name + '</option>');
+				}
+				$("#reports_format_id").multiselect("destroy");
+				$("#reports_format_id").multiselect("refresh");
+			}
+		});
 	}
 </script>
