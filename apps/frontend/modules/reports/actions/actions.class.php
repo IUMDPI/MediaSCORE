@@ -22,6 +22,14 @@ class reportsActions extends sfActions
 //		{
 			$unitIDs = $request->getParameter('u');
 			$unit_explode = explode(',', $unitIDs);
+			$unit=Doctrine::getTable('AssetGroup')->createQuery('ag')
+  ->select('ag.format_id,c.id as c_id,u.id as u_id')
+  ->innerJoin('ag.Collection c WITH c.id =ag.parent_node_id')
+			->innerJoin('c.Unit u WITH u.id =c.parent_node_id')
+  ->whereIn('u.id', $unit_explode)
+			->execute()
+			->toArray();
+  echo '<pre>';print_r($unit);exit;
 			$unit = Doctrine_Query::Create()
 			->from('AssetGroup ag')
 			->select('ag.format_id,c.id as c_id,u.id as u_id')
@@ -30,7 +38,7 @@ class reportsActions extends sfActions
 			->whereIn('u.id', $unit_explode)
 			->execute()
 			->toArray();
-			echo '<pre>';print_r($unit);exit;
+			
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
