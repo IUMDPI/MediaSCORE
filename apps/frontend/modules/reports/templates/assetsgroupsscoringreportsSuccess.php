@@ -62,6 +62,8 @@ echo $NoRecordFound = get_slot('my_slot');
 	});
 	if ($('#reports_listUnits_RRD').val() == '' || $('#reports_listUnits_RRD').val() == null)
 		$("#reports_format_id").multiselect("disable");
+	else
+		getUnitFormat($('#reports_listUnits_RRD').val());
 	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
