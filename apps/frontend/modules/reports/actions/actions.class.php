@@ -329,11 +329,11 @@ class reportsActions extends sfActions
 					$this->getResponse()->setSlot('my_slot', $Bug);
 				}
 			}
-			else
-			{
-				$Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
-				$this->getResponse()->setSlot('my_slot', $Bug);
-			}
+//			else
+//			{
+//				$Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
+//				$this->getResponse()->setSlot('my_slot', $Bug);
+//			}
 		}
 	}
 
