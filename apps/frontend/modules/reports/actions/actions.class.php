@@ -79,10 +79,10 @@ class reportsActions extends sfActions
 					->innerJoin('ag.Collection c')
 					->innerJoin('c.Unit u')
 					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl');
-
-					$db_formats = $db_formats->whereIn('u.id', $listUnits_RRD);
-					$db_formats = $db_formats->fetchArray();
+					->leftJoin('u.StorageLocations sl')
+					->whereIn('u.id', $listUnits_RRD)
+					->whereIn('ft.type', $format_id)
+					->fetchArray();
 					foreach ($db_formats as $A)
 					{
 						$SolutionArray = array();
