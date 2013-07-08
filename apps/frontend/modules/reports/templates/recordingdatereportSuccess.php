@@ -36,23 +36,10 @@ echo $NoRecordFound = get_slot('my_slot');
 	</table>
 </form>
 <script type="text/javascript">
-
 	$('#reports_listUnits_RRD').multiselect({
-		'height': 'auto',
-		'multiple': true,
-		'height':200
+		height: 'auto',
+		multiple: true
+
 	});
-//	$('#reports_listCollection_RRD').multiselect({
-//		'height': 'auto',
-//		'multiple': true,
-//		'height':200
-//
-//	});
-//
-//	$('#reports_collectionStatus').multiselect({
-//		'height': 'auto',
-//		'multiple': true,
-//		'height':200
-//	});
 
 </script>

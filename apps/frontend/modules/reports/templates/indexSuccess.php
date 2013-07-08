@@ -1,5 +1,11 @@
 <h1>Reports List</h1>
-
+<table>
+	<tbody>
+		<tr>
+			<td><label><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></label></td>
+		</tr>
+	</tbody>
+</table>
 <ul>
     <li>
         <h3><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></h3>
