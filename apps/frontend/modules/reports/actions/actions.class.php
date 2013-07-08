@@ -38,7 +38,7 @@ class reportsActions extends sfActions
 			$formats[]=array('format_id'=>$value['format_id'],'format_name'=>FormatType::$formatTypesValue1d[$value['format_id']]);
 			
 		}
-				echo '<pre>';print_r($formats);exit;
+				
 
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
