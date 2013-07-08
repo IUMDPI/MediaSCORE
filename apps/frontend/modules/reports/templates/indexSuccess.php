@@ -2,7 +2,7 @@
 <table>
 	<tbody>
 		<tr>
-			<td><label><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></label></td>
+			<th><label><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></label></th>
 		</tr>
 	</tbody>
 </table>
