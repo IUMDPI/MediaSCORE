@@ -20,6 +20,7 @@ class reportsActions extends sfActions
 	{
 		if ($request->isXmlHttpRequest())
 		{
+			$status = array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed');
 			$unitIDs = $request->getParameter('u');
 			$unit_explode = explode(',', $unitIDs);
 			$db_collections = Doctrine_Query::Create()
@@ -28,10 +29,21 @@ class reportsActions extends sfActions
 			if ( ! empty($unitIDs) && count($unit_explode) > 0)
 				$db_collections = $db_collections->whereIn('c.parent_node_id', $unit_explode);
 			$db_collections = $db_collections->fetchArray();
+			$unit_collections['collections'] = array();
+			$unit_collections['status'] = array();
+			foreach ($db_collections as $value)
+			{
+				$unit_collections['collections'][] = array('id' => $value['id'], 'name' => $value['name']);
+				if ( ! in_array($status[$value['status']], $unit_collections['status']))
+				{
+					$unit_collections['status'][$value['status']] = $status[$value['status']];
+				}
+			}
+			
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
-			return $this->renderText(json_encode($db_collections));
+			return $this->renderText(json_encode($unit_collections));
 		}
 	}
 
