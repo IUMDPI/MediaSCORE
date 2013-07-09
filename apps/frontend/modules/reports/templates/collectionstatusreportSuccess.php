@@ -123,9 +123,7 @@ echo $NoRecordFound = get_slot('my_slot');
 					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
 				}
 				for (cnt in result.status) {
-					console.log(cnt);
-					console.log(result.status[cnt]);
-//					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.reports_collectionStatus[cnt] + '</option>');
+					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.status[cnt] + '</option>');
 				}
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("destroy");
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("refresh");
