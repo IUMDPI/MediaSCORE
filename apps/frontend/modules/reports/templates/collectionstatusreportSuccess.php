@@ -95,6 +95,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		multiple: true
 	});
 	if ($('#reports_listUnits_RRD').val() == '' || $('#reports_listUnits_RRD').val() == null) {
+		$("#reports_listCollection_RRD").multiselect("disable");
 		$("#reports_collectionStatus").multiselect("disable");
 	}
 </script>
