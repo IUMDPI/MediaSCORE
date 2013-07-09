@@ -32,15 +32,30 @@ class reportsActions extends sfActions
 		->innerJoin('ag.Collection c');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_assets = $db_assets->whereIn('c.id', $collection_explode);
-		$db_assets=$db_assets->fetchArray();
+		$db_assets = $db_assets->fetchArray();
+		$problems = array();
 		foreach ($db_assets as $value)
 		{
+			foreach ($value['FormatType'] as $index => $format)
+			{
+				if ($index == 'pack_deformation')
+				{
+					if (array_key_exists("{$index}-{$format}", ReportsForm::$constraintsArray))
+						$problems[] = ReportsForm::$constraintsArray["{$index}-{$format}"];
+				}
+				else
+				{
+					if ($format != '' && array_key_exists("{$index}", ReportsForm::$constraintsArray))
+						$problems[] = ReportsForm::$constraintsArray["{$index}"];
+				}
+			}
+
 			
 		}
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 
-		return $this->renderText(json_encode($db_assets));
+		return $this->renderText(json_encode($problems));
 	}
 
 	/**
