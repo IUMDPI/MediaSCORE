@@ -107,6 +107,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		getCollections(array_of_checked_values);
 
 	});
+	var gloo;
 	function getCollections(ids) {
 		$("#reports_listCollection_RRD").multiselect("disable");
 		$("#reports_collectionStatus").multiselect("disable");
@@ -116,6 +117,7 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
+				glob = result.status;
 				console.log(result.status);
 				console.log(result.status.length);
 				$('#reports_listCollection_RRD').html('');
