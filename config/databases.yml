@@ -12,6 +12,13 @@ qa:
       dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
       username: symfony
       password: sYmF0nYd3v
+testing:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: mysql:host=localhost;dbname=mediascore
+      username: mediascore
+      password: xoho@123
 local:
   doctrine:
     class: sfDoctrineDatabase

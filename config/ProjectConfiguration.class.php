@@ -1,6 +1,9 @@
 <?php
+
 if (ENVIRONMENT === 'production' || ENVIRONMENT === 'qa')
 	require_once dirname(__FILE__) . '/../lib/vendor/lib/autoload/sfCoreAutoload.class.php';
+else if (ENVIRONMENT === 'testing')
+	require_once '/usr/share/pear/symfony/autoload/sfCoreAutoload.class.php';
 else
 	require_once dirname(__FILE__) . '/../lib/vendor/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
