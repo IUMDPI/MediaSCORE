@@ -32,7 +32,7 @@ class reportsActions extends sfActions
 		->innerJoin('ag.Collection c');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_assets = $db_assets->whereIn('c.id', $collection_explode);
-		$db_assets->fetchArray();
+		$db_assets=$db_assets->fetchArray();
 		foreach ($db_assets as $value)
 		{
 			
