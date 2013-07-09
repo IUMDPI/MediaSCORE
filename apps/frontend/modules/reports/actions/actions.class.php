@@ -330,11 +330,6 @@ class reportsActions extends sfActions
 						$this->getResponse()->setSlot('my_slot', $Bug);
 					}
 				}
-//			else
-//			{
-//				$Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
-//				$this->getResponse()->setSlot('my_slot', $Bug);
-//			}
 			}
 		}
 	}
@@ -367,46 +362,24 @@ class reportsActions extends sfActions
 
 				if ($listUnits_RRD)
 				{
-					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.* ,p.*,sl.*')
+					$db_assets = Doctrine_Query::Create()
+					->from('AssetGroup ag')
+					->innerJoin("ag.FormatType ft")
+					->innerJoin('ag.Collection c')
+					->innerJoin('c.Unit u')
 					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl ')
+					->leftJoin('u.StorageLocations sl')
 					->whereIn('u.id', $listUnits_RRD)
+					->orderBy('ft.year_recorded DESC')
 					->fetchArray();
-
-
-					foreach ($Units as $Unit)
+					foreach ($db_assets as $A)
 					{
-						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*,sl.*')
-						->where('c.parent_node_id  = ?', $Unit['id'])
-						->fetchArray();
-
-						foreach ($Collections as $Collection)
-						{
-							$Asset = Doctrine_Query::Create()
-							->from('AssetGroup a')
-							->select('a.*, ft.*')
-							->innerJoin("a.FormatType ft")
-							->where('a.parent_node_id  = ?', $Collection['id'])
-							->orderBy('ft.year_recorded DESC')
-							->fetchArray();
-
-							if ($Asset)
-							{
-								foreach ($Asset as $A)
-								{
-									$SolutionArray = array();
-									$SolutionArray['AssetGroup'] = $A;
-									$SolutionArray['Collection'] = $Collection;
-									$SolutionArray['Unit'] = $Unit;
-									$FlagForReport = TRUE;
-									$Assets[] = $SolutionArray;
-								}
-							}
-						}
+						$SolutionArray = array();
+						$SolutionArray['AssetGroup'] = $A;
+						$SolutionArray['Collection'] = $A['Collection'];
+						$SolutionArray['Unit'] = $A['Collection']['Unit'];
+						$FlagForReport = TRUE;
+						$Assets[] = $SolutionArray;
 					}
 
 
