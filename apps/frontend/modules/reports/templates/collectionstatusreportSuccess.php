@@ -116,7 +116,7 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result.status.length);
+				console.log(result.status);
 				$('#reports_listCollection_RRD').html('');
 				$('#reports_collectionStatus').html('');
 				for (cnt in result.collections) {
