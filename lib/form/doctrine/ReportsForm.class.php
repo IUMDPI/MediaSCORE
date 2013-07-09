@@ -93,9 +93,10 @@ class ReportsForm extends BaseReportsForm
 		elseif ($actionName == 'problemmediareport')
 		{
 
-			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true), array('required' => true)));
+			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
+			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('Constraints', new sfWidgetFormSelect(array("choices" => ReportsForm::$constraintsArray, 'multiple' => true)));
-
+			$this->setValidator('Constraints', new sfValidatorString(array('required' => true)));
 			$this->getWidget('listCollection_RRD')->setLabel('Collection: &nbsp;');
 			$this->getWidget('Constraints')->setLabel('Problem Type: &nbsp;');
 		}
