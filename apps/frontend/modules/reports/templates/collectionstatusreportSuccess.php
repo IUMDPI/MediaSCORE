@@ -127,7 +127,11 @@ echo $NoRecordFound = get_slot('my_slot');
 				}
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("destroy");
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("refresh");
-				$('#reports_listCollection_RRD,#reports_collectionStatus').multiselect({
+				$('#reports_listCollection_RRD').multiselect({
+					height: '180',
+					multiple: true
+				});
+				$('#reports_collectionStatus').multiselect({
 					height: 'auto',
 					multiple: true
 				});
