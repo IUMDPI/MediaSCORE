@@ -890,7 +890,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
 							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
-							$AssetScoreReport['Asset Group ID'] = $Asset['Collection']['id'];
+							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
 							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 							$AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
