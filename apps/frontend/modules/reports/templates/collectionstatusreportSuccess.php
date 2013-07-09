@@ -100,6 +100,8 @@ echo $NoRecordFound = get_slot('my_slot');
 	}
 	else
 		getCollections($('#reports_listUnits_RRD').val());
+	if ($('#reports_listCollection_RRD').val() != '' || $('#reports_listCollection_RRD').val() != null)
+		getCollectionStatus($('#reports_listCollection_RRD').val());
 	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
@@ -107,7 +109,38 @@ echo $NoRecordFound = get_slot('my_slot');
 		getCollections(array_of_checked_values);
 
 	});
-	var gloo;
+	$("#reports_listCollection_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
+		var array_of_checked_values = $("#reports_listCollection_RRD").multiselect("getChecked").map(function() {
+			return this.value;
+		}).get();
+		getCollectionStatus(array_of_checked_values);
+
+	});
+	function getCollectionStatus(ids) {
+		$.ajax({
+			method: 'POST',
+			url: '/reports/getUnitCollections?c=' + ids,
+			dataType: 'json',
+			cache: false,
+			success: function(result) {
+				$('#reports_collectionStatus').html('');
+
+				for (cnt in result.status) {
+					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.status[cnt] + '</option>');
+				}
+				$("#reports_collectionStatus").multiselect("destroy");
+				$("#reports_collectionStatus").multiselect("refresh");
+
+				$('#reports_collectionStatus').multiselect({
+					height: 'auto',
+					multiple: true
+				});
+
+				if (Object.keys(result.status).length > 0)
+					$("#reports_collectionStatus").multiselect("enable");
+			}
+		});
+	}
 	function getCollections(ids) {
 		$("#reports_listCollection_RRD").multiselect("disable");
 		$("#reports_collectionStatus").multiselect("disable");

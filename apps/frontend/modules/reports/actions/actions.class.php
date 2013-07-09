@@ -22,12 +22,16 @@ class reportsActions extends sfActions
 		{
 			$status = array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed');
 			$unitIDs = $request->getParameter('u');
+			$collectionIDs = $request->getParameter('c');
 			$unit_explode = explode(',', $unitIDs);
+			$collection_explode = explode(',', $collectionIDs);
 			$db_collections = Doctrine_Query::Create()
 			->from('Collection c')
 			->innerJoin('c.Unit u');
 			if ( ! empty($unitIDs) && count($unit_explode) > 0)
 				$db_collections = $db_collections->whereIn('c.parent_node_id', $unit_explode);
+			if ( ! empty($collectionIDs) && count($collection_explode) > 0)
+				$db_collections = $db_collections->whereIn('c.id', $collection_explode);
 			$db_collections = $db_collections->fetchArray();
 			$unit_collections['collections'] = array();
 			$unit_collections['status'] = array();
@@ -39,7 +43,7 @@ class reportsActions extends sfActions
 					$unit_collections['status'][$value['status']] = $status[$value['status']];
 				}
 			}
-			
+
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
 
