@@ -621,128 +621,128 @@ class reportsActions extends sfActions
 		$this->form = new ReportsForm(null, array('from' => 'collectionstatusreport'));
 		if ($request->isMethod(sfRequest::POST))
 		{
-			$params = $request->getPostParameter('reports');
-			$commonFunctions = new commonFunctions();
-
-			$Collection_id = $params['listCollection_RRD'];
-			$Units_id = $params['listUnits_RRD'];
-			$collectionStatus = $params['collectionStatus'];
-			$ExportType = $params['ExportType'];
-
-
-			$EvaluatorsStartDate = $params['EvaluatorsStartDate'];
-			$EvaluatorsEndDate = $params['EvaluatorsEndDate'];
-
-
-			$collectionStatusReports = array();
-			if ($Collection_id && $Units_id && $collectionStatus && $EvaluatorsStartDate && $EvaluatorsEndDate)
+			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+			if ($this->form->isValid())
 			{
-				$Units = Doctrine_Query::Create()
-				->from('Unit u')
-				->select('u.*')
-				->whereIn('u.id', $Units_id)
-				->fetchArray();
+				$params = $request->getPostParameter('reports');
+				$commonFunctions = new commonFunctions();
 
-				$collections = array();
-				foreach ($Units as $Unit)
+				$Collection_id = $params['listCollection_RRD'];
+				$Units_id = $params['listUnits_RRD'];
+				$collectionStatus = $params['collectionStatus'];
+				$ExportType = $params['ExportType'];
+
+
+				$EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+				$EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+
+
+				$collectionStatusReports = array();
+				if ($Collection_id && $Units_id && $collectionStatus && $EvaluatorsStartDate && $EvaluatorsEndDate)
 				{
-					if ($Collection_id)
-					{
-						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*,s.*,cu.*,eu.*')
-						->leftJoin('c.StorageLocations s')
-						->leftJoin('c.Creator cu')
-						->leftJoin('c.Editor eu')
-						->where('c.parent_node_id  = ?', $Unit['id'])
-						->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
-						->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
-						->andWhereIn('c.id', $Collection_id)
-						->fetchArray();
-					}
+					$Units = Doctrine_Query::Create()
+					->from('Unit u')
+					->select('u.*')
+					->whereIn('u.id', $Units_id)
+					->fetchArray();
 
-					$SolutionArray = array();
-					foreach ($Collections as $Collection)
+					$collections = array();
+					foreach ($Units as $Unit)
 					{
-						if (in_array($Collection['status'], $collectionStatus))
+						if ($Collection_id)
 						{
-							$SolutionArray['Collection'] = $Collection;
-							$SolutionArray['Unit'] = $Unit;
-							$collections[] = $SolutionArray;
+							$Collections = Doctrine_Query::Create()
+							->from('Collection c')
+							->select('c.*,s.*,cu.*,eu.*')
+							->leftJoin('c.StorageLocations s')
+							->leftJoin('c.Creator cu')
+							->leftJoin('c.Editor eu')
+							->where('c.parent_node_id  = ?', $Unit['id'])
+							->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
+							->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
+							->andWhereIn('c.id', $Collection_id)
+							->fetchArray();
+						}
+
+						$SolutionArray = array();
+						foreach ($Collections as $Collection)
+						{
+							if (in_array($Collection['status'], $collectionStatus))
+							{
+								$SolutionArray['Collection'] = $Collection;
+								$SolutionArray['Unit'] = $Unit;
+								$collections[] = $SolutionArray;
+							}
 						}
 					}
-				}
 
-				if ($collections)
-				{
-					foreach ($collections as $collection)
+					if ($collections)
 					{
+						foreach ($collections as $collection)
+						{
 
-						$collectionStatusReport = array();
-						$collectionStatusReport['Unit ID'] = $collection['Unit']['id'];
-						$collectionStatusReport['Unit Primary ID'] = $collection['Unit']['inst_id'];
-						$collectionStatusReport['Unit Name'] = $collection['Unit']['name'];
-						$collectionStatusReport['Storage Location Name'] = $collection['Collection']['StorageLocations'][0]['name'];
-						$collectionStatusReport['Storage Location Building name/Room number'] = $collection['Collection']['resident_structure_description'];
-						$collectionStatusReport['Collection ID'] = $collection['Collection']['id'];
-						$collectionStatusReport['Collection Primary ID'] = $collection['Collection']['inst_id'];
-						$collectionStatusReport['Collection Name'] = $collection['Collection']['name'];
-						$collectionStatusReport['Status'] = Collection::$statusConstants[$collection['Collection']['status']];
-						$collectionStatusReport['Collection Created On Date'] = date('Y-m-d H:i:s', strtotime($collection['Unit']['created_at']));
-						$collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
-						$collectionStatusReport['Collection Updated On Date'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['updated_at']));
-						$collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
-						$collectionStatusReports[] = $collectionStatusReport;
-					}
-					$collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Unit ID');
+							$collectionStatusReport = array();
+							$collectionStatusReport['Unit ID'] = $collection['Unit']['id'];
+							$collectionStatusReport['Unit Primary ID'] = $collection['Unit']['inst_id'];
+							$collectionStatusReport['Unit Name'] = $collection['Unit']['name'];
+							$collectionStatusReport['Storage Location Name'] = $collection['Collection']['StorageLocations'][0]['name'];
+							$collectionStatusReport['Storage Location Building name/Room number'] = $collection['Collection']['resident_structure_description'];
+							$collectionStatusReport['Collection ID'] = $collection['Collection']['id'];
+							$collectionStatusReport['Collection Primary ID'] = $collection['Collection']['inst_id'];
+							$collectionStatusReport['Collection Name'] = $collection['Collection']['name'];
+							$collectionStatusReport['Status'] = Collection::$statusConstants[$collection['Collection']['status']];
+							$collectionStatusReport['Collection Created On Date'] = date('Y-m-d H:i:s', strtotime($collection['Unit']['created_at']));
+							$collectionStatusReport['Collection Created By'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
+							$collectionStatusReport['Collection Updated On Date'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['updated_at']));
+							$collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
+							$collectionStatusReports[] = $collectionStatusReport;
+						}
+						$collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Unit ID');
 
-					if ($ExportType == 'xls')
-					{
-						$excel = new excel();
-						$excel->setDataArray($collectionStatusReports);
-						$excel->extractHeadings();
-						$filename = 'Collection_Status_Report_' . date('dmY_His') . '.xlsx';
-						$Sheettitle = 'Collection_Status_Report';
-						$intial_dicrectory = '/CollectionStatusReport/xls/';
-						$file_name_with_directory = $intial_dicrectory . $filename;
+						if ($ExportType == 'xls')
+						{
+							$excel = new excel();
+							$excel->setDataArray($collectionStatusReports);
+							$excel->extractHeadings();
+							$filename = 'Collection_Status_Report_' . date('dmY_His') . '.xlsx';
+							$Sheettitle = 'Collection_Status_Report';
+							$intial_dicrectory = '/CollectionStatusReport/xls/';
+							$file_name_with_directory = $intial_dicrectory . $filename;
 
-						$excel->setDataArray($collectionStatusReports);
-						$excel->extractHeadings();
-						$excel->setFileName($file_name_with_directory);
-						$excel->setSheetTitle($Sheettitle);
+							$excel->setDataArray($collectionStatusReports);
+							$excel->extractHeadings();
+							$excel->setFileName($file_name_with_directory);
+							$excel->setSheetTitle($Sheettitle);
 
-						$excel->createExcel();
+							$excel->createExcel();
 
-						$excel->SaveFile();
-						$excel->DownloadXLSX($file_name_with_directory, $filename);
-						$excel->DeleteFile($file_name_with_directory);
-						exit;
+							$excel->SaveFile();
+							$excel->DownloadXLSX($file_name_with_directory, $filename);
+							$excel->DeleteFile($file_name_with_directory);
+							exit;
+						}
+						else
+						{
+
+							$csvHandler = new csvHandler();
+
+							$file_name = 'Collection_Status_Report_' . date('dmY_His') . '.csv';
+
+							$intial_dicrectory = '/CollectionStatusReport/csv/';
+							$file_name_with_directory = $intial_dicrectory . $file_name;
+							$csvHandler->CreateCSV($collectionStatusReports, $file_name_with_directory);
+							$csvHandler->DownloadCSV($file_name_with_directory, $file_name);
+							$csvHandler->DeleteFile($file_name_with_directory);
+							exit;
+						}
 					}
 					else
 					{
-
-						$csvHandler = new csvHandler();
-
-						$file_name = 'Collection_Status_Report_' . date('dmY_His') . '.csv';
-
-						$intial_dicrectory = '/CollectionStatusReport/csv/';
-						$file_name_with_directory = $intial_dicrectory . $file_name;
-						$csvHandler->CreateCSV($collectionStatusReports, $file_name_with_directory);
-						$csvHandler->DownloadCSV($file_name_with_directory, $file_name);
-						$csvHandler->DeleteFile($file_name_with_directory);
-						exit;
+						$Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
+						$this->getResponse()->setSlot('my_slot', $Bug);
 					}
 				}
-				else
-				{
-					$Bug = '<script type="text/javascript"> $(function(){ alert("No Record Found To Export!"); }); </script>';
-					$this->getResponse()->setSlot('my_slot', $Bug);
-				}
-			}
-			else
-			{
-				$Bug = '<script type="text/javascript"> $(function(){alert("Please Fill all required Fields!")});</script>';
-				$this->getResponse()->setSlot('my_slot', $Bug);
+				
 			}
 		}
 	}
