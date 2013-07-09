@@ -863,10 +863,7 @@ class reportsActions extends sfActions
 						$Assets[] = $SolutionArray;
 					}
 
-					$filters = array(
-						'collection-Filter(s)' => $collection_filter,
-						'Problem-Filter(s)' => $Constraint_filters,
-					);
+
 
 					if ($Assets)
 					{
@@ -890,6 +887,8 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
 							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
+							if ( ! in_array($AssetScoreReport['Collection Name'], $collection_filter))
+								$collection_filter[] = $AssetScoreReport['Collection Name'];
 							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
 							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
@@ -1042,6 +1041,10 @@ class reportsActions extends sfActions
 							if ($AssetScoreReport['score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
+						$filters = array(
+							'collection-Filter(s)' => $collection_filter,
+							'Problem-Filter(s)' => $Constraint_filters,
+						);
 						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'score');
 						if ($ExportType == 'xls')
 						{
