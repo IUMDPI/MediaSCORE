@@ -41,7 +41,7 @@ class reportsActions extends sfActions
 				if ($index == 'pack_deformation')
 				{
 					if (array_key_exists("{$index}-{$format}", ReportsForm::$constraintsArray))
-						$problems["{$index}-{$format}"] = array(ReportsForm::$constraintsArray["{$index}-{$format}"]);
+						$problems["{$index}-{$format}"] = ReportsForm::$constraintsArray["{$index}-{$format}"];
 				}
 				else
 				{
