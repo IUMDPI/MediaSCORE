@@ -754,7 +754,7 @@ class reportsActions extends sfActions
 							$excel->SaveFile();
 							$excel->DownloadXLSX($file_name_with_directory, $filename);
 							$excel->DeleteFile($file_name_with_directory);
-							exit;
+//							exit;
 						}
 						else
 						{
@@ -768,7 +768,7 @@ class reportsActions extends sfActions
 							$csvHandler->CreateCSV($collectionStatusReports, $file_name_with_directory);
 							$csvHandler->DownloadCSV($file_name_with_directory, $file_name);
 							$csvHandler->DeleteFile($file_name_with_directory);
-							exit;
+//							exit;
 						}
 					}
 					else
