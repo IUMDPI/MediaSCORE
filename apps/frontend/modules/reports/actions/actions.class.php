@@ -16,6 +16,25 @@ class reportsActions extends sfActions
 		
 	}
 
+	public function executeGetUnitCollections(sfWebRequest $request)
+	{
+		if ($request->isXmlHttpRequest())
+		{
+			$unitIDs = $request->getParameter('u');
+			$unit_explode = explode(',', $unitIDs);
+			$db_collections = Doctrine_Query::Create()
+			->from('Collection c')
+			->innerJoin('c.Unit u');
+			if ( ! empty($unitIDs) && count($unit_explode) > 0)
+				$db_collections = $db_collections->whereIn('c.parent_node_id', $unit_explode);
+			$db_collections = $db_collections->fetchArray();
+			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+			$this->setLayout('json');
+
+			return $this->renderText(json_encode($db_collections));
+		}
+	}
+
 	public function executeGetUnitFormats(sfWebRequest $request)
 	{
 		if ($request->isXmlHttpRequest())
@@ -742,7 +761,6 @@ class reportsActions extends sfActions
 						$this->getResponse()->setSlot('my_slot', $Bug);
 					}
 				}
-				
 			}
 		}
 	}

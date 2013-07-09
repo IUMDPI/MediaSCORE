@@ -98,6 +98,40 @@ echo $NoRecordFound = get_slot('my_slot');
 		$("#reports_listCollection_RRD").multiselect("disable");
 		$("#reports_collectionStatus").multiselect("disable");
 	}
+	else
+		getCollections($('#reports_listUnits_RRD').val());
+	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
+		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
+			return this.value;
+		}).get();
+		getCollections(array_of_checked_values);
+
+	});
+	function getCollections(ids) {
+		$("#reports_listCollection_RRD").multiselect("disable");
+		$("#reports_collectionStatus").multiselect("disable");
+		$.ajax({
+			method: 'POST',
+			url: '/reports/getUnitCollections?u=' + ids,
+			dataType: 'json',
+			cache: false,
+			success: function(result) {
+				console.log(result);
+//				$('#reports_format_id').html('');
+//				for (cnt in result) {
+//					$('#reports_format_id').append('<option value="' + result[cnt].format_id + '">' + result[cnt].format_name + '</option>');
+//				}
+//				$("#reports_format_id").multiselect("destroy");
+//				$("#reports_format_id").multiselect("refresh");
+//				$('#reports_format_id').multiselect({
+//					height: 'auto',
+//					multiple: true
+//				});
+//				if (result.length > 0)
+//					$("#reports_format_id").multiselect("enable");
+			}
+		});
+	}
 </script>
 
 
