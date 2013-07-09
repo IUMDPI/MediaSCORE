@@ -81,11 +81,11 @@ echo $NoRecordFound = get_slot('my_slot');
 
 <script type="text/javascript">
 	$('#reports_listUnits_RRD').multiselect({
-		height: 'auto',
+		height: '200',
 		multiple: true
 	});
 	$('#reports_listCollection_RRD').multiselect({
-		height: 'auto',
+		height: '180',
 		multiple: true
 
 	});
