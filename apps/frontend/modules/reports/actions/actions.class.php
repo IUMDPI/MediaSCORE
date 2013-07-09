@@ -818,6 +818,7 @@ class reportsActions extends sfActions
 
 				$Collection_id = $params['listCollection_RRD'];
 				$Constraints = $params['Constraints'];
+				echo '<pre>';print_r($Constraints);exit;
 				$ExportType = $params['ExportType'];
 				$collection_filter = array();
 				$Constraint_filters = array();
