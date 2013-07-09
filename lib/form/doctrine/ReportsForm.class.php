@@ -138,20 +138,14 @@ class ReportsForm extends BaseReportsForm
 
 	public function postValidate($validator, $values)
 	{
-		$start_date=$values["EvaluatorsStartDate"];
-		$end_date=$values["EvaluatorsEndDate"];
+		$start_date = $values["EvaluatorsStartDate"];
+		$end_date = $values["EvaluatorsEndDate"];
 
 		if (strtotime($start_date) > strtotime($end_date))
 		{
 			$error = new sfValidatorError($validator, "Start date cannot be greater than end date.");
 			throw new sfValidatorErrorSchema($validator, array('EvaluatorsStartDate' => $error));
 		}
-		if (strtotime($end_date) < strtotime($start_date))
-		{
-			$error = new sfValidatorError($validator, "End date cannot be lesser than start date.");
-			throw new sfValidatorErrorSchema($validator, array('EvaluatorsEndDate' => $error));
-		}
-
 		return TRUE;
 
 		// etc...

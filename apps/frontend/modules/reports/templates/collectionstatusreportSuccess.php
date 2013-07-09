@@ -94,7 +94,9 @@ echo $NoRecordFound = get_slot('my_slot');
 		height: 'auto',
 		multiple: true
 	});
-
+	if ($('#reports_listUnits_RRD').val() == '' || $('#reports_listUnits_RRD').val() == null) {
+		$("#reports_collectionStatus").multiselect("disable");
+	}
 </script>
 
 
@@ -126,7 +128,7 @@ echo $NoRecordFound = get_slot('my_slot');
 //				} else {
 //					$("#reports_EvaluatorsEndDate").datepicker('hide');
 //				}
-$("#reports_EvaluatorsEndDate").datepicker('hide');
+				$("#reports_EvaluatorsEndDate").datepicker('hide');
 			}
 		});
 
