@@ -794,7 +794,9 @@ class reportsActions extends sfActions
 
 
 		$db_formats = $db_formats->fetchArray();
-		echo '<pre>';print_r($db_formats);exit;
+		echo '<pre>';
+		print_r($db_formats);
+		exit;
 	}
 
 	/**
@@ -817,8 +819,24 @@ class reportsActions extends sfActions
 				$params = $request->getPostParameter('reports');
 
 				$Collection_id = $params['listCollection_RRD'];
+				$where = '1=1';
 				$Constraints = $params['Constraints'];
-				echo '<pre>';print_r($Constraints);exit;
+				foreach ($Constraints as $value)
+				{
+					if (array_key_exists($value, ReportsForm::$constraintsArray))
+					{
+						if (strstr($value, 'pack_deformation'))
+						{
+							$explode_pd = explode('-', $value);
+							$where .=" OR ft.{$explode_pd[0]} !={$explode_pd[1]} ";
+						}
+						else
+							$where .=" OR ft.{$value} !='' ";
+					}
+				}
+				echo '<pre>';
+				print_r($where);
+				exit;
 				$ExportType = $params['ExportType'];
 				$collection_filter = array();
 				$Constraint_filters = array();
