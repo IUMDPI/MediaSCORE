@@ -60,5 +60,38 @@ echo $NoRecordFound = get_slot('my_slot');
 		height: 'auto',
 		multiple: true,
 	});
+	$("#reports_listCollection_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
+		var array_of_checked_values = $("#reports_listCollection_RRD").multiselect("getChecked").map(function() {
+			return this.value;
+		}).get();
 
+		getCollectionsProblems(array_of_checked_values);
+
+	});
+	function getCollectionsProblems(ids) {
+		$.ajax({
+			method: 'POST',
+			url: '/reports/getCollectionProblems?c=' + ids,
+			dataType: 'json',
+			cache: false,
+			success: function(result) {
+				console.log(result);
+//				$('#reports_collectionStatus').html('');
+//
+//				for (cnt in result.status) {
+//					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.status[cnt] + '</option>');
+//				}
+//				$("#reports_collectionStatus").multiselect("destroy");
+//				$("#reports_collectionStatus").multiselect("refresh");
+//
+//				$('#reports_collectionStatus').multiselect({
+//					height: 'auto',
+//					multiple: true
+//				});
+//
+//				if (Object.keys(result.status).length > 0)
+//					$("#reports_collectionStatus").multiselect("enable");
+			}
+		});
+	}
 </script>

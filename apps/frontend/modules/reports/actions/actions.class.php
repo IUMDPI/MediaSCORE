@@ -16,6 +16,39 @@ class reportsActions extends sfActions
 		
 	}
 
+	/**
+	 * Get Problems within collection(s).
+	 *  
+	 * @param sfWebRequest $request
+	 * @return type
+	 */
+	public function executeGetCollectionProblems(sfWebRequest $request)
+	{
+		$collectionIDs = $request->getParameter('c');
+		$collection_explode = explode(',', $collectionIDs);
+		$db_assets = Doctrine_Query::Create()
+		->from('AssetGroup ag')
+		->innerJoin("ag.FormatType ft")
+		->innerJoin('ag.Collection c');
+		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
+			$db_assets = $db_assets->whereIn('c.id', $collection_explode);
+		$db_assets->fetchArray();
+		foreach ($db_assets as $value)
+		{
+			
+		}
+		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+		$this->setLayout('json');
+
+		return $this->renderText(json_encode($db_assets));
+	}
+
+	/**
+	 * Get Collection and its status within unit(s).
+	 * 
+	 * @param sfWebRequest $request
+	 * @return json
+	 */
 	public function executeGetUnitCollections(sfWebRequest $request)
 	{
 		if ($request->isXmlHttpRequest())
@@ -51,6 +84,12 @@ class reportsActions extends sfActions
 		}
 	}
 
+	/**
+	 * Get Formats that contain within unit(s).
+	 * 
+	 * @param sfWebRequest $request
+	 * @return json
+	 */
 	public function executeGetUnitFormats(sfWebRequest $request)
 	{
 		if ($request->isXmlHttpRequest())
@@ -781,24 +820,6 @@ class reportsActions extends sfActions
 		}
 	}
 
-	public function executeTest(sfWebRequest $request)
-	{
-		$db_formats = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->innerJoin("ag.FormatType ft")
-		->innerJoin('ag.Collection c')
-		->innerJoin('c.Unit u')
-		->leftJoin('u.Personnel p ')
-		->leftJoin('u.StorageLocations sl')
-		->where("(ft.soft_binder_syndrome !='' OR ft.off_brand !='' OR ft.fungus !='' OR ft.shrinkage !='' OR ft.materialsbreakdown !='' OR ft.oxidationcorrosion !='' OR ft.delamination !='' OR ft.plasticizerexudation !='' OR ft.pack_deformation IN ('1','2','3'))");
-
-
-		$db_formats = $db_formats->fetchArray();
-		echo '<pre>';
-		print_r($db_formats);
-		exit;
-	}
-
 	/**
 	 * Problem Media Report  From reporting module
 	 * 
@@ -839,9 +860,6 @@ class reportsActions extends sfActions
 					}
 				}
 
-
-
-
 				if ($Collection_id && $Constraints)
 				{
 					$db_assets = Doctrine_Query::Create()
@@ -862,8 +880,6 @@ class reportsActions extends sfActions
 
 						$Assets[] = $SolutionArray;
 					}
-
-
 
 					if ($Assets)
 					{
