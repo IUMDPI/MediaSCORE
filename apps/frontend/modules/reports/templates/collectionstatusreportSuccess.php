@@ -100,35 +100,36 @@ echo $NoRecordFound = get_slot('my_slot');
 
 <script type="text/javascript">
 
-//	$(document).ready(function() {
-//		var dates = $("#reports_EvaluatorsStartDate").datepicker({
-//			defaultDate: "+1w",
-//			changeMonth: true,
-//			changeYear: true,
-//			numberOfMonths: 1,
-//			'dateFormat': 'yy-mm-dd',
-//			minDate: $("#date_depart").val(),
-//			onSelect: function(selectedDate) {
-//				$("#reports_EvaluatorsStartDate").datepicker('hide');
-//			}
-//		});
-//
-//		var dates = $("#reports_EvaluatorsEndDate").datepicker({
-//			defaultDate: "+1w",
-//			changeMonth: true,
-//			changeYear: true,
-//			numberOfMonths: 1,
-//			'dateFormat': 'yy-mm-dd',
-//			onSelect: function(selectedDate) {
+	$(document).ready(function() {
+		var dates = $("#reports_EvaluatorsStartDate").datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			'dateFormat': 'yy-mm-dd',
+			minDate: $("#date_depart").val(),
+			onSelect: function(selectedDate) {
+				$("#reports_EvaluatorsStartDate").datepicker('hide');
+			}
+		});
+
+		var dates = $("#reports_EvaluatorsEndDate").datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			'dateFormat': 'yy-mm-dd',
+			onSelect: function(selectedDate) {
 //				if ((new Date($("#reports_EvaluatorsStartDate").val()).getTime() > new Date($("#reports_EvaluatorsEndDate").val()).getTime())) {
 //					alert('End Date cannot be less then Start Date');
 //					$("#reports_EvaluatorsEndDate").val('');
 //				} else {
 //					$("#reports_EvaluatorsEndDate").datepicker('hide');
 //				}
-//			}
-//		});
-//
-//
-//	});
+$("#reports_EvaluatorsEndDate").datepicker('hide');
+			}
+		});
+
+
+	});
 </script>
