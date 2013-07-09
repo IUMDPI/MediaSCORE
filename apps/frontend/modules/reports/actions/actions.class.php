@@ -41,16 +41,14 @@ class reportsActions extends sfActions
 				if ($index == 'pack_deformation')
 				{
 					if (array_key_exists("{$index}-{$format}", ReportsForm::$constraintsArray))
-						$problems[] = ReportsForm::$constraintsArray["{$index}-{$format}"];
+						$problems["{$index}-{$format}"] = array(ReportsForm::$constraintsArray["{$index}-{$format}"]);
 				}
 				else
 				{
 					if ($format != '' && array_key_exists("{$index}", ReportsForm::$constraintsArray))
-						$problems[] = ReportsForm::$constraintsArray["{$index}"];
+						$problems["{$index}"] = ReportsForm::$constraintsArray["{$index}"];
 				}
 			}
-
-			
 		}
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
