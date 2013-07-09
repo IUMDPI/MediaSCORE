@@ -117,9 +117,6 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				glob = result.status;
-				console.log(result.status);
-				console.log(result.status.length);
 				$('#reports_listCollection_RRD').html('');
 				$('#reports_collectionStatus').html('');
 				for (cnt in result.collections) {
@@ -136,7 +133,7 @@ echo $NoRecordFound = get_slot('my_slot');
 				});
 				if (result.collections.length > 0)
 					$("#reports_listCollection_RRD").multiselect("enable");
-				if (result.status.length > 0)
+				if (Object.keys(result.status).length > 0)
 					$("#reports_collectionStatus").multiselect("enable");
 			}
 		});
