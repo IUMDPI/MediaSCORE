@@ -116,15 +116,15 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result);
+				console.log(result.status);
 				$('#reports_listCollection_RRD').html('');
 				$('#reports_collectionStatus').html('');
 				for (cnt in result.collections) {
 					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
 				}
-				for (cnt in result.status) {
-					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.reports_collectionStatus[cnt] + '</option>');
-				}
+//				for (cnt in result.status) {
+//					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.reports_collectionStatus[cnt] + '</option>');
+//				}
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("destroy");
 				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("refresh");
 				$('#reports_listCollection_RRD,#reports_collectionStatus').multiselect({
