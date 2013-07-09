@@ -821,6 +821,9 @@ class reportsActions extends sfActions
 				$Collection_id = $params['listCollection_RRD'];
 				$where = '1=1';
 				$Constraints = $params['Constraints'];
+				$ExportType = $params['ExportType'];
+				$Constraint_filters = array();
+				$collection_filter = array();
 				foreach ($Constraints as $value)
 				{
 					if (array_key_exists($value, ReportsForm::$constraintsArray))
@@ -828,95 +831,38 @@ class reportsActions extends sfActions
 						if (strstr($value, 'pack_deformation'))
 						{
 							$explode_pd = explode('-', $value);
-							$where .=" OR ft.{$explode_pd[0]} !={$explode_pd[1]} ";
+							$where .=" OR ft.{$explode_pd[0]} ={$explode_pd[1]} ";
 						}
 						else
 							$where .=" OR ft.{$value} !='' ";
+						$Constraint_filters[] = ReportsForm::$constraintsArray[$value];
 					}
 				}
-				echo '<pre>';
-				print_r($where);
-				exit;
-				$ExportType = $params['ExportType'];
-				$collection_filter = array();
-				$Constraint_filters = array();
+
+
+
+
 				if ($Collection_id && $Constraints)
 				{
-					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.* ,p.*,sl.*')
+					$db_assets = Doctrine_Query::Create()
+					->from('AssetGroup ag')
+					->innerJoin("ag.FormatType ft")
+					->innerJoin('ag.Collection c')
+					->innerJoin('c.Unit u')
 					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl ')
+					->leftJoin('u.StorageLocations sl')
+					->where("({$where})")
 					->fetchArray();
 
-
-					foreach ($Units as $Unit)
+					foreach ($db_assets as $assets)
 					{
-						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*')
-						->where('c.parent_node_id  = ?', $Unit['id'])
-						->andWhereIn('c.id', $Collection_id)
-						->fetchArray();
+						$SolutionArray['AssetGroup'] = $assets;
+						$SolutionArray['Collection'] = $assets['Collection'];
+						$SolutionArray['Unit'] = $assets['Collection']['Unit'];
 
-
-						foreach ($Collections as $Collection)
-						{
-							$collection_filter[$Collection['id']] = $Collection['name'];
-							$Asset = Doctrine_Query::Create()
-							->from('AssetGroup a')
-							->select('a.*, ft.*')
-							->leftJoin("a.FormatType ft")
-							->where('a.parent_node_id  = ?', $Collection['id'])
-							->addOrderBy('ft.asset_score DESC')
-							->fetchArray();
-							if ($Asset)
-							{
-								foreach ($Asset as $A)
-								{
-									foreach ($Constraints as $Constraint)
-									{
-										if ( ! in_array($Constraint, $Constraint_filters))
-										{
-											if (strstr($Constraint, 'pack_deformation'))
-											{
-												$pack_deforemation = explode('-', $Constraint);
-
-												if ($A['FormatType'][$pack_deforemation[0]] == $pack_deforemation[1])
-												{
-													$addAssetFlag = TRUE;
-												}
-												if ( ! in_array(('pack_deformation-' . $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $pack_deforemation[1])), $Constraint_filters))
-												{
-													$Constraint_filters[] = 'pack_deformation-' . $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $pack_deforemation[1]);
-												}
-											}
-											else
-											{
-												if ($A['FormatType'][$Constraint] != '')
-												{
-													$addAssetFlag = TRUE;
-												}
-												if ( ! in_array($Constraint, $Constraint_filters))
-												{
-													$Constraint_filters[] = $Constraint;
-												}
-											}
-										}
-									}
-									$SolutionArray = array();
-									if ($addAssetFlag)
-									{
-										$SolutionArray['AssetGroup'] = $A;
-										$SolutionArray['Collection'] = $Collection;
-										$SolutionArray['Unit'] = $Unit;
-
-										$Assets[] = $SolutionArray;
-									}
-								}
-							}
-						}
+						$Assets[] = $SolutionArray;
 					}
+
 					$filters = array(
 						'collection-Filter(s)' => $collection_filter,
 						'Problem-Filter(s)' => $Constraint_filters,
