@@ -117,18 +117,18 @@ echo $NoRecordFound = get_slot('my_slot');
 			cache: false,
 			success: function(result) {
 				console.log(result);
-//				$('#reports_format_id').html('');
-//				for (cnt in result) {
-//					$('#reports_format_id').append('<option value="' + result[cnt].format_id + '">' + result[cnt].format_name + '</option>');
-//				}
-//				$("#reports_format_id").multiselect("destroy");
-//				$("#reports_format_id").multiselect("refresh");
-//				$('#reports_format_id').multiselect({
-//					height: 'auto',
-//					multiple: true
-//				});
-//				if (result.length > 0)
-//					$("#reports_format_id").multiselect("enable");
+				$('#reports_listCollection_RRD').html('');
+				for (cnt in result.collections) {
+					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
+				}
+				$("#reports_listCollection_RRD").multiselect("destroy");
+				$("#reports_listCollection_RRD").multiselect("refresh");
+				$('#reports_listCollection_RRD').multiselect({
+					height: 'auto',
+					multiple: true
+				});
+				if (result.collections.length > 0)
+					$("#reports_listCollection_RRD").multiselect("enable");
 			}
 		});
 	}
