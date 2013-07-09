@@ -118,17 +118,23 @@ echo $NoRecordFound = get_slot('my_slot');
 			success: function(result) {
 				console.log(result);
 				$('#reports_listCollection_RRD').html('');
+				$('#reports_collectionStatus').html('');
 				for (cnt in result.collections) {
 					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
 				}
-				$("#reports_listCollection_RRD").multiselect("destroy");
-				$("#reports_listCollection_RRD").multiselect("refresh");
-				$('#reports_listCollection_RRD').multiselect({
+				for (cnt in result.status) {
+					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.reports_collectionStatus[cnt] + '</option>');
+				}
+				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("destroy");
+				$("#reports_listCollection_RRD,#reports_collectionStatus").multiselect("refresh");
+				$('#reports_listCollection_RRD,#reports_collectionStatus').multiselect({
 					height: 'auto',
 					multiple: true
 				});
 				if (result.collections.length > 0)
 					$("#reports_listCollection_RRD").multiselect("enable");
+				if (result.status.length > 0)
+					$("#reports_collectionStatus").multiselect("enable");
 			}
 		});
 	}
