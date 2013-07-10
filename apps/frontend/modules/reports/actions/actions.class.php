@@ -15,7 +15,7 @@ class reportsActions extends sfActions
 	{
 		
 	}
-
+ 
 	/**
 	 * Get Problems within collection(s).
 	 *  

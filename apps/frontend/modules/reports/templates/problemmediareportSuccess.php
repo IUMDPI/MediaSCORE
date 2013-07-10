@@ -15,7 +15,7 @@ echo $NoRecordFound = get_slot('my_slot');
             </tr>
         </tfoot>
 		<tbody>
-			<tr>
+			<tr> 
                 <th>
 					<?php echo $form->renderHiddenFields(); ?>
 					<?php echo $form['listCollection_RRD']->renderLabel(); ?>
@@ -60,6 +60,10 @@ echo $NoRecordFound = get_slot('my_slot');
 		height: 'auto',
 		multiple: true,
 	});
+	if ($('#reports_listCollection_RRD').val() == '' || $('#reports_listCollection_RRD').val() == null)
+		$("#reports_Constraints").multiselect("disable");
+	else
+		getCollectionsProblems($('#reports_listCollection_RRD').val());
 	$("#reports_listCollection_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listCollection_RRD").multiselect("getChecked").map(function() {
 			return this.value;
@@ -69,28 +73,28 @@ echo $NoRecordFound = get_slot('my_slot');
 
 	});
 	function getCollectionsProblems(ids) {
+		$("#reports_Constraints").multiselect("disable");
 		$.ajax({
 			method: 'POST',
-			url: '/reports/getCollectionProblems?c=' + ids,
+			url: '/index.php/reports/getCollectionProblems?c=' + ids,
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result);
-//				$('#reports_collectionStatus').html('');
-//
-//				for (cnt in result.status) {
-//					$('#reports_collectionStatus').append('<option value="' + cnt + '">' + result.status[cnt] + '</option>');
-//				}
-//				$("#reports_collectionStatus").multiselect("destroy");
-//				$("#reports_collectionStatus").multiselect("refresh");
-//
-//				$('#reports_collectionStatus').multiselect({
-//					height: 'auto',
-//					multiple: true
-//				});
-//
-//				if (Object.keys(result.status).length > 0)
-//					$("#reports_collectionStatus").multiselect("enable");
+				$('#reports_Constraints').html('');
+				for (cnt in result) {
+
+					$('#reports_Constraints').append('<option value="' + cnt + '">' + result[cnt] + '</option>');
+				}
+				$("#reports_Constraints").multiselect("destroy");
+				$("#reports_Constraints").multiselect("refresh");
+
+				$('#reports_Constraints').multiselect({
+					height: 'auto',
+					multiple: true
+				});
+
+				if (Object.keys(result).length > 0)
+					$("#reports_Constraints").multiselect("enable");
 			}
 		});
 	}
