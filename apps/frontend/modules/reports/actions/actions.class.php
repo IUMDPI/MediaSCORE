@@ -883,6 +883,7 @@ class reportsActions extends sfActions
 					->leftJoin('u.Personnel p ')
 					->leftJoin('u.StorageLocations sl')
 					->where("({$where})")
+					->andWhereIn('c.id',$Collection_id)
 					->fetchArray();
 
 					foreach ($db_assets as $assets)
