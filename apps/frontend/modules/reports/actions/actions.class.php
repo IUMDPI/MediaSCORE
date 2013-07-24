@@ -27,7 +27,7 @@ class reportsActions extends sfActions
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_formats = $db_formats->whereIn('c.id', $collection_explode);
 		$db_formats = $db_formats->fetchArray();
-		$formats=array();
+		$formats = array();
 		foreach ($db_formats as $value)
 		{
 			if ( ! array_key_exists($value['FormatType']['type'], $formats))
@@ -302,7 +302,9 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+							$AssetScoreReport['material'] =NULL;
+							if ($AssetScoreReport['type'] == 'Metal Disc')
+								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
 							$AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
@@ -577,7 +579,10 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+							$AssetScoreReport['material'] =NULL;
+							if ($AssetScoreReport['type'] == 'Metal Disc')
+								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+								
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
 							$AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
@@ -999,7 +1004,9 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+							$AssetScoreReport['material'] =NULL;
+							if ($AssetScoreReport['type'] == 'Metal Disc')
+								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
 							$AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
@@ -1394,7 +1401,9 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
+							$AssetScoreReport['material'] =NULL;
+							if ($AssetScoreReport['type'] == 'Metal Disc')
+								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
 							$AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';

@@ -321,6 +321,7 @@ class assetgroupActions extends sfActions {
                     ->fetchArray();
             #to caliculate socre 
             $ScoreCalculator = new scoreCalculator();
+			
             $score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
 
             if ($score != FALSE) {
@@ -333,7 +334,7 @@ class assetgroupActions extends sfActions {
             } else {
                 echo 'calculator not found for this format type';
             }
-            exit;
+            
             return true;
         }
         return false;

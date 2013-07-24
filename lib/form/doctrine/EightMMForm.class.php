@@ -27,13 +27,13 @@ class EightMMForm extends BaseEightMMForm {
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->setValidator('recordingSpeed', new sfValidatorString(array('required' => true)));
         $this->setValidator('binderSystem', new sfValidatorString(array('required' => true)));
-        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
 
 
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         $this->getWidget('recordingSpeed')->setLabel('<span class="required">*</span>Recording Speed:&nbsp;');
         $this->getWidget('binderSystem')->setLabel('<span class="required">*</span>Binder System:&nbsp;');
-        $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
+        $this->getWidget('pack_deformation')->setLabel('Pack  Deformation:&nbsp;');
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');

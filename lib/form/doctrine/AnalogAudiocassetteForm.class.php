@@ -42,8 +42,8 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm {
 //        Constraint applyed 
         $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(3 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', 0);
-        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => true)));
-        $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
+        $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
+        $this->getWidget('pack_deformation')->setLabel('Pack  Deformation:&nbsp;');
 
 
 

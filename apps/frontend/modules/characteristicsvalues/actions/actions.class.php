@@ -12,9 +12,13 @@ class characteristicsvaluesActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->characteristics_valuess = Doctrine_Core::getTable('CharacteristicsValues')
-      ->createQuery('a')
-      ->execute();
+    
+	$this->characteristics_valuess =Doctrine_Query::Create()
+                    ->from('CharacteristicsValues cv')
+                    ->innerJoin('cv.CharacteristicsFormat')
+                    ->orderBy('cv.format_id')
+                    ->execute();
+	
   }
 
   public function executeNew(sfWebRequest $request)
@@ -30,7 +34,7 @@ class characteristicsvaluesActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
+    $this->redirect('characteristicsvalues/index');
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -47,7 +51,7 @@ class characteristicsvaluesActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    $this->redirect('characteristicsvalues/index');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -67,7 +71,7 @@ class characteristicsvaluesActions extends sfActions
     {
       $characteristics_values = $form->save();
 
-      $this->redirect('characteristicsvalues/new');
+      $this->redirect('characteristicsvalues/index');
 //      $this->redirect('characteristicsvalues/edit?id='.$characteristics_values->getId());
     }
   }

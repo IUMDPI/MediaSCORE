@@ -34,7 +34,7 @@ class TwoInchOpenReelVideoForm extends BaseTwoInchOpenReelVideoForm {
         $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
         $this->getWidget('formatVersion')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
-        $this->getWidget('whiteResidue')->setLabel('Glue on reel:&nbsp;');
+        $this->getWidget('whiteResidue')->setLabel('Glue of Reel:&nbsp;');
 
 
 

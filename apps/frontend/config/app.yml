@@ -10,7 +10,7 @@ qa:
 testing:
     .settings:
         base:     http://mediascore.live.geekschicago.com/frontend_dev.php
-        url: http://mediascore.live.geekschicago.com 
+        url: http://mediascore.live.geekschicago.com/index.php
  
 local:
     .settings:
