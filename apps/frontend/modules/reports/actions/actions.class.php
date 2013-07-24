@@ -1962,8 +1962,8 @@ class reportsActions extends sfActions
 								{
 
 									$AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
-									$AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal'])) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal'])) . ' % ';
+									$AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal']),2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal']),2) . ' % ';
 
 									$i ++;
 								}
@@ -2094,8 +2094,8 @@ class reportsActions extends sfActions
 									$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 									$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
 									$AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $report['FormatType']['type']);
-									$AssetScoreReport['Percentage by duration that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection) . ' % ';
+									$AssetScoreReport['Percentage by duration that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection,2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection,2) . ' % ';
 									$i ++;
 								}
 
@@ -2234,8 +2234,8 @@ class reportsActions extends sfActions
 
 									$AssetScoreReport['Collection ID for Collection ' . ($i)] = $reportGen['Collection']['id'];
 									$AssetScoreReport['Collection Name for Collection ' . ($i)] = $reportGen['Collection']['name'];
-									$AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = round(($duration_collection * 100) / $Asset['Totals']['DurationTotal']) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = round(($quantity_collection * 100) / $Asset['Totals']['QuantityTotal']) . ' % ';
+									$AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = round(($duration_collection * 100) / $Asset['Totals']['DurationTotal'],2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = round(($quantity_collection * 100) / $Asset['Totals']['QuantityTotal'],2) . ' % ';
 
 									$i ++;
 								}

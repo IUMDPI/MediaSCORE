@@ -1597,7 +1597,7 @@ class scoreCalculator extends scoreCalculator_extended
 			echo "function $funcationName dose not exists ";
 		}
 		
-		return $score;
+		return round($score/20,2);
 	}
 
 }
