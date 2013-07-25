@@ -502,7 +502,7 @@ class reportsActions extends sfActions
 						$FlagForReport = TRUE;
 						$Assets[] = $SolutionArray;
 					}
-					
+
 
 					if ($Assets && $FlagForReport)
 					{
@@ -524,7 +524,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 							$AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
 							$AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
-							
+
 //							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
 //							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
 //							
@@ -692,7 +692,7 @@ class reportsActions extends sfActions
 							if ($AssetScoreReport['Score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
-						
+
 //						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
 
 						if ($ExportType == 'xls')
@@ -1783,17 +1783,17 @@ class reportsActions extends sfActions
 
 							$AssetScoreReport = array();
 
-							$AssetScoreReport['User ID'] = $Asset['User'][0]['id'];
+//							$AssetScoreReport['User ID'] = $Asset['User'][0]['id'];
 							$AssetScoreReport['User First Name'] = $Asset['User'][0]['first_name'];
 							$AssetScoreReport['User Last Name'] = $Asset['User'][0]['last_name'];
-							$AssetScoreReport['User e-mail'] = $Asset['User'][0]['email_address'];
-							$AssetScoreReport['User Phone'] = $Asset['User'][0]['phone'];
+//							$AssetScoreReport['User e-mail'] = $Asset['User'][0]['email_address'];
+//							$AssetScoreReport['User Phone'] = $Asset['User'][0]['phone'];
 							$AssetScoreReport['User Role'] = ($Asset['User'][0]['role'] == 0) ? 'User' : 'Admin';
-							$AssetScoreReport['Unit ID'] = $Asset['Unit'][0]['id'];
+//							$AssetScoreReport['Unit ID'] = $Asset['Unit'][0]['id'];
 							$AssetScoreReport['Unit Name'] = $Asset['Unit'][0]['name'];
-							$AssetScoreReport['Collection ID'] = $Asset['Collection'][0]['id'];
+//							$AssetScoreReport['Collection ID'] = $Asset['Collection'][0]['id'];
 							$AssetScoreReport['Collection Name'] = $Asset['Collection'][0]['name'];
-							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
+//							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
 							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 							$AssetScoreReport['Date User Created Asset Group'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
