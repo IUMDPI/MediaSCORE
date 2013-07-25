@@ -791,24 +791,26 @@ class reportsActions extends sfActions
 						->leftJoin('c.Creator cu')
 						->leftJoin('c.Editor eu')
 						->where('c.parent_node_id  = ?', $Unit['id']);
-						if ($EvaluatorsStartDate)
+						if ($EvaluatorsStartDate && ! empty($EvaluatorsStartDate))
 							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-						if ($EvaluatorsEndDate)
+						if ($EvaluatorsEndDate && ! empty($EvaluatorsEndDate))
 							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
-						if ($Collection_id)
+						if ($Collection_id && ! empty($Collection_id))
 							$Collections = $Collections->andWhereIn('c.id', $Collection_id);
+						if ($collectionStatus && ! empty($collectionStatus))
+							$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
 						$Collections = $Collections->fetchArray();
 
 
 						$SolutionArray = array();
 						foreach ($Collections as $Collection)
 						{
-							if (in_array($Collection['status'], $collectionStatus))
-							{
-								$SolutionArray['Collection'] = $Collection;
-								$SolutionArray['Unit'] = $Unit;
-								$collections[] = $SolutionArray;
-							}
+//							if (in_array($Collection['status'], $collectionStatus))
+//							{
+							$SolutionArray['Collection'] = $Collection;
+							$SolutionArray['Unit'] = $Unit;
+							$collections[] = $SolutionArray;
+//							}
 						}
 					}
 
