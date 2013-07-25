@@ -41,18 +41,18 @@ class ReportsForm extends BaseReportsForm
 			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
-			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => true)));
+			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
 			$this->setWidget('collectionStatus', new sfWidgetFormSelect(array('choices' => array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed'), 'default' => '', 'multiple' => true)));
-			$this->setValidator('collectionStatus', new sfValidatorString(array('required' => true)));
+			$this->setValidator('collectionStatus', new sfValidatorString(array('required' => false)));
 			$this->setWidget('EvaluatorsStartDate', new sfWidgetFormInputText(array()));
-			$this->setValidator('EvaluatorsStartDate', new sfValidatorDate(array('required' => true)));
+			$this->setValidator('EvaluatorsStartDate', new sfValidatorDate(array('required' => false)));
 			$this->validatorSchema->setPostValidator(
 			new sfValidatorCallback(array(
 				'callback' => array($this, 'postValidate')
 			))
 			);
 			$this->setWidget('EvaluatorsEndDate', new sfWidgetFormInputText(array()));
-			$this->setValidator('EvaluatorsEndDate', new sfValidatorDate(array('required' => true)));
+			$this->setValidator('EvaluatorsEndDate', new sfValidatorDate(array('required' => false)));
 
 			$this->getWidget('listUnits_RRD')->setLabel('Units: &nbsp;');
 			$this->getWidget('listCollection_RRD')->setLabel('Collection: &nbsp;');

@@ -302,7 +302,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] =NULL;
+							$AssetScoreReport['material'] = NULL;
 							if ($AssetScoreReport['type'] == 'Metal Disc')
 								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
@@ -426,7 +426,7 @@ class reportsActions extends sfActions
 							$excel = new excel();
 							$excel->setDataArray($AssetScoreReportArray);
 							$excel->extractHeadings();
-							$filename = 'Asset_Group_Scoring_Report_' . date('dmY_His') . '_' . time() . '.xlsx';
+							$filename = 'Asset_Group_Scoring_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'Asset_Group_Scoring_Report';
 							$intial_dicrectory = '/AssetsScore/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
@@ -449,7 +449,7 @@ class reportsActions extends sfActions
 
 							$csvHandler = new csvHandler();
 
-							$file_name = 'Asset_Group_Scoring_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'Asset_Group_Scoring_Report_' . date('Ymd') . '.csv';
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
 							$csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -579,10 +579,10 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] =NULL;
+							$AssetScoreReport['material'] = NULL;
 							if ($AssetScoreReport['type'] == 'Metal Disc')
 								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
-								
+
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['pack_deformation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'pack_deformation', $Asset['AssetGroup']['FormatType']['pack_deformation']);
 							$AssetScoreReport['noise_reduction'] = ($Asset['AssetGroup']['FormatType']['noise_reduction'] == '1') ? 'Yes' : 'No';
@@ -703,7 +703,7 @@ class reportsActions extends sfActions
 							$excel = new excel();
 							$excel->setDataArray($AssetScoreReportArray);
 							$excel->extractHeadings();
-							$filename = 'Recording_Date_Report_' . date('dmY_His') . '.xlsx';
+							$filename = 'Recording_Date_Report_' . date('Ymd') . '.csv';
 							$Sheettitle = 'Recording_Date_Report';
 							$intial_dicrectory = '/AssetsScore/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
@@ -726,7 +726,7 @@ class reportsActions extends sfActions
 
 							$csvHandler = new csvHandler();
 
-							$file_name = 'Recording_Date_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'Recording_Date_Report_' . date('Ymd') . '.csv';
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
 							$csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
@@ -772,7 +772,7 @@ class reportsActions extends sfActions
 
 
 				$collectionStatusReports = array();
-				if ($Collection_id && $Units_id && $collectionStatus && $EvaluatorsStartDate && $EvaluatorsEndDate)
+				if ($Units_id)
 				{
 					$Units = Doctrine_Query::Create()
 					->from('Unit u')
@@ -791,11 +791,16 @@ class reportsActions extends sfActions
 							->leftJoin('c.StorageLocations s')
 							->leftJoin('c.Creator cu')
 							->leftJoin('c.Editor eu')
-							->where('c.parent_node_id  = ?', $Unit['id'])
-							->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
-							->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
-							->andWhereIn('c.id', $Collection_id)
-							->fetchArray();
+							->where('c.parent_node_id  = ?', $Unit['id']);
+							if ($EvaluatorsStartDate)
+								$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+							if ($EvaluatorsEndDate)
+								$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+							if ($Collection_id)
+								$Collections = $Collections->andWhereIn('c.id', $Collection_id);
+							if ($collectionStatus)
+								$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+							$Collections = $Collections->fetchArray();
 						}
 
 						$SolutionArray = array();
@@ -838,7 +843,7 @@ class reportsActions extends sfActions
 							$excel = new excel();
 							$excel->setDataArray($collectionStatusReports);
 							$excel->extractHeadings();
-							$filename = 'Collection_Status_Report_' . date('dmY_His') . '.xlsx';
+							$filename = 'Collection_Status_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'Collection_Status_Report';
 							$intial_dicrectory = '/CollectionStatusReport/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
@@ -860,7 +865,7 @@ class reportsActions extends sfActions
 
 							$csvHandler = new csvHandler();
 
-							$file_name = 'Collection_Status_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'Collection_Status_Report_' . date('Ymd') . '.csv';
 
 							$intial_dicrectory = '/CollectionStatusReport/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
@@ -1004,7 +1009,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] =NULL;
+							$AssetScoreReport['material'] = NULL;
 							if ($AssetScoreReport['type'] == 'Metal Disc')
 								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
@@ -1130,7 +1135,7 @@ class reportsActions extends sfActions
 							$excel = new excel();
 							$excel->setDataArray($AssetScoreReportArray);
 							$excel->extractHeadings();
-							$filename = 'Problem_Media_Report_' . date('dmY_His') . '.xlsx';
+							$filename = 'Problem_Media_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'Problem_Media_Report';
 //                $intial_dicrectory = '\AssetsScore\xls\\';
 							$intial_dicrectory = '/AssetsScore/xls/';
@@ -1154,7 +1159,7 @@ class reportsActions extends sfActions
 
 							$csvHandler = new csvHandler();
 
-							$file_name = 'Problem_Media_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'Problem_Media_Report_' . date('Ymd') . '.csv';
 //                $intial_dicrectory = '\RecordingDate\csv\\';
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
@@ -1401,7 +1406,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
 
 							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
-							$AssetScoreReport['material'] =NULL;
+							$AssetScoreReport['material'] = NULL;
 							if ($AssetScoreReport['type'] == 'Metal Disc')
 								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
 							$AssetScoreReport['oxidationcorrosion'] = ($Asset['AssetGroup']['FormatType']['oxidationCorrosion'] == '1') ? 'Yes' : 'No';
@@ -1647,22 +1652,22 @@ class reportsActions extends sfActions
 					$Sheettitle = '';
 					if ($param['reports']['listReports'] == '0')
 					{
-						$filename = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.xlsx';
+						$filename = 'Output_All_Asset_Groups_Report_' . date('Ymd') . '.xlsx';
 						$Sheettitle = 'Asset_Groups_Report';
 					}
 					else if ($param['reports']['listReports'] == '1')
 					{
-						$filename = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.xlsx';
+						$filename = 'Output_All_Asset_Storage_Locations_' . date('Ymd') . '.xlsx';
 						$Sheettitle = 'Assets_Storage_Locations';
 					}
 					else if ($param['reports']['listReports'] == '2')
 					{
-						$filename = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.xlsx';
+						$filename = 'Output_All_Unit_Personnel_' . date('Ymd') . '.xlsx';
 						$Sheettitle = 'Unit_Personnel';
 					}
 					else
 					{
-						$filename = 'Output_All_Users_Report_' . date('dmY_His') . '.xlsx';
+						$filename = 'Output_All_Users_Report_' . date('Ymd') . '.xlsx';
 						$Sheettitle = 'Users_Report';
 					}
 
@@ -1692,25 +1697,25 @@ class reportsActions extends sfActions
 					if ($param['reports']['listReports'] == '0')
 					{
 
-						$file_name = 'Output_All_Asset_Groups_Report_' . date('dmY_His') . '.csv';
+						$file_name = 'Output_All_Asset_Groups_Report_' . date('Ymd') . '.csv';
 						$intial_dicrectory = '/AssetsScore/csv/';
 					}
 					else if ($param['reports']['listReports'] == '1')
 					{
 
-						$file_name = 'Output_All_Asset_Storage_Locations_' . date('dmY_His') . '.csv';
+						$file_name = 'Output_All_Asset_Storage_Locations_' . date('Ymd') . '.csv';
 						$intial_dicrectory = '/AssetsScore/csv/';
 					}
 					else if ($param['reports']['listReports'] == '2')
 					{
 
-						$file_name = 'Output_All_Unit_Personnel_' . date('dmY_His') . '.csv';
+						$file_name = 'Output_All_Unit_Personnel_' . date('Ymd') . '.csv';
 						$intial_dicrectory = '/AssetsScore/csv/';
 					}
 					else
 					{
 
-						$file_name = 'Output_All_Users_Report_' . date('dmY_His') . '.csv';
+						$file_name = 'Output_All_Users_Report_' . date('Ymd') . '.csv';
 						$intial_dicrectory = '/AssetsScore/csv/';
 					}
 
@@ -1825,7 +1830,7 @@ class reportsActions extends sfActions
 
 							$excel->setDataArray($DataDumpReportArray);
 							$excel->extractHeadings();
-							$filename = 'User_Report_' . date('dmY_His') . '.xlsx';
+							$filename = 'User_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'User_Report';
 							$intial_dicrectory = '/AssetsScore/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
@@ -1846,7 +1851,7 @@ class reportsActions extends sfActions
 						{
 							$csvHandler = new csvHandler();
 
-							$file_name = 'User_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'User_Report_' . date('Ymd') . '.csv';
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
 							$csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory);
@@ -1962,8 +1967,8 @@ class reportsActions extends sfActions
 								{
 
 									$AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
-									$AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal']),2) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal']),2) . ' % ';
+									$AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal']), 2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal']), 2) . ' % ';
 
 									$i ++;
 								}
@@ -1990,7 +1995,7 @@ class reportsActions extends sfActions
 
 								$excel->setDataArray($DataDumpReportArray);
 								$excel->extractHeadings();
-								$filename = 'Unit_Format_Makeup_Report_' . date('dmY_His') . '.xlsx';
+								$filename = 'Unit_Format_Makeup_Report_' . date('Ymd') . '.xlsx';
 								$Sheettitle = 'Unit_Format_Makeup_Report';
 								$intial_dicrectory = '/AssetsScore/xls/';
 								$file_name_with_directory = $intial_dicrectory . $filename;
@@ -2012,7 +2017,7 @@ class reportsActions extends sfActions
 							{
 								$csvHandler = new csvHandler();
 
-								$file_name = 'Unit_Format_Makeup_Report_' . date('dmY_His') . '.csv';
+								$file_name = 'Unit_Format_Makeup_Report_' . date('Ymd') . '.csv';
 								$intial_dicrectory = '/AssetsScore/csv/';
 								$file_name_with_directory = $intial_dicrectory . $file_name;
 								$csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -2094,8 +2099,8 @@ class reportsActions extends sfActions
 									$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 									$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
 									$AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $report['FormatType']['type']);
-									$AssetScoreReport['Percentage by duration that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection,2) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection,2) . ' % ';
+									$AssetScoreReport['Percentage by duration that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['duration'] * 100) / $duration_collection, 2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Collection'] = round(($report['FormatType']['quantity'] * 100) / $quantity_collection, 2) . ' % ';
 									$i ++;
 								}
 
@@ -2121,7 +2126,7 @@ class reportsActions extends sfActions
 
 								$excel->setDataArray($DataDumpReportArray);
 								$excel->extractHeadings();
-								$filename = 'Collection_Format_Makeup_Report_' . date('dmY_His') . '.xlsx';
+								$filename = 'Collection_Format_Makeup_Report_' . date('Ymd') . '.xlsx';
 								$Sheettitle = 'Collection_Format_Makeup_Report';
 								$intial_dicrectory = '/AssetsScore/xls/';
 								$file_name_with_directory = $intial_dicrectory . $filename;
@@ -2143,7 +2148,7 @@ class reportsActions extends sfActions
 							{
 								$csvHandler = new csvHandler();
 
-								$file_name = 'Collection_Format_Makeup_Report_' . date('dmY_His') . '.csv';
+								$file_name = 'Collection_Format_Makeup_Report_' . date('Ymd') . '.csv';
 								$intial_dicrectory = '/AssetsScore/csv/';
 								$file_name_with_directory = $intial_dicrectory . $file_name;
 								$csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -2234,8 +2239,8 @@ class reportsActions extends sfActions
 
 									$AssetScoreReport['Collection ID for Collection ' . ($i)] = $reportGen['Collection']['id'];
 									$AssetScoreReport['Collection Name for Collection ' . ($i)] = $reportGen['Collection']['name'];
-									$AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = round(($duration_collection * 100) / $Asset['Totals']['DurationTotal'],2) . ' % ';
-									$AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = round(($quantity_collection * 100) / $Asset['Totals']['QuantityTotal'],2) . ' % ';
+									$AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = round(($duration_collection * 100) / $Asset['Totals']['DurationTotal'], 2) . ' % ';
+									$AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = round(($quantity_collection * 100) / $Asset['Totals']['QuantityTotal'], 2) . ' % ';
 
 									$i ++;
 								}
@@ -2262,7 +2267,7 @@ class reportsActions extends sfActions
 
 								$excel->setDataArray($DataDumpReportArray);
 								$excel->extractHeadings();
-								$filename = 'Unit_Collection_Makeup_Report_' . date('dmY_His') . '.xlsx';
+								$filename = 'Unit_Collection_Makeup_Report_' . date('Ymd') . '.xlsx';
 								$Sheettitle = 'Unit_Collection_Makeup_Report';
 								$intial_dicrectory = '/AssetsScore/xls/';
 
@@ -2283,7 +2288,7 @@ class reportsActions extends sfActions
 							else
 							{
 								$csvHandler = new csvHandler();
-								$file_name = 'Unit_Collection_Makeup_Report_' . date('dmY_His') . '.csv';
+								$file_name = 'Unit_Collection_Makeup_Report_' . date('Ymd') . '.csv';
 								$intial_dicrectory = '/AssetsScore/csv/';
 								$file_name_with_directory = $intial_dicrectory . $file_name;
 								$csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, TRUE, $maxCountElementsIndex);
@@ -2409,7 +2414,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 							$AssetScoreReport['Score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-							$AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
+							$AssetScoreReport['Duration'] = ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
 							$DataDumpReportArray[] = $AssetScoreReport;
 						}
 
@@ -2419,7 +2424,7 @@ class reportsActions extends sfActions
 
 							$excel->setDataArray($DataDumpReportArray);
 							$excel->extractHeadings();
-							$filename = 'Duration_Report_' . date('dmY_His') . '.xlsx';
+							$filename = 'Duration_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'Duration_Report';
 							$intial_dicrectory = '/AssetsScore/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
@@ -2441,7 +2446,7 @@ class reportsActions extends sfActions
 						{
 							$csvHandler = new csvHandler();
 
-							$file_name = 'Duration_Report_' . date('dmY_His') . '.csv';
+							$file_name = 'Duration_Report_' . date('Ymd') . '.csv';
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
 							$csvHandler->CreateCSV($DataDumpReportArray, $file_name_with_directory, FALSE, 0, TRUE, $filters);
