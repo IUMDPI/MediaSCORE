@@ -800,7 +800,6 @@ class reportsActions extends sfActions
 					{
 						foreach ($collections as $collection)
 						{
-
 							$collectionStatusReport = array();
 							$collectionStatusReport['Unit ID'] = $collection['Unit']['id'];
 							$collectionStatusReport['Unit Primary ID'] = $collection['Unit']['inst_id'];
