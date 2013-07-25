@@ -798,8 +798,6 @@ class reportsActions extends sfActions
 								$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
 							if ($Collection_id)
 								$Collections = $Collections->andWhereIn('c.id', $Collection_id);
-							if ($collectionStatus)
-								$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
 							$Collections = $Collections->fetchArray();
 						}
 
