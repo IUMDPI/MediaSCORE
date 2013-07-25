@@ -232,28 +232,6 @@ class reportsActions extends sfActions
 						foreach ($Assets as $Asset)
 						{
 							$AssetScoreReport = array();
-
-							$AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
-//							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
-							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
-							$AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
-//							$AssetScoreReport['Unit Personnel First Name'] = $Asset['Unit']['Personnel'][0]['first_name'];
-//							$AssetScoreReport['Unit Personnel Last Name'] = $Asset['Unit']['Personnel'][0]['last_name'];
-//							$AssetScoreReport['Unit Personnel Phone'] = $Asset['Unit']['Personnel'][0]['phone'];
-//							$AssetScoreReport['Unit Personnel Email'] = $Asset['Unit']['Personnel'][0]['email_address'];
-//							$AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
-//							$AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
-//							$AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
-//							$AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit'][0]['resident_structure_description']; #resident_structure_description
-//							$AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
-//							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
-							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
-							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
-//							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
-							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
-							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
-							$AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
-//							$AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
 							$FormatArray = explode(',', $Asset['AssetGroup']['FormatType']['format']);
 							$formattext = '';
 
@@ -264,45 +242,56 @@ class reportsActions extends sfActions
 									$formattext .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'format', $formatValue) . ' , ';
 								}
 							}
-
-
-
+							$AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
 							$AssetScoreReport['Format'] = $formattext;
-
-
-							$FormatVersionArray = explode(',', $Asset['AssetGroup']['FormatType']['formatVersion']);
-							$formatVersionText = '';
-
-							foreach ($FormatVersionArray as $FormatVersion)
-							{
-								if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion))
-								{
-									$formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion) . ' , ';
-								}
-								else
-								{
-									$formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $FormatVersion) . ' , ';
-								}
-							}
-
-
-//							$AssetScoreReport['Format Version'] = $formatVersionText;
-
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
+							$AssetScoreReport['Duration'] = ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
+							$AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
 							$AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
+							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
+							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
+							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
+							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
+							$AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
+							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
+							$AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
 							$AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
 							$AssetScoreReport['Copies'] = ($Asset['AssetGroup']['FormatType']['copies'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['Stock Brand'] = $Asset['AssetGroup']['FormatType']['stock_brand'];
 							$AssetScoreReport['Off-Brand'] = ($Asset['AssetGroup']['FormatType']['off_brand'] == '1') ? 'Yes' : 'No';
+							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
+							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
+//							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];							
+//							$AssetScoreReport['Unit Personnel First Name'] = $Asset['Unit']['Personnel'][0]['first_name'];
+//							$AssetScoreReport['Unit Personnel Last Name'] = $Asset['Unit']['Personnel'][0]['last_name'];
+//							$AssetScoreReport['Unit Personnel Phone'] = $Asset['Unit']['Personnel'][0]['phone'];
+//							$AssetScoreReport['Unit Personnel Email'] = $Asset['Unit']['Personnel'][0]['email_address'];
+//							$AssetScoreReport['Contact Notes'] = $Asset['Unit']['Personnel'][0]['contact_info'];
+//							$AssetScoreReport['Storage Location Name'] = $Asset['Unit']['StorageLocations'][0]['name'];
+//							$AssetScoreReport['Storage Location'] = $Asset['Unit']['StorageLocations'][0]['name']; #
+//							$AssetScoreReport['Storage Location Building name/Room number'] = $Asset['Unit'][0]['resident_structure_description']; #resident_structure_description
+//							$AssetScoreReport['Storage Location Environment'] = StorageLocation::$constants[$Asset['Unit']['StorageLocations'][0]['env_rating']]; #
+//							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
+//							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
+//							$AssetScoreReport['Location'] = $Asset['AssetGroup']['location'];
+//							$FormatVersionArray = explode(',', $Asset['AssetGroup']['FormatType']['formatVersion']);
+//							$formatVersionText = '';
+//
+//							foreach ($FormatVersionArray as $FormatVersion)
+//							{
+//								if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion))
+//								{
+//									$formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $FormatVersion) . ' , ';
+//								}
+//								else
+//								{
+//									$formatVersionText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $FormatVersion) . ' , ';
+//								}
+//							}
+//							$AssetScoreReport['Format Version'] = $formatVersionText;
 //							$AssetScoreReport['Fungus'] = ($Asset['AssetGroup']['FormatType']['fungus'] == '1') ? 'Yes' : 'No';
 //							$AssetScoreReport['Other Contaminants'] = ($Asset['AssetGroup']['FormatType']['other_contaminants'] == '1') ? 'Yes' : 'No';
-							$AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
-							$AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
 //							$AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
-
-							$AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-
-							$AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
 //							$AssetScoreReport['material'] = NULL;
 //							if ($AssetScoreReport['type'] == 'Metal Disc')
 //								$AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
