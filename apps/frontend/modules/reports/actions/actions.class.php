@@ -470,7 +470,6 @@ class reportsActions extends sfActions
 			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
 			if ($this->form->isValid())
 			{
-				echo 'here';exit;
 				$FlagForReport = FALSE;
 
 				$AssetScoreReportArray = array();
@@ -694,6 +693,7 @@ class reportsActions extends sfActions
 							if ($AssetScoreReport['Score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
+						
 						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
 
 						if ($ExportType == 'xls')
