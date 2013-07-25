@@ -693,7 +693,7 @@ class reportsActions extends sfActions
 							if ($AssetScoreReport['Score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
-						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
+//						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
 
 						if ($ExportType == 'xls')
 						{
