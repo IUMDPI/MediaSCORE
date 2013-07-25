@@ -491,7 +491,7 @@ class reportsActions extends sfActions
 					->leftJoin('u.Personnel p ')
 					->leftJoin('u.StorageLocations sl')
 					->whereIn('u.id', $listUnits_RRD)
-//					->orderBy('ft.year_recorded')
+					->orderBy('ft.year_recorded')
 					->fetchArray();
 					foreach ($db_assets as $A)
 					{
