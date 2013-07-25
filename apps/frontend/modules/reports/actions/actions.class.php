@@ -759,18 +759,12 @@ class reportsActions extends sfActions
 			if ($this->form->isValid())
 			{
 				$params = $request->getPostParameter('reports');
-				$commonFunctions = new commonFunctions();
-
 				$Collection_id = $params['listCollection_RRD'];
 				$Units_id = $params['listUnits_RRD'];
 				$collectionStatus = $params['collectionStatus'];
 				$ExportType = $params['ExportType'];
-
-
 				$EvaluatorsStartDate = $params['EvaluatorsStartDate'];
 				$EvaluatorsEndDate = $params['EvaluatorsEndDate'];
-
-
 				$collectionStatusReports = array();
 				if ($Units_id)
 				{
@@ -790,9 +784,8 @@ class reportsActions extends sfActions
 						$Collections = $Collections->andWhereIn('c.id', $Collection_id);
 					if ($collectionStatus && ! empty($collectionStatus))
 						$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
-					$Collections = $Collections->fetchArray();
-
-
+					$Collections = $Collections->orderBy('u.id')
+					->fetchArray();
 					$SolutionArray = array();
 					foreach ($Collections as $Collection)
 					{
@@ -824,7 +817,7 @@ class reportsActions extends sfActions
 							$collectionStatusReport['Collection Updated By'] = $collection['Collection']['Editor']['first_name'] . ' ' . $collection['Collection']['Editor']['last_name'];
 							$collectionStatusReports[] = $collectionStatusReport;
 						}
-						$collectionStatusReports = $commonFunctions->arsort($collectionStatusReports, 'Unit ID');
+
 
 						if ($ExportType == 'xls')
 						{
