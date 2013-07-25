@@ -470,6 +470,7 @@ class reportsActions extends sfActions
 			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
 			if ($this->form->isValid())
 			{
+				echo 'here';exit;
 				$FlagForReport = FALSE;
 
 				$AssetScoreReportArray = array();
