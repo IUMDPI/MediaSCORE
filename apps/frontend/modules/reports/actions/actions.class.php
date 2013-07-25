@@ -245,7 +245,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
 							$AssetScoreReport['Format'] = $formattext;
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-							$AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
+							$AssetScoreReport['Duration'] = minutesToHour::ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
 							$AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
 							$AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
@@ -409,8 +409,6 @@ class reportsActions extends sfActions
 							if ($AssetScoreReport['score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
-//						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'score');
-
 						if ($ExportType == 'xls')
 						{
 							$excel = new excel();
@@ -2384,7 +2382,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 							$AssetScoreReport['Score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-							$AssetScoreReport['Duration'] = ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
+							$AssetScoreReport['Duration'] = minutesToHour::ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
 							$DataDumpReportArray[] = $AssetScoreReport;
 						}
 
