@@ -479,7 +479,6 @@ class reportsActions extends sfActions
 
 				$commonFunctions = new commonFunctions();
 				$listUnits_RRD = $params['listUnits_RRD'];
-				$format_id = $params['format_id'];
 				$ExportType = $params['ExportType'];
 
 				if ($listUnits_RRD)
