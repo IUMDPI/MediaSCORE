@@ -503,7 +503,7 @@ class reportsActions extends sfActions
 						$FlagForReport = TRUE;
 						$Assets[] = $SolutionArray;
 					}
-
+					echo '<pre>';print_r($db_assets);exit;
 
 					if ($Assets && $FlagForReport)
 					{
