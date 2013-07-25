@@ -406,7 +406,7 @@ class reportsActions extends sfActions
 //							$AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
 //							$AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
 //							$AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
-							if ($AssetScoreReport['score'] != '')
+							if ($AssetScoreReport['Score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
 						if ($ExportType == 'xls')
@@ -690,7 +690,7 @@ class reportsActions extends sfActions
 //							$AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
 //							$AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
 
-							if ($AssetScoreReport['score'] != '')
+							if ($AssetScoreReport['Score'] != '')
 								$AssetScoreReportArray[] = $AssetScoreReport;
 						}
 						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
