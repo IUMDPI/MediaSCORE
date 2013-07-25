@@ -245,7 +245,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
 							$AssetScoreReport['Format'] = $formattext;
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
-							$AssetScoreReport['Duration'] = ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
+							$AssetScoreReport['Duration'] = $Asset['AssetGroup']['FormatType']['duration'];
 							$AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
 							$AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
