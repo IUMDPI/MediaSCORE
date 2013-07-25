@@ -774,45 +774,34 @@ class reportsActions extends sfActions
 				$collectionStatusReports = array();
 				if ($Units_id)
 				{
-					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.*')
-					->whereIn('u.id', $Units_id)
-					->fetchArray();
-
 					$collections = array();
-					foreach ($Units as $Unit)
+					$Collections = Doctrine_Query::Create()
+					->from('Collection c')
+					->innerJoin('c.Unit u')
+					->leftJoin('c.StorageLocations s')
+					->leftJoin('c.Creator cu')
+					->leftJoin('c.Editor eu')
+					->whereIn('u.id', $Units_id);
+					if ($EvaluatorsStartDate && ! empty($EvaluatorsStartDate))
+						$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+					if ($EvaluatorsEndDate && ! empty($EvaluatorsEndDate))
+						$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+					if ($Collection_id && ! empty($Collection_id))
+						$Collections = $Collections->andWhereIn('c.id', $Collection_id);
+					if ($collectionStatus && ! empty($collectionStatus))
+						$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+					$Collections = $Collections->fetchArray();
+
+
+					$SolutionArray = array();
+					foreach ($Collections as $Collection)
 					{
 
-						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*,s.*,cu.*,eu.*')
-						->leftJoin('c.StorageLocations s')
-						->leftJoin('c.Creator cu')
-						->leftJoin('c.Editor eu')
-						->where('c.parent_node_id  = ?', $Unit['id']);
-						if ($EvaluatorsStartDate && ! empty($EvaluatorsStartDate))
-							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-						if ($EvaluatorsEndDate && ! empty($EvaluatorsEndDate))
-							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
-						if ($Collection_id && ! empty($Collection_id))
-							$Collections = $Collections->andWhereIn('c.id', $Collection_id);
-						if ($collectionStatus && ! empty($collectionStatus))
-							$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
-						$Collections = $Collections->fetchArray();
-
-
-						$SolutionArray = array();
-						foreach ($Collections as $Collection)
-						{
-//							if (in_array($Collection['status'], $collectionStatus))
-//							{
-							$SolutionArray['Collection'] = $Collection;
-							$SolutionArray['Unit'] = $Unit;
-							$collections[] = $SolutionArray;
-//							}
-						}
+						$SolutionArray['Collection'] = $Collection;
+						$SolutionArray['Unit'] = $Collection['Unit'];
+						$collections[] = $SolutionArray;
 					}
+
 
 					if ($collections)
 					{
