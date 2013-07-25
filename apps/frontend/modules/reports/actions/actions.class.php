@@ -214,7 +214,7 @@ class reportsActions extends sfActions
 					->leftJoin('u.StorageLocations sl')
 					->whereIn('u.id', $listUnits_RRD)
 					->whereIn('ft.type', $format_id)
-					->orderBy('ft.asset_score')
+					->orderBy('ft.asset_score DESC')
 					->fetchArray();
 					foreach ($db_formats as $A)
 					{
