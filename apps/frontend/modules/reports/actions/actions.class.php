@@ -783,23 +783,22 @@ class reportsActions extends sfActions
 					$collections = array();
 					foreach ($Units as $Unit)
 					{
+
+						$Collections = Doctrine_Query::Create()
+						->from('Collection c')
+						->select('c.*,s.*,cu.*,eu.*')
+						->leftJoin('c.StorageLocations s')
+						->leftJoin('c.Creator cu')
+						->leftJoin('c.Editor eu')
+						->where('c.parent_node_id  = ?', $Unit['id']);
+						if ($EvaluatorsStartDate)
+							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+						if ($EvaluatorsEndDate)
+							$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
 						if ($Collection_id)
-						{
-							$Collections = Doctrine_Query::Create()
-							->from('Collection c')
-							->select('c.*,s.*,cu.*,eu.*')
-							->leftJoin('c.StorageLocations s')
-							->leftJoin('c.Creator cu')
-							->leftJoin('c.Editor eu')
-							->where('c.parent_node_id  = ?', $Unit['id']);
-							if ($EvaluatorsStartDate)
-								$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-							if ($EvaluatorsEndDate)
-								$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
-							if ($Collection_id)
-								$Collections = $Collections->andWhereIn('c.id', $Collection_id);
-							$Collections = $Collections->fetchArray();
-						}
+							$Collections = $Collections->andWhereIn('c.id', $Collection_id);
+						$Collections = $Collections->fetchArray();
+
 
 						$SolutionArray = array();
 						foreach ($Collections as $Collection)
