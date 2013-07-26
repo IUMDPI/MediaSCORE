@@ -79,7 +79,6 @@ echo $NoRecordFound = get_slot('my_slot');
 	});
 	if ($('#reports_listUnits_RRD').val() == '' || $('#reports_listUnits_RRD').val() == null) {
 		$("#reports_listCollection_RRD").multiselect("disable");
-//		$("#reports_format_id").multiselect("disable");
 	}
 	else
 		getCollections($('#reports_listUnits_RRD').val());
@@ -98,6 +97,42 @@ echo $NoRecordFound = get_slot('my_slot');
 		getCollectionFormat(array_of_checked_values);
 
 	});
+	$("#reports_format_id").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
+		var array_of_checked_values = $("#reports_format_id").multiselect("getChecked").map(function() {
+			return this.value;
+		}).get();
+		getFormatCollectionUnit(array_of_checked_values);
+
+	});
+	function getFormatCollectionUnit(ids) {
+		$("#reports_listCollection_RRD").multiselect("disable");
+		$("#reports_listUnits_RRD").multiselect("disable");
+
+		$.ajax({
+			method: 'POST',
+			url: '/index.php/reports/getFormatCollections?f=' + ids,
+			dataType: 'json',
+			cache: false,
+			success: function(result) {
+				console.log(result);
+//				$('#reports_listCollection_RRD').html('');
+//				for (cnt in result.collections) {
+//					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
+//				}
+//
+//				$("#reports_listCollection_RRD").multiselect("destroy");
+//				$("#reports_listCollection_RRD").multiselect("refresh");
+//				$('#reports_listCollection_RRD').multiselect({
+//					height: '180',
+//					multiple: true
+//				});
+//
+//				if (result.collections.length > 0)
+//					$("#reports_listCollection_RRD").multiselect("enable");
+
+			}
+		});
+	}
 	function getCollections(ids) {
 		$("#reports_listCollection_RRD").multiselect("disable");
 

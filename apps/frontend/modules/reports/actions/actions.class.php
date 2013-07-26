@@ -16,6 +16,24 @@ class reportsActions extends sfActions
 		
 	}
 
+	public function executeGetFormatCollections(sfWebRequest $request)
+	{
+		$formatIDs = $request->getParameter('f');
+		$format_explode = explode(',', $formatIDs);
+		$db_collections = Doctrine_Query::Create()
+		->from('AssetGroup as')
+		->innerJoin('as.Collection c')
+		->innerJoin('c.Unit u')
+		->innerJoin('as.FormatType ft');
+		if ( ! empty($formatIDs) && count($format_explode) > 0)
+			$db_collections = $db_collections->whereIn('ft.id', $format_explode);
+		$db_collections = $db_collections->fetchArray();
+		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+		$this->setLayout('json');
+
+		return $this->renderText(json_encode($db_collections));
+	}
+
 	public function executeGetCollectionFormats(sfWebRequest $request)
 	{
 		$collectionIDs = $request->getParameter('c');
