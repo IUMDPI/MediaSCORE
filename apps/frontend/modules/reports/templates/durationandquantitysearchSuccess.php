@@ -174,12 +174,12 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result);
+
 				$('#reports_format_id').html('');
 
 				for (cnt in result.formats) {
-					if(result.formats[cnt].name!=null)
-					$('#reports_format_id').append('<option value="' + result.formats[cnt].id + '">' + result.formats[cnt].name + '</option>');
+					if (result.formats[cnt].name != null)
+						$('#reports_format_id').append('<option value="' + result.formats[cnt].id + '">' + result.formats[cnt].name + '</option>');
 				}
 				$('#reports_listUnits_RRD').html('');
 				for (cnt in result.units) {

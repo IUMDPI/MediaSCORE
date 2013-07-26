@@ -146,6 +146,7 @@ echo $NoRecordFound = get_slot('my_slot');
 				$('#reports_format_id').html('');
 
 				for (cnt in result.formats) {
+					if(result.formats[cnt].name!=null)
 					$('#reports_format_id').append('<option value="' + result.formats[cnt].id + '">' + result.formats[cnt].name + '</option>');
 				}
 				$("#reports_format_id").multiselect("destroy");
