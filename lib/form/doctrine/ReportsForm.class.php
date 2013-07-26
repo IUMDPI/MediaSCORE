@@ -78,14 +78,14 @@ class ReportsForm extends BaseReportsForm
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true)));
 			$this->setValidator('format_id', new sfValidatorString(array('required' => true)));
 			$this->setWidget('EvaluatorsStartDate', new sfWidgetFormInputText(array()));
-			$this->setValidator('EvaluatorsStartDate', new sfValidatorDate(array('required' => true)));
+			$this->setValidator('EvaluatorsStartDate', new sfValidatorDate(array('required' => false)));
 			$this->validatorSchema->setPostValidator(
 			new sfValidatorCallback(array(
 				'callback' => array($this, 'postValidate')
 			))
 			);
 			$this->setWidget('EvaluatorsEndDate', new sfWidgetFormInputText(array()));
-			$this->setValidator('EvaluatorsEndDate', new sfValidatorDate(array('required' => true)));
+			$this->setValidator('EvaluatorsEndDate', new sfValidatorDate(array('required' => false)));
 
 			$this->getWidget('format_id')->setLabel('Format Type: &nbsp;');
 			$this->getWidget('ListEvaluators')->setLabel('List of Evaluators: &nbsp;');

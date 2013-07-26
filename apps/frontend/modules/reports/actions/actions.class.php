@@ -1759,7 +1759,7 @@ class reportsActions extends sfActions
 				$EvaluatorsStartDate = $params['reports']['EvaluatorsStartDate'];
 				$EvaluatorsEndDate = $params['reports']['EvaluatorsEndDate'];
 				$ExportType = $params['reports']['ExportType'];
-				if ($ListEvaluators && $format_id && $EvaluatorsStartDate && $EvaluatorsEndDate)
+				if ($ListEvaluators && $format_id)
 				{
 
 					$EvaluatorHistorys = Doctrine_Query::Create()
@@ -1768,10 +1768,12 @@ class reportsActions extends sfActions
 					->leftJoin('as.EvaluatorHistory eh')
 					->leftJoin('as.FormatType ft')
 					->whereIn('eh.evaluator_id', $ListEvaluators)
-					->andwhereIn('ft.type', $format_id)
-					->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate)
-					->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate)
-					->fetchArray();
+					->andwhereIn('ft.type', $format_id);
+					if ( ! empty($EvaluatorsStartDate))
+						$EvaluatorHistorys = $EvaluatorHistorys->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+					if ( ! empty($EvaluatorsEndDate))
+						$EvaluatorHistorys = $EvaluatorHistorys->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+					$EvaluatorHistorys = $EvaluatorHistorys->fetchArray();
 
 
 					foreach ($EvaluatorHistorys as $EvaluatorHistory)
