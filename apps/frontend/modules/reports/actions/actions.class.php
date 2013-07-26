@@ -27,7 +27,7 @@ class reportsActions extends sfActions
 		->innerJoin('as.FormatType ft');
 		if ( ! empty($formatIDs) && count($format_explode) > 0)
 			$db_collections = $db_collections->whereIn('ft.type', $format_explode);
-		$db_collections = $db_collections->getSqlQuery();
+		$db_collections = $db_collections->fetchArray();
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 
