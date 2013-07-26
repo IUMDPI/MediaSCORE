@@ -2343,52 +2343,38 @@ class reportsActions extends sfActions
 				$format_id = $params['reports']['format_id'];
 				$ExportType = $params['reports']['ExportType'];
 
-				if ($Collection_id && $Units_id && $format_id)
+				if ($Collection_id || $Units_id || $format_id)
 				{
-					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.*,sl.*,p.*,cu.*,eu.*')
-					->whereIn('u.id', $Units_id)
-					->fetchArray();
+					$Asset = Doctrine_Query::Create()
+					->from('AssetGroup ag')
+					->innerJoin("ag.FormatType ft")
+					->innerJoin('ag.Collection c')
+					->innerJoin('c.Unit u')
+					->leftJoin('u.Personnel p ')
+					->leftJoin('u.StorageLocations sl')
+					->where("1=1");
+					if ( ! empty($Units_id))
+						$Asset = $Asset->andWhereIn('u.id', $Units_id);
+					if ( ! empty($Collection_id))
+						$Asset = $Asset->andWhereIn('c.id', $Collection_id);
+					if ( ! empty($format_id))
+						$Asset = $Asset->andWhereIn('ft.type', $format_id);
+					$Asset = $Asset->fetchArray();
 
-					foreach ($Units as $Unit)
+
+					if ($Asset)
 					{
-						$Unit_Filter[$Unit['id']] = $Unit['name'];
-						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*')
-						->where('c.parent_node_id  = ?', $Unit['id'])
-						->andWhereIn('c.id', $Collection_id)
-						->fetchArray();
-
-						foreach ($Collections as $Collection)
+						foreach ($Asset as $key => $A)
 						{
-
-							$Collection_Filter[$Collection['id']] = $Collection['name'];
-							$Asset = Doctrine_Query::Create()
-							->from('AssetGroup a')
-							->select('a.*, ft.*')
-							->leftJoin("a.FormatType ft")
-							->where('a.parent_node_id  = ?', $Collection['id'])
-							->andWhereIn('ft.type', $format_id)
-							->fetchArray();
-
-							if ($Asset)
-							{
-								foreach ($Asset as $key => $A)
-								{
-									$quantity = $quantity + $A['FormatType']['quantity'];
-									$duration = $duration + $A['FormatType']['duration'];
-									$SolutionArray = array();
-									$SolutionArray['AssetGroup'] = $A;
-									$SolutionArray['Collection'] = $Collection;
-									$SolutionArray['Unit'] = $Unit;
-									$Assets[] = $SolutionArray;
-								}
-							}
+							$quantity = $quantity + $A['FormatType']['quantity'];
+							$duration = $duration + $A['FormatType']['duration'];
+							$SolutionArray = array();
+							$SolutionArray['AssetGroup'] = $A;
+							$SolutionArray['Collection'] = $Collection;
+							$SolutionArray['Unit'] = $Unit;
+							$Assets[] = $SolutionArray;
 						}
 					}
-
 					foreach ($format_id as $formats)
 					{
 						$Format_Filter[$formats] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $formats);
@@ -2465,6 +2451,11 @@ class reportsActions extends sfActions
 						$Bug = '<span style="color:#7d110c;font-size:16px;"><b>No record available for export.</b></span>';
 						$this->getResponse()->setSlot('my_slot', $Bug);
 					}
+				}
+				else
+				{
+					$Bug = '<span style="color:#7d110c;font-size:16px;"><b>Please select any to export the records.</b></span>';
+					$this->getResponse()->setSlot('my_slot', $Bug);
 				}
 			}
 		}

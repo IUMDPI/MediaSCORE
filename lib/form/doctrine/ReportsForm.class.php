@@ -138,9 +138,9 @@ class ReportsForm extends BaseReportsForm
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true)
 			
 
-			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
-			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => true)));
-			$this->setValidator('format_id', new sfValidatorString(array('required' => true)));
+			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => false)));
+			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
+			$this->setValidator('format_id', new sfValidatorString(array('required' => false)));
 			
 			
 			
