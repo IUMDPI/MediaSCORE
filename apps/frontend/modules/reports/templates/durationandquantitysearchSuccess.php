@@ -82,7 +82,7 @@ echo $NoRecordFound = get_slot('my_slot');
 	}
 	else
 		getCollections($('#reports_listUnits_RRD').val());
-	
+
 	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
@@ -114,21 +114,27 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				console.log(result);
-//				$('#reports_listCollection_RRD').html('');
-//				for (cnt in result.collections) {
-//					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
-//				}
-//
-//				$("#reports_listCollection_RRD").multiselect("destroy");
-//				$("#reports_listCollection_RRD").multiselect("refresh");
-//				$('#reports_listCollection_RRD').multiselect({
-//					height: '180',
-//					multiple: true
-//				});
-//
-//				if (result.collections.length > 0)
-//					$("#reports_listCollection_RRD").multiselect("enable");
+				
+				$('#reports_listCollection_RRD').html('');
+				for (cnt in result.collections) {
+					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
+				}
+				$('#reports_listUnits_RRD').html('');
+				for (cnt in result.units) {
+					$('#reports_listUnits_RRD').append('<option value="' + result.units[cnt].id + '">' + result.units[cnt].name + '</option>');
+				}
+
+				$("#reports_listCollection_RRD,#reports_listUnits_RRD").multiselect("destroy");
+				$("#reports_listCollection_RRD,#reports_listUnits_RRD").multiselect("refresh");
+				$('#reports_listCollection_RRD,#reports_listUnits_RRD').multiselect({
+					height: '180',
+					multiple: true
+				});
+
+				if (result.collections.length > 0)
+					$("#reports_listCollection_RRD").multiselect("enable");
+				if (result.units.length > 0)
+					$("#reports_listUnits_RRD").multiselect("enable");
 
 			}
 		});

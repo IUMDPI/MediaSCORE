@@ -32,8 +32,8 @@ class reportsActions extends sfActions
 		$final = array();
 		foreach ($db_collections as $value)
 		{
-			$final['unit'][] = array('id' => $value['Collection']['Unit']['id'], 'name' => $value['Collection']['Unit']['name']);
-			$final['collection'][] = array('id' => $value['Collection']['id'], 'name' => $value['Collection']['name']);
+			$final['units'][] = array('id' => $value['Collection']['Unit']['id'], 'name' => $value['Collection']['Unit']['name']);
+			$final['collections'][] = array('id' => $value['Collection']['id'], 'name' => $value['Collection']['name']);
 		}
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
