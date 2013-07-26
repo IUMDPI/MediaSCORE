@@ -174,6 +174,7 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
+				console.log(result);
 				$('#reports_format_id').html('');
 
 				for (cnt in result.formats) {
