@@ -28,11 +28,16 @@ class reportsActions extends sfActions
 		if ( ! empty($formatIDs) && count($format_explode) > 0)
 			$db_collections = $db_collections->whereIn('ft.type', $format_explode);
 		$db_collections = $db_collections->fetchArray();
-		echo '<pre>';print_r($db_collections);exit;
+		
+		$final = array();
+		foreach ($db_collections as $value)
+		{
+			$final['unit'][] = array('id' => $db_collections['Collection']['Unit']['id'], 'name' => $db_collections['Collection']['Unit']['name']);
+			$final['collection'][] = array('id' => $db_collections['Collection']['id'], 'name' => $db_collections['Collection']['name']);
+		}
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
-
-		return $this->renderText(json_encode($db_collections));
+		return $this->renderText(json_encode($final));
 	}
 
 	public function executeGetCollectionFormats(sfWebRequest $request)
