@@ -114,7 +114,7 @@ echo $NoRecordFound = get_slot('my_slot');
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
-				
+
 				$('#reports_listCollection_RRD').html('');
 				for (cnt in result.collections) {
 					$('#reports_listCollection_RRD').append('<option value="' + result.collections[cnt].id + '">' + result.collections[cnt].name + '</option>');
@@ -176,19 +176,26 @@ echo $NoRecordFound = get_slot('my_slot');
 			success: function(result) {
 				$('#reports_format_id').html('');
 
-				for (cnt in result) {
-					$('#reports_format_id').append('<option value="' + cnt + '">' + result[cnt] + '</option>');
+				for (cnt in result.formats) {
+					$('#reports_format_id').append('<option value="' + result.formats[cnt].id + '">' + result.formats[cnt].name + '</option>');
 				}
-				$("#reports_format_id").multiselect("destroy");
-				$("#reports_format_id").multiselect("refresh");
+				$('#reports_listUnits_RRD').html('');
+				for (cnt in result.units) {
+					$('#reports_listUnits_RRD').append('<option value="' + result.units[cnt].id + '">' + result.units[cnt].name + '</option>');
+				}
+				$("#reports_format_id,#reports_listUnits_RRD").multiselect("destroy");
+				$("#reports_format_id,#reports_listUnits_RRD").multiselect("refresh");
 
-				$('#reports_format_id').multiselect({
+				$('#reports_format_id,#reports_listUnits_RRD').multiselect({
 					height: 'auto',
 					multiple: true
 				});
-
-				if (Object.keys(result).length > 0)
+				if (result.formats.length > 0)
 					$("#reports_format_id").multiselect("enable");
+				if (result.units.length > 0)
+					$("#reports_listUnits_RRD").multiselect("enable");
+//				if (Object.keys(result).length > 0)
+//					$("#reports_format_id").multiselect("enable");
 			}
 		});
 	}

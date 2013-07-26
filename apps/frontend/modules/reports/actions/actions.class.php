@@ -28,7 +28,7 @@ class reportsActions extends sfActions
 		if ( ! empty($formatIDs) && count($format_explode) > 0)
 			$db_collections = $db_collections->whereIn('ft.type', $format_explode);
 		$db_collections = $db_collections->fetchArray();
-		
+
 		$final = array();
 		foreach ($db_collections as $value)
 		{
@@ -47,20 +47,24 @@ class reportsActions extends sfActions
 		$db_formats = Doctrine_Query::Create()
 		->from('AssetGroup as')
 		->innerJoin('as.Collection c')
+		->innerJoin('c.Unit u')
+		->groupBy('ft.type')
 		->innerJoin('as.FormatType ft');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_formats = $db_formats->whereIn('c.id', $collection_explode);
 		$db_formats = $db_formats->fetchArray();
-		$formats = array();
-		foreach ($db_formats as $value)
+
+		$final = array();
+		foreach ($db_collections as $value)
 		{
-			if ( ! array_key_exists($value['FormatType']['type'], $formats))
-				$formats[$value['FormatType']['type']] = FormatType::$formatTypesValue1d[$value['FormatType']['type']];
+			$final['units'][] = array('id' => $value['Collection']['Unit']['id'], 'name' => $value['Collection']['Unit']['name']);
+			$final['formats'][] = array('id' => $value['FormatType']['type'], 'name' => FormatType::$formatTypesValue1d[$value['FormatType']['type']]);
 		}
+
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 
-		return $this->renderText(json_encode($formats));
+		return $this->renderText(json_encode($final));
 	}
 
 	public function executeGetUserFormats(sfWebRequest $request)
