@@ -55,7 +55,7 @@ class reportsActions extends sfActions
 		$db_formats = $db_formats->fetchArray();
 
 		$final = array();
-		foreach ($db_collections as $value)
+		foreach ($db_formats as $value)
 		{
 			$final['units'][] = array('id' => $value['Collection']['Unit']['id'], 'name' => $value['Collection']['Unit']['name']);
 			$final['formats'][] = array('id' => $value['FormatType']['type'], 'name' => FormatType::$formatTypesValue1d[$value['FormatType']['type']]);
