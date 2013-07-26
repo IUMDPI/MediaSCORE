@@ -2370,8 +2370,8 @@ class reportsActions extends sfActions
 							$duration = $duration + $A['FormatType']['duration'];
 							$SolutionArray = array();
 							$SolutionArray['AssetGroup'] = $A;
-							$SolutionArray['Collection'] = $Collection;
-							$SolutionArray['Unit'] = $Unit;
+							$SolutionArray['Collection'] = $A['Collection'];
+							$SolutionArray['Unit'] = $A['Collection']['Unit'];
 							$Assets[] = $SolutionArray;
 						}
 					}
@@ -2454,7 +2454,7 @@ class reportsActions extends sfActions
 				}
 				else
 				{
-					$Bug = '<span style="color:#7d110c;font-size:16px;"><b>Please select any to export the records.</b></span>';
+					$Bug = '<span style="color:#7d110c;font-size:16px;"><b>Please select filter to export the records.</b></span>';
 					$this->getResponse()->setSlot('my_slot', $Bug);
 				}
 			}
