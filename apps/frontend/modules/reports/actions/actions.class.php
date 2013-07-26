@@ -49,7 +49,7 @@ class reportsActions extends sfActions
 		->innerJoin('as.Collection c')
 		->innerJoin('c.Unit u')
 		->groupBy('ft.type')
-		->innerJoin('as.FormatType ft');
+		->leftJoin('as.FormatType ft');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_formats = $db_formats->whereIn('c.id', $collection_explode);
 		$db_formats = $db_formats->fetchArray();
