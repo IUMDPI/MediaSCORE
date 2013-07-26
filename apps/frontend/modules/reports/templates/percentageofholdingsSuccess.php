@@ -93,7 +93,7 @@ echo $NoRecordFound = get_slot('my_slot');
 	}
 	else
 		getCollections($('#reports_listUnits_RRD').val());
-	
+
 	$("#reports_listUnits_RRD").bind("multiselectclick multiselectcheckall multiselectuncheckall", function(event, ui) {
 		var array_of_checked_values = $("#reports_listUnits_RRD").multiselect("getChecked").map(function() {
 			return this.value;
@@ -145,8 +145,8 @@ echo $NoRecordFound = get_slot('my_slot');
 			success: function(result) {
 				$('#reports_format_id').html('');
 
-				for (cnt in result) {
-					$('#reports_format_id').append('<option value="' + cnt + '">' + result[cnt] + '</option>');
+				for (cnt in result.formats) {
+					$('#reports_format_id').append('<option value="' + result.formats[cnt].id + '">' + result.formats[cnt].name + '</option>');
 				}
 				$("#reports_format_id").multiselect("destroy");
 				$("#reports_format_id").multiselect("refresh");
@@ -156,7 +156,7 @@ echo $NoRecordFound = get_slot('my_slot');
 					multiple: true
 				});
 
-				if (Object.keys(result).length > 0)
+				if (result.formats.length > 0)
 					$("#reports_format_id").multiselect("enable");
 			}
 		});
