@@ -1174,7 +1174,7 @@ class scoreCalculator extends scoreCalculator_extended
 					if (isset($AssetInformatoin[0]['FormatType']['speed']))
 					{
 						$speed_array = explode(',', $AssetInformatoin[0]['FormatType'][$characteristicsValue['CharacteristicsFormat']['format_c_name']]);
-						
+
 						$min_speed_one = $speed_array[0];
 						foreach ($speed_array as $speed_one)
 						{
@@ -1581,7 +1581,7 @@ class scoreCalculator extends scoreCalculator_extended
 	 * 
 	 * @return int $CaliculatedScore
 	 */
-	public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array())
+	public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array(), $is_exit = FALSE)
 	{
 
 
@@ -1596,8 +1596,9 @@ class scoreCalculator extends scoreCalculator_extended
 		{
 			echo "function $funcationName dose not exists ";
 		}
-		
-		return round($score/20,2);
+		if ($is_exit)
+			exit;
+		return round($score / 20, 2);
 	}
 
 }
