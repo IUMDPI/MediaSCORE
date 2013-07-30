@@ -378,7 +378,7 @@ class assetgroupActions extends sfActions
 		->from('AssetGroup a')
 		->select('a.*,ft.*')
 		->leftJoin('a.FormatType ft WITH ft.id=a.format_id')
-		->addWhere('ft.id =?', $request->getParameter('id'))
+		->addWhere('a.id =?', $request->getParameter('id'))
 		->fetchArray();
 		$characteristicsValue = Doctrine_Query::Create()
 		->from('CharacteristicsValues cv')
