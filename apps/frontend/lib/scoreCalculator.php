@@ -1581,7 +1581,7 @@ class scoreCalculator extends scoreCalculator_extended
 	 * 
 	 * @return int $CaliculatedScore
 	 */
-	public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array(), $is_exit = FALSE)
+	public function callFormatCalculator($AssetInformatoin = array(), $characteristicsValues = array())
 	{
 
 
@@ -1596,8 +1596,7 @@ class scoreCalculator extends scoreCalculator_extended
 		{
 			echo "function $funcationName dose not exists ";
 		}
-		if ($is_exit)
-			exit;
+		
 		return round($score / 20, 2);
 	}
 
