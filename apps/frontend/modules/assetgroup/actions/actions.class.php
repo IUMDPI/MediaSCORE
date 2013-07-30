@@ -389,7 +389,7 @@ class assetgroupActions extends sfActions
 		->fetchArray();
 		$ScoreCalculator = new scoreCalculator();
 
-		$score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue,TRUE);
+		$score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
 		
 	}
 
