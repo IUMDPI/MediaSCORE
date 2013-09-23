@@ -31,7 +31,7 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
+      dsn: mysql:host=localhost;dbname=mediascore_live
       username: mediascore_live
       password: mediascore_live#456
 
