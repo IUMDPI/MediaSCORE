@@ -1590,7 +1590,7 @@ class scoreCalculator extends scoreCalculator_extended
 		$score = 0;
 		if (method_exists($this, $funcationName))
 		{
-			echo $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
+			echo "Total ". $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
 			echo "<br/>Final Total ".round($score / 20, 2);
 		}
 		else
