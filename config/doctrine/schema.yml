@@ -749,6 +749,7 @@ CharacteristicsConstraints:
   columns:
     constraint_name: { type: string(255) }
     constraint_value: { type: string(255) }
+    constraint_readable: { type: string(255) }
       
 ##################################### constraints_value #########################################     
 CharacteristicsValues:
