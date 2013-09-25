@@ -49,7 +49,7 @@ class assetgroupActions extends sfActions
 			}
 			if ($AssetScore != '')
 			{
-				$this->assets = $this->assets->andWhere('asset_score like ?', "{$AssetScore}%");
+				$this->assets = $this->assets->andWhere('asset_score LIKE ?', "{$AssetScore}%");
 			}
 			if ($dateType != '')
 			{

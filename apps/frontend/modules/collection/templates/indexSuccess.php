@@ -169,9 +169,9 @@
         unitId='<?php echo $unitID; ?>';
        
         Check[i] = $.ajax({
-            method: 'POST', 
+            type: 'POST', 
             url: '/frontend_dev.php/collection/index',
-            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
+            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),score:$('#score').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 

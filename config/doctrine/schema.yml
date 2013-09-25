@@ -67,6 +67,7 @@ Unit:
   relations:
     StorageLocations: { class: StorageLocation, local: unit_id, foreign: storage_location_id, refClass: UnitStorageLocation }
     Personnel: { class: Person, local: unit_id, foreign: person_id, refClass: UnitPerson }
+    Collection: { local: id, foreign: parent_node_id, foreignAlias: containCollections}
 
 UnitStorageLocation:
   columns:
@@ -125,6 +126,7 @@ Collection:
     status: { type: string(255) }
   relations:
     Unit: { local: parent_node_id, foreign: id, foreignAlias: heldByUnit ,onDelete: CASCADE}
+    AssetGroup: { local: id, foreign: parent_node_id, foreignAlias: containsAssets}
     StorageLocations: { class: StorageLocation, local: collection_id, foreign: storage_location_id, refClass: CollectionStorageLocation }
     
 

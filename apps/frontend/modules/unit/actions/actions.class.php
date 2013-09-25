@@ -28,7 +28,7 @@ class unitActions extends sfActions
 			$from = $request->getParameter('from');
 			$to = $request->getParameter('to');
 			$dateType = $request->getParameter('datetype');
-			
+
 
 			$this->unit = Doctrine_Query::Create()
 			->from('Unit u')
@@ -48,7 +48,7 @@ class unitActions extends sfActions
 				$this->unit = $this->unit->andWhere('status =?', $status);
 			}
 
-			
+
 
 			if ($dateType != '')
 			{
@@ -175,7 +175,7 @@ class unitActions extends sfActions
 				else if (isset($locations[$value]))
 					$locationString[] = $locations[$value];
 				else
-					$stringForName[] = '%'.trim($value).'%';
+					$stringForName[] = '%' . trim($value) . '%';
 			}
 			$searchParams = array(
 				'formats' => $formatType,
@@ -185,62 +185,10 @@ class unitActions extends sfActions
 			$db = new Unit();
 			$filterID = $db->getSearchResults($searchParams);
 			$this->searchResult = Doctrine_Query::Create()
-					->from('Store s')
-					->select('s.*')
-					->whereIn('s.id',$filterID)
-					->execute();
-//			echo '<pre>';
-//						print_r($this->randomSearch);exit;
-			// query with the  search values that exist in our database
-//			if (count($formatType) > 0)
-//			{
-//
-//				$this->formatsResult = Doctrine_Query::Create()
-//				->from('AssetGroup ag')
-//				->select('ag.*')
-//				->innerJoin('ag.FormatType f')
-//				->innerJoin('ag.Collection c')
-//				->leftJoin('c.StorageLocations sl')
-//				->whereIn('f.type', $formatType);
-//				if (strlen($stringForName) > 1)
-//				{
-//					$this->formatsResult = $this->formatsResult->andWhere('ag.name like "' . $stringForName . '"');
-//					$this->formatsResult = $this->formatsResult->orWhere('sl.name like "' . $stringForName . '"');
-//				}
-//				$this->formatsResult = $this->formatsResult->execute();
-//			}
-//			else if (count($storeType) > 0)
-//			{
-//				$this->storeResult = Doctrine_Query::Create()
-//				->from('Store s')
-//				->select('s.*')
-//				->leftJoin('s.StorageLocations sl')
-//				->whereIn('s.type', $storeType);
-//				if (strlen($stringForName) > 1)
-//				{
-//					$this->storeResult = $this->storeResult->andWhere('s.name like "' . $stringForName . '"');
-//					$this->storeResult = $this->storeResult->andWhere('sl.name like "' . $stringForName . '"');
-//				}
-//				$this->storeResult = $this->storeResult->execute();
-//			}
-//			else if (count($locationString) > 0)
-//			{
-//				echo 'here';
-//				exit;
-//			}
-//			else
-//			{
-//				if (strlen($stringForName) > 1)
-//				{
-//					$this->randomSearch = Doctrine_Query::Create()
-//					->from('Store s')
-//					->select('s.*')
-////					->leftJoin('s.format_type ft ON ft.id=s.format_id')
-////					->where('s.name like "' . $stringForName . '"')
-////					->orWhere('sl.name like "' . $stringForName . '"')
-//					->execute();
-//				}
-//			}
+			->from('Store s')
+			->select('s.*')
+			->whereIn('s.id', $filterID)
+			->execute();
 		}
 	}
 
@@ -349,12 +297,7 @@ class unitActions extends sfActions
 		$this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 		$this->getUser()->getAttributeHolder()->remove('delMsg');
 
-		// get the list of all the units 
-		$this->units = Doctrine_Core::getTable('Unit')
-		->createQuery('a')
-		->orderBy('name')
-		->leftJoin('a.StorageLocations sl')
-		->execute();
+
 
 		// get all the request parameters
 		$searchInpout = $request->getParameter('s');
@@ -362,8 +305,9 @@ class unitActions extends sfActions
 		$from = $request->getParameter('from');
 		$to = $request->getParameter('to');
 		$dateType = $request->getParameter('datetype');
-		$StorageLocation = $request->getParameter('searchStorageLocation');
-		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+		$score = $request->getParameter('score');
+
+
 
 
 //        $unitScore = $request->getParameter('searchScore');
@@ -375,22 +319,26 @@ class unitActions extends sfActions
 			->orderBy('u.name')
 			->innerJoin('u.Creator cu')
 			->innerJoin('u.Editor eu')
+			->leftJoin('u.Collection c')
+			->leftJoin('c.AssetGroup ag')
+			->leftJoin('ag.FormatType ft')
 			->leftJoin('u.StorageLocations sl');
 
 			// apply filters for searching the unit
 			if ($searchInpout && trim($searchInpout) != '')
 			{
-				$this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+				$this->unit = $this->unit->andWhere('u.name like "%' . $searchInpout . '%"');
 			}
 			if (trim($status) != '')
 			{
-				$this->unit = $this->unit->andWhere('status =?', $status);
+				$this->unit = $this->unit->andWhere('u.status =?', $status);
+			}
+			if (trim($score) != '')
+			{
+				$this->unit = $this->unit->andWhere('ft.asset_score LIKE ?', "{$score}%");
 			}
 
-			if ($StorageLocation && trim($StorageLocation) != '')
-			{
-				$this->unit = $this->unit->andWhere('sl.resident_structure_description like "%' . $StorageLocation . '%"');
-			}
+
 
 			if ($dateType != '')
 			{
@@ -398,18 +346,18 @@ class unitActions extends sfActions
 				{
 					if (trim($from) != '' && trim($to) != '')
 					{
-						$this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+						$this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.created_at,"%Y-%m-%d") <= "' . $to . '"');
 					}
 					else
 					{
 						if (trim($from) != '')
 						{
-							$this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+							$this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") >=?', $from);
 						}
 
 						if (trim($to) != '')
 						{
-							$this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+							$this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") <=?', $to);
 						}
 					}
 				}
@@ -417,18 +365,18 @@ class unitActions extends sfActions
 				{
 					if (trim($from) != '' && trim($to) != '')
 					{
-						$this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+						$this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.updated_at,"%Y-%m-%d") <= "' . $to . '"');
 					}
 					else
 					{
 						if (trim($from) != '')
 						{
-							$this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+							$this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") >=?', $from);
 						}
 
 						if (trim($to) != '')
 						{
-							$this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+							$this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") <=?', $to);
 						}
 					}
 				}
@@ -452,11 +400,16 @@ class unitActions extends sfActions
 
 			return $this->renderText(json_encode($this->unit));
 		}
-
-//        foreach ($this->units as $unit) {
-//            var_dump($unit->getLocation());
-//        }
-//        exit;
+		else
+		{
+			$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+			// get the list of all the units 
+			$this->units = Doctrine_Core::getTable('Unit')
+			->createQuery('u')
+			->orderBy('name')
+			->leftJoin('u.StorageLocations sl')
+			->execute();
+		}
 	}
 
 	/**

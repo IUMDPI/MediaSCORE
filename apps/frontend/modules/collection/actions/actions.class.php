@@ -45,6 +45,7 @@ class collectionActions extends sfActions {
         $from = $request->getParameter('from');
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
+        $score = $request->getParameter('score');
         
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
         // Get collections for a specific Unit
@@ -55,37 +56,42 @@ class collectionActions extends sfActions {
                     ->innerJoin('c.Creator cu')
                     ->innerJoin('c.Editor eu')
                     ->leftJoin('c.StorageLocations sl')
+                    ->leftJoin('c.AssetGroup ag')
+                    ->leftJoin('ag.FormatType ft')
                     ->where('c.parent_node_id  = ?', $unitID);
             if ($searchInpout && trim($searchInpout) != '') {
-                $this->collections = $this->collections->andWhere('name like "%' . $searchInpout . '%"');
+                $this->collections = $this->collections->andWhere('c.name like "%' . $searchInpout . '%"');
             }
             if (trim($status) != '') {
-                $this->collections = $this->collections->andWhere('status =?', $status);
+                $this->collections = $this->collections->andWhere('c.status =?', $status);
+            }
+            if (trim($score) != '') {
+                $this->collections = $this->collections->andWhere('ft.asset_score LIKE ?', "{$score}%");
             }
             
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->collections = $this->collections->andWhere('DATE_FORMAT(c.created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(c.created_at,"%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(c.created_at,"%Y-%m-%d") >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->collections = $this->collections->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(c.created_at,"%Y-%m-%d") <=?', $to);
                         }
                     }
                 } else if ($dateType == 1) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->collections = $this->collections->andWhere('DATE_FORMAT(c.updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(c.updated_at,"%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(c.updated_at,"%Y-%m-%d") >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->collections = $this->collections->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                            $this->collections = $this->collections->andWhere('DATE_FORMAT(c.updated_at,"%Y-%m-%d") <=?', $to);
                         }
                     }
                 }
