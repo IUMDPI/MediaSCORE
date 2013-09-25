@@ -244,7 +244,7 @@ td { vertical-align: top; }
   #search-box a:visited.button {color:white;}
   .container {position:absolute; top:9px; right:40px;}
   .search-triangle, .search-close {background:url(/images/wireframes/search-icons.png); height:10px; width:12px; float:right;display:block;}
-  .search-close {margin-right:5px;}
+  .search-close {margin-right: 15px;margin-top: -10px;}
   .search-triangle {background-position: 12px 0;}
   .search-input .dropdown-container {position:absolute; top:28px; right:35px;}
   .dropdown {z-index:999; background-color:white; border:1px solid #cfcfcf; padding:5px; clear:none; width:auto;}

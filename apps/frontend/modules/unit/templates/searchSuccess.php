@@ -43,6 +43,14 @@
                         <li><a href="javascript:void(0);" onclick="makeTypeToken(1);">Collection</a></li>
                         <li><a href="javascript:void(0);" onclick="makeTypeToken(2);">Asset Group</a></li>
                     </ul>
+					<ul class="right-column"> 
+
+                        <li><h1>Storage Location</h1></li>
+                        <?php foreach ($AllStorageLocations as $StorageLoca): ?>
+                            <li><a href="javascript:void(0);" onclick="makeTypeToken('<?php echo $StorageLoca['name'] ?>');"><?php echo $StorageLoca['name'] ?></a></li>
+                        <?php endforeach
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -84,8 +92,7 @@ if ($StoreType == 'unit') {
             </select>
             <br/>
             <br/>
-            <strong>Storage Location : </strong>
-            <input type="text" class="text" onkeyup="<?php echo $functionName;?>" id="searchStorageLocation"/>
+            
 <!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
@@ -107,113 +114,23 @@ if ($StoreType == 'unit') {
         </tr>
     </thead>
     <tbody id="unitResult">
-        <?php if (isset($formatsResult) && sizeof($formatsResult) > 0) { ?>
-            <?php foreach ($formatsResult as $result): ?>
-                <tr>
-                    <td class="invisible"> 
-                        <div class="options">
-                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $result->getParentNodeId(); ?>)"/></a>
-                        </div>
-                    </td>
-                    <td><a href="/assetgroup/edit/id/<?php echo $result->getId(); ?>/c/<?php echo $result->getParentNodeId(); ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text">Asset Group</span></td>
-                    <td><?php echo $result->getCreatedAt() ?></td>
-                    <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>   
-                    </td>
-                    <td><?php echo $result->getUpdatedAt() ?></td>
-                    <td>
-                        <?php echo $result->getEditor()->getName(); ?>
-                    </td>
-                    <td>
-                        <?php echo $result->getDuration($result->getFormatId()); ?>
-                    </td>
-
-
-                </tr>
-                <?php
-            endforeach;
-        }
-        ?>
-        <?php if (isset($storeResult) && sizeof($storeResult) > 0) { ?>
+       
+       
+        <?php if (isset($searchResult) && sizeof($searchResult) > 0) { ?>
             <?php
-            foreach ($storeResult as $key => $result):
-
+            foreach ($searchResult as $result):
                 if ($result->getType() == 1) {
                     $text = 'Unit';
                     $urlOnName = url_for('collection', $result);
-                    $urlonEdit = 'unit/edit/id/' . $result->getId();
+                    $urlonEdit = url_for('unit/edit?id=' . $result->getId());
                     $parentId = 0;
                     $duration = $result->getDuration($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
                     $urlOnName = url_for('assetgroup', $result);
-//                    $UnitOfCollection = Doctrine_Query::create()
-//                            ->from('Unit u')
-//                            ->select('u.*')
-//                            ->where('id =?', $result->getParentNodeId())
-//                            ->fetchOne();
-//
-//
-//                    if ($UnitOfCollection) {
-//                        $urlOnName = '/' . $UnitOfCollection['name_slug'] . '/' . $result->getNameSlug() . '/';
-//                        $urlonEdit = 'collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
-//                        $parentId = $result->getParentNodeId();
-//                        $duration = $result->getDuration($result->getId());
-//                    } else {
-//                        echo '<pre>';
-//                        print_r($result->getId());
-//                    }
-                }
-                if ($result->getType() == 4) {
-                    $text = 'Asset Group';
-                    $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
-                    $parentId = $result->getParentNodeId();
-                    $duration = $result->getDuration($result->getFormatId());
-                }
-                ?>
-                <tr>
-                    <td class="invisible">
-                        <div class="options">
-                            <?php if ($result->getType() != 4) { ?>
-                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                            <?php } ?>
-                            <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
-                        </div>
-                    </td>
-                    <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
-                    <td><?php echo $result->getCreatedAt() ?></td>
-                    <td>
-                        <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
-                    </td>
-                    <td><?php echo $result->getUpdatedAt() ?></td>
-                    <td>
-                        <?php echo $result->getEditor()->getName(); ?>
-                    </td>
-                    <td>
-                        <?php echo $duration . ' minute' ?>
-                    </td>
-
-
-                </tr>
-                <?php
-            endforeach;
-        }
-        ?>
-        <?php if (isset($randomSearch) && sizeof($randomSearch) > 0) { ?>
-            <?php
-            foreach ($randomSearch as $result):
-                if ($result->getType() == 1) {
-                    $text = 'Unit';
-                    $urlOnName = url_for('collection', $result);
-                    $urlonEdit = 'unit/edit/id/' . $result->getId();
-                    $parentId = 0;
-                    $duration = $result->getDuration($result->getId());
-                }
-                if ($result->getType() == 3) {
-                    $text = 'Collection';
-                    $urlOnName = url_for('assetgroup', $result);
-                    $urlonEdit = '/collection/edit/id/' . $result->getId() . '/u/' . $result->getParentNodeId();
+					 
+                    $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                     $parentId = $result->getParentNodeId();
                     $duration = $result->getDuration($result->getId());
                 }
@@ -228,7 +145,7 @@ if ($StoreType == 'unit') {
                     <td class="invisible">
                         <div class="options">
                             <?php if ($result->getType() != 4) { ?>
-                                <a href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                                <a class="editModal" href="<?php echo $urlonEdit; ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                             <?php } ?>
                             <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
                         </div>
@@ -272,7 +189,17 @@ if ($StoreType == 'unit') {
             'showCloseButton':false
            
         });
-        
+        $(".editModal").fancybox({
+									'width': '100%',
+									'height': '100%',
+									'autoScale': true,
+									'transitionIn': 'none',
+									'transitionOut': 'none',
+									'type': 'inline',
+									'padding': 0,
+									'showCloseButton': true
+
+								});
         
     });
     
@@ -341,9 +268,9 @@ if ($StoreType == 'unit') {
         unitId='<?php echo $unitID; ?>';
        
         Check[i] = $.ajax({
-            method: 'POST', 
+            type: 'POST', 
             url: '/frontend_dev.php/collection/index',
-            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            data:{id:'<?php echo $unitID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -407,9 +334,9 @@ if ($StoreType == 'unit') {
     function filterAssets(){
         collectionID='<?php echo $collectionID; ?>';
         Check[i] = $.ajax({
-            method: 'POST', 
+            type: 'POST', 
             url: '/frontend_dev.php/assetgroup/index',
-            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchScore:$('#searchScore').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            data:{c:'<?php echo $collectionID; ?>',s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchScore:$('#searchScore').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -461,9 +388,9 @@ if ($StoreType == 'unit') {
     }
     function filterUnits(){
         Check[i] = $.ajax({ 
-            method: 'POST', 
+            type: 'POST', 
             url: '/unit/index',
-            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val(),searchStorageLocation:$('#searchStorageLocation').val()},
+            data:{s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datetype:$('#date_type').val()},
             dataType: 'json',
             cache: false,
             success: function (result) { 
@@ -598,6 +525,20 @@ if ($StoreType == 'unit') {
         }
         $('#search_values').val(search);
     }
+//	function filterToggle() {
+//			$('#filter').slideToggle();
+//			if (filter == 0) {
+//				filter = 1;
+//				$('#filter_text').html('Show Filter');
+//
+//			}
+//			else {
+//				$('#filter_text').html('Hide Filter');
+//				filter = 0;
+//			}
+//
+//
+//		}
 </script>
 <div style="display: none;"> 
     <div id="fancyboxUCAG" style="background-color: #F4F4F4;width: 600px;" >

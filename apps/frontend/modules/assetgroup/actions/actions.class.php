@@ -19,7 +19,7 @@ class assetgroupActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-
+		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
 		$collectionId = $request->getParameter('c');
 		$searchInpout = $request->getParameter('s');
 		$status = $request->getParameter('status');
@@ -27,7 +27,7 @@ class assetgroupActions extends sfActions
 		$to = $request->getParameter('to');
 		$dateType = $request->getParameter('datetype');
 		$AssetScore = $request->getParameter('searchScore');
-//        $StorageLocation = $request->getParameter('searchStorageLocation');
+
 		// Get collections for a specific Asset Group
 		if ($request->isXmlHttpRequest())
 		{
@@ -49,7 +49,7 @@ class assetgroupActions extends sfActions
 			}
 			if ($AssetScore != '')
 			{
-				$this->assets = $this->assets->andWhere('asset_score like "%' . $AssetScore . '%"');
+				$this->assets = $this->assets->andWhere('asset_score like ?', "{$AssetScore}%");
 			}
 			if ($dateType != '')
 			{
@@ -391,7 +391,6 @@ class assetgroupActions extends sfActions
 
 		$score = $ScoreCalculator->callFormatCalculator($AssetInformatoin, $characteristicsValue);
 		exit;
-		
 	}
 
 }

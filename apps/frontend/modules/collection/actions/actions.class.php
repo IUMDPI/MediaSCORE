@@ -45,8 +45,8 @@ class collectionActions extends sfActions {
         $from = $request->getParameter('from');
         $to = $request->getParameter('to');
         $dateType = $request->getParameter('datetype');
-        $StorageLocation = $request->getParameter('searchStorageLocation');
-
+        
+		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
         // Get collections for a specific Unit
         if ($request->isXmlHttpRequest()) {
             $this->collections = Doctrine_Query::Create()
@@ -62,9 +62,7 @@ class collectionActions extends sfActions {
             if (trim($status) != '') {
                 $this->collections = $this->collections->andWhere('status =?', $status);
             }
-            if ($StorageLocation && trim($StorageLocation) != '') {
-                $this->collections = $this->collections->andWhere('resident_structure_description like "%' . $StorageLocation . '%"');
-            }
+            
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
@@ -93,6 +91,7 @@ class collectionActions extends sfActions {
                 }
             }
             $this->collections = $this->collections->fetchArray();
+            
             foreach ($this->collections as $key => $value) {
                 $duration = new Collection();
                 $duration = $duration->getDuration($value['id']);
