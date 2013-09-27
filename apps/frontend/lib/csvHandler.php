@@ -86,7 +86,7 @@ class csvHandler {
         }
 
         foreach ($array as $row) {
-			if($row==NULL || empty($row))
+			if($row==NULL || empty($row) || $row=='NULL' || $row=='NULL ,')
 				$row='';
             fputcsv($df, $row);
         }
