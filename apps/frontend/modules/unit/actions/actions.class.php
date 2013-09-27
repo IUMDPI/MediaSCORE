@@ -184,9 +184,10 @@ class unitActions extends sfActions
 				'store' => $storeType,
 				'string' => $stringForName,
 				'location' => $locationString);
-
+			
 			$db = new Unit();
-			$filterID = $db->getSearchResults($searchParams);
+			$filterID = $db->getSearchResults($searchParams,$this->getUser()->getGuardUser());
+			echo '<pre>';print_r($filterID);exit;
 			$this->searchResult = Doctrine_Query::Create()
 			->from('Store s')
 			->select('s.*')

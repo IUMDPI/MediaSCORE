@@ -45,7 +45,7 @@ if ($sf_user->getGuardUser()->getType() != 3)
 			if ($sf_user->getGuardUser()->getType() != 3)
 			{
 				?>
-	            <td width="30"></td>
+				<td width="30"></td>
 			<?php } ?>
             <th>Asset Groups</th>
             <th>Created</th>
@@ -83,13 +83,14 @@ if ($sf_user->getGuardUser()->getType() != 3)
 				if ($sf_user->getGuardUser()->getId() == 1)
 				{
 					?>
-					<td style="text-align: right;"><a target="_blank" href="<?php echo url_for('assetgroup/getScore?id=' . $asset_group->getId()); ?>"><?php echo (float) $asset_group->getFormatType()->getAssetScore(); ?></a></td>
+					<td style="text-align: right;"><?php echo (float) $asset_group->getFormatType()->getAssetScore(); ?></td>
+						<!--<td style="text-align: right;"><a target="_blank" href="<?php // echo url_for('assetgroup/getScore?id=' . $asset_group->getId());  ?>"><?php echo $asset_group->getFormatType()->getAssetScore(); ?></a></td>-->
 					<?php
 				}
 				else
 				{
 					?>
-					<td style="text-align: right;"><?php echo (float) $asset_group->getFormatType()->getAssetScore(); ?></td>
+					<td style="text-align: right;"><?php echo $asset_group->getFormatType()->getAssetScore(); ?></td>
 				<?php } ?>
 			</tr>
 		<?php endforeach; ?>
@@ -98,7 +99,7 @@ if ($sf_user->getGuardUser()->getType() != 3)
 
 
 <script type="text/javascript">
-	var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
+				var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
 				$(document).ready(function() {
 					var dates = $("#from, #to").datepicker({
 						defaultDate: "+1w",
@@ -117,6 +118,8 @@ if ($sf_user->getGuardUser()->getType() != 3)
 						}
 					});
 					$("#assetGroupTable").tablesorter();
+					
+					
 					$(".delete_unit").fancybox({
 						'width': '100%',
 						'height': '100%',
@@ -181,14 +184,14 @@ if ($sf_user->getGuardUser()->getType() != 3)
 								$('#assetsResult').html('');
 								for (collection in result) {
 									editdelete = '';
-									if(userType!=3){
-										editdelete='<td class="invisible">' +
-									'<div class="options">' +
-									' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(' + result[collection].id + ');"/></a>' +
-									'</div>' +
-									'</td>';
+									if (userType != 3) {
+										editdelete = '<td class="invisible">' +
+										'<div class="options">' +
+										' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(' + result[collection].id + ');"/></a>' +
+										'</div>' +
+										'</td>';
 									}
-									$('#assetsResult').append('<tr>' +editdelete+
+									$('#assetsResult').append('<tr>' + editdelete +
 									'<td><a href="/assetgroup/edit/id/' + result[collection].id + '/c/' + collectionID + '">' + result[collection].name + '</a></td>' +
 									'<td>' + result[collection].created_at + '</td>' +
 									'<td>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +

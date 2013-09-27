@@ -40,9 +40,14 @@ class Unit extends BaseUnit
 		return minutesToHour::ConvertMinutes2Hours($totalDuration);
 	}
 
-	static public function getSearchResults($params)
+	static public function getSearchResults($params, $user)
 	{
 
+		$join = '';
+		if ($user->getType() == 3)
+		{
+			$join .='INNER JOIN unit_person up ON up.unit_id=s.id AND s.type=1';
+		}
 		$where = '';
 		if (count($params['formats']) > 0)
 			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
@@ -55,7 +60,7 @@ class Unit extends BaseUnit
 		}
 		if (count($params['string']) > 0)
 		{
-			
+
 			$where .= ' AND ( 1=1 ';
 			foreach ($params['string'] as $index => $string)
 			{
@@ -64,14 +69,19 @@ class Unit extends BaseUnit
 			}
 			$where .=')';
 		}
-
+		if ($user->getType() == 3)
+		{
+			$where .=' AND up.person_id = ' . $user->getId();
+		}
 
 
 		$query = "SELECT s.id FROM store s
+	     	{$join}
 			LEFT JOIN format_type ft ON ft.id=s.format_id AND s.type=4
 			LEFT JOIN unit_storage_location usl on usl.unit_id=s.id AND s.type=1
 			LEFT JOIN collection_storage_location csl on csl.collection_id=s.id AND s.type=3
 			WHERE 1=1 {$where}";
+			echo $query;exit;
 		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
 		$result = $q->execute($query);
 		$result = $result->fetchAll();
