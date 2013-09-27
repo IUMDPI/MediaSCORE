@@ -44,10 +44,10 @@ class Unit extends BaseUnit
 	{
 
 		$join = '';
-		if ($user->getType() == 3)
-		{
-			$join .='INNER JOIN unit_person up ON up.unit_id=s.id AND s.type=1';
-		}
+//		if ($user->getType() == 3)
+//		{
+//			$join .='INNER JOIN unit_person up ON up.unit_id=s.id AND s.type=1';
+//		}
 		$where = '';
 		if (count($params['formats']) > 0)
 			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
@@ -69,10 +69,10 @@ class Unit extends BaseUnit
 			}
 			$where .=')';
 		}
-		if ($user->getType() == 3)
-		{
-			$where .=' AND up.person_id = ' . $user->getId();
-		}
+//		if ($user->getType() == 3)
+//		{
+//			$where .=' AND up.person_id = ' . $user->getId();
+//		}
 
 
 		$query = "SELECT s.id FROM store s
