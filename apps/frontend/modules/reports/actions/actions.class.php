@@ -998,7 +998,7 @@ class reportsActions extends sfActions
 								}
 							}
 
-							$AssetScoreReport['Format'] =  str_replace(array('NULL','NULL,','NULL ,'), '',$format);
+							$AssetScoreReport['Format'] =  rtrim(trim(str_replace('NULL', '',$format)),',');
 							$AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
 							$AssetScoreReport['Generation'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'generation', $Asset['AssetGroup']['FormatType']['generation']);
 							$AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
@@ -1064,7 +1064,7 @@ class reportsActions extends sfActions
 							{
 								$SpeedText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'speed', $Speed) . ' , ';
 							}
-							$AssetScoreReport['speed'] = str_replace(array('NULL','NULL,','NULL ,'), '',$SpeedText);
+							$AssetScoreReport['speed'] = rtrim(trim(str_replace('NULL', '',$SpeedText)),',');
 
 							$AssetScoreReport['softbindersyndrome'] = ($Asset['AssetGroup']['FormatType']['softBinderSyndrome'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['materialsbreakdown'] = ($Asset['AssetGroup']['FormatType']['materialsBreakdown'] == '1') ? 'Yes' : 'No';
@@ -1095,7 +1095,7 @@ class reportsActions extends sfActions
 								$opticalDiscTypeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'opticalDiscType', $opticalDiscType) . ' , ';
 							}
 
-							$AssetScoreReport['opticaldisctype'] = rtrim($opticalDiscTypeText,',');
+							$AssetScoreReport['opticaldisctype'] = rtrim(trim($opticalDiscTypeText),',');
 
 							$AssetScoreReport['recordingstandard'] = str_replace('NULL', '',$formatTypeValuesManager->getArrayOfValueTargeted('general', 'recordingStandard', $Asset['AssetGroup']['FormatType']['recordingStandard']));
 							$AssetScoreReport['publicationyear'] = $Asset['AssetGroup']['FormatType']['publicationYear'];
@@ -1112,7 +1112,7 @@ class reportsActions extends sfActions
 							{
 								$reelsizeText .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['FormatType']['type'], 'reelsize', $reelsize) . ' , ';
 							}
-							$AssetScoreReport['reelsize'] = rtrim(str_replace('NULL', '',$reelsizeText),',');
+							$AssetScoreReport['reelsize'] = rtrim(trim(str_replace('NULL', '',$reelsizeText)),',');
 
 							$reelsizeText = '';
 							$AssetScoreReport['whiteresidue'] = ($Asset['AssetGroup']['FormatType']['whiteResidue'] == '1') ? 'Yes' : 'No';
@@ -1123,7 +1123,7 @@ class reportsActions extends sfActions
 							{
 								$sizeText .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'size', $size) . ' , ';
 							}
-							$AssetScoreReport['size'] = rtrim(str_replace('NULL', '',$sizeText),',');
+							$AssetScoreReport['size'] = rtrim(trim(str_replace('NULL', '',$sizeText)),',');
 							$AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['bitrate'] = str_replace('NULL', '',$formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']));
 							$AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
