@@ -151,7 +151,9 @@ class unitActions extends sfActions
 			// get the parameter of search
 			$this->searchValues = $request->getParameter('search_values');
 			// make array of search values
-			$this->searchString = explode(',', $this->searchValues);
+			$this->searchString=array();
+			if ( ! empty($this->searchValues))
+				$this->searchString = explode(',', $this->searchValues);
 			// compare search values with the arrays ($store and $type)
 
 			$formatType = array();
@@ -175,13 +177,14 @@ class unitActions extends sfActions
 				else if (isset($locations[$value]))
 					$locationString[] = $locations[$value];
 				else
-					$stringForName[] = '%' . trim($value) . '%';
+					$stringForName[] = trim($value);
 			}
 			$searchParams = array(
 				'formats' => $formatType,
 				'store' => $storeType,
 				'string' => $stringForName,
 				'location' => $locationString);
+
 			$db = new Unit();
 			$filterID = $db->getSearchResults($searchParams);
 			$this->searchResult = Doctrine_Query::Create()
@@ -323,7 +326,9 @@ class unitActions extends sfActions
 			->leftJoin('c.AssetGroup ag')
 			->leftJoin('ag.FormatType ft')
 			->leftJoin('u.StorageLocations sl');
-
+			if($this->getUser()->getGuardUser()->getType()==3){
+				$this->unit=$this->unit->innerJoin('u.Personnel p')->where('person_id = ?',$this->getUser()->getGuardUser()->getId());
+			}
 			// apply filters for searching the unit
 			if ($searchInpout && trim($searchInpout) != '')
 			{
@@ -407,8 +412,11 @@ class unitActions extends sfActions
 			$this->units = Doctrine_Core::getTable('Unit')
 			->createQuery('u')
 			->orderBy('name')
-			->leftJoin('u.StorageLocations sl')
-			->execute();
+			->leftJoin('u.StorageLocations sl');
+			if($this->getUser()->getGuardUser()->getType()==3){
+				$this->units=$this->units->innerJoin('u.Personnel p')->where('person_id = ?',$this->getUser()->getGuardUser()->getId());
+			}
+			$this->units=$this->units->execute();
 		}
 	}
 

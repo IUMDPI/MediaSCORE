@@ -73,7 +73,7 @@
                         <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getRole() == 1) { ?>
                             <li class=""><a class="menu-link" href="<?php echo url_for('user/index') ?>">Users</a></li>
                         <?php } ?>
-                        <li class=""><a class="menu-link" href="<?php echo url_for('person/index') ?>">Unit Personnel</a></li>
+                        <!--<li class=""><a class="menu-link" href="<?php echo url_for('person/index') ?>">Unit Personnel</a></li>-->
                         <li class=""><a class="menu-link" href="<?php echo url_for('storagelocation/index') ?>">Storage Locations</a></li>
                         <li class=""><a class="menu-link" href="<?php echo url_for('user/edit?id=') . $sf_user->getGuardUser()->getId() ?>">Edit Profile </a></li>
     <!--			<li class=""><?php //echo link_to2('Edit Profile', 'sf_guard_user_edit', $sf_user->getGuardUser(), array('class' => 'menu-link'))         ?></li>-->

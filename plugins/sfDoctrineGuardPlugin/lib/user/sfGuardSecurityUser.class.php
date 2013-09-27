@@ -122,6 +122,7 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
   public function signIn($user, $remember = false, $con = null)
   {
     // signin
+	  
     $this->setAttribute('user_id', $user->getId(), 'sfGuardSecurityUser');
     $this->setAuthenticated(true);
     $this->clearCredentials();

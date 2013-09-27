@@ -12,6 +12,10 @@ User: # Abstract
     #email:        { type: string(255) }
     phone:        { type: string(255) }
     role:         { type: string(255), notnull: true }
+    mediascore_access: { type: boolean, notnull: true,  default: true}
+    mediariver_access: { type: boolean, notnull: true,  default: true} 
+   
+    
     
 
 Evaluator:
@@ -30,6 +34,7 @@ Person:
   columns:
     contact_info: { type: text }
     unit_id: { type: integer }
+    title: { type: string(255) }
   relations:
     Units: { class: Unit, local: person_id, foreign: unit_id, refClass:UnitPerson }
     consultationRecords: { class: EvaluatorHistory, local: person_id, foreign: evaluator_history_id, refClass: EvaluatorHistoryPersonnel }

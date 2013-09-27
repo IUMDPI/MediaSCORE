@@ -231,14 +231,20 @@ else
             <div style="clear: both;"></div>
             <div id="format_specific"></div>
         </div>
-
+<?php
+					if ($sf_user->getGuardUser()->getType() != 3)
+					{
+						?>
         <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
         <div style="clear: both;"></div>
-
+					<?php } ?>
     <?php } ?>
 </div>
 <script type="text/javascript">
+	var userType='<?php echo $sf_user->getGuardUser()->getType(); ?>';
     $(function(){
+		if(userType==3)
+			$("input,select,textarea").attr('disabled',true);
         $("#format_type_off_brand").parents(".row").show();
         $("#format_type_fungus").parents(".row").show();
     });

@@ -16,6 +16,7 @@ class analogaudiocassetteActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeNew(sfWebRequest $request) {
+		$this->forward404Unless($this->getUser()->getGuardUser()->getType() != 3);
         $this->form = new AnalogAudioCassetteForm();
     }
 
@@ -40,6 +41,7 @@ class analogaudiocassetteActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeEdit(sfWebRequest $request) {
+		$this->forward404Unless($this->getUser()->getGuardUser()->getType() != 3);
         $this->forward404Unless($analog_audio_cassette = Doctrine_Core::getTable('AnalogAudioCassette')->find(array($request->getParameter('id'))), sprintf('Object analog_audio_cassette does not exist (%s).', $request->getParameter('id')));
         $this->form = new AnalogAudioCassetteForm($analog_audio_cassette);
     }

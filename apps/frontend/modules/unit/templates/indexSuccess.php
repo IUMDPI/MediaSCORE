@@ -1,4 +1,9 @@
-<a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
+<?php
+if ($sf_user->getGuardUser()->getType() != 3)
+{
+	?>
+	<a class="button create_new_unit" href="<?php echo url_for('unit/new') ?>">Create Unit</a>
+<?php } ?>
 <?php include_partial('search', array('AllStorageLocations' => $AllStorageLocations)) ?>
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
@@ -25,7 +30,7 @@
             </select>
 			<strong>Score </strong>
             <input type="text" class="text" onkeyup="filterUnits();" id="score"/> 
-            
+
 
 
         </form>
@@ -41,7 +46,12 @@
 		?>
 		<thead>
 			<tr>
-				<td width="50"></td>
+				<?php
+				if ($sf_user->getGuardUser()->getType() != 3)
+				{
+					?>
+					<td width="50"></td>
+	<?php } ?>
 				<th><span>Unit</span></th>
 				<th><span>Created</span></th>
 				<th><span>Created By</span></th>
@@ -57,12 +67,16 @@
 				$duration = $unit->getDuration($unit->getId());
 				?>
 				<tr>
-					<td class="invisible">
-						<div class="options">
-							<a class="create_new_unit" href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-							<a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $unit->getId(); ?>)"/></a>
-						</div>
-					</td>
+		<?php if ($sf_user->getGuardUser()->getType() != 3)
+		{
+			?>
+						<td class="invisible">
+							<div class="options">
+								<a class="create_new_unit" href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+								<a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(<?php echo $unit->getId(); ?>)"/></a>
+							</div>
+						</td>
+		<?php } ?>
 					<td><a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unit->getName() ?></a></td>
 					<td><?php echo $unit->getCreatedAt() ?></td>
 					<td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
@@ -74,13 +88,15 @@
 		<?php endforeach; ?>
 		</tbody>
 		<?php
-	} else
+	}
+	else
 	{
 		echo '<tr><td>No Unit Available</td></tr>';
 	}
 	?>
 </table>
 <script type="text/javascript">
+				var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
 				$(document).ready(function() {
 					var dates = $("#from, #to").datepicker({
 						defaultDate: "+1w",
@@ -175,13 +191,17 @@
 							if (result != undefined && result.length > 0) {
 								$('#unitResult').html('');
 								for (collection in result) {
+									editdelete = '';
 
-									$('#unitResult').append('<tr><td class="invisible">' +
-									'<div class="options">' +
-									'<a class="create_new_unit" href="/unit/edit/id/' + result[collection].id + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
-									' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(' + result[collection].id + ');"/></a>' +
-									'</div>' +
-									'</td>' +
+									if (userType != 3)
+										editdelete = '<td class="invisible">' +
+										'<div class="options">' +
+										'<a class="create_new_unit" href="/unit/edit/id/' + result[collection].id + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
+										' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(' + result[collection].id + ');"/></a>' +
+										'</div>' +
+										'</td>';
+									$('#unitResult').append('<tr>' +
+									editdelete +
 									'<td><a href="/' + result[collection].name_slug + '">' + result[collection].name + '</a></td>' +
 									'<td>' + result[collection].created_at + '</td>' +
 									'<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + ' ' + result[collection].Creator.last_name + '</td>' +

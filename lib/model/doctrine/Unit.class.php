@@ -42,7 +42,7 @@ class Unit extends BaseUnit
 
 	static public function getSearchResults($params)
 	{
-		
+
 		$where = '';
 		if (count($params['formats']) > 0)
 			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
@@ -55,10 +55,12 @@ class Unit extends BaseUnit
 		}
 		if (count($params['string']) > 0)
 		{
+			
 			$where .= ' AND ( 1=1 ';
 			foreach ($params['string'] as $index => $string)
 			{
-				$where .=" OR (s.name LIKE {$string})";
+				if ( ! empty($string))
+					$where .=" OR (s.name LIKE %{$string}%)";
 			}
 			$where .=')';
 		}

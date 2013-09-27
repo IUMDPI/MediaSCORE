@@ -19,6 +19,7 @@ class assetgroupActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
+
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
 		$collectionId = $request->getParameter('c');
 		$searchInpout = $request->getParameter('s');
@@ -121,7 +122,20 @@ class assetgroupActions extends sfActions
 		$this->forward404Unless($collectionObject);
 //        $this->collectionID = $request->getParameter('c');
 		$this->collectionID = $collectionObject->getId();
-//        $this->forward404Unless($this->collectionID);
+        $this->forward404Unless($this->collectionID);
+		if ($this->getUser()->getGuardUser()->getType() == 3)
+			{
+				$unit = Doctrine_Query::Create()
+				->from('Unit u')
+				->innerJoin('u.Collection c')
+				->innerJoin('u.Personnel p')
+				->where('person_id  = ?', $this->getUser()->getGuardUser()->getId())
+				->andWhere('c.id  = ?', $this->collectionID)
+				->fetchArray();
+				
+				$this->forward404Unless(count($unit)>0);
+				
+			}
 		// get collection for the assets group
 		$collection = Doctrine_Core::getTable('Collection')
 		->find($this->collectionID);
@@ -179,7 +193,7 @@ class assetgroupActions extends sfActions
 	 */
 	public function executeCreate(sfWebRequest $request)
 	{
-
+		$this->forward404Unless($this->getUser()->getGuardUser()->getType() != 3);
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 		$collectionId = sfToolkit::getArrayValueForPath($request->getParameter('asset_group'), 'parent_node_id');
 
@@ -237,6 +251,8 @@ class assetgroupActions extends sfActions
 	 */
 	public function executeUpdate(sfWebRequest $request)
 	{
+
+		$this->forward404Unless($this->getUser()->getGuardUser()->getType() != 3);
 		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
 		$this->forward404Unless($asset_group = Doctrine_Core::getTable('AssetGroup')->find(array($request->getParameter('id'))), sprintf('Object asset_group does not exist (%s).', $request->getParameter('id')));
 		$this->unit = Doctrine_Core::getTable('Unit')->findAll();
