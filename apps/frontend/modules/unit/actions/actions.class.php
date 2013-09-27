@@ -187,7 +187,7 @@ class unitActions extends sfActions
 			
 			$db = new Unit();
 			$filterID = $db->getSearchResults($searchParams,$this->getUser()->getGuardUser());
-			echo '<pre>';print_r($filterID);exit;
+			
 			$this->searchResult = Doctrine_Query::Create()
 			->from('Store s')
 			->select('s.*')
