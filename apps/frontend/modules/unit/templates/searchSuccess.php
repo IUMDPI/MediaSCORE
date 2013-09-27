@@ -556,20 +556,20 @@ if ($StoreType == 'unit')
 			}
 			$('#search_values').val(search);
 		}
-//	function filterToggle() {
-//			$('#filter').slideToggle();
-//			if (filter == 0) {
-//				filter = 1;
-//				$('#filter_text').html('Show Filter');
-//
-//			}
-//			else {
-//				$('#filter_text').html('Hide Filter');
-//				filter = 0;
-//			}
-//
-//
-//		}
+	function filterToggle() {
+			$('#filter').slideToggle();
+			if (filter == 0) {
+				filter = 1;
+				$('#filter_text').html('Show Filter');
+
+			}
+			else {
+				$('#filter_text').html('Hide Filter');
+				filter = 0;
+			}
+
+
+		}
 </script>
 <div style="display: none;"> 
     <div id="fancyboxUCAG" style="background-color: #F4F4F4;width: 600px;" >

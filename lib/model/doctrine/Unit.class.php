@@ -81,7 +81,7 @@ class Unit extends BaseUnit
 			LEFT JOIN unit_storage_location usl on usl.unit_id=s.id AND s.type=1
 			LEFT JOIN collection_storage_location csl on csl.collection_id=s.id AND s.type=3
 			WHERE 1=1 {$where}";
-			echo $query;exit;
+			
 		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
 		$result = $q->execute($query);
 		$result = $result->fetchAll();
