@@ -72,25 +72,27 @@ if ($sf_user->getGuardUser()->getType() != 3)
 						</div>
 					</td>
 				<?php } ?>
-				<td><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
-				<td><?php echo $asset_group->getCreatedAt() ?></td>
+				<td><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
+				<td><span style="display: none;"><?php echo $asset_group->getCreatedAt() ?></span><?php echo $asset_group->getCreatedAt() ?></td>
 				<td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
-				<td><?php echo $asset_group->getUpdatedAt() ?></td>
+				<td><span style="display: none;"><?php echo $asset_group->getUpdatedAt() ?></span><?php echo $asset_group->getUpdatedAt() ?></td>
 				<td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
-				<td  style="display: none;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span></td>
-				<td style="text-align: right;"><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
+				<td style="text-align: right;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
 				<?php
 				if ($sf_user->getGuardUser()->getId() == 1)
 				{
+					$score='0.0';
+					if($asset_group->getFormatType()->getAssetScore()!= '')
+					$score=$asset_group->getFormatType()->getAssetScore();
 					?>
-					<td style="text-align: right;"><?php echo (float) $asset_group->getFormatType()->getAssetScore(); ?></td>
-						<!--<td style="text-align: right;"><a target="_blank" href="<?php // echo url_for('assetgroup/getScore?id=' . $asset_group->getId());  ?>"><?php echo $asset_group->getFormatType()->getAssetScore(); ?></a></td>-->
+					
+						<td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><a target="_blank" href="<?php echo url_for('assetgroup/getScore?id=' . $asset_group->getId());  ?>"><?php echo $score; ?></a></td>
 					<?php
 				}
 				else
 				{
 					?>
-					<td style="text-align: right;"><?php echo $asset_group->getFormatType()->getAssetScore(); ?></td>
+					<td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo $score; ?></td>
 				<?php } ?>
 			</tr>
 		<?php endforeach; ?>
@@ -100,6 +102,12 @@ if ($sf_user->getGuardUser()->getType() != 3)
 
 <script type="text/javascript">
 				var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
+				var myTextExtraction = function(node)  
+{  
+    // extract data from markup and return it  
+	console.log(node.childNodes[0].innerHTML);
+    return node.childNodes[0].innerHTML; 
+} 
 				$(document).ready(function() {
 					var dates = $("#from, #to").datepicker({
 						defaultDate: "+1w",
@@ -117,7 +125,7 @@ if ($sf_user->getGuardUser()->getType() != 3)
 							dates.not(this).datepicker("option", option, date);
 						}
 					});
-					$("#assetGroupTable").tablesorter();
+					$("#assetGroupTable").tablesorter( {textExtraction: myTextExtraction});
 					
 					
 					$(".delete_unit").fancybox({
@@ -192,13 +200,13 @@ if ($sf_user->getGuardUser()->getType() != 3)
 										'</td>';
 									}
 									$('#assetsResult').append('<tr>' + editdelete +
-									'<td><a href="/assetgroup/edit/id/' + result[collection].id + '/c/' + collectionID + '">' + result[collection].name + '</a></td>' +
-									'<td>' + result[collection].created_at + '</td>' +
-									'<td>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
-									'<td>' + result[collection].updated_at + '</td>' +
-									'<td>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-									'<td style="text-align: right;">' + result[collection].duration + '</td>' +
-									'<td style="text-align: right;">' + result[collection].FormatType.asset_score + '</td>' +
+									'<td><span style="display: none;">' + result[collection].name + '</span><a href="/assetgroup/edit/id/' + result[collection].id + '/c/' + collectionID + '">' + result[collection].name + '</a></td>' +
+									'<td><span style="display: none;">' + result[collection].created_at + '</span>' + result[collection].created_at + '</td>' +
+									'<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>' + result[collection].Creator.first_name +' '+ result[collection].Creator.last_name + '</td>' +
+									'<td><span style="display: none;">' + result[collection].updated_at + '</span>' + result[collection].updated_at + '</td>' +
+									'<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>' + result[collection].Editor.first_name +' '+ result[collection].Editor.last_name + '</td>' +
+									'<td style="text-align: right;"><span style="display: none;">' + result[collection].duration + '</span>' + result[collection].duration + '</td>' +
+									'<td style="text-align: right;"><span style="display: none;">' + result[collection].FormatType.asset_score + '</span>' + result[collection].FormatType.asset_score + '</td>' +
 									'</tr>');
 								}
 								$(".delete_unit").fancybox({
