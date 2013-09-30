@@ -44,10 +44,10 @@ class Unit extends BaseUnit
 	{
 
 		$join = '';
-		if ($user->getType() == 3)
-		{
-			$join .='INNER JOIN unit_person up ON up.unit_id=s.id OR up.unit_id = s.parent_node_id';
-		}
+//		if ($user->getType() == 3)
+//		{
+//			$join .='INNER JOIN unit_person up ON up.unit_id=s.id OR up.unit_id = s.parent_node_id';
+//		}
 		$where = '';
 		if (count($params['formats']) > 0)
 			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
@@ -113,20 +113,19 @@ class Unit extends BaseUnit
 			}
 		}
 
-		if ($user->getType() == 3)
-		{
-			$where .=' AND up.person_id = ' . $user->getId();
-		}
+//		if ($user->getType() == 3)
+//		{
+//			$where .=' AND up.person_id = ' . $user->getId();
+//		}
 
 
 		$query = "SELECT s.id FROM store s
 	     	{$join}
-			LEFT JOIN store acs ON acs.parent=s.format_id AND s.type=4 
 			LEFT JOIN format_type ft ON ft.id=s.format_id AND s.type=4 
 			LEFT JOIN unit_storage_location usl on usl.unit_id=s.id AND s.type=1 
 			LEFT JOIN collection_storage_location csl on csl.collection_id=s.id AND s.type=3 
 			 WHERE 1=1 {$where}";
-		echo $query;
+		
 		
 		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
 		$result = $q->execute($query);
@@ -137,7 +136,7 @@ class Unit extends BaseUnit
 			$filter_ID[] = $value['id'];
 		}
 
-		echo '<pre>';print_r($filter_ID);exit;
+//		echo '<pre>';print_r($filter_ID);exit;
 		return $filter_ID;
 	}
 
