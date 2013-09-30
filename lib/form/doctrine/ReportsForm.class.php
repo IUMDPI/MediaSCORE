@@ -44,10 +44,10 @@ class ReportsForm extends BaseReportsForm
 					'model' => 'Unit', 'multiple' => true)));
 			}
 			else
-				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
 
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
-			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
+			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
 			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
 			$this->setWidget('collectionStatus', new sfWidgetFormSelect(array('choices' => array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed'), 'default' => '', 'multiple' => true)));
 			$this->setValidator('collectionStatus', new sfValidatorString(array('required' => false)));
@@ -136,7 +136,7 @@ class ReportsForm extends BaseReportsForm
 					'model' => 'Unit', 'multiple' => true)));
 			}
 			else
-				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->getWidget('listUnits_RRD')->setLabel('Units: &nbsp;');
 		}
@@ -150,7 +150,7 @@ class ReportsForm extends BaseReportsForm
 					'model' => 'Unit', 'multiple' => true)));
 			}
 			else
-				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true
 			$this->setWidget('ReportType', new sfWidgetFormChoice(array('choices' => array('0' => 'Unit Format Makeup Report', '1' => 'Collection Format Makeup Report', '2' => 'Unit Collection Makeup Report'))));
