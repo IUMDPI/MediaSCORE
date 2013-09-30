@@ -140,8 +140,8 @@ class reportsActions extends sfActions
 	 */
 	public function executeGetUnitCollections(sfWebRequest $request)
 	{
-//		if ($request->isXmlHttpRequest())
-//		{
+		if ($request->isXmlHttpRequest())
+		{
 			$status = array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed');
 			$unitIDs = $request->getParameter('u');
 			$collectionIDs = $request->getParameter('c');
@@ -174,7 +174,7 @@ class reportsActions extends sfActions
 			$this->setLayout('json');
 
 			return $this->renderText(json_encode($unit_collections));
-//		}
+		}
 	}
 
 	/**
