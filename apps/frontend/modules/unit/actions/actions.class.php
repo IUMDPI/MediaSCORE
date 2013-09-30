@@ -19,34 +19,166 @@ class unitActions extends sfActions
 	public function executeSearch(sfWebRequest $request)
 	{
 		// make array of all the format types that are available
-//        $unitScore = $request->getParameter('searchScore');
+
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+		// Format Type Array
+		$types = array('Metal Disc' => '1',
+			'Film' => '5',
+			'DAT' => '6',
+			'Sound Wire Reel' => '7',
+			'Analog Audio Cassette' => '4',
+			'Polyster Open Reel Audio Tape' => '9',
+			'Acetate Open Reel Audio Tape' => '10',
+			'Paper Open Reel Audio Tape' => '11',
+			'PVC Open Reel Audio Tape' => '12',
+			'Lacquer Disc' => '15',
+			'MiniDisc' => '16',
+			'Cylinder' => '17',
+			'Sound Optical Disc' => '19',
+			'Optical Video' => '20',
+			'Pressed 78RPM Disc' => '22',
+			'Pressed LP Disc' => '23',
+			'Pressed 45RPM Disc' => '24',
+			'LaserDisc' => '26',
+			'XDCAM Optical' => '27',
+			'Betamax' => '29',
+			'8MM' => '31',
+			'2" Open Reel Video' => '33',
+			'1" Open Reel Video' => '34',
+			'½" Open Reel Video' => '35',
+			'DV' => '37',
+			'DVCAM' => '38',
+			'Betacam' => '40',
+			'VHS' => '41',
+			'Digital Betacam' => '42',
+			'U-matic' => '44',
+			'HDCAM' => '45',
+			'DVCPro' => '46',
+		);
+		// make array of search parameters
+		$store = array('Unit' => '1',
+			'Collection' => '3');
+		$asset = array('Asset Group' => '4');
 		if ($request->isXmlHttpRequest())
 		{
-			$searchInpout = $request->getParameter('s');
+			$searchInput = $request->getParameter('s');
 			$status = $request->getParameter('status');
 			$from = $request->getParameter('from');
 			$to = $request->getParameter('to');
 			$dateType = $request->getParameter('datetype');
+			// get the parameter of search
+			$searchValues = $request->getParameter('search_values');
+			// make array of search values
+			$this->searchString = array();
+			if ( ! empty($searchValues))
+				$this->searchString = explode(',', $searchValues);
 
+			$formatType = array();
+			$storeType = array();
+			$assetType = array();
+			$stringForName = array();
+			$locationString = array();
+			$this->storeType = $storeType;
+			$locations = array();
 
-			$this->unit = Doctrine_Query::Create()
-			->from('Unit u')
-			->select('u.*,cu.*,eu.*,sl.resident_structure_description')
-			->orderBy('u.name')
-			->innerJoin('u.Creator cu')
-			->innerJoin('u.Editor eu')
-			->leftJoin('u.StorageLocations sl');
-
-			// apply filters for searching the unit
-			if ($searchInpout && trim($searchInpout) != '')
+			foreach ($this->AllStorageLocations as $location)
 			{
-				$this->unit = $this->unit->andWhere('name like "%' . $searchInpout . '%"');
+				$locations[$location['name']] = $location['id'];
 			}
-			if (trim($status) != '')
+
+			foreach ($this->searchString as $value)
 			{
-				$this->unit = $this->unit->andWhere('status =?', $status);
+				if (isset($types[$value]))
+					$formatType[] = $types[$value];
+				else if (isset($store[$value]))
+					$storeType[] = $store[$value];
+				else if (isset($asset[$value]))
+					$assetType[] = $asset[$value];
+				else if (isset($locations[$value]))
+					$locationString[] = $locations[$value];
+				else
+					$stringForName[] = trim($value);
 			}
+			$searchParams = array(
+				'formats' => $formatType,
+				'store' => $storeType,
+				'assetType' => $assetType,
+				'string' => $stringForName,
+				'location' => $locationString,
+				's' => $searchInput,
+				'status' => $status,
+				'from' => $from,
+				'to' => $to,
+				'dateType' => $dateType,
+			);
+
+			$db = new Unit();
+			$filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
+			$this->searchResult = Doctrine_Query::Create()
+			->from('Store s')
+			->select('s.*')
+			->whereIn('s.id', $filterID)
+			->execute();
+			$this->html = '';
+			$this->getContext()->getConfiguration()->loadHelpers('Url');
+			foreach ($this->searchResult as $key => $result)
+			{
+
+				if ($result->getType() == 1)
+				{
+					$text = 'Unit';
+					$urlOnName = url_for('collection', $result);
+					$urlonEdit = url_for('unit/edit?id=' . $result->getId());
+					$parentId = 0;
+					$duration = $result->getDuration($result->getId());
+				}
+				if ($result->getType() == 3)
+				{
+					$text = 'Collection';
+					$urlOnName = url_for('assetgroup', $result);
+					$urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
+					$parentId = $result->getParentNodeId();
+					$duration = $result->getDuration($result->getId());
+				}
+				if ($result->getType() == 4)
+				{
+					$text = 'Asset Group';
+					$urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+					$parentId = $result->getParentNodeId();
+					$duration = $result->getDuration($result->getFormatId());
+				}
+
+				$this->html .="<tr>";
+				if ($this->getUser()->getGuardUser()->getType() != 3)
+				{
+
+					$this->html .="<td class='invisible'><div class='options'>";
+					if ($result->getType() != 4)
+						$this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
+					$this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
+					$this->html .= "</div></td>";
+				}
+
+
+
+				$this->html .="<td><a href=' {$urlOnName}; ?>'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
+				"<td>{$result->getCreatedAt()}</td>" .
+				"<td><span>{$result->getCreator()->getName()}</span></td>" .
+				"<td>{$result->getUpdatedAt()}</td>" .
+				"<td>{$result->getEditor()->getName()}</td>" .
+				"<td>{$duration}</td>" .
+				"</tr>";
+			}
+
+
+			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
+			$this->setLayout('json');
+
+			return $this->renderText(json_encode($this->html));
+
+
+
+
 
 
 
@@ -110,48 +242,11 @@ class unitActions extends sfActions
 			return $this->renderText(json_encode($this->unit));
 		}
 		else
-		{ // Format Type Array
-			$types = array('Metal Disc' => '1',
-				'Film' => '5',
-				'DAT' => '6',
-				'Sound Wire Reel' => '7',
-				'Analog Audio Cassette' => '4',
-				'Polyster Open Reel Audio Tape' => '9',
-				'Acetate Open Reel Audio Tape' => '10',
-				'Paper Open Reel Audio Tape' => '11',
-				'PVC Open Reel Audio Tape' => '12',
-				'Lacquer Disc' => '15',
-				'MiniDisc' => '16',
-				'Cylinder' => '17',
-				'Sound Optical Disc' => '19',
-				'Optical Video' => '20',
-				'Pressed 78RPM Disc' => '22',
-				'Pressed LP Disc' => '23',
-				'Pressed 45RPM Disc' => '24',
-				'LaserDisc' => '26',
-				'XDCAM Optical' => '27',
-				'Betamax' => '29',
-				'8MM' => '31',
-				'2" Open Reel Video' => '33',
-				'1" Open Reel Video' => '34',
-				'½" Open Reel Video' => '35',
-				'DV' => '37',
-				'DVCAM' => '38',
-				'Betacam' => '40',
-				'VHS' => '41',
-				'Digital Betacam' => '42',
-				'U-matic' => '44',
-				'HDCAM' => '45',
-				'DVCPro' => '46',
-			);
-			// make array of search parameters
-			$store = array('Unit' => '1',
-				'Collection' => '3',
-				'Asset Group' => '4');
+		{
 			// get the parameter of search
 			$this->searchValues = $request->getParameter('search_values');
 			// make array of search values
-			$this->searchString=array();
+			$this->searchString = array();
 			if ( ! empty($this->searchValues))
 				$this->searchString = explode(',', $this->searchValues);
 			// compare search values with the arrays ($store and $type)
@@ -184,10 +279,10 @@ class unitActions extends sfActions
 				'store' => $storeType,
 				'string' => $stringForName,
 				'location' => $locationString);
-			
+
 			$db = new Unit();
-			$filterID = $db->getSearchResults($searchParams,$this->getUser()->getGuardUser());
-			
+			$filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
+
 			$this->searchResult = Doctrine_Query::Create()
 			->from('Store s')
 			->select('s.*')
@@ -327,8 +422,9 @@ class unitActions extends sfActions
 			->leftJoin('c.AssetGroup ag')
 			->leftJoin('ag.FormatType ft')
 			->leftJoin('u.StorageLocations sl');
-			if($this->getUser()->getGuardUser()->getType()==3){
-				$this->unit=$this->unit->innerJoin('u.Personnel p')->where('person_id = ?',$this->getUser()->getGuardUser()->getId());
+			if ($this->getUser()->getGuardUser()->getType() == 3)
+			{
+				$this->unit = $this->unit->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
 			}
 			// apply filters for searching the unit
 			if ($searchInpout && trim($searchInpout) != '')
@@ -414,10 +510,11 @@ class unitActions extends sfActions
 			->createQuery('u')
 			->orderBy('name')
 			->leftJoin('u.StorageLocations sl');
-			if($this->getUser()->getGuardUser()->getType()==3){
-				$this->units=$this->units->innerJoin('u.Personnel p')->where('person_id = ?',$this->getUser()->getGuardUser()->getId());
+			if ($this->getUser()->getGuardUser()->getType() == 3)
+			{
+				$this->units = $this->units->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
 			}
-			$this->units=$this->units->execute();
+			$this->units = $this->units->execute();
 		}
 	}
 

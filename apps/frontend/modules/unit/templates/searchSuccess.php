@@ -66,37 +66,25 @@
     </form>
 </div>
 
-<?php
-$functionName = '';
-if ($StoreType == 'unit')
-{
-	$functionName = 'filterUnits();';
-}if ($StoreType == 'collection')
-{
-	$functionName = 'filterCollection();';
-}if ($StoreType == 'assetgroup')
-{
-	$functionName = 'filterAssets();';
-}
-?>
+
 <div id="filter-container">
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
         <div class="title">Filter by:</div>
         <form id="filterUnits" action="">
-            <strong>Text:</strong> <input type="text" class="text" onkeyup="<?php echo $functionName; ?>" id="searchText"/>
+            <strong>Text:</strong> <input type="text" class="text" onkeyup="filterRecords();" id="searchText"/>
             <strong>Date:</strong>
             <div class="filter-date">
-                <select id="date_type" onchange="<?php echo $functionName; ?>">
+                <select id="date_type" onchange="filterRecords();">
                     <option value="">Date Type</option>
                     <option value="0">Created On</option>
                     <option value="1">Updated On</option>
                 </select>
-                <input type="text" id="from" onchange="<?php echo $functionName; ?>" readonly="readonly"/>
+                <input type="text" id="from" onchange="filterRecords();" readonly="readonly"/>
                 to
-                <input type="text" id="to" onchange="<?php echo $functionName; ?>" readonly="readonly"/>
+                <input type="text" id="to" onchange="filterRecords();" readonly="readonly"/>
             </div>
             <strong>Status:</strong>
-            <select id="filterStatus" onchange="<?php echo $functionName; ?>">
+            <select id="filterStatus" onchange="filterRecords();">
                 <option value="">Any Status</option>
                 <option value="0">Incomplete</option>
                 <option value="1">In Progress</option>
@@ -209,6 +197,22 @@ if ($StoreType == 'unit')
 
 		$(document).ready(function() {
 			$("#searchTable").tablesorter();
+			var dates = $("#from, #to").datepicker({
+				defaultDate: "+1w",
+				changeMonth: true,
+				numberOfMonths: 2,
+				'dateFormat': 'yy-mm-dd',
+				onSelect: function(selectedDate) {
+					filterRecords();
+					var option = this.id == "from" ? "minDate" : "maxDate",
+					instance = $(this).data("datepicker"),
+					date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings);
+					dates.not(this).datepicker("option", option, date);
+				}
+			});
 			$(".delete_UCAG").fancybox({
 				'width': '100%',
 				'height': '100%',
@@ -295,186 +299,47 @@ if ($StoreType == 'unit')
 
 		var Check = new Array();
 		var i = 0;
-		function filterCollection() {
-			unitId = '<?php echo $unitID; ?>';
 
+		function filterRecords() {
 			Check[i] = $.ajax({
 				type: 'POST',
-				url: '/frontend_dev.php/collection/index',
-				data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val()},
+				url: '/frontend_dev.php/unit/search',
+				data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val()},
 				dataType: 'json',
 				cache: false,
 				success: function(result) {
 
 					if (result != undefined && result.length > 0) {
-						$('#collectionResult').html('');
-						for (collection in result) {
-							$('#collectionResult').append('<tr><td class="invisible">' +
-							'<div class="options">' +
-							'<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
-							' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
-							'</div>' +
-							'<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
-							'<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
-							'<td>' + result[collection].created_at + '</td>' +
-							'<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
-							'<td>' + result[collection].updated_at + '</td>' +
-							'<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-							'<td style="text-align: right;">' + result[collection].duration + '</td>');
-							if (result[collection].StorageLocations[0]) {
-								//                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
-							}
-						}
-						$(".delete_unit").fancybox({
-							'width': '100%',
-							'height': '100%',
-							'autoScale': false,
-							'transitionIn': 'none',
-							'transitionOut': 'none',
-							'type': 'inline',
-							'padding': 0,
-							'showCloseButton': false
 
-						});
-						$(".new_edit_collection").fancybox({
-							'width': '100%',
-							'height': '100%',
-							'autoScale': true,
-							'transitionIn': 'none',
-							'transitionOut': 'none',
-							'type': 'inline',
-							'padding': 0,
-							'showCloseButton': true
-
-						});
-					}
-					else {
-						$('#collectionResult').html('<tr><td colspan="6" style="text-align:center;">No Collection found</td></tr>');
-					}
-
-					$("#collectionTable").trigger("update");
-
-				}
-			});
-			for (j = 0; j <= (i - 1); j++) {
-				Check[j].abort();
-			}
-			i++;
-		}
-
-		function filterAssets() {
-			collectionID = '<?php echo $collectionID; ?>';
-			Check[i] = $.ajax({
-				type: 'POST',
-				url: '/frontend_dev.php/assetgroup/index',
-				data: {c: '<?php echo $collectionID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), searchScore: $('#searchScore').val()},
-				dataType: 'json',
-				cache: false,
-				success: function(result) {
-
-					if (result != undefined && result.length > 0) {
-						$('#assetsResult').html('');
-						for (collection in result) {
-
-							$('#assetsResult').append('<tr><td class="invisible">' +
-							'<div class="options">' +
-							' <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(' + result[collection].id + ');"/></a>' +
-							'</div>' +
-							'</td>' +
-							'<td><a href="/assetgroup/edit/id/' + result[collection].id + '/c/' + collectionID + '">' + result[collection].name + '</a></td>' +
-							'<td>' + result[collection].created_at + '</td>' +
-							'<td>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
-							'<td>' + result[collection].updated_at + '</td>' +
-							'<td>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-							'<td style="text-align: right;">' + result[collection].duration + '</td>' +
-							'<td style="text-align: right;">' + result[collection].FormatType.asset_score + '</td>' +
-							'</tr>');
-						}
-						$(".delete_unit").fancybox({
-							'width': '100%',
-							'height': '100%',
-							'autoScale': false,
-							'transitionIn': 'none',
-							'transitionOut': 'none',
-							'type': 'inline',
-							'padding': 0,
-							'showCloseButton': false
-
-						});
+						$('#unitResult').html(result);
 
 					}
 					else {
-						$('#assetsResult').html('<tr><td colspan="6" style="text-align:center;">No Asset Group found</td></tr>');
-					}
-
-					$("#assetGroupTable").trigger("update");
-
-				}
-			});
-			for (j = 0; j <= (i - 1); j++) {
-				Check[j].abort();
-			}
-			i++;
-
-		}
-		function filterUnits() {
-			Check[i] = $.ajax({
-				type: 'POST',
-				url: '/unit/index',
-				data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val()},
-				dataType: 'json',
-				cache: false,
-				success: function(result) {
-
-					if (result != undefined && result.length > 0) {
-						$('#unitResult').html('');
-						for (collection in result) {
-
-							$('#unitResult').append('<tr><td class="invisible">' +
-							'<div class="options">' +
-							'<a class="create_new_unit" href="/unit/edit/id/' + result[collection].id + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
-							' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(' + result[collection].id + ');"/></a>' +
-							'</div>' +
-							'</td>' +
-							'<td><a href="/' + result[collection].name_slug + '">' + result[collection].name + '</a></td>' +
-							'<td>' + result[collection].created_at + '</td>' +
-							'<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + ' ' + result[collection].Creator.last_name + '</td>' +
-							'<td>' + result[collection].updated_at + '</td>' +
-							'<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + ' ' + result[collection].Editor.last_name + '</td>' +
-							'<td style="text-align: right;">' + result[collection].duration + '</td>');
-							if (result[collection].StorageLocations[0]) {
-								//                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
-							} else {
-								//                            $('#unitResult').append('<td style="text-align: right;"> None </td>'+'</tr>'); 
-							}
-						}
-						$(".delete_unit").fancybox({
-							'width': '100%',
-							'height': '100%',
-							'autoScale': false,
-							'transitionIn': 'none',
-							'transitionOut': 'none',
-							'type': 'inline',
-							'padding': 0,
-							'showCloseButton': false
-
-						});
-						$(".create_new_unit").fancybox({
-							'width': '100%',
-							'height': '100%',
-							'autoScale': true,
-							'transitionIn': 'none',
-							'transitionOut': 'none',
-							'type': 'inline',
-							'padding': 0,
-							'showCloseButton': true
-
-						});
-					}
-					else {
-						$('#unitResult').html('<tr><td colspan="6" style="text-align:center;">No Unit found</td></tr>');
+						$('#unitResult').html('<tr><td colspan="6" style="text-align:center;">No record found.</td></tr>');
 					}
 					$("#unitTable").trigger("update");
+					$(".delete_UCAG").fancybox({
+						'width': '100%',
+						'height': '100%',
+						'autoScale': false,
+						'transitionIn': 'none',
+						'transitionOut': 'none',
+						'type': 'inline',
+						'padding': 0,
+						'showCloseButton': false
+
+					});
+					$(".editModal").fancybox({
+						'width': '100%',
+						'height': '100%',
+						'autoScale': true,
+						'transitionIn': 'none',
+						'transitionOut': 'none',
+						'type': 'inline',
+						'padding': 0,
+						'showCloseButton': true
+
+					});
 
 				}
 			});
@@ -482,9 +347,7 @@ if ($StoreType == 'unit')
 				Check[j].abort();
 			}
 			i++;
-
 		}
-
 
 		function removeTokenDiv(id) {
 			$('#div_' + id).remove();
@@ -556,7 +419,7 @@ if ($StoreType == 'unit')
 			}
 			$('#search_values').val(search);
 		}
-	function filterToggle() {
+		function filterToggle() {
 			$('#filter').slideToggle();
 			if (filter == 0) {
 				filter = 1;
@@ -569,6 +432,13 @@ if ($StoreType == 'unit')
 			}
 
 
+		}
+		function resetFields(form) {
+			form = $(form);
+			form.find('input:text, input:password, input:file, select').val('');
+			form.find('input:radio, input:checkbox')
+			.removeAttr('checked').removeAttr('selected');
+			filterRecords();
 		}
 </script>
 <div style="display: none;"> 

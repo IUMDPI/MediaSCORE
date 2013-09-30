@@ -37,8 +37,15 @@ class ReportsForm extends BaseReportsForm
 		$actionName = $this->getOption('from');
 		if ($actionName == 'collectionstatusreport')
 		{
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Unit', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 
-			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
 			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
@@ -62,8 +69,14 @@ class ReportsForm extends BaseReportsForm
 		}
 		elseif ($actionName == 'assetsgroupsscoringreports')
 		{
-
-			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Unit', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true)));
 			$this->setValidator('format_id', new sfValidatorString(array('required' => true)));
@@ -100,8 +113,14 @@ class ReportsForm extends BaseReportsForm
 		}
 		elseif ($actionName == 'problemmediareport')
 		{
-
-			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Collection c')->innerJoin('c.Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Collection', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
 			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('Constraints', new sfWidgetFormSelect(array("choices" => ReportsForm::$constraintsArray, 'multiple' => true)));
 			$this->setValidator('Constraints', new sfValidatorString(array('required' => true)));
@@ -110,14 +129,28 @@ class ReportsForm extends BaseReportsForm
 		}
 		elseif ($actionName == 'recordingdatereport')
 		{
-			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Unit', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->getWidget('listUnits_RRD')->setLabel('Units: &nbsp;');
 		}
 		elseif ($actionName == 'percentageofholdings')
 		{
 
-			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'method' => 'getName', 'multiple' => true)));
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Unit', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true
 			$this->setWidget('ReportType', new sfWidgetFormChoice(array('choices' => array('0' => 'Unit Format Makeup Report', '1' => 'Collection Format Makeup Report', '2' => 'Unit Collection Makeup Report'))));
@@ -133,17 +166,24 @@ class ReportsForm extends BaseReportsForm
 		elseif ($actionName == 'durationandquantitysearch')
 		{
 
-			$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+			if ($this->getOption('user')->getType() == 3)
+			{
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array(
+					'query' => Doctrine_Query::create()->from('Unit u')->innerJoin('u.Personnel p')->where('person_id = ?', $this->getOption('user')->getId()),
+					'model' => 'Unit', 'multiple' => true)));
+			}
+			else
+				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true)
-			
+
 
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => false)));
 			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
 			$this->setValidator('format_id', new sfValidatorString(array('required' => false)));
-			
-			
-			
+
+
+
 			$this->getWidget('listUnits_RRD')->setLabel('Units: &nbsp;');
 			$this->getWidget('listCollection_RRD')->setLabel('Collection: &nbsp;');
 			$this->getWidget('format_id')->setLabel('Format Type: &nbsp;');
