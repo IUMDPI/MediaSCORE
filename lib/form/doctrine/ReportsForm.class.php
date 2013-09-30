@@ -86,7 +86,7 @@ class ReportsForm extends BaseReportsForm
 		elseif ($actionName == 'evaluatorsreport')
 		{
 
-			$this->setWidget('ListEvaluators', new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', method => 'getName', 'add_empty' => 'Select'), array('onchange' => 'getFormats();')));
+			$this->setWidget('ListEvaluators', new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'method' => 'getName', 'add_empty' => 'Select'), array('onchange' => 'getFormats();')));
 			$this->setValidator('ListEvaluators', new sfValidatorString(array('required' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true)));
 			$this->setValidator('format_id', new sfValidatorString(array('required' => true)));
