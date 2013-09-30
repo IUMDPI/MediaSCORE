@@ -173,7 +173,9 @@ class ReportsForm extends BaseReportsForm
 					'model' => 'Unit', 'multiple' => true)));
 			}
 			else
+			{
 				$this->setWidget('listUnits_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', method => 'getName', 'multiple' => true)));
+			}
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', method => 'getName', 'multiple' => true)));
 			$this->setWidget('format_id', new sfWidgetFormSelect(array("choices" => FormatType::$formatTypesValue1d, 'multiple' => true))); #array('required' => true)
 
