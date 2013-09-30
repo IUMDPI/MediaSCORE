@@ -38,6 +38,8 @@ class reportsActions extends sfActions
 			$final['units'][] = array('id' => $value['Collection']['Unit']['id'], 'name' => $value['Collection']['Unit']['name']);
 			$final['collections'][] = array('id' => $value['Collection']['id'], 'name' => $value['Collection']['name']);
 		}
+		$final['units'] = array_map("unserialize", array_unique(array_map("serialize", $final['units'])));
+		$final['collections'] = array_map("unserialize", array_unique(array_map("serialize", $final['collections'])));
 		$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 		$this->setLayout('json');
 		return $this->renderText(json_encode($final));
