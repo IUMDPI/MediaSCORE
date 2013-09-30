@@ -25,6 +25,9 @@ class reportsActions extends sfActions
 		->innerJoin('as.Collection c')
 		->innerJoin('c.Unit u')
 		->innerJoin('as.FormatType ft');
+		if($this->getUser()->getGuardUser()->getType()==3){
+			$db_collections=$db_collections->innerJoin('u.Personnel p')->where('person_id = ?',$this->getUser()->getGuardUser()->getId());
+			
 		if ( ! empty($formatIDs) && count($format_explode) > 0)
 			$db_collections = $db_collections->whereIn('ft.type', $format_explode);
 		$db_collections = $db_collections->fetchArray();
