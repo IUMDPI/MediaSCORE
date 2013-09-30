@@ -99,7 +99,7 @@
     </div>
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div>
-<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo isset($deleteMessage) :$deleteMessage :''; ?></div>
+<div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo isset($deleteMessage) :$deleteMessage ?''; ?></div>
 
 <table id="searchTable" class="tablesorter">
     <thead>
