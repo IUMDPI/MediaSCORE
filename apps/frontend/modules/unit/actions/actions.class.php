@@ -19,7 +19,7 @@ class unitActions extends sfActions
 	public function executeSearch(sfWebRequest $request)
 	{
 		// make array of all the format types that are available
-
+$this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
 		// Format Type Array
 		$types = array('Metal Disc' => '1',
