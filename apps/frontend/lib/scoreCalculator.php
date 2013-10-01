@@ -199,17 +199,7 @@ class scoreCalculator extends scoreCalculator_extended
 				}
 			}
 
-			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies'))
-			{
-				if (isset($AssetInformatoin[0]['FormatType']['copies']))
-				{
-					echo 'copies = ';
-					echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-					$this->score = (float) $this->score + (float) $copies;
-					echo '<br/>';
-					echo '<br/>';
-				}
-			}
+
 
 			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus'))
 			{
@@ -277,7 +267,22 @@ class scoreCalculator extends scoreCalculator_extended
 					}
 				}
 			}
+			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies'))
+			{
+				if (isset($AssetInformatoin[0]['FormatType']['copies']))
+				{
+					if ($this->score < 90 && $this->score > 12)
+					{
+						echo 'copies = ';
+						echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+						$this->score = (float) $this->score + (float) $copies;
+						echo '<br/>';
+						echo '<br/>';
+					}
+				}
+			}
 		}
+
 		return $this->score;
 	}
 
@@ -327,17 +332,6 @@ class scoreCalculator extends scoreCalculator_extended
 
 
 
-			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies'))
-			{
-				if (isset($AssetInformatoin[0]['FormatType']['copies']))
-				{
-					echo 'copies = ';
-					echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
-					$this->score = (float) $this->score + (float) $copies;
-					echo '<br/>';
-					echo '<br/>';
-				}
-			}
 
 			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'fungus'))
 			{
@@ -421,6 +415,20 @@ class scoreCalculator extends scoreCalculator_extended
 					$this->score = (float) $this->score + $longPlay32K96K;
 					echo '<br/>';
 					echo '<br/>';
+				}
+			}
+			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'copies'))
+			{
+				if (isset($AssetInformatoin[0]['FormatType']['copies']))
+				{
+					if ($this->score > 90 && $this->score > 12)
+					{
+						echo 'copies = ';
+						echo $copies = (($AssetInformatoin[0]['FormatType']['copies'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
+						$this->score = (float) $this->score + (float) $copies;
+						echo '<br/>';
+						echo '<br/>';
+					}
 				}
 			}
 		}
@@ -1590,14 +1598,14 @@ class scoreCalculator extends scoreCalculator_extended
 		$score = 0;
 		if (method_exists($this, $funcationName))
 		{
-			echo "Total ". $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
-			echo "<br/>Final Total ".round($score / 20, 2);
+			echo "Total " . $score = $this->$funcationName($AssetInformatoin, $characteristicsValues);
+			echo "<br/>Final Total " . round($score / 20, 2);
 		}
 		else
 		{
 			echo "function $funcationName dose not exists ";
 		}
-		
+
 		return round($score / 20, 2);
 	}
 

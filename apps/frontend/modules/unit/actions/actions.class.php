@@ -19,45 +19,27 @@ class unitActions extends sfActions
 	public function executeSearch(sfWebRequest $request)
 	{
 		// make array of all the format types that are available
-$this->deleteMessage = $this->getUser()->getAttribute('delMsg');
+		$this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
 		// Format Type Array
-		$types = array('Metal Disc' => '1',
-			'Film' => '5',
-			'DAT' => '6',
-			'Sound Wire Reel' => '7',
-			'Analog Audio Cassette' => '4',
-			'Polyster Open Reel Audio Tape' => '9',
-			'Acetate Open Reel Audio Tape' => '10',
-			'Paper Open Reel Audio Tape' => '11',
-			'PVC Open Reel Audio Tape' => '12',
-			'Lacquer Disc' => '15',
-			'MiniDisc' => '16',
-			'Cylinder' => '17',
-			'Sound Optical Disc' => '19',
-			'Optical Video' => '20',
-			'Pressed 78RPM Disc' => '22',
-			'Pressed LP Disc' => '23',
-			'Pressed 45RPM Disc' => '24',
-			'LaserDisc' => '26',
-			'XDCAM Optical' => '27',
-			'Betamax' => '29',
-			'8MM' => '31',
-			'2" Open Reel Video' => '33',
-			'1" Open Reel Video' => '34',
-			'½" Open Reel Video' => '35',
-			'DV' => '37',
-			'DVCAM' => '38',
-			'Betacam' => '40',
-			'VHS' => '41',
-			'Digital Betacam' => '42',
-			'U-matic' => '44',
-			'HDCAM' => '45',
-			'DVCPro' => '46',
+		$types = array('Metal Disc' => '1', 'Film' => '5',
+			'DAT' => '6', 'Sound Wire Reel' => '7',
+			'Analog Audio Cassette' => '4', 'Polyster Open Reel Audio Tape' => '9',
+			'Acetate Open Reel Audio Tape' => '10', 'Paper Open Reel Audio Tape' => '11',
+			'PVC Open Reel Audio Tape' => '12', 'Lacquer Disc' => '15',
+			'MiniDisc' => '16', 'Cylinder' => '17', 'Sound Optical Disc' => '19',
+			'Optical Video' => '20', 'Pressed 78RPM Disc' => '22',
+			'Pressed LP Disc' => '23', 'Pressed 45RPM Disc' => '24',
+			'LaserDisc' => '26', 'XDCAM Optical' => '27',
+			'Betamax' => '29', '8MM' => '31',
+			'2" Open Reel Video' => '33', '1" Open Reel Video' => '34',
+			'¬Ω" Open Reel Video' => '35', 'DV' => '37',
+			'DVCAM' => '38', 'Betacam' => '40',
+			'VHS' => '41', 'Digital Betacam' => '42',
+			'U-matic' => '44', 'HDCAM' => '45', 'DVCPro' => '46',
 		);
 		// make array of search parameters
-		$store = array('Unit' => '1',
-			'Collection' => '3');
+		$store = array('Unit' => '1', 'Collection' => '3');
 		$asset = array('Asset Group' => '4');
 		if ($request->isXmlHttpRequest())
 		{
@@ -75,7 +57,7 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 
 			$formatType = array();
 			$storeType = array();
-			$assetType = array();
+			$assetType = '';
 			$stringForName = array();
 			$locationString = array();
 			$this->storeType = $storeType;
@@ -93,7 +75,7 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 				else if (isset($store[$value]))
 					$storeType[] = $store[$value];
 				else if (isset($asset[$value]))
-					$assetType[] = $asset[$value];
+					$assetType = $asset[$value];
 				else if (isset($locations[$value]))
 					$locationString[] = $locations[$value];
 				else
@@ -114,62 +96,66 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 
 			$db = new Unit();
 			$filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
-			$this->searchResult = Doctrine_Query::Create()
-			->from('Store s')
-			->select('s.*')
-			->whereIn('s.id', $filterID)
-			->execute();
+			$this->searchResult = array();
 			$this->html = '';
-			$this->getContext()->getConfiguration()->loadHelpers('Url');
-			foreach ($this->searchResult as $key => $result)
+			if (count($filterID) > 0)
 			{
-
-				if ($result->getType() == 1)
-				{
-					$text = 'Unit';
-					$urlOnName = url_for('collection', $result);
-					$urlonEdit = url_for('unit/edit?id=' . $result->getId());
-					$parentId = 0;
-					$duration = $result->getDuration($result->getId());
-				}
-				if ($result->getType() == 3)
-				{
-					$text = 'Collection';
-					$urlOnName = url_for('assetgroup', $result);
-					$urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
-					$parentId = $result->getParentNodeId();
-					$duration = $result->getDuration($result->getId());
-				}
-				if ($result->getType() == 4)
-				{
-					$text = 'Asset Group';
-					$urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
-					$parentId = $result->getParentNodeId();
-					$duration = $result->getDuration($result->getFormatId());
-				}
-
-				$this->html .="<tr>";
-				if ($this->getUser()->getGuardUser()->getType() != 3)
+				$this->searchResult = Doctrine_Query::Create()
+				->from('Store s')
+				->select('s.*')
+				->whereIn('s.id', $filterID)
+				->execute();
+				
+				$this->getContext()->getConfiguration()->loadHelpers('Url');
+				foreach ($this->searchResult as $key => $result)
 				{
 
-					$this->html .="<td class='invisible'><div class='options'>";
-					if ($result->getType() != 4)
-						$this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
-					$this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
-					$this->html .= "</div></td>";
+					if ($result->getType() == 1)
+					{
+						$text = 'Unit';
+						$urlOnName = url_for('collection', $result);
+						$urlonEdit = url_for('unit/edit?id=' . $result->getId());
+						$parentId = 0;
+						$duration = $result->getDuration($result->getId());
+					}
+					if ($result->getType() == 3)
+					{
+						$text = 'Collection';
+						$urlOnName = url_for('assetgroup', $result);
+						$urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
+						$parentId = $result->getParentNodeId();
+						$duration = $result->getDuration($result->getId());
+					}
+					if ($result->getType() == 4)
+					{
+						$text = 'Asset Group';
+						$urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+						$parentId = $result->getParentNodeId();
+						$duration = $result->getDuration($result->getFormatId());
+					}
+
+					$this->html .="<tr>";
+					if ($this->getUser()->getGuardUser()->getType() != 3)
+					{
+
+						$this->html .="<td class='invisible'><div class='options'>";
+						if ($result->getType() != 4)
+							$this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
+						$this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
+						$this->html .= "</div></td>";
+					}
+
+
+
+					$this->html .="<td><a href=' {$urlOnName}; ?>'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
+					"<td>{$result->getCreatedAt()}</td>" .
+					"<td><span>{$result->getCreator()->getName()}</span></td>" .
+					"<td>{$result->getUpdatedAt()}</td>" .
+					"<td>{$result->getEditor()->getName()}</td>" .
+					"<td>{$duration}</td>" .
+					"</tr>";
 				}
-
-
-
-				$this->html .="<td><a href=' {$urlOnName}; ?>'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
-				"<td>{$result->getCreatedAt()}</td>" .
-				"<td><span>{$result->getCreator()->getName()}</span></td>" .
-				"<td>{$result->getUpdatedAt()}</td>" .
-				"<td>{$result->getEditor()->getName()}</td>" .
-				"<td>{$duration}</td>" .
-				"</tr>";
 			}
-
 
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
@@ -254,6 +240,7 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 			$formatType = array();
 			$storeType = array();
 			$stringForName = array();
+			$assetType = '';
 			$locationString = array();
 			$this->storeType = $storeType;
 			$locations = array();
@@ -269,6 +256,8 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 					$formatType[] = $types[$value];
 				else if (isset($store[$value]))
 					$storeType[] = $store[$value];
+				else if (isset($asset[$value]))
+					$assetType = $asset[$value];
 				else if (isset($locations[$value]))
 					$locationString[] = $locations[$value];
 				else
@@ -277,17 +266,23 @@ $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
 			$searchParams = array(
 				'formats' => $formatType,
 				'store' => $storeType,
+				'assetType' => $assetType,
 				'string' => $stringForName,
 				'location' => $locationString);
 
 			$db = new Unit();
 			$filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
-
-			$this->searchResult = Doctrine_Query::Create()
-			->from('Store s')
-			->select('s.*')
-			->whereIn('s.id', $filterID)
-			->execute();
+			
+			$this->searchResult = array();
+			if (count($filterID) > 0)
+			{
+				$this->searchResult = Doctrine_Query::Create()
+				->from('Store s')
+				->select('s.*')
+				->whereIn('s.id', $filterID)
+				->execute();
+			
+			}
 		}
 	}
 

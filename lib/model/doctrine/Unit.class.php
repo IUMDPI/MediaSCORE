@@ -44,13 +44,14 @@ class Unit extends BaseUnit
 	{
 
 		$join = '';
-//		if ($user->getType() == 3)
-//		{
-//			$join .='INNER JOIN unit_person up ON up.unit_id=s.id OR up.unit_id = s.parent_node_id';
-//		}
+		$assets = array();
+		if ($user->getType() == 3)
+		{
+			$join .='INNER JOIN unit_person up ON up.unit_id=s.id OR up.unit_id = s.parent_node_id';
+		}
 		$where = '';
-		if (count($params['formats']) > 0)
-			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
+//		if (count($params['formats']) > 0)
+//			$where .= ' AND ft.type IN (' . implode(',', $params['formats']) . ')';
 		if (count($params['store']) > 0)
 			$where .= ' AND s.type IN (' . implode(',', $params['store']) . ')';
 		if (count($params['location']) > 0)
@@ -113,20 +114,19 @@ class Unit extends BaseUnit
 			}
 		}
 
-//		if ($user->getType() == 3)
-//		{
-//			$where .=' AND up.person_id = ' . $user->getId();
-//		}
+		if ($user->getType() == 3)
+		{
+			$where .=' AND up.person_id = ' . $user->getId();
+		}
 
 
 		$query = "SELECT s.id FROM store s
 	     	{$join}
-			LEFT JOIN format_type ft ON ft.id=s.format_id AND s.type=4 
 			LEFT JOIN unit_storage_location usl on usl.unit_id=s.id AND s.type=1 
 			LEFT JOIN collection_storage_location csl on csl.collection_id=s.id AND s.type=3 
-			 WHERE 1=1 {$where}";
-		
-		
+			WHERE 1=1 {$where}";
+
+
 		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
 		$result = $q->execute($query);
 		$result = $result->fetchAll();
@@ -135,8 +135,29 @@ class Unit extends BaseUnit
 		{
 			$filter_ID[] = $value['id'];
 		}
+		
+		if ( ! empty($params['assetType']) || count($params['formats']) > 0)
+		{
+			
+			$assets = Doctrine_Query::Create()
+			->from('AssetGroup ag')
+			->select('ag.id')
+			->innerJoin('ag.FormatType ft')
+			->innerJoin('ag.Collection c')
+			->whereIn('ag.parent_node_id', $filter_ID);
 
-//		echo '<pre>';print_r($filter_ID);exit;
+			if (count($params['formats']) > 0)
+				$assets = $assets->andWhereIn('ft.type', $params['formats']);
+			$assets = $assets->fetchArray();
+			
+			if (count($params['store']) <= 0)
+				$filter_ID = array();
+			foreach ($assets as $value)
+			{
+				$filter_ID[] = $value['id'];
+			}
+			
+		}
 		return $filter_ID;
 	}
 
