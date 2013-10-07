@@ -37,7 +37,7 @@ class HDCamForm extends BaseHDCamForm {
         $this->getWidget('softBinderSyndrome')->setLabel('Soft Binder Syndrome including Sticky Shed:&nbsp;');
 
 //        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => Film::$constants[4], 'expanded' => true), array('class' => 'override_required')));
-        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(3 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
+        $this->setWidget('pack_deformation', new sfWidgetFormChoice(array('choices' => array(0=>'None',3 => 'Misc. damage'), 'expanded' => true), array('class' => 'override_required')));
         $this->setDefault('pack_deformation', -1);
         $this->setValidator('pack_deformation', new sfValidatorString(array('required' => false)));
         $this->getWidget('pack_deformation')->setLabel('Pack  Deformation:&nbsp;');
