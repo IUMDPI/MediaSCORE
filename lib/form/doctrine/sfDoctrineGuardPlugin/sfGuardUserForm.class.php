@@ -109,6 +109,9 @@ class sfGuardUserForm extends PluginsfGuardUserForm
 			parent::doSave($con);
 			$this->addNewUnits($con);
 		}
+                else{
+                    parent::doSave($con);
+                }
 	}
 
 	public function addNewUnits($con = null)
