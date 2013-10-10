@@ -37,6 +37,7 @@ $(document).ready(function () {
     });
         
     $('#collection_save').click(function(event) {
+        alert('asdasd');
         event.preventDefault();
         $.ajax({
             type: 'POST',

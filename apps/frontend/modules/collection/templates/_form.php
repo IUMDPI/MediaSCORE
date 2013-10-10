@@ -11,7 +11,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Save" id="collection_save"/>
+                            <input type="submit" value="Save"/>
                             &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>
                         </td>
                     </tr> 
@@ -58,7 +58,7 @@
                             var array_of_checked_values = $("#collection_parent_node_id").multiselect("getChecked").map(function(){
                                 return this.value;	
                             }).get();
-                                
+                                                                
                             getStorage(array_of_checked_values);
                         });
                     </script>

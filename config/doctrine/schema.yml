@@ -129,6 +129,30 @@ Collection:
     keyValue: 3 # column_aggregation does not permit nested hierarchies beyond 1 layer of abstraction
   columns:
     status: { type: string(255) }
+    characteristics: { type: text }
+    project_title: { type: string(255) }
+    iub_unit: { type: integer }
+    iub_work: { type: integer }
+    date_completed: { type: datatime }
+    score_subject_interest: { type: float }
+    notes_subject_interest: { type: text }
+    score_content_quality: { type: float }
+    notes_content_quality: { type: text }
+    score_rareness: { type: float }
+    notes_rareness: { type: text }
+    score_documentation: { type: float }
+    notes_documentation: { type: text }
+    score_technical_quality: { type: float }
+    notes_technical_quality: { type: text }
+    unknown_technical_quality: { type: boolean }
+    score_technical_quality: { type: integer }
+    notes_technical_quality: { type: text }
+    collection_score: { type: integer }
+    generation_statement: { type: string(255) }
+    generation_statement_notes: { type: text }
+    ip_statement: { type: string(255) }
+    ip_statement_notes: {type: text }
+    general_notes: { type: text } 
   relations:
     Unit: { local: parent_node_id, foreign: id, foreignAlias: heldByUnit ,onDelete: CASCADE}
     AssetGroup: { local: id, foreign: parent_node_id, foreignAlias: containsAssets}

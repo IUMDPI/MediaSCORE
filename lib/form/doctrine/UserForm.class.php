@@ -15,7 +15,7 @@ class UserForm extends BaseUserForm {
     public function configure() {
         unset(
                 $this['last_login'], $this['created_at'], $this['updated_at'], $this['salt'], $this['groups_list'], $this['permissions_list'], $this['salt'], $this['algorithm'], $this['is_super_admin'], $this['contact_info'], $this['unit_id']
-        );
+        ,$this['username']);
 
 
 

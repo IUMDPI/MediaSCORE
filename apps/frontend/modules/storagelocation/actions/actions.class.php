@@ -26,6 +26,7 @@ class storagelocationActions extends sfActions {
             if ($unitID) {
                 $storageLocations = Doctrine_Core::getTable('Unit')
                                 ->find($unitID)->getStorageLocations();
+
                 $this->getResponse()->setHttpHeader('Content-type', 'application/json');
                 $this->setLayout('json');
                 return $this->renderText(json_encode($storageLocations->toArray()));
@@ -137,6 +138,7 @@ class storagelocationActions extends sfActions {
         else
             $this->redirect('storagelocation/index');
     }
+
     /**
      * Process and validate form
      * 

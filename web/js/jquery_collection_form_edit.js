@@ -58,6 +58,7 @@ $(document).ready(function () {
     });
         
     $('#collection_save').click(function(event) {
+        
         event.preventDefault();
         $.ajax({
             type: 'POST',
