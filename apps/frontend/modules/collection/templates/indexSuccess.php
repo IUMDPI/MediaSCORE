@@ -22,7 +22,7 @@ if ($url)
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' onclick='toScore("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediascoresView">Media Score</a></li>
         <?php } ?>
         <?php if ($ISMediaRiverAccess) { ?>
-            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>' oncli ck='toRiver("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediariversView" >Media Rivers</a></li>
+            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>' onclick='toRiver("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediariversView" >Media Rivers</a></li>
         <?php } ?>
     </ul>
     <div class="tabcontents">
