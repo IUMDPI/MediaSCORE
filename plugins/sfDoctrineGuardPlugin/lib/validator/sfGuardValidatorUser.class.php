@@ -15,61 +15,48 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfGuardValidatorUser.class.php 25546 2009-12-17 23:27:55Z Jonathan.Wage $
  */
-class sfGuardValidatorUser extends sfValidatorBase
-{
+class sfGuardValidatorUser extends sfValidatorBase {
 
-	public function configure($options = array(), $messages = array())
-	{
-		$this->addOption('username_field', 'username');
-		$this->addOption('password_field', 'password');
-		$this->addOption('throw_global_error', false);
+    public function configure($options = array(), $messages = array()) {
+        $this->addOption('username_field', 'username');
+        $this->addOption('password_field', 'password');
+        $this->addOption('throw_global_error', false);
 
-		$this->setMessage('invalid', 'The email and/or password is invalid.');
-	}
+        $this->setMessage('invalid', 'The email and/or password is invalid.');
+    }
 
-	protected function doClean($values)
-	{
-		$username = isset($values[$this->getOption('username_field')]) ? $values[$this->getOption('username_field')] : '';
-		$password = isset($values[$this->getOption('password_field')]) ? $values[$this->getOption('password_field')] : '';
+    protected function doClean($values) {
+        $username = isset($values[$this->getOption('username_field')]) ? $values[$this->getOption('username_field')] : '';
+        $password = isset($values[$this->getOption('password_field')]) ? $values[$this->getOption('password_field')] : '';
 
-		$allowEmail = sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true);
-		$method = $allowEmail ? 'retrieveByUsernameOrEmailAddress' : 'retrieveByUsername';
+        $allowEmail = sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true);
+        $method = $allowEmail ? 'retrieveByUsernameOrEmailAddress' : 'retrieveByUsername';
 
-		// don't allow to sign in with an empty username
-		if ($username)
-		{
-			if ($callable = sfConfig::get('app_sf_guard_plugin_retrieve_by_username_callable'))
-			{
-				$user = call_user_func_array($callable, array($username));
-			}
-			else
-			{
-				$user = $this->getTable()->retrieveByEmail($username);
-			}
-			// user exists?
-			if ($user)
-			{
-				// password is ok?
-				if ($user->checkPassword($password))
-				{
-					if ($user->getIsActive())
-					{
-						if ($user->getRole() != 1)
-						{
-							if ($user->getMediascoreAccess() != 1 || $user->getMediariverAccess() != 1)
-							{
-								$this->setMessage('invalid', 'You don\'t have Access.');
-							}
-							else
-							{
-								return array_merge($values, array('user' => $user));
-							}
+        // don't allow to sign in with an empty username
+        if ($username) {
+            if ($callable = sfConfig::get('app_sf_guard_plugin_retrieve_by_username_callable')) {
+                $user = call_user_func_array($callable, array($username));
+            } else {
+                $user = $this->getTable()->retrieveByEmail($username);
+            }
+            // user exists?
+            if ($user) {
+                // password is ok?
+                if ($user->checkPassword($password)) {
+                    if ($user->getIsActive()) {
+                        if ($user->getRole() != 1) {
+
+                            if ($user->getMediascoreAccess() != 1 && $user->getMediariverAccess() != 1) {
+                                $this->setMessage('invalid', 'You don\'t have Access.');
+                            } else {
+                                return array_merge($values, array('user' => $user));
+                            }
 //
-						}
-						else
-							return array_merge($values, array('user' => $user));
-					}
-				}
+                        }
+                        else
+                            return array_merge($values, array('user' => $user));
+                    }
+                }
 //				if ($user->getIsActive() && $user->checkPassword($password))
 //				{
 //					
@@ -80,20 +67,18 @@ class sfGuardValidatorUser extends sfValidatorBase
 //					exit;
 ////					throw new sfValidatorError($this, 'access');
 //				}
-			}
-		}
+            }
+        }
 
-		if ($this->getOption('throw_global_error'))
-		{
-			throw new sfValidatorError($this, 'invalid');
-		}
+        if ($this->getOption('throw_global_error')) {
+            throw new sfValidatorError($this, 'invalid');
+        }
 
-		throw new sfValidatorErrorSchema($this, array($this->getOption('username_field') => new sfValidatorError($this, 'invalid')));
-	}
+        throw new sfValidatorErrorSchema($this, array($this->getOption('username_field') => new sfValidatorError($this, 'invalid')));
+    }
 
-	protected function getTable()
-	{
-		return Doctrine::getTable('sfGuardUser');
-	}
+    protected function getTable() {
+        return Doctrine::getTable('sfGuardUser');
+    }
 
 }

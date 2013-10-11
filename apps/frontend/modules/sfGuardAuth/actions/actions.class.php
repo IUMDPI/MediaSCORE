@@ -3,6 +3,7 @@
 # Source: http://arpeggios.wordpress.com/2008/09/28/http-authentification-with-sfguard/
 
 class sfGuardAuthActions extends sfActions {
+
     /**
      * sign in process
      * 
@@ -42,7 +43,6 @@ class sfGuardAuthActions extends sfActions {
             foreach (array('unit', 'personnel_list', 'storage_locations_list') as $workSessionField)
                 $this->getUser()->setAttribute($workSessionField, $this->form[$workSessionField]->getValue());
 
-
             if ($this->form->isValid()) {
 
                 $values = $this->form->getValues();
@@ -75,6 +75,7 @@ class sfGuardAuthActions extends sfActions {
             }
         }
     }
+
     /**
      * signout process
      * 
@@ -87,6 +88,7 @@ class sfGuardAuthActions extends sfActions {
         //$this->redirect('' != $signoutUrl ? $signoutUrl : '@homepage');
         $this->redirect('@homepage');
     }
+
     /**
      * change password method
      * 
@@ -106,6 +108,7 @@ class sfGuardAuthActions extends sfActions {
             }
         }
     }
+
     /**
      * forgot password method
      * 
@@ -142,7 +145,6 @@ class sfGuardAuthActions extends sfActions {
         }
     }
 
-    
     /**
      * activate user
      * 
@@ -161,6 +163,7 @@ class sfGuardAuthActions extends sfActions {
             $this->message = 'Account Successfully Activated.';
         }
     }
+
     /**
      * generate randam password
      * 

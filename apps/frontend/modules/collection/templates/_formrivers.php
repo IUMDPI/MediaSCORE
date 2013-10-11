@@ -143,8 +143,8 @@
                     <tr>
                         <td colspan="2"> 
                             <br/>
-                            <input type="submit" value="Save" id="collection_save"/>
-                            &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>
+                            <input type="submit" value="Save" />
+<!--                            &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>-->
                         </td>
                     </tr> 
                 </tfoot>

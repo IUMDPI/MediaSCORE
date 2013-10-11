@@ -50,12 +50,14 @@ class collectionActions extends sfActions {
     public function executeIndex(sfWebRequest $request) {
         $view = array();
         if ($request->isXmlHttpRequest()) {
-            $this->view = $request->getParameter('view');
-            $ViewInfo = array('view' => $this->view);
-            $this->getUser()->setAttribute('view', $ViewInfo);
-            $view = $this->getUser()->getAttribute('view');
-            echo $view['view'];
-            exit;
+            if ($request->getParameter('view')) {
+                $this->view = $request->getParameter('view');
+                $ViewInfo = array('view' => $this->view);
+                $this->getUser()->setAttribute('view', $ViewInfo);
+                $view = $this->getUser()->getAttribute('view');
+                echo $view['view'];
+                exit;
+            }
         }
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
@@ -138,6 +140,7 @@ class collectionActions extends sfActions {
             $this->unitID = $this->unitObject->getId();
 
             $this->forward404Unless($this->unitID);
+
             if ($this->getUser()->getGuardUser()->getType() == 3) {
                 $unit = Doctrine_Query::Create()
                         ->from('Unit u')
@@ -160,10 +163,10 @@ class collectionActions extends sfActions {
                     ->leftJoin('c.StorageLocations sl')
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
-            $this->ThisUnit = $unit;
-         
-            
         }
+        $this->ThisUnit = $unit;
+        $this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
+        $this->ISMediaRiverAccess = $this->getUser()->getGuardUser()->getMediariverAccess();
     }
 
     /**
@@ -186,6 +189,15 @@ class collectionActions extends sfActions {
                     'view' => $view['view']
                         )
         );
+        $unit = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->andWhere('id  = ?', $request->getParameter('u'))
+                ->fetchArray();
+        $this->ThisUnit = $unit;
+
+        $url = $this->generateUrl("collection", $unit[0]);
+        $arr_url = explode('?', $url);
+        $this->url = $arr_url[0];
     }
 
     /**
@@ -211,9 +223,13 @@ class collectionActions extends sfActions {
         $success = $this->processForm($request, $this->form);
 
         if ($success && isset($success['form']) && $success['form'] == true) {
-//            $collection = $success['collection'];
-//            header('location: /index.php');
-            echo '<script> window.location= "/index.php"</script>';
+            $collection = $success['collection'];
+            $unit = Doctrine_Core::getTable('Unit')
+                    ->createQuery('u')
+                    ->where('id =?', $unitId)
+                    ->execute();
+            header('location: ' . $this->generateUrl("collection", $unit[0]));
+            echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
             $this->setTemplate('new');
@@ -240,6 +256,16 @@ class collectionActions extends sfActions {
         );
         $this->view = $view['view'];
         $this->actionType = 'edit';
+
+        $unit = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->andWhere('id  = ?', $request->getParameter('u'))
+                ->fetchArray();
+        $this->ThisUnit = $unit;
+
+        $url = $this->generateUrl("collection", $unit[0]);
+        $arr_url = explode('?', $url);
+        $this->url = $arr_url[0];
     }
 
     /**
@@ -343,8 +369,6 @@ class collectionActions extends sfActions {
                         }
                     }
                 }
-
-
                 if (count($collectionsAssets) != count($check)) {
                     $error = array('error' => true);
                     return $error;

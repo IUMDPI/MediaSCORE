@@ -15,9 +15,7 @@ class UserForm extends BaseUserForm {
     public function configure() {
         unset(
                 $this['last_login'], $this['created_at'], $this['updated_at'], $this['salt'], $this['groups_list'], $this['permissions_list'], $this['salt'], $this['algorithm'], $this['is_super_admin'], $this['contact_info'], $this['unit_id']
-        ,$this['username']);
-
-
+                , $this['username']);
 
         $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
         $this->validatorSchema['password']->setOption('required', false);
@@ -34,6 +32,37 @@ class UserForm extends BaseUserForm {
         $this->getValidator('email_address')->setMessages(array('required' => 'This is a required field.',
             'invalid' => 'Please enter a valid email address.'));
         $this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_again', array(), array('invalid' => 'The two passwords must be the same.')));
+        //        $unsetFields = array(
+//            'id',
+//            'first_name',
+//            'last_name',
+//            'email_address',
+//            'username',
+//            'algorithm',
+//            'salt',
+//            'password',
+//            'is_active',
+//            'activation_key',
+//            'forgot_password',
+//            'is_super_admin',
+//            'last_login',
+//            'type',
+//            'phone',
+//            'role',
+//            'mediascore_access',
+//            'mediariver_access',
+//            'contact_info',
+//            'unit_id',
+//            'title',
+//            'created_at',
+//            'updated_at',
+//            'groups_list',
+//            'permissions_list',
+//        );
+//        foreach ($unsetFields as $unsetField) {
+//
+//            unset($this->validatorSchema[$unsetField]);
+//        }
     }
 
 }

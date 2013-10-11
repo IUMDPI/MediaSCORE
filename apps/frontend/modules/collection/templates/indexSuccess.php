@@ -18,9 +18,12 @@ if ($url)
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;">
     <ul class="tabs" data-persist="true">
-        <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' onclick='toScore("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediascoresView">Media Score</a></li>
-
-        <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>' onclick='toRiver("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediariversView" >Media Rivers</a></li>
+        <?php if ($IsMediaScoreAccess) { ?>
+            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' onclick='toScore("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediascoresView">Media Score</a></li>
+        <?php } ?>
+        <?php if ($ISMediaRiverAccess) { ?>
+            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>' oncli ck='toRiver("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediariversView" >Media Rivers</a></li>
+        <?php } ?>
     </ul>
     <div class="tabcontents">
         <input type="hidden"
@@ -41,7 +44,6 @@ if ($url)
                             to
                             <input type="text" id="to" onchange="filterCollection();" readonly="readonly"/>
                         </div>
-
                         <strong>Status:</strong>
                         <select id="filterStatus" onchange="filterCollection();">
                             <option value="">Any Status</option>
@@ -62,10 +64,9 @@ if ($url)
             <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
             <div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
             <table id="collectionTable" class="tablesorter">
-
                 <thead>
                     <tr>
-                        <?php if ($sf_user->getGuardUser()->getType() != 3) { ?>
+                        <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
                             <td width="50"></td>
                         <?php } ?>
                         <th>Primary ID</th>
@@ -75,8 +76,6 @@ if ($url)
                         <th>Updated On</th>
                         <th>Updated By</th>
                         <th style="text-align: center;">Duration</th>
-            <!--            <th style="text-align: center;">Storage Location</th>-->
-            <!--            <th></th>-->
                     </tr>
                 </thead>
                 <tbody id="collectionResult">
@@ -84,12 +83,10 @@ if ($url)
                         ?>
                         <?php foreach ($collections as $collection): ?>
                             <tr>
-                                <?php
-                                if ($sf_user->getGuardUser()->getType() != 3) {
-                                    ?>
+                                <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+
                                     <td class="invisible">
                                         <div class="options">
-                                            <!--                                            new_edit_collection-->
                                             <a  class="" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                                             <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
                                         </div>
@@ -103,8 +100,7 @@ if ($url)
                                 <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                                 <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                                 <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
-                                <?php // $storagelocationCol = $collection->getStorageLocations()         ?>
-                    <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();                                                                                                                       ?></td>-->
+
                             </tr>
                         <?php endforeach; ?>
 

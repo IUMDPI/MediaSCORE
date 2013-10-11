@@ -35,13 +35,13 @@
 
         <div class="row" id="row_personnel_list" style="display: none;">
             <div class="left-column"><?php echo $form['personnel_list']->renderLabel(); ?>:</div>
-            <?php echo $form['personnel_list']->render(array('title'=>'sets default value for selection of Unit Personnel when creating asset group history records.')); ?>
+            <?php echo $form['personnel_list']->render(array('title' => 'sets default value for selection of Unit Personnel when creating asset group history records.')); ?>
             <div>sets default value for selection of Unit Personnel when creating asset group history records.</div>
         </div>
 
         <div class="row" id="row_location" style="display: none;" >
             <div class="left-column"><?php echo $form['storage_locations_list']->renderLabel(); ?>:</div>
-            <?php echo $form['storage_locations_list']->render(array('title'=>'sets default value for selection of Storage Location when creating asset groups.')); ?>
+            <?php echo $form['storage_locations_list']->render(array('title' => 'sets default value for selection of Storage Location when creating asset groups.')); ?>
             <div>sets default value for selection of Storage Location when creating asset groups.</div>
         </div>
 
