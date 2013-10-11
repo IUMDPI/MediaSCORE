@@ -161,6 +161,8 @@ class collectionActions extends sfActions {
                     ->where('c.parent_node_id  = ?', $this->unitID)
                     ->execute();
             $this->ThisUnit = $unit;
+         
+            
         }
     }
 

@@ -34,7 +34,6 @@
     //        Checking if given score is a value numaric value and less then 5.1 
     function isValidScore(value){
         var result=false;
-        
         if(value !='' && typeof value != "undefined") {
             if(IsNumeric(value)){
                 value = parseFloat(value);
@@ -57,17 +56,17 @@
         var score = object.val();
         if(!isValidScore(score)){
             object.val(0)    
+            $('#'+object.attr('id')+'_errorn').remove();
+            object.after('<span id="'+object.attr('id')+'_errorn" style="color:#7D110C;font-size: 9px;"><br/>Score must be integer and less then 5 </span>');
+        }else{
+            $('#'+object.attr('id')+'_errorn').remove();
         }
+        
         var Total_Collection_Score = 0.0;
         Total_Collection_Score = calculateScore();
         CollectionScoreObj.val(Total_Collection_Score/5);  
         
     }
-
-    
-
-            
-    
     $(function(){
         //        Getting all Socre input fields Objects
         collection_score_subject_interest_obj = $("#collection_score_subject_interest"); 
@@ -173,6 +172,7 @@
                         </th>
                         <td>
                             <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
+
                             <?php echo $form['inst_id']->renderError(); ?>
                         </td>
                     </tr>

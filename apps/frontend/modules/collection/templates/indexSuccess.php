@@ -10,11 +10,16 @@ if (!isset($view) || $view == '')
     $view = 'score';
 include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocations));
 ?>
+<?php
+$url = url_for('collection', $ThisUnit);
+if ($url)
+    $url = '';
+?>
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;">
     <ul class="tabs" data-persist="true">
         <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' onclick='toScore("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediascoresView">Media Score</a></li>
-        <?php $url = url_for('collection', $ThisUnit); ?>
+
         <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>' onclick='toRiver("<?php echo $url; ?>","<?php echo $unitID; ?>")' href="javascript:void(0);" id="mediariversView" >Media Rivers</a></li>
     </ul>
     <div class="tabcontents">
@@ -98,8 +103,8 @@ include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocatio
                                 <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                                 <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                                 <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
-                                <?php // $storagelocationCol = $collection->getStorageLocations()        ?>
-                    <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();                                                                                                               ?></td>-->
+                                <?php // $storagelocationCol = $collection->getStorageLocations()         ?>
+                    <!--                    <td style="text-align: right;"><?php // echo $storagelocationCol[0]->getResidentStructureDescription();                                                                                                                       ?></td>-->
                             </tr>
                         <?php endforeach; ?>
 
