@@ -42,23 +42,41 @@ class collectionActions extends sfActions {
     }
 
     /**
+     * To Set Index Page View ,when changed view from Media Score to Media River and vise versa and redirect to index page
+     * @param sfWebRequest $request
+     */
+    public function executeSetview(sfWebRequest $request) {
+
+
+
+        if ($request->getParameter('view')) {
+            $this->view = $request->getParameter('view');
+            $ViewInfo = array('view' => $this->view);
+            $this->getUser()->setAttribute('view', $ViewInfo);
+            $view = $this->getUser()->getAttribute('view');
+
+            $unit = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->andWhere('id  = ?', $request->getParameter('u'))
+                    ->fetchArray();
+            $this->ThisUnit = $unit;
+
+            $url = $this->generateUrl("collection", $unit[0]);
+            $urls = explode('?', $url);
+            $this->redirect($urls);
+            exit;
+        }
+    }
+
+    /**
      * list all collections or filter collections
      * 
      * @param sfWebRequest $request
      * @return json  if request is ajax
      */
     public function executeIndex(sfWebRequest $request) {
-        $view = array();
-        if ($request->isXmlHttpRequest()) {
-            if ($request->getParameter('view')) {
-                $this->view = $request->getParameter('view');
-                $ViewInfo = array('view' => $this->view);
-                $this->getUser()->setAttribute('view', $ViewInfo);
-                $view = $this->getUser()->getAttribute('view');
-                echo $view['view'];
-                exit;
-            }
-        }
+
+        $view = $this->getUser()->getAttribute('view');
         $unitID = $request->getParameter('id');
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
@@ -228,7 +246,7 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-            header('location: ' . $this->generateUrl("collection", $unit[0]));
+            $this->redirect($this->generateUrl("collection", $unit[0]));
             echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
@@ -296,7 +314,13 @@ class collectionActions extends sfActions {
         $this->actionType = 'edit';
         if ($success && isset($success['form']) && $success['form'] == true) {
 //            echo $success['id'];
-            echo '<script> window.location= "/index.php"</script>';
+            $unit = Doctrine_Core::getTable('Unit')
+                    ->createQuery('u')
+                    ->where('id =?', $unitId)
+                    ->execute();
+
+            $this->redirect($this->generateUrl("collection", $unit[0]));
+            echo '<script>' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
             if ($success && isset($success['error']) && $success['error'] == true) {

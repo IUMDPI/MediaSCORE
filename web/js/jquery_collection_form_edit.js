@@ -70,7 +70,14 @@ $(document).ready(function () {
                     $.ajax({
                         method: 'POST', 
                         url: '/frontend_dev.php/collection/index',
-                        data:{id:$('#collection_parent_node_id').val(),s:$('#searchText').val(),status:$('#filterStatus').val(),from:$('#from').val(),to:$('#to').val(),datatype:$('#date_type').val()},
+                        data:{
+                            id:$('#collection_parent_node_id').val(),
+                            s:$('#searchText').val(),
+                            status:$('#filterStatus').val(),
+                            from:$('#from').val(),
+                            to:$('#to').val(),
+                            datatype:$('#date_type').val()
+                        },
                         dataType: 'json',
                         cache: false,
                         success: function (result) { 
@@ -164,3 +171,136 @@ function getStorage(id){
         }
     });
 }
+
+
+
+var collection_score_subject_interest_obj; 
+var collection_score_content_quality_obj;
+var collection_score_rareness_obj;
+var collection_score_documentation_obj;
+var collection_score_technical_quality_obj;
+var collection_collection_score_obj;
+    
+//        Calculating total score and setting value in Collection store Field 
+function calculateScore(){
+    var Total_Collection_Score = 0.0;
+        
+    var collection_score_subject_interest = parseFloat((collection_score_subject_interest_obj.val())? collection_score_subject_interest_obj.val():0);
+    var collection_score_content_quality = parseFloat((collection_score_content_quality_obj.val())? collection_score_content_quality_obj.val():0);
+    var collection_score_rareness =parseFloat((collection_score_rareness_obj.val())? collection_score_rareness_obj.val():0);
+    var collection_score_technical_quality = parseFloat((collection_score_technical_quality_obj.val())? collection_score_technical_quality_obj.val():0);
+    var collection_score_documentation = parseFloat((collection_score_documentation_obj.val())? collection_score_documentation_obj.val():0);
+        
+    if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
+        Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
+    if(isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
+        Total_Collection_Score = Total_Collection_Score + collection_score_content_quality;
+    if(isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
+        Total_Collection_Score = Total_Collection_Score + collection_score_rareness;
+    if(isValidScore(collection_score_technical_quality) && IsNumeric(collection_score_technical_quality))
+        Total_Collection_Score = Total_Collection_Score + collection_score_technical_quality;
+    if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
+        Total_Collection_Score = Total_Collection_Score + collection_score_documentation
+        
+    return Math.round(Total_Collection_Score * 100 ) /100;
+}
+    
+//        Check is values a Number 
+function IsNumeric(input){
+    return !isNaN(parseFloat(input)) && isFinite(input);
+}
+//        Checking if given score is a value numaric value and less then 5.1 
+function isValidScore(value){
+    var result=false;
+    if(value !='' && typeof value != "undefined") {
+        if(IsNumeric(value)){
+            value = parseFloat(value);
+            if(value<=5){
+                result = true;
+            }else{
+                result = false;
+            }
+        }else{
+            result = false;
+        }
+    }else{
+        result = true;
+    }
+    return result;
+}
+    
+//        Score Placing and Validation of input Given Score Object
+function handleValuesOfTextField(object,CollectionScoreObj){
+    var score = object.val();
+    if(!isValidScore(score)){
+        //            object.val(0)    
+        $('#'+object.attr('id')+'_errorn').remove();
+        object.after('<span id="'+object.attr('id')+'_errorn" style="color:#7D110C;font-size: 9px;font-weight:bold;"><br/>Score must be integer and less then 5 </span>');
+    }else{
+        $('#'+object.attr('id')+'_errorn').remove();
+    }
+        
+    var Total_Collection_Score = 0.0;
+    Total_Collection_Score = calculateScore();
+    CollectionScoreObj.val(Total_Collection_Score/5);  
+        
+}
+$(function(){
+    //        Getting all Socre input fields Objects
+    collection_score_subject_interest_obj = $("#collection_score_subject_interest"); 
+    collection_score_content_quality_obj = $("#collection_score_content_quality");
+    collection_score_rareness_obj = $("#collection_score_rareness");
+    collection_score_documentation_obj = $("#collection_score_documentation");
+    collection_score_technical_quality_obj = $("#collection_score_technical_quality");
+    collection_collection_score_obj = $("#collection_collection_score");
+        
+    //        Subject Interest Score Placing  and Validation
+    collection_score_subject_interest_obj.live( "keydown keyup change", function() {
+        handleValuesOfTextField(collection_score_subject_interest_obj,collection_collection_score_obj); 
+                      
+    });
+        
+    //        Content Quality Score Placing  and Validation
+    collection_score_content_quality_obj.live( "keydown keyup change", function() {
+        handleValuesOfTextField(collection_score_content_quality_obj,collection_collection_score_obj);
+                
+    });
+        
+        
+    //        Rareness Score Placing  and Validation
+    collection_score_rareness_obj.live( "keydown keyup change", function() {
+        handleValuesOfTextField(collection_score_rareness_obj,collection_collection_score_obj);
+      
+    });
+        
+        
+    //        Documentation Score Placing And Validation
+    collection_score_documentation_obj.live( "keydown keyup change", function() {
+        handleValuesOfTextField(collection_score_documentation_obj,collection_collection_score_obj);
+            
+    });
+        
+    //        Technical Quality Score Placing  and Validation
+    collection_score_technical_quality_obj.live( "keydown keyup change", function() {
+        handleValuesOfTextField(collection_score_technical_quality_obj,collection_collection_score_obj);
+           
+    });
+    //        Fixing date Text and removing the time from date
+    var val = $("#collection_date_completed").val().split(' ');
+    $("#collection_date_completed").val(val[0]);
+        
+    //        Initilizing the DataPicker for  collection_date_completed
+    var dates = $("#collection_date_completed").datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        changeYear: true,
+        numberOfMonths: 1,
+        'dateFormat': 'yy-mm-dd',
+        minDate: $("#date_depart").val(),
+        onSelect: function(selectedDate) {
+            $("#collection_date_completed").datepicker('hide');
+        }
+    });
+});
+
+

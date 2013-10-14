@@ -1,6 +1,6 @@
-<a style="float: right;text-decoration: none;font-size: 14px;font-weight: bold;" href="<?php echo $url ?>">< Back to Collections</a>
+<!--<a style="float: right;text-decoration: none;font-size: 14px;font-weight: bold;" href="<?php // echo $url  ?>">< Back to Collections</a>
 <br/>
-<br/>
+<br/>-->
 
 <div id="edit_collection">
     <script src="/js/jquery_collection_form_edit.js" type="text/javascript"></script>
@@ -14,9 +14,8 @@
 
     <?php
     if ($view == 'river') {
-        include_partial('formrivers', array('form' => $form, 'error' => $error, 'view' => $view, 'actionType' => $actionType));
+        include_partial('formrivers', array('form' => $form, 'error' => $error, 'view' => $view, 'actionType' => $actionType, 'cancelUrl' => $url));
         ?>
-        <a style="float: right;text-decoration: none;font-size: 14px;font-weight: bold;" href="<?php echo $url ?>">< Back to Collections</a>
         <?php
     } else {
         include_partial('form', array('form' => $form, 'error' => $error, 'view' => $view, 'actionType' => $actionType))

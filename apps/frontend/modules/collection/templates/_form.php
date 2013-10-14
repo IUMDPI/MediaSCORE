@@ -12,7 +12,7 @@
                     <tr>
                         <td colspan="2">
                             <input type="submit" value="Save"/>
-<!--                            &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>-->
+                            &nbsp;or&nbsp;<a href="javascript:void(0);" onclick="$.fancybox.close();">cancel</a>
                         </td>
                     </tr> 
                 </tfoot>
