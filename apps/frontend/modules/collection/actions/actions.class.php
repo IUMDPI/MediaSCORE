@@ -42,7 +42,7 @@ class collectionActions extends sfActions {
     }
 
     /**
-     * To Set Index Page View ,when changed view from Media Score to Media River and vise versa and redirect to index page
+     * To SET Index Page View when changes the view from Media Score to Media River and vise versa and redirect to index pgae
      * @param sfWebRequest $request
      */
     public function executeSetview(sfWebRequest $request) {
@@ -63,7 +63,7 @@ class collectionActions extends sfActions {
 
             $url = $this->generateUrl("collection", $unit[0]);
             $urls = explode('?', $url);
-            header('location : ' . $urls);
+            header('location: ' . $urls[0]);
             exit;
         }
     }
@@ -246,8 +246,7 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-            header('location : ' . $this->generateUrl("collection", $unit[0]));
-            
+            header('location: ' . $this->generateUrl("collection", $unit[0]));
             echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
@@ -319,8 +318,7 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-
-            header('location : ' . $this->generateUrl("collection", $unit[0]));
+            header('location: ' . $this->generateUrl("collection", $unit[0]));
             echo '<script>' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
