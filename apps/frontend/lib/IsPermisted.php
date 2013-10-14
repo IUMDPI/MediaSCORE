@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Description of IsPermisted
+ *
+ * @author Furqan Wasi
+ */
+class IsPermisted extends sfFilter {
+
+    public function execute($filterChain) {
+        $context = sfContext::getInstance();
+        $user = $context->getUser();
+        if ($user->getGuardUser()) {
+            $IsMediaScoreAccess = $user->getGuardUser()->getMediascoreAccess();
+            $ISMediaRiverAccess = $user->getGuardUser()->getMediariverAccess();
+            $UserType = $user->getGuardUser()->getType();
+            if (!$IsMediaScoreAccess && !$ISMediaRiverAccess && $UserType != 1) {
+                if (!isset($_GET['access_allow']) && empty($_GET['access_allow']) != 0) {
+                    header('location: /index.php/sfGuardAuth/signout?access_allow=0');
+                    exit;
+                }
+            }
+        }
+        $filterChain->execute();
+    }
+
+}
+
+?>

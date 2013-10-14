@@ -14,6 +14,7 @@ if ($url)
 ?>
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;">
+
     <ul class="tabs" data-persist="true">
         <?php if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
@@ -22,156 +23,165 @@ if ($url)
             <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >Media Rivers</a></li>
         <?php } ?>
     </ul>
+
     <div class="tabcontents">
-        <input type="hidden"
-               <div id="view1">
-            <div id="filter-container">
-                <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
-                    <div class="title">Filter by:</div>
-                    <form id="filterCollection" action="<?php echo url_for('collection/index') ?>">
-                        <strong>Text:</strong> <input type="text" class="text" onkeyup="filterCollection();" id="searchText"/>
-                        <strong>Date:</strong>
-                        <div class="filter-date">
-                            <select id="date_type" onchange="filterCollection();">
-                                <option value="">Date Type</option>
-                                <option value="0">Created On</option>
-                                <option value="1">Updated On</option>
+        <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getType() == 1) { ?>
+            <input type="hidden"
+                   <div id="view1">
+                <div id="filter-container">
+                    <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
+                        <div class="title">Filter by:</div>
+                        <form id="filterCollection" action="<?php echo url_for('collection/index') ?>">
+                            <strong>Text:</strong> <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="searchText"/>
+                            <strong>Date:</strong>
+                            <div class="filter-date">
+                                <select id="date_type" onchange="filterCollection('<?php echo $view; ?>');">
+                                    <option value="">Date Type</option>
+                                    <option value="0">Created On</option>
+                                    <option value="1">Updated On</option>
+                                </select>
+                                <input type="text" id="from" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
+                                to
+                                <input type="text" id="to" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
+                            </div>
+                            <strong>Status:</strong>
+                            <select id="filterStatus" onchange="filterCollection('<?php echo $view; ?>');">
+                                <option value="">Any Status</option>
+                                <option value="0">Incomplete</option>
+                                <option value="1">In Progress</option>
+                                <option value="2">Completed</option>
                             </select>
-                            <input type="text" id="from" onchange="filterCollection();" readonly="readonly"/>
-                            to
-                            <input type="text" id="to" onchange="filterCollection();" readonly="readonly"/>
-                        </div>
-                        <strong>Status:</strong>
-                        <select id="filterStatus" onchange="filterCollection();">
-                            <option value="">Any Status</option>
-                            <option value="0">Incomplete</option>
-                            <option value="1">In Progress</option>
-                            <option value="2">Completed</option>
-                        </select>
-                        <strong>Score </strong>
-                        <input type="text" class="text" onkeyup="filterCollection();" id="score"/> 
-                        <br/>
-                        <br/>
+                            <strong>Score </strong>
+                            <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score"/> 
+                            <br/>
+                            <br/>
 
-                    </form>
-                    <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterCollection');"><span>R</span> Reset</a></div>
-                </div>
-            </div> 
-            <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
-            <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
-            <div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
+                        </form>
+                        <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterCollection');"><span>R</span> Reset</a></div>
+                    </div>
+                </div> 
+                <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
+                <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<?php echo $unitName ?></div>
+                <div  style="margin: 10px; text-align: center;color: #7D110C;font-weight: bold;"><?php echo $deleteMessage; ?></div>
 
-            <table id="collectionTable" class="tablesorter">
-                <?php
-                if ($view == 'river') {
-                    ?><thead>
-                        <tr>
-                            <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
-                                <td width="50"></td>
-                            <?php } ?>
-                            <th>Primary ID</th>
-                            <th>Collection</th>
-                            <th>Subject Interest</th>
-                            <th>Content Quality</th>
-                            <th>Rareness</th>
-                            <th>Documentation</th>
-                            <th>Technical Quality</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="collectionResult">
-                        <?php if (sizeof($collections) > 0) {
-                            ?>
-                            <?php foreach ($collections as $collection): ?>
-                                <tr>
-                                    <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
-                                        <td class="invisible" width="6%">
-                                            <div class="options">
-                                                <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                                                <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <td width="12%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?></a></td>
-                                    <td width="17%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?></a></td>
-                                    <td width="13%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
-                                    <td width="12%"><?php echo $collection->getScoreContentQuality(); ?></td>
-                                    <td width="9%"><?php echo $collection->getScoreRareness(); ?></td>
-                                    <td width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
-                                    <td width="13%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
-                                    <td width="6%"><?php echo $collection->getCollectionScore(); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-
-                            <?php
-                        } else {
-                            echo '<tr><td>No Collection Available</td></tr>';
-                        }
-                        ?>
-                    </tbody>
+                <table id="collectionTable" class="tablesorter">
                     <?php
-                } else {
-                    ?> 
+                    if ($view == 'river') {
+                        ?><thead>
+                            <tr>
+                                <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                    <td width="50"></td>
+                                <?php } ?>
+                                <th>Primary ID</th>
+                                <th>Collection</th>
+                                <th>Subject Interest</th>
+                                <th>Content Quality</th>
+                                <th>Rareness</th>
+                                <th>Documentation</th>
+                                <th>Technical Quality</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="collectionResult">
+                            <?php if (sizeof($collections) > 0) {
+                                ?>
+                                <?php foreach ($collections as $collection): ?>
+                                    <tr>
+                                        <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                            <td class="invisible" width="6%">
+                                                <div class="options">
+                                                    <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                                                    <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <td width="12%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?></a></td>
+                                        <td width="17%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?></a></td>
+                                        <td width="13%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
+                                        <td width="12%"><?php echo $collection->getScoreContentQuality(); ?></td>
+                                        <td width="9%"><?php echo $collection->getScoreRareness(); ?></td>
+                                        <td width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
+                                        <td width="13%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
+                                        <td width="6%"><?php echo $collection->getCollectionScore(); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
 
-                    <thead>
-                        <tr>
-                            <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
-                                <td width="50"></td>
-                            <?php } ?>
-                            <th>Primary ID</th>
-                            <th>Collection</th>
-                            <th>Created</th>
-                            <th>Created By</th>
-                            <th>Updated On</th>
-                            <th>Updated By</th>
-                            <th style="text-align: center;">Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody id="collectionResult">
-                        <?php if (sizeof($collections) > 0) {
+                                <?php
+                            } else {
+                                echo '<tr><td>No Collection Available</td></tr>';
+                            }
                             ?>
-                            <?php foreach ($collections as $collection): ?>
-                                <tr>
-                                    <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                        </tbody>
+                        <?php
+                    } else {
+                        ?> 
 
-                                        <td class="invisible">
-                                            <div class="options">
-                                                <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
-                                                <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?></a></td>
-                                    <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
-                                    <td><?php echo $collection->getCreatedAt() ?></td>
-                                    <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
-                                    <td><?php echo $collection->getUpdatedAt() ?></td>
-                                    <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
-                                    <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
-                                    <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
+                        <thead>
+                            <tr>
+                                <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                    <td width="50"></td>
+                                <?php } ?>
+                                <th>Primary ID</th>
+                                <th>Collection</th>
+                                <th>Created</th>
+                                <th>Created By</th>
+                                <th>Updated On</th>
+                                <th>Updated By</th>
+                                <th style="text-align: center;">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="collectionResult">
+                            <?php if (sizeof($collections) > 0) {
+                                ?>
+                                <?php foreach ($collections as $collection): ?>
+                                    <tr>
+                                        <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
 
-                                </tr>
-                            <?php endforeach; ?>
+                                            <td class="invisible">
+                                                <div class="options">
+                                                    <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                                                    <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?></a></td>
+                                        <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
+                                        <td><?php echo $collection->getCreatedAt() ?></td>
+                                        <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
+                                        <td><?php echo $collection->getUpdatedAt() ?></td>
+                                        <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
+                                        <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
+                                        <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
 
-                            <?php
-                        } else {
-                            echo '<tr><td>No Collection Available</td></tr>';
-                        }
-                        ?>
-                    </tbody>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                                <?php
+                            } else {
+                                echo '<tr><td>No Collection Available</td></tr>';
+                            }
+                            ?>
+                        </tbody>
 
 
-                <?php } ?>
-            </table>
+                    <?php } ?>
+                </table>
+            <?php } else { ?>
+                <h3> <center>You don't have access to Perform any Operations,please contact the administrator for more information</center></h3>
+            <?php } ?>
         </div>
+
         <div id="view2">
         </div>
 
     </div>
+
 </div>
 
 <script type="text/javascript">
     var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
+    var ISMediaRiverAccess = '<?php echo $ISMediaRiverAccess; ?>';
+    var IsMediaScoreAccess = '<?php echo $IsMediaScoreAccess; ?>';
     $(document).ready(function() {
         var dates = $("#from, #to").datepicker({
             defaultDate: "+1w",
@@ -179,7 +189,7 @@ if ($url)
             numberOfMonths: 2,
             'dateFormat': 'yy-mm-dd',
             onSelect: function(selectedDate) {
-                filterCollection();
+                filterCollection('<?php echo $view; ?>');
                 var option = this.id == "from" ? "minDate" : "maxDate",
                 instance = $(this).data("datepicker"),
                 date = $.datepicker.parseDate(
@@ -243,14 +253,15 @@ if ($url)
         form.find('input:text, input:password, input:file, select').val('');
         form.find('input:radio, input:checkbox')
         .removeAttr('checked').removeAttr('selected');
-        filterCollection();
+        filterCollection('<?php echo $view; ?>');
     }
     function removeSearchText() {
 
     }
     var Check = new Array();
     var i = 0;
-    function filterCollection() {
+    function filterCollection(view) {
+        console.log(view);
         unitId = '<?php echo $unitID; ?>';
 
         Check[i] = $.ajax({
@@ -263,25 +274,54 @@ if ($url)
 
                 if (result != undefined && result.length > 0) {
                     $('#collectionResult').html('');
-                    for (collection in result) {
-                        editdelete = '';
-                        if(userType!=3){
-                            editdelete='<td class="invisible">' +
-                                '<div class="options">' +
-                                '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
-                                ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
-                                '</div></td>';
+                    if(view == 'river'){
+                        console.log(1);
+                        for (collection in result) {
+                            editdelete = '';
+                            //                            IsMediaScoreAccess  ISMediaRiverAccess
+                            if(userType !=3){
+                                if ((userType == 3 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 2) 
+                                    editdelete='<td class="invisible">' +
+                                    '<div class="options">' +
+                                    '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
+                                    ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
+                                    '</div></td>';
+                            }
+                            $('#collectionResult').append('<tr>'+editdelete
+                                +
+                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
+                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
+                                '<td width="13%">'+result[collection].score_content_quality+'</td>'+
+                                '<td width="12%">'+result[collection].score_documentation+'</td>'+
+                                '<td width="9%">'+result[collection].score_rareness+'</td>'+
+                                '<td width="12%">'+result[collection].score_subject_interest+'</td>'+
+                                '<td width="13%">'+result[collection].score_technical_quality+'</td>'+
+                                '<td width="6%">'+result[collection].collection_score+'</td>'+
+                                '</tr>');
                         }
-                        $('#collectionResult').append('<tr>'+ editdelete +
-                            '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
-                            '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
-                            '<td>' + result[collection].created_at + '</td>' +
-                            '<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
-                            '<td>' + result[collection].updated_at + '</td>' +
-                            '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-                            '<td style="text-align: right;">' + result[collection].duration + '</td>');
-                        if (result[collection].StorageLocations[0]) {
-                            //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+                    }else{
+                        console.log(2);
+                        for (collection in result) {
+                            console.log(result);
+                            editdelete = '';
+                            if(userType!=3){
+                                editdelete='<td class="invisible">' +
+                                    '<div class="options">' +
+                                    '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
+                                    ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
+                                    '</div></td>';
+                            }
+                            $('#collectionResult').append('<tr>'+ editdelete +
+                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
+                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
+                                '<td>' + result[collection].created_at + '</td>' +
+                                '<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
+                                '<td>' + result[collection].updated_at + '</td>' +
+                                '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
+                                '<td style="text-align: right;">' + result[collection].duration + '</td>');
+                            if (result[collection].StorageLocations[0]) {
+                                //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
+                            }
                         }
                     }
                     $(".delete_unit").fancybox({

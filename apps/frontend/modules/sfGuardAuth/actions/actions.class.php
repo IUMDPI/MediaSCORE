@@ -11,7 +11,7 @@ class sfGuardAuthActions extends sfActions {
      * @return type 
      */
     public function executeSignin($request) {
-
+ 
         $user = $this->getUser();
         if ($user->isAuthenticated()) {
             if ($this->getUser()->getGuardUser()->getForgot_password() == 1) {

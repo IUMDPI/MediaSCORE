@@ -5,6 +5,12 @@ rendering: ~
 security:  ~
 
 # insert your own filters here
-
+MyCustomFilter:  
+  class: IsPermisted  
+  
 cache:     ~
 execution: ~
+ 
+
+
+
