@@ -261,9 +261,8 @@ if ($url)
     var Check = new Array();
     var i = 0;
     function filterCollection(view) {
-        console.log(view);
+        
         unitId = '<?php echo $unitID; ?>';
-
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/collection/index',
@@ -271,7 +270,6 @@ if ($url)
             dataType: 'json',
             cache: false,
             success: function(result) {
-
                 if (result != undefined && result.length > 0) {
                     $('#collectionResult').html('');
                     if(view == 'river'){
@@ -279,24 +277,26 @@ if ($url)
                         for (collection in result) {
                             editdelete = '';
                             //                            IsMediaScoreAccess  ISMediaRiverAccess
-                            if(userType !=3){
-                                if ((userType == 3 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 2) 
-                                    editdelete='<td class="invisible">' +
+                            
+                            if ((userType == 3 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 2) {
+                                editdelete='<td class="invisible">' +
                                     '<div class="options">' +
-                                    '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
+                                    '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
                             }
+                            
+                            editdelete='<td>&nbsp;</td>'
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
                                 '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
                                 '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
-                                '<td width="13%">'+result[collection].score_content_quality+'</td>'+
-                                '<td width="12%">'+result[collection].score_documentation+'</td>'+
-                                '<td width="9%">'+result[collection].score_rareness+'</td>'+
-                                '<td width="12%">'+result[collection].score_subject_interest+'</td>'+
-                                '<td width="13%">'+result[collection].score_technical_quality+'</td>'+
-                                '<td width="6%">'+result[collection].collection_score+'</td>'+
+                                '<td width="13%">'+(result[collection].score_subject_interest)?result[collection].score_subject_interest:''+'</td>'+
+                                '<td width="12%">'+(result[collection].score_content_quality)?result[collection].score_content_quality:''+'</td>'+
+                                '<td width="9%">'+(result[collection].score_rareness)?result[collection].score_rareness:''+'</td>'+
+                                '<td width="12%">'+(result[collection].score_documentation)?result[collection].score_documentation:''+'</td>'+
+                                '<td width="13%">'+(result[collection].score_technical_quality)?result[collection].score_technical_quality:''+'</td>'+
+                                '<td width="6%">'+(result[collection].collection_score)?result[collection].collection_score:''+'</td>'+
                                 '</tr>');
                         }
                     }else{
