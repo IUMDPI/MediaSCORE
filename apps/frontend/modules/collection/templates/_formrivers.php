@@ -510,6 +510,8 @@
             $('#collection_inst_id').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_name').attr('readonly', 'readonly');
             $('#collection_name').attr('style', 'background:#F0F0F0;cursor:not-allowed');
+            $('#collection_collection_score').attr('style', 'background:#F0F0F0;cursor:not-allowed');
+            $('#collection_collection_score').attr('readonly', 'readonly');
 <?php } ?>
     });
 </script>
