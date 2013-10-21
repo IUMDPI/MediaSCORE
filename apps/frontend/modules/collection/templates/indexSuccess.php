@@ -1,9 +1,8 @@
 <?php
 if (!isset($view) || $view == '')
     $view = 'score';
-if ($sf_user->getGuardUser()->getType() != 3) {
+if ($sf_user->getGuardUser()->getRole() != 2) {
     ?>
-    <!---->
     <a class="button <?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
     <?php
 }
@@ -11,21 +10,21 @@ include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocatio
 $url = url_for('collection', $ThisUnit);
 if ($url)
     $url = '';
-?>
+?>  
 
-<div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;">
+<div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
     <ul class="tabs" data-persist="true">
-        <?php if ($sf_user->getGuardUser()->getType() == 1 || ($sf_user->getGuardUser()->getType() == 3 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getType() == 2 && $IsMediaScoreAccess)) { ?>
+        <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
         <?php } ?>
-        <?php if ($sf_user->getGuardUser()->getType() == 1 || ($sf_user->getGuardUser()->getType() == 2 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess)) { ?>
+        <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess)) { ?>
             <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >Media Rivers</a></li>
         <?php } ?>
     </ul>
 
     <div class="tabcontents">
-        <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getType() == 1) { ?>
+        <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
             <input type="hidden"
                    <div id="view1">
                 <div id="filter-container">
@@ -69,7 +68,7 @@ if ($url)
                     if ($view == 'river') {
                         ?><thead>
                             <tr>
-                                <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="50"></td>
                                 <?php } ?>
                                 <th>Primary ID</th>
@@ -87,7 +86,7 @@ if ($url)
                                 ?>
                                 <?php foreach ($collections as $collection): ?>
                                     <tr>
-                                        <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                        <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                             <td class="invisible" width="6%">
                                                 <div class="options">
                                                     <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
@@ -118,7 +117,7 @@ if ($url)
 
                         <thead>
                             <tr>
-                                <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="50"></td>
                                 <?php } ?>
                                 <th>Primary ID</th>
@@ -135,7 +134,7 @@ if ($url)
                                 ?>
                                 <?php foreach ($collections as $collection): ?>
                                     <tr>
-                                        <?php if (($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+                                        <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
 
                                             <td class="invisible">
                                                 <div class="options">
@@ -179,7 +178,7 @@ if ($url)
 </div>
 
 <script type="text/javascript">
-    var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
+    var userType = '<?php echo $sf_user->getGuardUser()->getRole(); ?>';
     var ISMediaRiverAccess = '<?php echo $ISMediaRiverAccess; ?>';
     var IsMediaScoreAccess = '<?php echo $IsMediaScoreAccess; ?>';
     $(document).ready(function() {
@@ -278,7 +277,7 @@ if ($url)
                             editdelete = '';
                             //                            IsMediaScoreAccess  ISMediaRiverAccess
                             
-                            if ((userType == 3 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 2) {
+                            if ((userType == 2 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 0) {
                                 editdelete='<td class="invisible">' +
                                     '<div class="options">' +
                                     '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
@@ -304,7 +303,7 @@ if ($url)
                         for (collection in result) {
                             console.log(result);
                             editdelete = '';
-                            if(userType!=3){
+                            if(userType!=2){
                                 editdelete='<td class="invisible">' +
                                     '<div class="options">' +
                                     '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +

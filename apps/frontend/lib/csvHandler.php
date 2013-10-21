@@ -80,7 +80,7 @@ class csvHandler {
                 $IamAtThisDirectory .=('/' . $dir);
                 $IamAtThisDirectory = str_replace('//', '/', $IamAtThisDirectory);
                 if (!is_dir($IamAtThisDirectory)) {
-                    mkdir($IamAtThisDirectory, 777, TRUE);
+                    mkdir($IamAtThisDirectory, 0777, TRUE);
                 }
             }
         }

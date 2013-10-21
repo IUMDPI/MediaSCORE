@@ -254,6 +254,18 @@ class excel extends PHPExcel {
      */
     public function SaveFile() {
         $path = sfConfig::get('sf_upload_dir') . '/' . $this->filename;
+        $dirs = explode('/', $this->filename);
+        $IamAtThisDirectory = $this->getUploadDicrectoryPath();
+        $dirsCount = count($dirs);
+        foreach ($dirs as $key => $dir) {
+            if ($key != ($dirsCount - 1)) {
+                $IamAtThisDirectory .=('/' . $dir);
+                $IamAtThisDirectory = str_replace('//', '/', $IamAtThisDirectory);
+                if (!is_dir($IamAtThisDirectory)) {
+                    mkdir($IamAtThisDirectory, 0777, TRUE);
+                }
+            }
+        }
         $objWriter = PHPExcel_IOFactory::createWriter($this, 'Excel2007');
         $objWriter->save($path);
         $this->disconnectWorksheets();

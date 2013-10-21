@@ -13,8 +13,8 @@ class IsPermisted extends sfFilter {
         if ($user->getGuardUser()) {
             $IsMediaScoreAccess = $user->getGuardUser()->getMediascoreAccess();
             $ISMediaRiverAccess = $user->getGuardUser()->getMediariverAccess();
-            $UserType = $user->getGuardUser()->getType();
-            if (!$IsMediaScoreAccess && !$ISMediaRiverAccess && $UserType != 1) {
+            $UserRole = $user->getGuardUser()->getRole();
+            if (!$IsMediaScoreAccess && !$ISMediaRiverAccess && $UserRole != 1) {
                 if (!isset($_GET['access_allow']) && empty($_GET['access_allow']) != 0) {
                     header('location: /index.php/sfGuardAuth/signout?access_allow=0');
                     exit;

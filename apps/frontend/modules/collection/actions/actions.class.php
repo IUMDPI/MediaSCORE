@@ -160,7 +160,7 @@ class collectionActions extends sfActions {
 
             $this->forward404Unless($this->unitID);
 
-            if ($this->getUser()->getGuardUser()->getType() == 3) {
+            if ($this->getUser()->getGuardUser()->getRole() == 2) {
                 $unit = Doctrine_Query::Create()
                         ->from('Unit u')
                         ->innerJoin('u.Personnel p')

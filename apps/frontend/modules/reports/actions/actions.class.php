@@ -29,7 +29,7 @@ class reportsActions extends sfActions {
 
         $IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
 
-        if (in_array($actionWithOutParam[0], $reports) && ($this->getUser()->getGuardUser()->getType() == 3 || $this->getUser()->getGuardUser()->getType() == 2) && !$IsMediaScoreAccess) {
+        if (in_array($actionWithOutParam[0], $reports) && ($this->getUser()->getGuardUser()->getRole() == 2 || $this->getUser()->getGuardUser()->getRole() == 0) && !$IsMediaScoreAccess) {
             $this->redirect('/');
         }
     }
@@ -39,6 +39,7 @@ class reportsActions extends sfActions {
         $this->ISMediaRiverAccess = $this->getUser()->getGuardUser()->getMediariverAccess();
     }
 
+//Reports Of Media Score
     public function executeGetFormatCollections(sfWebRequest $request) {
         $formatIDs = $request->getParameter('f');
         $format_explode = explode(',', $formatIDs);
@@ -47,7 +48,7 @@ class reportsActions extends sfActions {
                 ->innerJoin('as.Collection c')
                 ->innerJoin('c.Unit u')
                 ->innerJoin('as.FormatType ft');
-        if ($this->getUser()->getGuardUser()->getType() == 3) {
+        if ($this->getUser()->getGuardUser()->getRole() == 2) {
             $db_collections = $db_collections->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
         }
         if (!empty($formatIDs) && count($format_explode) > 0)
@@ -162,7 +163,7 @@ class reportsActions extends sfActions {
             $db_collections = Doctrine_Query::Create()
                     ->from('Collection c')
                     ->innerJoin('c.Unit u');
-            if ($this->getUser()->getGuardUser()->getType() == 3) {
+            if ($this->getUser()->getGuardUser()->getRole() == 2) {
                 $db_collections = $db_collections->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
             }
             if (!empty($unitIDs) && count($unit_explode) > 0)
@@ -1962,6 +1963,163 @@ class reportsActions extends sfActions {
                 } else {
                     $Bug = '<span style="color:#7d110c;font-size:16px;"><b>Please select filter to export the records.</b></span>';
                     $this->getResponse()->setSlot('my_slot', $Bug);
+                }
+            }
+        }
+    }
+
+//Reports Of Media Rivers
+//Unit Name	
+//Collection Primary ID	
+//Collection Name	
+//Characteristics	
+//Project Title
+//IUB Worker
+//Date Completed
+//Date Created
+//Date Updated
+//Subject Interest Score
+//Subject Interest Notes
+//Content Quality Score
+//Content Quality Notes
+//Rareness Score
+//Rareness Notes
+//Documentation Score
+//Documentation Notes
+//Technical Quality Score
+//Technical Quality Notes
+//TOTAL Score
+//Generation Statement
+//Generation Statement Notes
+//General Notes
+//    'characteristics',
+//    'project_title',
+//    'iub_unit',
+//    'iub_work',
+//    'date_completed',
+//    'score_subject_interest',
+//    'notes_subject_interest',
+//    'score_content_quality',
+//    'notes_content_quality',
+//    'score_rareness',
+//    'notes_rareness',
+//    'score_documentation',
+//    'notes_documentation',
+//    'score_technical_quality',
+//    'notes_technical_quality',
+//    'unknown_technical_quality',
+//    'score_technical_quality',
+//    'notes_technical_quality',
+//    'collection_score',
+//    'generation_statement',
+//    'generation_statement_notes',
+//    'ip_statement',
+//    'ip_statement_notes',
+//    'general_notes',
+
+    public function executeMediariversfullreport(sfWebRequest $request) {
+        $this->form = new ReportsForm(null, array('from' => 'collectionstatusreport', 'user' => $this->getUser()->getGuardUser()));
+        if ($request->isMethod(sfRequest::POST)) {
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if ($this->form->isValid()) {
+                $params = $request->getPostParameter('reports');
+                $Collection_id = $params['listCollection_RRD'];
+                $Units_id = $params['listUnits_RRD'];
+                $collectionStatus = $params['collectionStatus'];
+                $ExportType = $params['ExportType'];
+                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+                $Mediariversfullreportss = array();
+                if ($Units_id) {
+                    $collections = array();
+                    $Collections = Doctrine_Query::Create()
+                            ->from('Collection c')
+                            ->innerJoin('c.Unit u')
+                            ->whereIn('u.id', $Units_id);
+                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
+                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
+                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+                    if ($Collection_id && !empty($Collection_id))
+                        $Collections = $Collections->andWhereIn('c.id', $Collection_id);
+                    if ($collectionStatus && !empty($collectionStatus))
+                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+                    $Collections = $Collections->orderBy('u.id')->fetchArray();
+
+                    $SolutionArray = array();
+                    foreach ($Collections as $Collection) {
+
+                        $SolutionArray['Collection'] = $Collection;
+                        $SolutionArray['Unit'] = $Collection['Unit'];
+                        $collections[] = $SolutionArray;
+                    }
+                    if ($collections) {
+                        foreach ($collections as $collection) {
+                            $Mediariversfullreports = array();
+                            $Mediariversfullreports['Unit ID'] = $collection['Unit']['id'];
+                            $Mediariversfullreports['Unit Primary ID'] = $collection['Unit']['inst_id'];
+                            $Mediariversfullreports['Unit Name'] = $collection['Unit']['name'];
+                            $Mediariversfullreports['Collection Primary ID'] = $collection['Collection']['inst_id'];
+                            $Mediariversfullreports['Collection Name'] = $collection['Collection']['name'];
+                            $Mediariversfullreports['Characteristics'] = $collection['Collection']['characteristics'];
+                            $Mediariversfullreports['Project Title'] = $collection['Collection']['project_title'];
+                            $Mediariversfullreports['IUB Worker'] = $collection['Collection']['iub_work'];
+                            $Mediariversfullreports['Date Completed'] = $collection['Collection']['date_completed'];
+                            $Mediariversfullreports['Date Created'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['created_at']));
+                            $Mediariversfullreports['Date Updated'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['updated_at']));
+                            $Mediariversfullreports['Subject Interest Score'] = $collection['Collection']['score_subject_interest'];
+                            $Mediariversfullreports['Subject Interest Notes'] = $collection['Collection']['notes_subject_interest'];
+                            $Mediariversfullreports['Content Quality Score'] = $collection['Collection']['score_content_quality'];
+                            $Mediariversfullreports['Content Quality Notes'] = $collection['Collection']['notes_content_quality'];
+                            $Mediariversfullreports['Rareness Score'] = $collection['Collection']['score_rareness'];
+                            $Mediariversfullreports['Rareness Notes'] = $collection['Collection']['notes_rareness'];
+                            $Mediariversfullreports['Documentation Score'] = $collection['Collection']['score_documentation'];
+                            $Mediariversfullreports['Documentation Notes'] = $collection['Collection']['notes_documentation'];
+                            $Mediariversfullreports['Technical Quality Score'] = $collection['Collection']['score_technical_quality'];
+                            $Mediariversfullreports['Technical Quality Notes'] = $collection['Collection']['notes_technical_quality'];
+                            $Mediariversfullreports['TOTAL Score'] = $collection['Collection']['collection_score'];
+                            $Mediariversfullreports['Generation Statement'] = $collection['Collection']['generation_statement'];
+                            $Mediariversfullreports['Generation Statement Notes'] = $collection['Collection']['generation_statement_notes'];
+                            $Mediariversfullreports['General Notes'] = $collection['Collection']['general_notes'];
+
+                            $Mediariversfullreportss[] = $Mediariversfullreports;
+                        }
+
+                        if ($ExportType == 'xls') {
+                            $excel = new excel();
+                            $excel->setDataArray($Mediariversfullreportss);
+                            $excel->extractHeadings();
+                            $filename = 'Full_Media_River_Report' . date('Ymd') . '.xlsx';
+                            $Sheettitle = 'Full_Media_River_Report';
+                            $intial_dicrectory = '/FullMediaRiverReport/xls/';
+                            $file_name_with_directory = $intial_dicrectory . $filename;
+
+                            $excel->setDataArray($Mediariversfullreportss);
+                            $excel->extractHeadings();
+                            $excel->setFileName($file_name_with_directory);
+                            $excel->setSheetTitle($Sheettitle);
+
+                            $excel->createExcel();
+
+                            $excel->SaveFile();
+                            $excel->DownloadXLSX($file_name_with_directory, $filename);
+                            $excel->DeleteFile($file_name_with_directory);
+                            exit;
+                        } else {
+
+                            $csvHandler = new csvHandler();
+                            $file_name = 'Full_Media_River_Report' . date('Ymd') . '.csv';
+                            $intial_dicrectory = '/FullMediaRiverReport/csv/';
+                            $file_name_with_directory = $intial_dicrectory . $file_name;
+                            $csvHandler->CreateCSV($Mediariversfullreportss, $file_name_with_directory);
+                            $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
+                            $csvHandler->DeleteFile($file_name_with_directory);
+                            exit;
+                        }
+                    } else {
+                        $Bug = '<span style="color:#7d110c;font-size:16px;"><b>No record available for export.</b></span>';
+                        $this->getResponse()->setSlot('my_slot', $Bug);
+                    }
                 }
             }
         }
