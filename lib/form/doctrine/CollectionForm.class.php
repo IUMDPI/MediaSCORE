@@ -159,7 +159,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));
 
             $this->setWidget('title', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('style' => 'width:90%;')));
+            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('style' => 'width:98%;')));
             $this->setWidget('project_title', new sfWidgetFormInputText(array(), array('style' => 'width: 190px;height: 12px;')));
 
             $this->setWidget('iub_unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'IUB Unit:&nbsp;', 'multiple' => FALSE)));
@@ -194,7 +194,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('ip_statement', new sfWidgetFormInputText(array(), array('style' => 'width:120px;')));
             $this->setWidget('ip_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
 
-            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:90%;')));
+            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:98%;')));
 
 
 
@@ -229,13 +229,14 @@ class CollectionForm extends BaseCollectionForm {
             $this->getWidget('ip_statement_notes')->setLabel('<span class="required"></span> Notes:&nbsp;');
             $this->getWidget('general_notes')->setLabel('<span class="required"></span> General Notes:&nbsp;');
 
-            $this->setValidator('score_subject_interest', new sfValidatorNumber(array('required' => FALSE)));
-            $this->setValidator('score_content_quality', new sfValidatorNumber(array('required' => FALSE)));
-            $this->setValidator('score_rareness', new sfValidatorNumber(array('required' => FALSE)));
-            $this->setValidator('score_documentation', new sfValidatorNumber(array('required' => FALSE)));
-            $this->setValidator('score_technical_quality', new sfValidatorNumber(array('required' => FALSE)));
-            $this->setValidator('score_technical_quality', new sfValidatorNumber(array('required' => FALSE)));
-
+            $this->setValidator('score_subject_interest', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+            $this->setValidator('score_content_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+            $this->setValidator('score_rareness', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+            $this->setValidator('score_documentation', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+            $this->setValidator('score_technical_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+            $this->setValidator('score_technical_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+//            $this->addMessage('max', 'Value must be at most 5.');
+//            $this->addMessage('min', 'Value must be at least 0.');
 //            $this->setValidator('parent_node_id', new sfValidatorString(array('required' => true)));
 //            $this->setValidator('title', new sfValidatorString(array('required' => true)));
 //            $this->setValidator('characteristics', new sfValidatorString(array('required' => true)));
@@ -274,18 +275,18 @@ class CollectionForm extends BaseCollectionForm {
 //            $this->getValidator('iub_unit')->setMessages(array('required' => 'IUB Unit is a required field..', 'invalid' => 'Invalid IUB Unit'));
 //            $this->getValidator('iub_work')->setMessages(array('required' => 'IUB Worker is a required field..', 'invalid' => 'Invalid IUB Worker'));
 //            $this->getValidator('date_completed')->setMessages(array('required' => 'Date Completed is a required field..', 'invalid' => 'Invalid Date Completed'));
-            $this->getValidator('score_subject_interest')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer and less then 5'));
+            $this->getValidator('score_subject_interest')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_subject_interest')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Note'));
-            $this->getValidator('score_content_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer and less then 5'));
+            $this->getValidator('score_content_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_content_quality')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Note'));
-            $this->getValidator('score_rareness')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score , score must be integer and less then 5'));
+            $this->getValidator('score_rareness')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score , score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_rareness')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
-            $this->getValidator('score_documentation')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer and less then 5'));
+            $this->getValidator('score_documentation')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_documentation')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
-            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer and less then 5'));
+            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_technical_quality')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
 //            $this->getValidator('unknown_technical_quality')->setMessages(array('required' => 'This is a required field..'));
-            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer and less then 5'));
+            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_technical_quality')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
 //            $this->getValidator('collection_score')->setMessages(array('required' => 'Collection Score is a required field..', 'invalid' => 'Invalid Collection Score'));
 //            $this->getValidator('generation_statement')->setMessages(array('required' => 'Generation Statement is a required field..', 'invalid' => 'Invalid Generation Statement'));

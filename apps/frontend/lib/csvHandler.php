@@ -68,9 +68,22 @@ class csvHandler {
         if (count($array) == 0) {
             return null;
         }
+
         ob_start();
-		
+
         $df = fopen($this->getUploadDicrectoryPath() . $filename, 'w');
+        $dirs = explode('/', $filename);
+        $IamAtThisDirectory = $this->getUploadDicrectoryPath();
+        $dirsCount = count($dirs);
+        foreach ($dirs as $key => $dir) {
+            if ($key != ($dirsCount - 1)) {
+                $IamAtThisDirectory .=('/' . $dir);
+                $IamAtThisDirectory = str_replace('//', '/', $IamAtThisDirectory);
+                if (!is_dir($IamAtThisDirectory)) {
+                    mkdir($IamAtThisDirectory, 777, TRUE);
+                }
+            }
+        }
         fputcsv($df, array('Report Date', ' - ' . date('Y-m-d') . ' - '));
         if ($showAppliedFilters) {
             fputcsv($df, array('Filters Applied'));
@@ -86,8 +99,8 @@ class csvHandler {
         }
 
         foreach ($array as $row) {
-			if($row==NULL || empty($row) || $row=='NULL' || $row=='NULL ,')
-				$row='';
+            if ($row == NULL || empty($row) || $row == 'NULL' || $row == 'NULL ,')
+                $row = '';
             fputcsv($df, $row);
         }
         fclose($df);

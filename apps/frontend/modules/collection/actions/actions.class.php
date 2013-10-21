@@ -63,7 +63,8 @@ class collectionActions extends sfActions {
 
             $url = $this->generateUrl("collection", $unit[0]);
             $urls = explode('?', $url);
-            header('location: ' . $urls[0]);
+//            header('location: ' . $urls[0]);
+            $this->redirect($urls[0]);
             exit;
         }
     }
@@ -246,7 +247,8 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-            header('location: ' . $this->generateUrl("collection", $unit[0]));
+//            header('location: ' . $this->generateUrl("collection", $unit[0]));
+            $this->redirect($this->generateUrl("collection", $unit[0]));
             echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {
@@ -318,7 +320,8 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-            header('location: ' . $this->generateUrl("collection", $unit[0]));
+//            header('location: ' . $this->generateUrl("collection", $unit[0]));
+            $this->redirect($this->generateUrl("collection", $unit[0]));
             echo '<script>' . $this->generateUrl("collection", $unit[0]) . '</script>';
             exit;
         } else {

@@ -1,7 +1,5 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-
-
 <div style="background-color: #F4F4F4;padding-left: 10px;padding-right: 5px;" id="collectionMain">
     <div id="main" class="clearfix" style="height: auto;">
         <form id="collection_form" action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
@@ -9,7 +7,6 @@
                 <input type="hidden" name="sf_method" value="put" />
             <?php endif; ?>
             <table class="normal_form" cellpadding='0' cellspacing="0" width="100%">
-
                 <tfoot>
                     <tr>
                         <td colspan="2"> 
@@ -20,7 +17,6 @@
                     </tr> 
                 </tfoot>
                 <tbody>
-
                     <?php if (isset($actionType) && $actionType == 'edit') { ?>
                         <tr>
                             <th>

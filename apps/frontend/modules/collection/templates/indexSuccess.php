@@ -16,10 +16,10 @@ if ($url)
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;">
 
     <ul class="tabs" data-persist="true">
-        <?php if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+        <?php if ($sf_user->getGuardUser()->getType() == 1 || ($sf_user->getGuardUser()->getType() == 3 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getType() == 2 && $IsMediaScoreAccess)) { ?>
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
         <?php } ?>
-        <?php if ($ISMediaRiverAccess || $sf_user->getGuardUser()->getType() == 1 || $sf_user->getGuardUser()->getType() == 2) { ?>
+        <?php if ($sf_user->getGuardUser()->getType() == 1 || ($sf_user->getGuardUser()->getType() == 2 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getType() == 3 && $ISMediaRiverAccess)) { ?>
             <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >Media Rivers</a></li>
         <?php } ?>
     </ul>
@@ -291,12 +291,12 @@ if ($url)
                                 +
                                 '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
                                 '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
-                                '<td width="13%">'+(result[collection].score_subject_interest)?result[collection].score_subject_interest:''+'</td>'+
-                                '<td width="12%">'+(result[collection].score_content_quality)?result[collection].score_content_quality:''+'</td>'+
-                                '<td width="9%">'+(result[collection].score_rareness)?result[collection].score_rareness:''+'</td>'+
-                                '<td width="12%">'+(result[collection].score_documentation)?result[collection].score_documentation:''+'</td>'+
-                                '<td width="13%">'+(result[collection].score_technical_quality)?result[collection].score_technical_quality:''+'</td>'+
-                                '<td width="6%">'+(result[collection].collection_score)?result[collection].collection_score:''+'</td>'+
+                                '<td width="13%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
+                                '<td width="12%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
+                                '<td width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
+                                '<td width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'')+'</td>'+
+                                '<td width="13%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
+                                '<td width="6%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
                                 '</tr>');
                         }
                     }else{

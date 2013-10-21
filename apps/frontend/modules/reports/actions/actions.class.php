@@ -10,8 +10,33 @@
  */
 class reportsActions extends sfActions {
 
+    public function preExecute() {
+        parent::preExecute();
+        $uri = $this->getContext()->getRouting()->getCurrentInternalUri();
+        $actionWithParam = explode('/', $uri);
+        $param = $actionWithParam[(count($actionWithParam) - 1)];
+        $actionWithOutParam = explode('?', $param);
+        $reports = array(
+            'recordingdatereport',
+            'assetsgroupsscoringreports',
+            'collectionstatusreport',
+            'problemmediareport',
+            'alldataoutputreport',
+            'evaluatorsreport',
+            'percentageofholdings',
+            'durationandquantitysearch'
+        );
+
+        $IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
+
+        if (in_array($actionWithOutParam[0], $reports) && ($this->getUser()->getGuardUser()->getType() == 3 || $this->getUser()->getGuardUser()->getType() == 2) && !$IsMediaScoreAccess) {
+            $this->redirect('/');
+        }
+    }
+
     public function executeIndex(sfWebRequest $request) {
-        
+        $this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
+        $this->ISMediaRiverAccess = $this->getUser()->getGuardUser()->getMediariverAccess();
     }
 
     public function executeGetFormatCollections(sfWebRequest $request) {
@@ -410,6 +435,7 @@ class reportsActions extends sfActions {
                             $file_name = 'Recording_Date_Report_' . date('Ymd') . '.csv';
                             $intial_dicrectory = '/AssetsScore/csv/';
                             $file_name_with_directory = $intial_dicrectory . $file_name;
+
                             $csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory);
                             $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                             $csvHandler->DeleteFile($file_name_with_directory);

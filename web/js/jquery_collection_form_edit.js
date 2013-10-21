@@ -161,8 +161,7 @@ function getStorage(id){
                 }
             }
             else{
-                $('#collection_storage_locations_list').html('<option value="-1">None</option>');
-                        
+                $('#collection_storage_locations_list').html('<option value="-1">None</option>');       
             }
             $("#collection_storage_locations_list").multiselect("refresh");
             $('#collection_storage_locations_list').multiselect({
@@ -215,7 +214,7 @@ function isValidScore(value){
     if(value !='' && typeof value != "undefined") {
         if(IsNumeric(value)){
             value = parseFloat(value);
-            if(value<=5){
+            if(value>=0 && value<=5){
                 result = true;
             }else{
                 result = false;
@@ -233,9 +232,8 @@ function isValidScore(value){
 function handleValuesOfTextField(object,CollectionScoreObj){
     var score = object.val();
     if(!isValidScore(score)){
-        //            object.val(0)    
         $('#'+object.attr('id')+'_errorn').remove();
-        object.after('<span id="'+object.attr('id')+'_errorn" style="color:#7D110C;font-size: 9px;font-weight:bold;"><br/>Score must be integer and less then 5 </span>');
+        object.after('<span id="'+object.attr('id')+'_errorn" style="color:#7D110C;font-size: 9px;font-weight:bold;"><br/>Score must be integer , greater then 0 and  less then 5 </span>');
     }else{
         $('#'+object.attr('id')+'_errorn').remove();
     }
@@ -255,33 +253,33 @@ $(function(){
     collection_collection_score_obj = $("#collection_collection_score");
         
     //        Subject Interest Score Placing  and Validation
-    collection_score_subject_interest_obj.live( "keydown keyup change", function() {
+    collection_score_subject_interest_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_subject_interest_obj,collection_collection_score_obj); 
                       
     });
         
     //        Content Quality Score Placing  and Validation
-    collection_score_content_quality_obj.live( "keydown keyup change", function() {
+    collection_score_content_quality_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_content_quality_obj,collection_collection_score_obj);
                 
     });
         
         
     //        Rareness Score Placing  and Validation
-    collection_score_rareness_obj.live( "keydown keyup change", function() {
+    collection_score_rareness_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_rareness_obj,collection_collection_score_obj);
       
     });
         
         
     //        Documentation Score Placing And Validation
-    collection_score_documentation_obj.live( "keydown keyup change", function() {
+    collection_score_documentation_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_documentation_obj,collection_collection_score_obj);
             
     });
         
     //        Technical Quality Score Placing  and Validation
-    collection_score_technical_quality_obj.live( "keydown keyup change", function() {
+    collection_score_technical_quality_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_technical_quality_obj,collection_collection_score_obj);
            
     });

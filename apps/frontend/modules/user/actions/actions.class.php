@@ -31,6 +31,7 @@ class userActions extends sfActions {
 
 
 
+
             
 // List all the users
         $this->users = Doctrine_Core::getTable('sfGuardUser')
