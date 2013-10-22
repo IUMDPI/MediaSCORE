@@ -2009,12 +2009,11 @@ class reportsActions extends sfActions {
                         $SolutionArray['Unit'] = $Collection['Unit'];
                         $collections[] = $SolutionArray;
                     }
-
                     if ($collections) {
                         foreach ($collections as $collection) {
                             $Mediariversfullreports = array();
                             $Mediariversfullreports['Unit ID'] = $collection['Unit']['id'];
-                            $Mediariversfullreports['Unit Primary ID'] = $collection['Unit']['inst_id'];
+
                             $Mediariversfullreports['Unit Name'] = $collection['Unit']['name'];
                             $Mediariversfullreports['Collection Primary ID'] = $collection['Collection']['inst_id'];
                             $Mediariversfullreports['Collection Name'] = $collection['Collection']['name'];
