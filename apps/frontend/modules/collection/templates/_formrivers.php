@@ -109,21 +109,16 @@
                             <?php // echo $form['iub_unit']->render(array('iub_unit' => 'IUB UNIT selection.'));   ?> 
                             <?php // echo $form['iub_unit']->renderError();  ?>
                                                             </div>
-                                                        </div>
-                         
-                                                        <div style="float: left;
-            padding-right:30px;
-            ">
-                                                            <div style="font-weight: bold;
-            ">
-                            <?php // echo $form['iub_work']->renderLabel();   ?>
-                                                            </div>
-                                                            <div style="float: left;
-            ">
-                            <?php // echo $form['iub_work']->render(array('iub_work' => 'IUB Worker selection.'));   ?> 
-                            <?php // echo $form['iub_work']->renderError();  ?>
-                                                            </div>
                                                         </div>-->
+
+                            <div style="float: left;padding-right:30px;">
+                                <div style="font-weight: bold;">
+                                    <?php echo $form['iub_work']->renderLabel(); ?>
+                                </div>
+                                <div style="float: left;">
+                                    <input type="text" value="<?php echo $sf_user->getGuardUser()->getFirstName() . ' ' . $sf_user->getGuardUser()->getLastName(); ?>" readonly="readonly" style="background-color: #F0F0F0;cursor: not-allowed"/>
+                                </div>
+                            </div>
                         </td>
 
                     </tr>
@@ -498,7 +493,7 @@
 <script type="text/javascript">
     $(function(){
         
-        $("#format_type_off_brand").parents(".row").show();
+        $("#format_type_off_brand").parents(".row").show(); 
         $("#format_type_fungus") . parents(".row") . show();
     
     

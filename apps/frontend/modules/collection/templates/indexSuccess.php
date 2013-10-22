@@ -26,7 +26,7 @@ if ($url)
     <div class="tabcontents">
         <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
             <input type="hidden"
-                   <div id="view1">
+                   <div id="view1"> 
                 <div id="filter-container">
                     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
                         <div class="title">Filter by:</div>
@@ -181,7 +181,9 @@ if ($url)
     var userType = '<?php echo $sf_user->getGuardUser()->getRole(); ?>';
     var ISMediaRiverAccess = '<?php echo $ISMediaRiverAccess; ?>';
     var IsMediaScoreAccess = '<?php echo $IsMediaScoreAccess; ?>';
+    
     $(document).ready(function() {
+        
         var dates = $("#from, #to").datepicker({
             defaultDate: "+1w",
             changeMonth: true,
@@ -373,6 +375,32 @@ if ($url)
       
     });
 
+    function BindJsAgain(){
+        $.get('/frontend_dev.php/storagelocation/index',{
+            u:$('#collection_parent_node_id').val()}, 
+        function (storageLocation) {
+            $('#collection_storage_locations_list').html('');
+            if(storageLocation.length) {
+                for(i in storageLocation)
+                    if(storageLocation[i]){
+                        $('#collection_storage_locations_list').append('<option value="'+storageLocation[i].id+'" selected="selected">'+storageLocation[i].name+'</option>');
+                    }
+                            
+                $('#collection_storage_locations_list').multiselect({
+                    'height':'auto'
+                }).multiselectfilter(); 
+            } else {
+                $('#collection_storage_locations_list').append( '<option value="-1">No Storage Location</option>');
+                $('#collection_storage_locations_list').multiselect({
+                    'height':'auto',
+                    header: "Storage Location!",
+                    multiple:false,
+                    selectedList: 1 // 0-based index
+                }); 
+                $('#collection_storage_locations_list').multiselect("checkAll"); 
+            }
+        });
+    }
 </script>
 <?php if (sizeof($collections) > 0) {
     ?>
