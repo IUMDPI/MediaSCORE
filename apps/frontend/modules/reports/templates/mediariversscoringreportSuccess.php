@@ -1,10 +1,10 @@
-<h1>Media Rivers Full Report</h1>
+<h1>Media Rivers Scoring Report</h1>
 <hr/>
 <?php
 echo $NoRecordFound = get_slot('my_slot');
 ?>
 
-<form action="<?php echo url_for('reports/mediariversfullreport') ?>" method="post">
+<form action="<?php echo url_for('reports/mediariversscoringreport') ?>" method="post">
     <table>
         <tfoot>
             <tr>

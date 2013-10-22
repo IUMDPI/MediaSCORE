@@ -179,7 +179,6 @@ class reportsActions extends sfActions {
                     $unit_collections['status'][$value['status']] = $status[$value['status']];
                 }
             }
-
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
 
@@ -1968,55 +1967,11 @@ class reportsActions extends sfActions {
         }
     }
 
-//Reports Of Media Rivers
-//Unit Name	
-//Collection Primary ID	
-//Collection Name	
-//Characteristics	
-//Project Title
-//IUB Worker
-//Date Completed
-//Date Created
-//Date Updated
-//Subject Interest Score
-//Subject Interest Notes
-//Content Quality Score
-//Content Quality Notes
-//Rareness Score
-//Rareness Notes
-//Documentation Score
-//Documentation Notes
-//Technical Quality Score
-//Technical Quality Notes
-//TOTAL Score
-//Generation Statement
-//Generation Statement Notes
-//General Notes
-//    'characteristics',
-//    'project_title',
-//    'iub_unit',
-//    'iub_work',
-//    'date_completed',
-//    'score_subject_interest',
-//    'notes_subject_interest',
-//    'score_content_quality',
-//    'notes_content_quality',
-//    'score_rareness',
-//    'notes_rareness',
-//    'score_documentation',
-//    'notes_documentation',
-//    'score_technical_quality',
-//    'notes_technical_quality',
-//    'unknown_technical_quality',
-//    'score_technical_quality',
-//    'notes_technical_quality',
-//    'collection_score',
-//    'generation_statement',
-//    'generation_statement_notes',
-//    'ip_statement',
-//    'ip_statement_notes',
-//    'general_notes',
-
+    /**
+     * Reports Of Media Rivers
+     * @param sfWebRequest $request
+     * 
+     */
     public function executeMediariversfullreport(sfWebRequest $request) {
         $this->form = new ReportsForm(null, array('from' => 'collectionstatusreport', 'user' => $this->getUser()->getGuardUser()));
         if ($request->isMethod(sfRequest::POST)) {
@@ -2112,6 +2067,103 @@ class reportsActions extends sfActions {
                             $intial_dicrectory = '/FullMediaRiverReport/csv/';
                             $file_name_with_directory = $intial_dicrectory . $file_name;
                             $csvHandler->CreateCSV($Mediariversfullreportss, $file_name_with_directory);
+                            $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
+                            $csvHandler->DeleteFile($file_name_with_directory);
+                            exit;
+                        }
+                    } else {
+                        $Bug = '<span style="color:#7d110c;font-size:16px;"><b>No record available for export.</b></span>';
+                        $this->getResponse()->setSlot('my_slot', $Bug);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Media Rivers Scoring Report
+     * @param sfWebRequest $request
+     */
+    public function executeMediariversscoringreport(sfWebRequest $request) {
+        $this->form = new ReportsForm(null, array('from' => 'collectionstatusreport', 'user' => $this->getUser()->getGuardUser()));
+        if ($request->isMethod(sfRequest::POST)) {
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if ($this->form->isValid()) {
+                $params = $request->getPostParameter('reports');
+                $Collection_id = $params['listCollection_RRD'];
+                $Units_id = $params['listUnits_RRD'];
+                $collectionStatus = $params['collectionStatus'];
+                $ExportType = $params['ExportType'];
+                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+                $Mediariversscoringreports = array();
+                if ($Units_id) {
+                    $collections = array();
+                    $Collections = Doctrine_Query::Create()
+                            ->from('Collection c')
+                            ->innerJoin('c.Unit u')
+                            ->whereIn('u.id', $Units_id);
+                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
+                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
+                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+                    if ($Collection_id && !empty($Collection_id))
+                        $Collections = $Collections->andWhereIn('c.id', $Collection_id);
+                    if ($collectionStatus && !empty($collectionStatus))
+                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+                    $Collections = $Collections->orderBy('u.id')->fetchArray();
+
+                    $SolutionArray = array();
+                    foreach ($Collections as $Collection) {
+                        $SolutionArray['Collection'] = $Collection;
+                        $SolutionArray['Unit'] = $Collection['Unit'];
+                        $collections[] = $SolutionArray;
+                    }
+
+                    if ($collections) {
+                        foreach ($collections as $collection) {
+                            $Mediariversscoringreport = array();
+                            $Mediariversscoringreport['Unit Name'] = $collection['Unit']['name'];
+                            $Mediariversscoringreport['Collection Primary ID'] = $collection['Collection']['inst_id'];
+                            $Mediariversscoringreport['Collection Name'] = $collection['Collection']['name'];
+                            $Mediariversscoringreport['IUB Worker'] = $collection['Collection']['iub_work'];
+                            $Mediariversscoringreport['Subject Interest Score'] = $collection['Collection']['score_subject_interest'];
+                            $Mediariversscoringreport['Content Quality Score'] = $collection['Collection']['score_content_quality'];
+                            $Mediariversscoringreport['Rareness Score'] = $collection['Collection']['score_rareness'];
+                            $Mediariversscoringreport['Documentation Score'] = $collection['Collection']['score_documentation'];
+                            $Mediariversscoringreport['Technical Quality Score'] = $collection['Collection']['score_technical_quality'];
+                            $Mediariversscoringreport['TOTAL Score'] = $collection['Collection']['collection_score'];
+
+                            $Mediariversscoringreports[] = $Mediariversscoringreport;
+                        }
+
+                        if ($ExportType == 'xls') {
+                            $excel = new excel();
+                            $excel->setDataArray($Mediariversscoringreports);
+                            $excel->extractHeadings();
+                            $filename = 'Media_Rivers_Scoring_Report' . date('Ymd') . '.xlsx';
+                            $Sheettitle = 'Media_Rivers_Scoring_Report';
+                            $intial_dicrectory = '/MediaRiversScoringReport/xls/';
+                            $file_name_with_directory = $intial_dicrectory . $filename;
+
+                            $excel->setDataArray($Mediariversscoringreports);
+                            $excel->extractHeadings();
+                            $excel->setFileName($file_name_with_directory);
+                            $excel->setSheetTitle($Sheettitle);
+
+                            $excel->createExcel();
+
+                            $excel->SaveFile();
+                            $excel->DownloadXLSX($file_name_with_directory, $filename);
+                            $excel->DeleteFile($file_name_with_directory);
+                            exit;
+                        } else {
+
+                            $csvHandler = new csvHandler();
+                            $file_name = 'Media_Rivers_Scoring_Report' . date('Ymd') . '.csv';
+                            $intial_dicrectory = '/MediaRiversScoringReport/csv/';
+                            $file_name_with_directory = $intial_dicrectory . $file_name;
+                            $csvHandler->CreateCSV($Mediariversscoringreports, $file_name_with_directory);
                             $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
                             $csvHandler->DeleteFile($file_name_with_directory);
                             exit;

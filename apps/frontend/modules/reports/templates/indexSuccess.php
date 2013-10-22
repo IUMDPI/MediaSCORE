@@ -2,18 +2,19 @@
 <hr/>
 <table>
     <tbody>
-        <?php
-        if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
-            ?>
-            <tr>
-                <th><br/></th>
-            </tr>
-            <tr>
-                <th><h2>Media Score</h2></th>    
-    </tr>
-    <tr>
-        <th><hr/></th>
-    </tr>
+        <tr>
+            <th><br/></th>
+        </tr>
+        <tr>
+            <th><h2>Media Score</h2></th>    
+</tr>
+<tr>
+    <th><hr/></th>
+</tr>
+<?php
+if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
+    ?>
+
     <tr>
         <th><label><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></label></th>
     </tr>
@@ -36,6 +37,7 @@
             <th><label><a href="<?php echo url_for('reports/evaluatorsreport') ?>">Evaluator's Report</a></label></th>
         </tr>
     <?php } ?>
+
     <tr>
         <th><label><a href="<?php echo url_for('reports/percentageofholdings') ?>">Percentage of holdings</a></label></th>
     </tr>
@@ -43,7 +45,7 @@
         <th><label><a href="<?php echo url_for('reports/durationandquantitysearch') ?>">Duration Reports</a></label></th>
     </tr>
 <?php } else { ?>
-    <tr><th><center><label><a>You don't have Reports Access</a></label></center></th></tr>
+    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>
 <?php } ?>
 <tr>
     <th><br/></th>
@@ -54,12 +56,16 @@
 <tr>
     <th><hr/></th>
 </tr>
-<tr>
-    <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Full Media River Report</a></label></th>
-</tr>
-<tr>
-    <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Media Rivers Scoring Report</a></label></th>
-</tr>
+<?php if ($ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
+    <tr>
+        <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Full Media River Report</a></label></th>
+    </tr>
+    <tr>
+        <th><label><a href="<?php echo url_for('reports/mediariversscoringreport') ?>">Media Rivers Scoring Report</a></label></th>
+    </tr>
+<?php } else { ?>
+    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>
+<?php } ?>
 </tbody>
 </table>
 
