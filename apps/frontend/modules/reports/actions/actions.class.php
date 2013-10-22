@@ -1990,6 +1990,7 @@ class reportsActions extends sfActions {
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
                             ->innerJoin('c.Unit u')
+                            ->leftJoin('c.Creator sd')
                             ->whereIn('u.id', $Units_id);
 //                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
 //                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
@@ -2008,6 +2009,7 @@ class reportsActions extends sfActions {
                         $SolutionArray['Unit'] = $Collection['Unit'];
                         $collections[] = $SolutionArray;
                     }
+
                     if ($collections) {
                         foreach ($collections as $collection) {
                             $Mediariversfullreports = array();
@@ -2018,7 +2020,7 @@ class reportsActions extends sfActions {
                             $Mediariversfullreports['Collection Name'] = $collection['Collection']['name'];
                             $Mediariversfullreports['Characteristics'] = $collection['Collection']['characteristics'];
                             $Mediariversfullreports['Project Title'] = $collection['Collection']['project_title'];
-                            $Mediariversfullreports['IUB Worker'] = $collection['Collection']['iub_work'];
+                            $Mediariversfullreports['IUB Worker'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
                             $Mediariversfullreports['Date Completed'] = $collection['Collection']['date_completed'];
                             $Mediariversfullreports['Date Created'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['created_at']));
                             $Mediariversfullreports['Date Updated'] = date('Y-m-d H:i:s', strtotime($collection['Collection']['updated_at']));
@@ -2102,6 +2104,7 @@ class reportsActions extends sfActions {
                     $Collections = Doctrine_Query::Create()
                             ->from('Collection c')
                             ->innerJoin('c.Unit u')
+                            ->leftJoin('c.Creator sd')
                             ->whereIn('u.id', $Units_id);
 //                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
 //                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
@@ -2126,7 +2129,7 @@ class reportsActions extends sfActions {
                             $Mediariversscoringreport['Unit Name'] = $collection['Unit']['name'];
                             $Mediariversscoringreport['Collection Primary ID'] = $collection['Collection']['inst_id'];
                             $Mediariversscoringreport['Collection Name'] = $collection['Collection']['name'];
-                            $Mediariversscoringreport['IUB Worker'] = $collection['Collection']['iub_work'];
+                            $Mediariversfullreports['IUB Worker'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
                             $Mediariversscoringreport['Subject Interest Score'] = $collection['Collection']['score_subject_interest'];
                             $Mediariversscoringreport['Content Quality Score'] = $collection['Collection']['score_content_quality'];
                             $Mediariversscoringreport['Rareness Score'] = $collection['Collection']['score_rareness'];
