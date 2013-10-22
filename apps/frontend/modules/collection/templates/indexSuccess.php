@@ -362,6 +362,8 @@ if ($url)
         i++;
     }
     $(function(){
+        //        setTimeout('BindJsAgain()', 1000);
+        setInterval(function(){console.log(Math.random());if($("#collection_storage_locations_list").is(":visible")){BindJsAgain();}},1000);
         $( "#mediascoresView" ).bind( "click", function() {
             $("#mediascoresView").attr('class','SelectTabClass');
             $('#mediariversView').attr('class','none');
