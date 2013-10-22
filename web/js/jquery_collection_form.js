@@ -275,3 +275,43 @@ $(function(){
         }
     });
 });
+
+function BindJsAgain(){
+    updateStorageLocationList = function () {
+        $.get(
+            '/frontend_dev.php/storagelocation/index',
+            {
+                u:$('#collection_parent_node_id').val()
+            },
+            function (storageLocation) {
+                $('#collection_storage_locations_list').html('');
+                if(storageLocation.length) {
+                    for(i in storageLocation)
+                        if(storageLocation[i]){
+                            $('#collection_storage_locations_list').append('<option value="'+storageLocation[i].id+'" selected="selected">'+storageLocation[i].name+'</option>');
+                        }
+                            
+                    $('#collection_storage_locations_list').multiselect({
+                        'height':'auto'
+                    }).multiselectfilter(); 
+                } else {
+                    $('#collection_storage_locations_list').append( '<option value="-1">No Storage Location</option>');
+                    $('#collection_storage_locations_list').multiselect({
+                        'height':'auto',
+                        header: "Storage Location!",
+                        multiple:false,
+                        selectedList: 1 // 0-based index
+                    }); 
+                    $('#collection_storage_locations_list').multiselect("checkAll"); 
+                }
+            });
+    }
+    updateStorageLocationList();
+    
+    $('#collection_status').multiselect({
+        'height':'auto',
+        'multiple':false,
+        selectedList: 1 // 0-based index
+    });
+        
+}
