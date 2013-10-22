@@ -1991,14 +1991,14 @@ class reportsActions extends sfActions {
                             ->from('Collection c')
                             ->innerJoin('c.Unit u')
                             ->whereIn('u.id', $Units_id);
-                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
-                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
-                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+//                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
+//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+//                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
+//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
                     if ($Collection_id && !empty($Collection_id))
                         $Collections = $Collections->andWhereIn('c.id', $Collection_id);
-                    if ($collectionStatus && !empty($collectionStatus))
-                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+//                    if ($collectionStatus && !empty($collectionStatus))
+//                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
                     $Collections = $Collections->orderBy('u.id')->fetchArray();
 
                     $SolutionArray = array();
@@ -2094,8 +2094,8 @@ class reportsActions extends sfActions {
                 $Units_id = $params['listUnits_RRD'];
                 $collectionStatus = $params['collectionStatus'];
                 $ExportType = $params['ExportType'];
-                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
-                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+//                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+//                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
                 $Mediariversscoringreports = array();
                 if ($Units_id) {
                     $collections = array();
@@ -2103,14 +2103,14 @@ class reportsActions extends sfActions {
                             ->from('Collection c')
                             ->innerJoin('c.Unit u')
                             ->whereIn('u.id', $Units_id);
-                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
-                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
-                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+//                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
+//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
+//                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
+//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
                     if ($Collection_id && !empty($Collection_id))
                         $Collections = $Collections->andWhereIn('c.id', $Collection_id);
-                    if ($collectionStatus && !empty($collectionStatus))
-                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+//                    if ($collectionStatus && !empty($collectionStatus))
+//                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
                     $Collections = $Collections->orderBy('u.id')->fetchArray();
 
                     $SolutionArray = array();

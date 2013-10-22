@@ -36,16 +36,6 @@ echo $NoRecordFound = get_slot('my_slot');
             <tr>
                 <th>
 
-                    <?php echo $form['collectionStatus']->renderLabel(); ?>
-                </th>
-                <td>
-                    <?php echo $form['collectionStatus']->render(); ?>
-                    <?php echo $form['collectionStatus']->renderError(); ?>
-                </td>
-            </tr>
-            <tr>
-                <th>
-
                     <?php echo $form['ExportType']->renderLabel(); ?>
                 </th>
                 <td>
