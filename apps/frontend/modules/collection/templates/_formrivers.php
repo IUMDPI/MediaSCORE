@@ -97,20 +97,6 @@
                                          <?php echo $form['project_title']->renderError(); ?>
                                 </div>
                             </div>
-                            <!--                            <div style="float: left;
-            padding-right:30px;
-            ">
-                                                            <div style="font-weight: bold;
-            ">
-                            <?php // echo $form['iub_unit']->renderLabel();   ?>
-                                                            </div>
-                                                            <div style="float: left;
-            ">
-                            <?php // echo $form['iub_unit']->render(array('iub_unit' => 'IUB UNIT selection.'));   ?> 
-                            <?php // echo $form['iub_unit']->renderError();  ?>
-                                                            </div>
-                                                        </div>-->
-
                             <div style="float: left;padding-right:30px;">
                                 <div style="font-weight: bold;">
                                     <?php echo $form['iub_work']->renderLabel(); ?>

@@ -1992,14 +1992,8 @@ class reportsActions extends sfActions {
                             ->innerJoin('c.Unit u')
                             ->leftJoin('c.Creator sd')
                             ->whereIn('u.id', $Units_id);
-//                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
-//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-//                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
-//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
-                    if ($Collection_id && !empty($Collection_id))
-                        $Collections = $Collections->andWhereIn('c.id', $Collection_id);
-//                    if ($collectionStatus && !empty($collectionStatus))
-//                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+
+                    $Collections = $Collections->andWhereIn('c.id', $Collection_id);
                     $Collections = $Collections->orderBy('u.id')->fetchArray();
 
                     $SolutionArray = array();
@@ -2012,8 +2006,6 @@ class reportsActions extends sfActions {
                     if ($collections) {
                         foreach ($collections as $collection) {
                             $Mediariversfullreports = array();
-                            $Mediariversfullreports['Unit ID'] = $collection['Unit']['id'];
-
                             $Mediariversfullreports['Unit Name'] = $collection['Unit']['name'];
                             $Mediariversfullreports['Collection Primary ID'] = $collection['Collection']['inst_id'];
                             $Mediariversfullreports['Collection Name'] = $collection['Collection']['name'];
@@ -2045,7 +2037,7 @@ class reportsActions extends sfActions {
                             $excel = new excel();
                             $excel->setDataArray($Mediariversfullreportss);
                             $excel->extractHeadings();
-                            $filename = 'Full_Media_River_Report' . date('Ymd') . '.xlsx';
+                            $filename = 'mediarivers_full_report' . date('Ymd') . '.xlsx';
                             $Sheettitle = 'Full_Media_River_Report';
                             $intial_dicrectory = '/FullMediaRiverReport/xls/';
                             $file_name_with_directory = $intial_dicrectory . $filename;
@@ -2064,7 +2056,7 @@ class reportsActions extends sfActions {
                         } else {
 
                             $csvHandler = new csvHandler();
-                            $file_name = 'Full_Media_River_Report' . date('Ymd') . '.csv';
+                            $file_name = 'mediarivers_full_report' . date('Ymd') . '.csv';
                             $intial_dicrectory = '/FullMediaRiverReport/csv/';
                             $file_name_with_directory = $intial_dicrectory . $file_name;
                             $csvHandler->CreateCSV($Mediariversfullreportss, $file_name_with_directory);
@@ -2095,8 +2087,7 @@ class reportsActions extends sfActions {
                 $Units_id = $params['listUnits_RRD'];
                 $collectionStatus = $params['collectionStatus'];
                 $ExportType = $params['ExportType'];
-//                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
-//                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+                ;
                 $Mediariversscoringreports = array();
                 if ($Units_id) {
                     $collections = array();
@@ -2105,14 +2096,10 @@ class reportsActions extends sfActions {
                             ->innerJoin('c.Unit u')
                             ->leftJoin('c.Creator sd')
                             ->whereIn('u.id', $Units_id);
-//                    if ($EvaluatorsStartDate && !empty($EvaluatorsStartDate))
-//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
-//                    if ($EvaluatorsEndDate && !empty($EvaluatorsEndDate))
-//                        $Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') <= ?", $EvaluatorsEndDate);
+
                     if ($Collection_id && !empty($Collection_id))
                         $Collections = $Collections->andWhereIn('c.id', $Collection_id);
-//                    if ($collectionStatus && !empty($collectionStatus))
-//                        $Collections = $Collections->andWhereIn('c.status', $collectionStatus);
+
                     $Collections = $Collections->orderBy('u.id')->fetchArray();
 
                     $SolutionArray = array();
@@ -2128,7 +2115,7 @@ class reportsActions extends sfActions {
                             $Mediariversscoringreport['Unit Name'] = $collection['Unit']['name'];
                             $Mediariversscoringreport['Collection Primary ID'] = $collection['Collection']['inst_id'];
                             $Mediariversscoringreport['Collection Name'] = $collection['Collection']['name'];
-                            $Mediariversfullreports['IUB Worker'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
+                            $Mediariversscoringreport['IUB Worker'] = $collection['Collection']['Creator']['first_name'] . ' ' . $collection['Collection']['Creator']['last_name'];
                             $Mediariversscoringreport['Subject Interest Score'] = $collection['Collection']['score_subject_interest'];
                             $Mediariversscoringreport['Content Quality Score'] = $collection['Collection']['score_content_quality'];
                             $Mediariversscoringreport['Rareness Score'] = $collection['Collection']['score_rareness'];
@@ -2143,7 +2130,7 @@ class reportsActions extends sfActions {
                             $excel = new excel();
                             $excel->setDataArray($Mediariversscoringreports);
                             $excel->extractHeadings();
-                            $filename = 'Media_Rivers_Scoring_Report' . date('Ymd') . '.xlsx';
+                            $filename = 'mediarivers_scoring_report' . date('Ymd') . '.xlsx';
                             $Sheettitle = 'Media_Rivers_Scoring_Report';
                             $intial_dicrectory = '/MediaRiversScoringReport/xls/';
                             $file_name_with_directory = $intial_dicrectory . $filename;
@@ -2162,7 +2149,7 @@ class reportsActions extends sfActions {
                         } else {
 
                             $csvHandler = new csvHandler();
-                            $file_name = 'Media_Rivers_Scoring_Report' . date('Ymd') . '.csv';
+                            $file_name = 'mediarivers_scoring_report' . date('Ymd') . '.csv';
                             $intial_dicrectory = '/MediaRiversScoringReport/csv/';
                             $file_name_with_directory = $intial_dicrectory . $file_name;
                             $csvHandler->CreateCSV($Mediariversscoringreports, $file_name_with_directory);
