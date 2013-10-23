@@ -274,7 +274,6 @@ if ($url)
                 if (result != undefined && result.length > 0) {
                     $('#collectionResult').html('');
                     if(view == 'river'){
-                        console.log(1);
                         for (collection in result) {
                             editdelete = '';
                             //                            IsMediaScoreAccess  ISMediaRiverAccess
@@ -285,13 +284,13 @@ if ($url)
                                     '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
+                            }else{
+                                editdelete='<td>&nbsp;</td>'
                             }
-                            
-                            editdelete='<td>&nbsp;</td>'
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
-                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
-                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
+                                '<td><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id + '</a></td>' +
+                                '<td><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + '</a></td>' +
                                 '<td width="13%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
                                 '<td width="12%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
                                 '<td width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
@@ -301,7 +300,7 @@ if ($url)
                                 '</tr>');
                         }
                     }else{
-                        console.log(2);
+                        
                         for (collection in result) {
                             console.log(result);
                             editdelete = '';
