@@ -186,10 +186,16 @@ class collectionActions extends sfActions {
         $this->ThisUnit = $unit;
         $this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
         $this->ISMediaRiverAccess = $this->getUser()->getGuardUser()->getMediariverAccess();
-        if (!$this->IsMediaScoreAccess)
+        if (!$this->IsMediaScoreAccess) {
             $this->view = 'river';
-        if (!$this->ISMediaRiverAccess)
+            $ViewInfo = array('view' => $this->view);
+            $this->getUser()->setAttribute('view', $ViewInfo);
+        }
+        if (!$this->ISMediaRiverAccess) {
             $this->view = 'score';
+            $ViewInfo = array('view' => $this->view);
+            $this->getUser()->setAttribute('view', $ViewInfo);
+        }
     }
 
     /**
