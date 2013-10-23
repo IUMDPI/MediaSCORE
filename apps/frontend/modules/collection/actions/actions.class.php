@@ -186,6 +186,10 @@ class collectionActions extends sfActions {
         $this->ThisUnit = $unit;
         $this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
         $this->ISMediaRiverAccess = $this->getUser()->getGuardUser()->getMediariverAccess();
+        if (!$this->IsMediaScoreAccess)
+            $this->view = 'river';
+        if (!$this->ISMediaRiverAccess)
+            $this->view = 'score';
     }
 
     /**
@@ -239,7 +243,7 @@ class collectionActions extends sfActions {
         $this->view = $view['view'];
 
         $success = $this->processForm($request, $this->form);
-      
+
         if ($success && isset($success['form']) && $success['form'] == true) {
             $collection = $success['collection'];
             $unit = Doctrine_Core::getTable('Unit')
@@ -327,6 +331,16 @@ class collectionActions extends sfActions {
             if ($success && isset($success['error']) && $success['error'] == true) {
                 $this->locationError = 'This value is selected by a Collection or Asset Group. To de-select at the unit level, you must first de-select this value at the asset group and collection level';
             }
+
+            $unit = Doctrine_Core::getTable('Unit')
+                    ->createQuery('u')
+                    ->where('id =?', $unitId)
+                    ->execute();
+            $this->ThisUnit = $unit;
+
+            $url = $this->generateUrl("collection", $unit[0]);
+            $arr_url = explode('?', $url);
+            $this->url = $arr_url[0];
             $this->setTemplate('edit');
         }
     }

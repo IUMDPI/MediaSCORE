@@ -167,12 +167,14 @@ class sfGuardSecurityUser extends sfBasicSecurityUser {
      *
      */
     public function signOut() {
+
         $this->getAttributeHolder()->removeNamespace('sfGuardSecurityUser');
         $this->user = null;
         $this->clearCredentials();
         $this->setAuthenticated(false);
         $expiration_age = sfConfig::get('app_sf_guard_plugin_remember_key_expiration_age', 15 * 24 * 3600);
         $remember_cookie = sfConfig::get('app_sf_guard_plugin_remember_cookie_name', 'sfRemember');
+        sfContext::getInstance()->getUser()->setAttribute('view', '');
         sfContext::getInstance()->getResponse()->setCookie($remember_cookie, '', time() - $expiration_age);
     }
 

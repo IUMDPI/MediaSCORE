@@ -1,20 +1,20 @@
 <h1>Reports List</h1>
-<hr/>
+
 <table>
     <tbody>
-        <tr>
-            <th><br/></th>
-        </tr>
-        <tr>
-            <th><h2>Media Score</h2></th>    
-</tr>
-<tr>
-    <th><hr/></th>
-</tr>
-<?php
-if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
-    ?>
 
+        <?php
+        if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
+            ?>
+            <tr>
+                <th><br/></th>
+            </tr>
+            <tr>
+                <th><h2>Media Score</h2></th>    
+    </tr>
+    <tr>
+        <th><hr style="color:#7D110C;"/></th>
+    </tr>
     <tr>
         <th><label><a href="<?php echo url_for('reports/recordingdatereport') ?>">Recording Date Report</a></label></th>
     </tr>
@@ -45,18 +45,19 @@ if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
         <th><label><a href="<?php echo url_for('reports/durationandquantitysearch') ?>">Duration Reports</a></label></th>
     </tr>
 <?php } else { ?>
-    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>
+    <!--    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>-->
 <?php } ?>
-<tr>
-    <th><br/></th>
-</tr>
-<tr>
-    <th><h2>Media River</h2></th>    
-</tr>
-<tr>
-    <th><hr/></th>
-</tr>
+
 <?php if ($ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
+    <tr>
+        <th><br/></th>
+    </tr>
+    <tr>
+        <th><h2>Media River</h2></th>    
+    </tr>
+    <tr>
+        <th><hr style="color:#7D110C;" /></th>
+    </tr>
     <tr>
         <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Full Media River Report</a></label></th>
     </tr>
@@ -64,7 +65,7 @@ if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
         <th><label><a href="<?php echo url_for('reports/mediariversscoringreport') ?>">Media Rivers Scoring Report</a></label></th>
     </tr>
 <?php } else { ?>
-    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>
+    <!--    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>-->
 <?php } ?>
 </tbody>
 </table>

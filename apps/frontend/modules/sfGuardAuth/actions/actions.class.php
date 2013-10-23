@@ -82,6 +82,7 @@ class sfGuardAuthActions extends sfActions {
      * @param type $request 
      */
     public function executeSignout($request) {
+        
         $this->getUser()->signOut();
 
         //$signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
