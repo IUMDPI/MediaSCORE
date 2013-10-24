@@ -13,7 +13,7 @@ if ($url)
 ?>  
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
-
+  
     <ul class="tabs" data-persist="true">
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
@@ -22,7 +22,6 @@ if ($url)
             <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >Media Rivers</a></li>
         <?php } ?>
     </ul>
-
     <div class="tabcontents">
         <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
             <input type="hidden"

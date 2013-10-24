@@ -158,46 +158,43 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
             $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));
 
-            $this->setWidget('title', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('style' => 'width:98%;')));
-            $this->setWidget('project_title', new sfWidgetFormInputText(array(), array('style' => 'width: 190px;height: 12px;')));
+            $this->setWidget('title', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('style' => 'width:96.5%;')));
+            $this->setWidget('project_title', new sfWidgetFormInputText(array(), array('style' => 'width: 250px;height: 12px;')));
 
             $this->setWidget('iub_unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'IUB Unit:&nbsp;', 'multiple' => FALSE)));
             $userParams = sfContext::getInstance()->getUser()->getGuardUser();
 
-            $this->setWidget('iub_work', new sfWidgetFormInputHidden(array(), array('value' => $userParams->getId())));
+            $this->setWidget('iub_work', new sfWidgetFormInputHidden(array(), array('style' => 'width: 250px;height: 12px;', 'value' => $userParams->getId())));
 
-            $this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;')));
+            $this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;'), array('readonly'=>'readonly','style' => 'background-color: #F0F0F0;width: 250px;height: 12px;')));
 
-            $this->setWidget('score_subject_interest', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_subject_interest', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('score_subject_interest', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('notes_subject_interest', new sfWidgetFormTextarea(array(), array('style' => 'width:728px;')));
 
-            $this->setWidget('score_content_quality', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_content_quality', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('score_content_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('notes_content_quality', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;height: 50px;')));
 
-            $this->setWidget('score_rareness', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_rareness', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('score_rareness', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('notes_rareness', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;')));
 
-            $this->setWidget('score_documentation', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_documentation', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('score_documentation', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('notes_documentation', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;')));
 
-            $this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
 
             $this->setWidget('unknown_technical_quality', new sfWidgetFormInputCheckbox());
-            $this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
-            $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('style' => 'width: 644px;')));
 
-            $this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('style' => 'width:80px;height: 12px;')));
+            $this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
 
-            $this->setWidget('generation_statement', new sfWidgetFormInputText());
-            $this->setWidget('generation_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('generation_statement', new sfWidgetFormInputText(array(), array('style' => 'width:190px;')));
+            $this->setWidget('generation_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width: 539px;')));
 
-            $this->setWidget('ip_statement', new sfWidgetFormInputText(array(), array('style' => 'width:120px;')));
-            $this->setWidget('ip_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:350px;')));
+            $this->setWidget('ip_statement', new sfWidgetFormInputText(array(), array('style' => 'width:190px;')));
+            $this->setWidget('ip_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width: 539px;')));
 
-            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:98%;')));
-
+            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:96.5%;')));
 
 
 
@@ -236,7 +233,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setValidator('score_rareness', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
             $this->setValidator('score_documentation', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
             $this->setValidator('score_technical_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
-            $this->setValidator('score_technical_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
+
 //            $this->addMessage('max', 'Value must be at most 5.');
 //            $this->addMessage('min', 'Value must be at least 0.');
 //            $this->setValidator('parent_node_id', new sfValidatorString(array('required' => true)));
@@ -288,7 +285,6 @@ class CollectionForm extends BaseCollectionForm {
             $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_technical_quality')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
 //            $this->getValidator('unknown_technical_quality')->setMessages(array('required' => 'This is a required field..'));
-            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 //            $this->getValidator('notes_technical_quality')->setMessages(array('required' => 'Notes is a required field..', 'invalid' => 'Invalid Notes'));
 //            $this->getValidator('collection_score')->setMessages(array('required' => 'Collection Score is a required field..', 'invalid' => 'Invalid Collection Score'));
 //            $this->getValidator('generation_statement')->setMessages(array('required' => 'Generation Statement is a required field..', 'invalid' => 'Invalid Generation Statement'));

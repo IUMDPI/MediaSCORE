@@ -1,5 +1,13 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
+<style>
+    textarea{
+        min-height: 70px !important;
+    }
+    #collection_collection_score{
+        width:27px !important;
+    }
+</style>
 <div style="background-color: #F4F4F4;padding-left: 10px;padding-right: 5px;" id="collectionMain">
     <div id="main" class="clearfix" style="height: auto;">
         <form id="collection_form" action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . (!$form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
@@ -19,7 +27,7 @@
                 <tbody>
                     <?php if (isset($actionType) && $actionType == 'edit') { ?>
                         <tr>
-                            <th>
+                            <th style="width: 13%;">
                                 <?php echo $form['parent_node_id']->renderLabel(); ?>
                             </th>
                             <td>
@@ -34,29 +42,23 @@
                         </tr>
                     <?php } ?>
                     <tr>
+
                         <th>
                             <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
-                        <td>
-                            <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
-
-                            <?php echo $form['inst_id']->renderError(); ?>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
                         <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <th>
-                            <?php echo $form['name']->renderLabel(); ?>
-                        </th>
-                        <td>
-                            <?php echo $form['name']->render(array('collection_name' => 'Name of the Collection.')); ?> 
-                            <?php echo $form['name']->renderError(); ?>
+                            <div style="float: left;padding-right:30px;">
+                                <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
+
+                                <?php echo $form['inst_id']->renderError(); ?>
+                            </div>
+                            <div style="float: left;padding-right:30px;font-weight: bold">
+                                <?php echo $form['name']->renderLabel(); ?>
+
+
+                                <?php echo $form['name']->render(array('collection_name' => 'Name of the Collection.')); ?> 
+                                <?php echo $form['name']->renderError(); ?>
+                            </div>
                         </td>
                     </tr>
                     <!-- -->
@@ -83,392 +85,325 @@
                     </tr>
                     <!-- -->
                     <tr >
-                        <td colspan="2">
-                            <div style="float: left;
-                                 padding-right:30px;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['project_title']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['project_title']->render(array('project_title' => 'Project Title.')); ?> 
-                                         <?php echo $form['project_title']->renderError(); ?>
-                                </div>
-                            </div>
-                            <div style="float: left;padding-right:30px;">
-                                <div style="font-weight: bold;">
-                                    <?php echo $form['iub_work']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;">
-                                    <input type="text" value="<?php echo $sf_user->getGuardUser()->getFirstName() . ' ' . $sf_user->getGuardUser()->getLastName(); ?>" readonly="readonly" style="background-color: #F0F0F0;cursor: not-allowed"/>
-                                </div>
-                            </div>
-                        </td>
+                        <th>  <div style="font-weight: bold;">
+                    <?php echo $form['project_title']->renderLabel(); ?></div>
+                </th>
+                <td colspan="2">
+                    <div style="float: left;padding-right:30px;">
 
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <th>
-                            <?php echo $form['date_completed']->renderLabel(); ?>
-                        </th>
-                        <td>
-                            <?php echo $form['date_completed']->render(array('date_completed' => 'Date Completed.')); ?> 
-                            <?php echo $form['date_completed']->renderError(); ?>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
+                        <div style="float: left;">
+                            <?php echo $form['project_title']->render(array('project_title' => 'Project Title.')); ?> 
+                            <?php echo $form['project_title']->renderError(); ?>
+                        </div>
+                    </div>
+                    <div style="float: left;padding-right:30px;">
+                        <div style="font-weight: bold;">
+                            <?php echo $form['iub_work']->renderLabel(); ?>
 
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <span style="float: left;
+                            <input type="text" value="<?php echo $sf_user->getGuardUser()->getFirstName() . ' ' . $sf_user->getGuardUser()->getLastName(); ?>" readonly="readonly" style="background-color: #F0F0F0;cursor: not-allowed"/>
+                        </div>
+                    </div>
+                </td>
+
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th>
+                        <?php echo $form['date_completed']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $form['date_completed']->render(array('date_completed' => 'Date Completed.')); ?> 
+                        <?php echo $form['date_completed']->renderError(); ?>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+
+                <!-- -->
+                <tr>
+                    <th><span style="float: left;font-weight: bold;">Subject Interest:&nbsp;&nbsp;&nbsp; </span></th>
+                    <td>
+
+                        <div style="float: left;padding-right:30px;;">
+                            <div style="font-weight: bold;">
+                                <?php echo $form['score_subject_interest']->renderLabel(); ?>
+                            </div>
+                            <div style="float: left;">
+                                <?php echo $form['score_subject_interest']->render(array('score_subject_interest' => 'Score Subject Interest.')); ?> 
+                                <?php echo $form['score_subject_interest']->renderError(); ?>
+                            </div>
+                        </div>
+
+                        <div style="float: left;">
+                            <div style="float: left;
+                                 font-weight: bold;">
+                                 <?php echo $form['notes_subject_interest']->renderLabel(); ?>
+                            </div>
+
+                            <div>
+                                <?php echo $form['notes_subject_interest']->render(array('notes_subject_interest' => 'Notes Subject Interest.')); ?> 
+                                <?php echo $form['notes_subject_interest']->renderError(); ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th><span style="float: left;
+                              font-weight: bold;
+                              ">Content Quality:&nbsp;&nbsp;&nbsp; </span></th>
+                    <td>
+
+                        <div style="float: left;padding-right:40px;">
+                            <!--                            <div style="font-weight: bold;">
+                            <?php echo $form['score_content_quality']->renderLabel(); ?>
+                                                        </div>-->
+                            <div style="float: left;">
+                                <?php echo $form['score_content_quality']->render(array('score_content_quality' => 'Score Content Quality.')); ?> 
+                                <?php echo $form['score_content_quality']->renderError(); ?>
+                            </div>
+                        </div>
+
+                        <div style="float: left;">
+                            <!--                            <div style="float: left;font-weight: bold;">
+                            <?php echo $form['notes_content_quality']->renderLabel(); ?>
+                                                        </div>-->
+
+                            <div>
+                                <?php echo $form['notes_content_quality']->render(array('notes_content_quality' => 'Notes Content Quality.')); ?> 
+                                <?php echo $form['notes_content_quality']->renderError(); ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th> <span style="float: left;
+                               font-weight: bold;
+                               ">Rareness:&nbsp;&nbsp;&nbsp; </span></th>
+                    <td>
+
+                        <div style="float: left;padding-right:40px;">
+                            <!--                            <div style="font-weight: bold;">
+                            <?php echo $form['score_rareness']->renderLabel(); ?>
+                                                        </div>-->
+                            <div style="float: left;">
+                                <?php echo $form['score_rareness']->render(array('score_rareness' => 'Score Rareness.')); ?> 
+                                <?php echo $form['score_rareness']->renderError(); ?>
+                            </div>
+                        </div>
+
+                        <div style="float: left;">
+                            <!--                            <div style="float: left;font-weight: bold;">
+                            <?php echo $form['notes_rareness']->renderLabel(); ?>
+                                                        </div>-->
+
+                            <div>
+                                <?php echo $form['notes_rareness']->render(array('notes_rareness' => 'Notes Rareness.')); ?> 
+                                <?php echo $form['notes_rareness']->renderError(); ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th> <span style="float: left;
+                               font-weight: bold;
+                               ">Documentation:&nbsp;&nbsp;&nbsp; </span></th>
+                    <td>
+
+                        <div style="float: left;padding-right:40px;">
+                            <!--                            <div style="font-weight: bold;">
+                            <?php echo $form['score_documentation']->renderLabel(); ?>
+                                                        </div>-->
+                            <div style="float: left;">
+                                <?php echo $form['score_documentation']->render(array('score_documentation' => 'Score Documentation.')); ?> 
+                                <?php echo $form['score_documentation']->renderError(); ?>
+                            </div>
+                        </div>
+
+                        <div style="float: left;">
+                            <!--                            <div style="float: left;font-weight: bold;">
+                            <?php echo $form['notes_documentation']->renderLabel(); ?>
+                                                        </div>-->
+
+                            <div>
+                                <?php echo $form['notes_documentation']->render(array('notes_documentation' => 'Notes Documentation.')); ?> 
+                                <?php echo $form['notes_documentation']->renderError(); ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th>    <span style="float: left;
                                   font-weight: bold;
-                                  ">Subject Interest:&nbsp;&nbsp;&nbsp; </span>
-                            <div style="float: right;
-                                 padding-right:30px;
-                                 ;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['score_subject_interest']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['score_subject_interest']->render(array('score_subject_interest' => 'Score Subject Interest.')); ?> 
-                                         <?php echo $form['score_subject_interest']->renderError(); ?>
-                                </div>
+                                  ">Technical Quality:&nbsp;&nbsp;&nbsp; </span></th>
+                    <td>
+
+
+                        <div style="margin-left: 10px;float: left;padding-right:40px;">
+                            <!--                            <div style="font-weight: bold;">
+                            <?php echo $form['score_technical_quality']->renderLabel(); ?>
+                                                        </div>-->
+                            <div style="float: left;">
+                                <?php echo $form['score_technical_quality']->render(array('score_technical_quality' => 'Score Technical Quality.')); ?> 
+                                <?php echo $form['score_technical_quality']->renderError(); ?>
                             </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['notes_subject_interest']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['notes_subject_interest']->render(array('notes_subject_interest' => 'Notes Subject Interest.')); ?> 
-                                    <?php echo $form['notes_subject_interest']->renderError(); ?>
-                                </div>
+                        </div>
+                        <div style="float: left;padding-right:6px;">
+                            <div style="font-weight: bold;">
+                                <?php echo $form['unknown_technical_quality']->renderLabel(); ?>
                             </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <span style="float: left;
-                                  font-weight: bold;
-                                  ">Content Quality:&nbsp;&nbsp;&nbsp; </span>
-                            <div style="float: right;
-                                 padding-right:30px;
-                                 ;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['score_content_quality']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['score_content_quality']->render(array('score_content_quality' => 'Score Content Quality.')); ?> 
-                                         <?php echo $form['score_content_quality']->renderError(); ?>
-                                </div>
+                            <div style="float: left;margin-left: 30px;">
+                                <?php echo $form['unknown_technical_quality']->render(array('unknown_technical_quality' => 'Unknown Technical Quality.')); ?> 
+                                <?php echo $form['unknown_technical_quality']->renderError(); ?>
                             </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['notes_content_quality']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['notes_content_quality']->render(array('notes_content_quality' => 'Notes Content Quality.')); ?> 
-                                    <?php echo $form['notes_content_quality']->renderError(); ?>
-                                </div>
+                        </div>
+                        <div style="float: left;">
+                            <!--                            <div style="float: left;font-weight: bold;">
+                            <?php echo $form['notes_technical_quality']->renderLabel(); ?>
+                                                        </div>-->
+
+                            <div>
+                                <?php echo $form['notes_technical_quality']->render(array('notes_technical_quality' => 'Notes Technical Quality.')); ?> 
+                                <?php echo $form['notes_technical_quality']->renderError(); ?>
                             </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <span style="float: left;
-                                  font-weight: bold;
-                                  ">Rareness:&nbsp;&nbsp;&nbsp; </span>
-                            <div style="float: right;
-                                 padding-right:30px;
-                                 ;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['score_rareness']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['score_rareness']->render(array('score_rareness' => 'Score Rareness.')); ?> 
-                                         <?php echo $form['score_rareness']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['notes_rareness']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['notes_rareness']->render(array('notes_rareness' => 'Notes Rareness.')); ?> 
-                                    <?php echo $form['notes_rareness']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <span style="float: left;
-                                  font-weight: bold;
-                                  ">Documentation:&nbsp;&nbsp;&nbsp; </span>
-                            <div style="float: right;
-                                 padding-right:30px;
-                                 ;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['score_documentation']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['score_documentation']->render(array('score_documentation' => 'Score Documentation.')); ?> 
-                                         <?php echo $form['score_documentation']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['notes_documentation']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['notes_documentation']->render(array('notes_documentation' => 'Notes Documentation.')); ?> 
-                                    <?php echo $form['notes_documentation']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <span style="float: left;
-                                  font-weight: bold;
-                                  ">Technical Quality:&nbsp;&nbsp;&nbsp; </span>
-                            <div style="float: left;
-                                 padding-right:6px;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['unknown_technical_quality']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     margin-left: 30px;
-                                     ">
-                                         <?php echo $form['unknown_technical_quality']->render(array('unknown_technical_quality' => 'Unknown Technical Quality.')); ?> 
-                                         <?php echo $form['unknown_technical_quality']->renderError(); ?>
-                                </div>
-                            </div>
-                            <div style="margin-left: 10px;
-                                 float: right;
-                                 padding-right:30px;
-                                 ;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['score_technical_quality']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['score_technical_quality']->render(array('score_technical_quality' => 'Score Technical Quality.')); ?> 
-                                         <?php echo $form['score_technical_quality']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['notes_technical_quality']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['notes_technical_quality']->render(array('notes_technical_quality' => 'Notes Technical Quality.')); ?> 
-                                    <?php echo $form['notes_technical_quality']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <th>
-                            <?php echo $form['collection_score']->renderLabel(); ?>
-                        </th>
-                        <td>
-                            <?php echo $form['collection_score']->render(array('collection_score' => 'Collection Score.')); ?> 
-                            <?php echo $form['collection_score']->renderError(); ?>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['generation_statement']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['generation_statement']->render(array('generation_statement' => 'Generation Statement.')); ?> 
-                                         <?php echo $form['generation_statement']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['generation_statement_notes']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['generation_statement_notes']->render(array('generation_statement_notes' => 'Generation Satement Notes.')); ?> 
-                                    <?php echo $form['generation_statement_notes']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="font-weight: bold;
-                                     ">
-                                         <?php echo $form['ip_statement']->renderLabel(); ?>
-                                </div>
-                                <div style="float: left;
-                                     ">
-                                         <?php echo $form['ip_statement']->render(array('ip_statement' => 'IP Statement.')); ?> 
-                                         <?php echo $form['ip_statement']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="float: left;
-                                 ">
-                                <div style="float: left;
-                                     font-weight: bold;
-                                     ">
-                                         <?php echo $form['ip_statement_notes']->renderLabel(); ?>
-                                </div>
-                                <br/>
-                                <div>
-                                    <?php echo $form['ip_statement_notes']->render(array('ip_statement_notes' => 'IP Statement Notes.')); ?> 
-                                    <?php echo $form['ip_statement_notes']->renderError(); ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <th>
-                            <?php echo $form['general_notes']->renderLabel(); ?>
-                        </th>
-                        <td >
-                            <?php echo $form['general_notes']->render(array('general_notes' => 'General Notes.')); ?> 
-                            <?php echo $form['general_notes']->renderError(); ?>
-                        </td>
-                    </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <hr/>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th>
+                        <?php echo $form['collection_score']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <?php echo $form['collection_score']->render(array('collection_score' => 'Collection Score.')); ?> 
+                        <?php echo $form['collection_score']->renderError(); ?>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th>
+                           
+                               <?php echo $form['generation_statement']->renderLabel(); ?>
+                </th>
+                <td>
+                    <div style="float: left;">
+                        <div style="float: left;padding-right:20px;">
+                            <?php echo $form['generation_statement']->render(array('generation_statement' => 'Generation Statement.')); ?> 
+                            <?php echo $form['generation_statement']->renderError(); ?>
+                        </div>
+                    </div>
+
+                    <div style="float: left;">
+                        <div style="float: left;font-weight: bold;">
+                            <?php echo $form['generation_statement_notes']->renderLabel(); ?>
+                        
+                            <?php echo $form['generation_statement_notes']->render(array('generation_statement_notes' => 'Generation Satement Notes.')); ?> 
+                            <?php echo $form['generation_statement_notes']->renderError(); ?>
+                        </div>
+                    </div>
+                </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th> <div style="font-weight: bold;">
+                    <?php echo $form['ip_statement']->renderLabel(); ?>
+                </div></th>
+                <td>
+                    <div style="float: left;">
+
+                        <div style="float: left;padding-right:20px;">
+                            <?php echo $form['ip_statement']->render(array('ip_statement' => 'IP Statement.')); ?> 
+                            <?php echo $form['ip_statement']->renderError(); ?>
+                        </div>
+                    </div>
+
+                    <div style="float: left;">
+                        <div style="float: left;font-weight: bold;">
+                            <?php echo $form['ip_statement_notes']->renderLabel(); ?>
+                       
+                            <?php echo $form['ip_statement_notes']->render(array('ip_statement_notes' => 'IP Statement Notes.')); ?> 
+                            <?php echo $form['ip_statement_notes']->renderError(); ?>
+                        </div>
+                    </div>
+                </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <th>
+                        <?php echo $form['general_notes']->renderLabel(); ?>
+                    </th>
+                    <td >
+                        <?php echo $form['general_notes']->render(array('general_notes' => 'General Notes.')); ?> 
+                        <?php echo $form['general_notes']->renderError(); ?>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
 
                 </tbody> 
             </table>
