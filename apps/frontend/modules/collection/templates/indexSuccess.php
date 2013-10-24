@@ -16,10 +16,10 @@ if ($url)
 
     <ul class="tabs" data-persist="true">
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
-            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
+            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">MediaSCORE</a></li> 
         <?php } ?>
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess)) { ?>
-            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >Media Rivers</a></li>
+            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >MediaRIVERS</a></li>
         <?php } ?>
     </ul>
     <div class="tabcontents">
@@ -287,7 +287,7 @@ if ($url)
                             
                             if ((userType == 2 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 0) {
                                 editdelete='<td class="invisible">' +
-                                    '<div class="options">' +
+                                    '<div class="options" width="5%">' +
                                     '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
@@ -296,14 +296,14 @@ if ($url)
                             }
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
-                                '<td><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id + '</a></td>' +
-                                '<td><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + '</a></td>' +
-                                '<td width="13%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
-                                '<td width="12%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
+                                '<td width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id + '</a></td>' +
+                                '<td width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + '</a></td>' +
+                                '<td width="7%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
+                                '<td width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
                                 '<td width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
                                 '<td width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'')+'</td>'+
-                                '<td width="13%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
-                                '<td width="6%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
+                                '<td width="9%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
+                                '<td width="5%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
                                 '</tr>');
                         }
                     }else{

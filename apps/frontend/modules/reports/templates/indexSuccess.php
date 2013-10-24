@@ -10,7 +10,7 @@
                 <th><br/></th>
             </tr>
             <tr>
-                <th><h2>Media Score</h2></th>    
+                <th><h2>MediaSCORE</h2></th>    
     </tr>
     <tr>
         <th><hr style="color:#7D110C;"/></th>
@@ -53,7 +53,7 @@
         <th><br/></th>
     </tr>
     <tr>
-        <th><h2>Media River</h2></th>    
+        <th><h2>MediaRIVERS</h2></th>    
     </tr>
     <tr>
         <th><hr style="color:#7D110C;" /></th>
