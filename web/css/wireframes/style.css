@@ -141,7 +141,7 @@ nav {color:white; position:relative; z-index:2;
 
 }
 #header {padding:10px 0;}
-#header h1 {background-image:url(/images/wireframes/indiana-university-mediascore-logo.png); height:26px; width:269px; float:left;}
+#header h1 {background-image:url(/images/wireframes/indiana-university-mediascore-logo.png); height:26px; width:380px; float:left;}
 #header a {display:block;}
 .log-out {float:right; font-size:.625rem;}
 .log-out a, .log-out a:visited {color:white; text-decoration:none;}
