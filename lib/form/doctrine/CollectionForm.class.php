@@ -70,7 +70,7 @@ class CollectionForm extends BaseCollectionForm {
             );
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
-                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
+                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'multiple' => true, 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
             } else {
                 $voidFields[] = 'updated_at';
@@ -146,7 +146,7 @@ class CollectionForm extends BaseCollectionForm {
             }
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
-                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
+                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;'), array('size' => 15)));
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
                 $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;', 'multiple' => FALSE)));
             } else {
@@ -159,7 +159,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));
 
             $this->setWidget('title', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('style' => 'width:96.5%;')));
+            $this->setWidget('characteristics', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:96.5%;')));
             $this->setWidget('project_title', new sfWidgetFormInputText(array(), array('style' => 'width: 250px;height: 12px;')));
 
             $this->setWidget('iub_unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'IUB Unit:&nbsp;', 'multiple' => FALSE)));
@@ -167,34 +167,34 @@ class CollectionForm extends BaseCollectionForm {
 
             $this->setWidget('iub_work', new sfWidgetFormInputHidden(array(), array('style' => 'width: 250px;height: 12px;', 'value' => $userParams->getId())));
 
-            $this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;'), array('readonly'=>'readonly','style' => 'background-color: #F0F0F0;width: 250px;height: 12px;')));
+            $this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;'), array('readonly' => 'readonly', 'style' => 'background-color: #F0F0F0;width: 250px;height: 12px;')));
 
             $this->setWidget('score_subject_interest', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('notes_subject_interest', new sfWidgetFormTextarea(array(), array('style' => 'width:728px;')));
+            $this->setWidget('notes_subject_interest', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:728px;')));
 
             $this->setWidget('score_content_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('notes_content_quality', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;height: 50px;')));
+            $this->setWidget('notes_content_quality', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;height: 50px;')));
 
             $this->setWidget('score_rareness', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('notes_rareness', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;')));
+            $this->setWidget('notes_rareness', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;')));
 
             $this->setWidget('score_documentation', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('notes_documentation', new sfWidgetFormTextarea(array(), array('style' => 'width:727px;')));
+            $this->setWidget('notes_documentation', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;')));
 
 
             $this->setWidget('unknown_technical_quality', new sfWidgetFormInputCheckbox());
             $this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
-            $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('style' => 'width: 644px;')));
+            $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 644px;')));
 
             $this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
 
             $this->setWidget('generation_statement', new sfWidgetFormInputText(array(), array('style' => 'width:190px;')));
-            $this->setWidget('generation_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width: 539px;')));
+            $this->setWidget('generation_statement_notes', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 539px;')));
 
             $this->setWidget('ip_statement', new sfWidgetFormInputText(array(), array('style' => 'width:190px;')));
-            $this->setWidget('ip_statement_notes', new sfWidgetFormTextarea(array(), array('style' => 'width: 539px;')));
+            $this->setWidget('ip_statement_notes', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 539px;')));
 
-            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('style' => 'width:96.5%;')));
+            $this->setWidget('general_notes', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:96.5%;')));
 
 
 

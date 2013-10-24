@@ -2,10 +2,16 @@
 <?php use_javascripts_for_form($form) ?>
 <style>
     textarea{
-        min-height: 70px !important;
+        min-height: 50px !important;
     }
     #collection_collection_score{
         width:27px !important;
+    }
+    #collection_parent_node_id{
+        height: 130px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        width: auto;
     }
 </style>
 <div style="background-color: #F4F4F4;padding-left: 10px;padding-right: 5px;" id="collectionMain">
@@ -43,7 +49,7 @@
                     <?php } ?>
                     <tr>
 
-                        <th>
+                        <th style="width: 13%;">
                             <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
                         <td colspan="2">
@@ -331,26 +337,26 @@
                 <!-- -->
                 <tr>
                     <th>
-                           
-                               <?php echo $form['generation_statement']->renderLabel(); ?>
-                </th>
-                <td>
-                    <div style="float: left;">
-                        <div style="float: left;padding-right:20px;">
-                            <?php echo $form['generation_statement']->render(array('generation_statement' => 'Generation Statement.')); ?> 
-                            <?php echo $form['generation_statement']->renderError(); ?>
-                        </div>
-                    </div>
 
-                    <div style="float: left;">
-                        <div style="float: left;font-weight: bold;">
-                            <?php echo $form['generation_statement_notes']->renderLabel(); ?>
-                        
-                            <?php echo $form['generation_statement_notes']->render(array('generation_statement_notes' => 'Generation Satement Notes.')); ?> 
-                            <?php echo $form['generation_statement_notes']->renderError(); ?>
+                        <?php echo $form['generation_statement']->renderLabel(); ?>
+                    </th>
+                    <td>
+                        <div style="float: left;">
+                            <div style="float: left;padding-right:20px;">
+                                <?php echo $form['generation_statement']->render(array('generation_statement' => 'Generation Statement.')); ?> 
+                                <?php echo $form['generation_statement']->renderError(); ?>
+                            </div>
                         </div>
-                    </div>
-                </td>
+
+                        <div style="float: left;">
+                            <div style="float: left;font-weight: bold;">
+                                <?php echo $form['generation_statement_notes']->renderLabel(); ?>
+
+                                <?php echo $form['generation_statement_notes']->render(array('generation_statement_notes' => 'Generation Satement Notes.')); ?> 
+                                <?php echo $form['generation_statement_notes']->renderError(); ?>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 <!-- -->
                 <tr>
@@ -375,7 +381,7 @@
                     <div style="float: left;">
                         <div style="float: left;font-weight: bold;">
                             <?php echo $form['ip_statement_notes']->renderLabel(); ?>
-                       
+
                             <?php echo $form['ip_statement_notes']->render(array('ip_statement_notes' => 'IP Statement Notes.')); ?> 
                             <?php echo $form['ip_statement_notes']->renderError(); ?>
                         </div>
@@ -420,6 +426,7 @@
     
 <?php if (isset($actionType) && $actionType == 'edit') { ?>
             $('#collection_inst_id').attr('readonly', 'readonly');
+            $('#collection_parent_node_id').attr('size', '15');
             $('#collection_inst_id').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_name').attr('readonly', 'readonly');
             $('#collection_name').attr('style', 'background:#F0F0F0;cursor:not-allowed');
