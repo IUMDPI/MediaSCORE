@@ -1,7 +1,7 @@
 <?php
 if (!isset($view) || $view == '')
     $view = 'score';
-if ($sf_user->getGuardUser()->getRole() != 2) {
+if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river') {
     ?>
     <a class="button <?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
     <?php
@@ -13,7 +13,7 @@ if ($url)
 ?>  
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
-  
+
     <ul class="tabs" data-persist="true">
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
             <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">Media Score</a></li> 
@@ -31,17 +31,19 @@ if ($url)
                         <div class="title">Filter by:</div>
                         <form id="filterCollection" action="<?php echo url_for('collection/index') ?>">
                             <strong>Text:</strong> <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="searchText"/>
-                            <strong>Date:</strong>
-                            <div class="filter-date">
-                                <select id="date_type" onchange="filterCollection('<?php echo $view; ?>');">
-                                    <option value="">Date Type</option>
-                                    <option value="0">Created On</option>
-                                    <option value="1">Updated On</option>
-                                </select>
-                                <input type="text" id="from" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
-                                to
-                                <input type="text" id="to" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
-                            </div>
+                            <?php if ($view != 'river') { ?>
+                                <strong>Date:</strong>
+                                <div class="filter-date">
+                                    <select id="date_type" onchange="filterCollection('<?php echo $view; ?>');">
+                                        <option value="">Date Type</option>
+                                        <option value="0">Created On</option>
+                                        <option value="1">Updated On</option>
+                                    </select>
+                                    <input type="text" id="from" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
+                                    to
+                                    <input type="text" id="to" onchange="filterCollection('<?php echo $view; ?>');" readonly="readonly"/>
+                                </div>
+                            <?php } ?>
                             <strong>Status:</strong>
                             <select id="filterStatus" onchange="filterCollection('<?php echo $view; ?>');">
                                 <option value="">Any Status</option>
@@ -49,11 +51,17 @@ if ($url)
                                 <option value="1">In Progress</option>
                                 <option value="2">Completed</option>
                             </select>
-                            <strong>Score </strong>
-                            <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score"/> 
-                            <br/>
-                            <br/>
 
+                            <?php if ($view == 'river') { ?>
+                                <strong>&nbsp;&nbsp;Score Range: </strong>
+                                From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
+                                <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/> 
+                            <?php } else { ?>
+                                <strong>Score </strong>
+                                <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score"/>  
+                            <?php } ?>
+                            <br/>
+                            <br/>
                         </form>
                         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterCollection');"><span>R</span> Reset</a></div>
                     </div>
@@ -86,21 +94,21 @@ if ($url)
                                 <?php foreach ($collections as $collection): ?>
                                     <tr>
                                         <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
-                                            <td class="invisible" width="6%">
+                                            <td class="invisible" width="5%">
                                                 <div class="options">
                                                     <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                                                     <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
                                                 </div>
                                             </td>
                                         <?php } ?>
-                                        <td width="12%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?></a></td>
-                                        <td width="17%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?></a></td>
-                                        <td width="13%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
-                                        <td width="12%"><?php echo $collection->getScoreContentQuality(); ?></td>
+                                        <td width="21%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?></a></td>
+                                        <td width="25%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?></a></td>
+                                        <td width="7%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
+                                        <td width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
                                         <td width="9%"><?php echo $collection->getScoreRareness(); ?></td>
                                         <td width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
-                                        <td width="13%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
-                                        <td width="6%"><?php echo $collection->getCollectionScore(); ?></td>
+                                        <td width="9%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
+                                        <td width="5%"><?php echo $collection->getCollectionScore(); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
 
@@ -266,7 +274,7 @@ if ($url)
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/collection/index',
-            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val()},
+            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val()},
             dataType: 'json',
             cache: false,
             success: function(result) {

@@ -86,6 +86,9 @@ class collectionActions extends sfActions {
         $dateType = $request->getParameter('datetype');
         $score = $request->getParameter('score');
 
+        $score_end = $request->getParameter('score_end');
+        $score_start = $request->getParameter('score_start');
+
         $view = $this->getUser()->getAttribute('view');
         if (!$view || !$view['view']) {
             $view['view'] = 'score';
@@ -113,6 +116,12 @@ class collectionActions extends sfActions {
             if (trim($score) != '') {
                 $this->collections = $this->collections->andWhere('ft.asset_score LIKE ?', "{$score}%");
             }
+            if (trim($score_end) != '' && trim($score_start) != '') {
+                $this->collections = $this->collections->andWhere('c.collection_score >= ?', "{$score_start}%");
+                $this->collections = $this->collections->andWhere('c.collection_score <= ?', "{$score_end}%");
+            }
+
+
 
             if ($dateType != '') {
                 if ($dateType == 0) {

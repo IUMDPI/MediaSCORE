@@ -144,15 +144,29 @@ class CollectionForm extends BaseCollectionForm {
             foreach ($skipValidation as $skipValidationSingle) {
                 unset($this->validatorSchema[$skipValidationSingle]);
             }
+
+            $unit = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.name');
+
+            if (sfContext::getInstance()->getUser()->getGuardUser()->getType() == 3) {
+                $unit->innerJoin('u.Personnel p')->where('person_id = ?', sfContext::getInstance()->getUser()->getGuardUser()->getId());
+            }
+            $unit = $unit->fetchArray();
+
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
-                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;'), array('size' => 15)));
+                $Units = array();
+                foreach ($unit as $u) {
+                    $Units[] = $u['name'];
+                }
+
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
-                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'Unit:&nbsp;', 'multiple' => FALSE)));
+                $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'), array('size' => 15)));
             } else {
                 $voidFields[] = 'updated_at';
                 $this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
-                $this->setWidget('parent_node_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('unitID'))));
+                $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'), array('size' => 15)));
             }
 
             $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));

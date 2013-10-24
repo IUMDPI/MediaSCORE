@@ -148,7 +148,7 @@
                             </div>
                             <div style="float: left;">
                                 <?php echo $form['score_subject_interest']->render(array('score_subject_interest' => 'Score Subject Interest.')); ?> 
-                                
+
                             </div>
                         </div>
 
@@ -184,7 +184,7 @@
 
                             <div style="float: left;">
                                 <?php echo $form['score_content_quality']->render(array('score_content_quality' => 'Score Content Quality.')); ?> 
-                                
+
                             </div>
                         </div>
 
@@ -220,7 +220,7 @@
                                                         </div>-->
                             <div style="float: left;">
                                 <?php echo $form['score_rareness']->render(array('score_rareness' => 'Score Rareness.')); ?> 
-                                
+
                             </div>
                         </div>
 
@@ -255,7 +255,7 @@
                                                         </div>-->
                             <div style="float: left;">
                                 <?php echo $form['score_documentation']->render(array('score_documentation' => 'Score Documentation.')); ?> 
-                                
+
                             </div>
                         </div>
 
@@ -285,10 +285,10 @@
 
 
                         <div style="margin-left: 10px;float: left;padding-right:40px;">
-                            
+
                             <div style="float: left;">
                                 <?php echo $form['score_technical_quality']->render(array('score_technical_quality' => 'Score Technical Quality.')); ?> 
-                                
+
                             </div>
                         </div>
                         <div style="float: left;padding-right:6px;">
