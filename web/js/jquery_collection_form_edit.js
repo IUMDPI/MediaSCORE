@@ -232,10 +232,9 @@ function isValidScore(value){
 function handleValuesOfTextField(object,CollectionScoreObj){
     var score = object.val();
     if(!isValidScore(score)){
-        $('#'+object.attr('id')+'_errorn').remove();
-        object.after('<span id="'+object.attr('id')+'_errorn" style="color:#7D110C;font-size: 9px;font-weight:bold;"><br/>Score must be integer , greater then 0 and  less then 5 </span>');
+        $('#'+object.attr('id')+'_errorn').show();
     }else{
-        $('#'+object.attr('id')+'_errorn').remove();
+        $('#'+object.attr('id')+'_errorn').hide();
     }
         
     var Total_Collection_Score = 0.0;

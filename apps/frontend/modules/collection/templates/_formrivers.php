@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <hr/>
+                                <br/>
                             </td>
                         </tr>
                     <?php } ?>
@@ -70,7 +70,7 @@
                     <!-- -->
                     <tr>
                         <td colspan="2">
-                            <hr/>
+                            <br/>
                         </td>
                     </tr>
                     <!-- -->
@@ -86,7 +86,7 @@
                     <!-- -->
                     <tr>
                         <td colspan="2">
-                            <hr/>
+                            <br/>
                         </td>
                     </tr>
                     <!-- -->
@@ -115,7 +115,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
                 <!-- -->
@@ -129,9 +129,11 @@
                     </td>
                 </tr>
                 <!-- -->
+
                 <tr>
-                    <td colspan="2">
-                        <hr/>
+                    <td colspan="2"><br/>
+                        <?php echo $form['score_subject_interest']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_subject_interest_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
 
@@ -146,7 +148,7 @@
                             </div>
                             <div style="float: left;">
                                 <?php echo $form['score_subject_interest']->render(array('score_subject_interest' => 'Score Subject Interest.')); ?> 
-                                <?php echo $form['score_subject_interest']->renderError(); ?>
+                                
                             </div>
                         </div>
 
@@ -164,25 +166,25 @@
                     </td>
                 </tr>
                 <!-- -->
+
+
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
+                        <?php echo $form['score_content_quality']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_content_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+
                 <!-- -->
                 <tr>
-                    <th><span style="float: left;
-                              font-weight: bold;
-                              ">Content Quality:&nbsp;&nbsp;&nbsp; </span></th>
+                    <th><span style="float: left;font-weight: bold;">Content Quality:&nbsp;&nbsp;&nbsp; </span></th>
                     <td>
-
                         <div style="float: left;padding-right:40px;">
-                            <!--                            <div style="font-weight: bold;">
-                            <?php echo $form['score_content_quality']->renderLabel(); ?>
-                                                        </div>-->
+
                             <div style="float: left;">
                                 <?php echo $form['score_content_quality']->render(array('score_content_quality' => 'Score Content Quality.')); ?> 
-                                <?php echo $form['score_content_quality']->renderError(); ?>
+                                
                             </div>
                         </div>
 
@@ -201,14 +203,15 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
+                        <?php echo $form['score_rareness']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_rareness_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+
                 <!-- -->
                 <tr>
-                    <th> <span style="float: left;
-                               font-weight: bold;
-                               ">Rareness:&nbsp;&nbsp;&nbsp; </span></th>
+                    <th> <span style="float: left;font-weight: bold;">Rareness:&nbsp;&nbsp;&nbsp; </span></th>
                     <td>
 
                         <div style="float: left;padding-right:40px;">
@@ -217,7 +220,7 @@
                                                         </div>-->
                             <div style="float: left;">
                                 <?php echo $form['score_rareness']->render(array('score_rareness' => 'Score Rareness.')); ?> 
-                                <?php echo $form['score_rareness']->renderError(); ?>
+                                
                             </div>
                         </div>
 
@@ -235,15 +238,15 @@
                 </tr>
                 <!-- -->
                 <tr>
-                    <td colspan="2">
-                        <hr/>
+                    <td colspan="2"><br/>
+                        <?php echo $form['score_documentation']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_documentation_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+
                 <!-- -->
                 <tr>
-                    <th> <span style="float: left;
-                               font-weight: bold;
-                               ">Documentation:&nbsp;&nbsp;&nbsp; </span></th>
+                    <th> <span style="float: left;font-weight: bold;">Documentation:&nbsp;&nbsp;&nbsp; </span></th>
                     <td>
 
                         <div style="float: left;padding-right:40px;">
@@ -252,7 +255,7 @@
                                                         </div>-->
                             <div style="float: left;">
                                 <?php echo $form['score_documentation']->render(array('score_documentation' => 'Score Documentation.')); ?> 
-                                <?php echo $form['score_documentation']->renderError(); ?>
+                                
                             </div>
                         </div>
 
@@ -270,25 +273,22 @@
                 </tr>
                 <!-- -->
                 <tr>
-                    <td colspan="2">
-                        <hr/>
+                    <td colspan="2"><br/>
+                        <?php echo $form['score_technical_quality']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_technical_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
                 <!-- -->
                 <tr>
-                    <th>    <span style="float: left;
-                                  font-weight: bold;
-                                  ">Technical Quality:&nbsp;&nbsp;&nbsp; </span></th>
+                    <th>    <span style="float: left;font-weight: bold;">Technical Quality:&nbsp;&nbsp;&nbsp; </span></th>
                     <td>
 
 
                         <div style="margin-left: 10px;float: left;padding-right:40px;">
-                            <!--                            <div style="font-weight: bold;">
-                            <?php echo $form['score_technical_quality']->renderLabel(); ?>
-                                                        </div>-->
+                            
                             <div style="float: left;">
                                 <?php echo $form['score_technical_quality']->render(array('score_technical_quality' => 'Score Technical Quality.')); ?> 
-                                <?php echo $form['score_technical_quality']->renderError(); ?>
+                                
                             </div>
                         </div>
                         <div style="float: left;padding-right:6px;">
@@ -315,7 +315,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
                 <!-- -->
@@ -324,6 +324,7 @@
                         <?php echo $form['collection_score']->renderLabel(); ?>
                     </th>
                     <td>
+
                         <?php echo $form['collection_score']->render(array('collection_score' => 'Collection Score.')); ?> 
                         <?php echo $form['collection_score']->renderError(); ?>
                     </td>
@@ -331,7 +332,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
                 <!-- -->
@@ -361,7 +362,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
                 <!-- -->
@@ -391,7 +392,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
                 <!-- -->
@@ -407,7 +408,7 @@
                 <!-- -->
                 <tr>
                     <td colspan="2">
-                        <hr/>
+                        <br/>
                     </td>
                 </tr>
 
