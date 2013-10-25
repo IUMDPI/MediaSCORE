@@ -1,4 +1,3 @@
-
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
         <div class="search-input">
@@ -18,14 +17,11 @@
                     }
                 }
                 ?>
-
             </div>
-
-
             <input type="hidden" id="search_values" name="search_values" value="<?php echo $searchValues; ?>"/>
             <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
             <div class="container">
-                <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();
+               <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();
                    $('.dropdown-container').css('width', $('.search-input').width() + 26);"></a><b class="token-count"><?php echo count($searchString); ?></b>
                 <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();"></a>
             </div>

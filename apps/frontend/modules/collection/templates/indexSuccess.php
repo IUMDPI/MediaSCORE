@@ -53,6 +53,16 @@ if ($url)
                             </select>
 
                             <?php if ($view == 'river') { ?>
+
+                                <strong>&nbsp;&nbsp;Score Type: </strong>
+                                <select onchange="filterCollection('<?php echo $view; ?>');" id="scoreType" name="scoreType">
+                                    <option value="total">Total</option>
+                                    <option value="subject_interest">Subject Interest</option>
+                                    <option value="content_quality">Content Quality</option>
+                                    <option value="rareness">Rareness</option>
+                                    <option value="documentation">Documentation</option>
+                                    <option value="technical_quality">Technical Quality</option>
+                                </select>
                                 <strong>&nbsp;&nbsp;Score Range: </strong>
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
                                 <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/> 
@@ -274,7 +284,7 @@ if ($url)
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/collection/index',
-            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val()},
+            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val()},
             dataType: 'json',
             cache: false,
             success: function(result) {
@@ -309,7 +319,7 @@ if ($url)
                     }else{
                         
                         for (collection in result) {
-                            console.log(result);
+                            
                             editdelete = '';
                             if(userType!=2){
                                 editdelete='<td class="invisible">' +
@@ -369,7 +379,7 @@ if ($url)
     }
     $(function(){
         //        setTimeout('BindJsAgain()', 1000);
-        setInterval(function(){console.log(Math.random());if($("#collection_storage_locations_list").is(":visible")){BindJsAgain();}},1000);
+        setInterval(function(){if($("#collection_storage_locations_list").is(":visible")){BindJsAgain();}},1000);
         $( "#mediascoresView" ).bind( "click", function() {
             $("#mediascoresView").attr('class','SelectTabClass');
             $('#mediariversView').attr('class','none');
