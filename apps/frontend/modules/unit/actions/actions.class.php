@@ -91,7 +91,7 @@ class unitActions extends sfActions {
                 'to' => $to,
                 'dateType' => $dateType,
             );
-
+           
             $db = new Unit();
             $filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
             $this->searchResult = array();
@@ -116,7 +116,7 @@ class unitActions extends sfActions {
                     if ($result->getType() == 3) {
                         $text = 'Collection';
                         $urlOnName = url_for('assetgroup', $result);
-                        
+
 
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
@@ -211,7 +211,7 @@ class unitActions extends sfActions {
 //            $this->searchValues = $request->getParameter('search_values');
             $this->searchValues = $request->getPostParameter('search_values');
 
-
+             
             // make array of search values
             $this->searchString = array();
             if (!empty($this->searchValues))
@@ -261,6 +261,7 @@ class unitActions extends sfActions {
                         ->whereIn('s.id', $filterID)
                         ->execute();
             }
+            
         }
     }
 
