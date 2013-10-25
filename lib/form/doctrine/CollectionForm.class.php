@@ -200,7 +200,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
             $this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 644px;')));
 
-            $this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+            $this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('readonly' => 'readonly', 'style' => 'width:27px;height: 12px;')));
 
             $this->setWidget('generation_statement', new sfWidgetFormInputText(array(), array('style' => 'width:190px;')));
             $this->setWidget('generation_statement_notes', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 539px;')));

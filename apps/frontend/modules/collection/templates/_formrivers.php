@@ -433,6 +433,9 @@
             $('#collection_name').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_collection_score').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_collection_score').attr('readonly', 'readonly');
+<?php } else { ?>
+            $('#collection_collection_score').attr('style', 'background:#F0F0F0;cursor:not-allowed');
+            $('#collection_collection_score').attr('readonly', 'readonly');
 <?php } ?>
     });
 </script>
