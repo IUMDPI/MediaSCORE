@@ -51,17 +51,11 @@ if ($url)
                                 <option value="1">In Progress</option>
                                 <option value="2">Completed</option>
                             </select>
-
                             <?php if ($view == 'river') { ?>
-
                                 <strong>&nbsp;&nbsp;Score Type: </strong>
                                 <select onchange="filterCollection('<?php echo $view; ?>');" id="scoreType" name="scoreType">
-                                    <option value="total">Total</option>
-                                    <option value="subject_interest">Subject Interest</option>
-                                    <option value="content_quality">Content Quality</option>
-                                    <option value="rareness">Rareness</option>
-                                    <option value="documentation">Documentation</option>
-                                    <option value="technical_quality">Technical Quality</option>
+                                    <option value="river">MediaRIVER</option>
+                                    <option value="score">MediaSCORE</option>
                                 </select>
                                 <strong>&nbsp;&nbsp;Score Range: </strong>
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
