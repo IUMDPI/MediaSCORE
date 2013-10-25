@@ -140,7 +140,7 @@ class unitActions extends sfActions {
                     }
 
 
-                    $urlOnName = 'http://mediascore.live.geekschicago.com/frontend_dev.php/black-film-center-archive/bfca-event-recordings-and-interviews/';
+//                    $urlOnName = 'http://mediascore.live.geekschicago.com/frontend_dev.php/black-film-center-archive/bfca-event-recordings-and-interviews/';
                     $this->html .="<td><a href='{$urlOnName}'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
                             "<td>{$result->getCreatedAt()}</td>" .
                             "<td><span>{$result->getCreator()->getName()}</span></td>" .
