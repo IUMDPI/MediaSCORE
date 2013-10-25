@@ -40,7 +40,10 @@ class unitActions extends sfActions {
         $store = array('Unit' => '1', 'Collection' => '3');
         $asset = array('Asset Group' => '4');
         if ($request->isXmlHttpRequest()) {
+//            var_dump($request->getParameter('s'));
+//            exit;
             $searchInput = $request->getParameter('s');
+
             $status = $request->getParameter('status');
             $from = $request->getParameter('from');
             $to = $request->getParameter('to');
@@ -113,6 +116,8 @@ class unitActions extends sfActions {
                     if ($result->getType() == 3) {
                         $text = 'Collection';
                         $urlOnName = url_for('assetgroup', $result);
+                        
+
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
                         $duration = $result->getDuration($result->getId());
@@ -135,8 +140,8 @@ class unitActions extends sfActions {
                     }
 
 
-
-                    $this->html .="<td><a href=' {$urlOnName}; ?>'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
+                    $urlOnName = 'http://mediascore.live.geekschicago.com/frontend_dev.php/black-film-center-archive/bfca-event-recordings-and-interviews/';
+                    $this->html .="<td><a href='{$urlOnName}'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
                             "<td>{$result->getCreatedAt()}</td>" .
                             "<td><span>{$result->getCreator()->getName()}</span></td>" .
                             "<td>{$result->getUpdatedAt()}</td>" .
@@ -145,9 +150,9 @@ class unitActions extends sfActions {
                             "</tr>";
                 }
             }
-
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
+
 
             return $this->renderText(json_encode($this->html));
 
@@ -201,8 +206,12 @@ class unitActions extends sfActions {
 
             return $this->renderText(json_encode($this->unit));
         } else {
+
             // get the parameter of search
-            $this->searchValues = $request->getParameter('search_values');
+//            $this->searchValues = $request->getParameter('search_values');
+            $this->searchValues = $request->getPostParameter('search_values');
+
+
             // make array of search values
             $this->searchString = array();
             if (!empty($this->searchValues))
@@ -233,6 +242,7 @@ class unitActions extends sfActions {
                 else
                     $stringForName[] = trim($value);
             }
+
             $searchParams = array(
                 'formats' => $formatType,
                 'store' => $storeType,
