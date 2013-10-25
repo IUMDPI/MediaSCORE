@@ -8,9 +8,9 @@
         width:27px !important;
     }
     #collection_parent_node_id{
-/*        height: 130px;
+        height: 130px;
         overflow-x: hidden;
-        overflow-y: scroll;*/
+        overflow-y: scroll;
         width: auto;
     }
 </style>
@@ -427,7 +427,7 @@
     
 <?php if (isset($actionType) && $actionType == 'edit') { ?>
             $('#collection_inst_id').attr('readonly', 'readonly');
-//            $('#collection_parent_node_id').attr('size', '15');
+            $('#collection_parent_node_id').attr('size', '10');
             $('#collection_inst_id').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_name').attr('readonly', 'readonly');
             $('#collection_name').attr('style', 'background:#F0F0F0;cursor:not-allowed');
