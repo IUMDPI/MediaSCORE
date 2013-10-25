@@ -157,10 +157,10 @@ class CollectionForm extends BaseCollectionForm {
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
                 $Units = array();
-                foreach ($unit as $u) {
-                    $Units[] = $u['name'];
+                foreach ($unit as $key=>$u) {
+                    $Units[$u['id']] = $u['name'];
                 }
-
+                
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
                 $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'), array('size' => 15)));
             } else {
