@@ -125,24 +125,24 @@ class collectionActions extends sfActions {
                         $this->collections = $this->collections->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) <= ?', "{$score_end}");
                         break;
                     case 'subject_interest':
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_subject_interest as DECIMAL(3,2))) >= ?', "{$score_start}%");
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_subject_interest as DECIMAL(3,2))) <= ?', "{$score_end}%");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_subject_interest as DECIMAL(3,2))) >= ?', "{$score_start}");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_subject_interest as DECIMAL(3,2))) <= ?', "{$score_end}");
                         break;
                     case 'content_quality':
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_content_quality as DECIMAL(3,2))) >= ?', "{$score_start}%");
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_content_quality as DECIMAL(3,2))) <= ?', "{$score_end}%");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_content_quality as DECIMAL(3,2))) >= ?', "{$score_start}");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_content_quality as DECIMAL(3,2))) <= ?', "{$score_end}");
                         break;
                     case 'rareness':
                         $this->collections = $this->collections->andWhere('(CAST(c.score_rareness as DECIMAL(3,2))) >= ?', "{$score_start}%");
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_rareness <= ?', "{$score_end}%");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_rareness as DECIMAL(3,2))) <= ?', "{$score_end}%");
                         break;
                     case 'documentation':
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_documentation as DECIMAL(3,2))) >= ?', "{$score_start}%");
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_documentation as DECIMAL(3,2))) <= ?', "{$score_end}%");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_documentation as DECIMAL(3,2))) >= ?', "{$score_start}");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_documentation as DECIMAL(3,2))) <= ?', "{$score_end}");
                         break;
                     case 'technical_quality':
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_technical_quality  as DECIMAL(3,2))) >= ?', "{$score_start}%");
-                        $this->collections = $this->collections->andWhere('(CAST(c.score_technical_quality  as DECIMAL(3,2))) <= ?', "{$score_end}%");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_technical_quality  as DECIMAL(3,2))) >= ?', "{$score_start}");
+                        $this->collections = $this->collections->andWhere('(CAST(c.score_technical_quality  as DECIMAL(3,2))) <= ?', "{$score_end}");
                         break;
                 }
             }
