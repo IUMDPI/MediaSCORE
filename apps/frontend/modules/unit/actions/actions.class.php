@@ -16,10 +16,10 @@ class unitActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeSearch(sfWebRequest $request) {
-        // make array of all the format types that are available
+// make array of all the format types that are available
         $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
         $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
-        // Format Type Array
+// Format Type Array
         $types = array('Metal Disc' => '1', 'Film' => '5',
             'DAT' => '6', 'Sound Wire Reel' => '7',
             'Analog Audio Cassette' => '4', 'Polyster Open Reel Audio Tape' => '9',
@@ -36,7 +36,7 @@ class unitActions extends sfActions {
             'VHS' => '41', 'Digital Betacam' => '42',
             'U-matic' => '44', 'HDCAM' => '45', 'DVCPro' => '46',
         );
-        // make array of search parameters
+// make array of search parameters
         $store = array('Unit' => '1', 'Collection' => '3');
         $asset = array('Asset Group' => '4');
         if ($request->isXmlHttpRequest()) {
@@ -48,9 +48,9 @@ class unitActions extends sfActions {
             $from = $request->getParameter('from');
             $to = $request->getParameter('to');
             $dateType = $request->getParameter('datetype');
-            // get the parameter of search
+// get the parameter of search
             $searchValues = $request->getParameter('search_values');
-            // make array of search values
+// make array of search values
             $this->searchString = array();
             if (!empty($searchValues))
                 $this->searchString = explode(',', $searchValues);
@@ -91,7 +91,7 @@ class unitActions extends sfActions {
                 'to' => $to,
                 'dateType' => $dateType,
             );
-           
+
             $db = new Unit();
             $filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
             $this->searchResult = array();
@@ -141,10 +141,10 @@ class unitActions extends sfActions {
 
 
 //                    $urlOnName = 'http://mediascore.live.geekschicago.com/frontend_dev.php/black-film-center-archive/bfca-event-recordings-and-interviews/';
-                    $this->html .="<td><a href='{$urlOnName}'>{$result->getName()} </a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
-                            "<td>{$result->getCreatedAt()}</td>" .
+                    $this->html .="<td ><a class='long_name_handler tooltip' href='{$urlOnName}'>" . substr($result->getName(), 0, 35) . " <span>{$result->getName()}</span></a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
+                            "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
                             "<td><span>{$result->getCreator()->getName()}</span></td>" .
-                            "<td>{$result->getUpdatedAt()}</td>" .
+                            "<td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
                             "<td>{$result->getEditor()->getName()}</td>" .
                             "<td>{$duration}</td>" .
                             "</tr>";
@@ -211,7 +211,7 @@ class unitActions extends sfActions {
 //            $this->searchValues = $request->getParameter('search_values');
             $this->searchValues = $request->getPostParameter('search_values');
 
-             
+
             // make array of search values
             $this->searchString = array();
             if (!empty($this->searchValues))
@@ -261,7 +261,6 @@ class unitActions extends sfActions {
                         ->whereIn('s.id', $filterID)
                         ->execute();
             }
-            
         }
     }
 

@@ -23,10 +23,10 @@ if ($url)
         display:inline-block !important;
         white-space: nowrap !important;
         text-overflow: ellipsis !important;
-        max-width:230px !important;
+        max-width:218px !important;
         height:10px !important;
         overflow:hidden !important;
-        width: 230px !important;
+        width: 218px !important;
     }
     .long_name_handler_inst{
         text-overflow: ellipsis !important;
@@ -36,7 +36,7 @@ if ($url)
         white-space: nowrap !important;
         width: 130px !important;
     }
-    table.tablesorter thead tr .header {
+    table.tablesorter thead tr .header .river {
         background-image: url(/images/tableSorter/bg.gif );
         background-repeat: no-repeat;
         background-position: center right;
@@ -55,7 +55,7 @@ if ($url)
     .tooltip:hover {text-decoration:none;} 
     .tooltip span {
         z-index:10;display:none; padding: 10px 20px;
-margin-top: -3px; margin-left:5px;
+        margin-top: -3px; margin-left:5px;
         width:auto ;line-height:0px;
     }
     .tooltip:hover span{
@@ -140,19 +140,19 @@ margin-top: -3px; margin-left:5px;
                 <table id="collectionTable" class="tablesorter">
                     <?php
                     if ($view == 'river') {
-                        ?><thead>
+                        ?><thead> 
                             <tr>
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
-                                    <td width="50"></td>
-                                <?php } ?>
-                                <th  style="padding-top: 20px !important;">Primary ID</th>
-                                <th style="padding-top: 20px !important;">Collection</th>
-                                <th>Subject Interest</th>
-                                <th>Content Quality</th>
-                                <th class="check" style="padding-top: 20px !important;">Rareness</th>
-                                <th class="check" style="padding-top: 20px !important;">Documentation</th>
-                                <th style="text-align: center !important;">Technical Quality</th>
-                                <th class="check" style="padding-top: 20px !important;">Total</th>
+                                    <td width="6%"></td>
+                                <?php } ?> 
+                                <th  class="river" style="padding-top: 20px !important;">Primary ID</th>
+                                <th class="river" style="padding-top: 20px !important;">Collection</th>
+                                <th class="river">Subject Interest</th>
+                                <th class="river">Content Quality</th>
+                                <th class="river" style="padding-top: 20px !important;">Rareness</th>
+                                <th class="river" style="padding-top: 20px !important;">Documentation</th>
+                                <th class="river" style="text-align: center !important;">Technical Quality</th>
+                                <th class="river" style="padding-top: 20px !important;">Total</th>
                             </tr>
                         </thead>
                         <tbody id="collectionResult">
@@ -172,8 +172,8 @@ margin-top: -3px; margin-left:5px;
                                         <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?>  <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
                                         <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
-                                        <td class="intigers" width="9%" ><?php echo $collection->getScoreRareness(); ?></td>
-                                        <td class="intigers" width="12%" ><?php echo $collection->getScoreDocumentation(); ?></td>
+                                        <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
+                                        <td class="intigers" width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
                                         <td class="intigers"  width="9%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
                                         <td class="intigers" width="7%" ><?php echo $collection->getCollectionScore(); ?></td>
                                     </tr> 
@@ -192,15 +192,15 @@ margin-top: -3px; margin-left:5px;
                         <thead>
                             <tr>
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
-                                    <td width="50"></td>
+                                    <td width="6%"></td>
                                 <?php } ?>
                                 <th>Primary ID</th>
-                                <th>Collection</th>
+                                <th width="18%">Collection</th>
                                 <th>Created</th>
-                                <th>Created By</th>
-                                <th>Updated On</th>
-                                <th>Updated By</th>
-                                <th style="text-align: center;">Duration</th>
+                                <th width="15%">Created By</th>
+                                <th width="12%">Updated On</th>
+                                <th width="15%">Updated By</th>
+                                <th width="10%" style="text-align: center;">Duration</th>
                             </tr>
                         </thead>
                         <tbody id="collectionResult">
@@ -217,11 +217,12 @@ margin-top: -3px; margin-left:5px;
                                                 </div>
                                             </td>
                                         <?php } ?>
-                                        <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?></a></td>
-                                        <td><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?></a></td>
-                                        <td><?php echo $collection->getCreatedAt() ?></td>
+
+                                        <td class="long_name_handler_inst tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
+                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getName() ?> <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
-                                        <td><?php echo $collection->getUpdatedAt() ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($collection->getUpdatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                                         <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
                                         <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
@@ -353,8 +354,8 @@ margin-top: -3px; margin-left:5px;
                             //                            IsMediaScoreAccess  ISMediaRiverAccess
                             
                             if ((userType == 2 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 0) {
-                                editdelete='<td class="invisible">' +
-                                    '<div class="options" width="5%">' +
+                                editdelete='<td width="6%" class="invisible">' +
+                                    '<div class="options" >' +
                                     '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
@@ -363,14 +364,14 @@ margin-top: -3px; margin-left:5px;
                             }
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
-                                '<td width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id + '</a></td>' +
-                                '<td width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + '</a></td>' +
-                                '<td width="7%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
-                                '<td width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
-                                '<td width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
-                                '<td width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'')+'</td>'+
-                                '<td width="9%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
-                                '<td width="5%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
+                                '<td width="10%" class="long_name_handler_inst tooltip" width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id +' <span>' + result[collection].inst_id + ' </span> </a></td>' +
+                                '<td width="30%" class="long_name_handler tooltip" width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + ' <span>' + result[collection].name + ' </span></a></td>' +
+                                '<td class="intigers" width="8%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
+                                '<td class="intigers" width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
+                                '<td class="intigers" width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
+                                '<td class="intigers" width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'')+'</td>'+
+                                '<td class="intigers" width="9%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
+                                '<td class="intigers" width="7%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
                                 '</tr>');
                         }
                     }else{
@@ -379,20 +380,24 @@ margin-top: -3px; margin-left:5px;
                             
                             editdelete = '';
                             if(userType!=2){
-                                editdelete='<td class="invisible">' +
+                                editdelete='<td width="6%" class="invisible">' +
                                     '<div class="options">' +
                                     '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
                             }
+                            
+                            Created_at = result[collection].created_at.split(' ');
+                            Updated_at = result[collection].updated_at.split(' ');
+                            
                             $('#collectionResult').append('<tr>'+ editdelete +
-                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + '</a></td>' +
-                                '<td><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '</a></td>' +
-                                '<td>' + result[collection].created_at + '</td>' +
-                                '<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
-                                '<td>' + result[collection].updated_at + '</td>' +
-                                '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-                                '<td style="text-align: right;">' + result[collection].duration + '</td>');
+                                '<td class="long_name_handler_inst tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + ' <span>' + result[collection].inst_id + ' </span></a></td>' +
+                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name + '<span>' + result[collection].name + ' </span></a></td>' +
+                                '<td width="10%">' + Created_at[0] + '</td>' +
+                                '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
+                                '<td width="12%">' + Updated_at[0] + '</td>' +
+                                '<td width="15%"><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
+                                '<td width="9%" style="text-align: right;">' + result[collection].duration + '</td>');
                             if (result[collection].StorageLocations[0]) {
                                 //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
                             }

@@ -1,3 +1,50 @@
+
+<style>
+    .tooltip {outline:none; }
+    .tooltip strong {line-height:30px;}
+    .tooltip:hover {text-decoration:none;} 
+    .tooltip span {
+        z-index:10;display:none; padding: 10px 20px;
+        margin-top: -3px; margin-left:5px;
+        width:auto ;line-height:0px;
+    }
+    .tooltip:hover span{
+        display:inline; position:absolute; color:#111;
+        border:1px solid gray; background:#d8d8d8;
+    }
+    .callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+
+    /*CSS3 extras*/
+    .tooltip span
+    {
+        border-radius:4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+
+        -moz-box-shadow: 5px 5px 8px #CCC;
+        -webkit-box-shadow: 5px 5px 8px #CCC;
+        box-shadow: 5px 5px 8px #CCC;
+    }
+
+    .long_name_handler{
+        display:inline-block !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        max-width:218px !important;
+        height:12px !important;
+        overflow:hidden !important;
+        width: 218px !important;
+        line-height: 10px !important;
+    }
+    .long_name_handler_inst{
+        text-overflow: ellipsis !important;
+        max-width: 130px !important;
+        height: 10px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        width: 130px !important;
+    }
+</style>
 <div id="search-box">
     <form action="<?php echo url_for('unit/search') ?>" method="post" onkeypress="return event.keyCode != 13;">
         <div class="search-input">
@@ -21,8 +68,8 @@
             <input type="hidden" id="search_values" name="search_values" value="<?php echo $searchValues; ?>"/>
             <input type="search" placeholder="Search all records" id="mainsearch" onkeyup="makeToken(event);"/>
             <div class="container">
-               <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();
-                   $('.dropdown-container').css('width', $('.search-input').width() + 26);"></a><b class="token-count"><?php echo count($searchString); ?></b>
+                <a class="search-triangle" href="javascript:void(0);" onclick="$('.dropdown-container').slideToggle();
+                    $('.dropdown-container').css('width', $('.search-input').width() + 26);"></a><b class="token-count"><?php echo count($searchString); ?></b>
                 <a class="search-close" href="javascript:void(0);" onclick="removeAllTokenDivs();"></a>
             </div>
 
@@ -161,12 +208,12 @@
                             </div>
                         </td>
                     <?php } ?>
-                    <td><a href="<?php echo $urlOnName; ?>"><?php echo $result->getName() ?></a>&nbsp;&nbsp;<span class="help-text"><?php echo $text; ?></span></td>
-                    <td><?php echo $result->getCreatedAt() ?></td>
+                    <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler tooltip"><?php echo substr($result->getName(), 0, 40) ?><span><?php echo $result->getName(); ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
+                    <td><?php echo date('Y-d-m', strtotime($result->getCreatedAt())); ?></td>
                     <td>
                         <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
                     </td>
-                    <td><?php echo $result->getUpdatedAt() ?></td>
+                    <td><?php echo date('Y-d-m', strtotime($result->getUpdatedAt())) ?></td>
                     <td>
                         <?php echo $result->getEditor()->getName(); ?>
                     </td>

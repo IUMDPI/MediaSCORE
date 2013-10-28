@@ -75,10 +75,10 @@ else
                     <tr>
                         <th><label><span class="required">*</span>Collection Assignment:</label></th>
                         <td>
-                            <select multiple="multiple" id="unit-multiple-select">
+                            <select  id="unit-multiple-select">
                                 <option>Loading Unit(s)...</option>
                             </select>
-                            <select multiple="multiple" id="collection-multiple-select">
+                            <select  id="collection-multiple-select">
                                 <option>Loading Collection(s)...</option>
                             </select>
                         </td>
@@ -98,7 +98,7 @@ else
                     ?>
                     <tr>
                         <td colspan="2">
-                            <select multiple="multiple" id="unit-multiple-select" onchange="getCollectionAndLocation();">
+                            <select  id="unit-multiple-select" onchange="getCollectionAndLocation();">
 
                                 <?php foreach ($unit as $value) { ?>
                                     <?php if ($assetCollection->getParentNodeId() == $value->getId()) { ?>
@@ -112,7 +112,7 @@ else
 
                             </select>
                             <!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
-                            <select multiple="multiple" id="collection-multiple-select" >
+                            <select  id="collection-multiple-select" >
                                 <?php foreach ($collection as $value) { ?>
                                     <?php if ($assetCollection->getId() == $value->getId()) { ?>
                                         <option value="<?php echo $value->getId() ?>" selected="selected"><?php echo $value->getName() ?></option>         

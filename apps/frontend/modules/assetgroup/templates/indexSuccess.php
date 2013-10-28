@@ -57,30 +57,30 @@ if ($sf_user->getGuardUser()->getType() != 3) {
     </thead>
     <tbody id="assetsResult">
 
-<?php foreach ($asset_groups as $asset_group): ?>
+        <?php foreach ($asset_groups as $asset_group): ?>
 
             <tr>
-    <?php
-    if ($sf_user->getGuardUser()->getType() != 3) {
-        ?>
+                <?php
+                if ($sf_user->getGuardUser()->getType() != 3) {
+                    ?>
                     <td class="invisible">
                         <div class="options">
                             <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
                         </div>
                     </td>
-    <?php } ?>
+                <?php } ?>
                 <td><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
-                <td><span style="display: none;"><?php echo $asset_group->getCreatedAt() ?></span><?php echo $asset_group->getCreatedAt() ?></td>
+                <td><span style="display: none;"><?php echo $asset_group->getCreatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getCreatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
-                <td><span style="display: none;"><?php echo $asset_group->getUpdatedAt() ?></span><?php echo $asset_group->getUpdatedAt() ?></td>
+                <td><span style="display: none;"><?php echo $asset_group->getUpdatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getUpdatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
                 <td style="text-align: right;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
-    <?php
-    if ($sf_user->getGuardUser()->getId() == 1) {
-        $score = '0.0';
-        if ($asset_group->getFormatType()->getAssetScore() != '')
-            $score = $asset_group->getFormatType()->getAssetScore();
-        ?>
+                <?php
+                if ($sf_user->getGuardUser()->getId() == 1) {
+                    $score = '0.0';
+                    if ($asset_group->getFormatType()->getAssetScore() != '')
+                        $score = $asset_group->getFormatType()->getAssetScore();
+                    ?>
 
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><a target="_blank" href="<?php echo url_for('assetgroup/getScore?id=' . $asset_group->getId()); ?>"><?php echo $score; ?></a></td>
                     <?php
@@ -90,7 +90,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo $score; ?></td>
                 <?php } ?>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
@@ -194,11 +194,13 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                                 '</div>' +
                                 '</td>';
                         }
+                        Created_at = result[collection].created_at.split(' ');
+                        Updated_at = result[collection].updated_at.split(' ');
                         $('#assetsResult').append('<tr>' + editdelete +
                             '<td><span style="display: none;">' + result[collection].name + '</span><a href="/assetgroup/edit/id/' + result[collection].id + '/c/' + collectionID + '">' + result[collection].name + '</a></td>' +
-                            '<td><span style="display: none;">' + result[collection].created_at + '</span>' + result[collection].created_at + '</td>' +
+                            '<td><span style="display: none;">' + result[collection].created_at + '</span>' + Created_at[0] + '</td>' +
                             '<td><span style="display: none;">'+result[collection].Creator.last_name+'</span>' + result[collection].Creator.first_name +' '+ result[collection].Creator.last_name + '</td>' +
-                            '<td><span style="display: none;">' + result[collection].updated_at + '</span>' + result[collection].updated_at + '</td>' +
+                            '<td><span style="display: none;">' + result[collection].updated_at + '</span>' + Updated_at[0] + '</td>' +
                             '<td><span style="display: none;">'+result[collection].Editor.last_name+'</span>' + result[collection].Editor.first_name +' '+ result[collection].Editor.last_name + '</td>' +
                             '<td style="text-align: right;"><span style="display: none;">' + result[collection].duration + '</span>' + result[collection].duration + '</td>' +
                             '<td style="text-align: right;"><span style="display: none;">' + result[collection].FormatType.asset_score + '</span>' + result[collection].FormatType.asset_score + '</td>' +
