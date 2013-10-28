@@ -5,12 +5,12 @@ if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river') {
     ?>
     <a class="button <?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
     <?php
-}
+} 
 include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocations));
 $url = url_for('collection', $ThisUnit);
-if ($url)
+if ($url)  
     $url = '';
-?>  
+?>    
 
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
