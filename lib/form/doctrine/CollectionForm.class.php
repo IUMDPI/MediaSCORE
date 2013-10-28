@@ -162,7 +162,7 @@ class CollectionForm extends BaseCollectionForm {
                 }
                 
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
-                $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'))); //, array('size' => 15)
+                $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'))); //
             } else {
                 $voidFields[] = 'updated_at';
                 $this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));

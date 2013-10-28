@@ -5,13 +5,76 @@ if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river') {
     ?>
     <a class="button <?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
     <?php
-} 
+}
 include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocations));
 $url = url_for('collection', $ThisUnit);
-if ($url)  
+if ($url)
     $url = '';
 ?>    
+<style>
+    th.header { 
+        cursor: pointer; 
+        font-weight: bold; 
+        margin-left: -1px; 
+        padding-top: 11px; 
+    } 
 
+    .long_name_handler{
+        display:inline-block !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        max-width:230px !important;
+        height:10px !important;
+        overflow:hidden !important;
+        width: 230px !important;
+    }
+    .long_name_handler_inst{
+        text-overflow: ellipsis !important;
+        max-width: 130px !important;
+        height: 10px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        width: 130px !important;
+    }
+    table.tablesorter thead tr .header {
+        background-image: url(/images/tableSorter/bg.gif );
+        background-repeat: no-repeat;
+        background-position: center right;
+        cursor: pointer;
+        background-position-y: 24px;
+
+
+    }
+    .intigers{
+        text-align: center !important;
+        margin-right: 2px !important ;
+    }
+
+    .tooltip {outline:none; }
+    .tooltip strong {line-height:30px;}
+    .tooltip:hover {text-decoration:none;} 
+    .tooltip span {
+        z-index:10;display:none; padding: 10px 20px;
+margin-top: -3px; margin-left:5px;
+        width:auto ;line-height:0px;
+    }
+    .tooltip:hover span{
+        display:inline; position:absolute; color:#111;
+        border:1px solid gray; background:#d8d8d8;}
+    .callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+
+    /*CSS3 extras*/
+    .tooltip span
+    {
+        border-radius:4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+
+        -moz-box-shadow: 5px 5px 8px #CCC;
+        -webkit-box-shadow: 5px 5px 8px #CCC;
+        box-shadow: 5px 5px 8px #CCC;
+    }
+</style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
     <ul class="tabs" data-persist="true">
@@ -82,14 +145,14 @@ if ($url)
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="50"></td>
                                 <?php } ?>
-                                <th>Primary ID</th>
-                                <th>Collection</th>
+                                <th  style="padding-top: 20px !important;">Primary ID</th>
+                                <th style="padding-top: 20px !important;">Collection</th>
                                 <th>Subject Interest</th>
                                 <th>Content Quality</th>
-                                <th>Rareness</th>
-                                <th>Documentation</th>
-                                <th>Technical Quality</th>
-                                <th>Total</th>
+                                <th class="check" style="padding-top: 20px !important;">Rareness</th>
+                                <th class="check" style="padding-top: 20px !important;">Documentation</th>
+                                <th style="text-align: center !important;">Technical Quality</th>
+                                <th class="check" style="padding-top: 20px !important;">Total</th>
                             </tr>
                         </thead>
                         <tbody id="collectionResult">
@@ -98,22 +161,22 @@ if ($url)
                                 <?php foreach ($collections as $collection): ?>
                                     <tr>
                                         <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
-                                            <td class="invisible" width="5%">
+                                            <td class="invisible" width="6%">
                                                 <div class="options">
                                                     <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                                                     <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
                                                 </div>
-                                            </td>
+                                            </td> 
                                         <?php } ?>
-                                        <td width="21%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?></a></td>
-                                        <td width="25%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?></a></td>
-                                        <td width="7%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
-                                        <td width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
-                                        <td width="9%"><?php echo $collection->getScoreRareness(); ?></td>
-                                        <td width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
-                                        <td width="9%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
-                                        <td width="5%"><?php echo $collection->getCollectionScore(); ?></td>
-                                    </tr>
+                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
+                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?>  <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
+                                        <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
+                                        <td class="intigers" width="9%" ><?php echo $collection->getScoreRareness(); ?></td>
+                                        <td class="intigers" width="12%" ><?php echo $collection->getScoreDocumentation(); ?></td>
+                                        <td class="intigers"  width="9%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
+                                        <td class="intigers" width="7%" ><?php echo $collection->getCollectionScore(); ?></td>
+                                    </tr> 
                                 <?php endforeach; ?>
 
                                 <?php
