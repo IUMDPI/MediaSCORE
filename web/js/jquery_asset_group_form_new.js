@@ -185,7 +185,7 @@ $('document').ready(function () {
         $('#unit-multiple-select option').each( function(i,element) {
             if(element.value == unitID) {
                 $('#unit-multiple-select').prop('selectedIndex',i);
-                getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
+                getCollectionsForUnitID( $('#unit-multiple-select').val() );
             }
         });
     }
@@ -215,7 +215,7 @@ $('document').ready(function () {
             $('#unit-multiple-select').prop('selectedIndex',0); // No
             getUnitForCollectionID();
             $('.unit-multiple-select').click(function () {
-                getCollectionsForUnitID( $('#unit-multiple-select').val().shift() );
+                getCollectionsForUnitID( $('#unit-multiple-select').val() );
             });
         });
 });
