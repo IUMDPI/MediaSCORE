@@ -36,15 +36,17 @@ if ($url)
         white-space: nowrap !important;
         width: 130px !important;
     }
-    table.tablesorter thead tr .header .river {
-        background-image: url(/images/tableSorter/bg.gif );
-        background-repeat: no-repeat;
-        background-position: center right;
-        cursor: pointer;
-        background-position-y: 24px;
+    <?php if ($view == 'river') { ?>
+        table.tablesorter thead tr .header {
+            background-image: url(/images/tableSorter/bg.gif );
+            background-repeat: no-repeat;
+            background-position: center right;
+            cursor: pointer;
+            background-position-y: 24px;
 
 
-    }
+        }
+    <?php } ?>
     .intigers{
         text-align: center !important;
         margin-right: 2px !important ;
