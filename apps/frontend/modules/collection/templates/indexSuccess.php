@@ -394,7 +394,7 @@ if ($url)
                             
                             $('#collectionResult').append('<tr>'+ editdelete +
                                 '<td class="long_name_handler_inst tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + ' <span>' + result[collection].inst_id + ' </span></a></td>' +
-                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,40) + '<span>' + result[collection].name + ' </span></a></td>' +
+                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,36) + '<span>' + result[collection].name + ' </span></a></td>' +
                                 '<td width="10%">' + Created_at[0] + '</td>' +
                                 '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
                                 '<td width="12%">' + Updated_at[0] + '</td>' +
