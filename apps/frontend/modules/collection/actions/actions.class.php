@@ -275,10 +275,10 @@ class collectionActions extends sfActions {
                     ->createQuery('u')
                     ->where('id =?', $unitId)
                     ->execute();
-////            header('location: ' . $this->generateUrl("collection", $unit[0]));
-//            $this->redirect($this->generateUrl("collection", $unit[0]));
-//            echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
-//            exit;
+//            header('location: ' . $this->generateUrl("collection", $unit[0]));
+            $this->redirect($this->generateUrl("collection", $unit[0]));
+            echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
+            exit;
         } else {
             $this->setTemplate('new');
         }
