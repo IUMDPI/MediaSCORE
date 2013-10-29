@@ -74,7 +74,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getUpdatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getUpdatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
-                <td style="text-align: right;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span><?php echo $asset_group->getDuration($asset_group->getFormatId()) ?></td>
+                <td style="text-align: right;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span><?php echo $asset_group->getDurationRealTime($asset_group->getFormatId()) ?></td>
                 <?php
                 if ($sf_user->getGuardUser()->getId() == 1) {
                     $score = '0.0';

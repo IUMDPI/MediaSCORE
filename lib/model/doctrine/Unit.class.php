@@ -35,6 +35,29 @@ class Unit extends BaseUnit {
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+    /**
+     * get the duration
+     * 
+     * @param integer $unitID
+     * @return string 
+     */
+    public function getDurationRealTime($unitID) {
+        $totalDuration = 0;
+        $collection = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('c.id,ag.id,ft.duration')
+                ->innerJoin('ag.Collection c')
+                ->innerJoin('ag.FormatType ft')
+                ->where('c.parent_node_id  = ?', $unitID)
+                ->fetchArray();
+        if (sizeof($collection) > 0) {
+            foreach ($collection as $key => $value) {
+                $totalDuration = $totalDuration + $value['FormatType']['duration'];
+            }
+        }
+
+        return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
+    }
 
     static public function getSearchResults($params, $user) {
 

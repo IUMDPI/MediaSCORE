@@ -34,5 +34,27 @@ class AssetGroup extends BaseAssetGroup {
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+    /**
+     * calcuate the format duration
+     * 
+     * @param integer $formatID
+     * @return integer 
+     */
+    public function getDurationRealTime($formatID) {
+        $totalDuration = 0;
+
+        $formatType = Doctrine_Query::Create()
+                ->from('FormatType ft')
+                ->select('ft.*')
+                ->where('ft.id  = ?', $formatID)
+                ->fetchArray();
+        if (sizeof($formatType) > 0)
+            $totalDuration = $totalDuration + $formatType[0]['duration'];
+
+
+
+
+        return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
+    }
 
 }

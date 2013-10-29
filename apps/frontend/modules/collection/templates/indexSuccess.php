@@ -227,7 +227,7 @@ if ($url)
                                         <td><?php echo date('Y-m-d', strtotime($collection->getUpdatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getEditor()->getLastName() ?></span><?php echo $collection->getEditor()->getName() ?></td>
                                         <td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($collection->getDuration($collection->getId())); ?></span></td>
-                                        <td style="text-align: right;"><?php echo $collection->getDuration($collection->getId()) ?></td>
+                                        <td style="text-align: right;"><?php echo $collection->getDurationRealTime($collection->getId()) ?></td>
 
                                     </tr>
                                 <?php endforeach; ?>

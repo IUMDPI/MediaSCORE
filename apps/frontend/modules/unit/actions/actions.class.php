@@ -111,7 +111,7 @@ class unitActions extends sfActions {
                         $urlOnName = url_for('collection', $result);
                         $urlonEdit = url_for('unit/edit?id=' . $result->getId());
                         $parentId = 0;
-                        $duration = $result->getDuration($result->getId());
+                        $duration = $result->getDurationRealTime($result->getId());
                     }
                     if ($result->getType() == 3) {
                         $text = 'Collection';
@@ -120,13 +120,13 @@ class unitActions extends sfActions {
 
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
-                        $duration = $result->getDuration($result->getId());
+                        $duration = $result->getDurationRealTime($result->getId());
                     }
                     if ($result->getType() == 4) {
                         $text = 'Asset Group';
                         $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
-                        $duration = $result->getDuration($result->getFormatId());
+                        $duration = $result->getDurationRealTime($result->getFormatId());
                     }
 
                     $this->html .="<tr>";
@@ -197,7 +197,7 @@ class unitActions extends sfActions {
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
-                $this->unit[$key]['duration'] = $duration->getDuration($value['id']);
+                $this->unit[$key]['duration'] = $duration->getDurationRealTime($value['id']);
             }
 
 

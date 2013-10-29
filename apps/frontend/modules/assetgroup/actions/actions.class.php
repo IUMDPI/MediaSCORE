@@ -84,7 +84,7 @@ class assetgroupActions extends sfActions {
             if (sizeof($this->assets) > 0) {
                 foreach ($this->assets as $key => $value) {
                     $duration = new AssetGroup();
-                    $duration = $duration->getDuration($value['format_id']);
+                    $duration = $duration->getDurationRealTime($value['format_id']);
                     $this->assets[$key]['duration'] = $duration;
                 }
             }

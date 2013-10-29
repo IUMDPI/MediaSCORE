@@ -64,6 +64,30 @@ class Collection extends BaseCollection {
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+    /**
+     *
+     * 
+     * @param integer $collectionID
+     * @return string 
+     */
+    public function getDurationRealTime($collectionID) {
+        $totalDuration = 0;
+        $assetGroup = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('ag.id,ft.duration')
+                ->innerJoin('ag.FormatType ft')
+                ->where('ag.parent_node_id  = ?', $collectionID)
+                ->fetchArray();
+
+        if (sizeof($assetGroup) > 0) {
+            foreach ($assetGroup as $key => $value) {
+                $totalDuration = $totalDuration + $value['FormatType']['duration'];
+            }
+        }
+
+
+        return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
+    }
 
     static public function getCollectionNameCustom($add_values = NULL) {
         $Collections = Doctrine_Query::Create()

@@ -26,9 +26,39 @@ class minutesToHour {
             $mm = '0' . $mm;
         if ($ss <= 9)
             $ss = '0' . $ss;
-        
 
-        return $hh . '.' . round(($mm*100)/60)  ;
+
+        
+        return $hh . ':' . $mm . ':' . $ss;
+    }
+
+    /**
+     * return number of hrs and min in average 
+     * @param type $Minutes
+     * @return type
+     */
+    static public function ConvertMinutes2HoursRealTime($Minutes) {
+
+
+        $seconds = $Minutes * 60;
+
+
+        $hoursPerDay = 24;
+        $SecondsPerHour = 3600;
+        $SecondsPerMinute = 60;
+        $MinutesPerHour = 60;
+
+        $hh = intval($seconds / $SecondsPerHour);
+        $mm = intval($seconds / $SecondsPerMinute) % $MinutesPerHour;
+        $ss = $seconds % $SecondsPerMinute;
+
+        if ($mm <= 9)
+            $mm = '0' . $mm;
+        if ($ss <= 9)
+            $ss = '0' . $ss;
+
+
+        return $hh . '.' . round(($mm * 100) / 60);
 //        return $hh . ':' . $mm . ':' . $ss;
     }
 
