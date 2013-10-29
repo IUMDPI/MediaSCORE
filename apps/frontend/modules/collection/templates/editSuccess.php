@@ -1,4 +1,4 @@
-<!--<a style="float: right;text-decoration: none;font-size: 14px;font-weight: bold;" href="<?php // echo $url  ?>">< Back to Collections</a>
+<!--<a style="float: right;text-decoration: none;font-size: 14px;font-weight: bold;" href="<?php // echo $url    ?>">< Back to Collections</a>
 <br/>
 <br/>-->
 
@@ -13,7 +13,7 @@
     ?>
 
     <?php
-    if ($view == 'river') {
+    if ($formType == 'river') {
         include_partial('formrivers', array('form' => $form, 'error' => $error, 'view' => $view, 'actionType' => $actionType, 'cancelUrl' => $url));
         ?>
         <?php

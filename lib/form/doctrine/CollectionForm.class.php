@@ -93,12 +93,10 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
             $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));
             $this->setValidator('status', new sfValidatorString(array('required' => true)));
-            $this->getValidator('name')->setMessages(array('required' => 'This is a required field..',
-                'invalid' => 'Invalid Unit Name'));
-            $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.',
-                'inst_id' => 'Invalid ID'));
-            $this->getValidator('status')->setMessages(array('required' => 'This is a required field.',
-                'inst_id' => 'Invalid Status'));
+            $this->setValidator('parent_node_id', new sfValidatorString(array('required' => true)));
+            $this->getValidator('name')->setMessages(array('required' => 'This is a required field..', 'invalid' => 'Invalid Unit Name'));
+            $this->getValidator('inst_id')->setMessages(array('required' => 'This is a required field.', 'invalid' => 'Invalid ID'));
+            $this->getValidator('parent_node_id')->setMessages(array('required' => 'This is a required field.', 'invalid' => 'Invalid Unit'));
             foreach ($forRiverFormOnly as $forRiverFormSingle) {
                 unset($this->widgetSchema[$forRiverFormSingle]);
             }
@@ -157,10 +155,10 @@ class CollectionForm extends BaseCollectionForm {
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
                 $Units = array();
-                foreach ($unit as $key=>$u) {
+                foreach ($unit as $key => $u) {
                     $Units[$u['id']] = $u['name'];
                 }
-                
+
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
                 $this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'))); //
             } else {

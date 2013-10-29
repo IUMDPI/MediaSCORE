@@ -49,7 +49,7 @@ if ($url)
     <?php } ?>
     .intigers{
         text-align: center !important;
-        margin-right: 2px !important ;
+        padding-right: 10px !important;
     }
 
     .tooltip {outline:none; }
@@ -165,13 +165,13 @@ if ($url)
                                         <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                             <td class="invisible" width="6%">
                                                 <div class="options">
-                                                    <a  class="<?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
+                                                    <a  class="new_edit_collection" href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>
                                                     <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
                                                 </div>
                                             </td> 
                                         <?php } ?>
-                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>"><?php echo $collection->getName() ?>  <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
+                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo $collection->getName() ?>  <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
                                         <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
                                         <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
@@ -196,7 +196,7 @@ if ($url)
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="6%"></td>
                                 <?php } ?>
-                                <th>Primary ID</th>
+                                <th width="10%">Primary ID</th>
                                 <th width="18%">Collection</th>
                                 <th>Created</th>
                                 <th width="15%">Created By</th>
