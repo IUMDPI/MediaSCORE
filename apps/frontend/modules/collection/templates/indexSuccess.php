@@ -3,7 +3,7 @@ if (!isset($view) || $view == '')
     $view = 'score';
 if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river') {
     ?>
-    <a class="button <?php echo ($view == 'score') ? 'new_edit_collection' : ''; ?>" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
+    <a class="button new_edit_collection" href="<?php echo url_for('collection/new?u=' . $unitID) ?>">Create Collection</a>
     <?php
 }
 include_partial('unit/search', array('AllStorageLocations' => $AllStorageLocations));

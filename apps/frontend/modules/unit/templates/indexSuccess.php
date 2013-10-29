@@ -78,9 +78,9 @@ if ($sf_user->getGuardUser()->getType() != 3)
 						</td>
 		<?php } ?>
 					<td><a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unit->getName() ?></a></td>
-					<td><?php echo $unit->getCreatedAt() ?></td>
+					<td><?php echo date('Y-m-d', strtotime($unit->getCreatedAt())); ?></td>
 					<td><span style="display: none;"><?php echo $unit->getCreator()->getLastName() ?></span><?php echo '<span>' . $unit->getCreator()->getName(); ?></td>
-					<td><?php echo $unit->getUpdatedAt() ?></td>
+					<td><?php echo date('Y-m-d', strtotime($unit->getUpdatedAt())) ?></td>
 					<td><span style="display: none;"><?php echo $unit->getEditor()->getLastName() ?></span><?php echo $unit->getEditor()->getName(); ?></td>
 					<td style="display: none;"><span style="display: none;"><?php echo (int) minutesToHour::ConvertHoursToMin($duration); ?></span></td>
 					<td style="text-align: right;"><?php echo $duration; ?></td>

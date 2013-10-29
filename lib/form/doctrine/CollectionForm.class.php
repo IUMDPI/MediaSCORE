@@ -105,9 +105,9 @@ class CollectionForm extends BaseCollectionForm {
         } else {
             $voidFields = array('created_at', 'resident_structure_description', 'name_slug', 'updated_at', 'creator_id'
                 , 'last_editor_id', 'type', 'resident_structure_description', 'format_id'
-                , 'location', 'notes', 'storage_locations_list'
+                , 'location'
             );
-
+            $this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => '<span class="required">*</span>Collection Status:&nbsp;')));
             foreach ($voidFields as $voidField) {
                 unset($this->widgetSchema[$voidField]);
                 unset($this->validatorSchema[$voidField]);
