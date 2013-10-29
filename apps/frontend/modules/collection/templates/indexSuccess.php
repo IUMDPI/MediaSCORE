@@ -36,20 +36,10 @@ if ($url)
         white-space: nowrap !important;
         width: 130px !important;
     }
-    <?php if ($view == 'river') { ?>
-        table.tablesorter thead tr .header {
-            background-image: url(/images/tableSorter/bg.gif );
-            background-repeat: no-repeat;
-            background-position: center right;
-            cursor: pointer;
-            background-position-y: 24px;
 
-
-        }
-    <?php } ?>
-    .intigers{
+    .intigers {
         text-align: center !important;
-        padding-right: 10px !important;
+        padding-right: 20px !important;
     }
 
     .tooltip {outline:none; }
@@ -76,6 +66,25 @@ if ($url)
         -webkit-box-shadow: 5px 5px 8px #CCC;
         box-shadow: 5px 5px 8px #CCC;
     }
+</style>
+<?php if ($view == 'river') { ?>
+    <style>
+        table.tablesorter thead tr .header {
+            background-image: url(/images/tableSorter/bg.gif );
+            background-repeat: no-repeat;
+/*            background-position: center right;*/
+            cursor: pointer;
+            background-position: right 25px;
+        }
+    </style>
+
+<?php } ?>
+<style>
+
+
+
+
+
 </style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
@@ -117,17 +126,19 @@ if ($url)
                                 <option value="2">Completed</option>
                             </select>
                             <?php if ($view == 'river') { ?>
-                                <strong>&nbsp;&nbsp;Score Type: </strong>
-                                <select onchange="filterCollection('<?php echo $view; ?>');" id="scoreType" name="scoreType">
-                                    <option value="river">MediaRIVER</option>
-                                    <option value="score">MediaSCORE</option>
-                                </select>
+
+                                <input id="scoreType" name="scoreType" type="hidden" value="river" />
+
                                 <strong>&nbsp;&nbsp;Score Range: </strong>
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
                                 <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/> 
                             <?php } else { ?>
+                                <br/>
+                                <br/>
                                 <strong>Score </strong>
-                                <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score"/>  
+                                <input id="scoreType" name="scoreType" value="score" type="hidden" />
+                                From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
+                                <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/>  
                             <?php } ?>
                             <br/>
                             <br/>
@@ -171,7 +182,7 @@ if ($url)
                                             </td> 
                                         <?php } ?>
                                         <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(),0,36)?>  <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 36) ?>  <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
                                         <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
                                         <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
@@ -221,7 +232,7 @@ if ($url)
                                         <?php } ?>
 
                                         <td class="long_name_handler_inst tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getName(),0,36) ?> <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getName(), 0, 36) ?> <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($collection->getUpdatedAt())); ?></td>
