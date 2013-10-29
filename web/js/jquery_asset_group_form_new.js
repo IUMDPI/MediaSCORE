@@ -148,14 +148,14 @@ $('document').ready(function () {
     // Unit-Collection Multiple Selection
     populateCollections = function (element,stores) {
         element.empty();
-		isSelected=false;
+        isSelected=false;
         for(i in stores) {
             element.append('<option class="collection-multiple-select" value="'+stores[i].id+'">'+stores[i].name+'</option>');
             
-			if(stores[i].id == serializedCollectionID){
-				isSelected=true;
+            if(stores[i].id == serializedCollectionID){
+                isSelected=true;
                 $('#collection-multiple-select').val(stores[i].id);
-			}
+            }
             else if(!isSelected)
                 $('#collection-multiple-select').val(stores[0].id);
         }
