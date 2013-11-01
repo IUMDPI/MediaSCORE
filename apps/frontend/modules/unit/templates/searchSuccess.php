@@ -183,6 +183,14 @@
                     }
 
                     $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
+                    $context = sfContext::getInstance();
+                    $user = $context->getUser()->getAttribute('view');
+                    if ($user) {
+                        if ($user['view'] == 'river') {
+                            $urlonEdit .='/form/' . $user['view'];
+                            $urlOnName = $urlonEdit;
+                        }
+                    }
                     $parentId = $result->getParentNodeId();
                     $duration = $result->getDuration($result->getId());
                 }

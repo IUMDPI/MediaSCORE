@@ -116,8 +116,7 @@ class unitActions extends sfActions {
                     if ($result->getType() == 3) {
                         $text = 'Collection';
                         $urlOnName = url_for('assetgroup', $result);
-                        $view = $this->getUser()->getAttribute('view');
-                        $urlOnName.='/form/' . $view['view'];
+
 
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
@@ -442,7 +441,7 @@ class unitActions extends sfActions {
                     }
                     break;
             }
-
+//            return ($this->renderText($this->unit->getSqlQuery()));
             $this->unit = $this->unit->fetchArray();
 
 
