@@ -95,7 +95,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 }
                 else {
                     ?>
-                    <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo $score; ?></td>
+                    <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo ($score != '') ? $score : '0'; ?></td>
                 <?php } ?>
             </tr>
         <?php endforeach; ?>
