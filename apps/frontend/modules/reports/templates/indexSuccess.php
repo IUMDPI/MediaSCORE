@@ -59,10 +59,10 @@
         <th><hr style="color:#7D110C;" /></th>
     </tr>
     <tr>
-        <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Full Media River Report</a></label></th>
+        <th><label><a href="<?php echo url_for('reports/mediariversfullreport') ?>">Full MediaRIVERS Report</a></label></th>
     </tr>
     <tr>
-        <th><label><a href="<?php echo url_for('reports/mediariversscoringreport') ?>">Media Rivers Scoring Report</a></label></th>
+        <th><label><a href="<?php echo url_for('reports/mediariversscoringreport') ?>">MediaRIVERS Scoring Report</a></label></th>
     </tr>
 <?php } else { ?>
     <!--    <tr><th><center><label>You don't have Reports Access</label></center></th></tr>-->

@@ -372,14 +372,16 @@ class unitActions extends sfActions {
         $dateType = $request->getParameter('datetype');
         $score = $request->getParameter('score');
 
-
+        $score_end = $request->getParameter('score_end');
+        $score_start = $request->getParameter('score_start');
+        $scoreType = $request->getParameter('scoreType');
 
 
 //        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
             $this->unit = Doctrine_Query::Create()
                     ->from('Unit u')
-                    ->select('u.*,cu.*,eu.*,sl.resident_structure_description')
+                    ->select('u.*,cu.*,eu.*,sl.resident_structure_description,f.*')
                     ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu')
@@ -397,9 +399,9 @@ class unitActions extends sfActions {
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('u.status =?', $status);
             }
-            if (trim($score) != '') {
-                $this->unit = $this->unit->andWhere('ft.asset_score LIKE ?', "{$score}%");
-            }
+//            if (trim($score) != '') {
+//                $this->unit = $this->unit->andWhere('ft.asset_score LIKE ?', "{$score}%");
+//            }
 
 
 
@@ -430,11 +432,27 @@ class unitActions extends sfActions {
                     }
                 }
             }
+
+
+            switch ($scoreType) {
+                case 'river':
+                    if ($score_start != '' && $score_end != '') {
+                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) >= ?', "{$score_start}");
+                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) <= ?', "{$score_end}");
+                    }
+                    break;
+                case 'score':
+                    if ($score_start != '' && $score_end != '') {
+                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4,2))) >= ?', "{$score_start}");
+                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4,2))) <= ?', "{$score_end}");
+                    }
+                    break;
+            }
+//            return ($this->renderText($this->unit->getSqlQuery()));
             $this->unit = $this->unit->fetchArray();
 
-//            echo '<pre>';
-//            print_r($this->unit);
-//            exit;
+
+
             // after applying the parametes get units.
             // get duration for each unit
             foreach ($this->unit as $key => $value) {

@@ -35,6 +35,7 @@ class Unit extends BaseUnit {
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+
     /**
      * get the duration
      * 
@@ -137,17 +138,17 @@ class Unit extends BaseUnit {
 
 
         $q = Doctrine_Manager::getInstance()->getCurrentConnection();
-            
+
         $result = $q->execute($query);
-        
+
         $result = $result->fetchAll();
-     
+
         $filter_ID = array();
         foreach ($result as $value) {
             $filter_ID[] = $value['id'];
         }
-      
-         
+
+
         if (!empty($params['assetType']) || count($params['formats']) > 0) {
 
             $assets = Doctrine_Query::Create()
@@ -167,7 +168,7 @@ class Unit extends BaseUnit {
                 $filter_ID[] = $value['id'];
             }
         }
-     
+
         return $filter_ID;
     }
 

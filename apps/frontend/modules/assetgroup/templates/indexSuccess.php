@@ -27,9 +27,17 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 <option value="1">In Progress</option>
                 <option value="2">Completed</option>
             </select>
-            <strong>Score:</strong>
-            <input type="text" class="text" onkeyup="filterAssets();" id="searchScore"/>
-
+            <br/> 
+            <br/>
+            <strong>Score Type : </strong>
+            <div class="filter-date">
+                <select id="scoreType" onchange="filterAssets();">
+                    <option value="score">MediaSCORE</option>
+                    <option value="river">MediaRIVERS</option>
+                </select>
+                &nbsp;From <input type="text" class="text" onkeydown="filterAssets();" id="score_start"/>To &nbsp;
+                <input type="text" class="text" onkeydown="filterAssets();" id="score_end"/>  
+            </div>
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
     </div>
@@ -178,11 +186,10 @@ if ($sf_user->getGuardUser()->getType() != 3) {
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/assetgroup/index',
-            data: {c: '<?php echo $collectionID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), searchScore: $('#searchScore').val(), searchStorageLocation: $('#searchStorageLocation').val()},
+            data: {c: '<?php echo $collectionID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), searchScore: $('#searchScore').val(), searchStorageLocation: $('#searchStorageLocation').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val()},
             dataType: 'json',
             cache: false,
             success: function(result) {
-
                 if (result != undefined && result.length > 0) {
                     $('#assetsResult').html('');
                     for (collection in result) {
@@ -231,12 +238,10 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             Check[j].abort();
         }
         i++;
-
     }
-
-
-
+ 
 </script>
+
 <?php
 if (sizeof($asset_groups) > 0) {
     ?>

@@ -28,7 +28,7 @@ class minutesToHour {
             $ss = '0' . $ss;
 
 
-        
+
         return $hh . ':' . $mm . ':' . $ss;
     }
 
@@ -57,9 +57,7 @@ class minutesToHour {
         if ($ss <= 9)
             $ss = '0' . $ss;
 
-
-        return $hh . '.' . round(($mm * 100) / 60);
-//        return $hh . ':' . $mm . ':' . $ss;
+        return $hh . '.' . substr((round(($mm * 100) / 60)), 0, 1);
     }
 
     /**

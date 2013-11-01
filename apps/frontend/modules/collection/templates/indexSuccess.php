@@ -72,7 +72,7 @@ if ($url)
         table.tablesorter thead tr .header {
             background-image: url(/images/tableSorter/bg.gif );
             background-repeat: no-repeat;
-/*            background-position: center right;*/
+            /*            background-position: center right;*/
             cursor: pointer;
             background-position: right 25px;
         }
@@ -80,10 +80,6 @@ if ($url)
 
 <?php } ?>
 <style>
-
-
-
-
 
 </style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
@@ -158,14 +154,14 @@ if ($url)
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="6%"></td>
                                 <?php } ?> 
-                                <th  class="river" style="padding-top: 20px !important;">Primary ID</th>
-                                <th class="river" style="padding-top: 20px !important;">Collection</th>
-                                <th class="river">Subject Interest</th>
-                                <th class="river">Content Quality</th>
-                                <th class="river" style="padding-top: 20px !important;">Rareness</th>
-                                <th class="river" style="padding-top: 20px !important;">Documentation</th>
-                                <th class="river" style="text-align: center !important;">Technical Quality</th>
-                                <th class="river" style="padding-top: 20px !important;">Total</th>
+                                <th  class="river" style="text-align: left !important;padding-top: 20px !important;">Primary ID</th>
+                                <th class="river" style="text-align: left !important;padding-top: 20px !important;">Collection</th>
+                                <th class="river" style="text-align: left !important;">Subject Interest</th>
+                                <th class="river" style="text-align: left !important;">Content Quality</th>
+                                <th class="river" style="text-align: left !important;padding-top: 20px !important;">Rareness</th>
+                                <th class="river" style="text-align: left !important;padding-top: 20px !important;">Documentation</th>
+                                <th class="river" style="text-align: left !important;">Technical Quality</th>
+                                <th class="river" style="text-align: left !important;padding-top: 20px !important;">Total</th>
                             </tr>
                         </thead>
                         <tbody id="collectionResult">
