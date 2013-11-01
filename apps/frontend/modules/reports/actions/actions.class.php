@@ -275,7 +275,7 @@ class reportsActions extends sfActions {
                                 }
                             }
                             $AssetScoreReport['Score'] = $Asset['AssetGroup']['FormatType']['asset_score'];
-                            $AssetScoreReport['Format'] = $formattext;
+//                            $AssetScoreReport['Format'] = $formattext;
                             $AssetScoreReport['Quantity'] = $Asset['AssetGroup']['FormatType']['quantity'];
                             $AssetScoreReport['Duration'] = minutesToHour::ConvertMinutes2Hours($Asset['AssetGroup']['FormatType']['duration']);
                             $AssetScoreReport['Duration type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'duration_type', $Asset['AssetGroup']['FormatType']['duration_type']);
@@ -284,7 +284,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
                             $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
                             $AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
-                            $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
+//                            $AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['resident_structure_description']; #
                             $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
                             $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
                             $AssetScoreReport['Year Recorded'] = $Asset['AssetGroup']['FormatType']['year_recorded'];
