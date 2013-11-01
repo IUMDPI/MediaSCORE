@@ -177,8 +177,8 @@ if ($url)
                                                 </div>
                                             </td> 
                                         <?php } ?>
-                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 36) ?>  <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getInstId(), 0, 42) ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
+                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 42) ?>  <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
                                         <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
                                         <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
@@ -227,8 +227,8 @@ if ($url)
                                             </td>
                                         <?php } ?>
 
-                                        <td class="long_name_handler_inst tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo $collection->getInstId() ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getName(), 0, 36) ?> <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td class="long_name_handler_inst tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getInstId(), 0, 42) ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
+                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getName(), 0, 42) ?> <span><?php echo $collection->getName(); ?></span></a></td>
                                         <td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($collection->getUpdatedAt())); ?></td>
@@ -401,7 +401,7 @@ if ($url)
                             
                             $('#collectionResult').append('<tr>'+ editdelete +
                                 '<td class="long_name_handler_inst tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + ' <span>' + result[collection].inst_id + ' </span></a></td>' +
-                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,36) + '<span>' + result[collection].name + ' </span></a></td>' +
+                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,42) + '<span>' + result[collection].name + ' </span></a></td>' +
                                 '<td width="10%">' + Created_at[0] + '</td>' +
                                 '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
                                 '<td width="12%">' + Updated_at[0] + '</td>' +

@@ -208,7 +208,7 @@
                             </div>
                         </td>
                     <?php } ?>
-                    <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler tooltip"><?php echo substr($result->getName(), 0, 40) ?><span><?php echo $result->getName(); ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
+                    <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler tooltip"><?php echo substr($result->getName(), 0, 46) ?><span><?php echo $result->getName(); ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
                     <td><?php echo date('Y-d-m', strtotime($result->getCreatedAt())); ?></td>
                     <td>
                         <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>

@@ -116,7 +116,8 @@ class unitActions extends sfActions {
                     if ($result->getType() == 3) {
                         $text = 'Collection';
                         $urlOnName = url_for('assetgroup', $result);
-
+                        $view = $this->getUser()->getAttribute('view');
+                        $urlOnName.='/form/' . $view['view'];
 
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
@@ -379,8 +380,7 @@ class unitActions extends sfActions {
 
 //        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
-            $this->unit = Doctrine_Query::Create()
-                    ->from('Unit u')
+            $this->unit = Doctrine_Query::Create()->from('Unit u')
                     ->select('u.*,cu.*,eu.*,sl.resident_structure_description,f.*')
                     ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
@@ -399,12 +399,6 @@ class unitActions extends sfActions {
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('u.status =?', $status);
             }
-//            if (trim($score) != '') {
-//                $this->unit = $this->unit->andWhere('ft.asset_score LIKE ?', "{$score}%");
-//            }
-
-
-
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
@@ -448,7 +442,7 @@ class unitActions extends sfActions {
                     }
                     break;
             }
-//            return ($this->renderText($this->unit->getSqlQuery()));
+
             $this->unit = $this->unit->fetchArray();
 
 
