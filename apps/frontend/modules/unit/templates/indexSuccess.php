@@ -66,7 +66,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
         </thead>
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
-                <?php 
+                <?php
                 $duration = $unit->getDurationRealTime($unit->getId());
                 ?>
                 <tr>
@@ -209,6 +209,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                             '<td>' + result[collection].updated_at + '</td>' +
                             '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + ' ' + result[collection].Editor.last_name + '</td>' +
                             '<td style="text-align: right;">' + result[collection].duration + '</td>');
+                        console.log(result);
                         if (result[collection].StorageLocations[0]) {
                             //                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
                         } else {

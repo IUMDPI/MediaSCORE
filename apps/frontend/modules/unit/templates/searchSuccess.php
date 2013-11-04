@@ -136,6 +136,15 @@
             </select>
             <br/>
             <br/>
+            <strong>Score Type : </strong>
+            <div class="filter-date">
+                <select id="scoreType" onchange="filterRecords();">
+                    <option value="score">MediaSCORE</option>
+                    <option value="river">MediaRIVERS</option>
+                </select>
+                &nbsp;From <input type="text" class="text" onkeydown="filterRecords();" id="score_start"/>To &nbsp;
+                <input type="text" class="text" onkeydown="filterRecords();" id="score_end"/>  
+            </div>
 
 <!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->
         </form>
@@ -200,7 +209,6 @@
                     $parentId = $result->getParentNodeId();
                     $duration = $result->getDurationRealTime($result->getFormatId());
                 }
-            
                 ?>
                 <tr>
                     <?php
@@ -219,7 +227,7 @@
                     <?php } ?>
                     <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler <?php echo ((int) strlen($result->getName())) >= 40 ? 'tooltip' : '' ?>"><?php echo substr($result->getName(), 0, 43) ?><span><?php echo ((int) strlen($result->getName())) >= 40 ? $result->getName() : ''; ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
                     <td><?php echo date('Y-d-m', strtotime($result->getCreatedAt())); ?></td>
-                    <td>
+                    <td> 
                         <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>
                     </td>
                     <td><?php echo date('Y-d-m', strtotime($result->getUpdatedAt())) ?></td>
@@ -352,13 +360,13 @@
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/unit/search',
-            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val()},
+            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val()},
             dataType: 'json',
             cache: false,
             success: function(result) {
 
                 if (result != undefined && result.length > 0) {
-
+                    console.log(result);
                     $('#unitResult').html(result);
 
                 }

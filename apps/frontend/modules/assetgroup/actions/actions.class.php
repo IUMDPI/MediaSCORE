@@ -92,11 +92,8 @@ class assetgroupActions extends sfActions {
                     break;
             }
             // fetch the assets groups
-
             $this->assets = $this->assets->fetchArray();
-//            echo '<pre>';
-//            print_r($this->assets);
-//            exit;
+
             // get durations for assets groups respectively
             if (sizeof($this->assets) > 0) {
                 foreach ($this->assets as $key => $value) {
@@ -105,8 +102,6 @@ class assetgroupActions extends sfActions {
                     $this->assets[$key]['duration'] = $duration;
                 }
             }
-
-
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             return $this->renderText(json_encode($this->assets));
@@ -115,7 +110,6 @@ class assetgroupActions extends sfActions {
         $collectionObject = $this->getRoute()->getObject();
 
         $this->forward404Unless($collectionObject);
-//        $this->collectionID = $request->getParameter('c');
         $this->collectionID = $collectionObject->getId();
         $this->forward404Unless($this->collectionID);
         if ($this->getUser()->getGuardUser()->getType() == 3) {
