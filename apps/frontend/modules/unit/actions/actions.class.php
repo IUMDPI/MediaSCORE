@@ -140,59 +140,50 @@ class unitActions extends sfActions {
                     }
 
 
-//                    $urlOnName = 'http://mediascore.live.geekschicago.com/frontend_dev.php/black-film-center-archive/bfca-event-recordings-and-interviews/';
-                    $this->html .="<td ><a class='long_name_handler tooltip' href='{$urlOnName}'>" . substr($result->getName(), 0, 35) . " <span>{$result->getName()}</span></a>&nbsp;&nbsp;<span class='help-text'>{$text}</span></td>" .
+                    $this->html .="<td ><a class='long_name_handler "
+                            . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
+                            . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
+                                </a>&nbsp;&nbsp;<span class = 'help-text'>{$text}</span>
+                                </td>" .
                             "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
-                            "<td><span>{$result->getCreator()->getName()}</span></td>" .
-                            "<td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
-                            "<td>{$result->getEditor()->getName()}</td>" .
-                            "<td>{$duration}</td>" .
-                            "</tr>";
+                            " < td><span>{$result->getCreator()->getName()}</span></td>" .
+                            " < td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
+                            " < td>{$result->getEditor()->getName()}</td>" .
+                            " < td>{$duration}</td>" .
+                            " < /tr>";
                 }
             }
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
-
-
             return $this->renderText(json_encode($this->html));
-
-
-
-
-
-
-
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at, "%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(created_at, "%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") >=?', $from);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at, "%Y-%m-%d" ) >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at,"%Y-%m-%d") <=?', $to);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(created_at, "%Y-%m-%d" ) <=?', $to);
                         }
                     }
                 } else if ($dateType == 1) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at, "%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(updated_at, "%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") >=?', $from);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at, "%Y-%m-%d" ) >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at,"%Y-%m-%d") <=?', $to);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(updated_at, "%Y-%m-%d" ) <=?', $to);
                         }
                     }
                 }
             }
             $this->unit = $this->unit->fetchArray();
-//            echo '<pre>';
-//            print_r($this->unit);
-//            exit;
             // after applying the parametes get units.
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
@@ -215,7 +206,7 @@ class unitActions extends sfActions {
             // make array of search values
             $this->searchString = array();
             if (!empty($this->searchValues))
-                $this->searchString = explode(',', $this->searchValues);
+                $this->searchString = explode(', ', $this->searchValues);
             // compare search values with the arrays ($store and $type)
 
             $formatType = array();
@@ -238,7 +229,8 @@ class unitActions extends sfActions {
                 else if (isset($asset[$value]))
                     $assetType = $asset[$value];
                 else if (isset($locations[$value]))
-                    $locationString[] = $locations[$value];
+                    $locationString[] = $locations[$value]
+                    ;
                 else
                     $stringForName[] = trim($value);
             }
@@ -277,7 +269,7 @@ class unitActions extends sfActions {
             // search the assets with the request ID
             $assetGroups = Doctrine_Core::getTable('AssetGroup')
                     ->createQuery('a')
-                    ->where('id =?', $assetGroupID)
+                    ->where('id = ?', $assetGroupID)
                     ->execute()
                     ->toArray();
             $assetGroup = array_pop($assetGroups);
@@ -285,17 +277,19 @@ class unitActions extends sfActions {
             // get collection for the search asset group
             $collections = Doctrine_Core::getTable('Collection')
                     ->createQuery('c')
-                    ->where('id =?', $assetGroup['parent_node_id'])
+                    ->where('id = ?', $assetGroup['parent_node_id'])
                     ->execute()
                     ->toArray();
             $collection = array_pop($collections);
             // get unit for the collection for the asset group
             $units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
-                    ->where('id =?', $collection['parent_node_id'])
+                    ->where('id = ?', $collection['parent_node_id'])
                     ->execute()
                     ->toArray();
             // return the response with the units detail
+
+
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');
             $this->setTemplate('index');
@@ -307,6 +301,8 @@ class unitActions extends sfActions {
      * get unit personnel
      * 
      * @param sfWebRequest $request
+
+
      * @return json 
      */
     public function executeUnitPersonnelLocation(sfWebRequest $request) {
@@ -318,14 +314,14 @@ class unitActions extends sfActions {
                     ->from('Person p')
                     ->select('p.*')
                     ->innerJoin('p.UnitPerson up')
-                    ->where('up.unit_id =?', $unitId)
+                    ->where('up.unit_id = ?', $unitId)
                     ->fetchArray();
             // get the detail of storage location for the given unit id
             $location = Doctrine_Query::Create()
                     ->from('StorageLocation sl')
                     ->select('sl.*')
                     ->innerJoin('sl.UnitStorageLocation usl')
-                    ->where('usl.unit_id =?', $unitId)
+                    ->where('usl.unit_id = ?', $unitId)
                     ->fetchArray();
             return $this->renderText(json_encode(array('success' => true, 'unit' => $unit, 'location' => $location)));
         }
@@ -335,12 +331,14 @@ class unitActions extends sfActions {
      * get user detail of unit
      * 
      * @param sfWebRequest $request
+
+
      * @return json 
      */
     public function executeGetUserDetail(sfWebRequest $request) {
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
-            $explodedId = explode(',', $request->getParameter('id'));
+            $explodedId = explode(', ', $request->getParameter('id'));
             // search and get the detail of users
             $user = Doctrine_Core::getTable('sfGuardUser')
                     ->createQuery('c')
@@ -355,6 +353,8 @@ class unitActions extends sfActions {
      * list and filter unit
      * 
      * @param sfWebRequest $request
+
+
      * @return json if request is ajax 
      */
     public function executeIndex(sfWebRequest $request) {
@@ -380,7 +380,7 @@ class unitActions extends sfActions {
 //        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
             $this->unit = Doctrine_Query::Create()->from('Unit u')
-                    ->select('u.*,cu.*,eu.*,sl.resident_structure_description,f.*')
+                    ->select('u.*, cu.*, eu.*, sl.resident_structure_description, f.*')
                     ->orderBy('u.name')
                     ->innerJoin('u.Creator cu')
                     ->innerJoin('u.Editor eu')
@@ -393,34 +393,34 @@ class unitActions extends sfActions {
             }
             // apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
-                $this->unit = $this->unit->andWhere('u.name like "%' . $searchInpout . '%"');
+                $this->unit = $this->unit->andWhere('u.name like "%' . $searchInpout . ' % "');
             }
             if (trim($status) != '') {
-                $this->unit = $this->unit->andWhere('u.status =?', $status);
+                $this->unit = $this->unit->andWhere('u.status = ?', $status);
             }
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.created_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at, "%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.created_at, "%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") >=?', $from);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at, "%Y-%m-%d" ) >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at,"%Y-%m-%d") <=?', $to);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.created_at, "%Y-%m-%d" ) <=?', $to);
                         }
                     }
                 } else if ($dateType == 1) {
                     if (trim($from) != '' && trim($to) != '') {
-                        $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.updated_at,"%Y-%m-%d") <= "' . $to . '"');
+                        $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at, "%Y-%m-%d") >= "' . $from . '" AND DATE_FORMAT(u.updated_at, "%Y-%m-%d") <= "' . $to . '"');
                     } else {
                         if (trim($from) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") >=?', $from);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at, "%Y-%m-%d" ) >=?', $from);
                         }
 
                         if (trim($to) != '') {
-                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at,"%Y-%m-%d") <=?', $to);
+                            $this->unit = $this->unit->andWhere('DATE_FORMAT(u.updated_at, "%Y-%m-%d" ) <=?', $to);
                         }
                     }
                 }
@@ -430,14 +430,14 @@ class unitActions extends sfActions {
             switch ($scoreType) {
                 case 'river':
                     if ($score_start != '' && $score_end != '') {
-                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) >= ?', "{$score_start}");
-                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) <= ?', "{$score_end}");
+                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3, 2))) >= ?', "{$score_start}");
+                        $this->unit = $this->unit->andWhere('(CAST(c.collection_score as DECIMAL(3, 2))) <= ?', "{$score_end}");
                     }
                     break;
                 case 'score':
                     if ($score_start != '' && $score_end != '') {
-                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4,2))) >= ?', "{$score_start}");
-                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4,2))) <= ?', "{$score_end}");
+                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4, 2))) >= ?', "{$score_start}");
+                        $this->unit = $this->unit->andWhere('(CAST(ft.asset_score as DECIMAL(4, 2))) <= ?', "{$score_end}");
                     }
                     break;
             }
@@ -459,7 +459,7 @@ class unitActions extends sfActions {
 
             return $this->renderText(json_encode($this->unit));
         } else {
-            $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+            $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id, sl.name')->fetchArray('name');
             // get the list of all the units 
             $this->units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
@@ -476,6 +476,8 @@ class unitActions extends sfActions {
      * detail of specific unit
      * 
      * @param sfWebRequest $request
+
+
      * @return type 
      */
     public function executeShow(sfWebRequest $request) {
@@ -519,7 +521,9 @@ class unitActions extends sfActions {
                 ));
 
         $success = $this->processForm($request, $this->form);
-        if ($success && isset($success['form']) && $success['form'] == true) {
+        if ($success && isset($success['form']) &&
+                $success[
+                'form'] == true) {
             echo $success['id'];
             exit;
         } else {
@@ -530,7 +534,9 @@ class unitActions extends sfActions {
     /**
      * Unit edit form
      * 
-     * @param sfWebRequest $request 
+     * @param sfWebRequest $request
+
+
      */
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
@@ -557,7 +563,8 @@ class unitActions extends sfActions {
                 ));
 
         $success = $this->processForm($request, $this->form);
-        if ($success && isset($success['form']) && $success['form'] == true) {
+        if ($success && isset($success['form']) && $success[
+                'form'] == true) {
             echo $success['id'];
             exit;
         } else {
@@ -571,7 +578,9 @@ class unitActions extends sfActions {
     /**
      * delete method
      * 
-     * @param sfWebRequest $request 
+     * @param sfWebRequest $request
+
+
      */
     public function executeDelete(sfWebRequest $request) {
         //$request->checkCSRFProtection();
@@ -581,7 +590,7 @@ class unitActions extends sfActions {
         $collections = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
-                ->where('c.parent_node_id  = ?', $request->getParameter('id'))
+                ->where('c.parent_node_id = ?', $request->getParameter('id'))
                 ->fetchArray();
         if (sizeof($collections) > 0) {
             $this->getUser()->setAttribute('delMsg', 'You must reassign the collections and asset groups to another unit before you can delete this unit.');
@@ -606,7 +615,7 @@ class unitActions extends sfActions {
                 ->from('CollectionStorageLocation csl')
                 ->select('csl.*')
                 ->innerJoin('csl.Collection c')
-                ->where('c.parent_node_id  = ?', $form->getValue('id'))
+                ->where('c.parent_node_id = ?', $form->getValue('id'))
                 ->groupBy('csl.storage_location_id')
                 ->fetchArray();
         if ($form->isValid()) {
@@ -615,7 +624,8 @@ class unitActions extends sfActions {
             foreach ($collections as $value) {
                 foreach ($form->getValue('storage_locations_list') as $location) {
                     if ($location == $value['storage_location_id']) {
-                        $check[] = $value['storage_location_id'];
+                        $check []
+                                = $value['storage_location_id'];
                     }
                 }
             }

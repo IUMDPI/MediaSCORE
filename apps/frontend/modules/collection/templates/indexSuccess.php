@@ -177,8 +177,8 @@ if ($url)
                                                 </div>
                                             </td> 
                                         <?php } ?>
-                                        <td class="long_name_handler_inst tooltip" width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getInstId(), 0, 42) ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip" width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 42) ?>  <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td <?php echo (((int) strlen($collection->getInstId())) > 23) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?> width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getInstId(), 0, 23) ?> <span><?php echo ((int) strlen($collection->getInstId()) > 23) ? $collection->getInstId() : ''; ?> </span></a></td>
+                                        <td <?php echo (((int) strlen($collection->getName())) > 39 ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 42) ?>  <span><?php echo ((int) strlen($collection->getName()) > 39 ? $collection->getName() : ''); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
                                         <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
                                         <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
@@ -227,8 +227,12 @@ if ($url)
                                             </td>
                                         <?php } ?>
 
-                                        <td class="long_name_handler_inst tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getInstId(), 0, 42) ?> <span><?php echo $collection->getInstId() ?> </span></a></td>
-                                        <td class="long_name_handler tooltip"><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getName(), 0, 42) ?> <span><?php echo $collection->getName(); ?></span></a></td>
+                                        <td <?php echo ((int) strlen($collection->getInstId()) > 23) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>>
+                                            <a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getInstId(), 0, 23) ?> <span><?php echo ((int) strlen($collection->getName()) >= 23) ? $collection->getInstId() : ''; ?> </span></a></td>
+
+                                        <td <?php echo ((int) strlen($collection->getName()) >= 39) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
+                                                <?php echo substr($collection->getName(), 0, 39); ?> <span><?php echo ((int) strlen($collection->getName()) >= 39) ? $collection->getName() : ''; ?></span></a></td>
+
                                         <td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($collection->getUpdatedAt())); ?></td>
@@ -363,7 +367,7 @@ if ($url)
                             //                            IsMediaScoreAccess  ISMediaRiverAccess
                             
                             if ((userType == 2 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 0) {
-                                editdelete='<td width="6%" class="invisible">' +
+                                editdelete='<td width="7%" class="invisible">' +
                                     '<div class="options" >' +
                                     '<a class="" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
@@ -373,8 +377,8 @@ if ($url)
                             }
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
-                                '<td width="10%" class="long_name_handler_inst tooltip" width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id +' <span>' + result[collection].inst_id + ' </span> </a></td>' +
-                                '<td width="30%" class="long_name_handler tooltip" width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name + ' <span>' + result[collection].name + ' </span></a></td>' +
+                                '<td width="10%" class="long_name_handler_inst tooltip" width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].inst_id.substr(0,23) +' <span>' + ((result[collection].inst_id.length > 23) ? result[collection].inst_id:'')  + ' </span> </a></td>' +
+                                '<td width="30%" class="long_name_handler tooltip" width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '">' + result[collection].name.substr(0,39) + ' <span>' + ((result[collection].name.length > 39) ?  result[collection].name:  '' )+ ' </span></a></td>' +
                                 '<td class="intigers" width="8%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
                                 '<td class="intigers" width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
                                 '<td class="intigers" width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
@@ -389,7 +393,7 @@ if ($url)
                             
                             editdelete = '';
                             if(userType!=2){
-                                editdelete='<td width="6%" class="invisible">' +
+                                editdelete='<td width="7%" class="invisible">' +
                                     '<div class="options">' +
                                     '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
@@ -400,13 +404,12 @@ if ($url)
                             Updated_at = result[collection].updated_at.split(' ');
                             
                             $('#collectionResult').append('<tr>'+ editdelete +
-                                '<td class="long_name_handler_inst tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id + ' <span>' + result[collection].inst_id + ' </span></a></td>' +
-                                '<td width="18%" class="long_name_handler tooltip"><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,42) + '<span>' + result[collection].name + ' </span></a></td>' +
+                                '<td '+((result[collection].name.length > 39)? 'class="long_name_handler_inst tooltip"':'class="long_name_handler_inst"')+'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id.substr(0,23) + ' <span>' + ((result[collection].inst_id.length > 23) ? result[collection].inst_id:'') + ' </span></a></td>' +
+                                '<td width="18%" '+ (result[collection].name.length > 39)? 'class="long_name_handler tooltip"':'class="long_name_handler"'  +'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,39) + '<span>' + ((result[collection].name.length > 39) ?  result[collection].name:  '' ) + ' </span></a></td>' +
                                 '<td width="10%">' + Created_at[0] + '</td>' +
                                 '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
                                 '<td width="12%">' + Updated_at[0] + '</td>' +
-                                '<td width="15%"><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' +
-                                '<td width="9%" style="text-align: right;">' + result[collection].duration + '</td>');
+                                '<td width="15%"><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + result[collection].Editor.last_name + '</td>' + '<td width="9%" style="text-align: right;">' + result[collection].duration + '</td>');
                             if (result[collection].StorageLocations[0]) {
                                 //                            $('#collectionResult').append('<td>'+result[collection].StorageLocations[0].resident_structure_description+'</td></tr>'); 
                             }

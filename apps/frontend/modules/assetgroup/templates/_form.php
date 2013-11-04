@@ -1,5 +1,5 @@
 <?php use_stylesheets_for_form($form) ?>
-<?php use_javascripts_for_form($form)  ?>
+<?php use_javascripts_for_form($form) ?>
 <?php
 if (!$form->getObject()->isNew())
     $id = 'asset-group-div';
@@ -49,8 +49,6 @@ else
                         </td>
 
                     </tr>
-
-
                     <tr>
                         <th>
                             <?php echo $form['resident_structure_description']->renderLabel(); ?>
@@ -98,6 +96,7 @@ else
                     ?>
                     <tr>
                         <td colspan="2">
+                            <span style="font-weight: bold; ">Units</span>
                             <select  id="unit-multiple-select" onchange="getCollectionAndLocation();">
 
                                 <?php foreach ($unit as $value) { ?>
@@ -111,7 +110,7 @@ else
                                 ?>
 
                             </select>
-                            <!--                            onclick="getStorageLocation($('#collection-multiple-select').val(),1)"-->
+                            <span style="font-weight: bold; ">Collection</span>
                             <select  id="collection-multiple-select" >
                                 <?php foreach ($collection as $value) { ?>
                                     <?php if ($assetCollection->getId() == $value->getId()) { ?>
@@ -231,20 +230,19 @@ else
             <div style="clear: both;"></div>
             <div id="format_specific"></div>
         </div>
-<?php
-					if ($sf_user->getGuardUser()->getType() != 3)
-					{
-						?>
-        <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
-        <div style="clear: both;"></div>
-					<?php } ?>
+        <?php
+        if ($sf_user->getGuardUser()->getType() != 3) {
+            ?>
+            <input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
+            <div style="clear: both;"></div>
+        <?php } ?>
     <?php } ?>
 </div>
 <script type="text/javascript">
-	var userType='<?php echo $sf_user->getGuardUser()->getType(); ?>';
+    var userType='<?php echo $sf_user->getGuardUser()->getType(); ?>';
     $(function(){
-		if(userType==3)
-			$("input,select,textarea").attr('disabled',true);
+        if(userType==3)
+            $("input,select,textarea").attr('disabled',true);
         $("#format_type_off_brand").parents(".row").show();
         $("#format_type_fungus").parents(".row").show();
     });

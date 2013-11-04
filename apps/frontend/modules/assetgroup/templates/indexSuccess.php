@@ -57,7 +57,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             <th>Created</th>
             <th>Created By</th>
             <th>Updated On</th>
-            <th>Updated By</th>
+            <th>Updated By</th> 
             <th style="text-align: center;">Duration</th>
             <th>Score:</th>
 
