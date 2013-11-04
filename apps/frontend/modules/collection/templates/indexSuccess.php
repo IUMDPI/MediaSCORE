@@ -350,7 +350,7 @@ if ($url)
     var Check = new Array();
     var i = 0;
     function filterCollection(view) {
-        
+        console.log();
         unitId = '<?php echo $unitID; ?>';
         Check[i] = $.ajax({
             type: 'POST',
@@ -358,7 +358,7 @@ if ($url)
             data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val()},
             dataType: 'json',
             cache: false,
-            success: function(result) {
+            success: function(result) {  
                 if (result != undefined && result.length > 0) {
                     $('#collectionResult').html('');
                     if(view == 'river'){
@@ -373,7 +373,7 @@ if ($url)
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
                                     '</div></td>';
                             }else{
-                                editdelete='<td>&nbsp;</td>'
+                                editdelete='<td>&nbsp;</td>' 
                             }
                             $('#collectionResult').append('<tr>'+editdelete
                                 +
@@ -402,10 +402,10 @@ if ($url)
                             
                             Created_at = result[collection].created_at.split(' ');
                             Updated_at = result[collection].updated_at.split(' ');
-                            
+                                
                             $('#collectionResult').append('<tr>'+ editdelete +
                                 '<td '+((result[collection].name.length > 39)? 'class="long_name_handler_inst tooltip"':'class="long_name_handler_inst"')+'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].inst_id.substr(0,23) + ' <span>' + ((result[collection].inst_id.length > 23) ? result[collection].inst_id:'') + ' </span></a></td>' +
-                                '<td width="18%" '+ (result[collection].name.length > 39)? 'class="long_name_handler tooltip"':'class="long_name_handler"'  +'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,39) + '<span>' + ((result[collection].name.length > 39) ?  result[collection].name:  '' ) + ' </span></a></td>' +
+                                '<td width="18%" '+ ((result[collection].name.length > 39)? 'class="long_name_handler tooltip"':'class="long_name_handler"')  +'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + result[collection].name.substr(0,39) + '<span>' + ((result[collection].name.length > 39) ?  result[collection].name:  '' ) + ' </span></a></td>' +
                                 '<td width="10%">' + Created_at[0] + '</td>' +
                                 '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
                                 '<td width="12%">' + Updated_at[0] + '</td>' +
