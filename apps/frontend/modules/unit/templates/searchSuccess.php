@@ -174,7 +174,7 @@
                     $urlOnName = url_for('collection', $result);
                     $urlonEdit = url_for('unit/edit?id=' . $result->getId());
                     $parentId = 0;
-                    $duration = $result->getDuration($result->getId());
+                    $duration = $result->getDurationRealTime($result->getId());
                 }
                 if ($result->getType() == 3) {
                     $text = 'Collection';
@@ -192,14 +192,15 @@
                         }
                     }
                     $parentId = $result->getParentNodeId();
-                    $duration = $result->getDuration($result->getId());
+                    $duration = $result->getDurationRealTime($result->getId());
                 }
                 if ($result->getType() == 4) {
                     $text = 'Asset Group';
                     $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
                     $parentId = $result->getParentNodeId();
-                    $duration = $result->getDuration($result->getFormatId());
+                    $duration = $result->getDurationRealTime($result->getFormatId());
                 }
+            
                 ?>
                 <tr>
                     <?php

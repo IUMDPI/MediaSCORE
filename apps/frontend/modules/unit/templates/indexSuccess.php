@@ -66,7 +66,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
         </thead>
         <tbody id="unitResult">
             <?php foreach ($units as $unit): ?>
-                <?php
+                <?php 
                 $duration = $unit->getDurationRealTime($unit->getId());
                 ?>
                 <tr>

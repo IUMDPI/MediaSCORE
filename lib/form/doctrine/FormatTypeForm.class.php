@@ -51,7 +51,7 @@ class FormatTypeForm extends BaseFormatTypeForm {
         );
 
 
-
+$this->widgetSchema->moveField('asset_score', 'last');
         foreach (array('material',
     'oxidationCorrosion',
     'pack_deformation',

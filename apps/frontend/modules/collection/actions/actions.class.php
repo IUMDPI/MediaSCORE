@@ -150,7 +150,6 @@ class collectionActions extends sfActions {
                         if (trim($from) != '') {
                             $this->collections = $this->collections->andWhere('DATE_FORMAT(c.updated_at,"%Y-%m-%d") >=?', $from);
                         }
-
                         if (trim($to) != '') {
                             $this->collections = $this->collections->andWhere('DATE_FORMAT(c.updated_at,"%Y-%m-%d") <=?', $to);
                         }

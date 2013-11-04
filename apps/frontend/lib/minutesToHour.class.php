@@ -38,11 +38,7 @@ class minutesToHour {
      * @return type
      */
     static public function ConvertMinutes2HoursRealTime($Minutes) {
-
-
         $seconds = $Minutes * 60;
-
-
         $hoursPerDay = 24;
         $SecondsPerHour = 3600;
         $SecondsPerMinute = 60;
@@ -56,8 +52,7 @@ class minutesToHour {
             $mm = '0' . $mm;
         if ($ss <= 9)
             $ss = '0' . $ss;
-
-        return $hh . '.' . substr((round(($mm * 100) / 60)), 0, 1);
+        return floor((float) $hh . '.' . substr((round(($mm * 100) / 60)), 0, 1)) . ' hrs';
     }
 
     /**

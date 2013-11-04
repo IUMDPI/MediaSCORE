@@ -450,7 +450,7 @@ class unitActions extends sfActions {
             // get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
-                $this->unit[$key]['duration'] = $duration->getDuration($value['id']);
+                $this->unit[$key]['duration'] = $duration->getDurationRealTime($value['id']);
             }
 
 
