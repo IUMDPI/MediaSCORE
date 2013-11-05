@@ -50,7 +50,7 @@ echo '<pre>';
 foreach ($asset_groups as $asset_group):
 
     echo '<br> ------------------------------------------ <br>';
-var_dump($asset_group->getFormatType()->getAssetScore())
+var_dump($asset_group->getFormatType()->getAssetScore());
 echo '<br> ------------------------------------------ <br>';
     if ($sf_user->getGuardUser()->getId() == 1) {
         $score = '0.0';
