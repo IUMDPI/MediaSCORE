@@ -45,21 +45,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
 <?php
-echo '<pre>';
 
-foreach ($asset_groups as $asset_group):
-
-    echo '<br> ------------------------------------------ <br>';
-var_dump($asset_group->getFormatType()->getAssetScore());
-echo '<br> ------------------------------------------ <br>';
-    if ($sf_user->getGuardUser()->getId() == 1) {
-        $score = '0.0';
-        if ($asset_group->getFormatType()->getAssetScore() != '')
-            $score = $asset_group->getFormatType()->getAssetScore();
-        var_dump($score);
-    }
-endforeach;
-exit;
 ?>
 <table id="assetGroupTable" class="tablesorter">
     <thead>
@@ -100,21 +86,20 @@ exit;
                 <td><span style="display: none;"><?php echo $asset_group->getEditor()->getLastName() ?></span><?php echo $asset_group->getEditor()->getName() ?></td>
                 <td style="text-align: right;"><span style="display: none;" ><?php echo (int) minutesToHour::ConvertHoursToMin($asset_group->getDuration($asset_group->getFormatId())); ?></span><?php echo $asset_group->getDurationRealTime($asset_group->getFormatId()) ?></td>
                 <?php
+                $score = '0.0';
+                if ($asset_group->getFormatType()->getAssetScore() != '')
+                    $score = $asset_group->getFormatType()->getAssetScore();
                 if ($sf_user->getGuardUser()->getId() == 1) {
-                    $score = '0.0';
-                    if ($asset_group->getFormatType()->getAssetScore() != '')
-                        $score = $asset_group->getFormatType()->getAssetScore();
                     ?>
 
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><a target="_blank" href="<?php echo url_for('assetgroup/getScore?id=' . $asset_group->getId()); ?>"><?php echo $score; ?></a></td>
                     <?php
-                }
-                else {
+                } else {
                     ?>
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo ($score != '') ? $score : '0'; ?></td>
                 <?php } ?>
             </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
     </tbody>
 </table>
 
