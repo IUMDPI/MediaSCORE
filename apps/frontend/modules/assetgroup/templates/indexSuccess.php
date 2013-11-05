@@ -46,7 +46,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
 <?php
 echo '<pre>';
-var_dump($asset_group);
+var_dump($asset_groups);
 foreach ($asset_groups as $asset_group):
     echo '<br> ------------------------------------------ <br>';
     var_dump($asset_group);
