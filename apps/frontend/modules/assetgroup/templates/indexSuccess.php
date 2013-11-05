@@ -28,12 +28,12 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 <option value="2">Completed</option>
             </select>
             <br/> 
-            <br/>
+            <br/> 
             <strong>Score Type : </strong>
             <div class="filter-date">
                 <select id="scoreType" onchange="filterAssets();">
                     <option value="score">MediaSCORE</option>
-                    <option value="river">MediaRIVERS</option>
+                    <!--                    <option value="river">MediaRIVERS</option>-->
                 </select>
                 &nbsp;From <input type="text" class="text" onkeydown="filterAssets();" id="score_start"/>To &nbsp;
                 <input type="text" class="text" onkeydown="filterAssets();" id="score_end"/>  

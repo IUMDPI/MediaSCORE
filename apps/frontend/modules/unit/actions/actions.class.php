@@ -118,64 +118,65 @@ class unitActions extends sfActions {
                         $urlonEdit = url_for('unit/edit?id=' . $result->getId());
                         $parentId = 0;
                         $duration = $result->getDurationRealTime($result->getId());
+                        $ScoreFlag = $result->getMediaScoreScoreRealTime($result->getId());
+                        var_dump($ScoreFlag);
+                        exit;
                     }
-                    if ($result) {
-                        if ($result->getType() == 3) {
-                            $text = 'Collection';
-                            $urlOnName = url_for('assetgroup', $result);
+ 
+                    if ($result->getType() == 3) {
+                        $text = 'Collection';
+                        $urlOnName = url_for('assetgroup', $result);
 
-                            $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
-                            $parentId = $result->getParentNodeId();
-                            $duration = $result->getDurationRealTime($result->getId());
+                        $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
+                        $parentId = $result->getParentNodeId();
+                        $duration = $result->getDurationRealTime($result->getId());
 
-                            if ($scoreType == 'river') {
-                                $score = $result->getCollectionScore();
-                                if (!$score) {
-                                    $score = 0;
-                                }
+                        if ($scoreType == 'river') {
+                            $score = $result->getCollectionScore();
+                            if (!$score) {
+                                $score = 0;
+                            }
 
-                                if (((float) $score < (float) $score_start) || ((float) $score > (float) $score_end)) {
-                                    $result = NULL;
-                                }
+                            if (((float) $score < (float) $score_start) || ((float) $score > (float) $score_end)) {
+                                $result = NULL;
                             }
                         }
                     }
-                    if ($result) {
-                        if ($result->getType() == 4) {
-                            $text = 'Asset Group';
-                            $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
-                            $parentId = $result->getParentNodeId();
-                            $duration = $result->getDurationRealTime($result->getFormatId());
-                            if ($scoreType == 'score') {
-                                if ((((float) $result->getAssetScore() < (float) $score_start)) || (((float) $result->getAssetScore() > (float) $score_end))) {
-                                    $result = array();
-                                }
+
+                    if ($result->getType() == 4) {
+                        $text = 'Asset Group';
+                        $urlOnName = '/assetgroup/edit/id/' . $result->getId() . '/c/' . $result->getParentNodeId();
+                        $parentId = $result->getParentNodeId();
+                        $duration = $result->getDurationRealTime($result->getFormatId());
+                        if ($scoreType == 'score') {
+                            if ((((float) $result->getAssetScore() < (float) $score_start)) || (((float) $result->getAssetScore() > (float) $score_end))) {
+                                $result = array();
                             }
                         }
+                    }
 
-                        $this->html .="<tr>";
-                        if ($this->getUser()->getGuardUser()->getType() != 3) {
+                    $this->html .="<tr>";
+                    if ($this->getUser()->getGuardUser()->getType() != 3) {
 
-                            $this->html .="<td class='invisible'><div class='options'>";
-                            if ($result->getType() != 4)
-                                $this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
-                            $this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
-                            $this->html .= "</div></td>";
-                        }
+                        $this->html .="<td class='invisible'><div class='options'>";
+                        if ($result->getType() != 4)
+                            $this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
+                        $this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
+                        $this->html .= "</div></td>";
+                    }
 
 
-                        $this->html .="<td ><a class='long_name_handler "
-                                . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
-                                . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
+                    $this->html .="<td ><a class='long_name_handler "
+                            . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
+                            . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
                                 </a>&nbsp;&nbsp;<span class = 'help-text'>{$text}</span>
                                 </td>" .
-                                "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
-                                " <td><span>{$result->getCreator()->getName()}</span></td>" .
-                                " <td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
-                                " <td>{$result->getEditor()->getName()}</td>" .
-                                " <td>{$duration}</td>" .
-                                " </tr>";
-                    }
+                            "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
+                            " <td><span>{$result->getCreator()->getName()}</span></td>" .
+                            " <td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
+                            " <td>{$result->getEditor()->getName()}</td>" .
+                            " <td>{$duration}</td>" .
+                            " </tr>";
                 }
             }
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
@@ -392,16 +393,12 @@ class unitActions extends sfActions {
      * list and filter unit
      * 
      * @param sfWebRequest $request
-
-
      * @return json if request is ajax 
      */
     public function executeIndex(sfWebRequest $request) {
         // if any unit is deleted then so the message and remove it.
         $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
         $this->getUser()->getAttributeHolder()->remove('delMsg');
-
-
 
         // get all the request parameters
         $searchInpout = $request->getParameter('s');
@@ -415,8 +412,6 @@ class unitActions extends sfActions {
         $score_start = $request->getParameter('score_start');
         $scoreType = $request->getParameter('scoreType');
 
-
-//        $unitScore = $request->getParameter('searchScore');
         if ($request->isXmlHttpRequest()) {
             $this->unit = Doctrine_Query::Create()->from('Unit u')
                     ->select('u.*, cu.*, eu.*, sl.resident_structure_description, f.*')
@@ -427,6 +422,7 @@ class unitActions extends sfActions {
                     ->leftJoin('c.AssetGroup ag')
                     ->leftJoin('ag.FormatType ft')
                     ->leftJoin('u.StorageLocations sl');
+
             if ($this->getUser()->getGuardUser()->getType() == 3) {
                 $this->unit = $this->unit->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
             }
@@ -464,8 +460,6 @@ class unitActions extends sfActions {
                     }
                 }
             }
-
-
             switch ($scoreType) {
                 case 'river':
                     if ($score_start != '' && $score_end != '') {
@@ -480,10 +474,7 @@ class unitActions extends sfActions {
                     }
                     break;
             }
-//            return ($this->renderText($this->unit->getSqlQuery()));
             $this->unit = $this->unit->fetchArray();
-
-
 
             // after applying the parametes get units.
             // get duration for each unit
@@ -491,7 +482,6 @@ class unitActions extends sfActions {
                 $duration = new Unit();
                 $this->unit[$key]['duration'] = $duration->getDurationRealTime($value['id']);
             }
-
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
             $this->setLayout('json');

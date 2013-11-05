@@ -60,6 +60,31 @@ class Unit extends BaseUnit {
         return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
     }
 
+    /**
+     * get the duration
+     * 
+     * @param integer $unitID
+     * @return string 
+     */
+        public function getMediaScoreScoreRealTime($start_score, $end_score, $unitID) {
+        $flagFilter = FALSE;
+        $collection = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('c.id,ag.id,ft.duration')
+                ->innerJoin('ag.Collection c')
+                ->innerJoin('ag.FormatType ft')
+                ->where('c.parent_node_id  = ?', $unitID)
+                ->fetchArray();
+
+        foreach ($collection as $SingleCollection) {
+            $AssetScore = $SingleCollection['FormatType']['asset_score'];
+            if ($start_score >= $AssetScore && $AssetScore <= $end_score) {
+                $flagFilter = TRUE;
+            }
+        }
+        return $flagFilter;
+    }
+
     static public function getSearchResults($params, $user) {
 
         $join = '';

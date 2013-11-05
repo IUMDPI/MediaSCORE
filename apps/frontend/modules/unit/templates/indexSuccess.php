@@ -11,17 +11,17 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             <strong>Text:</strong> <input type="text" class="text" onkeyup="filterUnits();" id="searchText"/>
             <strong>Date:</strong>
             <div class="filter-date">
-                <select id="date_type" onchange="filterUnits();">
+                <select id="date_type" onkeyup="filterUnits();">
                     <option value="">Date Type</option>
                     <option value="0">Created On</option>
                     <option value="1">Updated On</option>
                 </select>
-                <input type="text" id="from" onchange="filterUnits();" readonly="readonly"/>
+                <input type="text" id="from" onkeyup="filterUnits();" readonly="readonly"/>
                 to
-                <input type="text" id="to" onchange="filterUnits();" readonly="readonly"/>
+                <input type="text" id="to" onkeyup="filterUnits();" readonly="readonly"/>
             </div>
             <strong>Status:</strong>
-            <select id="filterStatus" onchange="filterUnits();">
+            <select id="filterStatus" onkeyup="filterUnits();">
                 <option value="">Any Status</option>
                 <option value="0">Incomplete</option>
                 <option value="1">In Progress</option>
@@ -35,8 +35,8 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                     <option value="score">MediaSCORE</option>
                     <option value="river">MediaRIVERS</option>
                 </select>
-                &nbsp;From <input type="text" class="text" onkeydown="filterUnits();" id="score_start"/>To &nbsp;
-                <input type="text" class="text" onkeydown="filterUnits();" id="score_end"/>  
+                &nbsp;From <input type="text" class="text" onkeyup="filterUnits();" id="score_start"/>To &nbsp;
+                <input type="text" class="text" onkeyup="filterUnits();" id="score_end"/>  
             </div>
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
@@ -144,7 +144,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 
     var myTextExtraction = function(node)
     {
-        console.log(node.childNodes[0].innerHTML);
+        
         // extract data from markup and return it  
         //    return node.childNodes[0].childNodes[0].innerHTML; 
     }
@@ -209,7 +209,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                             '<td>' + result[collection].updated_at + '</td>' +
                             '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + ' ' + result[collection].Editor.last_name + '</td>' +
                             '<td style="text-align: right;">' + result[collection].duration + '</td>');
-                        console.log(result);
+                        
                         if (result[collection].StorageLocations[0]) {
                             //                            $('#unitResult').append('<td style="text-align: right;">'+result[collection].StorageLocations[0].resident_structure_description+'</td>'+'</tr>'); 
                         } else {
