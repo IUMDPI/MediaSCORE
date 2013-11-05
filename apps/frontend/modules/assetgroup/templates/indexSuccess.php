@@ -44,7 +44,20 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 </div> 
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
-
+<?php
+echo '<pre>';
+var_dump($asset_group);
+foreach ($asset_groups as $asset_group):
+    echo '<br> ------------------------------------------ <br>';
+    var_dump($asset_group);
+    if ($sf_user->getGuardUser()->getId() == 1) {
+        $score = '0.0';
+        if ($asset_group->getFormatType()->getAssetScore() != '')
+            $score = $asset_group->getFormatType()->getAssetScore();
+    }
+endforeach;
+exit;
+?>
 <table id="assetGroupTable" class="tablesorter">
     <thead>
         <tr>
@@ -52,7 +65,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             if ($sf_user->getGuardUser()->getType() != 3) {
                 ?>
                 <td width="30"></td>
-            <?php } ?>
+<?php } ?>
             <th>Asset Groups</th>
             <th>Created</th>
             <th>Created By</th>
@@ -65,7 +78,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
     </thead>
     <tbody id="assetsResult">
 
-        <?php foreach ($asset_groups as $asset_group): ?>
+<?php foreach ($asset_groups as $asset_group): ?>
 
             <tr>
                 <?php
@@ -76,7 +89,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                             <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
                         </div>
                     </td>
-                <?php } ?>
+    <?php } ?>
                 <td><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getCreatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
@@ -96,9 +109,9 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 else {
                     ?>
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo ($score != '') ? $score : '0'; ?></td>
-                <?php } ?>
+            <?php } ?>
             </tr>
-        <?php endforeach; ?>
+<?php endforeach; ?>
     </tbody>
 </table>
 
