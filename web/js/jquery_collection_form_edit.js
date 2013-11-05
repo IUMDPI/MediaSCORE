@@ -179,6 +179,7 @@ var collection_score_rareness_obj;
 var collection_score_documentation_obj;
 var collection_score_technical_quality_obj;
 var collection_collection_score_obj;
+var collection_unknown_technical_quality_obj;
     
 //        Calculating total score and setting value in Collection store Field 
 function calculateScore(){
@@ -189,7 +190,7 @@ function calculateScore(){
     var collection_score_rareness =parseFloat((collection_score_rareness_obj.val())? collection_score_rareness_obj.val():0);
     var collection_score_technical_quality = parseFloat((collection_score_technical_quality_obj.val())? collection_score_technical_quality_obj.val():0);
     var collection_score_documentation = parseFloat((collection_score_documentation_obj.val())? collection_score_documentation_obj.val():0);
-        
+
     if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
         Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
     if(isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
@@ -250,6 +251,8 @@ $(function(){
     collection_score_documentation_obj = $("#collection_score_documentation");
     collection_score_technical_quality_obj = $("#collection_score_technical_quality");
     collection_collection_score_obj = $("#collection_collection_score");
+    collection_unknown_technical_quality_obj = $("#collection_unknown_technical_quality");
+    
         
     //        Subject Interest Score Placing  and Validation
     collection_score_subject_interest_obj.live( "keyup change", function() {

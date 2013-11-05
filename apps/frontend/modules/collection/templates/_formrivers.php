@@ -8,10 +8,10 @@
         width:27px !important;
     }
     #collection_parent_node_id{
-/*        height: 130px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        width: auto;*/
+        /*        height: 130px;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                width: auto;*/
     }
 </style>
 <div style="background-color: #F4F4F4;padding-left: 10px;padding-right: 5px;" id="collectionMain">
@@ -419,15 +419,28 @@
     </div>
 </div></div>
 <script type="text/javascript">
-    $(function(){
+    function changeTechnicalQuality(){
         
+        if($( "input:checked").length){
+            $('#collection_score_technical_quality').attr('readonly', true);
+            $('#collection_score_technical_quality').val('0');
+            $('#collection_score_technical_quality').attr('style', 'background:#F0F0F0;cursor:not-allowed;height: 12px;width: 27px;');
+        }else{
+            $('#collection_score_technical_quality').attr('readonly', false);
+            $('#collection_score_technical_quality').attr('style', 'background:white;cursor:arrow;height: 12px;width: 27px;');
+        }
+    }
+    
+    $(function(){
+        changeTechnicalQuality();
         $("#format_type_off_brand").parents(".row").show(); 
         $("#format_type_fungus") . parents(".row") . show();
-    
+        
+       
     
 <?php if (isset($actionType) && $actionType == 'edit') { ?>
             $('#collection_inst_id').attr('readonly', 'readonly');
-//            $('#collection_parent_node_id').attr('size', '10');
+            //            $('#collection_parent_node_id').attr('size', '10');
             $('#collection_inst_id').attr('style', 'background:#F0F0F0;cursor:not-allowed');
             $('#collection_name').attr('readonly', 'readonly');
             $('#collection_name').attr('style', 'background:#F0F0F0;cursor:not-allowed');

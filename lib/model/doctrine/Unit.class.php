@@ -61,7 +61,6 @@ class Unit extends BaseUnit {
     }
 
     public function getMediaRiversScoreRealTime($unitID, $start_score, $end_score) {
-        $totalDuration = 0;
         $collection = Doctrine_Query::Create()
                 ->from('AssetGroup ag')
                 ->select('c.id,ag.id,ft.duration')
@@ -71,14 +70,11 @@ class Unit extends BaseUnit {
                 ->andWhere('(CAST(c.collection_score as DECIMAL(3,2)))  <= ?', $end_score)
                 ->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) >= ?', $start_score)
                 ->fetchArray();
-//        print_r($collection);
-
         return $collection;
     }
 
     /**
      * get the Mediscore Score
-
      * 
      * @param int $unitID
      * @param float $start_score
@@ -168,8 +164,6 @@ class Unit extends BaseUnit {
         if ($user->getType() == 3) {
             $where .=' AND up.person_id = ' . $user->getId();
         }
-
-
         $query = "SELECT s.id FROM store s
 	     	{$join}
 			LEFT JOIN unit_storage_location usl on usl.unit_id=s.id AND s.type=1 
