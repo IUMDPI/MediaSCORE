@@ -108,6 +108,7 @@ class collectionActions extends sfActions {
                     ->leftJoin('c.AssetGroup ag')
                     ->leftJoin('ag.FormatType ft')
                     ->where('c.parent_node_id  = ?', $unitID);
+
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->collections = $this->collections->andWhere('c.name like "%' . $searchInpout . '%"');
             }

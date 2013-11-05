@@ -60,29 +60,44 @@ class Unit extends BaseUnit {
         return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
     }
 
-    /**
-     * get the duration
-     * 
-     * @param integer $unitID
-     * @return string 
-     */
-        public function getMediaScoreScoreRealTime($start_score, $end_score, $unitID) {
-        $flagFilter = FALSE;
+    public function getMediaRiversScoreRealTime($unitID, $start_score, $end_score) {
+        $totalDuration = 0;
         $collection = Doctrine_Query::Create()
                 ->from('AssetGroup ag')
                 ->select('c.id,ag.id,ft.duration')
                 ->innerJoin('ag.Collection c')
                 ->innerJoin('ag.FormatType ft')
                 ->where('c.parent_node_id  = ?', $unitID)
+                ->andWhere('(CAST(c.collection_score as DECIMAL(3,2)))  <= ?', $end_score)
+                ->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) >= ?', $start_score)
                 ->fetchArray();
+//        print_r($collection);
 
-        foreach ($collection as $SingleCollection) {
-            $AssetScore = $SingleCollection['FormatType']['asset_score'];
-            if ($start_score >= $AssetScore && $AssetScore <= $end_score) {
-                $flagFilter = TRUE;
-            }
-        }
-        return $flagFilter;
+        return $collection;
+    }
+
+    /**
+     * get the Mediscore Score
+
+     * 
+     * @param int $unitID
+     * @param float $start_score
+     * @param float $end_score
+     * @return array
+     */
+    public function getMediaScoreScoreRealTime($unitID, $start_score, $end_score) {
+        $collection = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('c.id,ag.id,ft.duration')
+                ->innerJoin('ag.Collection c')
+                ->innerJoin('ag.FormatType ft')
+                ->where('c.parent_node_id  = ?', $unitID)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2)))  <= ?', $end_score)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2))) >= ?', $start_score)
+                ->fetchArray();
+//        print_r($collection);
+
+        return $collection;
     }
 
     static public function getSearchResults($params, $user) {

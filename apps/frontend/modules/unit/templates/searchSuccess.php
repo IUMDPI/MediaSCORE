@@ -123,9 +123,9 @@
                     <option value="0">Created On</option>
                     <option value="1">Updated On</option>
                 </select>
-                <input type="text" id="from" onchange="filterRecords();" readonly="readonly"/>
+                <input type="text" id="from" onkeyup="filterRecords();" readonly="readonly"/>
                 to
-                <input type="text" id="to" onchange="filterRecords();" readonly="readonly"/>
+                <input type="text" id="to" onkeyup="filterRecords();" readonly="readonly"/>
             </div>
             <strong>Status:</strong>
             <select id="filterStatus" onchange="filterRecords();">
@@ -142,8 +142,8 @@
                     <option value="score">MediaSCORE</option>
                     <option value="river">MediaRIVERS</option>
                 </select>
-                &nbsp;From <input type="text" class="text" onkeydown="filterRecords();" id="score_start"/>To &nbsp;
-                <input type="text" class="text" onkeydown="filterRecords();" id="score_end"/>  
+                &nbsp;From <input type="text" class="text" onkeyup="filterRecords();" id="score_start"/>To &nbsp;
+                <input type="text" class="text" onkeyup="filterRecords();" id="score_end"/>  
             </div>
 
 <!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->

@@ -34,6 +34,7 @@ class AssetGroup extends BaseAssetGroup {
 
         return minutesToHour::ConvertMinutes2Hours($totalDuration);
     }
+
     /**
      * calcuate the format duration
      * 
@@ -55,6 +56,26 @@ class AssetGroup extends BaseAssetGroup {
 
 
         return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
+    }
+
+    /**
+     *   
+     * get the Mediscore Score
+     * @param int $collectionID
+     * @param float $start_score
+     * @param float $end_score
+     * @return array of Assets
+     * */
+    public function getMediaScoreScoreRealTime($formatID, $start_score, $end_score) {
+        $formatType = Doctrine_Query::Create()
+                ->from('FormatType ft')
+                ->select('ft.*')
+                ->where('ft.id  = ?', $formatID)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2))) >= ?', $start_score)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2)))  <= ?', $end_score)
+                ->fetchArray();
+
+        return $formatType;
     }
 
 }

@@ -90,6 +90,29 @@ class Collection extends BaseCollection {
         return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
     }
 
+    /**
+     *   
+     * get the Mediscore Score
+     * @param int $collectionID
+     * @param float $start_score
+     * @param float $end_score
+     * @return array of Assets
+     * */
+    public function getMediaScoreScoreRealTime($collectionID, $start_score, $end_score) {
+        $flagFilter = FALSE;
+        $assetGroup = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->select('ag.id,ft.asset_score')
+                ->innerJoin('ag.FormatType ft')
+                ->where('ag.parent_node_id  = ?', $collectionID)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2)))  <= ?', $end_score)
+                ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2))) >= ?', $start_score)
+//                ->getSqlQuery();
+                ->fetchArray();
+
+        return $assetGroup;
+    }
+
     public function getAssetsScores($startScore, $startRivers) {
         $totalDuration = 0;
         $assetGroup = Doctrine_Query::Create()

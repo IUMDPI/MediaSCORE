@@ -108,18 +108,31 @@ class unitActions extends sfActions {
                         ->whereIn('s.id', $filterID)
                         ->execute();
 
-//                $score_end ,  $score_start , $scoreType ;
                 $this->getContext()->getConfiguration()->loadHelpers('Url');
                 foreach ($this->searchResult as $key => $result) {
-
+                    $ScoreFlag = TRUE;
                     if ($result->getType() == 1) {
                         $text = 'Unit';
                         $urlOnName = url_for('collection', $result);
                         $urlonEdit = url_for('unit/edit?id=' . $result->getId());
                         $parentId = 0;
                         $duration = $result->getDurationRealTime($result->getId());
-                        $ScoreFlag = $result->getMediaScoreScoreRealTime($result->getId());
-                        
+
+                        if ($scoreType == 'river') {
+                            if ($score_start != '' && $score_end != '') {
+                                $Score = $result->getMediaRiversScoreRealTime($result->getId(), $score_start, $score_end);
+                                if (count($Score) <= 0) {
+                                    $ScoreFlag = FALSE;
+                                }
+                            }
+                        } else if ($scoreType == 'score') {
+                            if ($score_start != '' && $score_end != '') {
+                                $Score = $result->getMediaScoreScoreRealTime($result->getId(), $score_start, $score_end);
+                                if (count($Score) <= 0) {
+                                    $ScoreFlag = FALSE;
+                                }
+                            }
+                        }
                     }
 
                     if ($result->getType() == 3) {
@@ -129,15 +142,25 @@ class unitActions extends sfActions {
                         $urlonEdit = url_for('collection/edit?id=' . $result->getId()) . '/u/' . $result->getParentNodeId();
                         $parentId = $result->getParentNodeId();
                         $duration = $result->getDurationRealTime($result->getId());
+                        $score_end = $request->getParameter('score_end');
+                        $score_start = $request->getParameter('score_start');
 
                         if ($scoreType == 'river') {
                             $score = $result->getCollectionScore();
                             if (!$score) {
                                 $score = 0;
                             }
-
-                            if (((float) $score < (float) $score_start) || ((float) $score > (float) $score_end)) {
-                                $result = NULL;
+                            if ($score_start != '' && $score_end != '') {
+                                if (((float) $score < (float) $score_start) || ((float) $score > (float) $score_end)) {
+                                    $ScoreFlag = FALSE;
+                                }
+                            }
+                        } else if ($scoreType == 'score') {
+                            if ($score_start != '' && $score_end != '') {
+                                $Score = $result->getMediaScoreScoreRealTime($result->getId(), $score_start, $score_end);
+                                if (count($Score) <= 0) {
+                                    $ScoreFlag = FALSE;
+                                }
                             }
                         }
                     }
@@ -148,34 +171,37 @@ class unitActions extends sfActions {
                         $parentId = $result->getParentNodeId();
                         $duration = $result->getDurationRealTime($result->getFormatId());
                         if ($scoreType == 'score') {
-                            if ((((float) $result->getAssetScore() < (float) $score_start)) || (((float) $result->getAssetScore() > (float) $score_end))) {
-                                $result = array();
+                            if ($score_start != '' && $score_end != '') {
+                                $Score = $result->getMediaScoreScoreRealTime($result->getFormatId(), $score_start, $score_end);
+                                if (count($Score) <= 0) {
+                                    $ScoreFlag = FALSE;
+                                }
                             }
                         }
                     }
+                    if ($ScoreFlag) {
+                        $this->html .="<tr>";
+                        if ($this->getUser()->getGuardUser()->getType() != 3) {
 
-                    $this->html .="<tr>";
-                    if ($this->getUser()->getGuardUser()->getType() != 3) {
+                            $this->html .="<td class='invisible'><div class='options'>";
+                            if ($result->getType() != 4)
+                                $this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
+                            $this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
+                            $this->html .= "</div></td>";
+                        }
 
-                        $this->html .="<td class='invisible'><div class='options'>";
-                        if ($result->getType() != 4)
-                            $this->html .="<a class='editModal' href='{$urlonEdit}'><img src='/images/wireframes/row-settings-icon.png' alt='Settings' /></a>";
-                        $this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
-                        $this->html .= "</div></td>";
-                    }
-
-
-                    $this->html .="<td ><a class='long_name_handler "
-                            . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
-                            . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
+                        $this->html .="<td ><a class='long_name_handler "
+                                . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
+                                . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
                                 </a>&nbsp;&nbsp;<span class = 'help-text'>{$text}</span>
                                 </td>" .
-                            "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
-                            " <td><span>{$result->getCreator()->getName()}</span></td>" .
-                            " <td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
-                            " <td>{$result->getEditor()->getName()}</td>" .
-                            " <td>{$duration}</td>" .
-                            " </tr>";
+                                "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
+                                " <td><span>{$result->getCreator()->getName()}</span></td>" .
+                                " <td>" . date('Y-d-m', strtotime($result->getUpdatedAt())) . "</td>" .
+                                " <td>{$result->getEditor()->getName()}</td>" .
+                                " <td>{$duration}</td>" .
+                                " </tr>";
+                    }
                 }
             }
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
@@ -223,8 +249,8 @@ class unitActions extends sfActions {
                     break;
             }
             $this->unit = $this->unit->fetchArray();
-            // after applying the parametes get units.
-            // get duration for each unit
+// after applying the parametes get units.
+// get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
                 $this->unit[$key]['duration'] = $duration->getDurationRealTime($value['id']);
@@ -237,16 +263,16 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         } else {
 
-            // get the parameter of search
+// get the parameter of search
 //            $this->searchValues = $request->getParameter('search_values');
             $this->searchValues = $request->getPostParameter('search_values');
 
 
-            // make array of search values
+// make array of search values
             $this->searchString = array();
             if (!empty($this->searchValues))
                 $this->searchString = explode(', ', $this->searchValues);
-            // compare search values with the arrays ($store and $type)
+// compare search values with the arrays ($store and $type)
 
             $formatType = array();
             $storeType = array();
@@ -305,7 +331,7 @@ class unitActions extends sfActions {
 
         if ($request->isXmlHttpRequest()) {
             $assetGroupID = $request->getParameter('id');
-            // search the assets with the request ID
+// search the assets with the request ID
             $assetGroups = Doctrine_Core::getTable('AssetGroup')
                     ->createQuery('a')
                     ->where('id = ?', $assetGroupID)
@@ -313,20 +339,20 @@ class unitActions extends sfActions {
                     ->toArray();
             $assetGroup = array_pop($assetGroups);
 
-            // get collection for the search asset group
+// get collection for the search asset group
             $collections = Doctrine_Core::getTable('Collection')
                     ->createQuery('c')
                     ->where('id = ?', $assetGroup['parent_node_id'])
                     ->execute()
                     ->toArray();
             $collection = array_pop($collections);
-            // get unit for the collection for the asset group
+// get unit for the collection for the asset group
             $units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
                     ->where('id = ?', $collection['parent_node_id'])
                     ->execute()
                     ->toArray();
-            // return the response with the units detail
+// return the response with the units detail
 
 
             $this->getResponse()->setHttpHeader('Content-type', 'application/json');
@@ -348,14 +374,14 @@ class unitActions extends sfActions {
         $unitId = $request->getParameter('u');
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
-            // get details of unit persons for the given unit id.
+// get details of unit persons for the given unit id.
             $unit = Doctrine_Query::Create()
                     ->from('Person p')
                     ->select('p.*')
                     ->innerJoin('p.UnitPerson up')
                     ->where('up.unit_id = ?', $unitId)
                     ->fetchArray();
-            // get the detail of storage location for the given unit id
+// get the detail of storage location for the given unit id
             $location = Doctrine_Query::Create()
                     ->from('StorageLocation sl')
                     ->select('sl.*')
@@ -378,7 +404,7 @@ class unitActions extends sfActions {
         $this->forward404Unless($request->isXmlHttpRequest());
         if ($request->isXmlHttpRequest()) {
             $explodedId = explode(', ', $request->getParameter('id'));
-            // search and get the detail of users
+// search and get the detail of users
             $user = Doctrine_Core::getTable('sfGuardUser')
                     ->createQuery('c')
                     ->whereIn('id ', $explodedId)
@@ -395,11 +421,11 @@ class unitActions extends sfActions {
      * @return json if request is ajax 
      */
     public function executeIndex(sfWebRequest $request) {
-        // if any unit is deleted then so the message and remove it.
+// if any unit is deleted then so the message and remove it.
         $this->deleteMessage = $this->getUser()->getAttribute('delMsg');
         $this->getUser()->getAttributeHolder()->remove('delMsg');
 
-        // get all the request parameters
+// get all the request parameters
         $searchInpout = $request->getParameter('s');
         $status = $request->getParameter('status');
         $from = $request->getParameter('from');
@@ -425,7 +451,7 @@ class unitActions extends sfActions {
             if ($this->getUser()->getGuardUser()->getType() == 3) {
                 $this->unit = $this->unit->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
             }
-            // apply filters for searching the unit
+// apply filters for searching the unit
             if ($searchInpout && trim($searchInpout) != '') {
                 $this->unit = $this->unit->andWhere('u.name like "%' . $searchInpout . ' % "');
             }
@@ -475,8 +501,8 @@ class unitActions extends sfActions {
             }
             $this->unit = $this->unit->fetchArray();
 
-            // after applying the parametes get units.
-            // get duration for each unit
+// after applying the parametes get units.
+// get duration for each unit
             foreach ($this->unit as $key => $value) {
                 $duration = new Unit();
                 $this->unit[$key]['duration'] = $duration->getDurationRealTime($value['id']);
@@ -488,7 +514,7 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         } else {
             $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id, sl.name')->fetchArray('name');
-            // get the list of all the units 
+// get the list of all the units 
             $this->units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
                     ->orderBy('name')
@@ -611,10 +637,10 @@ class unitActions extends sfActions {
 
      */
     public function executeDelete(sfWebRequest $request) {
-        //$request->checkCSRFProtection();
+//$request->checkCSRFProtection();
 
         $this->forward404Unless($unit = Doctrine_Core::getTable('Unit')->find(array($request->getParameter('id'))), sprintf('Object unit does not exist (%s).', $request->getParameter('id')));
-        // remove all the collection first before deleting any unit.
+// remove all the collection first before deleting any unit.
         $collections = Doctrine_Query::Create()
                 ->from('Collection c')
                 ->select('c.*')
@@ -638,7 +664,7 @@ class unitActions extends sfActions {
      */
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-        // get the storage location for the given unit.
+// get the storage location for the given unit.
         $collections = Doctrine_Query::Create()
                 ->from('CollectionStorageLocation csl')
                 ->select('csl.*')
@@ -648,7 +674,7 @@ class unitActions extends sfActions {
                 ->fetchArray();
         if ($form->isValid()) {
             $check = array();
-            // match the selected and already assign the storage location. 
+// match the selected and already assign the storage location. 
             foreach ($collections as $value) {
                 foreach ($form->getValue('storage_locations_list') as $location) {
                     if ($location == $value['storage_location_id']) {
@@ -657,7 +683,7 @@ class unitActions extends sfActions {
                     }
                 }
             }
-            // if store location is already assign to collection that user want to remove then show error message.
+// if store location is already assign to collection that user want to remove then show error message.
             if (count($collections) != count($check)) {
                 $error = array('error' => true);
                 return $error;
