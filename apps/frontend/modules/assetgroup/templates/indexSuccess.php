@@ -55,6 +55,7 @@ foreach ($asset_groups as $asset_group):
         $score = '0.0';
         if ($asset_group->getFormatType()->getAssetScore() != '')
             $score = $asset_group->getFormatType()->getAssetScore();
+        var_dump($score);
     }
 endforeach;
 exit;
