@@ -40,8 +40,6 @@ class unitActions extends sfActions {
         $store = array('Unit' => '1', 'Collection' => '3');
         $asset = array('Asset Group' => '4');
         if ($request->isXmlHttpRequest()) {
-            echo 'asdasda';
-            exit;
             $searchInput = $request->getParameter('s');
 
             $status = $request->getParameter('status');
@@ -121,8 +119,7 @@ class unitActions extends sfActions {
                         $parentId = 0;
                         $duration = $result->getDurationRealTime($result->getId());
                         $ScoreFlag = $result->getMediaScoreScoreRealTime($result->getId());
-                        var_dump($ScoreFlag);
-                        exit;
+                        
                     }
 
                     if ($result->getType() == 3) {
