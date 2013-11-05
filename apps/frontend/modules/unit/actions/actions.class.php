@@ -40,7 +40,8 @@ class unitActions extends sfActions {
         $store = array('Unit' => '1', 'Collection' => '3');
         $asset = array('Asset Group' => '4');
         if ($request->isXmlHttpRequest()) {
-
+            echo 'asdasda';
+            exit;
             $searchInput = $request->getParameter('s');
 
             $status = $request->getParameter('status');
@@ -101,8 +102,7 @@ class unitActions extends sfActions {
             $filterID = $db->getSearchResults($searchParams, $this->getUser()->getGuardUser());
             $this->searchResult = array();
             $this->html = '';
-            echo 'asdasda';
-            exit;
+
             if (count($filterID) > 0) {
                 $this->searchResult = Doctrine_Query::Create()
                         ->from('Store s')
@@ -122,9 +122,9 @@ class unitActions extends sfActions {
                         $duration = $result->getDurationRealTime($result->getId());
                         $ScoreFlag = $result->getMediaScoreScoreRealTime($result->getId());
                         var_dump($ScoreFlag);
-                        exit; 
+                        exit;
                     }
- 
+
                     if ($result->getType() == 3) {
                         $text = 'Collection';
                         $urlOnName = url_for('assetgroup', $result);
