@@ -48,9 +48,10 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 echo '<pre>';
 
 foreach ($asset_groups as $asset_group):
-  
-      echo '<br> ------------------------------------------ <br>';
-    var_dump($asset_group->getFormatType());
+
+    echo '<br> ------------------------------------------ <br>';
+var_dump($asset_group->getFormatType()->getAssetScore())
+echo '<br> ------------------------------------------ <br>';
     if ($sf_user->getGuardUser()->getId() == 1) {
         $score = '0.0';
         if ($asset_group->getFormatType()->getAssetScore() != '')
@@ -67,7 +68,7 @@ exit;
             if ($sf_user->getGuardUser()->getType() != 3) {
                 ?>
                 <td width="30"></td>
-<?php } ?>
+            <?php } ?>
             <th>Asset Groups</th>
             <th>Created</th>
             <th>Created By</th>
@@ -80,7 +81,7 @@ exit;
     </thead>
     <tbody id="assetsResult">
 
-<?php foreach ($asset_groups as $asset_group): ?>
+        <?php foreach ($asset_groups as $asset_group): ?>
 
             <tr>
                 <?php
@@ -91,7 +92,7 @@ exit;
                             <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
                         </div>
                     </td>
-    <?php } ?>
+                <?php } ?>
                 <td><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getCreatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
@@ -111,9 +112,9 @@ exit;
                 else {
                     ?>
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo ($score != '') ? $score : '0'; ?></td>
-            <?php } ?>
+                <?php } ?>
             </tr>
-<?php endforeach; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
