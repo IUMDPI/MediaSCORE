@@ -51,9 +51,19 @@ if ($url)
         width:auto ;line-height:0px;
     }
     .tooltip:hover span{
-        display:inline; position:absolute; color:#111;
-        border:1px solid gray; background:#d8d8d8;}
-    .callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+        display:inline; 
+        position:absolute; 
+        color:#111;
+        border:1px solid gray; 
+        background:#d8d8d8;
+    }
+    .callout {
+        z-index:20;
+        position:absolute;
+        top:30px;
+        border:0;
+        left:-12px;
+    }
 
     /*CSS3 extras*/
     .tooltip span
@@ -65,6 +75,9 @@ if ($url)
         -moz-box-shadow: 5px 5px 8px #CCC;
         -webkit-box-shadow: 5px 5px 8px #CCC;
         box-shadow: 5px 5px 8px #CCC;
+    }
+    .long_name_handler a{
+        line-height: 1.3;
     }
 </style>
 <?php if ($view == 'river') { ?>
@@ -179,12 +192,12 @@ if ($url)
                                         <?php } ?>
                                         <td <?php echo (((int) strlen($collection->getInstId())) > 23) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?> width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getInstId(), 0, 23) ?> <span><?php echo ((int) strlen($collection->getInstId()) > 23) ? $collection->getInstId() : ''; ?> </span></a></td>
                                         <td <?php echo (((int) strlen($collection->getName())) > 39 ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 42) ?>  <span><?php echo ((int) strlen($collection->getName()) > 39 ? $collection->getName() : ''); ?></span></a></td>
-                                        <td class="intigers" width="8%"><?php echo $collection->getScoreSubjectInterest(); ?></td>
-                                        <td class="intigers" width="7%"><?php echo $collection->getScoreContentQuality(); ?></td>
-                                        <td class="intigers" width="9%"><?php echo $collection->getScoreRareness(); ?></td>
-                                        <td class="intigers" width="12%"><?php echo $collection->getScoreDocumentation(); ?></td>
-                                        <td class="intigers"  width="9%"><?php echo $collection->getScoreTechnicalQuality(); ?></td>
-                                        <td class="intigers" width="7%" ><?php echo $collection->getCollectionScore(); ?></td>
+                                        <td class="intigers" width="8%"><?php echo ($collection->getScoreSubjectInterest()) ? $collection->getScoreSubjectInterest() : 0; ?></td>
+                                        <td class="intigers" width="7%"><?php echo ($collection->getScoreContentQuality()) ? $collection->getScoreContentQuality() : 0; ?></td>
+                                        <td class="intigers" width="9%"><?php echo ($collection->getScoreRareness()) ? $collection->getScoreRareness() : 0; ?></td>
+                                        <td class="intigers" width="12%"><?php echo ($collection->getScoreDocumentation()) ? $collection->getScoreDocumentation() : 0; ?></td>
+                                        <td class="intigers"  width="9%"><?php echo ($collection->getScoreTechnicalQuality()) ? $collection->getScoreTechnicalQuality() : 0; ?></td>
+                                        <td class="intigers" width="7%" ><?php echo ($collection->getCollectionScore()) ? $collection->getCollectionScore() : 0; ?></td>
                                     </tr> 
                                 <?php endforeach; ?>
 

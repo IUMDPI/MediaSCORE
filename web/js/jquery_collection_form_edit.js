@@ -190,17 +190,20 @@ function calculateScore(){
     var collection_score_rareness =parseFloat((collection_score_rareness_obj.val())? collection_score_rareness_obj.val():0);
     var collection_score_technical_quality = parseFloat((collection_score_technical_quality_obj.val())? collection_score_technical_quality_obj.val():0);
     var collection_score_documentation = parseFloat((collection_score_documentation_obj.val())? collection_score_documentation_obj.val():0);
-
-    if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
-        Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
-    if(isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
-        Total_Collection_Score = Total_Collection_Score + collection_score_content_quality;
-    if(isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
-        Total_Collection_Score = Total_Collection_Score + collection_score_rareness;
-    if(isValidScore(collection_score_technical_quality) && IsNumeric(collection_score_technical_quality))
-        Total_Collection_Score = Total_Collection_Score + collection_score_technical_quality;
-    if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
-        Total_Collection_Score = Total_Collection_Score + collection_score_documentation
+    if(collection_unknown_technical_quality_obj.is(":checked")){
+        
+    }else{
+        if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
+            Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
+        if(isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
+            Total_Collection_Score = Total_Collection_Score + collection_score_content_quality;
+        if(isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
+            Total_Collection_Score = Total_Collection_Score + collection_score_rareness;
+        if(isValidScore(collection_score_technical_quality) && IsNumeric(collection_score_technical_quality))
+            Total_Collection_Score = Total_Collection_Score + collection_score_technical_quality;
+        if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
+            Total_Collection_Score = Total_Collection_Score + collection_score_documentation
+    }
         
     return Math.round(Total_Collection_Score * 100 ) /100;
 }
