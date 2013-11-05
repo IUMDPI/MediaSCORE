@@ -120,7 +120,7 @@ class unitActions extends sfActions {
                         $duration = $result->getDurationRealTime($result->getId());
                         $ScoreFlag = $result->getMediaScoreScoreRealTime($result->getId());
                         var_dump($ScoreFlag);
-                        exit;
+                        exit; 
                     }
  
                     if ($result->getType() == 3) {
