@@ -191,7 +191,14 @@ function calculateScore(){
     var collection_score_technical_quality = parseFloat((collection_score_technical_quality_obj.val())? collection_score_technical_quality_obj.val():0);
     var collection_score_documentation = parseFloat((collection_score_documentation_obj.val())? collection_score_documentation_obj.val():0);
     if(collection_unknown_technical_quality_obj.is(":checked")){
-        
+        if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
+            Total_Collection_Score = Total_Collection_Score + ((collection_score_subject_interest*27.5)/100);
+        if(isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
+            Total_Collection_Score = Total_Collection_Score + ((collection_score_content_quality*27.5)/100);
+        if(isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
+            Total_Collection_Score = Total_Collection_Score + ((collection_score_rareness*27.5)/100);
+        if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
+            Total_Collection_Score = Total_Collection_Score + ((collection_score_documentation*17.5)/100);
     }else{
         if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
             Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;

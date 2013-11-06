@@ -21,7 +21,7 @@ if ($url)
 
     .long_name_handler{
         display:inline-block !important;
-        white-space: nowrap !important;
+        /*white-space: nowrap !important;*/
         text-overflow: ellipsis !important;
         max-width:218px !important;
         height:10px !important;
@@ -30,10 +30,10 @@ if ($url)
     }
     .long_name_handler_inst{
         text-overflow: ellipsis !important;
-        max-width: 130px !important;
+        /*max-width: 130px !important;*/
         height: 10px !important;
         overflow: hidden !important;
-        white-space: nowrap !important;
+        /*white-space: nowrap !important;*/
         width: 130px !important;
     }
 
@@ -191,6 +191,7 @@ if ($url)
                                             </td> 
                                         <?php } ?>
                                         <td <?php echo (((int) strlen($collection->getInstId())) > 23) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?> width="10%"><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getInstId(), 0, 23) ?> <span><?php echo ((int) strlen($collection->getInstId()) > 23) ? $collection->getInstId() : ''; ?> </span></a></td>
+
                                         <td <?php echo (((int) strlen($collection->getName())) > 39 ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>"><?php echo substr($collection->getName(), 0, 42) ?>  <span><?php echo ((int) strlen($collection->getName()) > 39 ? $collection->getName() : ''); ?></span></a></td>
                                         <td class="intigers" width="8%"><?php echo ($collection->getScoreSubjectInterest()) ? $collection->getScoreSubjectInterest() : 0; ?></td>
                                         <td class="intigers" width="7%"><?php echo ($collection->getScoreContentQuality()) ? $collection->getScoreContentQuality() : 0; ?></td>
@@ -240,11 +241,32 @@ if ($url)
                                             </td>
                                         <?php } ?>
 
-                                        <td <?php echo ((int) strlen($collection->getInstId()) > 23) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>>
-                                            <a href="<?php echo url_for('assetgroup', $collection) ?>"><?php echo substr($collection->getInstId(), 0, 23) ?> <span><?php echo ((int) strlen($collection->getName()) >= 23) ? $collection->getInstId() : ''; ?> </span></a></td>
-
+                                        <td <?php echo ((int) strlen($collection->getInstId()) > 17) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>>
+                                            <a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
+                        echo substr($collection->getInstId(), 0, 17);
+                        echo ((int) strlen($collection->getInstId()) > 17) ? '...' : '';
+                                        ?> <span><?php echo ((int) strlen($collection->getName()) >= 17) ? $collection->getInstId() : ''; ?> </span></a></td>
+                                        <?php
+//                                        $collectionName = $collection->getName();
+                                        $collectionName = 'i am testing this fucntionatlity brotherda';
+                                        echo $lenth= strlen($collectionName);
+                                        
+                                        
+                                        $morethenlength = FALSE;
+                                        if ((int)$lenth >= 30) {
+                                            
+                                            echo $collectionName = substr($collectionName, 0, strpos($collectionName, ' ', 39)) . '...';
+                                            $morethenlength = TRUE;
+                                            exit;
+                                        }
+                                        exit;
+                                        ?>
                                         <td <?php echo ((int) strlen($collection->getName()) >= 39) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
-                                                <?php echo substr($collection->getName(), 0, 39); ?> <span><?php echo ((int) strlen($collection->getName()) >= 39) ? $collection->getName() : ''; ?></span></a></td>
+                                                <?php
+                                                echo substr($collection->getName(), 0, 39);
+                                                echo ((int) strlen($collection->getName()) >= 39) ? '...' : '';
+                                                var_dump(strlen($collection->getName()));
+                                                ?> <span><?php echo ((int) strlen($collection->getName()) >= 39) ? $collection->getName() : ''; ?></span></a></td>
 
                                         <td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
                                         <td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>

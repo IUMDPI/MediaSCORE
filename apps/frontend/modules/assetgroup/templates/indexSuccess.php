@@ -45,7 +45,6 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 <div class="show-hide-filter"><a href="javascript:void(0)" onclick="filterToggle();" id="filter_text">Show Filter</a></div> 
 <div class="breadcrumb small"><a href="<?php echo url_for('unit/index') ?>">All Units</a>&nbsp;&gt;&nbsp;<a href="<?php echo url_for('collection', $unit) ?>"><?php echo $unitName ?></a>&nbsp;&gt;&nbsp;<?php echo $collectionName ?></div>
 <?php
-
 ?>
 <table id="assetGroupTable" class="tablesorter">
     <thead>
@@ -68,7 +67,6 @@ if ($sf_user->getGuardUser()->getType() != 3) {
     <tbody id="assetsResult">
 
         <?php foreach ($asset_groups as $asset_group): ?>
-
             <tr>
                 <?php
                 if ($sf_user->getGuardUser()->getType() != 3) {
@@ -99,7 +97,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><?php echo ($score != '') ? $score : '0'; ?></td>
                 <?php } ?>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
