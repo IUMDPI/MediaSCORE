@@ -50,6 +50,8 @@ class assetgroupActions extends sfActions {
             if ($AssetScore != '') {
                 $this->assets = $this->assets->andWhere('asset_score LIKE ?', "{$AssetScore}%");
             }
+
+
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {

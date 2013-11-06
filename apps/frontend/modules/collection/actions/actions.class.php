@@ -60,7 +60,7 @@ class collectionActions extends sfActions {
                     ->andWhere('id  = ?', $request->getParameter('u'))
                     ->fetchArray();
             $this->ThisUnit = $unit;
-         
+
             $url = $this->generateUrl("collection", $unit[0]);
             $urls = explode('?', $url);
 //            header('location: ' . $urls[0]);

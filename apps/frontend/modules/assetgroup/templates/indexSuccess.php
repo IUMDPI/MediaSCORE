@@ -27,14 +27,8 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 <option value="1">In Progress</option>
                 <option value="2">Completed</option>
             </select>
-<!--            <strong>Storage Location : </strong>
-            <div class="filter-date">
-                <select id="storagefilter" onchange="filterAssets();">
-            <?php // foreach ($AllStorageLocations as $StorageLocation) { ?>
-                        <option value="<?php // echo $StorageLocation['id']  ?>"><?php // echo $StorageLocation['name']  ?></option>
-            <?php // } ?>
-                </select>
-            </div>-->
+
+
             <br/> 
             <br/> 
             <strong>Score Type : </strong>
@@ -45,6 +39,14 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 </select>
                 &nbsp;From <input type="text" class="text" onkeyup="filterAssets();" id="score_start"/>To &nbsp;
                 <input type="text" class="text" onkeyup="filterAssets();" id="score_end"/>  
+            </div>
+            <strong>Storage Location : </strong>
+            <div class="filter-date">
+                <select id="storagefilter" onchange="filterAssets();">
+                    <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
+                        <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
+                    <?php } ?>
+                </select>
             </div>
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
@@ -115,7 +117,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
     var myTextExtraction = function(node)  
     {  
         // extract data from markup and return it  
-//        console.log(node.childNodes[0].innerHTML);
+        //        console.log(node.childNodes[0].innerHTML);
         return node.childNodes[0].innerHTML; 
     } 
     $(document).ready(function() {
