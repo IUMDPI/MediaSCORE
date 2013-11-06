@@ -200,9 +200,10 @@ function calculateScore(){
         if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
             Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_documentation*17.5)/100);
         console.log(Total_Collection_Score);
-        console.log(collection_score_subject_interest);
-        console.log(collection_score_rareness);
-        console.log(collection_score_documentation);
+        console.log(parseFloat((collection_score_subject_interest*27.5)/100));
+        console.log(parseFloat((collection_score_content_quality*27.5)/100));
+        console.log(parseFloat((collection_score_rareness*27.5)/100));
+        console.log(parseFloat((collection_score_documentation*17.5)/100);
         
     }else{
         if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
