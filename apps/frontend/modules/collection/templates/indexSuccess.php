@@ -248,18 +248,18 @@ if ($url)
                                         ?> <span><?php echo ((int) strlen($collection->getName()) >= 17) ? $collection->getInstId() : ''; ?> </span></a></td>
                                         <?php
 //                                        $collectionName = $collection->getName();
-                                        $collectionName = 'i am testing this fucntionatlity brotherda';
-                                        echo $lenth= strlen($collectionName);
-                                        
-                                        
-                                        $morethenlength = FALSE;
-                                        if ((int)$lenth >= 30) {
-                                            
-                                            echo $collectionName = substr($collectionName, 0, strpos($collectionName, ' ', 39)) . '...';
-                                            $morethenlength = TRUE;
-                                            exit;
-                                        }
-                                        exit;
+//                                        $collectionName = 'i am testing this fucntionatlity brotherda';
+//                                        echo $lenth= strlen($collectionName);
+//                                        
+//                                        
+//                                        $morethenlength = FALSE;
+//                                        if ((int)$lenth >= 30) {
+//                                            
+//                                            echo $collectionName = substr($collectionName, 0, strpos($collectionName, ' ', 39)) . '...';
+//                                            $morethenlength = TRUE;
+//                                            exit;
+//                                        }
+//                                        exit;
                                         ?>
                                         <td <?php echo ((int) strlen($collection->getName()) >= 39) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
                                                 <?php
