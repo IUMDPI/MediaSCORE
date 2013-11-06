@@ -250,10 +250,9 @@ function handleValuesOfTextField(object,CollectionScoreObj){
     var score = object.val();
     if(!isValidScore(score)){
         $('#'+object.attr('id')+'_errorn').show();
-    }else{
+    }else{ 
         $('#'+object.attr('id')+'_errorn').hide();
     }
-        
     var Total_Collection_Score = 0.0;
     Total_Collection_Score = calculateScore();
     if($("#collection_unknown_technical_quality").is(":checked")){

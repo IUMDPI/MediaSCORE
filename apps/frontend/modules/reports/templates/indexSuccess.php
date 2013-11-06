@@ -2,15 +2,32 @@
 
 <table>
     <tbody>
-
-        <?php
-        if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
-            ?>
+        <?php if (($IsMediaScoreAccess && $ISMediaRiverAccess) || $sf_user->getGuardUser()->getRole() == 1) { ?>
             <tr>
                 <th><br/></th>
             </tr>
             <tr>
-                <th><h2>MediaSCORE</h2></th>    
+                <th>
+        <h2> MediaSCORE & MediaRIVERS Scoring Report </h2>
+    </th>    
+    </tr>
+    <tr>
+        <th><hr style="color:#7D110C;"/></th>
+    </tr>
+    <tr>
+        <th><label><a href="<?php echo url_for('reports/masterscorereport') ?>">Master Score Report</a></label><br/></th>
+        
+    </tr>
+
+    <?php
+}
+if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
+    ?>
+    <tr>
+        <th><br/></th>
+    </tr>
+    <tr>
+        <th><h2>MediaSCORE</h2></th>    
     </tr>
     <tr>
         <th><hr style="color:#7D110C;"/></th>

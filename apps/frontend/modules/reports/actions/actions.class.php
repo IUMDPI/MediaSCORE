@@ -2166,4 +2166,104 @@ class reportsActions extends sfActions {
         }
     }
 
+    public function executeMasterscorereport(sfWebRequest $request) {
+
+        $this->form = new ReportsForm(null, array('from' => 'collectionstatusreport', 'user' => $this->getUser()->getGuardUser()));
+        if ($request->isMethod(sfRequest::POST)) {
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if ($this->form->isValid()) {
+                $params = $request->getPostParameter('reports');
+                $Collection_id = $params['listCollection_RRD'];
+                $Units_id = $params['listUnits_RRD'];
+                $collectionStatus = $params['collectionStatus'];
+                $ExportType = $params['ExportType'];
+                $EvaluatorsStartDate = $params['EvaluatorsStartDate'];
+                $EvaluatorsEndDate = $params['EvaluatorsEndDate'];
+                $Mediariversfullreportss = array();
+
+                if ($Units_id) {
+                    $collections = array();
+
+
+                    $Collections = Doctrine_Query::Create()
+                            ->from('AssetGroup ag')
+                            ->innerJoin("ag.FormatType ft")
+                            ->innerJoin('ag.Collection c')
+                            ->innerJoin('c.Unit u')
+                            ->whereIn('u.id', $Units_id)
+                            ->whereIn('c.id', $Collection_id)
+                            ->fetchArray();
+
+
+                    $SolutionArray = array();
+                    foreach ($Collections as $Collection) {
+                        $collections[] = $Collection;
+                    }
+
+                    if ($collections) {
+                        foreach ($collections as $collection) {
+
+                            $Mediariversfullreports = array();
+                            $Mediariversfullreports['Unit Primary ID'] = $collection['Collection']['Unit']['inst_id'];
+                            $Mediariversfullreports['Unit Name'] = $collection['Collection']['Unit']['name'];
+                            $Mediariversfullreports['Collection Primary ID'] = $collection['inst_id'];
+                            $Mediariversfullreports['Collection Name'] = $collection['Collection']['name'];
+                            $Mediariversfullreports['Asset Group Primary ID'] = $collection['inst_id'];
+                            $Mediariversfullreports['Asset Group Name'] = $collection['name'];
+
+                            $Mediariversfullreports['Type'] = ($collection['FormatType']['type']) ? $collection['FormatType']['type'] : 0;
+                            $Mediariversfullreports['Quantity'] = ($collection['FormatType']['quantity']) ? $collection['FormatType']['quantity'] : 0;
+                            $Mediariversfullreports['MediaSCORE Score'] = $collection['FormatType']['asset_score'];
+
+                            $Mediariversfullreports['Subject Interest Score'] = ($collection['score_subject_interest']) ? $collection['score_subject_interest'] : 0;
+                            $Mediariversfullreports['Content Quality Score'] = ($collection['score_content_quality']) ? $collection['score_content_quality'] : 0;
+                            $Mediariversfullreports['Rareness Score'] = ($collection['score_rareness']) ? $collection['score_rareness'] : 0;
+                            $Mediariversfullreports['Documentation Score'] = ($collection['score_documentation']) ? $collection['score_documentation'] : 0;
+                            $Mediariversfullreports['Technical Quality Score'] = ($collection['score_technical_quality']) ? $collection['score_technical_quality'] : 0;
+                            $Mediariversfullreports['MediRIVERS Score'] = ($collection['Collection']['collection_score']) ? $collection['Collection']['collection_score'] : 0;
+                            $Mediariversfullreports['MASTER SCORE'] = (float) $collection['Collection']['collection_score'] + (float) $collection['FormatType']['asset_score'];
+
+                            $Mediariversfullreportss[] = $Mediariversfullreports;
+                        }
+
+                        if ($ExportType == 'xls') {
+                            $excel = new excel();
+                            $excel->setDataArray($Mediariversfullreportss);
+                            $excel->extractHeadings();
+                            $filename = 'mediarivers_full_report' . date('Ymd') . '.xlsx';
+                            $Sheettitle = 'Full_Media_River_Report';
+                            $intial_dicrectory = '/FullMediaRiverReport/xls/';
+                            $file_name_with_directory = $intial_dicrectory . $filename;
+
+                            $excel->setDataArray($Mediariversfullreportss);
+                            $excel->extractHeadings();
+                            $excel->setFileName($file_name_with_directory);
+                            $excel->setSheetTitle($Sheettitle);
+
+                            $excel->createExcel();
+
+                            $excel->SaveFile();
+                            $excel->DownloadXLSX($file_name_with_directory, $filename);
+                            $excel->DeleteFile($file_name_with_directory);
+                            exit;
+                        } else {
+
+                            $csvHandler = new csvHandler();
+                            $file_name = 'mediarivers_full_report' . date('Ymd') . '.csv';
+                            $intial_dicrectory = '/FullMediaRiverReport/csv/';
+                            $file_name_with_directory = $intial_dicrectory . $file_name;
+                            $csvHandler->CreateCSV($Mediariversfullreportss, $file_name_with_directory);
+                            $csvHandler->DownloadCSV($file_name_with_directory, $file_name);
+                            $csvHandler->DeleteFile($file_name_with_directory);
+                            exit;
+                        }
+                    } else {
+                        $Bug = '<span style="color:#7d110c;font-size:16px;"><b>No record available for export.</b></span>';
+                        $this->getResponse()->setSlot('my_slot', $Bug);
+                    }
+                }
+            }
+        }
+    }
+
 }

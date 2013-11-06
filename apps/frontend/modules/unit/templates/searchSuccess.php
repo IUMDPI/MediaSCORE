@@ -224,8 +224,20 @@
                                 <a href="#fancyboxUCAG" class="delete_UCAG"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getID(<?php echo $result->getId(); ?>,<?php echo $result->getType(); ?>,<?php echo $parentId; ?>)"/></a>
                             </div>
                         </td>
-                    <?php } ?>
-                    <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler <?php echo ((int) strlen($result->getName())) >= 40 ? 'tooltip' : '' ?>"><?php echo substr($result->getName(), 0, 43) ?><span><?php echo ((int) strlen($result->getName())) >= 40 ? $result->getName() : ''; ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
+                        <?php
+                    }
+                    $getName = $result->getName();
+                    $lenthName = strlen($getName);
+                    $alterName = $getName;
+
+                    $morethenlengthName = FALSE;
+
+                    if ((int) $lenthName > 40) {
+                        $alterName = (substr($alterName, 0, 40) . '...');
+                        $morethenlengthName = TRUE;
+                    }
+                    ?>
+                    <td ><a href="<?php echo $urlOnName; ?>" class="long_name_handler <?php echo $morethenlengthName ? 'tooltip' : '' ?>"><?php echo $alterName ?><span><?php echo $morethenlengthName ? $getName : ''; ?></span></a>&nbsp;&nbsp;<div class="help-text"><?php echo $text; ?></div></td>
                     <td><?php echo date('Y-d-m', strtotime($result->getCreatedAt())); ?></td>
                     <td> 
                         <?php echo '<span>' . $result->getCreator()->getName() . '</span>'; ?>

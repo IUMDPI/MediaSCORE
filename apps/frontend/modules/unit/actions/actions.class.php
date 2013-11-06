@@ -189,10 +189,19 @@ class unitActions extends sfActions {
                             $this->html .="<a href='#fancyboxUCAG' class='delete_UCAG'><img src='/images/wireframes/row-delete-icon.png' alt='Delete' onclick='getID({$result->getId()},{$result->getType()},{$parentId})'/></a>";
                             $this->html .= "</div></td>";
                         }
+                        $getName = $result->getName();
+                        $lenthName = strlen($getName);
+                        $alterName = $getName;
 
+                        $morethenlengthName = FALSE;
+                        
+                        if ((int) $lenthName > 40) {
+                            $alterName = (substr($alterName, 0, 40) . '...');
+                            $morethenlengthName = TRUE;
+                        }
                         $this->html .="<td ><a class='long_name_handler "
-                                . (strlen($result->getName()) >= 40 ? 'tooltip' : '') . "' href='{$urlOnName}'>" . substr($result->getName(), 0, 42)
-                                . " <span>" . (strlen($result->getName()) >= 40 ? $result->getName() : '') . "</span> 
+                                . ($morethenlengthName ? 'tooltip' : '') . "' href='{$urlOnName}'>" . $alterName
+                                . " <span>" . ($morethenlengthName ? $getName : '') . "</span> 
                                 </a>&nbsp;&nbsp;<span class = 'help-text'>{$text}</span>
                                 </td>" .
                                 "<td>" . date('Y-d-m', strtotime($result->getCreatedAt())) . "</td>" .
