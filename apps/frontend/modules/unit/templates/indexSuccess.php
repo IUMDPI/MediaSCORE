@@ -5,6 +5,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
 <?php } ?>
 <?php include_partial('search', array('AllStorageLocations' => $AllStorageLocations)) ?>
 <div id="filter-container">
+
     <div id="filter" class="Xhidden" style="display:none;"> <!-- toggle class "hidden" to show/hide -->
         <div class="title">Filter by:</div>
         <form id="filterUnits" action="">
@@ -37,6 +38,14 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 </select>
                 &nbsp;From <input type="text" class="text" onkeyup="filterUnits();" id="score_start"/>To &nbsp;
                 <input type="text" class="text" onkeyup="filterUnits();" id="score_end"/>  
+            </div>
+            <strong>Storage Location : </strong>
+            <div class="filter-date">
+                <select id="storagefilter" onchange="filterUnits();">
+                    <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
+                        <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
+                    <?php } ?>
+                </select>
             </div>
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterUnits');"><span>R</span> Reset</a></div>
@@ -185,7 +194,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
         Check[i] = $.ajax({
             method: 'POST',
             url: '/index.php/unit/index',   //scoreType score_start score_end
-            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val()},
+            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val(),storagefilter: $('#storagefilter').val()}, //
             dataType: 'json',
             cache: false,
             success: function(result) {

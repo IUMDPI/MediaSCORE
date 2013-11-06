@@ -60,7 +60,7 @@ class collectionActions extends sfActions {
                     ->andWhere('id  = ?', $request->getParameter('u'))
                     ->fetchArray();
             $this->ThisUnit = $unit;
-
+         
             $url = $this->generateUrl("collection", $unit[0]);
             $urls = explode('?', $url);
 //            header('location: ' . $urls[0]);
@@ -90,6 +90,7 @@ class collectionActions extends sfActions {
         $score_start = $request->getParameter('score_start');
         $scoreType = $request->getParameter('scoreType');
 
+        $storagefilter = $request->getParameter('storagefilter');
         $view = $this->getUser()->getAttribute('view');
         if (!$view || !$view['view']) {
             $view['view'] = 'score';
@@ -115,7 +116,9 @@ class collectionActions extends sfActions {
             if (trim($status) != '') {
                 $this->collections = $this->collections->andWhere('c.status =?', $status);
             }
-
+            if (trim($storagefilter) != '') {
+                $this->collections = $this->collections->andWhere('storage_location_id =?', $storagefilter);
+            }
             switch ($scoreType) {
                 case 'river':
                     if ($score_start != '' && $score_end != '') {

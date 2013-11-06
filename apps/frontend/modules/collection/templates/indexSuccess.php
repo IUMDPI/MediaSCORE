@@ -149,6 +149,14 @@ if ($url)
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
                                 <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/>  
                             <?php } ?>
+                            <strong>Storage Location : </strong>
+                            <div class="filter-date">
+                                <select id="storagefilter" onchange="filterCollection();">
+                                    <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
+                                        <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                             <br/>
                             <br/>
                         </form>
@@ -422,7 +430,7 @@ if ($url)
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/collection/index',
-            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val()},
+            data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val(),storagefilter:$("#storagefilter").val()},
             dataType: 'json',
             cache: false,
             success: function(result) {  

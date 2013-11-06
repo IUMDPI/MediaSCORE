@@ -77,19 +77,12 @@ class assetgroupActions extends sfActions {
                     }
                 }
             }
-            switch ($scoreType) {
-                case 'river':
-                    if ($score_start != '' && $score_end != '') {
-                        $this->assets = $this->assets->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) >= ?', "{$score_start}");
-                        $this->assets = $this->assets->andWhere('(CAST(c.collection_score as DECIMAL(3,2))) <= ?', "{$score_end}");
-                    }
-                    break;
-                case 'score':
-                    if ($score_start != '' && $score_end != '') {
-                        $this->assets = $this->assets->andWhere('(CAST(asset_score as DECIMAL(4,2))) >= ?', "{$score_start}");
-                        $this->assets = $this->assets->andWhere('(CAST(asset_score as DECIMAL(4,2))) <= ?', "{$score_end}");
-                    }
-                    break;
+            if ($scoreType == 'score') {
+
+                if ($score_start != '' && $score_end != '') {
+                    $this->assets = $this->assets->andWhere('(CAST(asset_score as DECIMAL(4,2))) >= ?', "{$score_start}");
+                    $this->assets = $this->assets->andWhere('(CAST(asset_score as DECIMAL(4,2))) <= ?', "{$score_end}");
+                }
             }
             // fetch the assets groups
             $this->assets = $this->assets->fetchArray();

@@ -27,7 +27,6 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine {
             'duration_type' => new sfWidgetFormInputText(),
             'duration_type_methodology' => new sfWidgetFormInputText(),
             'format_notes' => new sfWidgetFormInputText(),
-            'asset_score' => new sfWidgetFormInputText(array(), array('style' => 'cursor:not-allowed;background: gray !important', 'readonly' => 'readonly')),
             'type' => new sfWidgetFormInputText(),
             'material' => new sfWidgetFormInputText(),
             'oxidationCorrosion' => new sfWidgetFormInputCheckbox(),
@@ -88,6 +87,7 @@ abstract class BaseFormatTypeForm extends BaseFormDoctrine {
             'formatTypedVideoRecordingFormat' => new sfWidgetFormInputText(),
             'bitrate' => new sfWidgetFormInputText(),
             'scanning' => new sfWidgetFormInputText(),
+            'asset_score' => new sfWidgetFormInputText(array(), array('style' => 'cursor:not-allowed;background: gray !important', 'readonly' => 'readonly')),
             'created_at' => new sfWidgetFormDateTime(),
             'updated_at' => new sfWidgetFormDateTime(),
         ));

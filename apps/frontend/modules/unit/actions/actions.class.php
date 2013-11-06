@@ -194,7 +194,7 @@ class unitActions extends sfActions {
                         $alterName = $getName;
 
                         $morethenlengthName = FALSE;
-                        
+
                         if ((int) $lenthName > 40) {
                             $alterName = (substr($alterName, 0, 40) . '...');
                             $morethenlengthName = TRUE;
@@ -446,6 +446,8 @@ class unitActions extends sfActions {
         $score_start = $request->getParameter('score_start');
         $scoreType = $request->getParameter('scoreType');
 
+        $storagefilter = $request->getParameter('storagefilter');
+
         if ($request->isXmlHttpRequest()) {
             $this->unit = Doctrine_Query::Create()->from('Unit u')
                     ->select('u.*, cu.*, eu.*, sl.resident_structure_description, f.*')
@@ -467,6 +469,11 @@ class unitActions extends sfActions {
             if (trim($status) != '') {
                 $this->unit = $this->unit->andWhere('u.status = ?', $status);
             }
+            if (trim($storagefilter) != '') {
+                $this->unit = $this->unit->andWhere('storage_location_id =?', $storagefilter);
+            }
+//                 echo $this->unit->getSqlQuery();
+//            exit;
             if ($dateType != '') {
                 if ($dateType == 0) {
                     if (trim($from) != '' && trim($to) != '') {

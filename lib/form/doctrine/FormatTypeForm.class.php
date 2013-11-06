@@ -49,10 +49,11 @@ class FormatTypeForm extends BaseFormatTypeForm {
         $this->setValidator('year_recorded', new sfValidatorRegex(array('pattern' => "/^([\s-0-9]*|unknown|UNKNOWN)$/i"),
                         array('invalid' => 'Please enter the year in numbers or "unknown".'))
         );
-
+        $this->setWidget('asset_score', new sfWidgetFormInputText(array(), array('style' => 'cursor:not-allowed;background: gray !important', 'readonly' => 'readonly')));
 
 //$this->widgetSchema->moveField('asset_score', 'last');
-        $this->widgetSchema->moveField('asset_score', sfWidgetFormSchema::LAST, 'speed');
+//        $this->widgetSchema->moveField('asset_score', sfWidgetFormSchema::LAST);
+        $this->widgetSchema->moveField('asset_score', 'after', 'year_recorded');
         foreach (array('material',
     'oxidationCorrosion',
     'pack_deformation',
