@@ -201,12 +201,14 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                             ' <a href="#fancybox1" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getUnitID(' + result[collection].id + ');"/></a>' +
                             '</div>' +
                             '</td>';
+                        Created_at = result[collection].created_at.split(' ');
+                        Updated_at = result[collection].updated_at.split(' ');
                         $('#unitResult').append('<tr>' +
-                            editdelete +
+                            editdelete + 
                             '<td><a href="/' + result[collection].name_slug + '">' + result[collection].name + '</a></td>' +
-                            '<td>' + result[collection].created_at + '</td>' +
+                            '<td>' + Created_at[0] + '</td>' +
                             '<td><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + ' ' + result[collection].Creator.last_name + '</td>' +
-                            '<td>' + result[collection].updated_at + '</td>' +
+                            '<td>' + Updated_at[0] + '</td>' +
                             '<td><span style="display: none;">' + result[collection].Editor.last_name + '</span>' + result[collection].Editor.first_name + ' ' + result[collection].Editor.last_name + '</td>' +
                             '<td style="text-align: right;">' + result[collection].duration + '</td>');
                         
