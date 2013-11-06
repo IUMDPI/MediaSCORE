@@ -42,6 +42,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             <strong>Storage Location : </strong>
             <div class="filter-date">
                 <select id="storagefilter" onchange="filterUnits();">
+                    <option value="">Any Storage Location</option>
                     <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
                         <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
                     <?php } ?>
