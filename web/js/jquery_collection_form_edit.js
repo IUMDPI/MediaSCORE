@@ -217,8 +217,7 @@ function calculateScore(){
         if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
             Total_Collection_Score = Total_Collection_Score + collection_score_documentation
     }
-        
-    return Math.round(Total_Collection_Score * 100 ) /100;
+    return Math.round(Total_Collection_Score);
 }
     
 //        Check is values a Number 
