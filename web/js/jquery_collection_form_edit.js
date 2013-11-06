@@ -199,11 +199,7 @@ function calculateScore(){
             Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_rareness*27.5)/100);
         if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
             Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_documentation*17.5)/100);
-        console.log(Total_Collection_Score);
-        console.log(parseFloat((collection_score_subject_interest*27.5)/100));
-        console.log(parseFloat((collection_score_content_quality*27.5)/100));
-        console.log(parseFloat((collection_score_rareness*27.5)/100));
-        console.log(parseFloat((collection_score_documentation*17.5)/100));
+      
         
     }else{
         if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
@@ -217,7 +213,8 @@ function calculateScore(){
         if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
             Total_Collection_Score = Total_Collection_Score + collection_score_documentation
     }
-    return Math.round(Total_Collection_Score);
+    
+    return Total_Collection_Score;
 }
     
 //        Check is values a Number 
@@ -255,9 +252,11 @@ function handleValuesOfTextField(object,CollectionScoreObj){
     var Total_Collection_Score = 0.0;
     Total_Collection_Score = calculateScore();
     if($("#collection_unknown_technical_quality").is(":checked")){
-        CollectionScoreObj.val(Total_Collection_Score);  
+        CollectionScoreObj.val(Total_Collection_Score.toFixed(2));  
     }else{
-        CollectionScoreObj.val(Total_Collection_Score/5);  
+        Total_Collection_Score = Total_Collection_Score/5;
+        
+        CollectionScoreObj.val(Total_Collection_Score.toFixed(2));  
     }
     
     
