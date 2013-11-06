@@ -256,7 +256,13 @@ function handleValuesOfTextField(object,CollectionScoreObj){
         
     var Total_Collection_Score = 0.0;
     Total_Collection_Score = calculateScore();
-    CollectionScoreObj.val(Total_Collection_Score/5);  
+    if($("#collection_unknown_technical_quality").is(":checked")){
+        CollectionScoreObj.val(Total_Collection_Score);  
+    }else{
+        CollectionScoreObj.val(Total_Collection_Score/5);  
+    }
+    
+    
         
 }
 $(function(){
