@@ -473,9 +473,10 @@ ul.tabs li a
     position: relative;
     padding: 7px 16px;
     border: 2px solid #CCC;
-    color: #000;
-    background: #f4f4f4 url(tabbg.gif) 0 0 repeat-x;
-
+    color: white;
+    background: #7D110C  url(tabbg.gif) 0 0 repeat-x;
+    font-weight: bold;
+    cursor: default;
     outline:none;
 }
 
@@ -484,7 +485,7 @@ ul.tabs li :hover
 {
     position: relative;
     top: 0px;
-    background: white;
+    background: #7D110C ;
     border: 2px solid #B7B7B7;
 
 }
@@ -501,8 +502,11 @@ div.tabcontents
 .SelectTabClass {
     position: relative !important;
     font-weight: bold !important;
-    color:white !important;
-    background: #7d110c !important;
-    border: 1px solid #B7B7B7 !important;
+    color:#7d110c !important;
+    background: #f8f8f8 !important;
+    border: 2px solid #B7B7B7 !important;
     border-bottom-color: white !important;
+    padding:7px  !important;
+    font-size: 11px !important;
+     cursor: pointer !important;
 }

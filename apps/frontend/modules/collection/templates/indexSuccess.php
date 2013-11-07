@@ -93,16 +93,19 @@ if ($url)
 
 <?php } ?>
 <style>
-
+    .bg7d110c{
+        background-color:#7d110c;
+        
+    }
 </style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
     <ul class="tabs" data-persist="true">
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
-            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'SelectTabClass' : ((!isset($view)) || ($view == '' ) ? 'SelectTabClass' : '') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">MediaSCORE</a></li> 
+            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'bg7d110c' : ((!isset($view)) || ($view == 'bg7d110c' ) ? '' : 'SelectTabClass') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">MediaSCORE</a></li> 
         <?php } ?>
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess)) { ?>
-            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'SelectTabClass' : 'none'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >MediaRIVERS</a></li>
+            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'bg7d110c' : 'SelectTabClass'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >MediaRIVERS</a></li>
         <?php } ?>
     </ul>
     <div class="tabcontents">
@@ -531,13 +534,13 @@ if ($url)
         //        setTimeout('BindJsAgain()', 1000);
         setInterval(function(){if($("#collection_storage_locations_list").is(":visible")){BindJsAgain();}},1000);
         $( "#mediascoresView" ).bind( "click", function() {
-            $("#mediascoresView").attr('class','SelectTabClass');
-            $('#mediariversView').attr('class','none');
+            $("#mediascoresView").attr('class','bg7d110c');
+            $('#mediariversView').attr('class','SelectTabClass');
         });
         
         $( "#mediariversView" ).bind( "click", function() {
-            $("#mediariversView").attr('class','SelectTabClass');
-            $('#mediascoresView').attr('class','none');
+            $("#mediariversView").attr('class','bg7d110c');
+            $('#mediascoresView').attr('class','SelectTabClass');
            
         });
       
