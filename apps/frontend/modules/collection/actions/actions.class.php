@@ -97,7 +97,10 @@ class collectionActions extends sfActions {
         }
         $this->view = $view['view'];
 
-        $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id,sl.name')->fetchArray('name');
+        $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')
+                ->select('sl.id,sl.name')
+                ->fetchArray('name');
+
         // Get collections for a specific Unit
         if ($request->isXmlHttpRequest()) {
             $this->collections = Doctrine_Query::Create()
@@ -218,6 +221,24 @@ class collectionActions extends sfActions {
             $ViewInfo = array('view' => $this->view);
             $this->getUser()->setAttribute('view', $ViewInfo);
         }
+
+        $AllStorageLocations =
+                Doctrine_Query::create()->from('Unit u')
+                ->select('sl.id,sl.name,u.id')
+                ->innerJoin('u.StorageLocations sl')
+                ->where('u.id = ?', $this->unitID)
+                ->fetchArray();
+
+        $arr = array();
+        foreach ($AllStorageLocations[0] as $key => $AllStorageLocation) {
+            if ($key == 'StorageLocations') {
+                foreach ($AllStorageLocation as $StorageLocation) {
+                    $arr[] = array('id' => $StorageLocation['id'], 'name' => $StorageLocation['name']);
+                }
+            }
+        }
+
+        $this->AllStorageLocations = $arr;
     }
 
     /**

@@ -96,15 +96,26 @@ class Unit extends BaseUnit {
         return $collection;
     }
 
-    public function getStorageLocations($StorageLocationId) {
-        $location = Doctrine_Query::Create()
-                ->from('Unit u')
-                ->select('u.id')
-                ->innerJoin('u.StorageLocations usl')
-                ->where('usl.id = ?', $StorageLocationId)
-                ->fetchArray();
-        
-        return $location;
+    /**
+     * getStorageLocationsRealTime
+     * Retrun Units Storage Location
+     * @param int $StorageLocationId
+     * @return array Units_Storage_Location
+     */
+    public function getStorageLocationsRealTime($StorageLocationId, $unitId) {
+
+        if ($StorageLocationId) {
+            $location = Doctrine_Query::Create()
+                    ->from('Unit u')
+                    ->select('u.id , usl.id')
+                    ->innerJoin('u.StorageLocations usl')
+                    ->where('usl.id = ?', $StorageLocationId)
+                    ->andwhere('u.id = ?', $unitId)
+                    ->fetchArray();
+
+
+            return $location;
+        }
     }
 
     static public function getSearchResults($params, $user) {

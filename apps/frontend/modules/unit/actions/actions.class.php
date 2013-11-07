@@ -137,7 +137,7 @@ class unitActions extends sfActions {
                         }
 
                         if (trim($storagefilter) != '') {
-                            $storageLocation = $result->getStorageLocations($storagefilter);
+                            $storageLocation = $result->getStorageLocationsRealTime($storagefilter, $result->getId());
                             if (count($storageLocation) <= 0) {
                                 $storageLocationFlag = FALSE;
                             }
@@ -172,6 +172,13 @@ class unitActions extends sfActions {
                                 }
                             }
                         }
+                        if (trim($storagefilter) != '') {
+
+                            $storageLocation = $result->getStorageLocationsRealTime($storagefilter, $result->getId());
+                            if (count($storageLocation) <= 0) {
+                                $storageLocationFlag = FALSE;
+                            }
+                        }
                     }
 
                     if ($result->getType() == 4) {
@@ -187,8 +194,15 @@ class unitActions extends sfActions {
                                 }
                             }
                         }
+                        if (trim($storagefilter) != '') {
+                            $storageLocation = $result->getStorageLocationsRealTime($storagefilter, $result->getId());
+                            if (count($storageLocation) <= 0) {
+                                $storageLocationFlag = FALSE;
+                            }
+                        }
                     }
                     if ($ScoreFlag && $storageLocationFlag) {
+
                         $this->html .="<tr>";
                         if ($this->getUser()->getGuardUser()->getType() != 3) {
 

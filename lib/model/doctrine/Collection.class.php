@@ -107,10 +107,31 @@ class Collection extends BaseCollection {
                 ->where('ag.parent_node_id  = ?', $collectionID)
                 ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2)))  <= ?', $end_score)
                 ->andWhere('(CAST(ft.asset_score as DECIMAL(3,2))) >= ?', $start_score)
-//                ->getSqlQuery();
+//                ->getSqlQuery();$storagefilter
                 ->fetchArray();
 
         return $assetGroup;
+    }
+
+    /**
+     * getStorageLocationsRealTime
+     * Retrun Collections Storage Location
+     * 
+     * @param int $StorageLocationId
+     * @return array Units_Storage_Location
+     */
+    public function getStorageLocationsRealTime($StorageLocationId, $CollectionId) {
+        if ($StorageLocationId) {
+            $location = Doctrine_Query::Create()
+                    ->from('Collection c')
+                    ->select('c.id, usl.id')
+                    ->innerJoin('c.StorageLocations usl')
+                    ->where('usl.id = ?', $StorageLocationId)
+                    ->andwhere('c.id = ?', $CollectionId)
+                    ->fetchArray();
+
+            return $location;
+        }
     }
 
     public function getAssetsScores($startScore, $startRivers) {

@@ -78,4 +78,22 @@ class AssetGroup extends BaseAssetGroup {
         return $formatType;
     }
 
+    /**
+     * getStorageLocationsRealTime
+     * Retrun Asset's Collection's Storage Location
+     * 
+     * @param int $StorageLocationId
+     * @return array Units_Storage_Location
+     */
+    public function getStorageLocationsRealTime($StorageLocationId, $AssetId) {
+        $assetGroup = Doctrine_Query::Create()
+                ->from('AssetGroup ag')
+                ->innerJoin('ag.Collection c')
+                ->innerJoin('c.StorageLocations sl')
+                ->whereIn('ag.id', $AssetId)
+                ->andWhereIn('sl.id', $StorageLocationId)
+                ->fetchArray();
+        return $assetGroup;
+    }
+
 }
