@@ -84,7 +84,7 @@ class Unit extends BaseUnit {
     public function getMediaScoreScoreRealTime($unitID, $start_score, $end_score) {
         $collection = Doctrine_Query::Create()
                 ->from('AssetGroup ag')
-                ->select('c.id,ag.id,ft.duration')
+                ->select('ag.id')
                 ->innerJoin('ag.Collection c')
                 ->innerJoin('ag.FormatType ft')
                 ->where('c.parent_node_id  = ?', $unitID)
@@ -94,6 +94,17 @@ class Unit extends BaseUnit {
 //        print_r($collection);
 
         return $collection;
+    }
+
+    public function getStorageLocations($StorageLocationId) {
+        $location = Doctrine_Query::Create()
+                ->from('Unit u')
+                ->select('u.id')
+                ->innerJoin('u.StorageLocations usl')
+                ->where('usl.id = ?', $StorageLocationId)
+                ->fetchArray();
+        
+        return $location;
     }
 
     static public function getSearchResults($params, $user) {

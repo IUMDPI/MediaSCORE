@@ -145,6 +145,15 @@
                 &nbsp;From <input type="text" class="text" onkeyup="filterRecords();" id="score_start"/>To &nbsp;
                 <input type="text" class="text" onkeyup="filterRecords();" id="score_end"/>  
             </div>
+            <strong>Storage Location : </strong>
+            <div class="filter-date">
+                <select id="storagefilter" onchange="filterRecords();">
+                    <option value="">Any Storage Location</option>
+                    <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
+                        <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
 <!--            <strong>Score:</strong> <input type="text" name="searchScore" class="text" onkeyup="filterUnits();" id="searchScore"/>-->
         </form>
@@ -372,7 +381,7 @@
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/unit/search',
-            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val()},
+            data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val() , storagefilter:$("#storagefilter").val()},
             dataType: 'json',
             cache: false,
             success: function(result) {

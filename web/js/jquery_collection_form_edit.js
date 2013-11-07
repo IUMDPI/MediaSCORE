@@ -198,9 +198,7 @@ function calculateScore(){
         if(isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
             Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_rareness*27.5)/100);
         if(isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
-            Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_documentation*17.5)/100);
-      
-        
+            Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_documentation*17.5)/100);      
     }else{
         if(isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
             Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
@@ -284,15 +282,13 @@ $(function(){
         handleValuesOfTextField(collection_score_content_quality_obj,collection_collection_score_obj);
                 
     });
-        
-        
+   
     //        Rareness Score Placing  and Validation
     collection_score_rareness_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_rareness_obj,collection_collection_score_obj);
       
     });
-        
-        
+   
     //        Documentation Score Placing And Validation
     collection_score_documentation_obj.live( "keyup change", function() {
         handleValuesOfTextField(collection_score_documentation_obj,collection_collection_score_obj);

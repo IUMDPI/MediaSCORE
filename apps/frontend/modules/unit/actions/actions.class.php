@@ -54,6 +54,7 @@ class unitActions extends sfActions {
             $score_start = $request->getParameter('score_start');
             $scoreType = $request->getParameter('scoreType');
 
+            $storagefilter = $request->getParameter('storagefilter');
 // make array of search values
             $this->searchString = array();
             if (!empty($searchValues))
@@ -111,6 +112,7 @@ class unitActions extends sfActions {
                 $this->getContext()->getConfiguration()->loadHelpers('Url');
                 foreach ($this->searchResult as $key => $result) {
                     $ScoreFlag = TRUE;
+                    $storageLocationFlag = TRUE;
                     if ($result->getType() == 1) {
                         $text = 'Unit';
                         $urlOnName = url_for('collection', $result);
@@ -131,6 +133,13 @@ class unitActions extends sfActions {
                                 if (count($Score) <= 0) {
                                     $ScoreFlag = FALSE;
                                 }
+                            }
+                        }
+
+                        if (trim($storagefilter) != '') {
+                            $storageLocation = $result->getStorageLocations($storagefilter);
+                            if (count($storageLocation) <= 0) {
+                                $storageLocationFlag = FALSE;
                             }
                         }
                     }
@@ -179,7 +188,7 @@ class unitActions extends sfActions {
                             }
                         }
                     }
-                    if ($ScoreFlag) {
+                    if ($ScoreFlag && $storageLocationFlag) {
                         $this->html .="<tr>";
                         if ($this->getUser()->getGuardUser()->getType() != 3) {
 
@@ -530,7 +539,7 @@ class unitActions extends sfActions {
             return $this->renderText(json_encode($this->unit));
         } else {
             $this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')->select('sl.id, sl.name')->fetchArray('name');
-// get the list of all the units 
+            // get the list of all the units 
             $this->units = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
                     ->orderBy('name')
