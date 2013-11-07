@@ -51,10 +51,6 @@ class AssetGroup extends BaseAssetGroup {
                 ->fetchArray();
         if (sizeof($formatType) > 0)
             $totalDuration = $totalDuration + $formatType[0]['duration'];
-
-
-
-
         return minutesToHour::ConvertMinutes2HoursRealTime($totalDuration);
     }
 
