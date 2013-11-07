@@ -9,6 +9,7 @@ function htmlInclusive(elem) {
 function changeAssetView(){
     var ElementId = $('input[id*="asset_score"]').attr('id')
     if(ElementId != undefined && ElementId !='' && ElementId){
+        $("#"+ElementId).show();
         $("#"+ElementId).closest(".section").attr('style','overflow:hidden;');
         var inputFieldhtml = htmlInclusive($("#"+ElementId));
 
