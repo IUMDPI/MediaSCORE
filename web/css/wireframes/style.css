@@ -306,8 +306,8 @@ table a:hover {color:#7d110c;}
 th {text-align:left;  padding-bottom:5px; background-color:#f4f4f4}
 th a {text-decoration:none;}
 td {padding:3px 0;}
-tr:hover {background-color:#ebebeb;}
-tr:hover td {visibility: visible !important;}
+/*tr:hover {background-color:#ebebeb;}*/
+/*tr:hover td {visibility: visible !important;}*/
 table .options {text-align:left;}
 .no-highlight:hover {background-color:#f4f4f4}
 
