@@ -150,6 +150,8 @@ if ($url)
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
                                 <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/>  
                             <?php } ?>
+                                <br/>
+                                <br/>
                             <strong>Storage Location : </strong>
                             <div class="filter-date">
                                 <select id="storagefilter" onchange="filterCollection();">
