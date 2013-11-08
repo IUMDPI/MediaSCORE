@@ -522,9 +522,9 @@ div.tabcontents
     padding: 8px 16px 9px 18px !important;
     text-decoration: none !important;
     position: relative !important; 
-    border-left: 1px solid #CCC  !important;
-    border-right: 1px solid #CCC  !important;
-    border-top: 1px solid #CCC  !important;
+    border-left: 1px solid #7d110c  !important;
+    border-right: 1px solid #7d110c  !important;
+    border-top: 1px solid #7d110c  !important;
     color: #333333 !important;
     background: #ecf0f1 !important;
     font-weight: bold !important;
