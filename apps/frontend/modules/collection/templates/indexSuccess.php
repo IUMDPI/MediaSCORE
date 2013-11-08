@@ -76,9 +76,8 @@ if ($url)
         -webkit-box-shadow: 5px 5px 8px #CCC;
         box-shadow: 5px 5px 8px #CCC;
     }
-    .long_name_handler a{
-        line-height: 1.3;
-    }
+
+
 </style>
 <?php if ($view == 'river') { ?>
     <style>
@@ -89,14 +88,13 @@ if ($url)
             cursor: pointer;
             background-position: right 25px;
         }
+
+
     </style>
 
 <?php } ?>
 <style>
-    .bg7d110c{
-        background-color:#7d110c;
-        
-    }
+
 </style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 

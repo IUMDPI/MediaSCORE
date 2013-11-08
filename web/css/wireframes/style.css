@@ -452,7 +452,6 @@ form.reporting {margin-left:10px;}
 ul.tabs
 {
     padding: 7px 0;
-
     margin:0;
     list-style-type: none;
     text-align: left; /*set to left, center, or right to align the tabs as desired*/
@@ -469,24 +468,24 @@ ul.tabs li
 ul.tabs li a
 {
 
-    text-decoration: none;
-    position: relative;
-    padding: 7px 16px;
-    border: 2px solid #CCC;
-    color: white;
-    background: #7D110C  url(tabbg.gif) 0 0 repeat-x;
-    font-weight: bold;
-    cursor: default;
-    outline:none;
+    /*    text-decoration: none;
+        position: relative;
+        padding: 7px 16px;
+            border: 2px solid #CCC;
+        color: white;
+        background: #7D110C  url(tabbg.gif) 0 0 repeat-x;
+        font-weight: bold;
+        cursor: default;
+        outline:none;*/
 }
 
 
-ul.tabs li :hover
+ul.tabs li :hover 
 {
     position: relative;
     top: 0px;
-    background: #7D110C ;
-    border: 2px solid #B7B7B7;
+    background: #ecf0f1 ;
+    /*border: 2px solid #B7B7B7;*/
 
 }
 
@@ -500,13 +499,51 @@ div.tabcontents
 }
 
 .SelectTabClass {
-    position: relative !important;
+    padding: 8px 16px 8px 18px !important;
+    text-decoration: none !important;
+    position: relative !important; 
+    border: 1px solid #CCC  !important;
+
+    color: #333333 !important;
+    /*background: #f4f4f4 url(tabbg.gif) 0 0 repeat-x !important;*/
+
     font-weight: bold !important;
-    color:#7d110c !important;
-    background: #f8f8f8 !important;
-    border: 2px solid #B7B7B7 !important;
-    border-bottom-color: white !important;
-    padding:7px  !important;
-    font-size: 11px !important;
-     cursor: pointer !important;
+    cursor: default !important;
+    outline: none !important;
+    margin-left: 4px !important;
+    border-radius: 6px 6px 0px 0px !important;
+    margin-top: 21px !important;
+    cursor: pointer !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.bg7d110c{
+    border-bottom: none !important;
+    padding: 8px 16px 9px 18px !important;
+    text-decoration: none !important;
+    position: relative !important; 
+    border-left: 1px solid #CCC  !important;
+    border-right: 1px solid #CCC  !important;
+    border-top: 1px solid #CCC  !important;
+    color: #333333 !important;
+    background: #ecf0f1 !important;
+    font-weight: bold !important;
+    cursor: default !important;
+    outline: none !important;
+    margin-left: 4px !important;
+    border-radius: 6px 6px 0px 0px !important;
+    margin-top: 21px !important;
+    cursor: default !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+/*.SelectTabClass :hover{
+    border-left:  2px solid #B7B7B7 !important;
+    border-right:  2px solid #B7B7B7 !important;
+    border-top:  2px solid #B7B7B7 !important;
+    border-bottom:   none !important;
+    padding: 9px 17px 8px 19px !important;
+}*/
+.long_name_handler a{
+    line-height: 1.3;
 }
