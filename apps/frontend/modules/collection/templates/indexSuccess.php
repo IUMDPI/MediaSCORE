@@ -471,7 +471,7 @@ if ($url)
                             
                             editdelete = '';
                             if(userType!=2){
-                                editdelete='<td width="7%" class="invisible">' +
+                                editdelete='<td width="8%" class="invisible">' +
                                     '<div class="options">' +
                                     '<a class="new_edit_collection" href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a> ' +
                                     ' <a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(' + result[collection].id + ');"/></a>' +
