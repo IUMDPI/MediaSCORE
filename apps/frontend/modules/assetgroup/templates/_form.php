@@ -241,6 +241,14 @@ else
 <script type="text/javascript">
     var userType='<?php echo $sf_user->getGuardUser()->getType(); ?>';
     $(function(){
+//        ElementIdCheck = $('input[id*="asset_score"]');
+//        if(ElementIdCheck)
+//        {   console.log($(ElementIdCheck).parent().attr('class'));
+//            if(typeof $(ElementIdCheck).parent().attr('class') == undefined || $(ElementIdCheck).parent().attr('class') != 'right-column'){
+//                setTimeout(';', 3000);
+//            }
+//        }
+//        
         if(userType==3)
             $("input,select,textarea").attr('disabled',true);
         $("#format_type_off_brand").parents(".row").show();

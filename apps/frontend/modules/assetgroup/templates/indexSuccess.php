@@ -86,8 +86,23 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                             <a href="#fancyboxAsset" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getAssetID(<?php echo $asset_group->getId(); ?>)"/></a>
                         </div>
                     </td>
-                <?php } ?>
-                <td><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"><?php echo $asset_group->getName() ?></a></td>
+                <?php }
+                ?>
+                <?php
+                $getName = $asset_group->getName();
+                $lenthName = strlen($getName);
+                $alterName = $getName;
+
+                $morethenlengthName = FALSE;
+
+                if ((int) $lenthName > 42) {
+                    $alterName = (substr($alterName, 0, 42). '...');
+                    
+                    $morethenlengthName = TRUE;
+                }
+                ?>
+                <td  <?php echo (($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> ><span style="display: none;"><?php echo $asset_group->getName() ?></span><a href="<?php echo url_for('assetgroup/edit?id=' . $asset_group->getId() . '&c=' . $collectionID) ?>"> <?php echo $alterName ?>  
+                        <?php echo ($morethenlengthName ? '<span>' . $getName . '</span>' : ''); ?></a></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getCreatedAt())); ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getCreator()->getLastName() ?></span><?php echo $asset_group->getCreator()->getName() ?></td>
                 <td><span style="display: none;"><?php echo $asset_group->getUpdatedAt(); ?></span><?php echo date('Y-m-d', strtotime($asset_group->getUpdatedAt())); ?></td>
@@ -250,7 +265,53 @@ if ($sf_user->getGuardUser()->getType() != 3) {
     }
  
 </script>
+<style>
+    .long_name_handler{
+        display:inline-block !important;
+        /*white-space: nowrap !important;*/
+        text-overflow: ellipsis !important;
+        max-width:230px !important;
+        height:10px !important;
+        overflow:hidden !important;
+        width: 230px !important;
+    }
 
+    .tooltip {outline:none; }
+    .tooltip strong {line-height:30px;}
+    .tooltip:hover {text-decoration:none;} 
+    .tooltip span {
+        z-index:10;display:none; padding: 10px 20px;
+        margin-top: -3px; margin-left:5px;
+        width:auto ;line-height:0px;
+    }
+    .tooltip:hover span{
+        display:inline; 
+        position:absolute; 
+        color:#111;
+        border:1px solid gray; 
+        background:#d8d8d8;
+    }
+    .callout {
+        z-index:20;
+        position:absolute;
+        top:30px;
+        border:0;
+        left:-12px;
+    }
+
+    /*CSS3 extras*/
+    .tooltip span
+    {
+        border-radius:4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+
+        -moz-box-shadow: 5px 5px 8px #CCC;
+        -webkit-box-shadow: 5px 5px 8px #CCC;
+        box-shadow: 5px 5px 8px #CCC;
+    }
+
+</style>
 <?php
 if (sizeof($asset_groups) > 0) {
     ?>
