@@ -257,7 +257,7 @@ if ($url)
                                 <?php if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0) { ?>
                                     <td width="6%"></td>
                                 <?php } ?>
-                                <th width="10%">Primary ID</th>
+                                <th width="13%">Primary ID</th>
                                 <th width="18%">Collection</th>
                                 <th>Created</th>
                                 <th width="15%">Created By</th>
@@ -482,7 +482,7 @@ if ($url)
                             Updated_at = result[collection].updated_at.split(' ');
                                 
                             $('#collectionResult').append('<tr>'+ editdelete +
-                                '<td width="8% '+((result[collection].inst_id.length > 10)? 'class="long_name_handler_inst tooltip"':'class="long_name_handler_inst"')+'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + ((result[collection].inst_id.length > 10) ? (result[collection].inst_id.substr(0,10)+'...'): result[collection].inst_id) +((result[collection].inst_id.length > 10) ? ' <span>' + result[collection].inst_id + ' </span>':'') + '</a></td>' +
+                                '<td '+((result[collection].inst_id.length > 10)? 'class="long_name_handler_inst tooltip"':'class="long_name_handler_inst"')+'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' + ((result[collection].inst_id.length > 10) ? (result[collection].inst_id.substr(0,10)+'...'): result[collection].inst_id) +((result[collection].inst_id.length > 10) ? ' <span>' + result[collection].inst_id + ' </span>':'') + '</a></td>' +
                                 '<td width="18%" '+ ((result[collection].name.length > 39)? 'class="long_name_handler tooltip"':'class="long_name_handler"')  +'><a href="/' + unit_slug_name + '/' + result[collection].name_slug + '/">' +((result[collection].name.length > 35) ? (result[collection].name.substr(0,35)+'...'):   result[collection].name)+'' + ((result[collection].name.length > 35) ?  '<span>'+result[collection].name+'</span>':  '' ) + ' </a></td>' +
                                 '<td width="10%">' + Created_at[0] + '</td>' +
                                 '<td width="15%"><span style="display: none;">' + result[collection].Creator.last_name + '</span>' + result[collection].Creator.first_name + result[collection].Creator.last_name + '</td>' +
