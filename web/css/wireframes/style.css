@@ -306,8 +306,8 @@ table a:hover {color:#7d110c;}
 th {text-align:left;  padding-bottom:5px; background-color:#f4f4f4}
 th a {text-decoration:none;}
 td {padding:3px 0;}
-/*tr:hover {background-color:#ebebeb;}*/
-/*tr:hover td {visibility: visible !important;}*/
+tr:hover {background-color:#ebebeb;}
+tr:hover td {visibility: visible !important;}
 table .options {text-align:left;}
 .no-highlight:hover {background-color:#f4f4f4}
 
@@ -517,16 +517,16 @@ div.tabcontents
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
-.bg7d110c{
+.bg7d110c {
     border-bottom: none !important;
     padding: 8px 16px 9px 18px !important;
     text-decoration: none !important;
     position: relative !important; 
-    border-left: 1px solid #7d110c  !important;
-    border-right: 1px solid #7d110c  !important;
-    border-top: 1px solid #7d110c  !important;
+    border-left: 2px solid #DDDDDD   !important;
+    border-right: 2px solid #DDDDDD  !important;
+    border-top: 2px solid #DDDDDD  !important;
     color: #333333 !important;
-    background: #ecf0f1 !important;
+    background: #F4F4F4  !important;
     font-weight: bold !important;
     cursor: default !important;
     outline: none !important;

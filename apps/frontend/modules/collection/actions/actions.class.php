@@ -89,7 +89,6 @@ class collectionActions extends sfActions {
         $score_end = $request->getParameter('score_end');
         $score_start = $request->getParameter('score_start');
         $scoreType = $request->getParameter('scoreType');
-
         $storagefilter = $request->getParameter('storagefilter');
         $view = $this->getUser()->getAttribute('view');
         if (!$view || !$view['view']) {
@@ -119,9 +118,8 @@ class collectionActions extends sfActions {
             if (trim($status) != '') {
                 $this->collections = $this->collections->andWhere('c.status =?', $status);
             }
-            if (trim($storagefilter) != '') {
-                $this->collections = $this->collections->andWhere('storage_location_id =?', $storagefilter);
-            }
+
+
             switch ($scoreType) {
                 case 'river':
                     if ($score_start != '' && $score_end != '') {
@@ -162,6 +160,9 @@ class collectionActions extends sfActions {
                         }
                     }
                 }
+            }
+            if (trim($storagefilter) != '') {
+                $this->collections = $this->collections->andWhere('storage_location_id =?', $storagefilter);
             }
 
             $this->collections = $this->collections->fetchArray();

@@ -81,8 +81,11 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                 ?>
                 <tr>
                     <?php
+                    
                     if ($sf_user->getGuardUser()->getType() != 3) {
+                       
                         ?>
+                    
                         <td class="invisible">
                             <div class="options">
                                 <a class="create_new_unit" href="<?php echo url_for('unit/edit?id=' . $unit->getId()) ?>"><img src="/images/wireframes/row-settings-icon.png" alt="Settings" /></a>

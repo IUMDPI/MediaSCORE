@@ -154,7 +154,7 @@ if ($url)
                                 <br/>
                             <strong>Storage Location : </strong>
                             <div class="filter-date">
-                                <select id="storagefilter" onchange="filterCollection();">
+                                <select id="storagefilter" onchange="filterCollection('<?php echo $view; ?>');">
                                     <option value="">Any Storage Location</option>
                                     <?php foreach ($AllStorageLocations as $StorageLocation) { ?>
                                         <option value="<?php echo $StorageLocation['id'] ?>"><?php echo $StorageLocation['name'] ?></option>
@@ -429,8 +429,9 @@ if ($url)
     var Check = new Array();
     var i = 0;
     function filterCollection(view) {
-        console.log();
+        console.log({id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val(),storagefilter:$("#storagefilter").val()});
         unitId = '<?php echo $unitID; ?>';
+        
         Check[i] = $.ajax({
             type: 'POST',
             url: '/frontend_dev.php/collection/index',
@@ -443,8 +444,6 @@ if ($url)
                     if(view == 'river'){
                         for (collection in result) {
                             editdelete = '';
-                            //                            IsMediaScoreAccess  ISMediaRiverAccess
-                            
                             if ((userType == 2 && ISMediaRiverAccess && view == 'river') || userType == 1 || userType == 0) {
                                 editdelete='<td width="7%" class="invisible">' +
                                     '<div class="options" >' +
@@ -458,12 +457,12 @@ if ($url)
                                 +
                                 '<td width="10%" class="long_name_handler_inst tooltip" width="21%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '/form/river/'+'">' + ((result[collection].inst_id.length > 10) ? (result[collection].inst_id.substr(0,10)+'...'): result[collection].inst_id)  + ((result[collection].inst_id.length > 10) ? '<span>'+result[collection].inst_id+ '</span>':'')  + ' </span> </a></td>' +
                                 '<td width="30%" class="long_name_handler tooltip" width="25%"><a href="/collection/edit/id/' + result[collection].id + '/u/' + unitId + '/form/river/'+'">' +((result[collection].name.length > 35) ? (result[collection].name.substr(0,35)+'...'):   result[collection].name)+((result[collection].name.length > 35) ?' <span>' +   result[collection].name+' </span>':  '' )+ '</a></td>' +
-                                '<td class="intigers" width="8%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'')+'</td>'+
-                                '<td class="intigers" width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'')+'</td>'+
-                                '<td class="intigers" width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'')+'</td>'+
-                                '<td class="intigers" width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'')+'</td>'+
-                                '<td class="intigers" width="9%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'')+'</td>'+
-                                '<td class="intigers" width="7%">'+((result[collection].collection_score)?result[collection].collection_score:'')+'</td>'+
+                                '<td class="intigers" width="8%">'+((result[collection].score_subject_interest)?result[collection].score_subject_interest:'0')+'</td>'+
+                                '<td class="intigers" width="7%">'+((result[collection].score_content_quality)?result[collection].score_content_quality:'0')+'</td>'+
+                                '<td class="intigers" width="9%">'+((result[collection].score_rareness)?result[collection].score_rareness:'0')+'</td>'+
+                                '<td class="intigers" width="12%">'+((result[collection].score_documentation)?result[collection].score_documentation:'0')+'</td>'+
+                                '<td class="intigers" width="9%">'+((result[collection].score_technical_quality)?result[collection].score_technical_quality:'0')+'</td>'+
+                                '<td class="intigers" width="7%">'+((result[collection].collection_score)?result[collection].collection_score:'0')+'</td>'+
                                 '</tr>');
                         }
                     }else{
