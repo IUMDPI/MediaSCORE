@@ -1,6 +1,5 @@
 <?php
-echo 'asdasdsa';
-exit;
+
 $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 if (strpos($serverName, 'mediascore.avpreserve.com') !== FALSE)
 	define('ENVIRONMENT', 'production');
@@ -13,4 +12,3 @@ else
 require_once(dirname(__FILE__) . '/../config/ProjectConfiguration.class.php');
 $configuration = ProjectConfiguration::getApplicationConfiguration('frontend', ENVIRONMENT, FALSE);
 sfContext::createInstance($configuration)->dispatch();
-exit;
