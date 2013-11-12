@@ -7,6 +7,7 @@
     <?php if (!$form->getObject()->isNew()): ?>
         <input type="hidden" name="sf_method" value="put" />
     <?php endif; ?>
+     <?php echo $form->renderHiddenFields(); ?>
     <table>
         <tfoot>
         </tfoot>
