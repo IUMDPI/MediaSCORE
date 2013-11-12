@@ -360,20 +360,19 @@ class collectionActions extends sfActions {
 
         $this->form = new CollectionForm($collection, array(
                     'userID' => $this->getUser()->getGuardUser()->getId(),
-                    'unitID' => $unitId,
+                    'unitID' => $unitId[0],
                     'action' => 'edit',
                     'view' => $view['view']
                 ));
-
 
         $success = $this->processForm($request, $this->form);
         $this->view = $view['view'];
         $this->actionType = 'edit';
         if ($success && isset($success['form']) && $success['form'] == true) {
-//            echo $success['id'];
+
             $unit = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
-                    ->where('id =?', $unitId)
+                    ->where('id =?', $unitId[0])
                     ->execute();
 //            header('location: ' . $this->generateUrl("collection", $unit[0]));
             $this->redirect($this->generateUrl("collection", $unit[0]));
@@ -386,7 +385,7 @@ class collectionActions extends sfActions {
 
             $unit = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
-                    ->where('id =?', $unitId)
+                    ->where('id =?', $unitId[0])
                     ->execute();
             $this->ThisUnit = $unit;
 
