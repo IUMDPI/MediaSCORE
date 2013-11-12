@@ -2,16 +2,16 @@ production:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: mysql:host=localhost;dbname=mediascore_live
-      username: mediascore_live
-      password: mediascore_live#456
+      dsn: mysql:host=localhost;dbname=mediascorepro
+      username: mediascorepro
+      password: avps@123
 qa:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: mysql:host=localhost;dbname=mediaSCORE1_0a
-      username: symfony
-      password: sYmF0nYd3v
+      dsn: mysql:host=localhost;dbname=mediascore
+      username: mediascore
+      password: avps@123
 testing:
   doctrine:
     class: sfDoctrineDatabase
@@ -31,9 +31,9 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: mysql:host=localhost;dbname=mediascore_live
-      username: mediascore_live
-      password: mediascore_live#456
+      dsn: mysql:host=localhost;dbname=mediascorepro
+      username: mediascorepro
+      password: avps@123
 
 
 
