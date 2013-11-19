@@ -365,7 +365,7 @@ class collectionActions extends sfActions
 		{
 			$view['view'] = 'score';
 		}
-		echo $view;exit;
+		echo '<pre>';print_r($view);exit;
 		$this->formType = $request->getParameter('form');
 		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$this->form = new CollectionForm(
