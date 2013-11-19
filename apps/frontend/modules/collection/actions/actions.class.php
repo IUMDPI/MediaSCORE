@@ -375,6 +375,7 @@ class collectionActions extends sfActions {
                     ->where('id =?', $unitId)
                     ->execute();
 //            header('location: ' . $this->generateUrl("collection", $unit[0]));
+			echo $this->generateUrl("collection", $unit);exit;
             $this->redirect($this->generateUrl("collection", $unit));
             echo '<script>' . $this->generateUrl("collection", $unit) . '</script>';
             exit;
