@@ -284,13 +284,13 @@ class collectionActions extends sfActions
 	public function executeShow(sfWebRequest $request)
 	{
 
-		$collection = Doctrine_Core::getTable('Collection')
+		$this->collection = Doctrine_Core::getTable('Collection')
 		->createQuery('u')
 		->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
-		->fetchArray();
-		echo '<pre>';
-		print_r($collection);
-		exit;
+		->execute();
+//		echo '<pre>';
+//		print_r($collection);
+//		exit;
 	}
 
 	/**
