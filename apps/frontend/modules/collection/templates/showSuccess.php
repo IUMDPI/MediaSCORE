@@ -1,20 +1,22 @@
 <table>
     <tbody>
-        <tr>
-            <th>Id:</th>
-            <td><?php echo $collection->getId() ?></td>
-        </tr>
-        <tr>
-            <th>Name:</th>
-            <td><?php echo $collection->getName() ?></td>
-        </tr>
-        <tr>
-            <th>Inst:</th>
-            <td><?php echo $collection->getInstId() ?></td>
-        </tr>
-        
-       
-        
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+		</tr>
+		<?php
+		foreach ($collection as $key => $value)
+		{
+			?>	
+			<tr>
+	            <td><?php echo $value->getId() ?></td>
+				<td><?php echo $value->getName() ?></td>
+			</tr>
+		<?php } ?>
+
+
+
+
     </tbody>
 </table>
 
