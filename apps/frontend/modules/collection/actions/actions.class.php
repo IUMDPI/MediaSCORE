@@ -341,11 +341,11 @@ class collectionActions extends sfActions
 			$unit = Doctrine_Core::getTable('Unit')
 			->createQuery('u')
 			->where('id =?', $unitId)
-			->execute();
+			->fetchOne();
 //            header('location: ' . $this->generateUrl("collection", $unit[0]));
-			$this->redirect($this->generateUrl("collection", $unit[0]));
-			echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
-			exit;
+			$this->redirect($this->generateUrl("collection", $unit));
+//			echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
+//			exit;
 		}
 		else
 		{
