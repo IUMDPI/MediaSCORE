@@ -99,7 +99,7 @@ class collectionActions extends sfActions
 		$scoreType = $request->getParameter('scoreType');
 		$storagefilter = $request->getParameter('storagefilter');
 		$view = $this->getUser()->getAttribute('view');
-		
+
 		if ( ! $view || ! $view['view'])
 		{
 			$view['view'] = 'score';
@@ -281,6 +281,19 @@ class collectionActions extends sfActions
 		$this->AllStorageLocations = $arr;
 	}
 
+	public function executeShow(sfWebRequest $request)
+	{
+		
+		$collection = Doctrine_Core::getTable('Collection')
+			->createQuery('u')
+			->where('id =?', $request->getParameter('id'))
+			->fetchArray();
+						echo '<pre>';
+						print_r($collection);
+						exit;
+		
+	}
+
 	/**
 	 * generate form for collection.
 	 * 
@@ -365,7 +378,7 @@ class collectionActions extends sfActions
 		{
 			$view['view'] = 'score';
 		}
-		
+
 		$this->formType = $request->getParameter('form');
 		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$this->form = new CollectionForm(
