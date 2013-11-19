@@ -287,9 +287,17 @@ class collectionActions extends sfActions
 		$collection = Doctrine_Core::getTable('Collection')
 		->createQuery('u')
 		->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
-		->fetchArray();
-		echo '<pre>';
-		print_r($collection);
+		->execute();
+		$html = '<table>';
+		foreach ($collection as $key => $value)
+		{
+			$html .='<tr>';
+			$html .="<td>{$collection->getID()}</td>";
+			$html .="<td>{$collection->getName()}</td>";
+			$html .='</tr>';
+		}
+		$html .='</table>';
+		echo $html;
 		exit;
 	}
 
