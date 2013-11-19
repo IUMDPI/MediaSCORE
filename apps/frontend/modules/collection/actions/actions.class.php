@@ -357,7 +357,7 @@ class collectionActions extends sfActions {
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
         $unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
 
-
+		echo '<pre>';print_r($unitId);exit;
         $this->form = new CollectionForm($collection, array(
                     'userID' => $this->getUser()->getGuardUser()->getId(),
                     'unitID' => $unitId[0],
