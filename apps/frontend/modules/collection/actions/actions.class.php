@@ -99,7 +99,7 @@ class collectionActions extends sfActions
 		$scoreType = $request->getParameter('scoreType');
 		$storagefilter = $request->getParameter('storagefilter');
 		$view = $this->getUser()->getAttribute('view');
-		echo '<pre>';print_r($view);exit;
+		
 		if ( ! $view || ! $view['view'])
 		{
 			$view['view'] = 'score';
