@@ -99,6 +99,7 @@ class collectionActions extends sfActions
 		$scoreType = $request->getParameter('scoreType');
 		$storagefilter = $request->getParameter('storagefilter');
 		$view = $this->getUser()->getAttribute('view');
+		echo '<pre>';print_r($view);exit;
 		if ( ! $view || ! $view['view'])
 		{
 			$view['view'] = 'score';
@@ -342,10 +343,8 @@ class collectionActions extends sfActions
 			->createQuery('u')
 			->where('id =?', $unitId)
 			->fetchOne();
-//            header('location: ' . $this->generateUrl("collection", $unit[0]));
+
 			$this->redirect($this->generateUrl("collection", $unit));
-//			echo '<script> window.location = ' . $this->generateUrl("collection", $unit[0]) . '</script>';
-//			exit;
 		}
 		else
 		{
@@ -423,7 +422,7 @@ class collectionActions extends sfActions
 			->where('id =?', $unitId)
 			->fetchOne();
 
-			$this->redirect("/{$unit->getNameSlug()}");
+			$this->redirect($this->generateUrl("collection", $unit));
 		}
 		else
 		{
