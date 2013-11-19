@@ -619,7 +619,7 @@ class reportsActions extends sfActions {
 
                         $Assets[] = $SolutionArray;
                     }
-                    
+
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
                             ReportsForm::$constraintsArray;
@@ -1158,7 +1158,6 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
                             $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
                             $DataDumpReportArray[] = $AssetScoreReport;
-                            
                         }
                     }
                 } elseif ($param['reports']['listReports'] == '1') {
@@ -1293,7 +1292,12 @@ class reportsActions extends sfActions {
                     $excel->createExcel();
 
 
-
+                    if ($_SERVER["REMOTE_ADDR"] == '39.42.30.193') {
+                        echo '<pre>';
+                        print_r($DataDumpReportArray);
+                        echo $file_name_with_directory;
+                        exit;
+                    }
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
                     $excel->DeleteFile($file_name_with_directory);
