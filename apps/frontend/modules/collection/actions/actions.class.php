@@ -357,10 +357,10 @@ class collectionActions extends sfActions {
         $this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
         $unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
 
-		echo '<pre>';print_r($unitId);exit;
+		
         $this->form = new CollectionForm($collection, array(
                     'userID' => $this->getUser()->getGuardUser()->getId(),
-                    'unitID' => $unitId[0],
+                    'unitID' => $unitId,
                     'action' => 'edit',
                     'view' => $view['view']
                 ));
@@ -372,11 +372,11 @@ class collectionActions extends sfActions {
 
             $unit = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
-                    ->where('id =?', $unitId[0])
+                    ->where('id =?', $unitId)
                     ->execute();
 //            header('location: ' . $this->generateUrl("collection", $unit[0]));
-            $this->redirect($this->generateUrl("collection", $unit[0]));
-            echo '<script>' . $this->generateUrl("collection", $unit[0]) . '</script>';
+            $this->redirect($this->generateUrl("collection", $unit));
+            echo '<script>' . $this->generateUrl("collection", $unit) . '</script>';
             exit;
         } else {
             if ($success && isset($success['error']) && $success['error'] == true) {
@@ -385,11 +385,11 @@ class collectionActions extends sfActions {
 
             $unit = Doctrine_Core::getTable('Unit')
                     ->createQuery('u')
-                    ->where('id =?', $unitId[0])
+                    ->where('id =?', $unitId)
                     ->execute();
             $this->ThisUnit = $unit;
 
-            $url = $this->generateUrl("collection", $unit[0]);
+            $url = $this->generateUrl("collection", $unit);
             $arr_url = explode('?', $url);
             $this->url = $arr_url[0];
             $this->setTemplate('edit');
