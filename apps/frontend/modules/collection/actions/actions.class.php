@@ -288,16 +288,8 @@ class collectionActions extends sfActions
 		->createQuery('u')
 		->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
 		->fetchArray();
-		$html = '<table>';
-		foreach ($collection as $key => $value)
-		{
-			$html .='<tr>';
-			$html .="<td>{$collection['id']}</td>";
-			$html .="<td>{$collection['name']}</td>";
-			$html .='</tr>';
-		}
-		$html .='</table>';
-		echo $html;
+		echo '<pre>';
+		print_r($collection);
 		exit;
 	}
 
