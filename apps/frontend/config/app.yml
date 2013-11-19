@@ -5,8 +5,8 @@ production:
         
 qa:
     .settings:
-        base:     http://108.166.74.254/frontend_dev.php
-        url: http://108.166.74.254
+        base:     http://mediascoreqa.avpreserve.com
+        url: http://mediascoreqa.avpreserve.com
 testing:
     .settings:
         base:     http://mediascore.live.geekschicago.com/frontend_dev.php
