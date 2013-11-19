@@ -70,7 +70,7 @@ class CollectionForm extends BaseCollectionForm {
             );
             if ($this->getOption('action') == 'edit') {
                 $voidFields[] = 'creator_id';
-                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'multiple' => true, 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
+                $this->setWidget('parent_node_id', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'multiple' => false, 'add_empty' => false, 'label' => 'Unit:&nbsp;')));
                 $this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
             } else {
                 $voidFields[] = 'updated_at';
