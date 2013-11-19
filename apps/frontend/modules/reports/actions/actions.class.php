@@ -130,17 +130,20 @@ class reportsActions extends sfActions {
         $db_assets = $db_assets->fetchArray();
         $problems = array();
         foreach ($db_assets as $value) {
+
             foreach ($value['FormatType'] as $index => $format) {
                 if ($index == 'pack_deformation') {
-                    if (array_key_exists("{$index}-{$format}", ReportsForm::$constraintsArray))
+                    if (array_key_exists("{$index}-{$format}", ReportsForm::$constraintsArray)) {
+
                         $problems["{$index}-{$format}"] = ReportsForm::$constraintsArray["{$index}-{$format}"];
-                }
-                else {
+                    }
+                } else {
                     if ($format != '' && array_key_exists("{$index}", ReportsForm::$constraintsArray))
                         $problems["{$index}"] = ReportsForm::$constraintsArray["{$index}"];
                 }
             }
         }
+
         $this->getResponse()->setHttpHeader('Content-type', 'application/json');
         $this->setLayout('json');
 
@@ -361,6 +364,7 @@ class reportsActions extends sfActions {
                 $listUnits_RRD = $params['listUnits_RRD'];
                 $ExportType = $params['ExportType'];
 
+
                 if ($listUnits_RRD) {
                     $db_assets = Doctrine_Query::Create()
                             ->from('AssetGroup ag')
@@ -407,11 +411,12 @@ class reportsActions extends sfActions {
 
 //						$AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'Year Recorded');
 
+
                         if ($ExportType == 'xls') {
                             $excel = new excel();
                             $excel->setDataArray($AssetScoreReportArray);
                             $excel->extractHeadings();
-                            $filename = 'Recording_Date_Report_' . date('Ymd') . '.csv';
+                            $filename = 'Recording_Date_Report_' . date('Ymd') . '.xlsx';
                             $Sheettitle = 'Recording_Date_Report';
                             $intial_dicrectory = '/AssetsScore/xls/';
                             $file_name_with_directory = $intial_dicrectory . $filename;
@@ -577,17 +582,20 @@ class reportsActions extends sfActions {
                 $Collection_id = $params['listCollection_RRD'];
                 $where = '1=1';
                 $Constraints = $params['Constraints'];
+
                 $ExportType = $params['ExportType'];
                 $Constraint_filters = array();
                 $collection_filter = array();
                 foreach ($Constraints as $value) {
                     if (array_key_exists($value, ReportsForm::$constraintsArray)) {
+
                         if (strstr($value, 'pack_deformation')) {
                             $explode_pd = explode('-', $value);
-                            $where .=" OR ft.{$explode_pd[0]} ={$explode_pd[1]} ";
+
+                            $where .=" AND ft.{$explode_pd[0]} ={$explode_pd[1]} ";
                         }
                         else
-                            $where .=" OR ft.{$value} !='' ";
+                            $where .=" AND ft.{$value} !='' ";
                         $Constraint_filters[] = ReportsForm::$constraintsArray[$value];
                     }
                 }
@@ -611,7 +619,7 @@ class reportsActions extends sfActions {
 
                         $Assets[] = $SolutionArray;
                     }
-
+                    
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
                             ReportsForm::$constraintsArray;
@@ -887,7 +895,11 @@ class reportsActions extends sfActions {
                             }
                         }
                     }
-
+                    $Roles = array(
+                        0 => 'User',
+                        1 => 'Admin',
+                        2 => 'Unit Personal'
+                    );
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
 
@@ -903,7 +915,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Unit Personnel ID.'] = $Asset['Unit']['Personnel'][0]['id'];
                             $AssetScoreReport['Unit Personnel First Name.'] = $Asset['Unit']['Personnel'][0]['first_name'];
                             $AssetScoreReport['Unit Personnel Last Name.'] = $Asset['Unit']['Personnel'][0]['last_name'];
-                            $AssetScoreReport['Unit Personnel Role.'] = $Asset['Unit']['Personnel'][0]['role'];
+                            $AssetScoreReport['Unit Personnel Role.'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
                             $AssetScoreReport['Unit Personnel Email.'] = $Asset['Unit']['Personnel'][0]['email_address'];
                             $AssetScoreReport['Unit Personnel Phone.'] = $Asset['Unit']['Personnel'][0]['phone'];
 
@@ -914,7 +926,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Creator User Last Name.'] = $Asset['Unit']['Creator']['last_name'];
                             $AssetScoreReport['Creator User e-mail.'] = $Asset['Unit']['Creator']['email_address'];
                             $AssetScoreReport['Creator User Phone.'] = $Asset['Unit']['Creator']['phone'];
-                            $AssetScoreReport['Creator User Role.'] = $Asset['Unit']['Creator']['role'];
+                            $AssetScoreReport['Creator User Role.'] = $Roles[$Asset['Unit']['Creator']['role']];
 
                             $AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['updated_at']));
                             $AssetScoreReport['Unit Updated By'] = $Asset['Unit']['Editor']['first_name'] . ' ' . $Asset['Unit']['Editor']['last_name'];
@@ -923,7 +935,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Unit Editor User Last Name ,'] = $Asset['Unit']['Editor']['last_name'];
                             $AssetScoreReport['Unit Editor User e-mail ,'] = $Asset['Unit']['Editor']['email_address'];
                             $AssetScoreReport['Unit Editor User Phone ,'] = $Asset['Unit']['Editor']['phone'];
-                            $AssetScoreReport['Unit Editor User Role ,'] = $Asset['Unit']['Editor']['role'];
+                            $AssetScoreReport['Unit Editor User Role ,'] = $Roles[$Asset['Unit']['Editor']['role']];
 
                             $AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
                             $AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
@@ -940,7 +952,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Unit Personnel ID ,'] = $Asset['Unit']['Personnel'][0]['id'];
                             $AssetScoreReport['Unit Personnel First Name ,'] = $Asset['Unit']['Personnel'][0]['first_name'];
                             $AssetScoreReport['Unit Personnel Last Name ,'] = $Asset['Unit']['Personnel'][0]['last_name'];
-                            $AssetScoreReport['Unit Personnel Role ,'] = $Asset['Unit']['Personnel'][0]['role'];
+                            $AssetScoreReport['Unit Personnel Role ,'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
                             $AssetScoreReport['Unit Personnel Email ,'] = $Asset['Unit']['Personnel'][0]['email_address'];
                             $AssetScoreReport['Unit Personnel Phone ,'] = $Asset['Unit']['Personnel'][0]['phone'];
 
@@ -953,7 +965,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Collection Creator User Last Name -'] = $Asset['Collection']['Creator']['last_name'];
                             $AssetScoreReport['Collection Creator User e-mail -'] = $Asset['Collection']['Creator']['email_address'];
                             $AssetScoreReport['Collection CreatorUser Phone -'] = $Asset['Collection']['Creator']['phone'];
-                            $AssetScoreReport['Collection Creator User Role -'] = $Asset['Collection']['Creator']['role'];
+                            $AssetScoreReport['Collection Creator User Role -'] = $Roles[$Asset['Collection']['Creator']['role']];
 
                             $AssetScoreReport['Collection'] = $Asset['Collection']['name'];
                             $AssetScoreReport['Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Collection']['updated_at']));
@@ -963,7 +975,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Collection Editor User Last Name-'] = $Asset['Collection']['Editor']['last_name'];
                             $AssetScoreReport['Collection Editor User e-mail-'] = $Asset['Collection']['Editor']['email_address'];
                             $AssetScoreReport['Collection Editor User Phone-'] = $Asset['Collection']['Editor']['phone'];
-                            $AssetScoreReport['Collection Editor User Role-'] = $Asset['Collection']['Editor']['role'];
+                            $AssetScoreReport['Collection Editor User Role-'] = $Roles[$Asset['Collection']['Editor']['role']];
 
                             $AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
                             $AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
@@ -980,7 +992,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['AssetGroup User Last Name _'] = $Asset['AssetGroup']['Creator']['last_name'];
                             $AssetScoreReport['AssetGroup User e-mail _'] = $Asset['AssetGroup']['Creator']['email_address'];
                             $AssetScoreReport['AssetGroup User Phone _'] = $Asset['AssetGroup']['Creator']['phone'];
-                            $AssetScoreReport['AssetGroup User Role _'] = $Asset['AssetGroup']['Creator']['role'];
+                            $AssetScoreReport['AssetGroup User Role _'] = $Roles[$Asset['AssetGroup']['Creator']['role']];
 
 
                             $AssetScoreReport['Asset Group'] = $Asset['AssetGroup']['name'];
@@ -991,7 +1003,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['AssetGroup User Editor User Last Name *'] = $Asset['AssetGroup']['Editor']['last_name'];
                             $AssetScoreReport['AssetGroup User Editor User e-mail *'] = $Asset['AssetGroup']['Editor']['email_address'];
                             $AssetScoreReport['AssetGroup User Editor User Phone *'] = $Asset['AssetGroup']['Editor']['phone'];
-                            $AssetScoreReport['AssetGroup User Editor User Role * '] = $Asset['AssetGroup']['Editor']['role'];
+                            $AssetScoreReport['AssetGroup User Editor User Role * '] = $Roles[$Asset['AssetGroup']['Editor']['role']];
 
 
                             $AssetScoreReport['Asset Group Date'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
@@ -1001,14 +1013,14 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Asset Group Personnel User Last Name *'] = $Asset['Unit']['Personnel'][0]['last_name'];
                             $AssetScoreReport['Asset Group Personnel User e-mail *'] = $Asset['Unit']['Personnel'][0]['email_address'];
                             $AssetScoreReport['Asset Group Personnel User Phone *'] = $Asset['Unit']['Personnel'][0]['phone'];
-                            $AssetScoreReport['Asset Group Personnel User Role *'] = $Asset['Unit']['Personnel']['role'];
-                            $AssetScoreReport['Asset Group In consultation With *'] = $Asset['AssetGroup']['EvaluatorHistory'][0]['role'];
+                            $AssetScoreReport['Asset Group Personnel User Role *'] = $Roles[$Asset['Unit']['Personnel']['role']];
+                            $AssetScoreReport['Asset Group In consultation With *'] = $Roles[$Asset['AssetGroup']['EvaluatorHistory'][0]['role']];
 
 
                             $AssetScoreReport['Unit Asset Group Personnel-ID *'] = $Asset['Unit']['Personnel'][0]['id'];
                             $AssetScoreReport['Unit Asset Group Personnel-First Name *'] = $Asset['Unit']['Personnel'][0]['first_name'];
                             $AssetScoreReport['Unit Asset Group Personnel-Last Name *'] = $Asset['Unit']['Personnel'][0]['last_name'];
-                            $AssetScoreReport['Unit Asset Group Personnel-Role *'] = $Asset['Unit']['Personnel'][0]['role'];
+                            $AssetScoreReport['Unit Asset Group Personnel-Role *'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
                             $AssetScoreReport['Unit Asset Group Personnel Email *'] = $Asset['Unit']['Personnel'][0]['email_address'];
                             $AssetScoreReport['Unit Asset Group Personnel Phone *'] = $Asset['Unit']['Personnel'][0]['phone'];
 
@@ -1145,10 +1157,8 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['formattypedvideorecordingformat'] = ($Asset['AssetGroup']['FormatType']['formatTypedVideoRecordingFormat'] == '1') ? 'Yes' : 'No';
                             $AssetScoreReport['bitrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'bitrate', $Asset['AssetGroup']['FormatType']['bitrate']);
                             $AssetScoreReport['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $Asset['AssetGroup']['FormatType']['scanning']);
-
-
-
                             $DataDumpReportArray[] = $AssetScoreReport;
+                            
                         }
                     }
                 } elseif ($param['reports']['listReports'] == '1') {
@@ -2199,7 +2209,7 @@ class reportsActions extends sfActions {
                     foreach ($Collections as $Collection) {
                         $collections[] = $Collection;
                     }
-                    
+
                     if ($collections) {
                         foreach ($collections as $collection) {
                             $Mediariversfullreports = array();
@@ -2221,7 +2231,7 @@ class reportsActions extends sfActions {
                             $Mediariversfullreports['Technical Quality Score'] = ($collection['Collection']['score_technical_quality']) ? $collection['Collection']['score_technical_quality'] : 0;
                             $Mediariversfullreports['MediRIVERS Score'] = ($collection['Collection']['collection_score']) ? $collection['Collection']['collection_score'] : 0;
                             $Mediariversfullreports['MASTER SCORE'] = (float) $collection['Collection']['collection_score'] + (float) $collection['FormatType']['asset_score'];
-                            
+
                             $Mediariversfullreportss[] = $Mediariversfullreports;
                         }
 
