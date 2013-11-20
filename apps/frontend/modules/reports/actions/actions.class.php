@@ -1312,12 +1312,12 @@ class reportsActions extends sfActions {
                     $excel->createExcel();
 
 
-                    if ($_SERVER["REMOTE_ADDR"] == '39.42.30.193') {
-                        echo '<pre>';
-                        print_r($DataDumpReportArray);
-                        echo $file_name_with_directory;
-                        exit;
-                    }
+//                    if ($_SERVER["REMOTE_ADDR"] == '39.42.30.193') {
+//                        echo '<pre>';
+//                        print_r($DataDumpReportArray);
+//                        echo $file_name_with_directory;
+//                        exit;
+//                    }
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
                     $excel->DeleteFile($file_name_with_directory);
