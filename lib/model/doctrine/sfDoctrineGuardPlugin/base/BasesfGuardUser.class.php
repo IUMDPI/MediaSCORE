@@ -20,8 +20,11 @@
  * @property string $type
  * @property string $phone
  * @property string $role
+ * @property boolean $mediascore_access
+ * @property boolean $mediariver_access
  * @property text $contact_info
  * @property integer $unit_id
+ * @property string $title
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $sfGuardUserPermission
@@ -30,6 +33,7 @@
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $createdUnits
  * @property Doctrine_Collection $editedUnits
+ * @property Doctrine_Collection $UnitPersonUserInfo
  * @property Doctrine_Collection $HistoryInstances
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
@@ -46,8 +50,11 @@
  * @method string                getType()                  Returns the current record's "type" value
  * @method string                getPhone()                 Returns the current record's "phone" value
  * @method string                getRole()                  Returns the current record's "role" value
+ * @method boolean               getMediascoreAccess()      Returns the current record's "mediascore_access" value
+ * @method boolean               getMediariverAccess()      Returns the current record's "mediariver_access" value
  * @method text                  getContactInfo()           Returns the current record's "contact_info" value
  * @method integer               getUnitId()                Returns the current record's "unit_id" value
+ * @method string                getTitle()                 Returns the current record's "title" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
@@ -56,6 +63,7 @@
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCreatedUnits()          Returns the current record's "createdUnits" collection
  * @method Doctrine_Collection   getEditedUnits()           Returns the current record's "editedUnits" collection
+ * @method Doctrine_Collection   getUnitPersonUserInfo()    Returns the current record's "UnitPersonUserInfo" collection
  * @method Doctrine_Collection   getHistoryInstances()      Returns the current record's "HistoryInstances" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
@@ -71,8 +79,11 @@
  * @method sfGuardUser           setType()                  Sets the current record's "type" value
  * @method sfGuardUser           setPhone()                 Sets the current record's "phone" value
  * @method sfGuardUser           setRole()                  Sets the current record's "role" value
+ * @method sfGuardUser           setMediascoreAccess()      Sets the current record's "mediascore_access" value
+ * @method sfGuardUser           setMediariverAccess()      Sets the current record's "mediariver_access" value
  * @method sfGuardUser           setContactInfo()           Sets the current record's "contact_info" value
  * @method sfGuardUser           setUnitId()                Sets the current record's "unit_id" value
+ * @method sfGuardUser           setTitle()                 Sets the current record's "title" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
@@ -81,6 +92,7 @@
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCreatedUnits()          Sets the current record's "createdUnits" collection
  * @method sfGuardUser           setEditedUnits()           Sets the current record's "editedUnits" collection
+ * @method sfGuardUser           setUnitPersonUserInfo()    Sets the current record's "UnitPersonUserInfo" collection
  * @method sfGuardUser           setHistoryInstances()      Sets the current record's "HistoryInstances" collection
  * 
  * @package    mediaSCORE
@@ -160,11 +172,25 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
+        $this->hasColumn('mediascore_access', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
+             ));
+        $this->hasColumn('mediariver_access', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
+             ));
         $this->hasColumn('contact_info', 'text', null, array(
              'type' => 'text',
              ));
         $this->hasColumn('unit_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('title', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
 
 
@@ -226,6 +252,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('Store as editedUnits', array(
              'local' => 'id',
              'foreign' => 'last_editor_id'));
+
+        $this->hasMany('UnitPersonUser as UnitPersonUserInfo', array(
+             'local' => 'id',
+             'foreign' => 'person_id'));
 
         $this->hasMany('EvaluatorHistory as HistoryInstances', array(
              'local' => 'id',

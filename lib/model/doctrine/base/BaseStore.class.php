@@ -14,6 +14,28 @@
  * @property text $resident_structure_description
  * @property integer $parent_node_id
  * @property string $status
+ * @property text $characteristics
+ * @property string $project_title
+ * @property integer $iub_unit
+ * @property integer $iub_work
+ * @property datatime $date_completed
+ * @property float $score_subject_interest
+ * @property text $notes_subject_interest
+ * @property float $score_content_quality
+ * @property text $notes_content_quality
+ * @property float $score_rareness
+ * @property text $notes_rareness
+ * @property float $score_documentation
+ * @property text $notes_documentation
+ * @property integer $score_technical_quality
+ * @property text $notes_technical_quality
+ * @property boolean $unknown_technical_quality
+ * @property integer $collection_score
+ * @property string $generation_statement
+ * @property text $generation_statement_notes
+ * @property string $ip_statement
+ * @property text $ip_statement_notes
+ * @property text $general_notes
  * @property string $location
  * @property integer $format_id
  * @property sfGuardUser $Creator
@@ -29,6 +51,28 @@
  * @method text                getResidentStructureDescription()   Returns the current record's "resident_structure_description" value
  * @method integer             getParentNodeId()                   Returns the current record's "parent_node_id" value
  * @method string              getStatus()                         Returns the current record's "status" value
+ * @method text                getCharacteristics()                Returns the current record's "characteristics" value
+ * @method string              getProjectTitle()                   Returns the current record's "project_title" value
+ * @method integer             getIubUnit()                        Returns the current record's "iub_unit" value
+ * @method integer             getIubWork()                        Returns the current record's "iub_work" value
+ * @method datatime            getDateCompleted()                  Returns the current record's "date_completed" value
+ * @method float               getScoreSubjectInterest()           Returns the current record's "score_subject_interest" value
+ * @method text                getNotesSubjectInterest()           Returns the current record's "notes_subject_interest" value
+ * @method float               getScoreContentQuality()            Returns the current record's "score_content_quality" value
+ * @method text                getNotesContentQuality()            Returns the current record's "notes_content_quality" value
+ * @method float               getScoreRareness()                  Returns the current record's "score_rareness" value
+ * @method text                getNotesRareness()                  Returns the current record's "notes_rareness" value
+ * @method float               getScoreDocumentation()             Returns the current record's "score_documentation" value
+ * @method text                getNotesDocumentation()             Returns the current record's "notes_documentation" value
+ * @method integer             getScoreTechnicalQuality()          Returns the current record's "score_technical_quality" value
+ * @method text                getNotesTechnicalQuality()          Returns the current record's "notes_technical_quality" value
+ * @method boolean             getUnknownTechnicalQuality()        Returns the current record's "unknown_technical_quality" value
+ * @method integer             getCollectionScore()                Returns the current record's "collection_score" value
+ * @method string              getGenerationStatement()            Returns the current record's "generation_statement" value
+ * @method text                getGenerationStatementNotes()       Returns the current record's "generation_statement_notes" value
+ * @method string              getIpStatement()                    Returns the current record's "ip_statement" value
+ * @method text                getIpStatementNotes()               Returns the current record's "ip_statement_notes" value
+ * @method text                getGeneralNotes()                   Returns the current record's "general_notes" value
  * @method string              getLocation()                       Returns the current record's "location" value
  * @method integer             getFormatId()                       Returns the current record's "format_id" value
  * @method sfGuardUser         getCreator()                        Returns the current record's "Creator" value
@@ -43,6 +87,28 @@
  * @method Store               setResidentStructureDescription()   Sets the current record's "resident_structure_description" value
  * @method Store               setParentNodeId()                   Sets the current record's "parent_node_id" value
  * @method Store               setStatus()                         Sets the current record's "status" value
+ * @method Store               setCharacteristics()                Sets the current record's "characteristics" value
+ * @method Store               setProjectTitle()                   Sets the current record's "project_title" value
+ * @method Store               setIubUnit()                        Sets the current record's "iub_unit" value
+ * @method Store               setIubWork()                        Sets the current record's "iub_work" value
+ * @method Store               setDateCompleted()                  Sets the current record's "date_completed" value
+ * @method Store               setScoreSubjectInterest()           Sets the current record's "score_subject_interest" value
+ * @method Store               setNotesSubjectInterest()           Sets the current record's "notes_subject_interest" value
+ * @method Store               setScoreContentQuality()            Sets the current record's "score_content_quality" value
+ * @method Store               setNotesContentQuality()            Sets the current record's "notes_content_quality" value
+ * @method Store               setScoreRareness()                  Sets the current record's "score_rareness" value
+ * @method Store               setNotesRareness()                  Sets the current record's "notes_rareness" value
+ * @method Store               setScoreDocumentation()             Sets the current record's "score_documentation" value
+ * @method Store               setNotesDocumentation()             Sets the current record's "notes_documentation" value
+ * @method Store               setScoreTechnicalQuality()          Sets the current record's "score_technical_quality" value
+ * @method Store               setNotesTechnicalQuality()          Sets the current record's "notes_technical_quality" value
+ * @method Store               setUnknownTechnicalQuality()        Sets the current record's "unknown_technical_quality" value
+ * @method Store               setCollectionScore()                Sets the current record's "collection_score" value
+ * @method Store               setGenerationStatement()            Sets the current record's "generation_statement" value
+ * @method Store               setGenerationStatementNotes()       Sets the current record's "generation_statement_notes" value
+ * @method Store               setIpStatement()                    Sets the current record's "ip_statement" value
+ * @method Store               setIpStatementNotes()               Sets the current record's "ip_statement_notes" value
+ * @method Store               setGeneralNotes()                   Sets the current record's "general_notes" value
  * @method Store               setLocation()                       Sets the current record's "location" value
  * @method Store               setFormatId()                       Sets the current record's "format_id" value
  * @method Store               setCreator()                        Sets the current record's "Creator" value
@@ -91,6 +157,75 @@ abstract class BaseStore extends sfDoctrineRecord
         $this->hasColumn('status', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('characteristics', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('project_title', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('iub_unit', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('iub_work', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('date_completed', 'datatime', null, array(
+             'type' => 'datatime',
+             ));
+        $this->hasColumn('score_subject_interest', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('notes_subject_interest', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('score_content_quality', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('notes_content_quality', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('score_rareness', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('notes_rareness', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('score_documentation', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('notes_documentation', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('score_technical_quality', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('notes_technical_quality', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('unknown_technical_quality', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('collection_score', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('generation_statement', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('generation_statement_notes', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('ip_statement', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('ip_statement_notes', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('general_notes', 'text', null, array(
+             'type' => 'text',
              ));
         $this->hasColumn('location', 'string', 255, array(
              'type' => 'string',

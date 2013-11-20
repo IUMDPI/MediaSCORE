@@ -35,19 +35,10 @@ if ($sf_user->getGuardUser()->getType() != 3) {
             <div class="filter-date">
                 <select id="scoreType" onchange="filterAssets();">
                     <option value="score">MediaSCORE</option>
-                    <!--                    <option value="river">MediaRIVERS</option>-->
                 </select>
                 &nbsp;From <input type="text" class="text" onkeyup="filterAssets();" id="score_start"/>To &nbsp;
                 <input type="text" class="text" onkeyup="filterAssets();" id="score_end"/>  
             </div>
-<!--            <strong>Storage Location : </strong>
-            <div class="filter-date">
-                <select id="storagefilter" onchange="filterAssets();">
-                    <?php // foreach ($AllStorageLocations as $StorageLocation) { ?>
-                        <option value="<?php // echo $StorageLocation['id'] ?>"><?php // echo $StorageLocation['name'] ?></option>
-                    <?php // } ?>
-                </select>
-            </div>-->
         </form>
         <div class="reset"><a href="javascript:void(0);" onclick="resetFields('#filterAssets');"><span>R</span> Reset</a></div>
     </div>
@@ -115,7 +106,6 @@ if ($sf_user->getGuardUser()->getType() != 3) {
                     $score = $asset_group->getFormatType()->getAssetScore();
                 if ($sf_user->getGuardUser()->getId() == 1) {
                     ?>
-
                     <td style="text-align: right;"><span style="display:none;"><?php echo $score; ?></span><a target="_blank" href="<?php echo url_for('assetgroup/getScore?id=' . $asset_group->getId()); ?>"><?php echo $score; ?></a></td>
                     <?php
                 } else {

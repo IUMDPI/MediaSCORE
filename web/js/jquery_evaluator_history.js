@@ -5,20 +5,20 @@ function htmlInclusive(elem) {
     return $('<div />').append($(elem).clone()).html(); 
 }
 
-
+/*
+ * Assign new desgin for Assets Score Text Field
+ **/
 function changeAssetView(){
     var ElementId = $('input[id*="asset_score"]').attr('id');
     if(ElementId != undefined && ElementId !='' && ElementId){
         $("#"+ElementId).show();
         $("#"+ElementId).closest(".section").attr('style','overflow:hidden;');
         var inputFieldhtml = htmlInclusive($("#"+ElementId));
-
         var thisTr = $("#"+ElementId).closest('tr');
         if(thisTr != undefined && thisTr !='' && thisTr){
             var table  = $('#'+ElementId).closest("table");
             if(table != undefined && table !='' && table){
                 var TableId = $(table).attr('id');
-
                 if(TableId == undefined){
                     TableId = 'custom_table_assetG';
                     $(table).attr('id',TableId);
@@ -44,7 +44,6 @@ function changeAssetView(){
                                 '</div>' +
                                 '</td></tr>');
                         }else{
-                            
                             lastTr = $(thisTr).prev();
                             $(thisTr).remove();
                             $(lastTr).after('<tr><td colspan=2><div style="position:relative">' +

@@ -1,5 +1,4 @@
 <?php
-
 // Connection Component Binding
 Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
 
@@ -17,10 +16,8 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @property integer $off_brand
  * @property integer $fungus
  * @property integer $other_contaminants
- * @property string $duration
+ * @property integer $duration
  * @property string $duration_type
- * @property string $duration_type_methodology
- * @property string $format_notes
  * @property string $type
  * @property integer $material
  * @property integer $oxidationcorrosion
@@ -53,7 +50,7 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @property integer $nonstandardbrand
  * @property integer $trackconfiguration
  * @property integer $tapethickness
- * @property string $speed
+ * @property integer $speed
  * @property integer $softbindersyndrome
  * @property integer $materialsbreakdown
  * @property integer $physicaldamage
@@ -62,27 +59,25 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @property integer $recordinglayer
  * @property integer $recordingspeed
  * @property integer $cylindertype
- * @property string $reflectivelayer
- * @property string $datalayer
+ * @property integer $reflectivelayer
+ * @property integer $datalayer
  * @property integer $opticaldisctype
  * @property integer $format
  * @property integer $recordingstandard
  * @property date $publicationyear
  * @property integer $capacitylayers
- * @property string $codec
- * @property string $datarate
+ * @property integer $codec
+ * @property integer $datarate
  * @property integer $sheddingsoftbinder
  * @property integer $formatversion
  * @property integer $oxide
  * @property integer $bindersystem
- * @property string $reelsize
+ * @property integer $reelsize
  * @property integer $whiteresidue
  * @property integer $size
  * @property integer $formattypedvideorecordingformat
- * @property string $bitrate
+ * @property integer $bitrate
  * @property integer $scanning
- * @property integer $format_id
- * @property string $f_c_name
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * 
@@ -95,10 +90,8 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @method integer          getOffBrand()                        Returns the current record's "off_brand" value
  * @method integer          getFungus()                          Returns the current record's "fungus" value
  * @method integer          getOtherContaminants()               Returns the current record's "other_contaminants" value
- * @method string           getDuration()                        Returns the current record's "duration" value
+ * @method integer          getDuration()                        Returns the current record's "duration" value
  * @method string           getDurationType()                    Returns the current record's "duration_type" value
- * @method string           getDurationTypeMethodology()         Returns the current record's "duration_type_methodology" value
- * @method string           getFormatNotes()                     Returns the current record's "format_notes" value
  * @method string           getType()                            Returns the current record's "type" value
  * @method integer          getMaterial()                        Returns the current record's "material" value
  * @method integer          getOxidationcorrosion()              Returns the current record's "oxidationcorrosion" value
@@ -131,7 +124,7 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @method integer          getNonstandardbrand()                Returns the current record's "nonstandardbrand" value
  * @method integer          getTrackconfiguration()              Returns the current record's "trackconfiguration" value
  * @method integer          getTapethickness()                   Returns the current record's "tapethickness" value
- * @method string           getSpeed()                           Returns the current record's "speed" value
+ * @method integer          getSpeed()                           Returns the current record's "speed" value
  * @method integer          getSoftbindersyndrome()              Returns the current record's "softbindersyndrome" value
  * @method integer          getMaterialsbreakdown()              Returns the current record's "materialsbreakdown" value
  * @method integer          getPhysicaldamage()                  Returns the current record's "physicaldamage" value
@@ -140,27 +133,25 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @method integer          getRecordinglayer()                  Returns the current record's "recordinglayer" value
  * @method integer          getRecordingspeed()                  Returns the current record's "recordingspeed" value
  * @method integer          getCylindertype()                    Returns the current record's "cylindertype" value
- * @method string           getReflectivelayer()                 Returns the current record's "reflectivelayer" value
- * @method string           getDatalayer()                       Returns the current record's "datalayer" value
+ * @method integer          getReflectivelayer()                 Returns the current record's "reflectivelayer" value
+ * @method integer          getDatalayer()                       Returns the current record's "datalayer" value
  * @method integer          getOpticaldisctype()                 Returns the current record's "opticaldisctype" value
  * @method integer          getFormat()                          Returns the current record's "format" value
  * @method integer          getRecordingstandard()               Returns the current record's "recordingstandard" value
  * @method date             getPublicationyear()                 Returns the current record's "publicationyear" value
  * @method integer          getCapacitylayers()                  Returns the current record's "capacitylayers" value
- * @method string           getCodec()                           Returns the current record's "codec" value
- * @method string           getDatarate()                        Returns the current record's "datarate" value
+ * @method integer          getCodec()                           Returns the current record's "codec" value
+ * @method integer          getDatarate()                        Returns the current record's "datarate" value
  * @method integer          getSheddingsoftbinder()              Returns the current record's "sheddingsoftbinder" value
  * @method integer          getFormatversion()                   Returns the current record's "formatversion" value
  * @method integer          getOxide()                           Returns the current record's "oxide" value
  * @method integer          getBindersystem()                    Returns the current record's "bindersystem" value
- * @method string           getReelsize()                        Returns the current record's "reelsize" value
+ * @method integer          getReelsize()                        Returns the current record's "reelsize" value
  * @method integer          getWhiteresidue()                    Returns the current record's "whiteresidue" value
  * @method integer          getSize()                            Returns the current record's "size" value
  * @method integer          getFormattypedvideorecordingformat() Returns the current record's "formattypedvideorecordingformat" value
- * @method string           getBitrate()                         Returns the current record's "bitrate" value
+ * @method integer          getBitrate()                         Returns the current record's "bitrate" value
  * @method integer          getScanning()                        Returns the current record's "scanning" value
- * @method integer          getFormatId()                        Returns the current record's "format_id" value
- * @method string           getFCName()                          Returns the current record's "f_c_name" value
  * @method timestamp        getCreatedAt()                       Returns the current record's "created_at" value
  * @method timestamp        getUpdatedAt()                       Returns the current record's "updated_at" value
  * @method Pressed45RPMDisc setId()                              Sets the current record's "id" value
@@ -174,8 +165,6 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @method Pressed45RPMDisc setOtherContaminants()               Sets the current record's "other_contaminants" value
  * @method Pressed45RPMDisc setDuration()                        Sets the current record's "duration" value
  * @method Pressed45RPMDisc setDurationType()                    Sets the current record's "duration_type" value
- * @method Pressed45RPMDisc setDurationTypeMethodology()         Sets the current record's "duration_type_methodology" value
- * @method Pressed45RPMDisc setFormatNotes()                     Sets the current record's "format_notes" value
  * @method Pressed45RPMDisc setType()                            Sets the current record's "type" value
  * @method Pressed45RPMDisc setMaterial()                        Sets the current record's "material" value
  * @method Pressed45RPMDisc setOxidationcorrosion()              Sets the current record's "oxidationcorrosion" value
@@ -236,8 +225,6 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @method Pressed45RPMDisc setFormattypedvideorecordingformat() Sets the current record's "formattypedvideorecordingformat" value
  * @method Pressed45RPMDisc setBitrate()                         Sets the current record's "bitrate" value
  * @method Pressed45RPMDisc setScanning()                        Sets the current record's "scanning" value
- * @method Pressed45RPMDisc setFormatId()                        Sets the current record's "format_id" value
- * @method Pressed45RPMDisc setFCName()                          Sets the current record's "f_c_name" value
  * @method Pressed45RPMDisc setCreatedAt()                       Sets the current record's "created_at" value
  * @method Pressed45RPMDisc setUpdatedAt()                       Sets the current record's "updated_at" value
  * 
@@ -246,706 +233,672 @@ Doctrine_Manager::getInstance()->bindComponent('Pressed45RPMDisc', 'doctrine');
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasePressed45RPMDisc extends sfDoctrineRecord {
-
-    public function setTableDefinition() {
+abstract class BasePressed45RPMDisc extends sfDoctrineRecord
+{
+    public function setTableDefinition()
+    {
         $this->setTableName('pressed45_r_p_m_disc');
         $this->hasColumn('id', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => true,
-            'autoincrement' => true,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => true,
+             'autoincrement' => true,
+             'length' => 8,
+             ));
         $this->hasColumn('quantity', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('generation', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('year_recorded', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
         $this->hasColumn('copies', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('stock_brand', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
         $this->hasColumn('off_brand', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('fungus', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('other_contaminants', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
-        $this->hasColumn('duration', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('duration', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('duration_type', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
-        $this->hasColumn('duration_type_methodology', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
-        $this->hasColumn('format_notes', 'string', null, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => '',
-        ));
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
         $this->hasColumn('type', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
         $this->hasColumn('material', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('oxidationcorrosion', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('pack_deformation', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('noise_reduction', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('tape_type', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('thin_tape', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('slow_speed', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('sound_field', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('soft_binder_syndrome', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('soft_binder_syndrome', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('gauge', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('color', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('color', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('colorfade', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('soundtrackformat', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('substrate', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('strongodor', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('vinegarodor', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('adstriplevel', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('shrinkage', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('levelofshrinkage', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('rust', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('discoloration', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('surfaceblisteringbubbling', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('thintape', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('1993orearlier', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('datagradetape', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('longplay32k96k', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('corrosionrustoxidation', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('composition', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('nonstandardbrand', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('trackconfiguration', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('tapethickness', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('speed', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
-        $this->hasColumn('softbindersyndrome', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('speed', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('softbindersyndrome', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('materialsbreakdown', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('physicaldamage', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('delamination', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('plasticizerexudation', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('recordinglayer', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('recordingspeed', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('cylindertype', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('reflectivelayer', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
-        $this->hasColumn('datalayer', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('reflectivelayer', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('datalayer', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('opticaldisctype', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('format', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('recordingstandard', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('publicationyear', 'date', 25, array(
-            'type' => 'date',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 25,
-        ));
+             'type' => 'date',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 25,
+             ));
         $this->hasColumn('capacitylayers', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('codec', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
-        $this->hasColumn('datarate', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('codec', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('datarate', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('sheddingsoftbinder', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('formatversion', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('oxide', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('bindersystem', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('reelsize', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('bindersystem', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('reelsize', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('whiteresidue', 'integer', 1, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 1,
-        ));
-        $this->hasColumn('size', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('size', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
         $this->hasColumn('formattypedvideorecordingformat', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('bitrate', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
+        $this->hasColumn('bitrate', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('scanning', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('format_id', 'integer', 8, array(
-            'type' => 'integer',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 8,
-        ));
-        $this->hasColumn('f_c_name', 'string', 255, array(
-            'type' => 'string',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => false,
-            'autoincrement' => false,
-            'length' => 255,
-        ));
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 8,
+             ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
-            'type' => 'timestamp',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 25,
-        ));
+             'type' => 'timestamp',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 25,
+             ));
         $this->hasColumn('updated_at', 'timestamp', 25, array(
-            'type' => 'timestamp',
-            'fixed' => 0,
-            'unsigned' => false,
-            'primary' => false,
-            'notnull' => true,
-            'autoincrement' => false,
-            'length' => 25,
-        ));
+             'type' => 'timestamp',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 25,
+             ));
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
+        
     }
-
 }

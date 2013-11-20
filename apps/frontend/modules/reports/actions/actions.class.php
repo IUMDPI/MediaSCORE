@@ -1237,9 +1237,21 @@ class reportsActions extends sfActions {
                             ->from('sfGuardUser u')
                             ->select('u.*')
                             ->fetchArray();
-
+                    $UsersPerson = Doctrine_Query::Create()
+                            ->from('UnitPerson up')
+                            ->select('up.*,u.*')
+                            ->innerJoin('up.Unit u')
+                            ->fetchArray();
+                    echo '<pre>';
+                            print_r($UsersPerson);
+                            exit;
                     $SolutionArray = array();
                     foreach ($Users as $User) {
+                        foreach ($Units as $SingleUnit) {
+                            if ($SingleUnit['Personnel'][0]['id'] == $User['id']) {
+                                $SolutionArray['personnel'] = $SingleUnit['Personnel'];
+                            }
+                        }
                         $SolutionArray['User'] = $User;
                         $Assets[] = $SolutionArray;
                     }
