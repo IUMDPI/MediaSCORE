@@ -3,7 +3,7 @@
 $serverName = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : gethostname();
 if (strpos($serverName, 'mediascore.avpreserve.com') !== FALSE)
 	define('ENVIRONMENT', 'production');
-else if (strpos($serverName, '108.166.74.254') !== FALSE)
+else if (strpos($serverName, 'mediascoreqa.avpreserve.com') !== FALSE)
 	define('ENVIRONMENT', 'qa');
 else if (strpos($serverName, 'mediascore.live.geekschicago.com') !== FALSE)
 	define('ENVIRONMENT', 'testing');
