@@ -843,7 +843,11 @@ class reportsActions extends sfActions {
         @ini_set("memory_limit", "1000M"); # 1GB
         @ini_set("max_execution_time", 999999999999); # 1GB
         $this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
-
+        $Roles = array(
+            0 => 'User',
+            1 => 'Admin',
+            2 => 'Unit Personal'
+        );
         if ($request->isMethod(sfRequest::POST)) {
             $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
             if ($this->form->isValid()) {
@@ -895,11 +899,7 @@ class reportsActions extends sfActions {
                             }
                         }
                     }
-                    $Roles = array(
-                        0 => 'User',
-                        1 => 'Admin',
-                        2 => 'Unit Personal'
-                    );
+
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
 
@@ -1239,22 +1239,22 @@ class reportsActions extends sfActions {
                             ->fetchArray();
                     $UsersPerson = Doctrine_Query::Create()
                             ->from('UnitPerson up')
-                            ->select('up.*,u.*')
+                            ->select('up.*,u.*,p.*,sl.*')
                             ->innerJoin('up.Unit u')
+                            ->innerJoin('up.Person p')
+                            ->leftJoin('u.StorageLocations sl')
                             ->fetchArray();
-                    echo '<pre>';
-                            print_r($UsersPerson);
-                            exit;
                     $SolutionArray = array();
                     foreach ($Users as $User) {
-                        foreach ($Units as $SingleUnit) {
-                            if ($SingleUnit['Personnel'][0]['id'] == $User['id']) {
-                                $SolutionArray['personnel'] = $SingleUnit['Personnel'];
+                        foreach ($UsersPerson as $UserPerson) {
+                            if ($UserPerson['person_id'] == $User['id']) {
+                                $SolutionArray['Unit'] = $UserPerson['Unit'];
                             }
                         }
                         $SolutionArray['User'] = $User;
                         $Assets[] = $SolutionArray;
                     }
+
 
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
@@ -1265,8 +1265,16 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['User Last Name'] = $Asset['User']['last_name'];
                             $AssetScoreReport['User e-mail'] = $Asset['User']['email_address'];
                             $AssetScoreReport['User Phone'] = $Asset['User']['phone'];
-                            $AssetScoreReport['User Role'] = $Asset['User']['role'];
 
+                            $AssetScoreReport['User Role'] = $Roles[$Asset['User']['role']];
+                            $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
+                            $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
+                            $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
+                            $storageLocation = '';
+                            foreach ($Asset['Unit']['StorageLocations'] as $sl) {
+                                $storageLocation .= $sl['name'] . '-' . $sl['resident_structure_description'];
+                            }
+                            $AssetScoreReport['Building name/Room number'] = $storageLocation;
                             $DataDumpReportArray[] = $AssetScoreReport;
                         }
                     }

@@ -16,7 +16,6 @@
     </tr>
     <tr>
         <th><label><a href="<?php echo url_for('reports/masterscorereport') ?>">Master Score Report</a></label><br/></th>
-        
     </tr>
 
     <?php
@@ -47,9 +46,9 @@ if ($IsMediaScoreAccess || $sf_user->getGuardUser()->getRole() == 1) {
     <?php
     if ($sf_user->getGuardUser()->getRole() != 2) {
         ?>
-<!--        <tr>
-            <th><label><a href="<?php // echo url_for('reports/alldataoutputreport') ?>">All Data output</a></label></th>
-        </tr>-->
+        <tr>
+            <th><label><a href="<?php echo url_for('reports/alldataoutputreport') ?>">All Data output</a></label></th>
+        </tr>
         <tr>
             <th><label><a href="<?php echo url_for('reports/evaluatorsreport') ?>">Evaluator's Report</a></label></th>
         </tr>
