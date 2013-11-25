@@ -73,6 +73,19 @@ Unit:
     StorageLocations: { class: StorageLocation, local: unit_id, foreign: storage_location_id, refClass: UnitStorageLocation }
     Personnel: { class: Person, local: unit_id, foreign: person_id, refClass: UnitPerson }
     Collection: { local: id, foreign: parent_node_id, foreignAlias: containCollections}
+    
+UnitMultipleCollection:
+  inheritance:
+    extends: Store
+    type: column_aggregation
+    keyField: type
+    keyValue: 1
+  columns:
+    resident_structure_description: { type: text }
+  relations:
+    StorageLocations: { class: StorageLocation, local: unit_id, foreign: storage_location_id, refClass: UnitStorageLocation }
+    Personnel: { class: Person, local: unit_id, foreign: person_id, refClass: UnitPerson }
+    CollectionMultipleAssetGroup: { local: id, type: many , foreign: parent_node_id, foreignAlias: containCollections}
 
 UnitStorageLocation:
   columns:
@@ -161,6 +174,42 @@ Collection:
     AssetGroup: { local: id, foreign: parent_node_id, foreignAlias: containsAssets}
     StorageLocations: { class: StorageLocation, local: collection_id, foreign: storage_location_id, refClass: CollectionStorageLocation }
     
+CollectionMultipleAssetGroup:
+  inheritance:
+    extends: SubUnit
+    type: column_aggregation
+    keyField: type
+    keyValue: 3 # column_aggregation does not permit nested hierarchies beyond 1 layer of abstraction
+  columns:
+    status: { type: string(255) }
+    characteristics: { type: text }
+    project_title: { type: string(255) }
+    iub_unit: { type: integer }
+    iub_work: { type: integer }
+    date_completed: { type: datatime }
+    score_subject_interest: { type: float }
+    notes_subject_interest: { type: text }
+    score_content_quality: { type: float }
+    notes_content_quality: { type: text }
+    score_rareness: { type: float }
+    notes_rareness: { type: text }
+    score_documentation: { type: float }
+    notes_documentation: { type: text }
+    score_technical_quality: { type: float }
+    notes_technical_quality: { type: text }
+    unknown_technical_quality: { type: boolean }
+    score_technical_quality: { type: integer }
+    notes_technical_quality: { type: text }
+    collection_score: { type: integer }
+    generation_statement: { type: string(255) }
+    generation_statement_notes: { type: text }
+    ip_statement: { type: string(255) }
+    ip_statement_notes: {type: text }
+    general_notes: { type: text } 
+  relations:
+    Unit: { local: parent_node_id, foreign: id, foreignAlias: heldByUnit ,onDelete: CASCADE}
+    AssetGroup: { local: id, type: many ,  foreign: parent_node_id, foreignAlias: containsAssets}
+    StorageLocations: { class: StorageLocation, local: collection_id, foreign: storage_location_id, refClass: CollectionStorageLocation }
 
 CollectionStorageLocation:
   columns:

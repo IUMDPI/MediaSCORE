@@ -1237,24 +1237,28 @@ class reportsActions extends sfActions {
                             ->from('sfGuardUser u')
                             ->select('u.*')
                             ->fetchArray();
+
                     $UsersPerson = Doctrine_Query::Create()
                             ->from('UnitPerson up')
-                            ->select('up.*,u.*,p.*,sl.*')
+                            ->select('up.*,u.*,p.*,user.id,user.role')
                             ->innerJoin('up.Unit u')
-                            ->innerJoin('up.Person p')
+                            ->leftJoin('up.Person p')
                             ->leftJoin('u.StorageLocations sl')
                             ->fetchArray();
-                    $SolutionArray = array();
+
+
+
                     foreach ($Users as $User) {
+                        $SolutionArray = array();
                         foreach ($UsersPerson as $UserPerson) {
-                            if ($UserPerson['person_id'] == $User['id']) {
+                            if ($User['id'] == $UserPerson['person_id'] && $User['role'] == '2') {
                                 $SolutionArray['Unit'] = $UserPerson['Unit'];
+                                break;
                             }
                         }
                         $SolutionArray['User'] = $User;
                         $Assets[] = $SolutionArray;
                     }
-
 
                     if ($Assets) {
                         foreach ($Assets as $Asset) {
@@ -1267,9 +1271,9 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['User Phone'] = $Asset['User']['phone'];
 
                             $AssetScoreReport['User Role'] = $Roles[$Asset['User']['role']];
-                            $AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
-                            $AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
-                            $AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
+                            $AssetScoreReport['Unit ID'] = ($Asset['Unit']['id']) ? $Asset['Unit']['id'] : '';
+                            $AssetScoreReport['Unit Primary ID'] = ($Asset['Unit']['inst_id']) ? $Asset['Unit']['inst_id'] : '';
+                            $AssetScoreReport['Unit Name'] = ($Asset['Unit']['name']) ? $Asset['Unit']['name'] : '';
                             $storageLocation = '';
                             foreach ($Asset['Unit']['StorageLocations'] as $sl) {
                                 $storageLocation .= $sl['name'] . '-' . $sl['resident_structure_description'];
@@ -1312,12 +1316,6 @@ class reportsActions extends sfActions {
                     $excel->createExcel();
 
 
-//                    if ($_SERVER["REMOTE_ADDR"] == '39.42.30.193') {
-//                        echo '<pre>';
-//                        print_r($DataDumpReportArray);
-//                        echo $file_name_with_directory;
-//                        exit;
-//                    }
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
                     $excel->DeleteFile($file_name_with_directory);
@@ -1511,73 +1509,79 @@ class reportsActions extends sfActions {
                 $format_id = $params['reports']['format_id'];
                 $ExportType = $params['reports']['ExportType'];
                 $ReportType = $params['reports']['ReportType'];
+
+
+
                 if ($Collection_id && $Units_id && $format_id) {
+
+
                     if ($ReportType == '0') {
-                        $Units = Doctrine_Query::Create()
-                                ->from('Unit u')
-                                ->select('u.*,sl.*,p.*,cu.*,eu.*')
-                                ->whereIn('u.id', $Units_id)
+                        $UnitsWithAllinformation = Doctrine_Query::Create()
+                                ->from('UnitMultipleCollection u')
+                                ->select('u.*,ft.*,c.*,a_s.*')
+                                ->innerJoin("u.CollectionMultipleAssetGroup c")
+                                ->innerJoin('c.AssetGroup a_s')
+                                ->innerJoin('a_s.FormatType ft')
+                                ->andWhereIn('u.id', $Units_id)
+                                ->andWhereIn('c.id', $Collection_id)
+                                ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
+                        if ($UnitsWithAllinformation) {
+                            $PercentageOfHoldingsRaw = array();
+                            foreach ($UnitsWithAllinformation as $UnitWithAllinformation) {
+                                $SolutionArray = array();
+                                $SolutionArray['UnitID'] = $UnitWithAllinformation['id'];
+                                $SolutionArray['UnitName'] = $UnitWithAllinformation['name'];
+                                $SolutionArray['FormatType'] = array();
 
-                        foreach ($Units as $Unit) {
+                                $count = 0;
+                                $durationScore = 0;
+                                $quantityScore = 0;
+                                $allReadyAddedFormatType = array();
 
-                            $Collections = Doctrine_Query::Create()
-                                    ->from('Collection c')
-                                    ->select('c.*')
-                                    ->where('c.parent_node_id  = ?', $Unit['id'])
-                                    ->andWhereIn('c.id', $Collection_id)
-                                    ->fetchArray();
+                                $PercentageOfHoldings = array();
+                                foreach ($UnitWithAllinformation['CollectionMultipleAssetGroup'] as $singleCollection) {
+                                    foreach ($singleCollection['AssetGroup'] as $singleAssetGroup) {
+                                        $formatTypeName = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $singleAssetGroup['FormatType']['type']);
 
-                            foreach ($Collections as $Collection) {
-                                $Asset = Doctrine_Query::Create()
-                                        ->from('AssetGroup a')
-                                        ->select('a.*, ft.*')
-                                        ->leftJoin("a.FormatType ft")
-                                        ->where('a.parent_node_id  = ?', $Collection['id'])
-                                        ->andWhereIn('ft.type', $format_id)
-                                        ->fetchArray();
+                                        if (in_array(trim($formatTypeName), $allReadyAddedFormatType)) {
+                                            foreach ($SolutionArray['FormatType'] as $key => $formatTypeSingle) {
+                                                if ($formatTypeSingle['FormatType'] == trim($formatTypeName)) {
+                                                    $SolutionArray['FormatType'][$key]['quantity'] = $SolutionArray['FormatType'][$key]['quantity'] + $singleAssetGroup['FormatType']['quantity'];
+                                                    $SolutionArray['FormatType'][$key]['duration'] = $SolutionArray['FormatType'][$key]['duration'] + $singleAssetGroup['FormatType']['duration'];
+                                                }
+                                            }
+                                        } else {
+                                            $SolutionArray['FormatType'][$count]['FormatType'] = trim($formatTypeName);
+                                            $SolutionArray['FormatType'][$count]['quantity'] = $singleAssetGroup['FormatType']['quantity'];
+                                            $SolutionArray['FormatType'][$count]['duration'] = $singleAssetGroup['FormatType']['duration'];
+                                            $allReadyAddedFormatType[] = trim($formatTypeName);
+                                        }
 
-                                if ($Asset) {
-                                    foreach ($Asset as $key => $A) {
-                                        $quantity = $quantity + $A['FormatType']['quantity'];
-                                        $duration = $duration + $A['FormatType']['duration'];
-                                        $SolutionArray = array();
-                                        $SolutionArray[$Unit['id']]['AssetGroup'] = $A;
-                                        $SolutionArray[$Unit['id']]['Collection'] = $Collection;
-                                        $SolutionArray[$Unit['id']]['Unit'] = $Unit;
-                                        $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
+                                        $quantity = ($singleAssetGroup['FormatType']['quantity']) ? $singleAssetGroup['FormatType']['quantity'] : 0;
+                                        $duration = ($singleAssetGroup['FormatType']['duration']) ? $singleAssetGroup['FormatType']['duration'] : 0;
+                                        $quantityScore = $quantityScore + $quantity;
+                                        $durationScore = $durationScore + $duration;
+                                        $count++;
                                     }
                                 }
+                                $SolutionArray['totalDuration'] = $durationScore;
+                                $SolutionArray['totalQuantity'] = $quantityScore;
+                                $PercentageOfHoldingsRaw[] = $SolutionArray;
                             }
-                            if ($Assets) {
-                                $Assets[$Unit['id']]['Totals']['QuantityTotal'] = $quantity;
-                                $Assets[$Unit['id']]['Totals']['DurationTotal'] = $duration;
-                            }
-                            $quantity = 0;
-                            $duration = 0;
-                        }
 
-
-                        if ($Assets) {
-                            $j = 1;
-                            foreach ($Assets as $Asset) {
-
-                                $i = 1;
-                                $AssetScoreReport = array();
-                                $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
-                                $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
-
-                                foreach ($Asset as $key_reportGen => $reportGen) {
-
-                                    $AssetScoreReport['Format ' . ($i)] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $reportGen['AssetGroup']['FormatType']['type']);
-                                    $AssetScoreReport['Percentage by duration that Format  ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['duration'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['DurationTotal'])) . ' % ';
-                                    $AssetScoreReport['Percentage by quantity that Format ' . ($i) . ' makes up of Unit'] = round((($reportGen['AssetGroup']['FormatType']['quantity'] * 100) / $Assets[$Asset[0]['Unit']['id']]['Totals']['QuantityTotal'])) . ' % ';
-
-                                    $i++;
+                            foreach ($PercentageOfHoldingsRaw as $PercentageOfHoldingsSingle) {
+                                $PercentageOfHoldings = array();
+                                $PercentageOfHoldings['Unit ID'] = $PercentageOfHoldingsSingle['UnitID'];
+                                $PercentageOfHoldings['Unit Name'] = $PercentageOfHoldingsSingle['UnitName'];
+                                $increamenter = 1;
+                                foreach ($PercentageOfHoldingsSingle['FormatType'] as $FormatTypes) {
+                                    $PercentageOfHoldings['Format ' . ($increamenter)] = $FormatTypes['FormatType'];
+                                    $PercentageOfHoldings['Percentage by duration that Format  ' . ($increamenter) . ' makes up of Unit'] = round((($FormatTypes['duration'] * 100) / $PercentageOfHoldingsSingle['totalDuration'])) . ' % ';
+                                    $PercentageOfHoldings['Percentage by quantity that Format ' . ($increamenter) . ' makes up of Unit'] = round((($FormatTypes['quantity'] * 100) / $PercentageOfHoldingsSingle['totalQuantity'])) . ' % ';
+                                    $increamenter++;
                                 }
-
-                                $j++;
-                                $DataDumpReportArray[] = $AssetScoreReport;
+                                $DataDumpReportArray[] = $PercentageOfHoldings;
                             }
                             $maxCountElementsCount = count($DataDumpReportArray[0]);
                             $maxCountElementsIndex = 0;
@@ -1600,21 +1604,17 @@ class reportsActions extends sfActions {
                                 $intial_dicrectory = '/AssetsScore/xls/';
                                 $file_name_with_directory = $intial_dicrectory . $filename;
 
-//                        $excel->setDataArray($DataDumpReportArray);
 
                                 $excel->extractHeadings($maxCountElementsIndex);
                                 $excel->setFileName($file_name_with_directory);
                                 $excel->setSheetTitle($Sheettitle);
-
                                 $excel->createExcel();
-
                                 $excel->SaveFile();
                                 $excel->DownloadXLSX($file_name_with_directory, $filename);
                                 $excel->DeleteFile($file_name_with_directory);
                                 exit;
                             } else {
                                 $csvHandler = new csvHandler();
-
                                 $file_name = 'Unit_Format_Makeup_Report_' . date('Ymd') . '.csv';
                                 $intial_dicrectory = '/AssetsScore/csv/';
                                 $file_name_with_directory = $intial_dicrectory . $file_name;
@@ -1742,81 +1742,72 @@ class reportsActions extends sfActions {
                             $this->getResponse()->setSlot('my_slot', $Bug);
                         }
                     } else if ($ReportType == '2') {
-                        $Units = Doctrine_Query::Create()
-                                ->from('Unit u')
-                                ->select('u.*')
-                                ->whereIn('u.id', $Units_id)
+                        $UnitsWithAllinformation = Doctrine_Query::Create()
+                                ->from('UnitMultipleCollection u')
+                                ->select('u.*,ft.*,c.*,a_s.*')
+                                ->innerJoin("u.CollectionMultipleAssetGroup c")
+                                ->innerJoin('c.AssetGroup a_s')
+                                ->innerJoin('a_s.FormatType ft')
+                                ->andWhereIn('u.id', $Units_id)
+                                ->andWhereIn('c.id', $Collection_id)
+                                ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
+                        
+                        if ($UnitsWithAllinformation) {
+                            $PercentageOfHoldingsRaw = array();
+                            foreach ($UnitsWithAllinformation as $UnitWithAllinformation) {
+                                $SolutionArray = array();
+                                $SolutionArray['UnitID'] = $UnitWithAllinformation['id'];
+                                $SolutionArray['UnitName'] = $UnitWithAllinformation['name'];
+                                $SolutionArray['Collection'] = array();
 
-                        foreach ($Units as $Unit) {
+                                $count = 0;
+                                $quantityTotal = 0;
+                                $durationTotal = 0;
 
-                            $Collections = Doctrine_Query::Create()
-                                    ->from('Collection c')
-                                    ->select('c.*')
-                                    ->where('c.parent_node_id = ?', $Unit['id'])
-                                    ->andWhereIn('c.id', $Collection_id)
-                                    ->fetchArray();
+                                $PercentageOfHoldings = array();
 
 
-                            foreach ($Collections as $Collection) {
-                                $Asset = Doctrine_Query::Create()
-                                        ->from('AssetGroup a')
-                                        ->select('a.*, ft.*')
-                                        ->leftJoin("a.FormatType ft")
-                                        ->where('a.parent_node_id = ?', $Collection['id'])
-                                        ->andWhereIn('ft.type', $format_id)
-                                        ->fetchArray();
-
-                                if ($Asset) {
-                                    $SolutionArray = array();
-                                    $SolutionArray[$Unit['id']]['Collection'] = $Collection;
-                                    $SolutionArray[$Unit['id']]['Unit'] = $Unit;
-
-                                    foreach ($Asset as $key => $A) {
-                                        $quantity = $quantity + $A['FormatType']['quantity'];
-                                        $duration = $duration + $A['FormatType']['duration'];
-                                        $SolutionArray[$Unit['id']]['Collection']['AssetGroup'][] = $A;
-                                    }
-                                    $Assets[$Unit['id']][] = $SolutionArray[$Unit['id']];
-                                }
-                            }
-                            if ($Assets[$Unit['id']]) {
-                                $Assets[$Unit['id']]['Totals']['QuantityTotal'] = $quantity;
-                                $Assets[$Unit['id']]['Totals']['DurationTotal'] = $duration;
-                            }
-
-                            $quantity = 0;
-                            $duration = 0;
-                        }
-                        if ($Assets) {
-                            $j = 1;
-                            foreach ($Assets as $Asset) {
-
-                                $AssetScoreReport = array();
-
-                                $AssetScoreReport['Unit ID ' . $j] = $Asset[0]['Unit']['id'];
-                                $AssetScoreReport['Unit Name ' . $j] = $Asset[0]['Unit']['name'];
-                                $i = 1;
-                                foreach ($Asset as $key_reportGen => $reportGen) {
+                                foreach ($UnitWithAllinformation['CollectionMultipleAssetGroup'] as $key => $singleCollection) {
                                     $quantity_collection = 0;
                                     $duration_collection = 0;
-                                    foreach ($reportGen['Collection']['AssetGroup'] as $report) {
-                                        $quantity_collection = $quantity_collection + $report['FormatType']['quantity'];
-                                        $duration_collection = $duration_collection + $report['FormatType']['duration'];
+                                    foreach ($singleCollection['AssetGroup'] as $singleAssetGroup) {
+
+                                        $quantity = ($singleAssetGroup['FormatType']['quantity']) ? $singleAssetGroup['FormatType']['quantity'] : 0;
+                                        $duration = ($singleAssetGroup['FormatType']['duration']) ? $singleAssetGroup['FormatType']['duration'] : 0;
+                                        $quantity_collection = $quantity_collection + $quantity;
+                                        $duration_collection = $duration_collection + $duration;
                                     }
+                                    $SolutionArray['Collection'][$count]['id'] = $singleCollection['id'];
+                                    $SolutionArray['Collection'][$count]['name'] = $singleCollection['name'];
+                                    $SolutionArray['Collection'][$count]['quantity'] = $quantity_collection;
 
-                                    $AssetScoreReport['Collection ID for Collection ' . ($i)] = $reportGen['Collection']['id'];
-                                    $AssetScoreReport['Collection Name for Collection ' . ($i)] = $reportGen['Collection']['name'];
-                                    $AssetScoreReport['Percentage by duration that Collection ' . ($i) . ' makes up of Unit'] = round(($duration_collection * 100) / $Asset['Totals']['DurationTotal']) . ' % ';
-                                    $AssetScoreReport['Percentage by quantity that Collection ' . ($i) . ' makes up of Unit'] = round(($quantity_collection * 100) / $Asset['Totals']['QuantityTotal']) . ' % ';
-
-                                    $i++;
+                                    $SolutionArray['Collection'][$count]['duration'] = $duration_collection;
+                                    $quantityTotal = $quantityTotal + $quantity_collection;
+                                    $durationTotal = $durationTotal + $duration_collection;
+                                    $count++;
                                 }
 
-                                $DataDumpReportArray[] = $AssetScoreReport;
-                                $j++;
+                                $SolutionArray['totalCollectionQuantity'] = $quantityTotal;
+                                $SolutionArray['totalCollectionDuration'] = $durationTotal;
+                                $PercentageOfHoldingsRaw[] = $SolutionArray;
                             }
 
+
+                            foreach ($PercentageOfHoldingsRaw as $PercentageOfHoldingsSingle) {
+                                $PercentageOfHoldings = array();
+                                $PercentageOfHoldings['Unit ID'] = $PercentageOfHoldingsSingle['UnitID'];
+                                $PercentageOfHoldings['Unit Name'] = $PercentageOfHoldingsSingle['UnitName'];
+                                $testing = 0.0;
+                                foreach ($PercentageOfHoldingsSingle['Collection'] as $Key => $Collection) {
+                                    $PercentageOfHoldings['Collection ID for Collection ' . ($Key + 1)] = $Collection['id'];
+                                    $PercentageOfHoldings['Collection Name for Collection' . ($Key + 1)] = $Collection['name'];
+                                    $PercentageOfHoldings['Percentage by duration that Collection   ' . ($Key + 1) . ' makes up of Unit'] = number_format((float) (($Collection['duration'] * 100) / $PercentageOfHoldingsSingle['totalCollectionDuration']), 2, '.', '') . ' % ';
+                                    $PercentageOfHoldings['Percentage by quantity that Collection ' . ($Key + 1) . ' makes up of Unit'] = number_format((float) (($Collection['quantity'] * 100) / $PercentageOfHoldingsSingle['totalCollectionQuantity']), 2, '.', '') . ' % ';
+                                }
+                                $DataDumpReportArray[] = $PercentageOfHoldings;
+                            }   
+                            
                             $maxCountElementsCount = count($DataDumpReportArray[0]);
                             $maxCountElementsIndex = 0;
 
@@ -1826,7 +1817,7 @@ class reportsActions extends sfActions {
                                     $maxCountElementsCount = count($DataDump);
                                 }
                             }
-
+                            
                             if ($ExportType == 'xls') {
                                 $excel = new excel();
 
@@ -1844,7 +1835,6 @@ class reportsActions extends sfActions {
                                 $excel->setSheetTitle($Sheettitle);
 
                                 $excel->createExcel();
-
                                 $excel->SaveFile();
                                 $excel->DownloadXLSX($file_name_with_directory, $filename);
                                 $excel->DeleteFile($file_name_with_directory);
