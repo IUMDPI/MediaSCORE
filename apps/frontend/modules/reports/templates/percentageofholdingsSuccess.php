@@ -113,7 +113,7 @@ echo $NoRecordFound = get_slot('my_slot');
 
 		$.ajax({
 			method: 'POST',
-			url: '/frontend_dev.php/reports/getUnitCollections?u=' + ids,
+			url: '/index.php/reports/getUnitCollections?u=' + ids,
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
@@ -139,7 +139,7 @@ echo $NoRecordFound = get_slot('my_slot');
 		$("#reports_format_id").multiselect("disable");
 		$.ajax({
 			method: 'POST',
-			url: '/frontend_dev.php/reports/getCollectionFormats?c=' + ids,
+			url: '/index.php/reports/getCollectionFormats?c=' + ids,
 			dataType: 'json',
 			cache: false,
 			success: function(result) {
