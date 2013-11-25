@@ -84,18 +84,11 @@ if ($url)
         table.tablesorter thead tr .header {
             background-image: url(/images/tableSorter/bg.gif );
             background-repeat: no-repeat;
-            /*            background-position: center right;*/
             cursor: pointer;
             background-position: right 25px;
         }
-
-
     </style>
-
 <?php } ?>
-<style>
-
-</style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
     <ul class="tabs" style="background: url(/images/wireframes/nav-background.png), linear-gradient(to bottom, #635e55, #4c473c);" data-persist="true">
@@ -146,8 +139,8 @@ if ($url)
                                 From <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_start"/>To &nbsp;
                                 <input type="text" class="text" onkeyup="filterCollection('<?php echo $view; ?>');" id="score_end"/>  
                             <?php } ?>
-                                <br/>
-                                <br/>
+                            <br/>
+                            <br/>
                             <strong>Storage Location : </strong>
                             <div class="filter-date">
                                 <select id="storagefilter" onchange="filterCollection('<?php echo $view; ?>');">

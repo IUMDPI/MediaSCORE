@@ -592,10 +592,10 @@ class reportsActions extends sfActions {
                         if (strstr($value, 'pack_deformation')) {
                             $explode_pd = explode('-', $value);
 
-                            $where .=" AND ft.{$explode_pd[0]} ={$explode_pd[1]} ";
+                            $where .=" OR ft.{$explode_pd[0]} ={$explode_pd[1]} ";
                         }
                         else
-                            $where .=" AND ft.{$value} !='' ";
+                            $where .=" OR ft.{$value} !='' ";
                         $Constraint_filters[] = ReportsForm::$constraintsArray[$value];
                     }
                 }
