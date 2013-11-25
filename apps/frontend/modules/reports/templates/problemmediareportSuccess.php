@@ -89,8 +89,8 @@ echo $NoRecordFound = get_slot('my_slot');
                 
         allCollectionsProblem[allCollectionsProblemcount] = $.ajax({
             method: 'POST',
-            //url: '/index.php/reports/getCollectionProblems?c=' + ids,
-            url: '/frontend_dev.php/reports/getCollectionProblems?c=' + ids,
+            url: '/index.php/reports/getCollectionProblems?c=' + ids,
+//            url: '/frontend_dev.php/reports/getCollectionProblems?c=' + ids,
             dataType: 'json',
             cache: false,
             success: function(result) {
