@@ -661,7 +661,7 @@ class reportsActions extends sfActions {
                             $format = '';
 
                             foreach ($FormatArray as $formatValue) {
-                                if ($formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
+                                if (@$formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue)) {
                                     $format .= $formatTypeValuesManager->getArrayOfValueTargeted($Asset['AssetGroup']['type'], 'formatVersion', $formatValue) . ' , ';
                                 } else {
                                     $format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
@@ -682,8 +682,8 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['Duration type Methodology'] = $Asset['AssetGroup']['FormatType']['duration_type_methodology'];
 
                             $AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
-
-                            $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
+                            if ($Asset['AssetGroup']['FormatType']['type'])
+                                $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
                             $AssetScoreReport['material'] = NULL;
                             if ($AssetScoreReport['type'] == 'Metal Disc')
                                 $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
