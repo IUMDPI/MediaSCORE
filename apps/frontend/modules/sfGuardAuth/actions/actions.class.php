@@ -123,10 +123,7 @@ class sfGuardAuthActions extends sfActions {
                     ->select("u.*")
                     ->where('u.email_address  = ?', $this->email)
                     ->fetchArray();
-            if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
-                    echo '1';
-                    exit;
-                    }
+           
 
             if (sizeof($validateEmail) > 0) {
                 $user = Doctrine_Core::getTable('sfGuardUser')->find(array($validateEmail[0]['id']));
@@ -134,7 +131,10 @@ class sfGuardAuthActions extends sfActions {
                 $user->setForgot_password(true);
                 $user->setPassword($password);
                 $user->save();
-
+                 if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
+                    echo '1';
+                    exit;
+                    }
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')
                         ->setTo($validateEmail[0]['email_address'])
