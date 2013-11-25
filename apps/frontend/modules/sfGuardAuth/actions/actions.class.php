@@ -131,17 +131,17 @@ class sfGuardAuthActions extends sfActions {
                 $user->setForgot_password(true);
                 $user->setPassword($password);
                 $user->save();
-                 if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
-                    echo '1';
-                    exit;
-                    }
+                
                 $message = Swift_Message::newInstance()
                         ->setFrom('support@indiana.edu')
                         ->setTo($validateEmail[0]['email_address'])
                         ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
                         ->setBody('Your temporary new password is ' . $password)
                         ->setContentType('text/html');
-
+                 if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
+                    echo '2';
+                    exit;
+                    }
                 $this->getMailer()->send($message);
                 $this->redirect('/sfGuardAuth/passwordchange');
             } else {
