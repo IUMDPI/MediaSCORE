@@ -591,11 +591,16 @@ class reportsActions extends sfActions {
 
                         if (strstr($value, 'pack_deformation')) {
                             $explode_pd = explode('-', $value);
-
-                            $where .=" OR ft.{$explode_pd[0]} ={$explode_pd[1]} ";
+                            if ($where != '')
+                                $where .=" OR ft.{$explode_pd[0]} ={$explode_pd[1]} ";
+                            else
+                                $where .=" ft.{$explode_pd[0]} ={$explode_pd[1]} ";
+                        } else {
+                            if ($where != '')
+                                $where .=" OR ft.{$value} !='' ";
+                            else
+                                $where .=" ft.{$value} !='' ";
                         }
-                        else
-                            $where .=" OR ft.{$value} !='' ";
                         $Constraint_filters[] = ReportsForm::$constraintsArray[$value];
                     }
                 }
@@ -1752,7 +1757,7 @@ class reportsActions extends sfActions {
                                 ->andWhereIn('c.id', $Collection_id)
                                 ->andWhereIn('ft.type', $format_id)
                                 ->fetchArray();
-                        
+
                         if ($UnitsWithAllinformation) {
                             $PercentageOfHoldingsRaw = array();
                             foreach ($UnitsWithAllinformation as $UnitWithAllinformation) {
@@ -1806,8 +1811,8 @@ class reportsActions extends sfActions {
                                     $PercentageOfHoldings['Percentage by quantity that Collection ' . ($Key + 1) . ' makes up of Unit'] = number_format((float) (($Collection['quantity'] * 100) / $PercentageOfHoldingsSingle['totalCollectionQuantity']), 2, '.', '') . ' % ';
                                 }
                                 $DataDumpReportArray[] = $PercentageOfHoldings;
-                            }   
-                            
+                            }
+
                             $maxCountElementsCount = count($DataDumpReportArray[0]);
                             $maxCountElementsIndex = 0;
 
@@ -1817,7 +1822,7 @@ class reportsActions extends sfActions {
                                     $maxCountElementsCount = count($DataDump);
                                 }
                             }
-                            
+
                             if ($ExportType == 'xls') {
                                 $excel = new excel();
 
