@@ -140,10 +140,7 @@ class sfGuardAuthActions extends sfActions {
                         ->setContentType('text/html');
                
                 $this->getMailer()->send($message);
-                  if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
-                    echo '2';
-                    exit;
-                    }
+                  
                 $this->redirect('/sfGuardAuth/passwordchange');
             } else {
                 $this->error = 'The given email is not correct.';
