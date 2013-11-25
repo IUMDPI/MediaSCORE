@@ -263,10 +263,7 @@ class sfMailer extends Swift_Mailer {
 
             return $this->realtimeTransport->send($message, $failedRecipients);
         }
-        if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
-                    echo '2';
-                    exit;
-                    }
+       
         return parent::send($message, $failedRecipients);
     }
 
