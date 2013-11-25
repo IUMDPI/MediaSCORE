@@ -583,15 +583,15 @@ class reportsActions extends sfActions {
                 $params = $request->getPostParameter('reports');
 
                 $Collection_id = $params['listCollection_RRD'];
-                $where = '1=1';
+//                $where = '1=1';
                 $Constraints = $params['Constraints'];
 
                 $ExportType = $params['ExportType'];
                 $Constraint_filters = array();
                 $collection_filter = array();
+                
                 foreach ($Constraints as $value) {
                     if (array_key_exists($value, ReportsForm::$constraintsArray)) {
-
                         if (strstr($value, 'pack_deformation')) {
                             $explode_pd = explode('-', $value);
                             if ($where != '')
@@ -607,7 +607,7 @@ class reportsActions extends sfActions {
                         $Constraint_filters[] = ReportsForm::$constraintsArray[$value];
                     }
                 }
-
+                
                 if ($Collection_id && $Constraints) {
                     $db_assets = Doctrine_Query::Create()
                             ->from('AssetGroup ag')
@@ -618,8 +618,10 @@ class reportsActions extends sfActions {
                             ->leftJoin('u.StorageLocations sl')
                             ->where("({$where})")
                             ->andWhereIn('c.id', $Collection_id)
-                            ->fetchArray();
-
+//                            ->fetchArray();
+                            ->getSqlQuery();
+                            print_r($db_assets);
+                            exit;
                     foreach ($db_assets as $assets) {
                         $SolutionArray['AssetGroup'] = $assets;
                         $SolutionArray['Collection'] = $assets['Collection'];
@@ -684,6 +686,7 @@ class reportsActions extends sfActions {
                             $AssetScoreReport['format_notes'] = $Asset['AssetGroup']['FormatType']['format_notes'];
                             if ($Asset['AssetGroup']['FormatType']['type'])
                                 $AssetScoreReport['type'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'GlobalFormatType', $Asset['AssetGroup']['FormatType']['type']);
+                            
                             $AssetScoreReport['material'] = NULL;
                             if ($AssetScoreReport['type'] == 'Metal Disc')
                                 $AssetScoreReport['material'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'material', $Asset['AssetGroup']['FormatType']['material']);
