@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -618,10 +619,8 @@ class reportsActions extends sfActions {
                             ->leftJoin('u.StorageLocations sl')
                             ->where("({$where})")
                             ->andWhereIn('c.id', $Collection_id)
-//                            ->fetchArray();
-                            ->getSqlQuery();
-                            print_r($db_assets);
-                            exit;
+                            ->fetchArray();
+
                     foreach ($db_assets as $assets) {
                         $SolutionArray['AssetGroup'] = $assets;
                         $SolutionArray['Collection'] = $assets['Collection'];
