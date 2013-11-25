@@ -138,11 +138,12 @@ class sfGuardAuthActions extends sfActions {
                         ->setSubject('Forgot Password Request for ' . $validateEmail[0]['username'])
                         ->setBody('Your temporary new password is ' . $password)
                         ->setContentType('text/html');
-                 if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
+               
+                $this->getMailer()->send($message);
+                  if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
                     echo '2';
                     exit;
                     }
-                $this->getMailer()->send($message);
                 $this->redirect('/sfGuardAuth/passwordchange');
             } else {
                 $this->error = 'The given email is not correct.';
