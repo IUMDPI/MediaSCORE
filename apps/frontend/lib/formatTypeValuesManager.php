@@ -191,7 +191,7 @@ class formatTypeValuesManager {
      * 
      */
     public function getArrayOfValueTargeted($FormatTypekey, $ValueKey, $index) {
-        return ($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] && strtolower($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) != 'select') ? $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] : 'NULL';
+        return (isset($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) && $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] && strtolower($this->ArrayOfValues[$FormatTypekey][$ValueKey][$index]) != 'select') ? $this->ArrayOfValues[$FormatTypekey][$ValueKey][$index] : 'NULL';
     }
 
 }
