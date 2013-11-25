@@ -73,10 +73,7 @@ class Swift_Mailer
     {
       $this->_transport->start();
     }
-         if($_SERVER['REMOTE_ADDR']== '39.42.30.193'){
-                    echo time();
-                    exit;
-                    }
+  
     return $this->_transport->send($message, $failedRecipients);
   }
   
