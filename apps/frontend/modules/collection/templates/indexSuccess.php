@@ -98,13 +98,9 @@ if ($url)
 </style>
 <div style="width: 100%;margin: 0 auto;padding: 10px 0 4px;"> 
 
-    <ul class="tabs" data-persist="true">
+    <ul class="tabs" style="background: url(/images/wireframes/nav-background.png), linear-gradient(to bottom, #635e55, #4c473c);" data-persist="true">
         <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $IsMediaScoreAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $IsMediaScoreAccess)) { ?>
-            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'bg7d110c' : ((!isset($view)) || ($view == 'bg7d110c' ) ? '' : 'SelectTabClass') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">MediaSCORE</a></li> 
-        <?php } ?>
-        <?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess)) { ?>
-            <li><a  class='<?php echo (isset($view) && $view == 'river') ? 'bg7d110c' : 'SelectTabClass'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >MediaRIVERS</a></li>
-        <?php } ?>
+            <li><a class='<?php echo (isset($view) && $view == 'score' ) ? 'bg7d110c' : ((!isset($view)) || ($view == 'bg7d110c' ) ? '' : 'SelectTabClass') ?>' href="<?php echo url_for('collection/setview') . '?view=score&u=' . $unitID ?>"   id="mediascoresView">MediaSCORE</a></li><?php } ?><?php if ($sf_user->getGuardUser()->getRole() == 1 || ($sf_user->getGuardUser()->getRole() == 0 && $ISMediaRiverAccess) || ($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess)) { ?><li><a  class='<?php echo (isset($view) && $view == 'river') ? 'bg7d110c' : 'SelectTabClass'; ?>'  href="<?php echo url_for('collection/setview') . '?view=river&u=' . $unitID ?>" id="mediariversView" >MediaRIVERS</a></li><?php } ?>
     </ul>
     <div class="tabcontents">
         <?php if ($IsMediaScoreAccess || $ISMediaRiverAccess || $sf_user->getGuardUser()->getRole() == 1) { ?>
