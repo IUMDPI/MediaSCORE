@@ -266,6 +266,7 @@ class excel extends PHPExcel {
                 }
             }
         }
+        $path = str_replace('//', '/', $path);
         $objWriter = PHPExcel_IOFactory::createWriter($this, 'Excel2007');
         $objWriter->save($path);
         $this->disconnectWorksheets();
@@ -278,7 +279,7 @@ class excel extends PHPExcel {
      */
     function DownloadXLSX($file_name_with_directory, $file_name) {
         $file_url = $this->getUploadDicrectoryPath() . $file_name_with_directory;
-        
+
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");

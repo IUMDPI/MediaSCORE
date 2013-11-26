@@ -1328,7 +1328,7 @@ class reportsActions extends sfActions {
 
                     $excel->SaveFile();
                     $excel->DownloadXLSX($file_name_with_directory, $filename);
-//                    $excel->DeleteFile($file_name_with_directory);
+                    $excel->DeleteFile($file_name_with_directory);
                     exit;
                 } else {
 
