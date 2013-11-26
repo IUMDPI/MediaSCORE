@@ -123,7 +123,7 @@ class sfGuardAuthActions extends sfActions
 			}
 		}
 	}
-
+ 
 	/**
 	 * forgot password method
 	 * 

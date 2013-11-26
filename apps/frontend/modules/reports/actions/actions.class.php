@@ -590,7 +590,7 @@ class reportsActions extends sfActions {
                 $ExportType = $params['ExportType'];
                 $Constraint_filters = array();
                 $collection_filter = array();
-                
+                $where='';
                 foreach ($Constraints as $value) {
                     if (array_key_exists($value, ReportsForm::$constraintsArray)) {
                         if (strstr($value, 'pack_deformation')) {
@@ -816,10 +816,7 @@ class reportsActions extends sfActions {
                             $excel->setFileName($file_name_with_directory);
                             $excel->setSheetTitle($Sheettitle);
 
-                            $excel->createExcel(TRUE, $filters);
-                            echo '<pre style="red">';
-                            var_dump($excel);
-                            exit;
+                            $excel->createExcel(TRUE, $filters);                           
                             $excel->SaveFile();
                             $excel->DownloadXLSX($file_name_with_directory, $filename);
                             $excel->DeleteFile($file_name_with_directory);
@@ -844,11 +841,11 @@ class reportsActions extends sfActions {
                 }
             }
         }
-    }
+    } 
 
     /**
      * All Data Outpul Report for All  Collection, Units ,Formats and Asset Groups 
-     * 
+     *  ss 
      * @param sfWebRequest $request 
      */
     public function executeAlldataoutputreport(sfWebRequest $request) {
