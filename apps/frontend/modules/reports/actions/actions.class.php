@@ -801,6 +801,7 @@ class reportsActions extends sfActions {
                         $AssetScoreReportArray = $commonFunctions->arsort($AssetScoreReportArray, 'score');
                         if ($ExportType == 'xls') {
                             $excel = new excel();
+                            
                             $excel->setDataArray($AssetScoreReportArray);
                             $excel->extractHeadings();
                             $filename = 'Problem_Media_Report_' . date('Ymd') . '.xlsx';
@@ -808,7 +809,7 @@ class reportsActions extends sfActions {
 //                $intial_dicrectory = '\AssetsScore\xls\\';
                             $intial_dicrectory = '/AssetsScore/xls/';
                             $file_name_with_directory = $intial_dicrectory . $filename;
-
+                            
 
                             $excel->setDataArray($AssetScoreReportArray);
                             $excel->extractHeadings();
@@ -816,7 +817,9 @@ class reportsActions extends sfActions {
                             $excel->setSheetTitle($Sheettitle);
 
                             $excel->createExcel(TRUE, $filters);
-
+                            echo '<pre style="red">';
+                            var_dump($excel);
+                            exit;
                             $excel->SaveFile();
                             $excel->DownloadXLSX($file_name_with_directory, $filename);
                             $excel->DeleteFile($file_name_with_directory);
