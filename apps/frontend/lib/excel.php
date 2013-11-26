@@ -278,7 +278,7 @@ class excel extends PHPExcel {
      */
     function DownloadXLSX($file_name_with_directory, $file_name) {
         $file_url = $this->getUploadDicrectoryPath() . $file_name_with_directory;
-
+        
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");
@@ -296,7 +296,7 @@ class excel extends PHPExcel {
      * @return Boolean
      */
     function DeleteFile($file_path) {
-        return unlink($this->getUploadDicrectoryPath() . $file_path);
+//        return unlink($this->getUploadDicrectoryPath() . $file_path);
     }
 
 }

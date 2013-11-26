@@ -81,7 +81,7 @@ echo $NoRecordFound = get_slot('my_slot');
         //Aborting previous ajax call before sending a new ajax calls
         if(typeof allCollectionsProblem != undefined && parseInt(allCollectionsProblem.length) > 0){
             $.each(allCollectionsProblem, function(index,oneajaxcall){
-                if(typeof oneajaxcall != undefined)
+                if(typeof oneajaxcall != undefined && oneajaxcall)
                     oneajaxcall.abort(); 
             });
             allCollectionsProblem=[];
