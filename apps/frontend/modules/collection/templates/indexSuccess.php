@@ -423,7 +423,7 @@ if ($url)
         
         Check[i] = $.ajax({
             type: 'POST',
-            url: '/frontend_dev.php/collection/index',
+            url: '/index.php/collection/index',
             data: {id: '<?php echo $unitID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), score: $('#score').val(), score_start: $('#score_start').val() ,  score_end:$('#score_end').val(),scoreType:$("#scoreType").val(),storagefilter:$("#storagefilter").val()},
             dataType: 'json',
             cache: false,
@@ -535,7 +535,7 @@ if ($url)
     });
 
     function BindJsAgain(){
-        $.get('/frontend_dev.php/storagelocation/index',{
+        $.get('/index.php/storagelocation/index',{
             u:$('#collection_parent_node_id').val()}, 
         function (storageLocation) {
             $('#collection_storage_locations_list').html('');

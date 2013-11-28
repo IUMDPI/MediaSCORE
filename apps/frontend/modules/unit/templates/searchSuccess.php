@@ -380,7 +380,7 @@
     function filterRecords() {
         Check[i] = $.ajax({
             type: 'POST',
-            url: '/frontend_dev.php/unit/search',
+            url: '/index.php/unit/search',
             data: {s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), search_values: $('#search_values').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val() , storagefilter:$("#storagefilter").val()},
             dataType: 'json',
             cache: false,

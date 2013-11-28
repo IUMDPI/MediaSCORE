@@ -200,7 +200,7 @@ if ($sf_user->getGuardUser()->getType() != 3) {
         collectionID = '<?php echo $collectionID; ?>';
         Check[i] = $.ajax({
             type: 'POST',
-            url: '/frontend_dev.php/assetgroup/index',
+            url: '/index.php/assetgroup/index',
             data: {c: '<?php echo $collectionID; ?>', s: $('#searchText').val(), status: $('#filterStatus').val(), from: $('#from').val(), to: $('#to').val(), datetype: $('#date_type').val(), searchScore: $('#searchScore').val(), searchStorageLocation: $('#searchStorageLocation').val(), scoreType: $('#scoreType').val(), score_start: $('#score_start').val(), score_end: $('#score_end').val()},
             dataType: 'json',
             cache: false,

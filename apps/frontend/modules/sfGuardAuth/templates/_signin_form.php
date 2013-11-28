@@ -74,7 +74,7 @@
     function getUnitPersonnel(id){
         $.ajax({
             method: 'POST', 
-            url: '/frontend_dev.php/unit/unitPersonnelLocation?u='+id,
+            url: '/index.php/unit/unitPersonnelLocation?u='+id,
             dataType: 'json',
             cache: false,
             success: function (result) { 
