@@ -7,7 +7,7 @@ class urlSlug {
         $text = preg_replace('/\W+/', '-', $text);
 // 
 //    // trim and lowercase
-        $text = strtolower(trim($text, '-'));
+        $text = strtolower(trim($text, '-')); 
 
 
 

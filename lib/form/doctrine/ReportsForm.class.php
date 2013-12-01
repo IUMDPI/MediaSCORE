@@ -31,7 +31,6 @@ class ReportsForm extends BaseReportsForm
 		$ListReports = array(
 			0 => 'Output All Asset Groups Report',
 			1 => 'Output All Asset Storage Locations',
-//			2 => 'Output All Unit Personnel',
 			3 => 'Output All Users Report',
 		);
 		$actionName = $this->getOption('from');

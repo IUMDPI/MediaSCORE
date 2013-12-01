@@ -255,6 +255,7 @@ class excel extends PHPExcel {
     public function SaveFile() {
         $path = sfConfig::get('sf_upload_dir') . '/' . $this->filename;
         $dirs = explode('/', $this->filename);
+        
         $IamAtThisDirectory = $this->getUploadDicrectoryPath();
         $dirsCount = count($dirs);
         foreach ($dirs as $key => $dir) {
@@ -267,6 +268,10 @@ class excel extends PHPExcel {
             }
         }
         $path = str_replace('//', '/', $path);
+        if($_SERVER['REMOTE_ADDR'] == '182.185.172.215'){
+            echo $path;
+            exit;
+        }
         $objWriter = PHPExcel_IOFactory::createWriter($this, 'Excel2007');
         $objWriter->save($path);
         $this->disconnectWorksheets();
