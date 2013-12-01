@@ -269,6 +269,8 @@ class excel extends PHPExcel {
         }
         $path = str_replace('//', '/', $path);
         if($_SERVER['REMOTE_ADDR'] == '182.185.172.215'){
+            echo '<pre>';
+            print_r($this);
             echo $path;
             exit;
         }
