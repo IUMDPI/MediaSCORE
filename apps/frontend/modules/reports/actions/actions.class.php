@@ -12,6 +12,9 @@ class reportsActions extends sfActions {
 
     public function preExecute() {
         parent::preExecute();
+        set_time_limit(0);
+        @ini_set("memory_limit", "1000M"); # 1GB
+        @ini_set("max_execution_time", 999999999999); # 1GB
         $uri = $this->getContext()->getRouting()->getCurrentInternalUri();
         $actionWithParam = explode('/', $uri);
         $param = $actionWithParam[(count($actionWithParam) - 1)];
@@ -569,9 +572,7 @@ class reportsActions extends sfActions {
      * @param sfWebRequest $request 
      */
     public function executeProblemmediareport(sfWebRequest $request) {
-        set_time_limit(0);
-        @ini_set("memory_limit", "1000M"); # 1GB
-        @ini_set("max_execution_time", 999999999999); # 1GB
+        
         $this->form = new ReportsForm(null, array('from' => 'problemmediareport', 'user' => $this->getUser()->getGuardUser()));
         if ($request->isMethod(sfRequest::POST)) {
             $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
