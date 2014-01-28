@@ -1,12 +1,12 @@
 production:
     .settings:
-        base:       http://mediascore.avpreserve.com
-        url: http://mediascore.avpreserve.com
+        base:       https://mediascore.avpreserve.com
+        url: https://mediascore.avpreserve.com
         
 qa:
     .settings:
-        base:     http://mediascoreqa.avpreserve.com
-        url: http://mediascoreqa.avpreserve.com
+        base:     https://mediascoreqa.avpreserve.com
+        url: https://mediascoreqa.avpreserve.com
 testing:
     .settings:
         base:     http://mediascore.live.geekschicago.com/frontend_dev.php
