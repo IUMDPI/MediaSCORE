@@ -1,8 +1,8 @@
 <?php
+$start_time = microtime(TRUE);
 //@set_time_limit(0);
 //@ini_set("memory_limit", "1000M"); # 1GB
 //@ini_set("max_execution_time", 999999999999); # 1GB
-$start_time = microtime(TRUE);
 if ( ! isset($view) || $view == '')
 	$view = 'score';
 if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river')
@@ -323,9 +323,21 @@ if ($view == 'river')
 											</td>
 											<?php
 										}
+										$getInstId = $collection->getInstId();
+										$lenthInstId = strlen($getInstId);
+										$alterInstId = $getInstId;
+
+										$morethenlengthInstId = FALSE;
+										if ((int) $lenthInstId >= 10)
+										{
+											$alterInstId = substr($alterInstId, 0, 10) . '...';
+											$morethenlengthInstId = TRUE;
+										}
 										?>
 
-										<td> <span><?php echo $collection->getInstId(); ?> </span></a></td>
+										<td <?php echo ($morethenlengthInstId) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
+												echo $alterInstId;
+												?> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
 										<?php
 										$getName = $collection->getName();
 										$lenthName = strlen($getName);
@@ -339,7 +351,10 @@ if ($view == 'river')
 											$morethenlengthName = TRUE;
 										}
 										?>
-										<td><span><?php echo ($morethenlengthName) ? $getName : ''; ?></span></a></td>
+										<td <?php echo ($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
+												<?php
+												echo $alterName;
+												?> <span><?php echo ($morethenlengthName) ? $getName : ''; ?></span></a></td>
 
 										<td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
 										<td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
@@ -464,7 +479,7 @@ if ($view == 'river')
 	var Check = new Array();
 	var i = 0;
 	function filterCollection(view) {
-
+		
 		unitId = '<?php echo $unitID; ?>';
 
 		Check[i] = $.ajax({
@@ -632,9 +647,9 @@ if (sizeof($collections) > 0)
 	</div>
 <?php } ?>
 <?php
-$end_time = microtime(TRUE);
-$time_taken = $end_time - $start_time;
-$time_taken = round($time_taken, 5);
+		$end_time = microtime(TRUE);
+		$time_taken = $end_time - $start_time;
+		$time_taken = round($time_taken, 5);
 
-echo 'Page generated in ' . $time_taken . ' seconds.';
-?>
+		echo 'Page generated in ' . $time_taken . ' seconds.';
+		?>
