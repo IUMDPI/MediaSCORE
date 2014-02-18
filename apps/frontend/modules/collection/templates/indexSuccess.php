@@ -245,7 +245,7 @@ if ($view == 'river')
 
 										<td width="10%">
 											<a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>">
-												<span><?php echo $getInstId ; ?> </span></a></td>
+												<span><?php echo $getInstId; ?> </span></a></td>
 										<?php
 										$getName = $collection->getName();
 //										$lenthName = strlen($getName);
