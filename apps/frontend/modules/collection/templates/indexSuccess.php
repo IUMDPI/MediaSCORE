@@ -335,7 +335,7 @@ if ($view == 'river')
 										}
 										?>
 
-										<td <?php echo ($morethenlengthInstId) ? ''; ?>><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
+										<td ><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
 												echo $alterInstId;
 												?> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
 										<?php
@@ -351,7 +351,7 @@ if ($view == 'river')
 											$morethenlengthName = TRUE;
 										}
 										?>
-										<td <?php echo ($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
+										<td><a href="<?php echo url_for('assetgroup', $collection) ?>">
 												<?php
 												echo $alterName;
 												?> <span><?php echo ($morethenlengthName) ? $getName : ''; ?></span></a></td>
