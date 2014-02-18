@@ -240,7 +240,8 @@ class collectionActions extends sfActions
 			->select('c.*')
 			->leftJoin('c.StorageLocations sl')
 			->where('c.parent_node_id  = ?', $this->unitID)
-			->execute();
+			->getSqlQuery();
+			echo $this->collections;exit;
 		}
 		$this->ThisUnit = $unit;
 		$this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
