@@ -84,7 +84,7 @@ class collectionActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-		$start_time = microtime(TRUE);
+
 		$view = $this->getUser()->getAttribute('view');
 		$unitID = $request->getParameter('id');
 		$searchInpout = $request->getParameter('s');
@@ -279,11 +279,6 @@ class collectionActions extends sfActions
 		}
 
 		$this->AllStorageLocations = $arr;
-		$end_time = microtime(TRUE);
-		$time_taken = $end_time - $start_time;
-		$time_taken = round($time_taken, 5);
-
-		echo 'Page generated in ' . $time_taken . ' seconds.';exit;
 	}
 
 	public function executeShow(sfWebRequest $request)

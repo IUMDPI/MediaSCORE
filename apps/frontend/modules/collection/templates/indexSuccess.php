@@ -1,4 +1,5 @@
 <?php
+$start_time = microtime(TRUE);
 @set_time_limit(0);
 @ini_set("memory_limit", "1000M"); # 1GB
 @ini_set("max_execution_time", 999999999999); # 1GB
@@ -645,3 +646,11 @@ if (sizeof($collections) > 0)
 		</div>
 	</div>
 <?php } ?>
+<?php 
+
+$end_time = microtime(TRUE);
+		$time_taken = $end_time - $start_time;
+		$time_taken = round($time_taken, 5);
+
+		echo 'Page generated in ' . $time_taken . ' seconds.';
+?>
