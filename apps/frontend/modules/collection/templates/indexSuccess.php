@@ -1,8 +1,8 @@
 <?php
 $start_time = microtime(TRUE);
-@set_time_limit(0);
-@ini_set("memory_limit", "1000M"); # 1GB
-@ini_set("max_execution_time", 999999999999); # 1GB
+//@set_time_limit(0);
+//@ini_set("memory_limit", "1000M"); # 1GB
+//@ini_set("max_execution_time", 999999999999); # 1GB
 if ( ! isset($view) || $view == '')
 	$view = 'score';
 if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river')
