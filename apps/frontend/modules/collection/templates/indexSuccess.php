@@ -1,8 +1,5 @@
 <?php
 $start_time = microtime(TRUE);
-//@set_time_limit(0);
-//@ini_set("memory_limit", "1000M"); # 1GB
-//@ini_set("max_execution_time", 999999999999); # 1GB
 if ( ! isset($view) || $view == '')
 	$view = 'score';
 if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river')
@@ -414,28 +411,28 @@ if ($view == 'river')
 		});
 		$("#collectionTable").tablesorter();
 
-		$(".delete_unit").fancybox({
-			'width': '100%',
-			'height': '100%',
-			'autoScale': false,
-			'transitionIn': 'none',
-			'transitionOut': 'none',
-			'type': 'inline',
-			'padding': 0,
-			'showCloseButton': false
-
-		});
-		$(".new_edit_collection").fancybox({
-			'width': '100%',
-			'height': '100%',
-			'autoScale': true,
-			'transitionIn': 'none',
-			'transitionOut': 'none',
-			'type': 'inline',
-			'padding': 0,
-			'showCloseButton': true
-
-		});
+//		$(".delete_unit").fancybox({
+//			'width': '100%',
+//			'height': '100%',
+//			'autoScale': false,
+//			'transitionIn': 'none',
+//			'transitionOut': 'none',
+//			'type': 'inline',
+//			'padding': 0,
+//			'showCloseButton': false
+//
+//		});
+//		$(".new_edit_collection").fancybox({
+//			'width': '100%',
+//			'height': '100%',
+//			'autoScale': true,
+//			'transitionIn': 'none',
+//			'transitionOut': 'none',
+//			'type': 'inline',
+//			'padding': 0,
+//			'showCloseButton': true
+//
+//		});
 	});
 	var filter = 1;
 	var collectionId = null;
