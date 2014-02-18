@@ -335,7 +335,7 @@ if ($view == 'river')
 										}
 										?>
 
-										<td <?php echo ($morethenlengthInstId) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
+										<td <?php echo ($morethenlengthInstId) ? ''; ?>><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
 												echo $alterInstId;
 												?> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
 										<?php
@@ -646,10 +646,3 @@ if (sizeof($collections) > 0)
 		</div>
 	</div>
 <?php } ?>
-<?php
-		$end_time = microtime(TRUE);
-		$time_taken = $end_time - $start_time;
-		$time_taken = round($time_taken, 5);
-
-		echo 'Page generated in ' . $time_taken . ' seconds.';
-		?>
