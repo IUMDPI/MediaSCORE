@@ -84,7 +84,7 @@ class collectionActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-
+		echo 'here';exit;
 		$view = $this->getUser()->getAttribute('view');
 		$unitID = $request->getParameter('id');
 		$searchInpout = $request->getParameter('s');
@@ -240,8 +240,7 @@ class collectionActions extends sfActions
 			->select('c.*')
 			->leftJoin('c.StorageLocations sl')
 			->where('c.parent_node_id  = ?', $this->unitID)
-			->getSqlQuery();
-			echo $this->collections;exit;
+			->execute();
 		}
 		$this->ThisUnit = $unit;
 		$this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
