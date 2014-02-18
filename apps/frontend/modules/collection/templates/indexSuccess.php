@@ -323,19 +323,9 @@ if ($view == 'river')
 											</td>
 											<?php
 										}
-										$getInstId = $collection->getInstId();
-										$lenthInstId = strlen($getInstId);
-										$alterInstId = $getInstId;
-
-										$morethenlengthInstId = FALSE;
-										if ((int) $lenthInstId >= 10)
-										{
-											$alterInstId = substr($alterInstId, 0, 10) . '...';
-											$morethenlengthInstId = TRUE;
-										}
 										?>
 
-											<td> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
+										<td> <span><?php echo $collection->getInstId(); ?> </span></a></td>
 										<?php
 										$getName = $collection->getName();
 										$lenthName = strlen($getName);
@@ -474,7 +464,7 @@ if ($view == 'river')
 	var Check = new Array();
 	var i = 0;
 	function filterCollection(view) {
-		
+
 		unitId = '<?php echo $unitID; ?>';
 
 		Check[i] = $.ajax({
@@ -642,9 +632,9 @@ if (sizeof($collections) > 0)
 	</div>
 <?php } ?>
 <?php
-		$end_time = microtime(TRUE);
-		$time_taken = $end_time - $start_time;
-		$time_taken = round($time_taken, 5);
+$end_time = microtime(TRUE);
+$time_taken = $end_time - $start_time;
+$time_taken = round($time_taken, 5);
 
-		echo 'Page generated in ' . $time_taken . ' seconds.';
-		?>
+echo 'Page generated in ' . $time_taken . ' seconds.';
+?>
