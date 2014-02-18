@@ -84,6 +84,7 @@ class collectionActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
+		$start_time = microtime(TRUE);
 		$view = $this->getUser()->getAttribute('view');
 		$unitID = $request->getParameter('id');
 		$searchInpout = $request->getParameter('s');
@@ -234,12 +235,12 @@ class collectionActions extends sfActions
 			->find($this->unitID);
 			$this->forward404Unless($unit);
 			$this->unitName = $unit->getName();
-			echo $this->collections = Doctrine_Query::Create()
+			$this->collections = Doctrine_Query::Create()
 			->from('Collection c')
 			->select('c.*')
 			->leftJoin('c.StorageLocations sl')
 			->where('c.parent_node_id  = ?', $this->unitID)
-			->getSqlQuery();exit;
+			->execute();
 		}
 		$this->ThisUnit = $unit;
 		$this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
@@ -278,6 +279,11 @@ class collectionActions extends sfActions
 		}
 
 		$this->AllStorageLocations = $arr;
+		$end_time = microtime(TRUE);
+		$time_taken = $end_time - $start_time;
+		$time_taken = round($time_taken, 5);
+
+		echo 'Page generated in ' . $time_taken . ' seconds.';exit;
 	}
 
 	public function executeShow(sfWebRequest $request)
