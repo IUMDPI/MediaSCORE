@@ -324,37 +324,32 @@ if ($view == 'river')
 											<?php
 										}
 										$getInstId = $collection->getInstId();
-										$lenthInstId = strlen($getInstId);
-										$alterInstId = $getInstId;
-
-										$morethenlengthInstId = FALSE;
-										if ((int) $lenthInstId >= 10)
-										{
-											$alterInstId = substr($alterInstId, 0, 10) . '...';
-											$morethenlengthInstId = TRUE;
-										}
+//										$lenthInstId = strlen($getInstId);
+//										$alterInstId = $getInstId;
+//
+//										$morethenlengthInstId = FALSE;
+//										if ((int) $lenthInstId >= 10)
+//										{
+//											$alterInstId = substr($alterInstId, 0, 10) . '...';
+//											$morethenlengthInstId = TRUE;
+//										}
 										?>
 
-										<td ><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
-												echo $alterInstId;
-												?> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
+										<td ><span><?php echo  $getInstId ; ?> </span></a></td>
 										<?php
 										$getName = $collection->getName();
-										$lenthName = strlen($getName);
-										$alterName = $getName;
-
-										$morethenlengthName = FALSE;
-
-										if ((int) $lenthName > 35)
-										{
-											$alterName = (substr($alterName, 0, 35) . '...');
-											$morethenlengthName = TRUE;
-										}
+//										$lenthName = strlen($getName);
+//										$alterName = $getName;
+//
+//										$morethenlengthName = FALSE;
+//
+//										if ((int) $lenthName > 35)
+//										{
+//											$alterName = (substr($alterName, 0, 35) . '...');
+//											$morethenlengthName = TRUE;
+//										}
 										?>
-										<td><a href="<?php echo url_for('assetgroup', $collection) ?>">
-												<?php
-												echo $alterName;
-												?> <span><?php echo ($morethenlengthName) ? $getName : ''; ?></span></a></td>
+										<td><span><?php echo $getName ; ?></span></td>
 
 										<td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
 										<td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
