@@ -323,38 +323,33 @@ if ($view == 'river')
 											</td>
 											<?php
 										}
-										$getInstId = $collection->getInstId();
-										$lenthInstId = strlen($getInstId);
-										$alterInstId = $getInstId;
-
-										$morethenlengthInstId = FALSE;
-										if ((int) $lenthInstId >= 10)
-										{
-											$alterInstId = substr($alterInstId, 0, 10) . '...';
-											$morethenlengthInstId = TRUE;
-										}
+//										$getInstId = $collection->getInstId();
+//										$lenthInstId = strlen($getInstId);
+//										$alterInstId = $getInstId;
+//
+//										$morethenlengthInstId = FALSE;
+//										if ((int) $lenthInstId >= 10)
+//										{
+//											$alterInstId = substr($alterInstId, 0, 10) . '...';
+//											$morethenlengthInstId = TRUE;
+//										}
 										?>
 
-										<td <?php echo ($morethenlengthInstId) ? 'class="long_name_handler_inst tooltip"' : 'class="long_name_handler_inst"'; ?>><a href="<?php echo url_for('assetgroup', $collection) ?>"><?php
-												echo $alterInstId;
-												?> <span><?php echo ($morethenlengthInstId) ? $getInstId : ''; ?> </span></a></td>
+											<td > <span>fdsf </span></a></td>
 										<?php
-										$getName = $collection->getName();
-										$lenthName = strlen($getName);
-										$alterName = $getName;
-
-										$morethenlengthName = FALSE;
-
-										if ((int) $lenthName > 35)
-										{
-											$alterName = (substr($alterName, 0, 35) . '...');
-											$morethenlengthName = TRUE;
-										}
+//										$getName = $collection->getName();
+//										$lenthName = strlen($getName);
+//										$alterName = $getName;
+//
+//										$morethenlengthName = FALSE;
+//
+//										if ((int) $lenthName > 35)
+//										{
+//											$alterName = (substr($alterName, 0, 35) . '...');
+//											$morethenlengthName = TRUE;
+//										}
 										?>
-										<td <?php echo ($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'; ?> ><a href="<?php echo url_for('assetgroup', $collection) ?>">
-												<?php
-												echo $alterName;
-												?> <span><?php echo ($morethenlengthName) ? $getName : ''; ?></span></a></td>
+										<td ><span>fdsafsdf</span></a></td>
 
 										<td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
 										<td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
