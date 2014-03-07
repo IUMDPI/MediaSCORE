@@ -1,8 +1,4 @@
 <?php
-ob_end_flush();
-	ob_flush();
-	flush();
-	ob_start();
 @set_time_limit(0);
 @ini_set("memory_limit", "4000M"); # 3GB
 @ini_set("max_execution_time", 999999999999); # 1GB
@@ -220,7 +216,13 @@ if ($view == 'river')
 							if (sizeof($collections) > 0)
 							{
 								?>
-								<?php foreach ($collections as $collection): ?>
+								<?php
+								foreach ($collections as $collection):
+									@ob_end_flush();
+									@ob_flush();
+									@flush();
+									@ob_start();
+									?>
 									<tr>
 										<?php
 										if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
@@ -295,7 +297,7 @@ if ($view == 'river')
 								{
 									?>
 									<td width="6%"></td>
-								<?php } ?>
+		<?php } ?>
 								<th width="13%">Primary ID</th>
 								<th width="18%">Collection</th>
 								<th>Created</th>
@@ -310,7 +312,7 @@ if ($view == 'river')
 							if (sizeof($collections) > 0)
 							{
 								?>
-								<?php foreach ($collections as $collection): ?>
+									<?php foreach ($collections as $collection): ?>
 									<tr>
 										<?php
 										if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
@@ -378,7 +380,7 @@ if ($view == 'river')
 						</tbody>
 
 
-					<?php } ?>
+				<?php } ?>
 				</table>
 				<?php
 			}
@@ -386,7 +388,7 @@ if ($view == 'river')
 			{
 				?>
 				<h3> <center>You don't have access to Perform any Operations,please contact the administrator for more information</center></h3>
-			<?php } ?>
+<?php } ?>
         </div>
 
         <div id="view2">
