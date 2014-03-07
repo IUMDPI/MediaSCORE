@@ -4,7 +4,7 @@ ob_end_flush();
 	flush();
 	ob_start();
 @set_time_limit(0);
-@ini_set("memory_limit", "3000M"); # 3GB
+@ini_set("memory_limit", "4000M"); # 3GB
 @ini_set("max_execution_time", 999999999999); # 1GB
 if ( ! isset($view) || $view == '')
 	$view = 'score';
