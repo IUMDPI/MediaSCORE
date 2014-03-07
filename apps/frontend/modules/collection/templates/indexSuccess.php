@@ -218,10 +218,7 @@ if ($view == 'river')
 								?>
 								<?php
 								foreach ($collections as $collection):
-									@ob_end_flush();
-									@ob_flush();
-									@flush();
-									@ob_start();
+									
 									?>
 									<tr>
 										<?php
@@ -313,10 +310,7 @@ if ($view == 'river')
 							{
 								?>
 									<?php foreach ($collections as $collection): 
-										@ob_end_flush();
-									@ob_flush();
-									@flush();
-									@ob_start();
+										
 										?>
 									<tr>
 										<?php
