@@ -20,7 +20,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
         $this->getWidget('size')->setLabel('<span class="required">*</span>Size:&nbsp;');
 
 
-        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 'Digital', 'Format Version Betacam SX', 'Format Version IMX')), array('onchange' => 'checkFormat();', 'class' => 'override_required')));
+        $this->setWidget('format', new sfWidgetFormChoice(array('choices' => array('' => 'Select', 'Digital', 'Betacam SX', 'IMX')), array('onchange' => 'checkFormat();', 'class' => 'override_required')));
         $this->setValidator('format', new sfValidatorString(array('required' => true)));
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
 
@@ -41,7 +41,7 @@ class DigitalBetacamForm extends BaseDigitalBetacamForm {
 
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
-
+		$this->getWidget('recordingStandard')->setLabel('Recording Standard:&nbsp;');
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
 
 

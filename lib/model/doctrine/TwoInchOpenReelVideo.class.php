@@ -10,9 +10,10 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class TwoInchOpenReelVideo extends BaseTwoInchOpenReelVideo {
+class TwoInchOpenReelVideo extends BaseTwoInchOpenReelVideo
+{
 
-    public static $constants = array(0 => array('' => 'Select', 0 => 'Quad', 1 => 'IVC', 2 => 'Unknown'),
-        1 => array('' => 'Select', 0 => 'Spot', 1 => 'Cartridge', 2 => '10.5"', 3 => '14"'));
+	public static $constants = array(0 => array('' => 'Select', 0 => 'Quad', 1 => 'IVC', 2 => 'Unknown'),
+		1 => array('' => 'Select', 0 => 'Spot', 1 => 'Cartridge', 2 => '10.5"', 3 => '14"', 4 => '7"'));
 
 }

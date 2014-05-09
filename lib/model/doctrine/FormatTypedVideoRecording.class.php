@@ -13,7 +13,7 @@
 class FormatTypedVideoRecording extends BaseFormatTypedVideoRecording {
 
     public static $constants = array(
-        0 => array('' => 'Select', 0 => 'NTSC', 1 => 'PAL', 2 => 'SECAM', 3 => 'Unknown', 4 => 'Non-native')
+        0 => array('' => 'Select', 0 => 'NTSC', 1 => 'PAL', 2 => 'SECAM', 3 => 'Unknown')
     );
 
 }

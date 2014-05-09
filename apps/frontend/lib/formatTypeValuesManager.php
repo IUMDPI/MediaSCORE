@@ -134,7 +134,7 @@ class formatTypeValuesManager {
                 'dataRate' => XDCamOptical::$constants[3],
                 'oxide' => array('' => 'Select', 0 => 'Chromium Dioxide', 1 => 'Ferric Oxide', 2 => 'Metal Oxide', 3 => 'Unknown'),
                 'bitrate' => DigitalBetacam::$constants[2],
-                'generation' => array(0 => 'Orignal', 1 => 'Copy', 2 => 'Unknown'),
+                'generation' => array(0 => 'Original', 1 => 'Copy', 2 => 'Unknown'),
                 'GlobalFormatType' => FormatType::$formatTypesValue1d,
             )
         );

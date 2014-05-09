@@ -33,7 +33,7 @@ else
                             <?php echo $form['inst_id']->renderLabel(); ?>
                         </th>
                         <td>
-                            <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
+                            <?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.','style'=>'width:450px;min-height:70px;max-height:70px;')); ?> 
                             <?php echo $form['inst_id']->renderError(); ?>
                         </td>
 
@@ -73,10 +73,10 @@ else
                     <tr>
                         <th><label><span class="required">*</span>Collection Assignment:</label></th>
                         <td>
-                            <select  id="unit-multiple-select">
+                            <select  id="unit-multiple-select" style="max-width:43%;">
                                 <option>Loading Unit(s)...</option>
                             </select>
-                            <select  id="collection-multiple-select">
+                            <select  id="collection-multiple-select" style="max-width:43%;">
                                 <option>Loading Collection(s)...</option>
                             </select>
                         </td>
@@ -132,7 +132,7 @@ else
                                     <div class="row clearfix">
                                         <div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
                                         <div class="right-column">
-                                            <div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?>
+                                            <div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.','style'=>'width:450px;min-height:70px;max-height:70px;')); ?>
                                                 <?php echo $form['inst_id']->renderError(); ?></div>
                                         </div>
                                     </div>

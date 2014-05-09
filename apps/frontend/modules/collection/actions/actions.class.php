@@ -356,7 +356,7 @@ class collectionActions extends sfActions
 			->where('id =?', $unitId)
 			->fetchOne();
 
-			$this->redirect($this->generateUrl("collection", $unit));
+			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 		}
 		else
 		{
@@ -433,8 +433,7 @@ class collectionActions extends sfActions
 			->createQuery('u')
 			->where('id =?', $unitId)
 			->fetchOne();
-
-			$this->redirect($this->generateUrl("collection", $unit));
+			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 		}
 		else
 		{

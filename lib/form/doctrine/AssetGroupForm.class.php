@@ -41,7 +41,7 @@ class AssetGroupForm extends BaseAssetGroupForm {
         $this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('creatorID'))));
 //        $this->setWidget('asset_score', new sfWidgetFormInputHidden(array(), array()));
 
-
+		$this->setWidget('inst_id', new sfWidgetFormTextarea());
         $this->getWidget('inst_id')->setLabel('<span class="required">*</span>Primary ID:&nbsp;');
         $this->getWidget('name')->setLabel('<span class="required">*</span>Name:&nbsp;');
         $this->getWidget('location')->setLabel('Location in room:&nbsp;');

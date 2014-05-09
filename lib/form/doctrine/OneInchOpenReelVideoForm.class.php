@@ -30,7 +30,7 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
         $this->getWidget('format')->setLabel('<span class="required">*</span>Format Version:&nbsp;');
         $this->getWidget('reelSize')->setLabel('<span class="required">*</span>Reel Size:&nbsp;');
 
-        $this->getWidget('whiteResidue')->setLabel('Glue of Reel:&nbsp;');
+        $this->getWidget('whiteResidue')->setLabel('Glue on Reel:&nbsp;');
         $this->getWidget('pack_deformation')->setLabel('<span class="required">*</span>Pack  Deformation:&nbsp;');
 
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));

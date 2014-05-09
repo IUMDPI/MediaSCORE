@@ -1159,7 +1159,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 				}
 				if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'whiteResidue'))
 				{
-					echo 'Glue of Reel = ';
+					echo 'Glue on Reel = ';
 					if (isset($AssetInformatoin[0]['FormatType']['whiteResidue']))
 					{
 						echo $whiteResidue = (($AssetInformatoin[0]['FormatType']['whiteResidue'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);
@@ -1328,7 +1328,7 @@ class scoreCalculator_extended_ultimate extends scoreCalculator_extended_moderat
 			}
 			if (strstr($characteristicsValue['CharacteristicsFormat']['format_c_name'], 'whiteResidue'))
 			{
-				echo 'Glue of Reel = ';
+				echo 'Glue on Reel = ';
 				if (isset($AssetInformatoin[0]['FormatType']['whiteResidue']))
 				{
 					echo $whiteResidue = (($AssetInformatoin[0]['FormatType']['whiteResidue'] == 1) ? (float) $characteristicsValue['c_score'] : (float) 0);

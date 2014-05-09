@@ -18,7 +18,7 @@
         checkFormat();
     });
     function checkFormat(){
-        formatype1 =new Array('Select','Spot, 9"','10.5"','11.75"','14"');
+        formatype1 =new Array('Select','Spot, 9"','10.5"','11.75"','14"','7"');
         formatype2 =new Array('Select','8"','12.5"');
         format=$('#one_inch_open_reel_video_format').val();
         reelsize=$('#one_inch_open_reel_video_reelSize').val();

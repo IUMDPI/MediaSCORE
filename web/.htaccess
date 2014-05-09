@@ -1,8 +1,8 @@
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{HTTPS} !on
-  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  #RewriteCond %{HTTPS} !on
+  #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   # uncomment the following line, if you are having trouble
   # getting no_script_name to work
   #RewriteBase /
