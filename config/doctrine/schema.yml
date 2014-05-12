@@ -238,7 +238,7 @@ AssetGroup:
   columns:
     location: { type: string(255) }
     format_id: { type: integer }
-    #evaluator_history: { type: integer }
+    is_imported: { type: boolean }
   relations:
     Collection: { local: parent_node_id, foreign: id, foreignAlias: heldByCollection ,onDelete: CASCADE}
     FormatType: { local: format_id, foreign: id, foreignAlias: heldByAssetGroups ,onDelete: CASCADE}
