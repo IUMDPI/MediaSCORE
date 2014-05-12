@@ -202,8 +202,9 @@ else
 										<?php echo $form['notes']->renderError(); ?>
 									</div>
 									<div class="row">
-										<div class="left-column"><b><?php echo $form['is_imported']->renderLabel(); ?></b></div>
-										<?php echo $form['is_imported']->render(); ?>
+										<div class="left-column"><b><?php echo $form['is_imported']->renderLabel(); ?></b>
+											<?php echo $form['is_imported']->render(); ?></div>
+										
 										<?php echo $form['is_imported']->renderError(); ?>
 									</div>
 								</div>
