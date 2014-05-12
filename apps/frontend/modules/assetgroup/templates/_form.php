@@ -34,43 +34,43 @@ else
 					?>
 					<tr>
 						<th>
-	<?php echo $form['inst_id']->renderLabel(); ?>
+							<?php echo $form['inst_id']->renderLabel(); ?>
 						</th>
 						<td>
 							<?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.', 'style' => 'width:450px;min-height:70px;max-height:70px;')); ?> 
-	<?php echo $form['inst_id']->renderError(); ?>
+							<?php echo $form['inst_id']->renderError(); ?>
 						</td>
 
 					</tr>
 					<tr>
 						<th>
 							<?php echo $form->renderHiddenFields(); ?>
-	<?php echo $form['name']->renderLabel(); ?>
+							<?php echo $form['name']->renderLabel(); ?>
 						</th>
 						<td>
 							<?php echo $form['name']->render(); ?> 
-	<?php echo $form['name']->renderError(); ?>
+							<?php echo $form['name']->renderError(); ?>
 						</td>
 
 					</tr>
 					<tr>
 						<th>
-	<?php echo $form['resident_structure_description']->renderLabel(); ?>
+							<?php echo $form['resident_structure_description']->renderLabel(); ?>
 						</th>
 						<td>
 							<?php echo $form['resident_structure_description']->render(array('onchange' => 'checkLocationStatus();')); ?> 
 							<span style="display: none;" id="storageAtLogin" class="warning">The selected storage location does not match to the login selected storage location!</span>
-	<?php echo $form['resident_structure_description']->renderError(); ?>
+							<?php echo $form['resident_structure_description']->renderError(); ?>
 						</td>
 
 					</tr>
 					<tr>
 						<th>
-	<?php echo $form['location']->renderLabel(); ?>
+							<?php echo $form['location']->renderLabel(); ?>
 						</th>
 						<td>
 							<?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?> 
-	<?php echo $form['location']->renderError(); ?>
+							<?php echo $form['location']->renderError(); ?>
 						</td>
 
 					</tr>
@@ -87,11 +87,11 @@ else
 					</tr>
 					<tr>
 						<th>
-	<?php echo $form['notes']->renderLabel(); ?>
+							<?php echo $form['notes']->renderLabel(); ?>
 						</th>
 						<td>
 							<?php echo $form['notes']->render(array('title' => 'Explain what is distinctive about this subcollection.')); ?>
-	<?php echo $form['notes']->renderError(); ?>
+							<?php echo $form['notes']->renderError(); ?>
 						</td>
 
 					</tr>
@@ -144,10 +144,10 @@ else
 									{
 										?>
 										<option value="<?php echo $value->getId() ?>"><?php echo $value->getName() ?></option> 
-			<?php
-		}
-	}
-	?>
+										<?php
+									}
+								}
+								?>
 							</select>
 						</td>
 					</tr>
@@ -160,15 +160,15 @@ else
 										<div class="left-column"><b> <?php echo $form['inst_id']->renderLabel(); ?></b></div>
 										<div class="right-column">
 											<div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.', 'style' => 'width:450px;min-height:70px;max-height:70px;')); ?>
-	<?php echo $form['inst_id']->renderError(); ?></div>
+												<?php echo $form['inst_id']->renderError(); ?></div>
 										</div>
 									</div>
 									<div class="row clearfix">
 										<div class="left-column"><?php echo $form->renderHiddenFields(); ?>
 											<b><?php echo $form['name']->renderLabel(); ?></b></div>
 										<div class="right-column">
-	<?php echo $form['name']->render(); ?> 
-	<?php echo $form['name']->renderError(); ?>
+											<?php echo $form['name']->render(); ?> 
+											<?php echo $form['name']->renderError(); ?>
 										</div>
 									</div>
 
@@ -180,8 +180,8 @@ else
 										<div class="left-column"><b><?php echo $form['resident_structure_description']->renderLabel(); ?></b></div>
 										<div class="right-column">
 											<div>
-	<?php echo $form['resident_structure_description']->render(); ?>
-	<?php echo $form['resident_structure_description']->renderError(); ?>
+												<?php echo $form['resident_structure_description']->render(); ?>
+												<?php echo $form['resident_structure_description']->renderError(); ?>
 											</div>
 										</div>
 									</div>
@@ -189,8 +189,8 @@ else
 									<div class="row clearfix">
 										<div class="left-column"><b><?php echo $form['location']->renderLabel(); ?></b></div>
 										<div class="right-column">
-	<?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
-	<?php echo $form['location']->renderError(); ?>
+											<?php echo $form['location']->render(array('title' => 'Provide a specific location within the storage location such as a shelf number or area of a room.')); ?>
+											<?php echo $form['location']->renderError(); ?>
 										</div>
 									</div>
 								</div>
@@ -198,8 +198,13 @@ else
 								<div class="right-column-container">
 									<div class="row">
 										<div class="left-column"><b><?php echo $form['notes']->renderLabel(); ?></b></div>
-	<?php echo $form['notes']->render(array('style' => 'width:450px;', 'title' => 'Explain what is distinctive about this subcollection.')); ?>
-	<?php echo $form['notes']->renderError(); ?>
+										<?php echo $form['notes']->render(array('style' => 'width:450px;', 'title' => 'Explain what is distinctive about this subcollection.')); ?>
+										<?php echo $form['notes']->renderError(); ?>
+									</div>
+									<div class="row">
+										<div class="left-column"><b><?php echo $form['is_imported']->renderLabel(); ?></b></div>
+										<?php echo $form['is_imported']->render(); ?>
+										<?php echo $form['is_imported']->renderError(); ?>
 									</div>
 								</div>
 							</div>
@@ -215,10 +220,10 @@ else
 
 
 
-	<?php
+					<?php
 //                echo $form;
-}
-?>
+				}
+				?>
 
 
             </tbody>
@@ -226,10 +231,10 @@ else
 
 
     </form>
-<?php
-if ( ! $form->getObject()->isNew())
-{
-	?> 
+	<?php
+	if ( ! $form->getObject()->isNew())
+	{
+		?> 
 		<div id="format-type-container" class="section edit-asset-group clearfix">
 
 		</div>
@@ -247,10 +252,10 @@ if ( ! $form->getObject()->isNew())
 								foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
 									?>
 									<option value ="<?php echo strtolower($formatTypeModelName) ?>"><?php echo $formatTypeStr ?></option>
-			<?php
-		endforeach;
-	endforeach
-	?>
+									<?php
+								endforeach;
+							endforeach
+							?>
 						</select>
 
 					</div>
@@ -266,8 +271,8 @@ if ( ! $form->getObject()->isNew())
 			?>
 			<input id="asset-group-save" class="custom_button" type="submit" value="<?php echo $buttonValue; ?>" />&nbsp;or&nbsp;<a href="<?php echo url_for('assetgroup', $collectionObj) ?>">cancel</a>
 			<div style="clear: both;"></div>
+		<?php } ?>
 	<?php } ?>
-<?php } ?>
 </div>
 <script type="text/javascript">
 	var userType = '<?php echo $sf_user->getGuardUser()->getType(); ?>';
