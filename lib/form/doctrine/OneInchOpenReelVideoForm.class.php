@@ -38,7 +38,7 @@ class OneInchOpenReelVideoForm extends BaseOneInchOpenReelVideoForm {
 
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
-
+		$this->getWidget('recordingStandard')->setLabel('Recording Standard:&nbsp;');
         $this->widgetSchema->moveField('format', 'before', 'recordingStandard');
         foreach (array('noise_reduction',
     'duration_type_methodology',

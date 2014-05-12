@@ -45,7 +45,7 @@ class HDCamForm extends BaseHDCamForm {
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
         $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
-
+		$this->getWidget('recordingStandard')->setLabel('Recording Standard:&nbsp;');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
         foreach (array('noise_reduction',

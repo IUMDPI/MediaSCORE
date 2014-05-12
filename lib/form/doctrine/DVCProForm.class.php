@@ -40,7 +40,7 @@ DVCPRO HD has a red tape-door', 'class' => 'override_required')));
 
         //constaints applyed
         $this->setWidget('recordingStandard', new sfWidgetFormChoice(array('choices' => FormatTypedVideoRecording::$constants[0]), array('class' => 'override_required')));
-
+$this->getWidget('recordingStandard')->setLabel('Recording Standard:&nbsp;');
         $this->widgetSchema->moveField('formatVersion', 'before', 'recordingStandard');
         $this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => $this->getObject()->getTypeValue())));
 
