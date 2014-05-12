@@ -110,6 +110,7 @@ else
                                 ?>
 
                             </select>
+							<br/>
                             <span style="font-weight: bold; ">Collection</span>
                             <select  id="collection-multiple-select" >
                                 <?php foreach ($collection as $value) { ?>
