@@ -102,11 +102,11 @@ class VHSForm extends BaseVHSForm
 		}
 	}
 
-	protected function doSave($con = null)
-	{
-		echo 'there';exit;
-
-		parent::doSave($con);
-	}
+//	protected function doSave($con = null)
+//	{
+//		echo 'there';exit;
+//
+//		parent::doSave($con);
+//	}
 
 }
