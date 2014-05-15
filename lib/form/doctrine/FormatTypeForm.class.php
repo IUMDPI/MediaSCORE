@@ -122,11 +122,6 @@ class FormatTypeForm extends BaseFormatTypeForm
 		}
 	}
 
-	protected function doSave($con = null)
-	{
-		echo 'here';exit;
-
-		parent::doSave($con);
-	}
+	
 
 }
