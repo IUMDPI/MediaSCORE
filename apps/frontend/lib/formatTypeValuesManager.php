@@ -114,7 +114,7 @@ class formatTypeValuesManager {
                 'material' => MetalDisc::$constants,
                 'substrate' => LacquerDisc::$constants,
                 'soundtrackFormat' => Film::$constants[2],
-                'substrate' => Film::$constants[3],
+                'filmsubstrate' => Film::$constants[3],
                 'composition' => SoundWireReel::$constants,
                 'recordingLayer' => MiniDisc::$constants[0],
                 'recordingSpeed' => MiniDisc::$constants[1],

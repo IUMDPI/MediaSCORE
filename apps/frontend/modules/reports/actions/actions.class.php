@@ -1096,7 +1096,7 @@ class reportsActions extends sfActions
 
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 
-							$AssetScoreReport['Storage Location Name'] =$Asset['AssetGroup']['location'];
+							$AssetScoreReport['Storage Location Name'] = $Asset['AssetGroup']['location'];
 							$AssetScoreReport['Asset Group Description Location'] = $Asset['AssetGroup']['notes'];
 
 
@@ -1187,6 +1187,8 @@ class reportsActions extends sfActions
 							$AssetScoreReport['colorfade'] = ($Asset['AssetGroup']['FormatType']['colorFade'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['soundtrackformat'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'soundtrackFormat', $Asset['AssetGroup']['FormatType']['soundtrackFormat']);
 							$AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'substrate', $Asset['AssetGroup']['FormatType']['substrate']);
+							if ($AssetScoreReport['type'] == 'Film')
+								$AssetScoreReport['substrate'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'filmsubstrate', $Asset['AssetGroup']['FormatType']['substrate']);
 							$AssetScoreReport['strongodor'] = ($Asset['AssetGroup']['FormatType']['strongOdor'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['vinegarodor'] = ($Asset['AssetGroup']['FormatType']['vinegarOdor'] == '1') ? 'Yes' : 'No';
 							$AssetScoreReport['adstriplevel'] = $Asset['AssetGroup']['FormatType']['ADStripLevel'];
@@ -1288,7 +1290,8 @@ class reportsActions extends sfActions
 						}
 					}
 					echo '<pre>';
-					print_r($DataDumpReportArray);exit;
+					print_r($DataDumpReportArray);
+					exit;
 				}
 				elseif ($param['reports']['listReports'] == '1')
 				{
