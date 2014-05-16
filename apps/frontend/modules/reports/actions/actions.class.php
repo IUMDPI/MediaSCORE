@@ -1287,6 +1287,8 @@ class reportsActions extends sfActions
 							$DataDumpReportArray[] = $AssetScoreReport;
 						}
 					}
+					echo '<pre>';
+					print_r($DataDumpReportArray);exit;
 				}
 				elseif ($param['reports']['listReports'] == '1')
 				{
