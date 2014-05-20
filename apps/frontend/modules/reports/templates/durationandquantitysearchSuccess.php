@@ -32,7 +32,7 @@ echo $NoRecordFound = get_slot('my_slot');
                     <?php echo $form['listCollection_RRD']->renderLabel(); ?>
                 </th>
                 <td>
-                    <?php echo $form['listCollection_RRD']->render(); ?>
+                    <?php echo $form['listCollection_RRD']->render(array('style'=>'max-width:600px;')); ?>
                     <?php echo $form['listCollection_RRD']->renderError(); ?>
                 </td>
             </tr>
