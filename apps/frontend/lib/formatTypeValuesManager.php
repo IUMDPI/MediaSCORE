@@ -290,7 +290,7 @@ class formatTypeValuesManager
 
 	public function getFormatRelatedFields($FormatTypekey, $fullArray)
 	{
-//		echo $FormatTypekey;
+
 		foreach ($fullArray as $key => $value)
 		{
 
@@ -301,9 +301,7 @@ class formatTypeValuesManager
 			else if ($fullArray[$key] === 'NULL')
 				$fullArray[$key] = 'N/A';
 		}
-//		echo '<pre>';
-//		print_r($fullArray);
-//		exit;
+
 		return $fullArray;
 	}
 

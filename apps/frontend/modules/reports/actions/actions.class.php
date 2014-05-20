@@ -978,7 +978,6 @@ class reportsActions extends sfActions
 							$excel->extractHeadings();
 							$filename = 'Problem_Media_Report_' . date('Ymd') . '.xlsx';
 							$Sheettitle = 'Problem_Media_Report';
-//                $intial_dicrectory = '\AssetsScore\xls\\';
 							$intial_dicrectory = '/AssetsScore/xls/';
 							$file_name_with_directory = $intial_dicrectory . $filename;
 
@@ -1000,7 +999,7 @@ class reportsActions extends sfActions
 							$csvHandler = new csvHandler();
 
 							$file_name = 'Problem_Media_Report_' . date('Ymd') . '.csv';
-//                $intial_dicrectory = '\RecordingDate\csv\\';
+
 							$intial_dicrectory = '/AssetsScore/csv/';
 							$file_name_with_directory = $intial_dicrectory . $file_name;
 							$csvHandler->CreateCSV($AssetScoreReportArray, $file_name_with_directory, FALSE, 0, TRUE, $filters);
@@ -1155,7 +1154,7 @@ class reportsActions extends sfActions
 
 							$AssetScoreReport['Asset Group ID'] = $Asset['AssetGroup']['id'];
 							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
-							
+
 
 							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 
