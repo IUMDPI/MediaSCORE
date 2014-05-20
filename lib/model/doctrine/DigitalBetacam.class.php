@@ -14,7 +14,7 @@ class DigitalBetacam extends BaseDigitalBetacam {
 
     public static $constants = array(
         array('' => 'Select', 0 => 'Small', 1 => 'Standard'),
-        array('' => 'Select', 'Digital', 'SX', 'IMX'),
+        array('' => 'Select', 'Digital', 'Betacam SX', 'IMX'),
         array('30', '40', '50', 'unknown'));
 
 }

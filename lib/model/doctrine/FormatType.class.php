@@ -113,7 +113,7 @@ class FormatType extends BaseFormatType {
         '31' => '8MM',
         '33' => '2" Open Reel Video',
         '34' => '1" Open Reel Video',
-        '35' => '½" Open Reel Video',
+        '35' => '1/2" Open Reel Video',
         '37' => 'DV',
         '38' => 'DVCAM',
         '40' => 'Betacam',

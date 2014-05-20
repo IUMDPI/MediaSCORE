@@ -12,7 +12,7 @@
  */
 class HDCam extends BaseHDCam {
 
-    public static $constants = array(0 => array('' => 'Select', 0 => 'Standard', 1 => 'SR'),
+    public static $constants = array(0 => array('' => 'Select', 0 => 'Standard', 1 => 'Version SR'),
         1 => array(0 => 'HQ',
             1 => 'SQ',
             2 => 'SR Lite',
