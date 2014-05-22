@@ -194,7 +194,7 @@ class formatTypeValuesManager
 				'playback' => OpenReelAudioTapeFormatType::$constants[1],
 				'speed' => OpenReelAudioTapeFormatType::$constants[2],
 				'tapeThickness' => OpenReelAudioTapeFormatType::$constants[3],
-				'tape_type' => array('' => 'Select', 0 => 'Type I', 1 => 'Type II', 2 => 'Type III', 3 => 'Type IV'),
+				'tape_type' => AnalogAudiocassette::$constants[0],
 				'sound_field' => AnalogAudiocassette::$constants[1],
 				'gauge' => Film::$constants[0],
 				'color' => Film::$constants[1],
