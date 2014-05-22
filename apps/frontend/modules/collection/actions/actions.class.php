@@ -586,7 +586,7 @@ class collectionActions extends sfActions
 		foreach ($records as $row)
 		{
 			$unknown = 0;
-			
+
 			if (isset($row[17]) && ($row[17] == 'TRUE' || $row[17] == 'true'))
 				$unknown = 1;
 			$collection = Doctrine_Query::Create()
@@ -596,13 +596,14 @@ class collectionActions extends sfActions
 			->fetchOne();
 			if ($collection)
 			{
-				echo $row[2].'<br/>';
+				echo '<pre>';
+				print_r($row);
 				echo $collection->getName();
 				exit;
 			}
 			else
 			{
-				
+
 				$collection = new Collection();
 				$collection->setName($row[2]);
 				$collection->setInstId($row[1]);
@@ -631,7 +632,7 @@ class collectionActions extends sfActions
 			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
 			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
 			$collection->save();
-			echo  '<br/>';
+			echo '<br/>';
 			unset($collection);
 		}
 		echo 'All collection successfully imported';
