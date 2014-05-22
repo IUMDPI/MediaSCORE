@@ -597,6 +597,7 @@ class collectionActions extends sfActions
 			if ($collection)
 			{
 				echo $collection->getId();
+				exit;
 			}
 			else
 			{
