@@ -597,7 +597,7 @@ class collectionActions extends sfActions
 			if ($collection)
 			{
 				echo $row[2].'<br/>';
-				echo $collection->getId();
+				echo $collection->getName();
 				exit;
 			}
 			else
