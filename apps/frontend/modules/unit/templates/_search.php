@@ -21,7 +21,7 @@
                         foreach (FormatType::$formatTypesValue as $formatTypeArray):
                             foreach ($formatTypeArray as $formatTypeModelName => $formatTypeStr):
                                 ?>
-                                <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo $formatTypeStr ?>');"><?php echo $formatTypeStr ?></a></li>
+                                <li><a id="type_<?php echo $formatTypeModelName ?>" value="<?php echo $formatTypeModelName ?>" onclick="makeTypeToken('<?php echo htmlentities($formatTypeStr); ?>');"><?php echo $formatTypeStr ?></a></li>
 
                                 <?php
                             endforeach;
@@ -42,7 +42,7 @@
 
                         <li><h1>Storage Location</h1></li>
                         <?php foreach ($AllStorageLocations as $StorageLoca): ?>
-                            <li><a href="javascript:void(0);" onclick="makeTypeToken('<?php echo $StorageLoca['name'] ?>');"><?php echo $StorageLoca['name'] ?></a></li>
+						<li><a href="javascript:void(0);" onclick="makeTypeToken('<?php echo htmlentities($StorageLoca['name']); ?>');"><?php echo $StorageLoca['name'] ?></a></li>
                         <?php endforeach
                         ?>
                     </ul>
@@ -127,6 +127,7 @@
 
     }
     function makeTypeToken(type) {
+		console.log(type);
         if (type == 0) {
             value = 'Unit';
         }

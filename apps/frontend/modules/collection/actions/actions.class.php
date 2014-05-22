@@ -548,4 +548,87 @@ class collectionActions extends sfActions
 		}
 	}
 
+	public function executeImport(sfWebRequest $request)
+	{
+		$unit = array(1 => 13,
+			2 => 7879,
+			3 => 11,
+			5 => 12,
+			7 => 10,
+			8 => 271,
+			9 => 211,
+			10 => 157,
+			11 => 14,
+			12 => 208,
+			15 => 537,
+			24 => 433,
+			30 => 1134,
+			45 => 7910,
+			47 => 178,
+			48 => 7912,
+			52 => 7918,
+			63 => 241,
+			72 => 1338
+		);
+		$file = file_get_contents("tblCollection.csv");
+		$record_rows = preg_split('/\r*\n+|\r+/', $file);
+		$records = array();
+		foreach ($record_rows as $key => $value)
+		{
+			$records[$key] = str_getcsv($value, ",");
+		}
+		unset($records[0]);
+//		echo '<pre>';
+//		print_r($records);
+//		exit;
+
+
+		foreach ($records as $row)
+		{
+			$unknown = 0;
+			if ($row[17] == 'TRUE' || $row[17] == 'true')
+				$unknown = 1;
+			$collection = Doctrine_Query::Create()
+			->from('Collection c')
+			->select('c.*')
+			->where('c.name  = ?', $row[2])
+			->fetchOne();
+			if ($collection)
+			{
+				
+			}
+			else
+			{
+				$collection = new Collection();
+				$collection->setName($row[2]);
+				$collection->setInstId($row[1]);
+				$collection->setCreatorId(1);
+				$collection->setLastEditorId(1);
+			}
+			$collection->setCharacteristics($row[3]);
+			$collection->setProjectTitle($row[4]);
+			$collection->setIubUnit($unit[$row[5]]);
+			$collection->setIubWork($row[6]);
+			$collection->setDateCompleted(date('Y-m-d', strtotime($records[1][7])));
+			$collection->setScoreSubjectInterest($row[8]);
+			$collection->setNotesSubjectInterest($row[9]);
+			$collection->setScoreContentQuality($row[10]);
+			$collection->setNotesContentQuality($row[11]);
+			$collection->setScoreRareness($row[12]);
+			$collection->setNotesRareness($row[13]);
+			$collection->setScoreDocumentation($row[14]);
+			$collection->setNotesDocumentation($row[15]);
+			$collection->setScoreTechnicalQuality($row[16]);
+			$collection->setNotesTechnicalQuality($row[18]);
+			$collection->setUnknownTechnicalQuality($unknown);
+			$collection->setGenerationStatement($row[19]);
+			$collection->setGenerationStatementNotes($row[20]);
+			$collection->setIpStatement($row[21]);
+			$collection->setIpStatementNotes($row[22]);
+			$collection->setGeneralNotes($row[23]);
+
+			$collection->save();
+		}
+	}
+
 }
