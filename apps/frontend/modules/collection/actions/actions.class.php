@@ -596,6 +596,7 @@ class collectionActions extends sfActions
 			->fetchOne();
 			if ($collection)
 			{
+				echo $row[2].'<br/>';
 				echo $collection->getId();
 				exit;
 			}
