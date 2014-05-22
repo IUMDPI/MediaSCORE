@@ -586,6 +586,7 @@ class collectionActions extends sfActions
 		foreach ($records as $row)
 		{
 			$unknown = 0;
+			echo $row[2] . '<br/>';
 			if (isset($row[17]) && ($row[17] == 'TRUE' || $row[17] == 'true'))
 				$unknown = 1;
 			$collection = Doctrine_Query::Create()
