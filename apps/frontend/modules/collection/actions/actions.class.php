@@ -628,6 +628,7 @@ class collectionActions extends sfActions
 			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
 			$collection->save();
 			echo 'Collection ID ' . $collection->getId() . '<br/>';
+			unset($collection);
 		}
 		echo 'All collection successfully imported';
 		exit;
