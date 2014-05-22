@@ -596,11 +596,11 @@ class collectionActions extends sfActions
 			->fetchOne();
 			if ($collection)
 			{
-				
+				echo $collection->getId();
 			}
 			else
 			{
-				echo 'here';
+				
 				$collection = new Collection();
 				$collection->setName($row[2]);
 				$collection->setInstId($row[1]);
@@ -629,7 +629,7 @@ class collectionActions extends sfActions
 			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
 			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
 			$collection->save();
-			echo 'Collection ID ' . $collection->getName() . '<br/>';
+			echo  '<br/>';
 			unset($collection);
 		}
 		echo 'All collection successfully imported';
