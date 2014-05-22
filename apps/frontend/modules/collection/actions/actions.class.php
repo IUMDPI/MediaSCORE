@@ -626,9 +626,11 @@ class collectionActions extends sfActions
 			$collection->setIpStatement($row[21]);
 			$collection->setIpStatementNotes($row[22]);
 			$collection->setGeneralNotes($row[23]);
-
 			$collection->save();
+			echo 'Collection ID ' . $collection->getId() . '<br/>';
 		}
+		echo 'All collection successfully imported';
+		exit;
 	}
 
 }
