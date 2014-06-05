@@ -52,7 +52,7 @@ Store: # Abstract
       unique: true
   columns:
     name:         { type: string(255), notnull: true }
-    inst_id:      { type: string(255), notnull: true } # The institutional ID - can be modified from the UI
+    inst_id:      { type: text, notnull: true } # The institutional ID - can be modified from the UI
     notes:        { type: text }
     creator_id:      { type: integer } # NOTNULL
     #last_updated: { type: datetime }
