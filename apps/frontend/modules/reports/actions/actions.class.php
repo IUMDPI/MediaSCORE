@@ -1077,7 +1077,9 @@ class reportsActions extends sfActions
 					{
 						foreach ($Assets as $Asset)
 						{
-
+							echo '<pre>';
+							print_r($Asset);
+							exit;
 							$AssetScoreReport = array();
 							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
 							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
