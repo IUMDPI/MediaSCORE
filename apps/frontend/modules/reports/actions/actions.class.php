@@ -1107,22 +1107,22 @@ class reportsActions extends sfActions
 								->leftJoin('u.Editor uce ')
 								->fetchArray();
 							echo '<pre>';print_r($unitInfo);exit;
-							$AssetScoreReport['Creator Unit Created By'] = $unitInfo['Unit']['Creator']['first_name'] . ' ' . $unitInfo['Unit']['Creator']['last_name']; #
-							$AssetScoreReport['CreatorUser ID.'] = $unitInfo['Unit']['Creator']['id'];
-							$AssetScoreReport['Creator User First Name.'] = $unitInfo['Unit']['Creator']['first_name'];
-							$AssetScoreReport['Creator User Last Name.'] = $unitInfo['Unit']['Creator']['last_name'];
-							$AssetScoreReport['Creator User e-mail.'] = $unitInfo['Unit']['Creator']['email_address'];
-							$AssetScoreReport['Creator User Phone.'] = $unitInfo['Unit']['Creator']['phone'];
-							$AssetScoreReport['Creator User Role.'] = $Roles[$unitInfo['Unit']['Creator']['role']];
+							$AssetScoreReport['Creator Unit Created By'] = $unitInfo['Unit']['Creator']['first_name'] . ' ' . $unitInfo[0]['Unit']['Creator']['last_name']; #
+							$AssetScoreReport['CreatorUser ID.'] = $unitInfo[0]['Unit']['Creator']['id'];
+							$AssetScoreReport['Creator User First Name.'] = $unitInfo[0]['Unit']['Creator']['first_name'];
+							$AssetScoreReport['Creator User Last Name.'] = $unitInfo[0]['Unit']['Creator']['last_name'];
+							$AssetScoreReport['Creator User e-mail.'] = $unitInfo[0]['Unit']['Creator']['email_address'];
+							$AssetScoreReport['Creator User Phone.'] = $unitInfo[0]['Unit']['Creator']['phone'];
+							$AssetScoreReport['Creator User Role.'] = $Roles[$unitInfo[0]['Unit']['Creator']['role']];
 
-							$AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($unitInfo['Unit']['updated_at']));
-							$AssetScoreReport['Unit Updated By'] = $unitInfo['Unit']['Editor']['first_name'] . ' ' . $unitInfo['Unit']['Editor']['last_name'];
-							$AssetScoreReport['Editor User ID ,'] = $unitInfo['Unit']['Editor']['id'];
-							$AssetScoreReport['Unit Editor User First Name ,'] = $unitInfo['Unit']['Editor']['first_name'];
-							$AssetScoreReport['Unit Editor User Last Name ,'] = $unitInfo['Unit']['Editor']['last_name'];
-							$AssetScoreReport['Unit Editor User e-mail ,'] = $unitInfo['Unit']['Editor']['email_address'];
-							$AssetScoreReport['Unit Editor User Phone ,'] = $unitInfo['Unit']['Editor']['phone'];
-							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo['Unit']['Editor']['role']];
+							$AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['Unit']['updated_at']));
+							$AssetScoreReport['Unit Updated By'] = $unitInfo[0]['Unit']['Editor']['first_name'] . ' ' . $unitInfo[0]['Unit']['Editor']['last_name'];
+							$AssetScoreReport['Editor User ID ,'] = $unitInfo[0]['Unit']['Editor']['id'];
+							$AssetScoreReport['Unit Editor User First Name ,'] = $unitInfo[0]['Unit']['Editor']['first_name'];
+							$AssetScoreReport['Unit Editor User Last Name ,'] = $unitInfo[0]['Unit']['Editor']['last_name'];
+							$AssetScoreReport['Unit Editor User e-mail ,'] = $unitInfo[0]['Unit']['Editor']['email_address'];
+							$AssetScoreReport['Unit Editor User Phone ,'] = $unitInfo[0]['Unit']['Editor']['phone'];
+							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo[0]['Unit']['Editor']['role']];
 							echo '<pre>';print_r($AssetScoreReport);exit;
 							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
