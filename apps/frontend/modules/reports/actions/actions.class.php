@@ -1081,8 +1081,8 @@ class reportsActions extends sfActions
 					{
 						foreach ($Assets as $Asset)
 						{
-							echo '<pre>';
-							print_r($Asset);
+//							echo '<pre>';
+//							print_r($Asset);
 							
 							$AssetScoreReport = array();
 							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
@@ -1106,6 +1106,7 @@ class reportsActions extends sfActions
 								->leftJoin('u.Creator uc ')
 								->leftJoin('u.Editor uce ')
 								->fetchArray();
+							echo '<pre>';print_r($unitInfo);exit;
 							$AssetScoreReport['Creator Unit Created By'] = $unitInfo['Unit']['Creator']['first_name'] . ' ' . $unitInfo['Unit']['Creator']['last_name']; #
 							$AssetScoreReport['CreatorUser ID.'] = $unitInfo['Unit']['Creator']['id'];
 							$AssetScoreReport['Creator User First Name.'] = $unitInfo['Unit']['Creator']['first_name'];
