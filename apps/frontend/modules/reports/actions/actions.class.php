@@ -1052,7 +1052,7 @@ class reportsActions extends sfActions
 
 					$Asset = Doctrine_Query::Create()
 					->from('AssetGroup a')
-					->select('a.*, ft.*,eh.*,cu.*,eu.*,sl.*,c.*,u.*')
+//					->select('a.*, ft.*,eh.*,cu.*,eu.*,sl.*,c.*,u.*')
 					->innerJoin('a.Collection c')
 					->innerJoin('c.Unit u')
 					->leftJoin("a.FormatType ft")
@@ -1060,6 +1060,7 @@ class reportsActions extends sfActions
 					->leftJoin('a.Creator cu')
 					->leftJoin('a.Editor eu')
 					->leftJoin('u.StorageLocations sl')
+					->leftJoin('u.Personnel p ')
 					->addOrderBy('ft.asset_score DESC')
 					->fetchArray();
 
@@ -1086,7 +1087,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
 							$AssetScoreReport['Unit Name'] = $Asset['Unit']['name'];
 
-							$AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['resident_structure_description'];
+							$AssetScoreReport['Storage Location Building name/Room number.'] = $Asset['Unit']['StorageLocations'][0]['resident_structure_description'];
 							$AssetScoreReport['Contact Notes.'] = $Asset['Unit']['notes'];
 							$AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations'][0]['name'];
 
