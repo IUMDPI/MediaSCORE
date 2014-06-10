@@ -54,10 +54,10 @@ class reportsActions extends sfActions
 		$formatIDs = $request->getParameter('f');
 		$format_explode = explode(',', $formatIDs);
 		$db_collections = Doctrine_Query::Create()
-		->from('AssetGroup as')
-		->innerJoin('as.Collection c')
-		->innerJoin('c.Unit u')
-		->innerJoin('as.FormatType ft');
+			->from('AssetGroup as')
+			->innerJoin('as.Collection c')
+			->innerJoin('c.Unit u')
+			->innerJoin('as.FormatType ft');
 		if ($this->getUser()->getGuardUser()->getRole() == 2)
 		{
 			$db_collections = $db_collections->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
@@ -84,11 +84,11 @@ class reportsActions extends sfActions
 		$collectionIDs = $request->getParameter('c');
 		$collection_explode = explode(',', $collectionIDs);
 		$db_formats = Doctrine_Query::Create()
-		->from('AssetGroup as')
-		->innerJoin('as.Collection c')
-		->innerJoin('c.Unit u')
-		->groupBy('ft.type')
-		->leftJoin('as.FormatType ft');
+			->from('AssetGroup as')
+			->innerJoin('as.Collection c')
+			->innerJoin('c.Unit u')
+			->groupBy('ft.type')
+			->leftJoin('as.FormatType ft');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_formats = $db_formats->whereIn('c.id', $collection_explode);
 		$db_formats = $db_formats->fetchArray();
@@ -110,9 +110,9 @@ class reportsActions extends sfActions
 	{
 		$collectionIDs = $request->getParameter('u');
 		$EvaluatorHistorys = Doctrine_Query::Create()
-		->from('AssetGroup as')
-		->innerJoin('as.EvaluatorHistory eh')
-		->innerJoin('as.FormatType ft');
+			->from('AssetGroup as')
+			->innerJoin('as.EvaluatorHistory eh')
+			->innerJoin('as.FormatType ft');
 		if ( ! empty($collectionIDs) && $collectionIDs != NULL)
 			$EvaluatorHistorys = $EvaluatorHistorys->where('eh.evaluator_id = ?', $collectionIDs);
 		$EvaluatorHistorys = $EvaluatorHistorys->fetchArray();
@@ -139,9 +139,9 @@ class reportsActions extends sfActions
 		$collectionIDs = $request->getParameter('c');
 		$collection_explode = explode(',', $collectionIDs);
 		$db_assets = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->innerJoin("ag.FormatType ft")
-		->innerJoin('ag.Collection c');
+			->from('AssetGroup ag')
+			->innerJoin("ag.FormatType ft")
+			->innerJoin('ag.Collection c');
 		if ( ! empty($collectionIDs) && count($collection_explode) > 0)
 			$db_assets = $db_assets->whereIn('c.id', $collection_explode);
 		$db_assets = $db_assets->fetchArray();
@@ -189,8 +189,8 @@ class reportsActions extends sfActions
 			$unit_explode = explode(',', $unitIDs);
 			$collection_explode = explode(',', $collectionIDs);
 			$db_collections = Doctrine_Query::Create()
-			->from('Collection c')
-			->innerJoin('c.Unit u');
+				->from('Collection c')
+				->innerJoin('c.Unit u');
 			if ($this->getUser()->getGuardUser()->getRole() == 2)
 			{
 				$db_collections = $db_collections->innerJoin('u.Personnel p')->where('person_id = ?', $this->getUser()->getGuardUser()->getId());
@@ -231,11 +231,11 @@ class reportsActions extends sfActions
 
 			$unit_explode = explode(',', $unitIDs);
 			$db_formats = Doctrine_Query::Create()
-			->from('AssetGroup ag')
-			->innerJoin("ag.FormatType ft")
-			->innerJoin('ag.Collection c')
-			->innerJoin('c.Unit u')
-			->groupBy('ft.type');
+				->from('AssetGroup ag')
+				->innerJoin("ag.FormatType ft")
+				->innerJoin('ag.Collection c')
+				->innerJoin('c.Unit u')
+				->groupBy('ft.type');
 			if ( ! empty($unitIDs) && count($unit_explode) > 0)
 				$db_formats = $db_formats->whereIn('u.id', $unit_explode);
 			$db_formats = $db_formats->fetchArray();
@@ -281,16 +281,16 @@ class reportsActions extends sfActions
 				{
 
 					$db_formats = Doctrine_Query::Create()
-					->from('AssetGroup ag')
-					->innerJoin("ag.FormatType ft")
-					->innerJoin('ag.Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl')
-					->whereIn('u.id', $listUnits_RRD)
-					->whereIn('ft.type', $format_id)
-					->orderBy('ft.asset_score DESC')
-					->fetchArray();
+						->from('AssetGroup ag')
+						->innerJoin("ag.FormatType ft")
+						->innerJoin('ag.Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('u.Personnel p ')
+						->leftJoin('u.StorageLocations sl')
+						->whereIn('u.id', $listUnits_RRD)
+						->whereIn('ft.type', $format_id)
+						->orderBy('ft.asset_score DESC')
+						->fetchArray();
 					foreach ($db_formats as $A)
 					{
 						$SolutionArray = array();
@@ -416,15 +416,15 @@ class reportsActions extends sfActions
 				if ($listUnits_RRD)
 				{
 					$db_assets = Doctrine_Query::Create()
-					->from('AssetGroup ag')
-					->innerJoin("ag.FormatType ft")
-					->innerJoin('ag.Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl')
-					->whereIn('u.id', $listUnits_RRD)
-					->orderBy('ft.year_recorded')
-					->fetchArray();
+						->from('AssetGroup ag')
+						->innerJoin("ag.FormatType ft")
+						->innerJoin('ag.Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('u.Personnel p ')
+						->leftJoin('u.StorageLocations sl')
+						->whereIn('u.id', $listUnits_RRD)
+						->orderBy('ft.year_recorded')
+						->fetchArray();
 					foreach ($db_assets as $A)
 					{
 						$SolutionArray = array();
@@ -537,12 +537,12 @@ class reportsActions extends sfActions
 				{
 					$collections = array();
 					$Collections = Doctrine_Query::Create()
-					->from('Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('c.StorageLocations s')
-					->leftJoin('c.Creator cu')
-					->leftJoin('c.Editor eu')
-					->whereIn('u.id', $Units_id);
+						->from('Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('c.StorageLocations s')
+						->leftJoin('c.Creator cu')
+						->leftJoin('c.Editor eu')
+						->whereIn('u.id', $Units_id);
 					if ($EvaluatorsStartDate && ! empty($EvaluatorsStartDate))
 						$Collections = $Collections->andWhere("DATE_FORMAT(c.created_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
 					if ($EvaluatorsEndDate && ! empty($EvaluatorsEndDate))
@@ -552,7 +552,7 @@ class reportsActions extends sfActions
 					if ($collectionStatus && ! empty($collectionStatus))
 						$Collections = $Collections->andWhereIn('c.status', $collectionStatus);
 					$Collections = $Collections->orderBy('u.id')
-					->fetchArray();
+						->fetchArray();
 					$SolutionArray = array();
 					foreach ($Collections as $Collection)
 					{
@@ -685,15 +685,15 @@ class reportsActions extends sfActions
 				if ($Collection_id && $Constraints)
 				{
 					$db_assets = Doctrine_Query::Create()
-					->from('AssetGroup ag')
-					->innerJoin("ag.FormatType ft")
-					->innerJoin('ag.Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl')
-					->where("({$where})")
-					->andWhereIn('c.id', $Collection_id)
-					->fetchArray();
+						->from('AssetGroup ag')
+						->innerJoin("ag.FormatType ft")
+						->innerJoin('ag.Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('u.Personnel p ')
+						->leftJoin('u.StorageLocations sl')
+						->where("({$where})")
+						->andWhereIn('c.id', $Collection_id)
+						->fetchArray();
 
 					foreach ($db_assets as $assets)
 					{
@@ -1051,20 +1051,20 @@ class reportsActions extends sfActions
 				{
 
 					$Asset = Doctrine_Query::Create()
-					->from('AssetGroup a')
+						->from('AssetGroup a')
 //					->select('a.*, ft.*,eh.*,cu.*,eu.*,sl.*,c.*,u.*')
-					->innerJoin('a.Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin("a.FormatType ft")
-					->leftJoin("a.EvaluatorHistory eh")
-					->leftJoin('a.Creator cu')
-					->leftJoin('a.Editor eu')
-					->leftJoin('u.StorageLocations sl')
-					->leftJoin('u.Personnel p ')
+						->innerJoin('a.Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin("a.FormatType ft")
+						->leftJoin("a.EvaluatorHistory eh")
+						->leftJoin('a.Creator cu')
+						->leftJoin('a.Editor eu')
+						->leftJoin('u.StorageLocations sl')
+						->leftJoin('u.Personnel p ')
 //					->leftJoin('u.Creator uc ')
 //					->leftJoin('u.Editor uce ')
-					->addOrderBy('ft.asset_score DESC')
-					->fetchArray();
+						->addOrderBy('ft.asset_score DESC')
+						->fetchArray();
 
 					$SolutionArray = array();
 					foreach ($Asset as $A)
@@ -1083,7 +1083,7 @@ class reportsActions extends sfActions
 						{
 							echo '<pre>';
 							print_r($Asset);
-							exit;
+							
 							$AssetScoreReport = array();
 							$AssetScoreReport['Unit ID'] = $Asset['Unit']['id'];
 							$AssetScoreReport['Unit Primary ID'] = $Asset['Unit']['inst_id'];
@@ -1101,23 +1101,28 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Unit Personnel Phone.'] = $Asset['Unit']['Personnel'][0]['phone'];
 
 							$AssetScoreReport['Unit Created'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['created_at']));
-							$AssetScoreReport['Creator Unit Created By'] = $Asset['Unit']['Creator']['first_name'] . ' ' . $Asset['Unit']['Creator']['last_name']; #
-							$AssetScoreReport['CreatorUser ID.'] = $Asset['Unit']['Creator']['id'];
-							$AssetScoreReport['Creator User First Name.'] = $Asset['Unit']['Creator']['first_name'];
-							$AssetScoreReport['Creator User Last Name.'] = $Asset['Unit']['Creator']['last_name'];
-							$AssetScoreReport['Creator User e-mail.'] = $Asset['Unit']['Creator']['email_address'];
-							$AssetScoreReport['Creator User Phone.'] = $Asset['Unit']['Creator']['phone'];
-							$AssetScoreReport['Creator User Role.'] = $Roles[$Asset['Unit']['Creator']['role']];
+							$unitInfo = Doctrine_Query::Create()
+								->from('Unit u')
+								->leftJoin('u.Creator uc ')
+								->leftJoin('u.Editor uce ')
+								->fetchArray();
+							$AssetScoreReport['Creator Unit Created By'] = $unitInfo['Unit']['Creator']['first_name'] . ' ' . $unitInfo['Unit']['Creator']['last_name']; #
+							$AssetScoreReport['CreatorUser ID.'] = $unitInfo['Unit']['Creator']['id'];
+							$AssetScoreReport['Creator User First Name.'] = $unitInfo['Unit']['Creator']['first_name'];
+							$AssetScoreReport['Creator User Last Name.'] = $unitInfo['Unit']['Creator']['last_name'];
+							$AssetScoreReport['Creator User e-mail.'] = $unitInfo['Unit']['Creator']['email_address'];
+							$AssetScoreReport['Creator User Phone.'] = $unitInfo['Unit']['Creator']['phone'];
+							$AssetScoreReport['Creator User Role.'] = $Roles[$unitInfo['Unit']['Creator']['role']];
 
-							$AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['updated_at']));
-							$AssetScoreReport['Unit Updated By'] = $Asset['Unit']['Editor']['first_name'] . ' ' . $Asset['Unit']['Editor']['last_name'];
-							$AssetScoreReport['Editor User ID ,'] = $Asset['Unit']['Editor']['id'];
-							$AssetScoreReport['Unit Editor User First Name ,'] = $Asset['Unit']['Editor']['first_name'];
-							$AssetScoreReport['Unit Editor User Last Name ,'] = $Asset['Unit']['Editor']['last_name'];
-							$AssetScoreReport['Unit Editor User e-mail ,'] = $Asset['Unit']['Editor']['email_address'];
-							$AssetScoreReport['Unit Editor User Phone ,'] = $Asset['Unit']['Editor']['phone'];
-							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$Asset['Unit']['Editor']['role']];
-
+							$AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($unitInfo['Unit']['updated_at']));
+							$AssetScoreReport['Unit Updated By'] = $unitInfo['Unit']['Editor']['first_name'] . ' ' . $unitInfo['Unit']['Editor']['last_name'];
+							$AssetScoreReport['Editor User ID ,'] = $unitInfo['Unit']['Editor']['id'];
+							$AssetScoreReport['Unit Editor User First Name ,'] = $unitInfo['Unit']['Editor']['first_name'];
+							$AssetScoreReport['Unit Editor User Last Name ,'] = $unitInfo['Unit']['Editor']['last_name'];
+							$AssetScoreReport['Unit Editor User e-mail ,'] = $unitInfo['Unit']['Editor']['email_address'];
+							$AssetScoreReport['Unit Editor User Phone ,'] = $unitInfo['Unit']['Editor']['phone'];
+							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo['Unit']['Editor']['role']];
+							echo '<pre>';print_r($AssetScoreReport);exit;
 							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
 							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
 							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
@@ -1432,18 +1437,18 @@ class reportsActions extends sfActions
 				{
 
 					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.*,sl.*,p.*,cu.*,eu.*')
-					->leftJoin('u.StorageLocations sl')
-					->fetchArray();
+						->from('Unit u')
+						->select('u.*,sl.*,p.*,cu.*,eu.*')
+						->leftJoin('u.StorageLocations sl')
+						->fetchArray();
 					foreach ($Units as $Unit)
 					{
 						$Collections = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*,sl.*,cu.*,eu.*')
-						->leftJoin('c.StorageLocations sl')
-						->where('c.parent_node_id  = ?', $Unit['id'])
-						->fetchArray();
+							->from('Collection c')
+							->select('c.*,sl.*,cu.*,eu.*')
+							->leftJoin('c.StorageLocations sl')
+							->where('c.parent_node_id  = ?', $Unit['id'])
+							->fetchArray();
 						$SolutionArray = array();
 						foreach ($Collections as $Collection)
 						{
@@ -1479,11 +1484,11 @@ class reportsActions extends sfActions
 				elseif ($param['reports']['listReports'] == '2')
 				{
 					$Units = Doctrine_Query::Create()
-					->from('Unit u')
-					->select('u.*,sl.*,p.*,cu.*,eu.*')
-					->leftJoin('u.StorageLocations sl')
-					->leftJoin('u.Personnel p')
-					->fetchArray();
+						->from('Unit u')
+						->select('u.*,sl.*,p.*,cu.*,eu.*')
+						->leftJoin('u.StorageLocations sl')
+						->leftJoin('u.Personnel p')
+						->fetchArray();
 					$SolutionArray = array();
 					foreach ($Units as $Unit)
 					{
@@ -1514,17 +1519,17 @@ class reportsActions extends sfActions
 				else
 				{
 					$Users = Doctrine_Query::Create()
-					->from('sfGuardUser u')
-					->select('u.*')
-					->fetchArray();
+						->from('sfGuardUser u')
+						->select('u.*')
+						->fetchArray();
 
 					$UsersPerson = Doctrine_Query::Create()
-					->from('UnitPerson up')
-					->select('up.*,u.*,p.*,user.id,user.role')
-					->innerJoin('up.Unit u')
-					->leftJoin('up.Person p')
-					->leftJoin('u.StorageLocations sl')
-					->fetchArray();
+						->from('UnitPerson up')
+						->select('up.*,u.*,p.*,user.id,user.role')
+						->innerJoin('up.Unit u')
+						->leftJoin('up.Person p')
+						->leftJoin('u.StorageLocations sl')
+						->fetchArray();
 
 
 
@@ -1685,12 +1690,12 @@ class reportsActions extends sfActions
 				{
 
 					$EvaluatorHistorys = Doctrine_Query::Create()
-					->from('AssetGroup as')
-					->select('as.*,eh.*,ft.*,e.*')
-					->leftJoin('as.EvaluatorHistory eh')
-					->leftJoin('as.FormatType ft')
-					->whereIn('eh.evaluator_id', $ListEvaluators)
-					->andwhereIn('ft.type', $format_id);
+						->from('AssetGroup as')
+						->select('as.*,eh.*,ft.*,e.*')
+						->leftJoin('as.EvaluatorHistory eh')
+						->leftJoin('as.FormatType ft')
+						->whereIn('eh.evaluator_id', $ListEvaluators)
+						->andwhereIn('ft.type', $format_id);
 					if ( ! empty($EvaluatorsStartDate))
 						$EvaluatorHistorys = $EvaluatorHistorys->andWhere("DATE_FORMAT(eh.updated_at,'%Y-%m-%d') >= ?", $EvaluatorsStartDate);
 					if ( ! empty($EvaluatorsEndDate))
@@ -1702,21 +1707,21 @@ class reportsActions extends sfActions
 					{
 
 						$Collection = Doctrine_Query::Create()
-						->from('Collection c')
-						->select('c.*')
-						->where('c.id = ?', $EvaluatorHistory['parent_node_id'])
-						->fetchArray();
+							->from('Collection c')
+							->select('c.*')
+							->where('c.id = ?', $EvaluatorHistory['parent_node_id'])
+							->fetchArray();
 
 						$Unit = Doctrine_Query::Create()
-						->from('Unit u')
-						->select('u.*')
-						->where('u.id = ?', $Collection[0]['parent_node_id'])
-						->fetchArray();
+							->from('Unit u')
+							->select('u.*')
+							->where('u.id = ?', $Collection[0]['parent_node_id'])
+							->fetchArray();
 						$User = Doctrine_Query::Create()
-						->from('sfGuardUser u')
-						->select('u.*')
-						->where('u.id = ?', $EvaluatorHistory['EvaluatorHistory'][0]['evaluator_id'])
-						->fetchArray();
+							->from('sfGuardUser u')
+							->select('u.*')
+							->where('u.id = ?', $EvaluatorHistory['EvaluatorHistory'][0]['evaluator_id'])
+							->fetchArray();
 
 						$SolutionArray = array();
 
@@ -1837,15 +1842,15 @@ class reportsActions extends sfActions
 					if ($ReportType == '0')
 					{
 						$UnitsWithAllinformation = Doctrine_Query::Create()
-						->from('UnitMultipleCollection u')
-						->select('u.*,ft.*,c.*,a_s.*')
-						->innerJoin("u.CollectionMultipleAssetGroup c")
-						->innerJoin('c.AssetGroup a_s')
-						->innerJoin('a_s.FormatType ft')
-						->andWhereIn('u.id', $Units_id)
-						->andWhereIn('c.id', $Collection_id)
-						->andWhereIn('ft.type', $format_id)
-						->fetchArray();
+							->from('UnitMultipleCollection u')
+							->select('u.*,ft.*,c.*,a_s.*')
+							->innerJoin("u.CollectionMultipleAssetGroup c")
+							->innerJoin('c.AssetGroup a_s')
+							->innerJoin('a_s.FormatType ft')
+							->andWhereIn('u.id', $Units_id)
+							->andWhereIn('c.id', $Collection_id)
+							->andWhereIn('ft.type', $format_id)
+							->fetchArray();
 						if ($UnitsWithAllinformation)
 						{
 							$PercentageOfHoldingsRaw = array();
@@ -1969,19 +1974,19 @@ class reportsActions extends sfActions
 					else if ($ReportType == '1')
 					{
 						$Units = Doctrine_Query::Create()
-						->from('Unit u')
-						->select('u.*')
-						->fetchArray();
+							->from('Unit u')
+							->select('u.*')
+							->fetchArray();
 
 						foreach ($Units as $Unit)
 						{
 
 							$Collections = Doctrine_Query::Create()
-							->from('Collection c')
-							->select('c.*')
-							->where('c.parent_node_id  = ?', $Unit['id'])
-							->andWhereIn('c.id', $Collection_id)
-							->fetchArray();
+								->from('Collection c')
+								->select('c.*')
+								->where('c.parent_node_id  = ?', $Unit['id'])
+								->andWhereIn('c.id', $Collection_id)
+								->fetchArray();
 
 
 
@@ -1989,12 +1994,12 @@ class reportsActions extends sfActions
 							{
 
 								$Asset = Doctrine_Query::Create()
-								->from('AssetGroup a')
-								->select('a.*, ft.*')
-								->leftJoin("a.FormatType ft")
-								->where('a.parent_node_id  = ?', $Collection['id'])
-								->andWhereIn('ft.type', $format_id)
-								->fetchArray();
+									->from('AssetGroup a')
+									->select('a.*, ft.*')
+									->leftJoin("a.FormatType ft")
+									->where('a.parent_node_id  = ?', $Collection['id'])
+									->andWhereIn('ft.type', $format_id)
+									->fetchArray();
 
 								if ($Asset)
 								{
@@ -2100,15 +2105,15 @@ class reportsActions extends sfActions
 					else if ($ReportType == '2')
 					{
 						$UnitsWithAllinformation = Doctrine_Query::Create()
-						->from('UnitMultipleCollection u')
-						->select('u.*,ft.*,c.*,a_s.*')
-						->innerJoin("u.CollectionMultipleAssetGroup c")
-						->innerJoin('c.AssetGroup a_s')
-						->innerJoin('a_s.FormatType ft')
-						->andWhereIn('u.id', $Units_id)
-						->andWhereIn('c.id', $Collection_id)
-						->andWhereIn('ft.type', $format_id)
-						->fetchArray();
+							->from('UnitMultipleCollection u')
+							->select('u.*,ft.*,c.*,a_s.*')
+							->innerJoin("u.CollectionMultipleAssetGroup c")
+							->innerJoin('c.AssetGroup a_s')
+							->innerJoin('a_s.FormatType ft')
+							->andWhereIn('u.id', $Units_id)
+							->andWhereIn('c.id', $Collection_id)
+							->andWhereIn('ft.type', $format_id)
+							->fetchArray();
 
 						if ($UnitsWithAllinformation)
 						{
@@ -2262,13 +2267,13 @@ class reportsActions extends sfActions
 				if ($Collection_id || $Units_id || $format_id)
 				{
 					$Asset = Doctrine_Query::Create()
-					->from('AssetGroup ag')
-					->innerJoin("ag.FormatType ft")
-					->innerJoin('ag.Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('u.Personnel p ')
-					->leftJoin('u.StorageLocations sl')
-					->where("1=1");
+						->from('AssetGroup ag')
+						->innerJoin("ag.FormatType ft")
+						->innerJoin('ag.Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('u.Personnel p ')
+						->leftJoin('u.StorageLocations sl')
+						->where("1=1");
 					if ( ! empty($Units_id))
 						$Asset = $Asset->andWhereIn('u.id', $Units_id);
 					if ( ! empty($Collection_id))
@@ -2402,10 +2407,10 @@ class reportsActions extends sfActions
 				{
 					$collections = array();
 					$Collections = Doctrine_Query::Create()
-					->from('Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('c.Creator sd')
-					->whereIn('u.id', $Units_id);
+						->from('Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('c.Creator sd')
+						->whereIn('u.id', $Units_id);
 
 					$Collections = $Collections->andWhereIn('c.id', $Collection_id);
 					$Collections = $Collections->orderBy('u.id')->fetchArray();
@@ -2518,10 +2523,10 @@ class reportsActions extends sfActions
 				{
 					$collections = array();
 					$Collections = Doctrine_Query::Create()
-					->from('Collection c')
-					->innerJoin('c.Unit u')
-					->leftJoin('c.Creator sd')
-					->whereIn('u.id', $Units_id);
+						->from('Collection c')
+						->innerJoin('c.Unit u')
+						->leftJoin('c.Creator sd')
+						->whereIn('u.id', $Units_id);
 
 					if ($Collection_id && ! empty($Collection_id))
 						$Collections = $Collections->andWhereIn('c.id', $Collection_id);
@@ -2624,13 +2629,13 @@ class reportsActions extends sfActions
 
 
 					$Collections = Doctrine_Query::Create()
-					->from('AssetGroup ag')
-					->innerJoin("ag.FormatType ft")
-					->innerJoin('ag.Collection c')
-					->innerJoin('c.Unit u')
-					->whereIn('u.id', $Units_id)
-					->whereIn('c.id', $Collection_id)
-					->fetchArray();
+						->from('AssetGroup ag')
+						->innerJoin("ag.FormatType ft")
+						->innerJoin('ag.Collection c')
+						->innerJoin('c.Unit u')
+						->whereIn('u.id', $Units_id)
+						->whereIn('c.id', $Collection_id)
+						->fetchArray();
 
 
 					$SolutionArray = array();
