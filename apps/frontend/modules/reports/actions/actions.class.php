@@ -1061,8 +1061,8 @@ class reportsActions extends sfActions
 					->leftJoin('a.Editor eu')
 					->leftJoin('u.StorageLocations sl')
 					->leftJoin('u.Personnel p ')
-					->leftJoin('u.Creator uc ')
-					->leftJoin('u.Editor uce ')
+//					->leftJoin('u.Creator uc ')
+//					->leftJoin('u.Editor uce ')
 					->addOrderBy('ft.asset_score DESC')
 					->fetchArray();
 
