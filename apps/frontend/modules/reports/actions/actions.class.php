@@ -1105,7 +1105,7 @@ class reportsActions extends sfActions
 								->from('Unit u')
 								->leftJoin('u.Creator uc ')
 								->leftJoin('u.Editor uce ')
-								->where('u.id ?', $Asset['Unit']['id'])
+								->where('u.id = ?', $Asset['Unit']['id'])
 								->fetchArray();
 							echo '<pre>';
 							print_r($unitInfo);
