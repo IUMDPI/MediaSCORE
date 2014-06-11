@@ -1029,7 +1029,7 @@ class reportsActions extends sfActions
 				$Roles = array(
 					0 => 'User',
 					1 => 'Admin',
-					2 => 'Unit Personal'
+					2 => 'Unit Personal',
 					''=>''
 				);
 
