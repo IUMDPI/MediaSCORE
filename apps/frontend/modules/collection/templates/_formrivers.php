@@ -59,9 +59,10 @@
                                 <?php echo $form['inst_id']->renderError(); ?>
                             </div>
                             <div style="float: left;padding-right:30px;font-weight: bold">
-                                <?php echo $form['name']->renderLabel(); ?>
+                                <div>
+								<?php echo $form['name']->renderLabel(); ?>
 
-
+									</div>
                                 <?php echo $form['name']->render(array('collection_name' => 'Name of the Collection.')); ?> 
                                 <?php echo $form['name']->renderError(); ?>
                             </div>

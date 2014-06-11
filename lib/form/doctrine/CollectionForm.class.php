@@ -243,13 +243,13 @@ class CollectionForm extends BaseCollectionForm {
             $this->setValidator('score_rareness', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
             $this->setValidator('score_documentation', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
             $this->setValidator('score_technical_quality', new sfValidatorNumber(array('min' => 0, 'max' => 5, 'required' => FALSE)));
-            $this->getValidator('name')->setMessages(array('required' => 'Name is a required field..', 'invalid' => 'Invalid Collection Name'));
+            $this->getValidator('name')->setMessages(array('required' => 'Name is a required field.', 'invalid' => 'Invalid Collection Name'));
             $this->getValidator('inst_id')->setMessages(array('required' => 'Primary ID is a required field..', 'invalid' => 'Invalid Collection Name'));
             $this->getValidator('score_subject_interest')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
             $this->getValidator('score_content_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
             $this->getValidator('score_rareness')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score , score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
             $this->getValidator('score_documentation')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
-            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5..', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
+            $this->getValidator('score_technical_quality')->setMessages(array('required' => 'Score must be integer and less then 5.', 'invalid' => 'Invalid Score,score must be integer', 'max' => 'Invalid Score,score must be less then 5', 'min' => 'Invalid Score,score must be greater then 0'));
 
         }
     }
