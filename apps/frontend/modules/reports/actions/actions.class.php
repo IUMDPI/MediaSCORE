@@ -1107,10 +1107,8 @@ class reportsActions extends sfActions
 								->leftJoin('u.Editor uce ')
 								->where('u.id = ?', $Asset['Unit']['id'])
 								->fetchArray();
-							echo '<pre>';
-							print_r($unitInfo);
-//							exit;
-							$AssetScoreReport['Creator Unit Created By'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name']; #
+
+							$AssetScoreReport['Creator Unit Created By'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name'];
 							$AssetScoreReport['CreatorUser ID.'] = $unitInfo[0]['Creator']['id'];
 							$AssetScoreReport['Creator User First Name.'] = $unitInfo[0]['Creator']['first_name'];
 							$AssetScoreReport['Creator User Last Name.'] = $unitInfo[0]['Creator']['last_name'];
@@ -1126,6 +1124,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Unit Editor User e-mail ,'] = $unitInfo[0]['Editor']['email_address'];
 							$AssetScoreReport['Unit Editor User Phone ,'] = $unitInfo[0]['Editor']['phone'];
 							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo[0]['Editor']['role']];
+							unset($unitInfo);
 							echo '<pre>';
 							print_r($AssetScoreReport);
 							exit;
