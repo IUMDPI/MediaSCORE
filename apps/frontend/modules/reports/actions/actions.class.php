@@ -1018,6 +1018,75 @@ class reportsActions extends sfActions
 		}
 	}
 
+	public function executeAlldataoutput(sfWebRequest $request)
+	{
+		$this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
+		if ($request->isMethod(sfRequest::POST))
+		{
+			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+			if ($this->form->isValid())
+			{
+				$Roles = array(
+					0 => 'User',
+					1 => 'Admin',
+					2 => 'Unit Personal'
+				);
+
+				$formatTypeValuesManager = new formatTypeValuesManager();
+				$DataDumpReportArray = array();
+				$Assets = array();
+
+				$param = $request->getPostParameters();
+				$ExportType = $param['reports']['ExportType'];
+				if ($param['reports']['listReports'] == '0')
+				{
+					$assets = Doctrine_Query::Create()
+						->from('AssetGroup a')
+						->leftJoin("a.FormatType ft")
+						->leftJoin("a.EvaluatorHistory eh")
+						->leftJoin('a.Creator cu')
+						->leftJoin('a.Editor eu')
+						->innerJoin('a.Collection c')
+						->innerJoin('c.Unit u')
+						->addOrderBy('ft.asset_score DESC')
+						->fetchArray();
+					if (count($assets) > 0)
+					{
+						foreach ($assets as $asset)
+						{
+							$AssetScoreReport = array();
+							$unitInfo = Doctrine_Query::Create()
+								->from('Unit u')
+								->leftJoin('u.Creator uc ')
+								->leftJoin('u.Editor uce ')
+								->leftJoin('u.StorageLocations sl')
+								->leftJoin('u.Personnel p ')
+								->where('u.id = ?', $asset['Unit']['id'])
+								->fetchArray();
+							echo '<pre>';print_r($unitInfo);exit;
+							$AssetScoreReport['Unit ID'] = $asset['Unit']['id'];
+							$AssetScoreReport['Unit Primary ID'] = $asset['Unit']['inst_id'];
+							$AssetScoreReport['Unit Name'] = $asset['Unit']['name'];
+
+							$AssetScoreReport['Storage Location Building name/Room number.'] = $unitInfo['StorageLocations'][0]['resident_structure_description'];
+							$AssetScoreReport['Contact Notes.'] = $Asset['Unit']['notes'];
+							$AssetScoreReport['Storage Location Name.'] = $Asset['Unit']['StorageLocations'][0]['name'];
+
+							$AssetScoreReport['Unit Personnel ID.'] = $Asset['Unit']['Personnel'][0]['id'];
+							$AssetScoreReport['Unit Personnel First Name.'] = $Asset['Unit']['Personnel'][0]['first_name'];
+							$AssetScoreReport['Unit Personnel Last Name.'] = $Asset['Unit']['Personnel'][0]['last_name'];
+							$AssetScoreReport['Unit Personnel Role.'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
+							$AssetScoreReport['Unit Personnel Email.'] = $Asset['Unit']['Personnel'][0]['email_address'];
+							$AssetScoreReport['Unit Personnel Phone.'] = $Asset['Unit']['Personnel'][0]['phone'];
+
+							$AssetScoreReport['Unit Created'] = date('Y-m-d H:i:s', strtotime($Asset['Unit']['created_at']));
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * All Data Outpul Report for All  Collection, Units ,Formats and Asset Groups 
 	 *  ss 
