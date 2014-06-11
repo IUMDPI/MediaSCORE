@@ -1051,7 +1051,7 @@ class reportsActions extends sfActions
 						->addOrderBy('ft.asset_score DESC')
 						->limit(2)
 						->fetchArray();
-					echo '<pre>';print_r($assets);exit;
+					
 					if (count($assets) > 0)
 					{
 						foreach ($assets as $asset)
@@ -1063,7 +1063,7 @@ class reportsActions extends sfActions
 								->leftJoin('u.Editor uce ')
 								->leftJoin('u.StorageLocations sl')
 								->leftJoin('u.Personnel p ')
-								->where('u.id = ?', $asset['Unit']['id'])
+								->where('u.id = ?', $asset['Collection']['Unit']['id'])
 								->fetchArray();
 							echo '<pre>';print_r($unitInfo);exit;
 							$AssetScoreReport['Unit ID'] = $asset['Unit']['id'];
