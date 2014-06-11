@@ -177,7 +177,7 @@ class CollectionForm extends BaseCollectionForm {
             $this->setWidget('iub_unit', new sfWidgetFormDoctrineChoice(array('model' => 'Unit', 'add_empty' => false, 'label' => 'IUB Unit:&nbsp;', 'multiple' => FALSE)));
             $userParams = sfContext::getInstance()->getUser()->getGuardUser();
 
-            $this->setWidget('iub_work', new sfWidgetFormInputHidden(array(), array('style' => 'width: 250px;height: 12px;', 'value' => $userParams->getId())));
+            $this->setWidget('iub_work', new sfWidgetFormInputHidden(array(), array('style' => 'width: 250px;height: 12px;', 'value' => $collection->getCreator->getId())));
 
             $this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;'), array('readonly' => 'readonly', 'style' => 'background-color: #F0F0F0;width: 250px;height: 12px;')));
 
