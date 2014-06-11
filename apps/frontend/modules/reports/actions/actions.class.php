@@ -1110,19 +1110,19 @@ class reportsActions extends sfActions
 								->leftJoin('c.StorageLocations sl')
 								->where('c.id = ?', $asset['Collection']['id'])
 								->fetchArray();
-							echo '<pre>';
-							print_r($collectionInfo);
-							exit;
+//							echo '<pre>';
+//							print_r($collectionInfo);
+//							exit;
 							$AssetScoreReport['Collection ID'] = $collectionInfo[0]['id'];
 							$AssetScoreReport['Collection Primary ID'] = $collectionInfo[0]['inst_id'];
 							$AssetScoreReport['Collection Name'] = $collectionInfo[0]['name'];
 							$AssetScoreReport['Collection Description'] = $collectionInfo[0]['notes'];
 
 
-							$AssetScoreReport['Collection Storage Location ID '] = $collectionInfo[0]['StorageLocations']['id'];
-							$AssetScoreReport['Collection Storage Location Name'] = $collectionInfo[0]['StorageLocations']['name'];
+							$AssetScoreReport['Collection Storage Location ID '] = $collectionInfo[0]['StorageLocations'][0]['id'];
+							$AssetScoreReport['Collection Storage Location Name'] = $collectionInfo[0]['StorageLocations'][0]['name'];
 							
-							$AssetScoreReport['Collection Storage Location Building name/Room number'] = $collectionInfo[0]['StorageLocations']['resident_structure_description'];
+							$AssetScoreReport['Collection Storage Location Building name/Room number'] = $collectionInfo[0]['StorageLocations'][0]['resident_structure_description'];
 							$AssetScoreReport['Collection Storage Location Environment'] = StorageLocation::$constants[$collectionInfo[0]['StorageLocations'][0]['env_rating']]; #$Asset['Collection']['StorageLocations']['role'];
 
 							$AssetScoreReport['Collection Created At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['created_at']));
