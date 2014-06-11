@@ -1102,7 +1102,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo[0]['Editor']['role']];
 
 							echo '<pre>';
-							print_r($unitInfo);
+							print_r($AssetScoreReport);
 							exit;
 						}
 					}
