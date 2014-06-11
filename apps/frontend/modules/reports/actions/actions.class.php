@@ -1025,6 +1025,9 @@ class reportsActions extends sfActions
 	 */
 	public function executeAlldataoutputreport(sfWebRequest $request)
 	{
+		set_time_limit(0);
+//		@ini_set("memory_limit", "3000M"); # 3GB
+		@ini_set("max_execution_time", 999999999999);
 		$this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
 		if ($request->isMethod(sfRequest::POST))
 		{
@@ -1062,7 +1065,7 @@ class reportsActions extends sfActions
 						foreach ($assets as $asset)
 						{
 							$AssetScoreReport = array();
-							$formatSpecific=array();
+							$formatSpecific = array();
 							$unitInfo = Doctrine_Query::Create()
 								->from('Unit u')
 								->leftJoin('u.Creator uc ')
@@ -1378,8 +1381,8 @@ class reportsActions extends sfActions
 							$formatSpecific['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $asset['FormatType']['scanning']);
 							$formatSpecific = $formatTypeValuesManager->getFormatRelatedFields($asset['FormatType']['type'], $formatSpecific);
 							$DataDumpReportArray[] = array_merge($AssetScoreReport, $formatSpecific);
-							unset ($AssetScoreReport);
-							unset ($formatSpecific);
+							unset($AssetScoreReport);
+							unset($formatSpecific);
 							// Asset Group Format Information End
 						}
 						unset($assets);
