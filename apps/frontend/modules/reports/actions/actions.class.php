@@ -1055,7 +1055,6 @@ class reportsActions extends sfActions
 						->innerJoin('a.Collection c')
 						->innerJoin('c.Unit u')
 						->addOrderBy('ft.asset_score DESC')
-						->limit(2)
 						->fetchArray();
 
 					if (count($assets) > 0)
@@ -1063,6 +1062,7 @@ class reportsActions extends sfActions
 						foreach ($assets as $asset)
 						{
 							$AssetScoreReport = array();
+							$formatSpecific=array();
 							$unitInfo = Doctrine_Query::Create()
 								->from('Unit u')
 								->leftJoin('u.Creator uc ')
@@ -1378,10 +1378,11 @@ class reportsActions extends sfActions
 							$formatSpecific['scanning'] = $formatTypeValuesManager->getArrayOfValueTargeted('general', 'scanning', $asset['FormatType']['scanning']);
 							$formatSpecific = $formatTypeValuesManager->getFormatRelatedFields($asset['FormatType']['type'], $formatSpecific);
 							$DataDumpReportArray[] = array_merge($AssetScoreReport, $formatSpecific);
+							unset ($AssetScoreReport);
+							unset ($formatSpecific);
 							// Asset Group Format Information End
-
-							
 						}
+						unset($assets);
 					}
 				}
 				elseif ($param['reports']['listReports'] == '1')
@@ -1531,6 +1532,8 @@ class reportsActions extends sfActions
 					$excel = new excel();
 
 					$excel->setDataArray($DataDumpReportArray);
+					unset($DataDumpReportArray);
+					unset($formatTypeValuesManager);
 					$excel->extractHeadings();
 					$filename = '';
 					$Sheettitle = '';
