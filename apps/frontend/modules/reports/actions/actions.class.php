@@ -1137,55 +1137,33 @@ class reportsActions extends sfActions
 							unset($collectionInfo);
 							// Collection Information End
 							// Asset Group Information Start
-							echo '<pre>';print_r($asset);exit;
-							$AssetScoreReport['Asset Group ID'] = $asset['AssetGroup']['id'];
-							$AssetScoreReport['Asset Group Primary ID'] = $Asset['AssetGroup']['inst_id'];
+
+							$AssetScoreReport['Asset Group ID'] = $asset['id'];
+							$AssetScoreReport['Asset Group Primary ID'] = $asset['inst_id'];
+							$AssetScoreReport['Asset Group Name'] = $asset['name'];
+
+							$AssetScoreReport['Location in Room'] = $asset['location'];
+							$AssetScoreReport['Asset Group Description'] = $asset['notes'];
+							$AssetScoreReport['Imported into physical object database'] = ($asset['is_imported'] == 1) ? 'Yes' : 'No';
+
+							$AssetScoreReport['Asset Group Created At'] = date('Y-m-d H:i:s', strtotime($asset['created_at']));
+							$AssetScoreReport['Asset Group Creator ID'] = $asset['Creator']['id'];
+							$AssetScoreReport['Asset Group Creator First Name'] = $asset['Creator']['first_name'];
+							$AssetScoreReport['Asset Group Creator Last Name'] = $asset['Creator']['last_name'];
+							$AssetScoreReport['Asset Group Creator e-mail'] = $asset['Creator']['email_address'];
+							$AssetScoreReport['Asset Group Creator Phone'] = $asset['Creator']['phone'];
+							$AssetScoreReport['Asset Group Creator Role'] = $Roles[$asset['Creator']['role']];
+							$AssetScoreReport['Asset Group Edited At'] = $asset['Editor']['role'];
+							$AssetScoreReport['Asset Group Editor'] = $asset['Editor']['first_name'] . ' ' . $asset['Editor']['last_name']; #;
+							$AssetScoreReport['Asset Group User Editor ID *'] = $asset['Editor']['id'];
+							$AssetScoreReport['Asset Group User Editor First Name'] = $asset['Editor']['first_name'];
+							$AssetScoreReport['Asset Group User Editor Last Name'] = $asset['Editor']['last_name'];
+							$AssetScoreReport['Asset Group User Editor e-mail'] = $asset['Editor']['email_address'];
+							$AssetScoreReport['Asset Group User Editor Phone'] = $asset['Editor']['phone'];
+							$AssetScoreReport['Asset Group User Editor Role'] = $Roles[$asset['Editor']['role']];
 
 
-							$AssetScoreReport['Asset Group Name'] = $Asset['AssetGroup']['name'];
 
-							$AssetScoreReport['Location in Room'] = $Asset['AssetGroup']['location'];
-							$AssetScoreReport['Asset Group Description'] = $Asset['AssetGroup']['notes'];
-							$AssetScoreReport['Imported into physical object database'] = ($Asset['AssetGroup']['is_imported'] == 1) ? 'Yes' : 'No';
-
-							$AssetScoreReport['Asset Group Created'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
-
-							$AssetScoreReport['Asset Group Created By User ID _'] = $Asset['AssetGroup']['Creator']['id'];
-							$AssetScoreReport['AssetGroup User First Name _'] = $Asset['AssetGroup']['Creator']['first_name'];
-							$AssetScoreReport['AssetGroup User Last Name _'] = $Asset['AssetGroup']['Creator']['last_name'];
-							$AssetScoreReport['AssetGroup User e-mail _'] = $Asset['AssetGroup']['Creator']['email_address'];
-							$AssetScoreReport['AssetGroup User Phone _'] = $Asset['AssetGroup']['Creator']['phone'];
-							$AssetScoreReport['AssetGroup User Role _'] = $Roles[$Asset['AssetGroup']['Creator']['role']];
-
-
-							$AssetScoreReport['Asset Group'] = $Asset['AssetGroup']['name'];
-							$AssetScoreReport['Updated On'] = $Asset['AssetGroup']['Editor']['role'];
-							$AssetScoreReport['Asset Group Updated By *'] = $Asset['AssetGroup']['Editor']['first_name'] . ' ' . $Asset['AssetGroup']['Editor']['last_name']; #;
-							$AssetScoreReport['AssetGroup User Editor User ID *'] = $Asset['AssetGroup']['Editor']['id'];
-							$AssetScoreReport['AssetGroup User Editor First Name *'] = $Asset['AssetGroup']['Editor']['first_name'];
-							$AssetScoreReport['AssetGroup User Editor User Last Name *'] = $Asset['AssetGroup']['Editor']['last_name'];
-							$AssetScoreReport['AssetGroup User Editor User e-mail *'] = $Asset['AssetGroup']['Editor']['email_address'];
-							$AssetScoreReport['AssetGroup User Editor User Phone *'] = $Asset['AssetGroup']['Editor']['phone'];
-							$AssetScoreReport['AssetGroup User Editor User Role * '] = $Roles[$Asset['AssetGroup']['Editor']['role']];
-
-
-							$AssetScoreReport['Asset Group Date'] = date('Y-m-d H:i:s', strtotime($Asset['AssetGroup']['created_at']));
-							$AssetScoreReport['Asset Group Person'] = $Asset['Unit']['Personnel']['role'];
-							$AssetScoreReport['Asset Group Personnel User ID  *'] = $Asset['Unit']['Personnel']['role'];
-							$AssetScoreReport['Asset Group Personnel User First Name *'] = $Asset['Unit']['Personnel'][0]['first_name'];
-							$AssetScoreReport['Asset Group Personnel User Last Name *'] = $Asset['Unit']['Personnel'][0]['last_name'];
-							$AssetScoreReport['Asset Group Personnel User e-mail *'] = $Asset['Unit']['Personnel'][0]['email_address'];
-							$AssetScoreReport['Asset Group Personnel User Phone *'] = $Asset['Unit']['Personnel'][0]['phone'];
-							$AssetScoreReport['Asset Group Personnel User Role *'] = $Roles[$Asset['Unit']['Personnel']['role']];
-							$AssetScoreReport['Asset Group In consultation With *'] = $Roles[$Asset['AssetGroup']['EvaluatorHistory'][0]['role']];
-
-
-							$AssetScoreReport['Unit Asset Group Personnel-ID *'] = $Asset['Unit']['Personnel'][0]['id'];
-							$AssetScoreReport['Unit Asset Group Personnel-First Name *'] = $Asset['Unit']['Personnel'][0]['first_name'];
-							$AssetScoreReport['Unit Asset Group Personnel-Last Name *'] = $Asset['Unit']['Personnel'][0]['last_name'];
-							$AssetScoreReport['Unit Asset Group Personnel-Role *'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
-							$AssetScoreReport['Unit Asset Group Personnel Email *'] = $Asset['Unit']['Personnel'][0]['email_address'];
-							$AssetScoreReport['Unit Asset Group Personnel Phone *'] = $Asset['Unit']['Personnel'][0]['phone'];
 							// Asset Group Information End
 
 							echo '<pre>';
