@@ -54,7 +54,7 @@
                         <td colspan="2">
 							<div class="left-column-container">
 								<div class="row clearfix">
-									<div class="left-column"><b>  <?php echo $form['inst_id']->renderLabel(); ?></b></div>
+									<div class="left-column" style="width: 125px;"><b>  <?php echo $form['inst_id']->renderLabel(); ?></b></div>
 									<div class="right-column">
 										<div><?php echo $form['inst_id']->render(array('title' => 'The main ID used by the organization.')); ?> 
 											<?php echo $form['inst_id']->renderError(); ?></div>
@@ -63,7 +63,7 @@
 							</div>
 							<div class="right-column-container">
 								<div class="row">
-									<div class="left-column"><b><?php echo $form['name']->renderLabel(); ?></b></div>
+									<div class="left-column" style="width: 55px;"><b><?php echo $form['name']->renderLabel(); ?></b></div>
 									<?php echo $form['name']->render(array('collection_name' => 'Name of the Collection.')); ?> 
 									<?php echo $form['name']->renderError(); ?>
 								</div>
