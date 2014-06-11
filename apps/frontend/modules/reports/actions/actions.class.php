@@ -1537,8 +1537,7 @@ class reportsActions extends sfActions
 					$excel = new excel();
 
 					$excel->setDataArray($DataDumpReportArray);
-//					unset($DataDumpReportArray);
-//					unset($formatTypeValuesManager);
+
 					$excel->extractHeadings();
 					$filename = '';
 					$Sheettitle = '';
