@@ -1018,7 +1018,12 @@ class reportsActions extends sfActions
 		}
 	}
 
-	public function executeAlldataoutput(sfWebRequest $request)
+	/**
+	 * All Data Outpul Report for All  Collection, Units ,Formats and Asset Groups 
+	 *  ss 
+	 * @param sfWebRequest $request 
+	 */
+	public function executeAlldataoutputreport(sfWebRequest $request)
 	{
 		$this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
 		if ($request->isMethod(sfRequest::POST))
@@ -1151,7 +1156,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Creator e-mail'] = $asset['Creator']['email_address'];
 							$AssetScoreReport['Asset Group Creator Phone'] = $asset['Creator']['phone'];
 							$AssetScoreReport['Asset Group Creator Role'] = $Roles[$asset['Creator']['role']];
-							$AssetScoreReport['Asset Group Edited At'] =  date('Y-m-d H:i:s', strtotime($asset['updated_at']));
+							$AssetScoreReport['Asset Group Edited At'] = date('Y-m-d H:i:s', strtotime($asset['updated_at']));
 							$AssetScoreReport['Asset Group Editor'] = $asset['Editor']['first_name'] . ' ' . $asset['Editor']['last_name']; #;
 							$AssetScoreReport['Asset Group User Editor ID'] = $asset['Editor']['id'];
 							$AssetScoreReport['Asset Group User Editor First Name'] = $asset['Editor']['first_name'];
@@ -1374,71 +1379,10 @@ class reportsActions extends sfActions
 							$formatSpecific = $formatTypeValuesManager->getFormatRelatedFields($asset['FormatType']['type'], $formatSpecific);
 							$DataDumpReportArray[] = array_merge($AssetScoreReport, $formatSpecific);
 							// Asset Group Format Information End
-							
-							echo '<pre>';
-							print_r($DataDumpReportArray);
-							exit;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * All Data Outpul Report for All  Collection, Units ,Formats and Asset Groups 
-	 *  ss 
-	 * @param sfWebRequest $request 
-	 */
-	public function executeAlldataoutputreport(sfWebRequest $request)
-	{
-		set_time_limit(0);
-		@ini_set("memory_limit", "3000M"); # 3GB
-		@ini_set("max_execution_time", 999999999999); # 1GB
-		$this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
-		$Roles = array(
-			0 => 'User',
-			1 => 'Admin',
-			2 => 'Unit Personal'
-		);
-		if ($request->isMethod(sfRequest::POST))
-		{
-			$this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
-			if ($this->form->isValid())
-			{
-				$formatTypeValuesManager = new formatTypeValuesManager();
-				$DataDumpReportArray = array();
-				$Assets = array();
-
-				$param = $request->getPostParameters();
-
-
-				$ExportType = $param['reports']['ExportType'];
-				if ($param['reports']['listReports'] == '0')
-				{
-
-
-					
-
-
-					if ($Assets)
-					{
-						foreach ($Assets as $Asset)
-						{
-//							echo '<pre>';
-//							print_r($Asset);
-
-							$AssetScoreReport = array();
-							
-
-
 
 							
 						}
 					}
-//					echo '<pre>';
-//					print_r($DataDumpReportArray);
-//					exit;
 				}
 				elseif ($param['reports']['listReports'] == '1')
 				{
