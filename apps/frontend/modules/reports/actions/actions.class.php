@@ -1059,7 +1059,7 @@ class reportsActions extends sfActions
 						->innerJoin('c.Unit u')
 						->addOrderBy('ft.asset_score DESC')
 						->fetchArray();
-					echo 'here';exit;
+					
 
 					if (count($assets) > 0)
 					{
@@ -1387,6 +1387,7 @@ class reportsActions extends sfActions
 							// Asset Group Format Information End
 						}
 						unset($assets);
+						echo 'nouman';exit;
 					}
 				}
 				elseif ($param['reports']['listReports'] == '1')
