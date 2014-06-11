@@ -113,7 +113,7 @@
                         <div style="font-weight: bold;">
 							<?php echo $form['iub_work']->renderLabel(); ?>
 
-                            <input type="text" value="<?php echo $sf_user->getGuardUser()->getFirstName() . ' ' . $sf_user->getGuardUser()->getLastName(); ?>" readonly="readonly" style="background-color: #F0F0F0;cursor: not-allowed"/>
+                            <input type="text" value="<?php echo $collection->getCreator()->getName(); ?>" readonly="readonly" style="background-color: #F0F0F0;cursor: not-allowed"/>
                         </div>
                     </div>
                 </td>

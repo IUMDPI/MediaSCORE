@@ -34,10 +34,10 @@ class collectionActions extends sfActions
 		{
 			$unitID = $request->getParameter('id');
 			$collections = Doctrine_Core::getTable('Collection')
-			->createQuery('c')
-			->where('parent_node_id =?', $unitID)
-			->execute()
-			->toArray();
+				->createQuery('c')
+				->where('parent_node_id =?', $unitID)
+				->execute()
+				->toArray();
 
 			$this->getResponse()->setHttpHeader('Content-type', 'application/json');
 			$this->setLayout('json');
@@ -63,9 +63,9 @@ class collectionActions extends sfActions
 			$view = $this->getUser()->getAttribute('view');
 
 			$unit = Doctrine_Query::Create()
-			->from('Unit u')
-			->andWhere('id  = ?', $request->getParameter('u'))
-			->fetchArray();
+				->from('Unit u')
+				->andWhere('id  = ?', $request->getParameter('u'))
+				->fetchArray();
 			$this->ThisUnit = $unit;
 
 			$url = $this->generateUrl("collection", $unit[0]);
@@ -107,21 +107,21 @@ class collectionActions extends sfActions
 		$this->view = $view['view'];
 
 		$this->AllStorageLocations = Doctrine_Query::create()->from('StorageLocation sl')
-		->select('sl.id,sl.name')
-		->fetchArray('name');
+			->select('sl.id,sl.name')
+			->fetchArray('name');
 
 		// Get collections for a specific Unit
 		if ($request->isXmlHttpRequest())
 		{
 			$this->collections = Doctrine_Query::Create()
-			->from('Collection c')
-			->select('c.*,cu.*,eu.*,sl.*')
-			->innerJoin('c.Creator cu')
-			->innerJoin('c.Editor eu')
-			->leftJoin('c.StorageLocations sl')
-			->leftJoin('c.AssetGroup ag')
-			->leftJoin('ag.FormatType ft')
-			->where('c.parent_node_id  = ?', $unitID);
+				->from('Collection c')
+				->select('c.*,cu.*,eu.*,sl.*')
+				->innerJoin('c.Creator cu')
+				->innerJoin('c.Editor eu')
+				->leftJoin('c.StorageLocations sl')
+				->leftJoin('c.AssetGroup ag')
+				->leftJoin('ag.FormatType ft')
+				->where('c.parent_node_id  = ?', $unitID);
 
 			if ($searchInpout && trim($searchInpout) != '')
 			{
@@ -221,26 +221,26 @@ class collectionActions extends sfActions
 			if ($this->getUser()->getGuardUser()->getRole() == 2)
 			{
 				$unit = Doctrine_Query::Create()
-				->from('Unit u')
-				->innerJoin('u.Personnel p')
-				->where('person_id  = ?', $this->getUser()->getGuardUser()->getId())
-				->andWhere('id  = ?', $this->unitID)
-				->fetchArray();
+					->from('Unit u')
+					->innerJoin('u.Personnel p')
+					->where('person_id  = ?', $this->getUser()->getGuardUser()->getId())
+					->andWhere('id  = ?', $this->unitID)
+					->fetchArray();
 
 				$this->forward404Unless(count($unit) > 0);
 			}
 			$this->deleteMessage = $this->getUser()->getAttribute('delCollectionMsg');
 			$this->getUser()->getAttributeHolder()->remove('delCollectionMsg');
 			$unit = Doctrine_Core::getTable('Unit')
-			->find($this->unitID);
+				->find($this->unitID);
 			$this->forward404Unless($unit);
 			$this->unitName = $unit->getName();
 			$this->collections = Doctrine_Query::Create()
-			->from('Collection c')
-			->select('c.*')
-			->leftJoin('c.StorageLocations sl')
-			->where('c.parent_node_id  = ?', $this->unitID)
-			->execute();
+				->from('Collection c')
+				->select('c.*')
+				->leftJoin('c.StorageLocations sl')
+				->where('c.parent_node_id  = ?', $this->unitID)
+				->execute();
 		}
 		$this->ThisUnit = $unit;
 		$this->IsMediaScoreAccess = $this->getUser()->getGuardUser()->getMediascoreAccess();
@@ -261,10 +261,10 @@ class collectionActions extends sfActions
 		}
 
 		$AllStorageLocations = Doctrine_Query::create()->from('Unit u')
-		->select('sl.id,sl.name,u.id')
-		->innerJoin('u.StorageLocations sl')
-		->where('u.id = ?', $this->unitID)
-		->fetchArray();
+			->select('sl.id,sl.name,u.id')
+			->innerJoin('u.StorageLocations sl')
+			->where('u.id = ?', $this->unitID)
+			->fetchArray();
 
 		$arr = array();
 		foreach ($AllStorageLocations[0] as $key => $AllStorageLocation)
@@ -285,9 +285,9 @@ class collectionActions extends sfActions
 	{
 
 		$this->collection = Doctrine_Core::getTable('Collection')
-		->createQuery('u')
-		->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
-		->execute();
+			->createQuery('u')
+			->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
+			->execute();
 //		echo '<pre>';
 //		print_r($collection);
 //		exit;
@@ -310,15 +310,15 @@ class collectionActions extends sfActions
 		$this->actionType = 'new';
 
 		$this->form = new CollectionForm(null, array(
-			'userID' => $this->getUser()->getGuardUser()->getId(),
-			'unitID' => $request->getParameter('u'),
-			'view' => $view['view']
-		)
+				'userID' => $this->getUser()->getGuardUser()->getId(),
+				'unitID' => $request->getParameter('u'),
+				'view' => $view['view']
+				)
 		);
 		$unit = Doctrine_Query::Create()
-		->from('Unit u')
-		->andWhere('id  = ?', $request->getParameter('u'))
-		->fetchArray();
+			->from('Unit u')
+			->andWhere('id  = ?', $request->getParameter('u'))
+			->fetchArray();
 		$this->ThisUnit = $unit;
 
 		$url = $this->generateUrl("collection", $unit[0]);
@@ -340,9 +340,9 @@ class collectionActions extends sfActions
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 		$unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
 		$this->form = new CollectionForm(null, array(
-			'userID' => $this->getUser()->getGuardUser()->getId(),
-			'unitID' => $unitId,
-			'view' => $view['view'])
+				'userID' => $this->getUser()->getGuardUser()->getId(),
+				'unitID' => $unitId,
+				'view' => $view['view'])
 		);
 		$this->view = $view['view'];
 
@@ -352,9 +352,9 @@ class collectionActions extends sfActions
 		{
 			$collection = $success['collection'];
 			$unit = Doctrine_Core::getTable('Unit')
-			->createQuery('u')
-			->where('id =?', $unitId)
-			->fetchOne();
+				->createQuery('u')
+				->where('id =?', $unitId)
+				->fetchOne();
 
 			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 		}
@@ -381,18 +381,18 @@ class collectionActions extends sfActions
 		$this->formType = $request->getParameter('form');
 		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$this->form = new CollectionForm(
-		$collection, array('userID' => $this->getUser()->getGuardUser()->getId(), 'unitID' => $request->getParameter('u'),
-			'action' => 'edit',
-			'view' => $view['view']
-		)
+				$collection, array('userID' => $this->getUser()->getGuardUser()->getId(), 'unitID' => $request->getParameter('u'),
+				'action' => 'edit',
+				'view' => $view['view']
+				)
 		);
 		$this->view = $view['view'];
 		$this->actionType = 'edit';
-
+		$this->collection = $collection;
 		$unit = Doctrine_Query::Create()
-		->from('Unit u')
-		->andWhere('id  = ?', $request->getParameter('u'))
-		->fetchArray();
+			->from('Unit u')
+			->andWhere('id  = ?', $request->getParameter('u'))
+			->fetchArray();
 		$this->ThisUnit = $unit;
 
 		$url = $this->generateUrl("collection", $unit[0]);
@@ -417,11 +417,11 @@ class collectionActions extends sfActions
 
 
 		$this->form = new CollectionForm($collection, array(
-			'userID' => $this->getUser()->getGuardUser()->getId(),
-			'unitID' => $unitId,
-			'action' => 'edit',
-			'view' => $view['view']
-		));
+				'userID' => $this->getUser()->getGuardUser()->getId(),
+				'unitID' => $unitId,
+				'action' => 'edit',
+				'view' => $view['view']
+			));
 
 		$success = $this->processForm($request, $this->form);
 		$this->view = $view['view'];
@@ -430,9 +430,9 @@ class collectionActions extends sfActions
 		{
 
 			$unit = Doctrine_Core::getTable('Unit')
-			->createQuery('u')
-			->where('id =?', $unitId)
-			->fetchOne();
+				->createQuery('u')
+				->where('id =?', $unitId)
+				->fetchOne();
 			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 		}
 		else
@@ -443,9 +443,9 @@ class collectionActions extends sfActions
 			}
 
 			$unit = Doctrine_Core::getTable('Unit')
-			->createQuery('u')
-			->where('id =?', $unitId)
-			->execute();
+				->createQuery('u')
+				->where('id =?', $unitId)
+				->execute();
 			$this->ThisUnit = $unit;
 
 			$url = $this->generateUrl("collection", $unit);
@@ -470,16 +470,16 @@ class collectionActions extends sfActions
 		}
 		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$unit = Doctrine_Query::Create()
-		->from('Unit u')
-		->select('u.*')
-		->where('u.id  = ?', $collection->getParentNodeId())
-		->fetchOne();
+			->from('Unit u')
+			->select('u.*')
+			->where('u.id  = ?', $collection->getParentNodeId())
+			->fetchOne();
 
 		$assets = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->select('ag.*')
-		->where('ag.parent_node_id  = ?', $request->getParameter('id'))
-		->fetchArray();
+			->from('AssetGroup ag')
+			->select('ag.*')
+			->where('ag.parent_node_id  = ?', $request->getParameter('id'))
+			->fetchArray();
 		if (sizeof($assets) > 0)
 		{
 			$this->getUser()->setAttribute('delCollectionMsg', 'You must reassign the asset groups to another collection before you can delete this collection.');
@@ -509,11 +509,11 @@ class collectionActions extends sfActions
 		}
 		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
 		$collectionsAssets = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->select('ag.*')
-		->where('ag.parent_node_id  = ?', $form->getValue('id'))
-		->groupBy('ag.resident_structure_description')
-		->fetchArray();
+			->from('AssetGroup ag')
+			->select('ag.*')
+			->where('ag.parent_node_id  = ?', $form->getValue('id'))
+			->groupBy('ag.resident_structure_description')
+			->fetchArray();
 		$isformValid = $form->isValid();
 		if ($isformValid)
 		{
@@ -589,10 +589,10 @@ class collectionActions extends sfActions
 			if (isset($row[17]) && ($row[17] == 'TRUE' || $row[17] == 'true'))
 				$unknown = 1;
 			$collection = Doctrine_Query::Create()
-			->from('Collection c')
-			->select('c.*')
-			->where('c.name = ', $row[2])
-			->fetchOne();
+				->from('Collection c')
+				->select('c.*')
+				->where('c.name = ', $row[2])
+				->fetchOne();
 			if ($collection)
 			{
 				
