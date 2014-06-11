@@ -1027,7 +1027,7 @@ class reportsActions extends sfActions
 	{
 		set_time_limit(0);
 		@ini_set("memory_limit", "3000M"); # 3GB
-		@ini_set("max_execution_time", 999999999999);
+		@ini_set("max_execution_time", 0);
 		$this->form = new ReportsForm(null, array('from' => 'alldataoutputreport'));
 		if ($request->isMethod(sfRequest::POST))
 		{
@@ -1537,8 +1537,8 @@ class reportsActions extends sfActions
 					$excel = new excel();
 
 					$excel->setDataArray($DataDumpReportArray);
-					unset($DataDumpReportArray);
-					unset($formatTypeValuesManager);
+//					unset($DataDumpReportArray);
+//					unset($formatTypeValuesManager);
 					$excel->extractHeadings();
 					$filename = '';
 					$Sheettitle = '';
