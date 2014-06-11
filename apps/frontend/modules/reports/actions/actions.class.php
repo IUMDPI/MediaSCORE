@@ -1050,6 +1050,7 @@ class reportsActions extends sfActions
 						->innerJoin('c.Unit u')
 						->addOrderBy('ft.asset_score DESC')
 						->fetchArray();
+					echo '<pre>';print_r($assets);exit;
 					if (count($assets) > 0)
 					{
 						foreach ($assets as $asset)
