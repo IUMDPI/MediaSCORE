@@ -1071,35 +1071,35 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Unit Primary ID'] = $unitInfo[0]['inst_id'];
 							$AssetScoreReport['Unit Name'] = $unitInfo[0]['name'];
 
-							$AssetScoreReport['Storage Location Building name/Room number.'] = $unitInfo[0]['StorageLocations'][0]['resident_structure_description'];
-							$AssetScoreReport['Contact Notes.'] = $unitInfo[0]['notes'];
-							$AssetScoreReport['Storage Location Name.'] = $unitInfo[0]['StorageLocations'][0]['name'];
+							$AssetScoreReport['Unit Storage Location Building name/Room number.'] = $unitInfo[0]['StorageLocations'][0]['resident_structure_description'];
+							$AssetScoreReport['Unit Contact Notes'] = $unitInfo[0]['notes'];
+							$AssetScoreReport['Unit Storage Location Name'] = $unitInfo[0]['StorageLocations'][0]['name'];
 
-							$AssetScoreReport['Unit Personnel ID.'] = $unitInfo[0]['Personnel'][0]['id'];
-							$AssetScoreReport['Unit Personnel First Name.'] = $unitInfo[0]['Personnel'][0]['first_name'];
-							$AssetScoreReport['Unit Personnel Last Name.'] = $unitInfo[0]['Personnel'][0]['last_name'];
-							$AssetScoreReport['Unit Personnel Role.'] = $Roles[$unitInfo[0]['Personnel'][0]['role']];
-							$AssetScoreReport['Unit Personnel Email.'] = $unitInfo[0]['Personnel'][0]['email_address'];
-							$AssetScoreReport['Unit Personnel Phone.'] = $unitInfo[0]['Personnel'][0]['phone'];
+							$AssetScoreReport['Unit Personnel ID'] = $unitInfo[0]['Personnel'][0]['id'];
+							$AssetScoreReport['Unit Personnel First Name'] = $unitInfo[0]['Personnel'][0]['first_name'];
+							$AssetScoreReport['Unit Personnel Last Name'] = $unitInfo[0]['Personnel'][0]['last_name'];
+							$AssetScoreReport['Unit Personnel Role'] = $Roles[$unitInfo[0]['Personnel'][0]['role']];
+							$AssetScoreReport['Unit Personnel Email'] = $unitInfo[0]['Personnel'][0]['email_address'];
+							$AssetScoreReport['Unit Personnel Phone'] = $unitInfo[0]['Personnel'][0]['phone'];
 
-							$AssetScoreReport['Unit Created'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['created_at']));
+							$AssetScoreReport['Unit Created At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['created_at']));
 
-							$AssetScoreReport['Creator Unit Created By'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name'];
-							$AssetScoreReport['CreatorUser ID.'] = $unitInfo[0]['Creator']['id'];
-							$AssetScoreReport['Creator User First Name.'] = $unitInfo[0]['Creator']['first_name'];
-							$AssetScoreReport['Creator User Last Name.'] = $unitInfo[0]['Creator']['last_name'];
-							$AssetScoreReport['Creator User e-mail.'] = $unitInfo[0]['Creator']['email_address'];
-							$AssetScoreReport['Creator User Phone.'] = $unitInfo[0]['Creator']['phone'];
-							$AssetScoreReport['Creator User Role.'] = $Roles[$unitInfo[0]['Creator']['role']];
+							$AssetScoreReport['Unit Creator'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name'];
+							$AssetScoreReport['Unit Creator ID'] = $unitInfo[0]['Creator']['id'];
+							$AssetScoreReport['Unit Creator First Name'] = $unitInfo[0]['Creator']['first_name'];
+							$AssetScoreReport['Unit Creator Last Name'] = $unitInfo[0]['Creator']['last_name'];
+							$AssetScoreReport['Unit Creator e-mail'] = $unitInfo[0]['Creator']['email_address'];
+							$AssetScoreReport['Unit Creator Phone'] = $unitInfo[0]['Creator']['phone'];
+							$AssetScoreReport['Unit Creator Role'] = $Roles[$unitInfo[0]['Creator']['role']];
 
-							$AssetScoreReport['Unit Updated On'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['updated_at']));
-							$AssetScoreReport['Unit Updated By'] = $unitInfo[0]['Editor']['first_name'] . ' ' . $unitInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Editor User ID ,'] = $unitInfo[0]['Editor']['id'];
-							$AssetScoreReport['Unit Editor User First Name ,'] = $unitInfo[0]['Editor']['first_name'];
-							$AssetScoreReport['Unit Editor User Last Name ,'] = $unitInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Unit Editor User e-mail ,'] = $unitInfo[0]['Editor']['email_address'];
-							$AssetScoreReport['Unit Editor User Phone ,'] = $unitInfo[0]['Editor']['phone'];
-							$AssetScoreReport['Unit Editor User Role ,'] = $Roles[$unitInfo[0]['Editor']['role']];
+							$AssetScoreReport['Unit Edited At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['updated_at']));
+							$AssetScoreReport['Unit Editor'] = $unitInfo[0]['Editor']['first_name'] . ' ' . $unitInfo[0]['Editor']['last_name'];
+							$AssetScoreReport['Unit Editor ID'] = $unitInfo[0]['Editor']['id'];
+							$AssetScoreReport['Unit Editor First Name'] = $unitInfo[0]['Editor']['first_name'];
+							$AssetScoreReport['Unit Editor Last Name'] = $unitInfo[0]['Editor']['last_name'];
+							$AssetScoreReport['Unit Editor e-mail'] = $unitInfo[0]['Editor']['email_address'];
+							$AssetScoreReport['Unit Editor Phone'] = $unitInfo[0]['Editor']['phone'];
+							$AssetScoreReport['Unit Editor Role'] = $Roles[$unitInfo[0]['Editor']['role']];
 							unset($unitInfo);
 							// Unit Information End
 							// Collection Information Start
@@ -1108,49 +1108,42 @@ class reportsActions extends sfActions
 								->leftJoin('c.Creator uc ')
 								->leftJoin('c.Editor uce ')
 								->leftJoin('c.StorageLocations sl')
-								->leftJoin('c.Personnel p ')
 								->where('c.id = ?', $asset['Collection']['id'])
 								->fetchArray();
-							echo '<pre>';print_r($collectionInfo);exit;
-							$AssetScoreReport['Collection ID'] = $Asset['Collection']['id'];
-							$AssetScoreReport['Collection Primary ID'] = $Asset['Collection']['inst_id'];
-							$AssetScoreReport['Collection Name'] = $Asset['Collection']['name'];
-							$AssetScoreReport['Collection Description'] = $Asset['Collection']['notes'];
+							echo '<pre>';
+							print_r($collectionInfo);
+							exit;
+							$AssetScoreReport['Collection ID'] = $collectionInfo[0]['id'];
+							$AssetScoreReport['Collection Primary ID'] = $collectionInfo[0]['inst_id'];
+							$AssetScoreReport['Collection Name'] = $collectionInfo[0]['name'];
+							$AssetScoreReport['Collection Description'] = $collectionInfo[0]['notes'];
 
 
-							$AssetScoreReport['Storage Location ID ,'] = $Asset['Collection']['StorageLocations']['id'];
-							$AssetScoreReport['Collection Storage Location Name ,'] = $Asset['Collection']['StorageLocations']['name'];
-							$AssetScoreReport['Collection Storage Location ,'] = $Asset['Collection']['StorageLocations']['name'];
-							$AssetScoreReport['Collection Storage Location Building name/Room number ,'] = $Asset['Collection']['StorageLocations']['resident_structure_description'];
-							$AssetScoreReport['Collection Storage Location Environment ,'] = StorageLocation::$constants[$Asset['Collection']['StorageLocations'][0]['env_rating']]; #$Asset['Collection']['StorageLocations']['role'];
+							$AssetScoreReport['Collection Storage Location ID '] = $collectionInfo[0]['StorageLocations']['id'];
+							$AssetScoreReport['Collection Storage Location Name'] = $collectionInfo[0]['StorageLocations']['name'];
+							
+							$AssetScoreReport['Collection Storage Location Building name/Room number'] = $collectionInfo[0]['StorageLocations']['resident_structure_description'];
+							$AssetScoreReport['Collection Storage Location Environment'] = StorageLocation::$constants[$collectionInfo[0]['StorageLocations'][0]['env_rating']]; #$Asset['Collection']['StorageLocations']['role'];
 
-							$AssetScoreReport['Unit Personnel ID ,'] = $Asset['Unit']['Personnel'][0]['id'];
-							$AssetScoreReport['Unit Personnel First Name ,'] = $Asset['Unit']['Personnel'][0]['first_name'];
-							$AssetScoreReport['Unit Personnel Last Name ,'] = $Asset['Unit']['Personnel'][0]['last_name'];
-							$AssetScoreReport['Unit Personnel Role ,'] = $Roles[$Asset['Unit']['Personnel'][0]['role']];
-							$AssetScoreReport['Unit Personnel Email ,'] = $Asset['Unit']['Personnel'][0]['email_address'];
-							$AssetScoreReport['Unit Personnel Phone ,'] = $Asset['Unit']['Personnel'][0]['phone'];
+							$AssetScoreReport['Collection Created At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['created_at']));
+							$AssetScoreReport['Collection Created By'] = $collectionInfo[0]['Creator']['first_name'] . ' ' . $collectionInfo[0]['Creator']['last_name']; #
+							$AssetScoreReport['Collection Creator ID'] = $collectionInfo[0]['Creator']['id'];
+							$AssetScoreReport['Collection Creator First Name'] = $collectionInfo[0]['Creator']['first_name'];
+							$AssetScoreReport['Collection Creator Last Name'] = $collectionInfo[0]['Creator']['last_name'];
+							$AssetScoreReport['Collection Creator e-mail'] = $collectionInfo[0]['Creator']['email_address'];
+							$AssetScoreReport['Collection Creator Phone'] = $collectionInfo[0]['Creator']['phone'];
+							$AssetScoreReport['Collection Creator Role'] = $Roles[$collectionInfo[0]['Creator']['role']];
 
-
-
-							$AssetScoreReport['Collection Created'] = date('Y-m-d H:i:s', strtotime($Asset['Collection']['created_at']));
-							$AssetScoreReport['Collection Created By'] = $Asset['Collection']['Creator']['first_name'] . ' ' . $Asset['Collection']['Creator']['last_name']; #
-							$AssetScoreReport['Collection Creator User ID -'] = $Asset['Collection']['Creator']['id'];
-							$AssetScoreReport['Collection Creator User First Name -'] = $Asset['Collection']['Creator']['first_name'];
-							$AssetScoreReport['Collection Creator User Last Name -'] = $Asset['Collection']['Creator']['last_name'];
-							$AssetScoreReport['Collection Creator User e-mail -'] = $Asset['Collection']['Creator']['email_address'];
-							$AssetScoreReport['Collection CreatorUser Phone -'] = $Asset['Collection']['Creator']['phone'];
-							$AssetScoreReport['Collection Creator User Role -'] = $Roles[$Asset['Collection']['Creator']['role']];
-
-							$AssetScoreReport['Collection'] = $Asset['Collection']['name'];
-							$AssetScoreReport['Updated On'] = date('Y-m-d H:i:s', strtotime($Asset['Collection']['updated_at']));
-							$AssetScoreReport['Collection Updated By'] = $Asset['Collection']['Editor']['first_name'] . ' ' . $Asset['Collection']['Editor']['last_name'];
-							$AssetScoreReport['Collection Editor User ID -'] = $Asset['Collection']['Editor']['id'];
-							$AssetScoreReport['Collection Editor User First Name-'] = $Asset['Collection']['Editor']['first_name'];
-							$AssetScoreReport['Collection Editor User Last Name-'] = $Asset['Collection']['Editor']['last_name'];
-							$AssetScoreReport['Collection Editor User e-mail-'] = $Asset['Collection']['Editor']['email_address'];
-							$AssetScoreReport['Collection Editor User Phone-'] = $Asset['Collection']['Editor']['phone'];
-							$AssetScoreReport['Collection Editor User Role-'] = $Roles[$Asset['Collection']['Editor']['role']];
+							
+							$AssetScoreReport['Collection Edited At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['updated_at']));
+							$AssetScoreReport['Collection Editor'] = $collectionInfo[0]['Editor']['first_name'] . ' ' . $collectionInfo[0]['Editor']['last_name'];
+							$AssetScoreReport['Collection Editor ID'] = $collectionInfo[0]['Editor']['id'];
+							$AssetScoreReport['Collection Editor First Name'] = $collectionInfo[0]['Editor']['first_name'];
+							$AssetScoreReport['Collection Editor Last Name'] = $collectionInfo[0]['Editor']['last_name'];
+							$AssetScoreReport['Collection Editor e-mail'] = $collectionInfo[0]['Editor']['email_address'];
+							$AssetScoreReport['Collection Editor Phone'] = $collectionInfo[0]['Editor']['phone'];
+							$AssetScoreReport['Collection Editor Role'] = $Roles[$collectionInfo[0]['Editor']['role']];
+							unset($collectionInfo);
 							// Collection Information End
 							echo '<pre>';
 							print_r($AssetScoreReport);
