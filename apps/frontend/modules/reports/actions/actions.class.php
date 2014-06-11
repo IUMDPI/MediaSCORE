@@ -1142,9 +1142,9 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Primary ID'] = $asset['inst_id'];
 							$AssetScoreReport['Asset Group Name'] = $asset['name'];
 
-							$AssetScoreReport['Location in Room'] = $asset['location'];
+							$AssetScoreReport['Asset Group Location in Room'] = $asset['location'];
 							$AssetScoreReport['Asset Group Description'] = $asset['notes'];
-							$AssetScoreReport['Imported into physical object database'] = ($asset['is_imported'] == 1) ? 'Yes' : 'No';
+							$AssetScoreReport['Asset Group Imported into physical object database'] = ($asset['is_imported'] == 1) ? 'Yes' : 'No';
 
 							$AssetScoreReport['Asset Group Created At'] = date('Y-m-d H:i:s', strtotime($asset['created_at']));
 							$AssetScoreReport['Asset Group Creator ID'] = $asset['Creator']['id'];
