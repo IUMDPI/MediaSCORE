@@ -1067,83 +1067,83 @@ class reportsActions extends sfActions
 						{
 							$AssetScoreReport = array();
 							$formatSpecific = array();
-							$unitInfo = Doctrine_Query::Create()
-								->from('Unit u')
-								->leftJoin('u.Creator uc ')
-								->leftJoin('u.Editor uce ')
-								->leftJoin('u.StorageLocations sl')
-								->leftJoin('u.Personnel p ')
-								->where('u.id = ?', $asset['Collection']['Unit']['id'])
-								->fetchArray();
-							// Unit Information Start
-							$AssetScoreReport['Unit ID'] = $unitInfo[0]['id'];
-							$AssetScoreReport['Unit Primary ID'] = $unitInfo[0]['inst_id'];
-							$AssetScoreReport['Unit Name'] = $unitInfo[0]['name'];
-
-							$AssetScoreReport['Unit Storage Location Building name/Room number.'] = $unitInfo[0]['StorageLocations'][0]['resident_structure_description'];
-							$AssetScoreReport['Unit Contact Notes'] = $unitInfo[0]['notes'];
-							$AssetScoreReport['Unit Storage Location Name'] = $unitInfo[0]['StorageLocations'][0]['name'];
-
-							$AssetScoreReport['Unit Personnel ID'] = $unitInfo[0]['Personnel'][0]['id'];
-							$AssetScoreReport['Unit Personnel First Name'] = $unitInfo[0]['Personnel'][0]['first_name'];
-							$AssetScoreReport['Unit Personnel Last Name'] = $unitInfo[0]['Personnel'][0]['last_name'];
-							$AssetScoreReport['Unit Personnel Email'] = $unitInfo[0]['Personnel'][0]['email_address'];
-							$AssetScoreReport['Unit Personnel Phone'] = $unitInfo[0]['Personnel'][0]['phone'];
-
-							$AssetScoreReport['Unit Created At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['created_at']));
-
-							$AssetScoreReport['Unit Creator'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name'];
-							$AssetScoreReport['Unit Creator ID'] = $unitInfo[0]['Creator']['id'];
-							$AssetScoreReport['Unit Creator First Name'] = $unitInfo[0]['Creator']['first_name'];
-							$AssetScoreReport['Unit Creator Last Name'] = $unitInfo[0]['Creator']['last_name'];
-							$AssetScoreReport['Unit Creator e-mail'] = $unitInfo[0]['Creator']['email_address'];
-							$AssetScoreReport['Unit Creator Phone'] = $unitInfo[0]['Creator']['phone'];
-							$AssetScoreReport['Unit Creator Role'] = $Roles[$unitInfo[0]['Creator']['role']];
-
-							$AssetScoreReport['Unit Edited At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['updated_at']));
-							$AssetScoreReport['Unit Editor'] = $unitInfo[0]['Editor']['first_name'] . ' ' . $unitInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Unit Editor ID'] = $unitInfo[0]['Editor']['id'];
-							$AssetScoreReport['Unit Editor First Name'] = $unitInfo[0]['Editor']['first_name'];
-							$AssetScoreReport['Unit Editor Last Name'] = $unitInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Unit Editor e-mail'] = $unitInfo[0]['Editor']['email_address'];
-							$AssetScoreReport['Unit Editor Phone'] = $unitInfo[0]['Editor']['phone'];
-							$AssetScoreReport['Unit Editor Role'] = $Roles[$unitInfo[0]['Editor']['role']];
-							unset($unitInfo);
+//							$unitInfo = Doctrine_Query::Create()
+//								->from('Unit u')
+//								->leftJoin('u.Creator uc ')
+//								->leftJoin('u.Editor uce ')
+//								->leftJoin('u.StorageLocations sl')
+//								->leftJoin('u.Personnel p ')
+//								->where('u.id = ?', $asset['Collection']['Unit']['id'])
+//								->fetchArray();
+//							// Unit Information Start
+//							$AssetScoreReport['Unit ID'] = $unitInfo[0]['id'];
+//							$AssetScoreReport['Unit Primary ID'] = $unitInfo[0]['inst_id'];
+//							$AssetScoreReport['Unit Name'] = $unitInfo[0]['name'];
+//
+//							$AssetScoreReport['Unit Storage Location Building name/Room number.'] = $unitInfo[0]['StorageLocations'][0]['resident_structure_description'];
+//							$AssetScoreReport['Unit Contact Notes'] = $unitInfo[0]['notes'];
+//							$AssetScoreReport['Unit Storage Location Name'] = $unitInfo[0]['StorageLocations'][0]['name'];
+//
+//							$AssetScoreReport['Unit Personnel ID'] = $unitInfo[0]['Personnel'][0]['id'];
+//							$AssetScoreReport['Unit Personnel First Name'] = $unitInfo[0]['Personnel'][0]['first_name'];
+//							$AssetScoreReport['Unit Personnel Last Name'] = $unitInfo[0]['Personnel'][0]['last_name'];
+//							$AssetScoreReport['Unit Personnel Email'] = $unitInfo[0]['Personnel'][0]['email_address'];
+//							$AssetScoreReport['Unit Personnel Phone'] = $unitInfo[0]['Personnel'][0]['phone'];
+//
+//							$AssetScoreReport['Unit Created At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['created_at']));
+//
+//							$AssetScoreReport['Unit Creator'] = $unitInfo[0]['Creator']['first_name'] . ' ' . $unitInfo[0]['Creator']['last_name'];
+//							$AssetScoreReport['Unit Creator ID'] = $unitInfo[0]['Creator']['id'];
+//							$AssetScoreReport['Unit Creator First Name'] = $unitInfo[0]['Creator']['first_name'];
+//							$AssetScoreReport['Unit Creator Last Name'] = $unitInfo[0]['Creator']['last_name'];
+//							$AssetScoreReport['Unit Creator e-mail'] = $unitInfo[0]['Creator']['email_address'];
+//							$AssetScoreReport['Unit Creator Phone'] = $unitInfo[0]['Creator']['phone'];
+//							$AssetScoreReport['Unit Creator Role'] = $Roles[$unitInfo[0]['Creator']['role']];
+//
+//							$AssetScoreReport['Unit Edited At'] = date('Y-m-d H:i:s', strtotime($unitInfo[0]['updated_at']));
+//							$AssetScoreReport['Unit Editor'] = $unitInfo[0]['Editor']['first_name'] . ' ' . $unitInfo[0]['Editor']['last_name'];
+//							$AssetScoreReport['Unit Editor ID'] = $unitInfo[0]['Editor']['id'];
+//							$AssetScoreReport['Unit Editor First Name'] = $unitInfo[0]['Editor']['first_name'];
+//							$AssetScoreReport['Unit Editor Last Name'] = $unitInfo[0]['Editor']['last_name'];
+//							$AssetScoreReport['Unit Editor e-mail'] = $unitInfo[0]['Editor']['email_address'];
+//							$AssetScoreReport['Unit Editor Phone'] = $unitInfo[0]['Editor']['phone'];
+//							$AssetScoreReport['Unit Editor Role'] = $Roles[$unitInfo[0]['Editor']['role']];
+//							unset($unitInfo);
 							// Unit Information End
 							// Collection Information Start
-							$collectionInfo = Doctrine_Query::Create()
-								->from('Collection c')
-								->leftJoin('c.Creator uc ')
-								->leftJoin('c.Editor uce ')
-								->leftJoin('c.StorageLocations sl')
-								->where('c.id = ?', $asset['Collection']['id'])
-								->fetchArray();
-
-							$AssetScoreReport['Collection ID'] = $collectionInfo[0]['id'];
-							$AssetScoreReport['Collection Primary ID'] = $collectionInfo[0]['inst_id'];
-							$AssetScoreReport['Collection Name'] = $collectionInfo[0]['name'];
-							$AssetScoreReport['Collection Description'] = $collectionInfo[0]['notes'];
-							$AssetScoreReport['Collection Storage Location ID '] = $collectionInfo[0]['StorageLocations'][0]['id'];
-							$AssetScoreReport['Collection Storage Location Name'] = $collectionInfo[0]['StorageLocations'][0]['name'];
-							$AssetScoreReport['Collection Storage Location Building name/Room number'] = $collectionInfo[0]['StorageLocations'][0]['resident_structure_description'];
-							$AssetScoreReport['Collection Storage Location Environment'] = StorageLocation::$constants[$collectionInfo[0]['StorageLocations'][0]['env_rating']]; #$Asset['Collection']['StorageLocations']['role'];
-							$AssetScoreReport['Collection Created At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['created_at']));
-							$AssetScoreReport['Collection Created By'] = $collectionInfo[0]['Creator']['first_name'] . ' ' . $collectionInfo[0]['Creator']['last_name']; #
-							$AssetScoreReport['Collection Creator ID'] = $collectionInfo[0]['Creator']['id'];
-							$AssetScoreReport['Collection Creator First Name'] = $collectionInfo[0]['Creator']['first_name'];
-							$AssetScoreReport['Collection Creator Last Name'] = $collectionInfo[0]['Creator']['last_name'];
-							$AssetScoreReport['Collection Creator e-mail'] = $collectionInfo[0]['Creator']['email_address'];
-							$AssetScoreReport['Collection Creator Phone'] = $collectionInfo[0]['Creator']['phone'];
-							$AssetScoreReport['Collection Creator Role'] = $Roles[$collectionInfo[0]['Creator']['role']];
-							$AssetScoreReport['Collection Edited At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['updated_at']));
-							$AssetScoreReport['Collection Editor'] = $collectionInfo[0]['Editor']['first_name'] . ' ' . $collectionInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Collection Editor ID'] = $collectionInfo[0]['Editor']['id'];
-							$AssetScoreReport['Collection Editor First Name'] = $collectionInfo[0]['Editor']['first_name'];
-							$AssetScoreReport['Collection Editor Last Name'] = $collectionInfo[0]['Editor']['last_name'];
-							$AssetScoreReport['Collection Editor e-mail'] = $collectionInfo[0]['Editor']['email_address'];
-							$AssetScoreReport['Collection Editor Phone'] = $collectionInfo[0]['Editor']['phone'];
-							$AssetScoreReport['Collection Editor Role'] = $Roles[$collectionInfo[0]['Editor']['role']];
-							unset($collectionInfo);
+//							$collectionInfo = Doctrine_Query::Create()
+//								->from('Collection c')
+//								->leftJoin('c.Creator uc ')
+//								->leftJoin('c.Editor uce ')
+//								->leftJoin('c.StorageLocations sl')
+//								->where('c.id = ?', $asset['Collection']['id'])
+//								->fetchArray();
+//
+//							$AssetScoreReport['Collection ID'] = $collectionInfo[0]['id'];
+//							$AssetScoreReport['Collection Primary ID'] = $collectionInfo[0]['inst_id'];
+//							$AssetScoreReport['Collection Name'] = $collectionInfo[0]['name'];
+//							$AssetScoreReport['Collection Description'] = $collectionInfo[0]['notes'];
+//							$AssetScoreReport['Collection Storage Location ID '] = $collectionInfo[0]['StorageLocations'][0]['id'];
+//							$AssetScoreReport['Collection Storage Location Name'] = $collectionInfo[0]['StorageLocations'][0]['name'];
+//							$AssetScoreReport['Collection Storage Location Building name/Room number'] = $collectionInfo[0]['StorageLocations'][0]['resident_structure_description'];
+//							$AssetScoreReport['Collection Storage Location Environment'] = StorageLocation::$constants[$collectionInfo[0]['StorageLocations'][0]['env_rating']]; #$Asset['Collection']['StorageLocations']['role'];
+//							$AssetScoreReport['Collection Created At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['created_at']));
+//							$AssetScoreReport['Collection Created By'] = $collectionInfo[0]['Creator']['first_name'] . ' ' . $collectionInfo[0]['Creator']['last_name']; #
+//							$AssetScoreReport['Collection Creator ID'] = $collectionInfo[0]['Creator']['id'];
+//							$AssetScoreReport['Collection Creator First Name'] = $collectionInfo[0]['Creator']['first_name'];
+//							$AssetScoreReport['Collection Creator Last Name'] = $collectionInfo[0]['Creator']['last_name'];
+//							$AssetScoreReport['Collection Creator e-mail'] = $collectionInfo[0]['Creator']['email_address'];
+//							$AssetScoreReport['Collection Creator Phone'] = $collectionInfo[0]['Creator']['phone'];
+//							$AssetScoreReport['Collection Creator Role'] = $Roles[$collectionInfo[0]['Creator']['role']];
+//							$AssetScoreReport['Collection Edited At'] = date('Y-m-d H:i:s', strtotime($collectionInfo[0]['updated_at']));
+//							$AssetScoreReport['Collection Editor'] = $collectionInfo[0]['Editor']['first_name'] . ' ' . $collectionInfo[0]['Editor']['last_name'];
+//							$AssetScoreReport['Collection Editor ID'] = $collectionInfo[0]['Editor']['id'];
+//							$AssetScoreReport['Collection Editor First Name'] = $collectionInfo[0]['Editor']['first_name'];
+//							$AssetScoreReport['Collection Editor Last Name'] = $collectionInfo[0]['Editor']['last_name'];
+//							$AssetScoreReport['Collection Editor e-mail'] = $collectionInfo[0]['Editor']['email_address'];
+//							$AssetScoreReport['Collection Editor Phone'] = $collectionInfo[0]['Editor']['phone'];
+//							$AssetScoreReport['Collection Editor Role'] = $Roles[$collectionInfo[0]['Editor']['role']];
+//							unset($collectionInfo);
 							// Collection Information End
 							// Asset Group Information Start
 
@@ -1387,7 +1387,7 @@ class reportsActions extends sfActions
 							// Asset Group Format Information End
 						}
 						unset($assets);
-						echo 'nouman';exit;
+						
 					}
 				}
 				elseif ($param['reports']['listReports'] == '1')
