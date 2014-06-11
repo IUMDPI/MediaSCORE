@@ -1153,7 +1153,7 @@ class reportsActions extends sfActions
 							$AssetScoreReport['Asset Group Creator e-mail'] = $asset['Creator']['email_address'];
 							$AssetScoreReport['Asset Group Creator Phone'] = $asset['Creator']['phone'];
 							$AssetScoreReport['Asset Group Creator Role'] = $Roles[$asset['Creator']['role']];
-							$AssetScoreReport['Asset Group Edited At'] = $asset['Editor']['role'];
+							$AssetScoreReport['Asset Group Edited At'] =  date('Y-m-d H:i:s', strtotime($asset['updated_at']));
 							$AssetScoreReport['Asset Group Editor'] = $asset['Editor']['first_name'] . ' ' . $asset['Editor']['last_name']; #;
 							$AssetScoreReport['Asset Group User Editor ID *'] = $asset['Editor']['id'];
 							$AssetScoreReport['Asset Group User Editor First Name'] = $asset['Editor']['first_name'];
