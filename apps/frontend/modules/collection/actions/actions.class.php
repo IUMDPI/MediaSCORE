@@ -591,7 +591,7 @@ class collectionActions extends sfActions
 				$collection = Doctrine_Query::Create()
 					->from('Collection c')
 //				->select('c.*')
-					->where('c.name = ?', $title)
+					->where('c.name LIKE ?', $title)
 					->fetchOne();
 				if ( ! $collection)
 				{
