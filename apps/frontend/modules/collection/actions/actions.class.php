@@ -617,6 +617,7 @@ class collectionActions extends sfActions
 				$collection->setLastEditorId($row[6]);
 				
 			}
+			echo $row[2].'<br/>';
 			echo $collection->getId().'<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
