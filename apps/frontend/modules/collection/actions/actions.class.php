@@ -580,10 +580,16 @@ class collectionActions extends sfActions
 		$fileContent = file_get_contents('tblCollection.xml');
 		$xmlObject = @simplexml_load_string($fileContent);
 		$records = $this->xmlObjToArray($xmlObject);
+
+		foreach ($records['children']['tblcollection'] as $key => $row)
+		{
+			$info = $row['children'];
+			$primaryId = $info['primaryid'][0]['text'];
+			$title = $info['title'][0]['text'];
+			echo $key.'<br/>';
+			echo $title.'<br/>';
+		}
 		
-		
-		echo '<pre>';
-		print_r($records);
 		exit;
 
 
