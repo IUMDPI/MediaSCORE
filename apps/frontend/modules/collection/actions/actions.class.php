@@ -577,12 +577,12 @@ class collectionActions extends sfActions
 			17 => 32,
 			18 => 28,
 			12 => 12);
-		$file = file_get_contents("tblCollection.csv");
+		$file = file_get_contents("tblCollection.txt");
 		$record_rows = preg_split('/\r*\n+|\r+/', $file);
 		$records = array();
 		foreach ($record_rows as $key => $value)
 		{
-			$records[$key] = str_getcsv($value, ",");
+			$records[$key] = str_getcsv($value, "\t");
 		}
 		unset($records[0]);
 //		echo '<pre>';
