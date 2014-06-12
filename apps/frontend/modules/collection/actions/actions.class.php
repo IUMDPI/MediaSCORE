@@ -607,7 +607,7 @@ class collectionActions extends sfActions
 				->from('Collection c')
 				->select('c.*')
 				->where('c.name = ', $row[2])
-				->fetchArray();
+				->fetchOne();
 //			if ( ! $collection)
 //			{
 //				$collection = new Collection();
@@ -618,7 +618,7 @@ class collectionActions extends sfActions
 //				
 //			}
 			echo $row[2].'<br/>';
-			echo $collection[0]['id'].'<br/>';
+			echo $collection->getName().'<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
 //			$collection->setIubUnit($unit[$row[5]]);
