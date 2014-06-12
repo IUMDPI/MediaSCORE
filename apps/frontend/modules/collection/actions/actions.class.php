@@ -568,8 +568,15 @@ class collectionActions extends sfActions
 			48 => 7912,
 			52 => 7918,
 			63 => 241,
-			72 => 1338
+			72 => 1338,
+			81 => 1343
 		);
+		$user = array(6 => 5,
+			13 => 6,
+			16 => 21,
+			17 => 32,
+			18 => 28,
+			12 => 12);
 		$file = file_get_contents("tblCollection.csv");
 		$record_rows = preg_split('/\r*\n+|\r+/', $file);
 		$records = array();
@@ -587,28 +594,32 @@ class collectionActions extends sfActions
 		{
 			$unknown = 0;
 			if (isset($row[17]) && ($row[17] == 'TRUE' || $row[17] == 'true'))
+			{
 				$unknown = 1;
+				$totalScore = ((int) $row[8] + (int) $row[10] + (int) $row[12] + (int) $row[14] ) / 4;
+			}
+			else
+			{
+				$totalScore = ((int) $row[8] + (int) $row[10] + (int) $row[12] + (int) $row[14] + (int) $row[16]) / 5;
+			}
+
 			$collection = Doctrine_Query::Create()
 				->from('Collection c')
 				->select('c.*')
 				->where('c.name = ', $row[2])
 				->fetchOne();
-			if ($collection)
-			{
-				
-			}
-			else
+			if ( ! $collection)
 			{
 				$collection = new Collection();
 				$collection->setName($row[2]);
 				$collection->setInstId($row[1]);
-				$collection->setCreatorId(1);
-				$collection->setLastEditorId(1);
+				$collection->setCreatorId($row[6]);
+				$collection->setLastEditorId($row[6]);
 			}
 			$collection->setCharacteristics($row[3]);
 			$collection->setProjectTitle($row[4]);
 			$collection->setIubUnit($unit[$row[5]]);
-			$collection->setIubWork($row[6]);
+			$collection->setIubWork($user[$row[6]]);
 			$collection->setDateCompleted(date('Y-m-d', strtotime($row[7])));
 			$collection->setScoreSubjectInterest($row[8]);
 			$collection->setNotesSubjectInterest($row[9]);
@@ -626,6 +637,7 @@ class collectionActions extends sfActions
 			$collection->setIpStatement(isset($row[21]) ? $row[21] : '');
 			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
 			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
+			$collection->setCollectionScore($totalScore);
 			$collection->save();
 //			echo 'Collection ID ' . $collection->getId() . '<br/>';
 			unset($collection);
