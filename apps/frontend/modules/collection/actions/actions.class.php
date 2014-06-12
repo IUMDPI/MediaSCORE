@@ -685,7 +685,7 @@ class collectionActions extends sfActions
 					{
 						$childName = $ns . ':' . $childName;
 					}
-					$children[$childName][] = xmlObjToArray($child);
+					$children[$childName][] = $this->xmlObjToArray($child);
 				}
 			}
 		}
