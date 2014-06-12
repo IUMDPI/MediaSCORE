@@ -585,12 +585,28 @@ class collectionActions extends sfActions
 		{
 			$info = $row['children'];
 			$primaryId = $info['primaryid'][0]['text'];
-			$title = $info['title'][0]['text'];
-			if($key==328){
-				echo '<pre>';print_r($row);exit;
+			$title = $info['projecttitle'][0]['text'];
+			if ( ! empty($title))
+			{
+				$collection = Doctrine_Query::Create()
+					->from('Collection c')
+//				->select('c.*')
+					->where('c.name = ', $title)
+					->fetchOne();
+				if ( ! $collection)
+				{
+					$collection = new Collection();
+				}
+				echo $collection->getName().'<br/>';
+//				if ($key == 328)
+//				{
+//					echo '<pre>';
+//					print_r($row);
+//					exit;
+//				}
 			}
 		}
-		
+
 		exit;
 
 
