@@ -585,9 +585,7 @@ class collectionActions extends sfActions
 			$records[$key] = str_getcsv($value, "\t");
 		}
 		unset($records[0]);
-		echo '<pre>';
-		print_r($records);
-		exit;
+
 
 
 		foreach ($records as $row)
@@ -617,8 +615,11 @@ class collectionActions extends sfActions
 //				$collection->setLastEditorId($row[6]);
 //				
 //			}
-			echo $row[2].'<br/>';
-			echo $collection->getName().'<br/>';
+			echo '<pre>';
+			print_r($row);
+
+			echo $row[2] . '<br/>';
+			echo $collection->getName() . '<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
 //			$collection->setIubUnit($unit[$row[5]]);
