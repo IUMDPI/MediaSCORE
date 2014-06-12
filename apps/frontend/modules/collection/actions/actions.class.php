@@ -577,14 +577,11 @@ class collectionActions extends sfActions
 			17 => 32,
 			18 => 28,
 			12 => 12);
-		$file = file_get_contents("tblCollection.txt");
-		$record_rows = preg_split('/\r*\n+|\r+/', $file);
-		$records = array();
-		foreach ($record_rows as $key => $value)
-		{
-			$records[$key] = str_getcsv($value, "\t");
-		}
-		unset($records[0]);
+		$fileContent = file_get_contents('tblCollection.xml');
+		$xmlObject = @simplexml_load_string($fileContent);
+		$records = $this->xmlObjToArray($xmlObject);
+		
+		
 		echo '<pre>';
 		print_r($records);
 		exit;
@@ -617,8 +614,8 @@ class collectionActions extends sfActions
 //				$collection->setLastEditorId($row[6]);
 //				
 //			}
-			echo $row[2].'<br/>';
-			echo $collection->getName().'<br/>';
+			echo $row[2] . '<br/>';
+			echo $collection->getName() . '<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
 //			$collection->setIubUnit($unit[$row[5]]);
@@ -647,6 +644,52 @@ class collectionActions extends sfActions
 		}
 		echo 'All collection successfully imported';
 		exit;
+	}
+
+	function xmlObjToArray($object)
+	{
+		$namespace = $object->getDocNamespaces(true);
+		$namespace[NULL] = NULL;
+		$children = array();
+		$attributes = array();
+		$name = strtolower((string) $object->getName());
+		$text = trim((string) $object);
+		if (strlen($text) <= 0)
+		{
+			$text = NULL;
+		}
+		// get info for all namespaces
+		if (is_object($object))
+		{
+
+			foreach ($namespace as $ns => $nsUrl)
+			{
+				// atributes
+				$objAttributes = $object->attributes($ns, true);
+				foreach ($objAttributes as $attributeName => $attributeValue)
+				{
+					$attribName = strtolower(trim((string) $attributeName));
+					$attribVal = trim((string) $attributeValue);
+					if ( ! empty($ns))
+					{
+						$attribName = $ns . ':' . $attribName;
+					}
+					$attributes[$attribName] = $attribVal;
+				}
+				// children
+				$objChildren = $object->children($ns, true);
+				foreach ($objChildren as $childName => $child)
+				{
+					$childName = strtolower((string) $childName);
+					if ( ! empty($ns))
+					{
+						$childName = $ns . ':' . $childName;
+					}
+					$children[$childName][] = xmlObjToArray($child);
+				}
+			}
+		}
+		return array('name' => $name, 'text' => $text, 'attributes' => $attributes, 'children' => $children);
 	}
 
 }
