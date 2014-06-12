@@ -596,6 +596,7 @@ class collectionActions extends sfActions
 				if ( ! $collection)
 				{
 					$collection = new Collection();
+					$collection->setName('Nouman');
 				}
 				echo $collection->getName().'<br/>';
 //				if ($key == 328)
