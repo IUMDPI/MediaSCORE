@@ -585,9 +585,9 @@ class collectionActions extends sfActions
 			$records[$key] = str_getcsv($value, ",");
 		}
 		unset($records[0]);
-		echo '<pre>';
-		print_r($records);
-		exit;
+//		echo '<pre>';
+//		print_r($records);
+//		exit;
 
 
 		foreach ($records as $row)
@@ -615,30 +615,34 @@ class collectionActions extends sfActions
 				$collection->setInstId($row[1]);
 				$collection->setCreatorId($row[6]);
 				$collection->setLastEditorId($row[6]);
+				echo 'new<br/>';
 			}
-			$collection->setCharacteristics($row[3]);
-			$collection->setProjectTitle($row[4]);
-			$collection->setIubUnit($unit[$row[5]]);
-			$collection->setIubWork($user[$row[6]]);
-			$collection->setDateCompleted(date('Y-m-d', strtotime($row[7])));
-			$collection->setScoreSubjectInterest($row[8]);
-			$collection->setNotesSubjectInterest($row[9]);
-			$collection->setScoreContentQuality($row[10]);
-			$collection->setNotesContentQuality($row[11]);
-			$collection->setScoreRareness(isset($row[12]) ? $row[12] : '');
-			$collection->setNotesRareness(isset($row[13]) ? $row[13] : '');
-			$collection->setScoreDocumentation(isset($row[14]) ? $row[14] : '');
-			$collection->setNotesDocumentation(isset($row[15]) ? $row[15] : '');
-			$collection->setScoreTechnicalQuality(isset($row[16]) ? $row[16] : '');
-			$collection->setNotesTechnicalQuality(isset($row[18]) ? $row[18] : '');
-			$collection->setUnknownTechnicalQuality($unknown);
-			$collection->setGenerationStatement(isset($row[19]) ? $row[19] : '');
-			$collection->setGenerationStatementNotes(isset($row[20]) ? $row[20] : '');
-			$collection->setIpStatement(isset($row[21]) ? $row[21] : '');
-			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
-			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
-			$collection->setCollectionScore($totalScore);
-			$collection->save();
+			else{
+				echo 'already<br/>';
+			}
+//			$collection->setCharacteristics($row[3]);
+//			$collection->setProjectTitle($row[4]);
+//			$collection->setIubUnit($unit[$row[5]]);
+//			$collection->setIubWork($user[$row[6]]);
+//			$collection->setDateCompleted(date('Y-m-d', strtotime($row[7])));
+//			$collection->setScoreSubjectInterest($row[8]);
+//			$collection->setNotesSubjectInterest($row[9]);
+//			$collection->setScoreContentQuality($row[10]);
+//			$collection->setNotesContentQuality($row[11]);
+//			$collection->setScoreRareness(isset($row[12]) ? $row[12] : '');
+//			$collection->setNotesRareness(isset($row[13]) ? $row[13] : '');
+//			$collection->setScoreDocumentation(isset($row[14]) ? $row[14] : '');
+//			$collection->setNotesDocumentation(isset($row[15]) ? $row[15] : '');
+//			$collection->setScoreTechnicalQuality(isset($row[16]) ? $row[16] : '');
+//			$collection->setNotesTechnicalQuality(isset($row[18]) ? $row[18] : '');
+//			$collection->setUnknownTechnicalQuality($unknown);
+//			$collection->setGenerationStatement(isset($row[19]) ? $row[19] : '');
+//			$collection->setGenerationStatementNotes(isset($row[20]) ? $row[20] : '');
+//			$collection->setIpStatement(isset($row[21]) ? $row[21] : '');
+//			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
+//			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
+//			$collection->setCollectionScore($totalScore);
+//			$collection->save();
 //			echo 'Collection ID ' . $collection->getId() . '<br/>';
 			unset($collection);
 		}
