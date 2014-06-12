@@ -607,18 +607,18 @@ class collectionActions extends sfActions
 				->from('Collection c')
 				->select('c.*')
 				->where('c.name = ', $row[2])
-				->fetchOne();
-			if ( ! $collection)
-			{
-				$collection = new Collection();
-				$collection->setName($row[2]);
-				$collection->setInstId($row[1]);
-				$collection->setCreatorId($row[6]);
-				$collection->setLastEditorId($row[6]);
-				
-			}
+				->fetchArray();
+//			if ( ! $collection)
+//			{
+//				$collection = new Collection();
+//				$collection->setName($row[2]);
+//				$collection->setInstId($row[1]);
+//				$collection->setCreatorId($row[6]);
+//				$collection->setLastEditorId($row[6]);
+//				
+//			}
 			echo $row[2].'<br/>';
-			echo $collection->getId().'<br/>';
+			echo $collection[0]['id'].'<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
 //			$collection->setIubUnit($unit[$row[5]]);
