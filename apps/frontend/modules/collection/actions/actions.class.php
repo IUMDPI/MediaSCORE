@@ -586,8 +586,9 @@ class collectionActions extends sfActions
 			$info = $row['children'];
 			$primaryId = $info['primaryid'][0]['text'];
 			$title = $info['title'][0]['text'];
-			echo $key.'<br/>';
-			echo $title.'<br/>';
+			if($key==328){
+				echo '<pre>';print_r($row);exit;
+			}
 		}
 		
 		exit;
