@@ -615,11 +615,9 @@ class collectionActions extends sfActions
 				$collection->setInstId($row[1]);
 				$collection->setCreatorId($row[6]);
 				$collection->setLastEditorId($row[6]);
-				echo 'new<br/>';
+				
 			}
-			else{
-				echo 'already<br/>';
-			}
+			echo $collection->getId().'<br/>';
 //			$collection->setCharacteristics($row[3]);
 //			$collection->setProjectTitle($row[4]);
 //			$collection->setIubUnit($unit[$row[5]]);
