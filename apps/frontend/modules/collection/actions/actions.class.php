@@ -585,9 +585,9 @@ class collectionActions extends sfActions
 			$records[$key] = str_getcsv($value, "\t");
 		}
 		unset($records[0]);
-//		echo '<pre>';
-//		print_r($records);
-//		exit;
+		echo '<pre>';
+		print_r($records);
+		exit;
 
 
 		foreach ($records as $row)
