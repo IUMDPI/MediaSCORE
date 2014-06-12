@@ -585,7 +585,7 @@ class collectionActions extends sfActions
 		{
 			$info = $row['children'];
 			$primaryId = $info['primaryid'][0]['text'];
-			$title = $info['projecttitle'][0]['text'];
+			$title = $info['title'][0]['text'];
 			if ( ! empty($title))
 			{
 				$collection = Doctrine_Query::Create()
