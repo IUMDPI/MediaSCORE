@@ -582,8 +582,8 @@ class collectionActions extends sfActions
 		$records = $this->xmlObjToArray($xmlObject);
 
 		foreach ($records['children']['tblcollection'] as $key => $row)
-		{	
-			echo '<pre>';print_r($row);exit;
+		{
+			$info = $row['children'];
 			$primaryId = $info['primaryid'][0]['text'];
 			$title = $info['title'][0]['text'];
 			$characteristics = isset($info['characteristics'][0]['text']) ? $info['characteristics'][0]['text'] : '';
