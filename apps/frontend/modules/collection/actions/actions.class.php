@@ -584,13 +584,33 @@ class collectionActions extends sfActions
 		foreach ($records['children']['tblcollection'] as $key => $row)
 		{
 			$info = $row['children'];
+			echo '<pre>';print_r($info);exit;
 			$primaryId = $info['primaryid'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
+			$title = $info['title'][0]['text'];
 			$title = $info['title'][0]['text'];
 			if ( ! empty($title))
 			{
 				$collection = Doctrine_Query::Create()
 					->from('Collection c')
-//				->select('c.*')
 					->where('c.name LIKE ?', trim($title))
 					->fetchOne();
 				if ( ! $collection)
