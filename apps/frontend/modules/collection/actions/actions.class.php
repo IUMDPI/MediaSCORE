@@ -590,11 +590,11 @@ class collectionActions extends sfActions
 			$projecttitle = $info['projecttitle'][0]['text'];
 			$iubunit = $unit[$info['iubunit'][0]['text']];
 			$iubworker = $user[$info['iubworker'][0]['text']];
-			$datecompleted = date('Y-m-d', strtotime($info['datecompleted'][0]['text']));
+			$datecompleted = isset($info['datecompleted'][0]['text']) ? date('Y-m-d', strtotime($info['datecompleted'][0]['text'])) :'';
 			$intscore = (float) $info['intscore'][0]['text'];
-			$intnotes = $info['intnotes'][0]['text'];
+			$intnotes = isset($info['intnotes'][0]['text']) ? $info['intnotes'][0]['text'] : '';
 			$contscore = (float) $info['contscore'][0]['text'];
-			$contnotes = $info['contnotes'][0]['text'];
+			$contnotes = isset($info['contnotes'][0]['text']) ? $info['contnotes'][0]['text'] : '';
 			$rarescore = isset($info['rarescore'][0]['text']) ? (float) $info['rarescore'][0]['text'] : 0;
 			$rarenotes = isset($info['rarenotes'][0]['text']) ? $info['rarenotes'][0]['text'] : '';
 			$docscore = isset($info['docscore'][0]['text']) ? (float) $info['docscore'][0]['text'] : 0;
