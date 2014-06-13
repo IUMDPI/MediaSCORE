@@ -583,32 +583,43 @@ class collectionActions extends sfActions
 
 		foreach ($records['children']['tblcollection'] as $key => $row)
 		{
-			$info = $row['children'];
-			echo '<pre>';print_r($info);exit;
+
 			$primaryId = $info['primaryid'][0]['text'];
 			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
-			$title = $info['title'][0]['text'];
+			$characteristics = isset($info['characteristics'][0]['text']) ? $info['characteristics'][0]['text'] : '';
+			$projecttitle = $info['projecttitle'][0]['text'];
+			$iubunit = $unit[$info['iubunit'][0]['text']];
+			$iubworker = $user[$info['iubworker'][0]['text']];
+			$datecompleted = date('Y-m-d', strtotime($info['datecompleted'][0]['text']));
+			$intscore = (float) $info['intscore'][0]['text'];
+			$intnotes = $info['intnotes'][0]['text'];
+			$contscore = (float) $info['contscore'][0]['text'];
+			$contnotes = $info['contnotes'][0]['text'];
+			$rarescore = isset($info['rarescore'][0]['text']) ? (float) $info['rarescore'][0]['text'] : 0;
+			$rarenotes = isset($info['rarenotes'][0]['text']) ? $info['rarenotes'][0]['text'] : '';
+			$docscore = isset($info['docscore'][0]['text']) ? (float) $info['docscore'][0]['text'] : 0;
+			$docnotes = isset($info['docnotes'][0]['text']) ? $info['docnotes'][0]['text'] : '';
+			$techscore = isset($info['techscore'][0]['text']) ? (float) $info['techscore'][0]['text'] : 0;
+			$techunknown = $info['techunknown'][0]['text'];
+			$technotes = isset($info['technotes'][0]['text']) ? $info['technotes'][0]['text'] : '';
+			$generationstatement = isset($info['generationstatement'][0]['text']) ? $info['generationstatement'][0]['text'] : '';
+			$generationnotes = isset($info['generationnotes'][0]['text']) ? $info['generationnotes'][0]['text'] : '';
+			$intellectualpropertynotes = isset($info['intellectualpropertynotes'][0]['text']) ? $info['intellectualpropertynotes'][0]['text'] : '';
+			$intellectualpropertystatement = isset($info['intellectualpropertystatement'][0]['text']) ? $info['intellectualpropertystatement'][0]['text'] : '';
+			$generalnotes = isset($info['generalnotes'][0]['text']) ? $info['generalnotes'][0]['text'] : '';
+
 			if ( ! empty($title))
 			{
+				$unknown = 0;
+				if (isset($techunknown) && ($techunknown == 'TRUE' || $techunknown == 'true'))
+				{
+					$unknown = 1;
+					$totalScore = ($intscore + $contscore + $rarescore + $docscore ) / 4;
+				}
+				else
+				{
+					$totalScore = ($intscore + $contscore + $rarescore + $docscore + $techscore) / 5;
+				}
 				$collection = Doctrine_Query::Create()
 					->from('Collection c')
 					->where('c.name LIKE ?', trim($title))
@@ -616,9 +627,36 @@ class collectionActions extends sfActions
 				if ( ! $collection)
 				{
 					$collection = new Collection();
-					$collection->setName('Nouman');
+					$collection->setName($title);
+					$collection->setInstId($primaryId);
+					$collection->setCreatorId($iubworker);
+					$collection->setLastEditorId($iubworker);
+					echo 'New <br/>';
 				}
-				echo $collection->getName().'<br/>';
+				$collection->setCharacteristics($characteristics);
+				$collection->setProjectTitle($projecttitle);
+				$collection->setIubUnit($iubunit);
+				$collection->setIubWork($iubworker);
+				$collection->setDateCompleted($datecompleted);
+				$collection->setScoreSubjectInterest($intscore);
+				$collection->setNotesSubjectInterest($intnotes);
+				$collection->setScoreContentQuality($contscore);
+				$collection->setNotesContentQuality($contnotes);
+				$collection->setScoreRareness($rarescore);
+				$collection->setNotesRareness($rarenotes);
+				$collection->setScoreDocumentation($docscore);
+				$collection->setNotesDocumentation($docnotes);
+				$collection->setScoreTechnicalQuality($techscore);
+				$collection->setNotesTechnicalQuality($technotes);
+				$collection->setUnknownTechnicalQuality($unknown);
+				$collection->setGenerationStatement($generationstatement);
+				$collection->setGenerationStatementNotes($generationnotes);
+				$collection->setIpStatement($intellectualpropertystatement);
+				$collection->setIpStatementNotes($intellectualpropertynotes);
+				$collection->setGeneralNotes($generalnotes);
+				$collection->setCollectionScore($totalScore);
+				$collection->save();
+				echo 'Record ID =>' . $collection->getId() . '<br/>';
 //				if ($key == 328)
 //				{
 //					echo '<pre>';
@@ -626,65 +664,6 @@ class collectionActions extends sfActions
 //					exit;
 //				}
 			}
-		}
-
-		exit;
-
-
-		foreach ($records as $row)
-		{
-			$unknown = 0;
-			if (isset($row[17]) && ($row[17] == 'TRUE' || $row[17] == 'true'))
-			{
-				$unknown = 1;
-				$totalScore = ((int) $row[8] + (int) $row[10] + (int) $row[12] + (int) $row[14] ) / 4;
-			}
-			else
-			{
-				$totalScore = ((int) $row[8] + (int) $row[10] + (int) $row[12] + (int) $row[14] + (int) $row[16]) / 5;
-			}
-
-			$collection = Doctrine_Query::Create()
-				->from('Collection c')
-//				->select('c.*')
-				->where('c.name = ', $row[2])
-				->fetchOne();
-//			if ( ! $collection)
-//			{
-//				$collection = new Collection();
-//				$collection->setName($row[2]);
-//				$collection->setInstId($row[1]);
-//				$collection->setCreatorId($row[6]);
-//				$collection->setLastEditorId($row[6]);
-//				
-//			}
-			echo $row[2] . '<br/>';
-			echo $collection->getName() . '<br/>';
-//			$collection->setCharacteristics($row[3]);
-//			$collection->setProjectTitle($row[4]);
-//			$collection->setIubUnit($unit[$row[5]]);
-//			$collection->setIubWork($user[$row[6]]);
-//			$collection->setDateCompleted(date('Y-m-d', strtotime($row[7])));
-//			$collection->setScoreSubjectInterest($row[8]);
-//			$collection->setNotesSubjectInterest($row[9]);
-//			$collection->setScoreContentQuality($row[10]);
-//			$collection->setNotesContentQuality($row[11]);
-//			$collection->setScoreRareness(isset($row[12]) ? $row[12] : '');
-//			$collection->setNotesRareness(isset($row[13]) ? $row[13] : '');
-//			$collection->setScoreDocumentation(isset($row[14]) ? $row[14] : '');
-//			$collection->setNotesDocumentation(isset($row[15]) ? $row[15] : '');
-//			$collection->setScoreTechnicalQuality(isset($row[16]) ? $row[16] : '');
-//			$collection->setNotesTechnicalQuality(isset($row[18]) ? $row[18] : '');
-//			$collection->setUnknownTechnicalQuality($unknown);
-//			$collection->setGenerationStatement(isset($row[19]) ? $row[19] : '');
-//			$collection->setGenerationStatementNotes(isset($row[20]) ? $row[20] : '');
-//			$collection->setIpStatement(isset($row[21]) ? $row[21] : '');
-//			$collection->setIpStatementNotes(isset($row[22]) ? $row[22] : '');
-//			$collection->setGeneralNotes(isset($row[23]) ? $row[23] : '');
-//			$collection->setCollectionScore($totalScore);
-//			$collection->save();
-//			echo 'Collection ID ' . $collection->getId() . '<br/>';
-			unset($collection);
 		}
 		echo 'All collection successfully imported';
 		exit;
