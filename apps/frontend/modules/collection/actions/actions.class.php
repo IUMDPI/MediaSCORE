@@ -584,16 +584,16 @@ class collectionActions extends sfActions
 		foreach ($records['children']['tblcollection'] as $key => $row)
 		{
 			$info = $row['children'];
-			$primaryId = $info['primaryid'][0]['text'];
-			$title = $info['title'][0]['text'];
+			$primaryId = isset($info['primaryid'][0]['text']) ? $info['primaryid'][0]['text'] : '';
+			$title = isset($info['title'][0]['text']) ? $info['title'][0]['text'] : '';
 			$characteristics = isset($info['characteristics'][0]['text']) ? $info['characteristics'][0]['text'] : '';
-			$projecttitle = $info['projecttitle'][0]['text'];
+			$projecttitle = isset($info['projecttitle'][0]['text']) ? $info['projecttitle'][0]['text'] : '';
 			$iubunit = $unit[$info['iubunit'][0]['text']];
-			$iubworker = $user[$info['iubworker'][0]['text']];
-			$datecompleted = isset($info['datecompleted'][0]['text']) ? date('Y-m-d', strtotime($info['datecompleted'][0]['text'])) :'';
-			$intscore = (float) $info['intscore'][0]['text'];
+			$iubworker = isset($info['iubworker'][0]['text']) ? $user[$info['iubworker'][0]['text']] : 1;
+			$datecompleted = isset($info['datecompleted'][0]['text']) ? date('Y-m-d', strtotime($info['datecompleted'][0]['text'])) : '';
+			$intscore = isset($info['intscore'][0]['text']) ? (float) $info['intscore'][0]['text'] : 0;
 			$intnotes = isset($info['intnotes'][0]['text']) ? $info['intnotes'][0]['text'] : '';
-			$contscore = (float) $info['contscore'][0]['text'];
+			$contscore = isset($info['contscore'][0]['text']) ? (float) $info['contscore'][0]['text'] : 0;
 			$contnotes = isset($info['contnotes'][0]['text']) ? $info['contnotes'][0]['text'] : '';
 			$rarescore = isset($info['rarescore'][0]['text']) ? (float) $info['rarescore'][0]['text'] : 0;
 			$rarenotes = isset($info['rarenotes'][0]['text']) ? $info['rarenotes'][0]['text'] : '';
@@ -657,6 +657,7 @@ class collectionActions extends sfActions
 				$collection->setCollectionScore($totalScore);
 				$collection->save();
 				echo 'Record ID =>' . $collection->getId() . '<br/>';
+				echo 'Total Score =>' . $collection->getCollectionScore() . '<br/>';
 //				if ($key == 328)
 //				{
 //					echo '<pre>';
