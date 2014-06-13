@@ -631,10 +631,12 @@ class collectionActions extends sfActions
 					$collection->setInstId($primaryId);
 					$collection->setCreatorId($iubworker);
 					$collection->setLastEditorId($iubworker);
+
 					echo 'New <br/>';
 				}
 				$collection->setCharacteristics($characteristics);
 				$collection->setProjectTitle($projecttitle);
+				$collection->setParentNodeId($iubunit);
 				$collection->setIubUnit($iubunit);
 				$collection->setIubWork($iubworker);
 				$collection->setDateCompleted($datecompleted);
