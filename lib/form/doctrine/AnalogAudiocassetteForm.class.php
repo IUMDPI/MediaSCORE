@@ -12,7 +12,7 @@ class AnalogAudiocassetteForm extends BaseAnalogAudiocassetteForm {
 
     public function configure() {
         parent::configure();
-        $this->setWidget('tape_type', new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[0])));
+        $this->setWidget('tape_type', new sfWidgetFormChoice(array('choices' => AnalogAudiocassette::$constants[0]),array('onselect'=>'checkTapeType();')));
         $this->setWidget('thin_tape', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if 120 or 180 minute cassettes')));
         $this->setWidget('slow_speed', new sfWidgetFormInputCheckbox(array(), array('title' => 'Check the box if cassette is marked as recorded at 0.9375 ips')));
         $this->setWidget('noise_reduction', new sfWidgetFormInputCheckbox());
