@@ -96,7 +96,7 @@
 		$("#format_type_fungus").parents(".row").show();
 	});
 	function checkTapeType() {
-		tapeType = $('analog_audiocassette_tape_type').val();
+		tapeType = $('#analog_audiocassette_tape_type').val();
 		if (tapeType == 4 || tapeType == 5) {
 			$('#thin_tape_row').hide();
 			$('#analog_audiocassette_thin_tape').attr('checked', false);
