@@ -101,5 +101,9 @@
 			$('#thin_tape_row').hide();
 			$('#analog_audiocassette_thin_tape').attr('checked', false);
 		}
+		else {
+			$('#thin_tape_row').show();
+
+		}
 	}
 </script>
