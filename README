@@ -1,0 +1,26 @@
+MediaScoreRiver Tech
+
+Web Server:
+	Apache2
+
+Envirement
+  PHP 5.3
+
+Framework
+	Symfony 1.4 (please check prerequisites here: http://symfony.com/legacy/doc/getting-started/1_4/en/02-Prerequisites)
+
+Database 
+	mySQL 5.1.*
+
+Source Control Management (SCM)
+	git 1.7.*
+
+Library PHP
+	PHP Excel
+ 
+Javascript Libraries
+	Jquery
+	Jquery UI
+ 	blockUI
+	Fancybox
+ 	tableSorter
