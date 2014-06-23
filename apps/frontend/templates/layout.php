@@ -55,7 +55,7 @@
                     ?> 
 
                 <?php } else { ?>
-						<div class="assess"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>&nbsp;</h2></div>
+						<div class="assess">&nbsp;</div>
                     
                     
                 <?php } ?>
