@@ -1203,11 +1203,11 @@ class reportsActions extends sfActions
 
 								if ($formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', $formatValue))
 								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', iconv("UTF-8", "ISO-8859-1", $formatValue)) . ' , ';
+									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', iconv("UTF-8", "latin1", $formatValue)) . ' , ';
 								}
 								else
 								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', iconv("UTF-8", "ISO-8859-1", $formatValue)) . ' , ';
+									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', iconv("UTF-8", "latin1", $formatValue)) . ' , ';
 								}
 							}
 
