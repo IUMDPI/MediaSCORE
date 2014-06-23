@@ -1209,10 +1209,9 @@ class reportsActions extends sfActions
 								{
 									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
 								}
-								$format = preg_replace("/\t/", "\\t", $format);
-								$format = preg_replace("/\r?\n/", "\\n", $format);
+								
 							}
-
+							var_dump($format);exit;
 							$formatSpecific['formatversion'] = rtrim($format, ', ');
 							$formatSpecific['format'] = '';
 							if (in_array($asset['FormatType']['type'], array(33)))
