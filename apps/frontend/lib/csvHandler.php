@@ -114,7 +114,7 @@ class csvHandler {
      */
     function DownloadCSV($file_name_with_directory, $file_name = '') {
 
-        header('Content-Type: application/octet-stream');
+        header('Content-Type: application/octet-stream;  charset=utf-8');
         header("Content-Transfer-Encoding: Binary");
         header("Content-disposition: attachment; filename=\"" . $file_name . "\"");
         $file_url = $this->getUploadDicrectoryPath() . $file_name_with_directory;
