@@ -1213,7 +1213,7 @@ class reportsActions extends sfActions
 							}
 							
 							$formatSpecific['formatversion'] = rtrim($format, ', ');
-							var_dump($formatSpecific['formatversion']);exit;
+							var_dump(str_replace('\0','' , $formatSpecific['formatversion']));exit;
 							$formatSpecific['format'] = '';
 							if (in_array($asset['FormatType']['type'], array(33)))
 							{
