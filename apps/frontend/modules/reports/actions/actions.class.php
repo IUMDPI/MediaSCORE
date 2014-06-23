@@ -1211,7 +1211,7 @@ class reportsActions extends sfActions
 								}
 							}
 
-							$formatSpecific['formatversion'] = str_replace("&#194;", '', rtrim($format, ', '));
+							$formatSpecific['formatversion'] = utf8_decode(rtrim($format, ', '));
 							$formatSpecific['format'] = '';
 							if (in_array($asset['FormatType']['type'], array(33)))
 							{
