@@ -1198,18 +1198,18 @@ class reportsActions extends sfActions
 
 							$format = '';
 
-							foreach ($FormatArray as $formatValue)
-							{
-
-								if ($formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', $formatValue))
-								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', htmlentities($formatValue)) . ' , ';
-								}
-								else
-								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', htmlentities($formatValue)) . ' , ';
-								}
-							}
+//							foreach ($FormatArray as $formatValue)
+//							{
+//
+//								if ($formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', $formatValue))
+//								{
+//									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', htmlentities($formatValue)) . ' , ';
+//								}
+//								else
+//								{
+//									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', htmlentities($formatValue)) . ' , ';
+//								}
+//							}
 
 							$formatSpecific['formatversion'] = rtrim($format, ', ');
 							$formatSpecific['format'] = '';
