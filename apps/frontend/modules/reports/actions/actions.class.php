@@ -1211,8 +1211,9 @@ class reportsActions extends sfActions
 								}
 								
 							}
-							var_dump($format);exit;
+							
 							$formatSpecific['formatversion'] = rtrim($format, ', ');
+							var_dump($formatSpecific['formatversion']);exit;
 							$formatSpecific['format'] = '';
 							if (in_array($asset['FormatType']['type'], array(33)))
 							{
