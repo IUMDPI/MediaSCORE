@@ -1203,11 +1203,11 @@ class reportsActions extends sfActions
 
 								if ($formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', $formatValue))
 								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', str_replace('±', '&#177;', $formatValue)) . ' , ';
+									$format .= $formatTypeValuesManager->getArrayOfValueTargeted($asset['FormatType']['type'], 'formatVersion', str_replace('±', '', $formatValue)) . ' , ';
 								}
 								else
 								{
-									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', str_replace('±', '&#177;', $formatValue)) . ' , ';
+									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', str_replace('±', '', $formatValue)) . ' , ';
 								}
 							}
 
