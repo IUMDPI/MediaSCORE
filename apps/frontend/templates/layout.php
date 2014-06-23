@@ -55,9 +55,9 @@
                     ?> 
 
                 <?php } else { ?>
-                    <!--<div class="assess"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>Assess</h2></div>-->
-                    <!--<div class="report"><img src="/images/wireframes/report-icon.png" alt="Report"><h2>Report</h2></div>-->
-                    <!--<div class="settings"><img src="/images/wireframes/settings-icon.png" alt="Settings"><h2>Settings</h2></div>-->
+						<div class="assess"><img src="/images/wireframes/assess-icon.png" alt="Assess"><h2>&nbsp;</h2></div>
+                    
+                    
                 <?php } ?>
 
             </div>
