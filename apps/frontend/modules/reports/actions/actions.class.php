@@ -1209,11 +1209,9 @@ class reportsActions extends sfActions
 								{
 									$format .= $formatTypeValuesManager->getArrayOfValueTargeted('general', 'formatVersion', $formatValue) . ' , ';
 								}
-								
 							}
-							
-							$formatSpecific['formatversion'] = rtrim($format, ', ');
-							var_dump(str_replace("&#194;",'' , $formatSpecific['formatversion']));exit;
+
+							$formatSpecific['formatversion'] = str_replace("&#194;", '', rtrim($format, ', '));
 							$formatSpecific['format'] = '';
 							if (in_array($asset['FormatType']['type'], array(33)))
 							{
