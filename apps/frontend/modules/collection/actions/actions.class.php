@@ -564,9 +564,9 @@ class collectionActions extends sfActions
 				$removeTotalScore = TRUE;
 			if ($collection->getScoreDocumentation() == '')
 				$removeTotalScore = TRUE;
-			if ($collection->setUnknownTechnicalQuality() != 1)
+			if ($collection->getUnknownTechnicalQuality() != 1)
 			{
-				if ($collection->setScoreTechnicalQuality() == '')
+				if ($collection->getScoreTechnicalQuality() == '')
 					$removeTotalScore = TRUE;
 			}
 			if ($removeTotalScore)
