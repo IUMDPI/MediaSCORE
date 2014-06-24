@@ -156,8 +156,8 @@ class CollectionForm extends BaseCollectionForm
 			}
 
 			$unit = Doctrine_Query::Create()
-				->from('Unit u')
-				->select('u.name');
+			->from('Unit u')
+			->select('u.name');
 
 			if (sfContext::getInstance()->getUser()->getGuardUser()->getType() == 3)
 			{
@@ -273,8 +273,21 @@ class CollectionForm extends BaseCollectionForm
 	public function bind(array $taintedValues = null, array $taintedFiles = null)
 	{
 
-		echo '<pre>';print_r($taintedValues);exit;
-
+		$calculate_total = TRUE;
+		if (isset($taintedValues['collection_score']))
+		{
+			if ($taintedValues['score_subject_interest'] == '' || $taintedValues['score_content_quality'] == '' || $taintedValues['score_rareness'] == '' || $taintedValues['score_documentation'] == '')
+				$calculate_total = FALSE;
+			if ( ! isset($taintedValues['unknown_technical_quality']) && $taintedValues['unknown_technical_quality'] != 'on')
+			{
+				if ($taintedValues['score_technical_quality'] == '')
+					$calculate_total = FALSE;
+			}
+			if ( ! $calculate_total)
+			{
+				$taintedValues['collection_score'] = NULL;
+			}
+		}
 		parent::bind($taintedValues, $taintedFiles);
 	}
 

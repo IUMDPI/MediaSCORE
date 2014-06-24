@@ -1,8 +1,8 @@
 <?php
 ob_end_flush();
-	ob_flush();
-	flush();
-	ob_start();
+ob_flush();
+flush();
+ob_start();
 @set_time_limit(0);
 //@ini_set("memory_limit", "4000M"); # 3GB
 @ini_set("max_execution_time", 999999999999); # 1GB
@@ -222,7 +222,6 @@ if ($view == 'river')
 								?>
 								<?php
 								foreach ($collections as $collection):
-									
 									?>
 									<tr>
 										<?php
@@ -268,12 +267,12 @@ if ($view == 'river')
 										?>
 										<td <?php echo (($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>">
 												<span><?php echo$getName; ?></span></a></td>
-										<td class="intigers" width="8%"><?php echo ($collection->getScoreSubjectInterest()) ? $collection->getScoreSubjectInterest() : 0; ?></td>
-										<td class="intigers" width="7%"><?php echo ($collection->getScoreContentQuality()) ? $collection->getScoreContentQuality() : 0; ?></td>
-										<td class="intigers" width="9%"><?php echo ($collection->getScoreRareness()) ? $collection->getScoreRareness() : 0; ?></td>
-										<td class="intigers" width="12%"><?php echo ($collection->getScoreDocumentation()) ? $collection->getScoreDocumentation() : 0; ?></td>
-										<td class="intigers"  width="9%"><?php echo ($collection->getScoreTechnicalQuality()) ? $collection->getScoreTechnicalQuality() : 0; ?></td>
-										<td class="intigers" width="7%" ><?php echo ($collection->getCollectionScore()) ? $collection->getCollectionScore() : 0; ?></td>
+										<td class="intigers" width="8%"><?php echo ($collection->getScoreSubjectInterest()) ? $collection->getScoreSubjectInterest() : ''; ?></td>
+										<td class="intigers" width="7%"><?php echo ($collection->getScoreContentQuality()) ? $collection->getScoreContentQuality() : ''; ?></td>
+										<td class="intigers" width="9%"><?php echo ($collection->getScoreRareness()) ? $collection->getScoreRareness() : ''; ?></td>
+										<td class="intigers" width="12%"><?php echo ($collection->getScoreDocumentation()) ? $collection->getScoreDocumentation() : ''; ?></td>
+										<td class="intigers"  width="9%"><?php echo ($collection->getScoreTechnicalQuality()) ? $collection->getScoreTechnicalQuality() : ''; ?></td>
+										<td class="intigers" width="7%" ><?php echo ($collection->getCollectionScore()) ? $collection->getCollectionScore() : ''; ?></td>
 									</tr> 
 								<?php endforeach; ?>
 
@@ -298,7 +297,7 @@ if ($view == 'river')
 								{
 									?>
 									<td width="6%"></td>
-		<?php } ?>
+								<?php } ?>
 								<th width="13%">Primary ID</th>
 								<th width="18%">Collection</th>
 								<th>Created</th>
@@ -313,14 +312,13 @@ if ($view == 'river')
 							if (sizeof($collections) > 0)
 							{
 								?>
-									<?php foreach ($collections as $collection): 
-										
-										?>
+								<?php foreach ($collections as $collection):
+									?>
 									<tr>
-										<?php
-										if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
-										{
-											?>
+									<?php
+									if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
+									{
+										?>
 
 											<td class="invisible">
 												<div class="options">
@@ -328,9 +326,9 @@ if ($view == 'river')
 													<a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
 												</div>
 											</td>
-											<?php
-										}
-										$getInstId = $collection->getInstId();
+					<?php
+				}
+				$getInstId = $collection->getInstId();
 //										$lenthInstId = strlen($getInstId);
 //										$alterInstId = $getInstId;
 //
@@ -340,11 +338,11 @@ if ($view == 'river')
 //											$alterInstId = substr($alterInstId, 0, 10) . '...';
 //											$morethenlengthInstId = TRUE;
 //										}
-										?>
+				?>
 
 										<td ><a href="<?php echo url_for('assetgroup', $collection) ?>"><span><?php echo $getInstId; ?> </span></a></td>
-										<?php
-										$getName = $collection->getName();
+				<?php
+				$getName = $collection->getName();
 //										$lenthName = strlen($getName);
 //										$alterName = $getName;
 //
@@ -355,9 +353,9 @@ if ($view == 'river')
 //											$alterName = (substr($alterName, 0, 35) . '...');
 //											$morethenlengthName = TRUE;
 //										}
-										?>
+				?>
 										<td  ><a href="<?php echo url_for('assetgroup', $collection) ?>">
-												<span><?php echo  $getName; ?></span></a></td>
+												<span><?php echo $getName; ?></span></a></td>
 
 										<td width="9%"><?php echo date('Y-m-d', strtotime($collection->getCreatedAt())); ?></td>
 										<td><span style="display: none;"><?php echo $collection->getCreator()->getLastName() ?></span><?php echo $collection->getCreator()->getName() ?></td>
@@ -367,7 +365,7 @@ if ($view == 'river')
 										<td style="text-align: right;"><?php echo $collection->getDurationRealTime($collection->getId()) ?></td>
 
 									</tr>
-								<?php endforeach; ?>
+			<?php endforeach; ?>
 
 								<?php
 							}
@@ -379,15 +377,15 @@ if ($view == 'river')
 						</tbody>
 
 
-				<?php } ?>
+	<?php } ?>
 				</table>
-				<?php
-			}
-			else
-			{
-				?>
+					<?php
+				}
+				else
+				{
+					?>
 				<h3> <center>You don't have access to Perform any Operations,please contact the administrator for more information</center></h3>
-<?php } ?>
+			<?php } ?>
         </div>
 
         <div id="view2">

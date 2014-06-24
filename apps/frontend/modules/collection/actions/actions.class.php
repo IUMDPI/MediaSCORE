@@ -548,35 +548,45 @@ class collectionActions extends sfActions
 		}
 	}
 
+	public function executeUpdateCollectionScores(sfWebRequest $request)
+	{
+		$collections = Doctrine_Query::Create()
+		->from('Collection c')
+		->execute();
+		$total = 0;
+		foreach ($collections as $collection):
+			$removeTotalScore = FALSE;
+			if ($collection->getScoreSubjectInterest() == '')
+				$removeTotalScore = TRUE;
+			if ($collection->getScoreContentQuality() == '')
+				$removeTotalScore = TRUE;
+			if ($collection->getScoreRareness() == '')
+				$removeTotalScore = TRUE;
+			if ($collection->getScoreDocumentation() == '')
+				$removeTotalScore = TRUE;
+			if ($collection->setUnknownTechnicalQuality() != 1)
+			{
+				if ($collection->setScoreTechnicalQuality() == '')
+					$removeTotalScore = TRUE;
+			}
+			if ($removeTotalScore)
+			{
+				$collection->setCollectionScore(NULL);
+				$collection->save();
+				$total ++;
+			}
+		endforeach;
+		echo 'Total updated records: ' . $total;
+		exit;
+	}
+
 	public function executeImport(sfWebRequest $request)
 	{
-		$unit = array(1 => 13,
-			2 => 7879,
-			3 => 11,
-			5 => 12,
-			7 => 10,
-			8 => 271,
-			9 => 211,
-			10 => 157,
-			11 => 14,
-			12 => 208,
-			15 => 537,
-			24 => 433,
-			30 => 1134,
-			45 => 7910,
-			47 => 178,
-			48 => 7912,
-			52 => 7918,
-			63 => 241,
-			72 => 1338,
-			81 => 1343
+		$unit = array(1 => 13, 2 => 7879, 3 => 11, 5 => 12, 7 => 10, 8 => 271,
+			9 => 211, 10 => 157, 11 => 14, 12 => 208, 15 => 537, 24 => 433, 30 => 1134,
+			45 => 7910, 47 => 178, 48 => 7912, 52 => 7918, 63 => 241, 72 => 1338, 81 => 1343
 		);
-		$user = array(6 => 5,
-			13 => 6,
-			16 => 21,
-			17 => 32,
-			18 => 28,
-			12 => 12);
+		$user = array(6 => 5, 13 => 6, 16 => 21, 17 => 32, 18 => 28, 12 => 12);
 		$fileContent = file_get_contents('tblCollection.xml');
 		$xmlObject = @simplexml_load_string($fileContent);
 		$records = $this->xmlObjToArray($xmlObject);

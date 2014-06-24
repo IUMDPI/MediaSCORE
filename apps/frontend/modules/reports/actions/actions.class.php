@@ -2618,12 +2618,12 @@ class reportsActions extends sfActions
 							$Mediariversfullreports['Quantity'] = ($collection['FormatType']['quantity']) ? $collection['FormatType']['quantity'] : 0;
 							$Mediariversfullreports['MediaSCORE Score'] = $collection['FormatType']['asset_score'];
 
-							$Mediariversfullreports['Subject Interest Score'] = ($collection['Collection']['score_subject_interest']) ? $collection['Collection']['score_subject_interest'] : 0;
-							$Mediariversfullreports['Content Quality Score'] = ($collection['Collection']['score_content_quality']) ? $collection['Collection']['score_content_quality'] : 0;
-							$Mediariversfullreports['Rareness Score'] = ($collection['Collection']['score_rareness']) ? $collection['Collection']['score_rareness'] : 0;
-							$Mediariversfullreports['Documentation Score'] = ($collection['Collection']['score_documentation']) ? $collection['Collection']['score_documentation'] : 0;
-							$Mediariversfullreports['Technical Quality Score'] = ($collection['Collection']['score_technical_quality']) ? $collection['Collection']['score_technical_quality'] : 0;
-							$Mediariversfullreports['MediRIVERS Score'] = ($collection['Collection']['collection_score']) ? $collection['Collection']['collection_score'] : 0;
+							$Mediariversfullreports['Subject Interest Score'] = ($collection['Collection']['score_subject_interest']) ? $collection['Collection']['score_subject_interest'] : '';
+							$Mediariversfullreports['Content Quality Score'] = ($collection['Collection']['score_content_quality']) ? $collection['Collection']['score_content_quality'] : '';
+							$Mediariversfullreports['Rareness Score'] = ($collection['Collection']['score_rareness']) ? $collection['Collection']['score_rareness'] : '';
+							$Mediariversfullreports['Documentation Score'] = ($collection['Collection']['score_documentation']) ? $collection['Collection']['score_documentation'] : '';
+							$Mediariversfullreports['Technical Quality Score'] = ($collection['Collection']['score_technical_quality']) ? $collection['Collection']['score_technical_quality'] : '';
+							$Mediariversfullreports['MediRIVERS Score'] = ($collection['Collection']['collection_score']) ? $collection['Collection']['collection_score'] : '';
 							$Mediariversfullreports['MASTER SCORE'] = (float) $collection['Collection']['collection_score'] + (float) $collection['FormatType']['asset_score'];
 
 							$Mediariversfullreportss[] = $Mediariversfullreports;
