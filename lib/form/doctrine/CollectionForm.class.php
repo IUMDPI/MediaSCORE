@@ -273,7 +273,7 @@ class CollectionForm extends BaseCollectionForm
 	public function bind(array $taintedValues = null, array $taintedFiles = null)
 	{
 
-
+		echo '<pre>';print_r($taintedValues);exit;
 
 		parent::bind($taintedValues, $taintedFiles);
 	}
