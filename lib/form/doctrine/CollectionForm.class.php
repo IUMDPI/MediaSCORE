@@ -116,6 +116,16 @@ class CollectionForm extends BaseCollectionForm
 				, 'location'
 			);
 			$this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => '<span class="required">*</span>Collection Status:&nbsp;')));
+
+			$unit = Doctrine_Query::Create()
+			->from('Unit u')
+			->select('u.name');
+
+			if (sfContext::getInstance()->getUser()->getGuardUser()->getType() == 3)
+			{
+				$unit->innerJoin('u.Personnel p')->where('person_id = ?', sfContext::getInstance()->getUser()->getGuardUser()->getId());
+			}
+			$unit = $unit->fetchArray();
 			if ($this->getOption('action') == 'edit')
 			{
 				$voidFields[] = 'creator_id';
@@ -173,15 +183,7 @@ class CollectionForm extends BaseCollectionForm
 				unset($this->validatorSchema[$skipValidationSingle]);
 			}
 
-			$unit = Doctrine_Query::Create()
-			->from('Unit u')
-			->select('u.name');
 
-			if (sfContext::getInstance()->getUser()->getGuardUser()->getType() == 3)
-			{
-				$unit->innerJoin('u.Personnel p')->where('person_id = ?', sfContext::getInstance()->getUser()->getGuardUser()->getId());
-			}
-			$unit = $unit->fetchArray();
 
 
 
