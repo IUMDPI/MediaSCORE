@@ -116,6 +116,24 @@ class CollectionForm extends BaseCollectionForm
 				, 'location'
 			);
 			$this->setWidget('status', new sfWidgetFormChoice(array('choices' => Collection::$statusConstants, 'label' => '<span class="required">*</span>Collection Status:&nbsp;')));
+			if ($this->getOption('action') == 'edit')
+			{
+				$voidFields[] = 'creator_id';
+				$Units = array();
+				foreach ($unit as $key => $u)
+				{
+					$Units[$u['id']] = $u['name'];
+				}
+
+				$this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
+				$this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'))); //
+			}
+			else
+			{
+				$voidFields[] = 'updated_at';
+				$this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
+				$this->setWidget('parent_node_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('unitID'))));
+			}
 			foreach ($voidFields as $voidField)
 			{
 				unset($this->widgetSchema[$voidField]);
@@ -165,24 +183,7 @@ class CollectionForm extends BaseCollectionForm
 			}
 			$unit = $unit->fetchArray();
 
-			if ($this->getOption('action') == 'edit')
-			{
-				$voidFields[] = 'creator_id';
-				$Units = array();
-				foreach ($unit as $key => $u)
-				{
-					$Units[$u['id']] = $u['name'];
-				}
 
-				$this->setWidget('updated_at', new sfWidgetFormInputHidden(array(), array('value' => date('Y-m-d H:i:s'))));
-				$this->setWidget('parent_node_id', new sfWidgetFormChoice(array('choices' => $Units, 'label' => 'Unit:&nbsp;'))); //
-			}
-			else
-			{
-				$voidFields[] = 'updated_at';
-				$this->setWidget('creator_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
-				$this->setWidget('parent_node_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('unitID'))));
-			}
 
 			$this->setWidget('last_editor_id', new sfWidgetFormInputHidden(array(), array('value' => $this->getOption('userID'))));
 			$this->setWidget('type', new sfWidgetFormInputHidden(array(), array('value' => 3)));

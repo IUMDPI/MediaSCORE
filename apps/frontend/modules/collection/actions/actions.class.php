@@ -340,8 +340,8 @@ class collectionActions extends sfActions
 		);
 		$this->view = $view['view'];
 
-//		$success = $this->processForm($request, $this->form);
-		$success['form'] = true;
+		$success = $this->processForm($request, $this->form);
+
 		if ($success && isset($success['form']) && $success['form'] == true)
 		{
 			$collection = $success['collection'];
