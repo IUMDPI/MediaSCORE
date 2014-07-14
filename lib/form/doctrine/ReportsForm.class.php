@@ -47,7 +47,7 @@ class ReportsForm extends BaseReportsForm
 
 			$this->setValidator('listUnits_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('listCollection_RRD', new sfWidgetFormDoctrineChoice(array('model' => 'Collection', 'method' => 'getName', 'multiple' => true)));
-			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => false)));
+			$this->setValidator('listCollection_RRD', new sfValidatorString(array('required' => true)));
 			$this->setWidget('collectionStatus', new sfWidgetFormSelect(array('choices' => array(0 => 'Incomplete', 1 => 'In Progress', 2 => 'Completed'), 'default' => '', 'multiple' => true)));
 			$this->setValidator('collectionStatus', new sfValidatorString(array('required' => false)));
 			$this->setWidget('EvaluatorsStartDate', new sfWidgetFormInputText(array()));
