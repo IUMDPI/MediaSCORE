@@ -291,7 +291,7 @@ class CollectionForm extends BaseCollectionForm
 			}
 		}
 		parent::bind($taintedValues, $taintedFiles);
-		echo '<pre>';print_r($taintedValues);exit;
+		
 	}
 
 }
