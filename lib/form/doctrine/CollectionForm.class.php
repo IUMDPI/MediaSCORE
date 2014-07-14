@@ -111,7 +111,7 @@ class CollectionForm extends BaseCollectionForm
 		}
 		else
 		{
-			$voidFields = array('created_at', 'resident_structure_description', 'name_slug', 'updated_at', 'creator_id'
+			$voidFields = array('created_at', 'resident_structure_description', 'name_slug', 'updated_at'
 				, 'last_editor_id', 'type', 'resident_structure_description', 'format_id'
 				, 'location'
 			);

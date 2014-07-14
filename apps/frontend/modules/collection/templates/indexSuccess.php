@@ -1,11 +1,12 @@
 <?php
-ob_end_flush();
-ob_flush();
-flush();
-ob_start();
 @set_time_limit(0);
 //@ini_set("memory_limit", "4000M"); # 3GB
 @ini_set("max_execution_time", 999999999999); # 1GB
+@ob_end_flush();
+@ob_flush();
+@flush();
+@ob_start();
+
 if ( ! isset($view) || $view == '')
 	$view = 'score';
 if ($sf_user->getGuardUser()->getRole() != 2 || $view == 'river')
@@ -315,10 +316,10 @@ if ($view == 'river')
 								<?php foreach ($collections as $collection):
 									?>
 									<tr>
-									<?php
-									if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
-									{
-										?>
+										<?php
+										if (($sf_user->getGuardUser()->getRole() == 2 && $ISMediaRiverAccess && $view == 'river') || $sf_user->getGuardUser()->getRole() == 1 || $sf_user->getGuardUser()->getRole() == 0)
+										{
+											?>
 
 											<td class="invisible">
 												<div class="options">
@@ -326,9 +327,9 @@ if ($view == 'river')
 													<a href="#fancybox" class="delete_unit"><img src="/images/wireframes/row-delete-icon.png" alt="Delete" onclick="getCollectionId(<?php echo $collection->getId(); ?>);"/></a>
 												</div>
 											</td>
-					<?php
-				}
-				$getInstId = $collection->getInstId();
+											<?php
+										}
+										$getInstId = $collection->getInstId();
 //										$lenthInstId = strlen($getInstId);
 //										$alterInstId = $getInstId;
 //
@@ -338,11 +339,11 @@ if ($view == 'river')
 //											$alterInstId = substr($alterInstId, 0, 10) . '...';
 //											$morethenlengthInstId = TRUE;
 //										}
-				?>
+										?>
 
 										<td ><a href="<?php echo url_for('assetgroup', $collection) ?>"><span><?php echo $getInstId; ?> </span></a></td>
-				<?php
-				$getName = $collection->getName();
+										<?php
+										$getName = $collection->getName();
 //										$lenthName = strlen($getName);
 //										$alterName = $getName;
 //
@@ -353,7 +354,7 @@ if ($view == 'river')
 //											$alterName = (substr($alterName, 0, 35) . '...');
 //											$morethenlengthName = TRUE;
 //										}
-				?>
+										?>
 										<td  ><a href="<?php echo url_for('assetgroup', $collection) ?>">
 												<span><?php echo $getName; ?></span></a></td>
 
@@ -365,7 +366,7 @@ if ($view == 'river')
 										<td style="text-align: right;"><?php echo $collection->getDurationRealTime($collection->getId()) ?></td>
 
 									</tr>
-			<?php endforeach; ?>
+								<?php endforeach; ?>
 
 								<?php
 							}
@@ -377,13 +378,13 @@ if ($view == 'river')
 						</tbody>
 
 
-	<?php } ?>
+					<?php } ?>
 				</table>
-					<?php
-				}
-				else
-				{
-					?>
+				<?php
+			}
+			else
+			{
+				?>
 				<h3> <center>You don't have access to Perform any Operations,please contact the administrator for more information</center></h3>
 			<?php } ?>
         </div>

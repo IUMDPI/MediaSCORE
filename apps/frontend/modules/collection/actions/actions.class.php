@@ -47,14 +47,12 @@ class collectionActions extends sfActions
 	}
 
 	/**
-	 * To SET Index Page View when changes the view from Media Score to Media River and vise versa and redirect to index pgae
+	 * To SET Index Page View when changes the view from Media Score to Media River and vise versa and redirect to index page
+	 * 
 	 * @param sfWebRequest $request
 	 */
 	public function executeSetview(sfWebRequest $request)
 	{
-
-
-
 		if ($request->getParameter('view'))
 		{
 			$this->view = $request->getParameter('view');
@@ -70,7 +68,6 @@ class collectionActions extends sfActions
 
 			$url = $this->generateUrl("collection", $unit[0]);
 			$urls = explode('?', $url);
-//            header('location: ' . $urls[0]);
 			$this->redirect($urls[0]);
 			exit;
 		}
@@ -288,9 +285,6 @@ class collectionActions extends sfActions
 		->createQuery('u')
 		->whereIn('id', array('2579', '2578', '2577', '2576', '2568', '2566', '2565', '2563', '2554', '2448', '1406', '1310'))
 		->execute();
-//		echo '<pre>';
-//		print_r($collection);
-//		exit;
 	}
 
 	/**
@@ -358,7 +352,11 @@ class collectionActions extends sfActions
 			if ($this->view == 'score')
 				$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 			else
+			{
+				echo 'here';
+				exit;
 				$this->redirect("collection/edit/id/{$success['id']}/u/{$unit->getId()}/form/river");
+			}
 		}
 		else
 		{
