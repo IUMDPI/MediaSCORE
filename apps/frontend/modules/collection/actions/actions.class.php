@@ -340,8 +340,8 @@ class collectionActions extends sfActions
 		);
 		$this->view = $view['view'];
 
-		$success = $this->processForm($request, $this->form);
-
+//		$success = $this->processForm($request, $this->form);
+		$success['form'] = true;
 		if ($success && isset($success['form']) && $success['form'] == true)
 		{
 			$collection = $success['collection'];
@@ -353,8 +353,6 @@ class collectionActions extends sfActions
 				$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 			else
 			{
-				echo 'here';
-				exit;
 				$this->redirect("collection/edit/id/{$success['id']}/u/{$unit->getId()}/form/river");
 			}
 		}
