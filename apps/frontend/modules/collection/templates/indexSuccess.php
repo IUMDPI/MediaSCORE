@@ -265,7 +265,7 @@ if ($view == 'river')
 //											$morethenlengthName = TRUE;
 //										}
 										?>
-										<td <?php echo (($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() ?>">
+										<td <?php echo (($morethenlengthName) ? 'class="long_name_handler tooltip"' : 'class="long_name_handler"'); ?> width="30%" ><a href="<?php echo url_for('collection/edit?id=' . $collection->getId()) . '/u/' . $collection->getParentNodeId() . '/form/river' ?>">
 												<span><?php echo$getName; ?></span></a></td>
 										<td class="intigers" width="8%"><?php echo ($collection->getScoreSubjectInterest()) ? $collection->getScoreSubjectInterest() : ''; ?></td>
 										<td class="intigers" width="7%"><?php echo ($collection->getScoreContentQuality()) ? $collection->getScoreContentQuality() : ''; ?></td>

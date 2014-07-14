@@ -378,7 +378,7 @@ class collectionActions extends sfActions
 			$view['view'] = 'score';
 		}
 
-//		$this->formType = $request->getParameter('form');
+		$this->formType = $request->getParameter('form');
 		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$this->form = new CollectionForm(
 		$collection, array('userID' => $this->getUser()->getGuardUser()->getId(), 'unitID' => $request->getParameter('u'),
@@ -433,7 +433,7 @@ class collectionActions extends sfActions
 			->createQuery('u')
 			->where('id =?', $unitId)
 			->fetchOne();
-			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
+			$this->redirect($this->generateUrl("collection", $unit));
 		}
 		else
 		{
