@@ -333,6 +333,7 @@ class collectionActions extends sfActions
 
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 		$unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
+		echo $this->getUser()->getGuardUser()->getId();exit;
 		$this->form = new CollectionForm(null, array(
 			'userID' => $this->getUser()->getGuardUser()->getId(),
 			'unitID' => $unitId,
