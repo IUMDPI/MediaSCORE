@@ -306,7 +306,7 @@ class collectionActions extends sfActions
 		$this->form = new CollectionForm(null, array(
 			'userID' => $this->getUser()->getGuardUser()->getId(),
 			'unitID' => $request->getParameter('u'),
-			'view' => $view['view']
+			'view' => 'score'
 		)
 		);
 		$unit = Doctrine_Query::Create()
@@ -337,7 +337,7 @@ class collectionActions extends sfActions
 		$this->form = new CollectionForm(null, array(
 			'userID' => $this->getUser()->getGuardUser()->getId(),
 			'unitID' => $unitId,
-			'view' => $view['view'])
+			'view' => 'score')
 		);
 		$this->view = $view['view'];
 
