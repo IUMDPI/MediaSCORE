@@ -333,7 +333,7 @@ class collectionActions extends sfActions
 
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 		$unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
-		
+
 		$this->form = new CollectionForm(null, array(
 			'userID' => $this->getUser()->getGuardUser()->getId(),
 			'unitID' => $unitId,
@@ -354,7 +354,7 @@ class collectionActions extends sfActions
 				$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
 			else
 			{
-				$this->redirect("collection/edit/id/{$success['id']}/u/{$unit->getId()}/form/river");
+				$this->redirect("/collection/edit/id/{$success['id']}/u/{$unit->getId()}/form/river");
 			}
 		}
 		else
@@ -507,18 +507,19 @@ class collectionActions extends sfActions
 			$view['view'] = 'score';
 		}
 		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-		$collectionsAssets = Doctrine_Query::Create()
-		->from('AssetGroup ag')
-		->select('ag.*')
-		->where('ag.parent_node_id  = ?', $form->getValue('id'))
-		->groupBy('ag.resident_structure_description')
-		->fetchArray();
+
 		$isformValid = $form->isValid();
 		if ($isformValid)
 		{
 			$check = array();
 			if ($view['view'] == 'score')
 			{
+				$collectionsAssets = Doctrine_Query::Create()
+				->from('AssetGroup ag')
+				->select('ag.*')
+				->where('ag.parent_node_id  = ?', $form->getValue('id'))
+				->groupBy('ag.resident_structure_description')
+				->fetchArray();
 				foreach ($collectionsAssets as $value)
 				{
 					foreach ($form->getValue('storage_locations_list') as $location)

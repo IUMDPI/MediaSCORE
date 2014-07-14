@@ -111,7 +111,7 @@ class CollectionForm extends BaseCollectionForm
 		}
 		else
 		{
-			$voidFields = array('created_at', 'resident_structure_description', 'name_slug', 'updated_at'
+			$voidFields = array('created_at', 'resident_structure_description', 'name_slug', 'updated_at', 'creator_id'
 				, 'last_editor_id', 'type', 'resident_structure_description', 'format_id'
 				, 'location'
 			);
@@ -275,7 +275,7 @@ class CollectionForm extends BaseCollectionForm
 	{
 
 		$calculate_total = TRUE;
-		
+
 		if (isset($taintedValues['collection_score']))
 		{
 			if ($taintedValues['score_subject_interest'] == '' || $taintedValues['score_content_quality'] == '' || $taintedValues['score_rareness'] == '' || $taintedValues['score_documentation'] == '')
@@ -291,7 +291,6 @@ class CollectionForm extends BaseCollectionForm
 			}
 		}
 		parent::bind($taintedValues, $taintedFiles);
-		
 	}
 
 }
