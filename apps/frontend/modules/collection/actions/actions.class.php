@@ -355,8 +355,10 @@ class collectionActions extends sfActions
 			->createQuery('u')
 			->where('id =?', $unitId)
 			->fetchOne();
-
-			$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
+			if ($this->view == 'score')
+				$this->redirect($this->generateUrl("assetgroup", array('unit_slug' => $unit->getNameSlug(), 'name_slug' => $success['collection']->getNameSlug())));
+			else
+				$this->redirect("collection/edit/id/{$success['id']}/u/{$unit->getId()}/form/river");
 		}
 		else
 		{
