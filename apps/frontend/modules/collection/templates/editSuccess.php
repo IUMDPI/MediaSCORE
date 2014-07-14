@@ -13,7 +13,7 @@
     ?>
 
     <?php
-    if ($formType == 'river') {
+    if ($view == 'river') {
         include_partial('formrivers', array('form' => $form, 'error' => $error, 'view' => $view, 'actionType' => $actionType, 'cancelUrl' => $url,'collection'=>$collection));
         ?>
         <?php
