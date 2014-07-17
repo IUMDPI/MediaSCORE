@@ -1,4 +1,4 @@
-alldataoutputreport<?php
+<?php
 
 /**
  * reports actions.
