@@ -1,4 +1,4 @@
-<?php
+alldataoutputreport<?php
 
 /**
  * reports actions.
@@ -1057,7 +1057,6 @@ class reportsActions extends sfActions
 					->leftJoin('a.Editor eu')
 					->innerJoin('a.Collection c')
 					->innerJoin('c.Unit u')
-					->where('a.id = ?', 32)
 					->addOrderBy('ft.asset_score DESC')
 					->fetchArray();
 
