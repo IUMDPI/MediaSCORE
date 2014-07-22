@@ -445,7 +445,7 @@ class collectionActions extends sfActions
 			$unit = Doctrine_Core::getTable('Unit')
 			->createQuery('u')
 			->where('id =?', $unitId)
-			->execute();
+			->fetchOne();
 			$this->unitId = $unit->getId();
 
 			$url = $this->generateUrl("collection", $unit);
