@@ -171,49 +171,6 @@ function getStorage(id) {
 }
 
 
-
-var collection_score_subject_interest_obj;
-var collection_score_content_quality_obj;
-var collection_score_rareness_obj;
-var collection_score_documentation_obj;
-var collection_score_technical_quality_obj;
-var collection_collection_score_obj;
-var collection_unknown_technical_quality_obj;
-
-//        Calculating total score and setting value in Collection store Field 
-function calculateScore() {
-	var Total_Collection_Score = 0.0;
-
-	var collection_score_subject_interest = parseFloat((collection_score_subject_interest_obj.val()) ? collection_score_subject_interest_obj.val() : 0);
-	var collection_score_content_quality = parseFloat((collection_score_content_quality_obj.val()) ? collection_score_content_quality_obj.val() : 0);
-	var collection_score_rareness = parseFloat((collection_score_rareness_obj.val()) ? collection_score_rareness_obj.val() : 0);
-	var collection_score_technical_quality = parseFloat((collection_score_technical_quality_obj.val()) ? collection_score_technical_quality_obj.val() : 0);
-	var collection_score_documentation = parseFloat((collection_score_documentation_obj.val()) ? collection_score_documentation_obj.val() : 0);
-	if (collection_unknown_technical_quality_obj.is(":checked")) {
-		if (isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
-			Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_subject_interest * 27.5) / 100);
-		if (isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
-			Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_content_quality * 27.5) / 100);
-		if (isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
-			Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_rareness * 27.5) / 100);
-		if (isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
-			Total_Collection_Score = Total_Collection_Score + parseFloat((collection_score_documentation * 17.5) / 100);
-	} else {
-		if (isValidScore(collection_score_subject_interest) && IsNumeric(collection_score_subject_interest))
-			Total_Collection_Score = Total_Collection_Score + collection_score_subject_interest;
-		if (isValidScore(collection_score_content_quality) && IsNumeric(collection_score_content_quality))
-			Total_Collection_Score = Total_Collection_Score + collection_score_content_quality;
-		if (isValidScore(collection_score_rareness) && IsNumeric(collection_score_rareness))
-			Total_Collection_Score = Total_Collection_Score + collection_score_rareness;
-		if (isValidScore(collection_score_technical_quality) && IsNumeric(collection_score_technical_quality))
-			Total_Collection_Score = Total_Collection_Score + collection_score_technical_quality;
-		if (isValidScore(collection_score_documentation) && IsNumeric(collection_score_documentation))
-			Total_Collection_Score = Total_Collection_Score + collection_score_documentation
-	}
-
-	return Total_Collection_Score;
-}
-
 //        Check is values a Number 
 function IsNumeric(input) {
 	return !isNaN(parseFloat(input)) && isFinite(input);
@@ -272,7 +229,10 @@ function calculateCollectionScore() {
 	else {
 		score = (cssi * (25 / 100)) + (cscq * (25 / 100)) + (csr * (25 / 100)) + (csd * (15 / 100)) + (cstq * (10 / 100));
 	}
-	$('#collection_collection_score').val(score);
+	if (IsNumeric(score))
+		$('#collection_collection_score').val(score.toFixed(2));
+	else
+		$('#collection_collection_score').val('');
 }
 function validateCollectionScore(object) {
 	var score = object.val();
@@ -286,47 +246,11 @@ function validateCollectionScore(object) {
 
 }
 $(function() {
-	//        Getting all Socre input fields Objects
-//	collection_score_subject_interest_obj = $("#collection_score_subject_interest");
-//	collection_score_content_quality_obj = $("#collection_score_content_quality");
-//	collection_score_rareness_obj = $("#collection_score_rareness");
-//	collection_score_documentation_obj = $("#collection_score_documentation");
-//	collection_score_technical_quality_obj = $("#collection_score_technical_quality");
-//	collection_collection_score_obj = $("#collection_collection_score");
-//	collection_unknown_technical_quality_obj = $("#collection_unknown_technical_quality");
+
 	$('.calculate_score').live('keyup change', function() {
 		validateCollectionScore($(this));
 	});
 
-//    //        Subject Interest Score Placing  and Validation
-//    collection_score_subject_interest_obj.live( "keyup change", function() {
-//        handleValuesOfTextField(collection_score_subject_interest_obj,collection_collection_score_obj); 
-//                      
-//    });
-//        
-//    //        Content Quality Score Placing  and Validation
-//    collection_score_content_quality_obj.live( "keyup change", function() {
-//        handleValuesOfTextField(collection_score_content_quality_obj,collection_collection_score_obj);
-//                
-//    });
-//   
-//    //        Rareness Score Placing  and Validation
-//    collection_score_rareness_obj.live( "keyup change", function() {
-//        handleValuesOfTextField(collection_score_rareness_obj,collection_collection_score_obj);
-//      
-//    });
-//   
-//    //        Documentation Score Placing And Validation
-//    collection_score_documentation_obj.live( "keyup change", function() {
-//        handleValuesOfTextField(collection_score_documentation_obj,collection_collection_score_obj);
-//            
-//    });
-//        
-//    //        Technical Quality Score Placing  and Validation
-//    collection_score_technical_quality_obj.live( "keyup change", function() {
-//        handleValuesOfTextField(collection_score_technical_quality_obj,collection_collection_score_obj);
-//           
-//    });
 	//        Fixing date Text and removing the time from date
 	var val = $("#collection_date_completed").val().split(' ');
 	$("#collection_date_completed").val(val[0]);
