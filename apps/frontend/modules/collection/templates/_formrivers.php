@@ -20,7 +20,7 @@
 			<?php if ( ! $form->getObject()->isNew()): ?>
 				<input type="hidden" name="sf_method" value="put" />
 			<?php endif; ?>
-            <table class="normal_form" cellpadding='0' cellspacing="0" width="100%">
+            <table class="custom_normal_form" cellpadding='0' cellspacing="0" width="100%">
                 <tfoot>
                     <tr>
                         <td colspan="2"> 

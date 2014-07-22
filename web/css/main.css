@@ -20,6 +20,9 @@
 .normal_form tr th {
     vertical-align: top;
 }
+.custom_normal_form tr th {
+	vertical-align: middle;
+}
 /*#asset-group-form{
     border: 1px solid black;
     padding: 5px;
