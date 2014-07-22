@@ -400,6 +400,7 @@
 		} else {
 			$('#collection_score_technical_quality').attr('readonly', false);
 			$('#collection_score_technical_quality').attr('style', 'background:white;cursor:arrow;height: 12px;width: 27px;');
+			calculateCollectionScore();
 		}
 	}
 
