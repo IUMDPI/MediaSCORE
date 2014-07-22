@@ -139,12 +139,7 @@
                 </tr>
                 <!-- -->
 
-                <tr>
-                    <td colspan="2"><br/>
-						<?php echo $form['score_subject_interest']->renderError(); ?>
-                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_subject_interest_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
-                    </td>
-                </tr>
+                
 
                 <!-- -->
                 <tr>
@@ -174,16 +169,16 @@
                         </div>
                     </td>
                 </tr>
+				<tr>
+                    <td colspan="2"><br/>
+						<?php echo $form['score_subject_interest']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_subject_interest_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
+                    </td>
+                </tr>
                 <!-- -->
 
 
-                <tr>
-                    <td colspan="2">
-                        <br/>
-						<?php echo $form['score_content_quality']->renderError(); ?>
-                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_content_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
-                    </td>
-                </tr>
+               
 
                 <!-- -->
                 <tr>
@@ -209,14 +204,15 @@
                         </div>
                     </td>
                 </tr>
-                <!-- -->
-                <tr>
+				 <tr>
                     <td colspan="2">
                         <br/>
-						<?php echo $form['score_rareness']->renderError(); ?>
-                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_rareness_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
+						<?php echo $form['score_content_quality']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_content_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+                <!-- -->
+                
 
                 <!-- -->
                 <tr>
@@ -245,13 +241,15 @@
                         </div>
                     </td>
                 </tr>
-                <!-- -->
-                <tr>
-                    <td colspan="2"><br/>
-						<?php echo $form['score_documentation']->renderError(); ?>
-                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_documentation_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
+				<tr>
+                    <td colspan="2">
+                        <br/>
+						<?php echo $form['score_rareness']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_rareness_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+                <!-- -->
+               
 
                 <!-- -->
                 <tr>
@@ -280,13 +278,14 @@
                         </div>
                     </td>
                 </tr>
-                <!-- -->
-                <tr>
+				 <tr>
                     <td colspan="2"><br/>
-						<?php echo $form['score_technical_quality']->renderError(); ?>
-                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_technical_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
+						<?php echo $form['score_documentation']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_documentation_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
+                <!-- -->
+
                 <!-- -->
                 <tr>
                     <th>    <span style="float: left;font-weight: bold;">Technical Quality:&nbsp;&nbsp;&nbsp; </span></th>
@@ -319,6 +318,12 @@
 								<?php echo $form['notes_technical_quality']->renderError(); ?>
                             </div>
                         </div>
+                    </td>
+                </tr>
+				<tr>
+                    <td colspan="2"><br/>
+						<?php echo $form['score_technical_quality']->renderError(); ?>
+                        <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_technical_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
                 <!-- -->
