@@ -392,7 +392,7 @@ class collectionActions extends sfActions
 		->from('Unit u')
 		->andWhere('id  = ?', $request->getParameter('u'))
 		->fetchArray();
-		$this->ThisUnit = $unit;
+		$this->unitId = $unit[0]['id'];
 
 		$url = $this->generateUrl("collection", $unit[0]);
 		$arr_url = explode('?', $url);

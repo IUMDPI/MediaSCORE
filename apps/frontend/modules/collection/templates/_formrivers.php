@@ -16,7 +16,7 @@
 </style>
 <div style="background-color: #F4F4F4;padding-left: 10px;padding-right: 5px;" id="collectionMain">
     <div id="main" class="clearfix" style="height: auto;">
-        <form id="collection_form" action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . ( ! $form->getObject()->isNew() ? '?id=' . $form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+        <form id="collection_form" action="<?php echo url_for('collection/' . ($form->getObject()->isNew() ? 'create' : 'update') . ( ! $form->getObject()->isNew() ? '/id/' . $form->getObject()->getId() . '/u/' . $unit . '/form/river' : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 			<?php if ( ! $form->getObject()->isNew()): ?>
 				<input type="hidden" name="sf_method" value="put" />
 			<?php endif; ?>
@@ -109,7 +109,7 @@
                 </td>
 
                 </tr>
-               
+
                 <tr>
                     <th>
 						<?php echo $form['date_completed']->renderLabel(); ?>
@@ -322,7 +322,7 @@
                     </td>
                 </tr>
                 <!-- -->
-                
+
                 <tr>
                     <th>
 
@@ -346,7 +346,7 @@
                         </div>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <th> <div style="font-weight: bold;">
 					<?php echo $form['ip_statement']->renderLabel(); ?>
@@ -370,7 +370,7 @@
                     </div>
                 </td>
                 </tr>
-               
+
                 <!-- -->
                 <tr>
                     <th>
@@ -382,7 +382,7 @@
                     </td>
                 </tr>
                 <!-- -->
-                
+
 
                 </tbody> 
             </table>
