@@ -411,11 +411,11 @@ class collectionActions extends sfActions
 //            $view['view'] = 'score';
 //        }
 		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-		$this->forward404Unless($collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
+		$this->forward404Unless($this->collection = Doctrine_Core::getTable('Collection')->find(array($request->getParameter('id'))), sprintf('Object collection does not exist (%s).', $request->getParameter('id')));
 		$unitId = sfToolkit::getArrayValueForPath($request->getParameter('collection'), 'parent_node_id');
 
 
-		$this->form = new CollectionForm($collection, array(
+		$this->form = new CollectionForm($this->collection, array(
 			'userID' => $this->getUser()->getGuardUser()->getId(),
 			'unitID' => $unitId,
 			'action' => 'edit',
