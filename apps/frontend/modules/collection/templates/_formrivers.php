@@ -26,13 +26,15 @@
                         <td colspan="2"> 
                             <br/>
                             <input type="submit" value="Save" />
-                            &nbsp;or&nbsp;<a href="<?php echo ($cancelUrl) ? $cancelUrl : '/'; ?>" onclick="$.fancybox . close();" >cancel</a>
+                            &nbsp;or&nbsp;<a href="<?php echo ($cancelUrl) ? $cancelUrl : '/'; ?>" onclick="$.fancybox.close();" >cancel</a>
                         </td>
                     </tr> 
                 </tfoot>
                 <tbody>
-					<?php if (isset($actionType) && $actionType == 'edit')
-					{ ?>
+					<?php
+					if (isset($actionType) && $actionType == 'edit')
+					{
+						?>
 						<tr>
 							<th style="width: 13%;">
 								<?php echo $form['parent_node_id']->renderLabel(); ?>
@@ -426,27 +428,29 @@
     </div>
 </div></div>
 <script type="text/javascript">
-    function changeTechnicalQuality(){
-        
-        if($( "input:checked").length){
-            $('#collection_score_technical_quality').attr('readonly', true);
-            $('#collection_score_technical_quality').val('0');
-            $('#collection_score_technical_quality').attr('style', 'background:#F0F0F0;cursor:not-allowed;height: 12px;width: 27px;');
-        }else{
-            $('#collection_score_technical_quality').attr('readonly', false);
-            $('#collection_score_technical_quality').attr('style', 'background:white;cursor:arrow;height: 12px;width: 27px;');
-        }
-    }
-    
-    $(function(){
-        changeTechnicalQuality();
-        $("#format_type_off_brand").parents(".row").show(); 
-        $("#format_type_fungus") . parents(".row") . show();
-        
-       
-    
-<?php if (isset($actionType) && $actionType == 'edit')
-{ ?>
+	function changeTechnicalQuality() {
+
+		if ($("input:checked").length) {
+			$('#collection_score_technical_quality').attr('readonly', true);
+			$('#collection_score_technical_quality').val('0');
+			$('#collection_score_technical_quality').attr('style', 'background:#F0F0F0;cursor:not-allowed;height: 12px;width: 27px;');
+		} else {
+			$('#collection_score_technical_quality').attr('readonly', false);
+			$('#collection_score_technical_quality').attr('style', 'background:white;cursor:arrow;height: 12px;width: 27px;');
+		}
+	}
+
+	$(function() {
+		changeTechnicalQuality();
+		$("#format_type_off_brand").parents(".row").show();
+		$("#format_type_fungus").parents(".row").show();
+
+
+
+<?php
+if (isset($actionType) && $actionType == 'edit')
+{
+	?>
 			$('#collection_inst_id').attr('readonly', 'readonly');
 			//            $('#collection_parent_node_id').attr('size', '10');
 			$('#collection_inst_id').attr('style', 'background:#F0F0F0;cursor:not-allowed');
@@ -459,8 +463,8 @@
 else
 {
 	?>
-				$('#collection_collection_score').attr('style', 'background:#F0F0F0;cursor:not-allowed');
-				$('#collection_collection_score').attr('readonly', 'readonly');
+			$('#collection_collection_score').attr('style', 'background:#F0F0F0;cursor:not-allowed');
+			$('#collection_collection_score').attr('readonly', 'readonly');
 <?php } ?>
-    });
+	});
 </script>
