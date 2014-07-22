@@ -259,13 +259,31 @@ function handleValuesOfTextField(object, CollectionScoreObj) {
 
 
 }
-function calculateCollectionScore(object) {
+function calculateCollectionScore() {
+	var cssi = parseFloat($('#collection_score_subject_interest').val());
+	var cscq = parseFloat($('#collection_score_content_quality').val());
+	var csr = parseFloat($('#collection_score_rareness').val());
+	var csd = parseFloat($('#collection_score_documentation').val());
+	var cstq = parseFloat($('#collection_score_technical_quality').val());
+	var score = 0;
+	if ($('#collection_unknown_technical_quality').is(":checked")) {
+		score = (cssi * (27.5 / 100)) + (cscq * (27.5 / 100)) + (csr * (27.5 / 100)) + (csd * (17.5 / 100));
+	}
+	else {
+		score = (cssi * (25 / 100)) + (cscq * (25 / 100)) + (csr * (25 / 100)) + (csd * (15 / 100)) + (cstq * (10 / 100));
+	}
+	$('#collection_collection_score').val(score);
+}
+function validateCollectionScore(object) {
 	var score = object.val();
 	if (!isValidScore(score)) {
 		$('#' + object.attr('id') + '_errorn').show();
+		return false;
 	} else {
 		$('#' + object.attr('id') + '_errorn').hide();
 	}
+	calculateCollectionScore();
+
 }
 $(function() {
 	//        Getting all Socre input fields Objects
@@ -277,8 +295,7 @@ $(function() {
 //	collection_collection_score_obj = $("#collection_collection_score");
 //	collection_unknown_technical_quality_obj = $("#collection_unknown_technical_quality");
 	$('.calculate_score').live('keyup change', function() {
-
-		calculateCollectionScore($(this));
+		validateCollectionScore($(this));
 	});
 
 //    //        Subject Interest Score Placing  and Validation
@@ -326,5 +343,6 @@ $(function() {
 			$("#collection_date_completed").datepicker('hide');
 		}
 	});
-});
+}
+);
 
