@@ -24,6 +24,10 @@
 	vertical-align: top;
 	padding-top: 4px;
 }
+.custom_normal_form tr {
+	
+	margin-bottom : 5px;
+}
 /*#asset-group-form{
     border: 1px solid black;
     padding: 5px;
