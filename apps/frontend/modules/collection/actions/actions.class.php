@@ -734,7 +734,6 @@ class collectionActions extends sfActions
 		$collections = Doctrine_Query::Create()
 		->from('Collection c')
 		->execute();
-		$total = 0;
 		foreach ($collections as $collection):
 			if ($collection->getUnknownTechnicalQuality() == 1):
 				$score = ($collection->getScoreSubjectInterest() * (27.5 / 100)) +
@@ -751,6 +750,8 @@ class collectionActions extends sfActions
 			$collection->setCollectionScore($score);
 			$collection->save();
 		endforeach;
+		echo 'Score successfully updated with new logic.';
+		exit;
 	}
 
 }
