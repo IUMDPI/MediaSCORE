@@ -729,4 +729,28 @@ class collectionActions extends sfActions
 		return array('name' => $name, 'text' => $text, 'attributes' => $attributes, 'children' => $children);
 	}
 
+	public function executeFixBadScore(sfWebRequest $request)
+	{
+		$collections = Doctrine_Query::Create()
+		->from('Collection c')
+		->execute();
+		$total = 0;
+		foreach ($collections as $collection):
+			if ($collection->getUnknownTechnicalQuality() == 1):
+				$score = ($collection->getScoreSubjectInterest() * (27.5 / 100)) +
+				($collection->getScoreContentQuality() * (27.5 / 100)) +
+				($collection->getScoreRareness() * (27.5 / 100)) +
+				($collection->getScoreDocumentation() * (17.5 / 100));
+			else:
+				$score = ($collection->getScoreSubjectInterest() * (25 / 100)) +
+				($collection->getScoreContentQuality() * (25 / 100)) +
+				($collection->getScoreRareness() * (25 / 100)) +
+				($collection->getScoreDocumentation() * (15 / 100));
+				($collection->getUnknownTechnicalQuality() * (10 / 100));
+			endif;
+			$collection->setCollectionScore($score);
+			$collection->save();
+		endforeach;
+	}
+
 }
