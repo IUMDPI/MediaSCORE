@@ -76,13 +76,7 @@
 
                         </td>
                     </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <br/>
-                        </td>
-                    </tr>
-                    <!-- -->
+
                     <tr>
                         <th>
 							<?php echo $form['characteristics']->renderLabel(); ?>
@@ -92,13 +86,7 @@
 							<?php echo $form['characteristics']->renderError(); ?>
                         </td>
                     </tr>
-                    <!-- -->
-                    <tr>
-                        <td colspan="2">
-                            <br/>
-                        </td>
-                    </tr>
-                    <!-- -->
+
                     <tr >
                         <th>  <div style="font-weight: bold;">
 					<?php echo $form['project_title']->renderLabel(); ?></div>
@@ -121,13 +109,7 @@
                 </td>
 
                 </tr>
-                <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
-                <!-- -->
+               
                 <tr>
                     <th>
 						<?php echo $form['date_completed']->renderLabel(); ?>
@@ -139,7 +121,7 @@
                 </tr>
                 <!-- -->
 
-                
+
 
                 <!-- -->
                 <tr>
@@ -178,7 +160,7 @@
                 <!-- -->
 
 
-               
+
 
                 <!-- -->
                 <tr>
@@ -204,15 +186,15 @@
                         </div>
                     </td>
                 </tr>
-				 <tr>
+				<tr>
                     <td colspan="2">
-                        
+
 						<?php echo $form['score_content_quality']->renderError(); ?>
                         <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_content_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
                 <!-- -->
-                
+
 
                 <!-- -->
                 <tr>
@@ -243,13 +225,13 @@
                 </tr>
 				<tr>
                     <td colspan="2">
-                        
+
 						<?php echo $form['score_rareness']->renderError(); ?>
                         <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_rareness_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
                 <!-- -->
-               
+
 
                 <!-- -->
                 <tr>
@@ -278,7 +260,7 @@
                         </div>
                     </td>
                 </tr>
-				 <tr>
+				<tr>
                     <td colspan="2">
 						<?php echo $form['score_documentation']->renderError(); ?>
                         <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_documentation_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
@@ -327,7 +309,7 @@
                     </td>
                 </tr>
                 <!-- -->
-               
+
                 <!-- -->
                 <tr>
                     <th>
@@ -340,12 +322,7 @@
                     </td>
                 </tr>
                 <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
-                <!-- -->
+                
                 <tr>
                     <th>
 
@@ -369,13 +346,7 @@
                         </div>
                     </td>
                 </tr>
-                <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
-                <!-- -->
+                
                 <tr>
                     <th> <div style="font-weight: bold;">
 					<?php echo $form['ip_statement']->renderLabel(); ?>
@@ -399,12 +370,7 @@
                     </div>
                 </td>
                 </tr>
-                <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
+               
                 <!-- -->
                 <tr>
                     <th>
@@ -416,11 +382,7 @@
                     </td>
                 </tr>
                 <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
+                
 
                 </tbody> 
             </table>
