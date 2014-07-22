@@ -393,15 +393,16 @@
 <script type="text/javascript">
 	function changeTechnicalQuality() {
 
-		if ($("input:checked").length) {
+		if ($('#collection_unknown_technical_quality').is(":checked")) {
 			$('#collection_score_technical_quality').attr('readonly', true);
 			$('#collection_score_technical_quality').val('0');
 			$('#collection_score_technical_quality').attr('style', 'background:#F0F0F0;cursor:not-allowed;height: 12px;width: 27px;');
 		} else {
 			$('#collection_score_technical_quality').attr('readonly', false);
 			$('#collection_score_technical_quality').attr('style', 'background:white;cursor:arrow;height: 12px;width: 27px;');
-			calculateCollectionScore();
+
 		}
+		calculateCollectionScore();
 	}
 
 	$(function() {
