@@ -201,21 +201,21 @@ class CollectionForm extends BaseCollectionForm
 
 			$this->setWidget('date_completed', new sfWidgetFormInputText(array('label' => 'Date Completed:&nbsp;'), array('readonly' => 'readonly', 'style' => 'background-color: #F0F0F0;width: 250px;height: 12px;')));
 
-			$this->setWidget('score_subject_interest', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+			$this->setWidget('score_subject_interest', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;','class'=>'calculate_score')));
 			$this->setWidget('notes_subject_interest', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:728px;')));
 
-			$this->setWidget('score_content_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+			$this->setWidget('score_content_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;','class'=>'calculate_score')));
 			$this->setWidget('notes_content_quality', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;height: 50px;')));
 
-			$this->setWidget('score_rareness', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+			$this->setWidget('score_rareness', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;','class'=>'calculate_score')));
 			$this->setWidget('notes_rareness', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;')));
 
-			$this->setWidget('score_documentation', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+			$this->setWidget('score_documentation', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;','class'=>'calculate_score')));
 			$this->setWidget('notes_documentation', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width:727px;')));
 
 
 			$this->setWidget('unknown_technical_quality', new sfWidgetFormInputCheckbox(array(), array('onclick' => 'changeTechnicalQuality();')));
-			$this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;')));
+			$this->setWidget('score_technical_quality', new sfWidgetFormInputText(array(), array('style' => 'width:27px;height: 12px;','class'=>'calculate_score')));
 			$this->setWidget('notes_technical_quality', new sfWidgetFormTextarea(array(), array('rows' => '1', 'style' => 'width: 644px;')));
 
 			$this->setWidget('collection_score', new sfWidgetFormInputText(array(), array('readonly' => 'readonly', 'style' => 'width:27px;height: 12px;')));
