@@ -321,17 +321,13 @@
                     </td>
                 </tr>
 				<tr>
-                    <td colspan="2"><br/>
+                    <td colspan="2">
 						<?php echo $form['score_technical_quality']->renderError(); ?>
                         <span style="color:#7D110C;font-size: 9px;font-weight:bold;display:none" id="collection_score_technical_quality_errorn"><br>Score must be integer , greater then 0 and  less then 5 </span>
                     </td>
                 </tr>
                 <!-- -->
-                <tr>
-                    <td colspan="2">
-                        <br/>
-                    </td>
-                </tr>
+               
                 <!-- -->
                 <tr>
                     <th>
