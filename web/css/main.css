@@ -21,7 +21,8 @@
     vertical-align: top;
 }
 .custom_normal_form tr th {
-	vertical-align: middle;
+	vertical-align: top;
+	padding-top: 4px;
 }
 /*#asset-group-form{
     border: 1px solid black;
@@ -52,7 +53,7 @@ form input[type="radio"]{
     margin-top: 10px;
 }
 #asset-group-div{
-   border: 1px solid black;
+	border: 1px solid black;
     padding: 5px; 
 }
 div.growlUI { background: url(/images/warning.png) no-repeat 10px 10px }
