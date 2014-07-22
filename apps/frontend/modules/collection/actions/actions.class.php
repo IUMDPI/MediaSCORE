@@ -425,6 +425,7 @@ class collectionActions extends sfActions
 		$success = $this->processForm($request, $this->form);
 		$this->view = $view['view'];
 		$this->actionType = 'edit';
+		$this->formType = $request->getParameter('form');
 		if ($success && isset($success['form']) && $success['form'] == true)
 		{
 
@@ -445,7 +446,7 @@ class collectionActions extends sfActions
 			->createQuery('u')
 			->where('id =?', $unitId)
 			->execute();
-			$this->ThisUnit = $unit;
+			$this->unitId = $unit->getId();
 
 			$url = $this->generateUrl("collection", $unit);
 			$arr_url = explode('?', $url);
