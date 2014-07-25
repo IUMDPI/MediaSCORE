@@ -227,7 +227,10 @@ function calculateCollectionScore() {
 		score = (cssi * (27.5 / 100)) + (cscq * (27.5 / 100)) + (csr * (27.5 / 100)) + (csd * (17.5 / 100));
 	}
 	else {
-		score = (cssi * (25 / 100)) + (cscq * (25 / 100)) + (csr * (25 / 100)) + (csd * (15 / 100)) + (cstq * (10 / 100));
+		if (cstq > 1.4)
+			score = (cssi * (25 / 100)) + (cscq * (25 / 100)) + (csr * (25 / 100)) + (csd * (15 / 100)) + (cstq * (10 / 100));
+		else
+			score = '';
 	}
 	if (IsNumeric(score))
 		$('#collection_collection_score').val(score.toFixed(2));
