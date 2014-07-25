@@ -746,6 +746,8 @@ class collectionActions extends sfActions
 				($collection->getScoreRareness() * (25 / 100)) +
 				($collection->getScoreDocumentation() * (15 / 100));
 				($collection->getUnknownTechnicalQuality() * (10 / 100));
+				if ($collection->getUnknownTechnicalQuality() <= 1.4)
+					$score = NULL;
 			endif;
 			$collection->setCollectionScore($score);
 			$collection->save();
