@@ -277,7 +277,7 @@ class CollectionForm extends BaseCollectionForm
 	{
 
 		$calculate_total = TRUE;
-
+		echo '<pre>';print_r($taintedValues);exit;
 		if (isset($taintedValues['collection_score']))
 		{
 			if ($taintedValues['score_subject_interest'] == '' || $taintedValues['score_content_quality'] == '' || $taintedValues['score_rareness'] == '' || $taintedValues['score_documentation'] == '')
