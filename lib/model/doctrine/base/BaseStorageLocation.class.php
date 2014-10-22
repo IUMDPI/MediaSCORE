@@ -10,7 +10,9 @@
  * @property integer $env_rating
  * @property Doctrine_Collection $Units
  * @property Doctrine_Collection $Collections
+ * @property Doctrine_Collection $UnitMultipleCollection
  * @property Doctrine_Collection $UnitStorageLocation
+ * @property Doctrine_Collection $CollectionMultipleAssetGroup
  * @property Doctrine_Collection $CollectionStorageLocation
  * 
  * @method string              getName()                           Returns the current record's "name" value
@@ -18,14 +20,18 @@
  * @method integer             getEnvRating()                      Returns the current record's "env_rating" value
  * @method Doctrine_Collection getUnits()                          Returns the current record's "Units" collection
  * @method Doctrine_Collection getCollections()                    Returns the current record's "Collections" collection
+ * @method Doctrine_Collection getUnitMultipleCollection()         Returns the current record's "UnitMultipleCollection" collection
  * @method Doctrine_Collection getUnitStorageLocation()            Returns the current record's "UnitStorageLocation" collection
+ * @method Doctrine_Collection getCollectionMultipleAssetGroup()   Returns the current record's "CollectionMultipleAssetGroup" collection
  * @method Doctrine_Collection getCollectionStorageLocation()      Returns the current record's "CollectionStorageLocation" collection
  * @method StorageLocation     setName()                           Sets the current record's "name" value
  * @method StorageLocation     setResidentStructureDescription()   Sets the current record's "resident_structure_description" value
  * @method StorageLocation     setEnvRating()                      Sets the current record's "env_rating" value
  * @method StorageLocation     setUnits()                          Sets the current record's "Units" collection
  * @method StorageLocation     setCollections()                    Sets the current record's "Collections" collection
+ * @method StorageLocation     setUnitMultipleCollection()         Sets the current record's "UnitMultipleCollection" collection
  * @method StorageLocation     setUnitStorageLocation()            Sets the current record's "UnitStorageLocation" collection
+ * @method StorageLocation     setCollectionMultipleAssetGroup()   Sets the current record's "CollectionMultipleAssetGroup" collection
  * @method StorageLocation     setCollectionStorageLocation()      Sets the current record's "CollectionStorageLocation" collection
  * 
  * @package    mediaSCORE
@@ -65,9 +71,19 @@ abstract class BaseStorageLocation extends sfDoctrineRecord
              'local' => 'storage_location_id',
              'foreign' => 'collection_id'));
 
+        $this->hasMany('UnitMultipleCollection', array(
+             'refClass' => 'UnitStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'unit_id'));
+
         $this->hasMany('UnitStorageLocation', array(
              'local' => 'id',
              'foreign' => 'storage_location_id'));
+
+        $this->hasMany('CollectionMultipleAssetGroup', array(
+             'refClass' => 'CollectionStorageLocation',
+             'local' => 'storage_location_id',
+             'foreign' => 'collection_id'));
 
         $this->hasMany('CollectionStorageLocation', array(
              'local' => 'id',

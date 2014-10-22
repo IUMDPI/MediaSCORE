@@ -22,6 +22,9 @@ abstract class BasePersonForm extends UserForm
     $this->widgetSchema   ['consultation_records_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory'));
     $this->validatorSchema['consultation_records_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'EvaluatorHistory', 'required' => false));
 
+    $this->widgetSchema   ['unit_multiple_collection_list'] = new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'UnitMultipleCollection'));
+    $this->validatorSchema['unit_multiple_collection_list'] = new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'UnitMultipleCollection', 'required' => false));
+
     $this->widgetSchema->setNameFormat('person[%s]');
   }
 
@@ -44,12 +47,18 @@ abstract class BasePersonForm extends UserForm
       $this->setDefault('consultation_records_list', $this->object->consultationRecords->getPrimaryKeys());
     }
 
+    if (isset($this->widgetSchema['unit_multiple_collection_list']))
+    {
+      $this->setDefault('unit_multiple_collection_list', $this->object->UnitMultipleCollection->getPrimaryKeys());
+    }
+
   }
 
   protected function doSave($con = null)
   {
     $this->saveUnitsList($con);
     $this->saveconsultationRecordsList($con);
+    $this->saveUnitMultipleCollectionList($con);
 
     parent::doSave($con);
   }
@@ -127,6 +136,44 @@ abstract class BasePersonForm extends UserForm
     if (count($link))
     {
       $this->object->link('consultationRecords', array_values($link));
+    }
+  }
+
+  public function saveUnitMultipleCollectionList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['unit_multiple_collection_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->UnitMultipleCollection->getPrimaryKeys();
+    $values = $this->getValue('unit_multiple_collection_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('UnitMultipleCollection', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('UnitMultipleCollection', array_values($link));
     }
   }
 

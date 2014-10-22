@@ -8,16 +8,17 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseOpenReelAudiotapeAcetateFormFilter extends OpenReelAudioTapeFormatTypeFormFilter {
+abstract class BaseOpenReelAudiotapeAcetateFormFilter extends OpenReelAudioTapeFormatTypeFormFilter
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('open_reel_audiotape_acetate_filters[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('open_reel_audiotape_acetate_filters[%s]');
-    }
-
-    public function getModelName() {
-        return 'OpenReelAudiotapeAcetate';
-    }
-
+  public function getModelName()
+  {
+    return 'OpenReelAudiotapeAcetate';
+  }
 }

@@ -8,16 +8,17 @@
  * @author     Nouman Tayyab
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedInheritanceTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseXDCamOpticalFormFilter extends StandardizedRecordingFormatTypeFormFilter {
+abstract class BaseXDCamOpticalFormFilter extends StandardizedRecordingFormatTypeFormFilter
+{
+  protected function setupInheritance()
+  {
+    parent::setupInheritance();
 
-    protected function setupInheritance() {
-        parent::setupInheritance();
+    $this->widgetSchema->setNameFormat('xd_cam_optical_filters[%s]');
+  }
 
-        $this->widgetSchema->setNameFormat('xd_cam_optical_filters[%s]');
-    }
-
-    public function getModelName() {
-        return 'XDCamOptical';
-    }
-
+  public function getModelName()
+  {
+    return 'XDCamOptical';
+  }
 }
