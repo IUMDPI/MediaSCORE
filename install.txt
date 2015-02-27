@@ -1,0 +1,116 @@
+MediaSCORE Installation
+#######################
+
+These instructions assume you are on a RedHat Enterprise Linux-, CentOS-, or 
+Fedora-like system.  Some administration commands on other distributions will be
+different.
+
+These instructions assume that the webserver will only be serving this
+application since it must be mapped to the root of a webserver.  For your
+environment, a virtual host with this application may be more appropriate.
+
+These installation instructions assume you are running as root unless otherwise
+noted.
+
+Before starting you will need a mysql instance with a mediascore user which has
+all rights to a database named mediascore.  The mysql host is denoted $MYSQLHOST
+and the mediascore password is denoted $MYSQLPASS below.
+
+An initial MediaSCORE user will be created with the username 'admin@example.com'
+and password 'admin'.  On first login, you will be asked to change the password
+for this user.
+
+=================================================================
+# Install System Prerequisites
+yum install php httpd php-mysql*
+
+# Clone the MediaSCORE repository
+cd /var/www
+git clone https://github.com/IUMDPI/MediaSCORE.git
+
+# Create runtime directories
+cd MediaSCORE
+mkdir cache log
+chown apache.apache cache log
+chmod 700 cache
+chmod 755 log
+
+# Fix the SELinux contexts (if needed on your system)
+semanage fcontext -a -t httpd_cache_t "/var/www/MediaSCORE/cache(/.*)?"
+semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/MediaSCORE/log(/.*)?"
+restorecon -Rv .
+
+# Fix the symfony symlink
+cd web
+rm sf
+ln -s ../lib/vendor/data/web/sf .
+cd ..
+
+# Build missing php classes
+php symfony --model --forms --filters
+
+# connect to the database using your $MYSQLHOST and $MYSQLPASS.
+mysql -h $MYSQLHOST -u mediascore -p$MYSQLPASS mediascore
+
+# these commands are run at the mysql prompt in the mediascore database.
+source data/sql/schema.sql
+insert into sf_guard_user (id, email_address, username, password, is_active,
+  forgot_password, is_super_admin, type, role, mediascore_access,
+  mediariver_access) values (1, 'admin@example.com', 'admin',
+  'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, 1, 1, 1, 1, 1);
+quit
+
+# you should now be back at the system prompt.
+rm config/databases.yml
+
+# Create a file config/databases.yml with the content between the lines,
+# substituting the $MYSQLHOST and $MYSQLPASS values as appropriate:
+-------------------------
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: mysql:host=$MYSQLHOST;dbname=mediascore
+      username: mediascore
+      password: $MYSQLPASS
+-------------------------
+
+# Configure MediaSCORE in the webserver as /
+# Create /etc/httpd/conf.d/mediascore.conf with the content between the lines:
+-------------
+DocumentRoot /var/www/MediaSCORE/web
+
+<Directory /var/www/MediaSCORE/web>
+  DirectoryIndex index.php
+  Options FollowSymLinks
+  AllowOverride All
+  Allow from all
+</Directory>
+-------------
+
+# verify the server configuration
+service httpd configtest
+
+# verify the cache configuration
+#### WARNING ##################################################################
+# This software maintains a world-writable cache of php files which pose a
+# significant security risk.  The top level cache directory mode MUST be set to
+# 0700 or any local user can run PHP code as the webserver user.
+###############################################################################
+ls -al cache
+# the permissions should match:
+# drwx------.  3 apache   apache    4096 Feb 26 11:41 cache
+# if not, fix the permissions accordingly.
+
+# restart the webserver
+service httpd restart
+
+# the application is now available.
+
+
+  
+
+
+
+
+
